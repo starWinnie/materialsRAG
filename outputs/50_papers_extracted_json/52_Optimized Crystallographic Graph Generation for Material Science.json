@@ -1,0 +1,18 @@
+[
+  {
+    "task_description": "Generating crystallographic graphs (cutoff and k-nearest-neighbour graphs) from periodic crystalline structures in real time during GPU-accelerated training of graph-based generative models for new material discovery — specifically, enabling dynamic graph updates as atomic geometry is modified during forward propagation.",
+    "task_tags": [
+      "graph generation",
+      "crystal structure representation",
+      "real-time preprocessing",
+      "generative modeling support"
+    ],
+    "datasets": [
+      {
+        "db_title": "Materials Project",
+        "db_description": "A publicly available dataset of 133,420 crystalline materials, each characterized by ab initio–computed structural and electronic properties; the paper uses a filtered subset (119,701 structures) after removing those with >64 atoms, to benchmark the performance of its graph generation tool. It serves exclusively to evaluate computational efficiency (speed, memory, scalability) of cutoff and KNN graph construction on realistic, diverse periodic structures — not for training or property prediction.",
+        "db_link": "https://materialsproject.org"
+      }
+    ]
+  }
+]

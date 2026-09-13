@@ -1,0 +1,32 @@
+[
+  {
+    "task_description": "Predicting diverse materials properties (e.g., band gap, exfoliation energy, dielectric constants, thermoelectric coefficients) for compositions in small target datasets by leveraging knowledge transferred from deep learning models pre-trained on large source datasets of *different* — often unrelated — materials properties, using only elemental fractions as input.",
+    "task_tags": [
+      "materials property prediction",
+      "cross-property transfer learning",
+      "small-data modeling"
+    ],
+    "datasets": [
+      {
+        "db_title": "Open Quantum Materials Database (OQMD)",
+        "db_description": "A computational materials database containing 341,443 unique compositions with DFT-calculated properties including formation energy, bandgap, stability, energy per atom, volume, and magnetic moment (as of May 2018). It is used to construct the source dataset (OQMD-JARVIS, size 321,140 after deduplication and overlap removal) for pre-training ElemNet-based source models; these models serve as the foundation for cross-property transfer learning to predict target properties on smaller datasets.",
+        "db_link": "http://oqmd.org"
+      },
+      {
+        "db_title": "Joint Automated Repository for Various Integrated Simulations (JARVIS)",
+        "db_description": "A computational materials database comprising 28,171 unique compounds with up to 36 DFT-computed properties (as of July 2020), including band gap, exfoliation energy, dielectric constants, thermoelectric coefficients, elastic moduli, and Seebeck coefficients. After preprocessing (removing duplicates by retaining only the most stable structure per composition and excluding overlaps with OQMD), it serves as the target dataset for 39 distinct materials property prediction tasks, enabling evaluation of cross-property transfer learning performance.",
+        "db_link": "https://jarvis.nist.gov"
+      },
+      {
+        "db_title": "Experimental formation energy dataset",
+        "db_description": "An experimental dataset of 1,643 material entries containing measured formation energies (in eV/atom), sourced from the qmpy thermodata repository. It is used as a real-world small-target dataset to evaluate cross-property transfer learning performance, specifically testing whether models pre-trained on computational formation energy (OQMD) can improve prediction accuracy on experimental formation energy data — a key demonstration of generalizability beyond computational domains.",
+        "db_link": "https://github.com/wolverton-research-group/qmpy/blob/master/qmpy/data/thermodata/ssub.dat"
+      },
+      {
+        "db_title": "Experimental band gap dataset",
+        "db_description": "An experimental dataset of 4,920 material entries containing measured band gap values (in eV), sourced from the AutoMatminer repository. It serves as a second experimental small-target dataset to validate the cross-property transfer learning framework, assessing whether source models trained on computational formation energy or band gap can enhance prediction of experimentally measured band gaps — particularly challenging due to known DFT band gap underestimation.",
+        "db_link": "https://github.com/hackingmaterials/automatminer"
+      }
+    ]
+  }
+]

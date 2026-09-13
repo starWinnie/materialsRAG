@@ -1,0 +1,602 @@
+{
+  "paper": {
+    "paper_id": "P012",
+    "title": "PDDFormer: Pairwise Distance Distribution Graph Transformer for Crystal Material Property Prediction",
+    "year": 2025,
+    "doi": null,
+    "file_name": "12_PDDFormer.pdf",
+    "research_summary": "The paper introduces WPDDFormer and UPDDFormer—graph transformer models that integrate atom-weighted and unit-cell pairwise distance distribution (PDD) representations into multi-edge crystal graphs to achieve continuous and geometrically complete crystal structure representations, enabling improved prediction of material properties such as formation energy, band gap, bulk modulus, and shear modulus on Materials Project and JARVIS-DFT benchmarks.",
+    "extraction_status": "completed"
+  },
+  "tasks": [
+    {
+      "task_id": "T_P012_01",
+      "paper_id": "P012",
+      "task_name_raw": "Crystal material property prediction",
+      "task_name_canonical": "crystal_material_property_prediction",
+      "objective": "Predict material properties of crystalline materials from their atomic structure",
+      "material_scope": [
+        "crystalline materials"
+      ],
+      "target_properties": [
+        "formation energy",
+        "band gap",
+        "total energy",
+        "energy above hull (Ehull)",
+        "bulk moduli",
+        "shear moduli"
+      ],
+      "constraints": [
+        "continuity under atomic position perturbations",
+        "geometric completeness",
+        "computational efficiency"
+      ],
+      "input_requirements": [
+        "crystal structure (unit cell, atomic positions, atomic types, lattice vectors)"
+      ],
+      "output_goal": [
+        "scalar predictions of material properties"
+      ],
+      "parent_task_id": null,
+      "task_level": "main_task",
+      "evidence": [
+        {
+          "text": "Comprehensive evaluation results show that WPDDFormer achieves state-of-the-art predictive accuracy across tasks on benchmark datasets such as the Materials Project and JARVIS-DFT.",
+          "page": 1,
+          "section": "Abstract",
+          "inferred": false
+        },
+        {
+          "text": "We conducted experiments on two material benchmark datasets, namely the Materials Project [Chen et al., 2019] and Jarvis [Choudhary et al., 2020] datasets.",
+          "page": 7,
+          "section": "5 Experiments",
+          "inferred": false
+        },
+        {
+          "text": "Method\nFormation Energy\nBandgap(OPT)\nTotal Energy\nEhull\nBandgap(MBJ)\nBulk Moduli(Kv)\nShear Moduli(Gv)\neV/atom\neV\neV/atom\neV\neV\nGPa\nGPa",
+          "page": 6,
+          "section": "Method",
+          "inferred": false
+        }
+      ]
+    }
+  ],
+  "stages": [
+    {
+      "stage_id": "S_P012_01",
+      "paper_id": "P012",
+      "task_id": "T_P012_01",
+      "stage_type": "data_preparation",
+      "stage_name_raw": "Crystal graph construction with WPDD/UPDD",
+      "stage_order": 1,
+      "stage_goal": "Construct continuous and geometrically complete multi-edge crystal graphs using WPDD or UPDD representations",
+      "stage_input": [
+        "crystal structure (U = (X, P), L)",
+        "atomic types",
+        "lattice vectors"
+      ],
+      "stage_output": [
+        "multi-edge crystal graph G = (X, XI, E, PDD)"
+      ],
+      "evidence": [
+        {
+          "text": "By introducing PDD, we constructed a general complete and continuous multi-edge crystal graph. In the graph, node features are xi. An edge is established from node j to node i when the Euclidean distance |ej′i|2 between a duplicate of j and i satisfies |ej′i|2 = |pj + k′1l1 + k′2l2 + k′3l3 −pi|2 ≤r, where r ∈R is the cutoff radius.\nNext, we construct a PDD row for each atom. Since directly representing PDD as edge features is impractical, we retain its matrix form and incorporate it into the construction of the multi-edge crystal graph to reflect the global information of the crystal structure. Therefore, we represent the constructed crystal graph as G = (X, XI, E, PDD).",
+          "page": 4,
+          "section": "4.3 Crystal Graph Construction",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P012_02",
+      "paper_id": "P012",
+      "task_id": "T_P012_01",
+      "stage_type": "model_training",
+      "stage_name_raw": "Training PDDFormer (WPDDFormer/UPDDFormer)",
+      "stage_order": 2,
+      "stage_goal": "Train transformer-based models using crystal graphs with WPDD or UPDD as input",
+      "stage_input": [
+        "multi-edge crystal graphs G = (X, XI, E, PDD)",
+        "property labels (e.g., formation energy, band gap)"
+      ],
+      "stage_output": [
+        "trained WPDDFormer and UPDDFormer models"
+      ],
+      "evidence": [
+        {
+          "text": "Based on the graph in Section 4.3, we propose the information propagation scheme of PDDFormer. Figure 3 illustrates the overall framework architecture of PDDFormer.",
+          "page": 6,
+          "section": "4.6 Network Architecture",
+          "inferred": false
+        },
+        {
+          "text": "We conducted experiments on two material benchmark datasets, namely the Materials Project [Chen et al., 2019] and Jarvis [Choudhary et al., 2020] datasets.",
+          "page": 7,
+          "section": "5 Experiments",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P012_03",
+      "paper_id": "P012",
+      "task_id": "T_P012_01",
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "Evaluation on benchmark property prediction tasks",
+      "stage_order": 3,
+      "stage_goal": "Assess predictive accuracy of WPDDFormer/UPDDFormer on multiple material property tasks",
+      "stage_input": [
+        "trained models",
+        "test sets from Materials Project and JARVIS"
+      ],
+      "stage_output": [
+        "MAE scores per property (e.g., formation energy, band gap, bulk moduli)"
+      ],
+      "evidence": [
+        {
+          "text": "The quantitative results for JARVIS [Choudhary et al., 2020] are shown in Table 1. WPDDformer achieves the best performance across all tasks. UPDD achieved the second-best results.",
+          "page": 7,
+          "section": "5.1 Experimental Results",
+          "inferred": false
+        },
+        {
+          "text": "Method\nFormation Energy\nBand Gap\nBulk\nShear\neV/atom\neV\nlog(GPa)\nlog(GPa)",
+          "page": 6,
+          "section": "Method",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P012_04",
+      "paper_id": "P012",
+      "task_id": "T_P012_01",
+      "stage_type": "ablation_study",
+      "stage_name_raw": "Ablation study on (W/U)PDD contribution",
+      "stage_order": 4,
+      "stage_goal": "Validate the importance of WPDD/UPDD integration by removing PDD message passing blocks or (W/U)PDD inputs",
+      "stage_input": [
+        "models with/without PDD message passing blocks",
+        "models with/without (W/U)PDD information"
+      ],
+      "stage_output": [
+        "comparative MAE improvements (e.g., 17.4% in Bulk Moduli)"
+      ],
+      "evidence": [
+        {
+          "text": "In this section, we demonstrate the impact of introducing (W/U)PDD on the representation learning of crystal materials through ablation studies. Specifically, we conducted experiments on the MP and JARVIS datasets, using testing mean absolute error (MAE) as the quantitative evaluation metric, comparing the results for Band Gap and Ehull tasks, as shown in Table 4.",
+          "page": 7,
+          "section": "5.2 Ablation Studies",
+          "inferred": false
+        },
+        {
+          "text": "By comparing (W/U)PDDFormer models without PDD message passing blocks to models that retain the PDD message passing blocks but lack (W/U)PDD information, we validated the importance of (W/U)PDD.",
+          "page": 7,
+          "section": "5.2 Ablation Studies",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P012_05",
+      "paper_id": "P012",
+      "task_id": "T_P012_01",
+      "stage_type": "computational_validation",
+      "stage_name_raw": "Continuity and completeness validation using EMD",
+      "stage_order": 5,
+      "stage_goal": "Quantitatively verify continuity and general geometric completeness of WPDD/UPDD crystal graphs",
+      "stage_input": [
+        "perturbed crystal structures S and Q",
+        "EMD metric"
+      ],
+      "stage_output": [
+        "EMD(G(S), G(Q)) ≤ Cϵ (continuity proof)",
+        "G(S) = G(Q) ⟹ S ≃ Q (completeness proof)"
+      ],
+      "evidence": [
+        {
+          "text": "Finally, we employ the Earth Mover’s Distance (EMD) [Rubner et al., 2000] to assess the continuity of crystal graphs, demonstrating that WPDD crystal graphs constructed using only Euclidean distances maintain continuity and general completeness under slight atomic position perturbations, providing a more accurate depiction of actual crystal structures.",
+          "page": 2,
+          "section": "Introduction",
+          "inferred": false
+        },
+        {
+          "text": "Proposition 1. The WPDD and UPDD multi-edge crystal graph is continuous.\nProof. For any neighbor count k ≥1, if the periodic crystal S, Q ∈Rn satisfy dB (S, Q) < r (S), then we have:\nEMD (G (S) , G (Q)) =\nEMD ((SX , SXI, SE, SPDD) , (QX , QXI, QE, QPDD)) =\nEMD ((SX , QX )) + EMD ((SXI, QXI))+\nEMD ((SE, QE)) + EMD ((SPDD, QPDD)) .",
+          "page": 5,
+          "section": "4.4 The Continuity of Proposed Crystal Graphs",
+          "inferred": false
+        }
+      ]
+    }
+  ],
+  "datasets": [
+    {
+      "dataset_id": "D_materials_project",
+      "canonical_name": "Materials Project",
+      "raw_names": [
+        "Materials Project"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "crystalline materials"
+      ],
+      "available_properties": [
+        "formation energy",
+        "band gap",
+        "total energy",
+        "energy above hull (Ehull)",
+        "bulk moduli",
+        "shear moduli"
+      ],
+      "available_fields": [
+        "crystal structure",
+        "formation_energy",
+        "band_gap",
+        "total_energy",
+        "e_above_hull",
+        "bulk_modulus",
+        "shear_modulus"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Comprehensive evaluation results show that WPDDFormer achieves state-of-the-art predictive accuracy across tasks on benchmark datasets such as the Materials Project and JARVIS-DFT.",
+          "page": 1,
+          "section": "Abstract",
+          "inferred": false,
+          "paper_id": "P012"
+        },
+        {
+          "text": "We conducted experiments on two material benchmark datasets, namely the Materials Project [Chen et al., 2019] and Jarvis [Choudhary et al., 2020] datasets.",
+          "page": 7,
+          "section": "5 Experiments",
+          "inferred": false,
+          "paper_id": "P012"
+        },
+        {
+          "text": "The Materials Project (MP)\nThe experimental results on MP [Chen et al., 2019] are shown in Table 2.",
+          "page": 7,
+          "section": "5.1 Experimental Results",
+          "inferred": false,
+          "paper_id": "P012"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:materials_project"
+    },
+    {
+      "dataset_id": "D_jarvis_dft",
+      "canonical_name": "JARVIS",
+      "raw_names": [
+        "JARVIS",
+        "JARVIS-DFT"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "crystalline materials"
+      ],
+      "available_properties": [
+        "formation energy",
+        "band gap",
+        "bulk moduli",
+        "shear moduli"
+      ],
+      "available_fields": [
+        "crystal_structure",
+        "formation_energy",
+        "bandgap_OPT",
+        "bandgap_MBJ",
+        "bulk_moduli_Kv",
+        "shear_moduli_Gv"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Comprehensive evaluation results show that WPDDFormer achieves state-of-the-art predictive accuracy across tasks on benchmark datasets such as the Materials Project and JARVIS-DFT.",
+          "page": 1,
+          "section": "Abstract",
+          "inferred": false,
+          "paper_id": "P012"
+        },
+        {
+          "text": "We conducted experiments on two material benchmark datasets, namely the Materials Project [Chen et al., 2019] and Jarvis [Choudhary et al., 2020] datasets.",
+          "page": 7,
+          "section": "5 Experiments",
+          "inferred": false,
+          "paper_id": "P012"
+        },
+        {
+          "text": "The quantitative results for JARVIS [Choudhary et al., 2020] are shown in Table 1.",
+          "page": 7,
+          "section": "5.1 Experimental Results",
+          "inferred": false,
+          "paper_id": "P012"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:jarvis_dft"
+    }
+  ],
+  "dataset_uses": [
+    {
+      "dataset_use_id": "DU_P012_001",
+      "paper_id": "P012",
+      "task_id": "T_P012_01",
+      "stage_id": "S_P012_01",
+      "dataset_id": "D_materials_project",
+      "usage_role": "source",
+      "purpose": "Source of crystal structures for constructing multi-edge crystal graphs with WPDD/UPDD representations",
+      "used_fields": [
+        "crystal structure"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "By introducing PDD, we constructed a general complete and continuous multi-edge crystal graph. In the graph, node features are xi. An edge is established from node j to node i when the Euclidean distance |ej′i|2 between a duplicate of j and i satisfies |ej′i|2 = |pj + k′1l1 + k′2l2 + k′3l3 −pi|2 ≤r, where r ∈R is the cutoff radius.\nNext, we construct a PDD row for each atom. Since directly representing PDD as edge features is impractical, we retain its matrix form and incorporate it into the construction of the multi-edge crystal graph to reflect the global information of the crystal structure. Therefore, we represent the constructed crystal graph as G = (X, XI, E, PDD).",
+          "page": 4,
+          "section": "4.3 Crystal Graph Construction",
+          "inferred": false
+        }
+      ],
+      "confidence": 0.95
+    },
+    {
+      "dataset_use_id": "DU_P012_002",
+      "paper_id": "P012",
+      "task_id": "T_P012_01",
+      "stage_id": "S_P012_01",
+      "dataset_id": "D_jarvis_dft",
+      "usage_role": "source",
+      "purpose": "Source of crystal structures for constructing multi-edge crystal graphs with WPDD/UPDD representations",
+      "used_fields": [
+        "crystal structure"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "By introducing PDD, we constructed a general complete and continuous multi-edge crystal graph. In the graph, node features are xi. An edge is established from node j to node i when the Euclidean distance |ej′i|2 between a duplicate of j and i satisfies |ej′i|2 = |pj + k′1l1 + k′2l2 + k′3l3 −pi|2 ≤r, where r ∈R is the cutoff radius.\nNext, we construct a PDD row for each atom. Since directly representing PDD as edge features is impractical, we retain its matrix form and incorporate it into the construction of the multi-edge crystal graph to reflect the global information of the crystal structure. Therefore, we represent the constructed crystal graph as G = (X, XI, E, PDD).",
+          "page": 4,
+          "section": "4.3 Crystal Graph Construction",
+          "inferred": false
+        }
+      ],
+      "confidence": 0.95
+    },
+    {
+      "dataset_use_id": "DU_P012_003",
+      "paper_id": "P012",
+      "task_id": "T_P012_01",
+      "stage_id": "S_P012_02",
+      "dataset_id": "D_materials_project",
+      "usage_role": "training",
+      "purpose": "Training WPDDFormer and UPDDFormer models on property prediction tasks",
+      "used_fields": [
+        "crystal structure",
+        "formation_energy",
+        "bandgap_OPT",
+        "total_energy",
+        "e_above_hull",
+        "bulk_modulus",
+        "shear_modulus"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We conducted experiments on two material benchmark datasets, namely the Materials Project [Chen et al., 2019] and Jarvis [Choudhary et al., 2020] datasets.",
+          "page": 7,
+          "section": "5 Experiments",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P012_004",
+      "paper_id": "P012",
+      "task_id": "T_P012_01",
+      "stage_id": "S_P012_02",
+      "dataset_id": "D_jarvis_dft",
+      "usage_role": "training",
+      "purpose": "Training WPDDFormer and UPDDFormer models on property prediction tasks",
+      "used_fields": [
+        "crystal structure",
+        "formation_energy",
+        "bandgap_OPT",
+        "bandgap_MBJ",
+        "bulk_moduli_Kv",
+        "shear_moduli_Gv"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We conducted experiments on two material benchmark datasets, namely the Materials Project [Chen et al., 2019] and Jarvis [Choudhary et al., 2020] datasets.",
+          "page": 7,
+          "section": "5 Experiments",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P012_005",
+      "paper_id": "P012",
+      "task_id": "T_P012_01",
+      "stage_id": "S_P012_03",
+      "dataset_id": "D_materials_project",
+      "usage_role": "test",
+      "purpose": "Evaluating predictive accuracy of WPDDFormer/UPDDFormer on multiple material property tasks",
+      "used_fields": [
+        "crystal structure",
+        "formation_energy",
+        "bandgap_OPT",
+        "total_energy",
+        "e_above_hull",
+        "bulk_modulus",
+        "shear_modulus"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The Materials Project (MP)\nThe experimental results on MP [Chen et al., 2019] are shown in Table 2.",
+          "page": 7,
+          "section": "5.1 Experimental Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P012_006",
+      "paper_id": "P012",
+      "task_id": "T_P012_01",
+      "stage_id": "S_P012_03",
+      "dataset_id": "D_jarvis_dft",
+      "usage_role": "test",
+      "purpose": "Evaluating predictive accuracy of WPDDFormer/UPDDFormer on multiple material property tasks",
+      "used_fields": [
+        "crystal structure",
+        "formation_energy",
+        "bandgap_OPT",
+        "bandgap_MBJ",
+        "bulk_moduli_Kv",
+        "shear_moduli_Gv"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The quantitative results for JARVIS [Choudhary et al., 2020] are shown in Table 1.",
+          "page": 7,
+          "section": "5.1 Experimental Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P012_007",
+      "paper_id": "P012",
+      "task_id": "T_P012_01",
+      "stage_id": "S_P012_04",
+      "dataset_id": "D_materials_project",
+      "usage_role": "validation",
+      "purpose": "Ablation study on (W/U)PDD contribution using testing MAE as evaluation metric",
+      "used_fields": [
+        "crystal structure",
+        "e_above_hull",
+        "bandgap_OPT"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "In this section, we demonstrate the impact of introducing (W/U)PDD on the representation learning of crystal materials through ablation studies. Specifically, we conducted experiments on the MP and JARVIS datasets, using testing mean absolute error (MAE) as the quantitative evaluation metric, comparing the results for Band Gap and Ehull tasks, as shown in Table 4.",
+          "page": 7,
+          "section": "5.2 Ablation Studies",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P012_008",
+      "paper_id": "P012",
+      "task_id": "T_P012_01",
+      "stage_id": "S_P012_04",
+      "dataset_id": "D_jarvis_dft",
+      "usage_role": "validation",
+      "purpose": "Ablation study on (W/U)PDD contribution using testing MAE as evaluation metric",
+      "used_fields": [
+        "crystal structure",
+        "e_above_hull",
+        "bandgap_OPT"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "In this section, we demonstrate the impact of introducing (W/U)PDD on the representation learning of crystal materials through ablation studies. Specifically, we conducted experiments on the MP and JARVIS datasets, using testing mean absolute error (MAE) as the quantitative evaluation metric, comparing the results for Band Gap and Ehull tasks, as shown in Table 4.",
+          "page": 7,
+          "section": "5.2 Ablation Studies",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P012_009",
+      "paper_id": "P012",
+      "task_id": "T_P012_01",
+      "stage_id": "S_P012_05",
+      "dataset_id": "D_materials_project",
+      "usage_role": "computational_validation",
+      "purpose": "Continuity and completeness validation using EMD on perturbed crystal structures",
+      "used_fields": [
+        "crystal structure"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Finally, we employ the Earth Mover’s Distance (EMD) [Rubner et al., 2000] to assess the continuity of crystal graphs, demonstrating that WPDD crystal graphs constructed using only Euclidean distances maintain continuity and general completeness under slight atomic position perturbations, providing a more accurate depiction of actual crystal structures.",
+          "page": 2,
+          "section": "Introduction",
+          "inferred": false
+        }
+      ],
+      "confidence": 0.95
+    },
+    {
+      "dataset_use_id": "DU_P012_010",
+      "paper_id": "P012",
+      "task_id": "T_P012_01",
+      "stage_id": "S_P012_05",
+      "dataset_id": "D_jarvis_dft",
+      "usage_role": "computational_validation",
+      "purpose": "Continuity and completeness validation using EMD on perturbed crystal structures",
+      "used_fields": [
+        "crystal structure"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Finally, we employ the Earth Mover’s Distance (EMD) [Rubner et al., 2000] to assess the continuity of crystal graphs, demonstrating that WPDD crystal graphs constructed using only Euclidean distances maintain continuity and general completeness under slight atomic position perturbations, providing a more accurate depiction of actual crystal structures.",
+          "page": 2,
+          "section": "Introduction",
+          "inferred": false
+        }
+      ],
+      "confidence": 0.95
+    }
+  ]
+}

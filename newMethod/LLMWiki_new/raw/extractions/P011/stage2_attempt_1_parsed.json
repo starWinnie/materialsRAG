@@ -1,0 +1,260 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "jarvis",
+      "canonical_name": "JARVIS",
+      "raw_names": [
+        "JARVIS"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "crystal structures"
+      ],
+      "available_properties": [
+        "bandgaps",
+        "formation energies",
+        "energy above hull",
+        "total energy"
+      ],
+      "available_fields": [
+        "crystal structure",
+        "bandgap",
+        "formation_energy",
+        "energy_above_hull",
+        "total_energy"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "The benchmark for crystal property prediction is well established. There are two standard benchmark datasets, JARVIS and Materials Project (Choudhary et al. 2020; Chen et al. 2019), to evaluate the performance of our model.",
+          "page": 3,
+          "section": "Method",
+          "inferred": false
+        },
+        {
+          "text": "The JARVIS dataset contains 55,722 materials with critical crystal properties for functional material design, including bandgaps, formation energies, energy above hull, total energy and so on.",
+          "page": 4,
+          "section": "Experiments",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "materials_project",
+      "canonical_name": "Materials Project",
+      "raw_names": [
+        "Materials Project"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "crystal structures"
+      ],
+      "available_properties": [
+        "formation energy",
+        "band gap",
+        "bulk moduli",
+        "shear moduli"
+      ],
+      "available_fields": [
+        "crystal structure",
+        "formation_energy",
+        "band_gap",
+        "bulk_moduli",
+        "shear_moduli"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "The benchmark for crystal property prediction is well established. There are two standard benchmark datasets, JARVIS and Materials Project (Choudhary et al. 2020; Chen et al. 2019), to evaluate the performance of our model.",
+          "page": 3,
+          "section": "Method",
+          "inferred": false
+        },
+        {
+          "text": "The Materials Project dataset aggregates several key crystal property datasets, including formation energy, band gap, bulk moduli, and shear moduli. Among them, 69,239 crystals are labeled with properties of formation energy and band gap, while only 5,451 crystal structures are labeled with the properties of bulk moduli and shear moduli.",
+          "page": 4,
+          "section": "Experiments",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "merchant_2023_unlabeled",
+      "canonical_name": "Merchant et al. 2023 unlabeled crystal structures",
+      "raw_names": [
+        "recent work (Merchant et al. 2023)",
+        "2.2 million potential crystal structures",
+        "380,743 crystal structure data filtered from the recent work (Merchant et al. 2023)"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "crystal structures"
+      ],
+      "available_properties": [],
+      "available_fields": [
+        "crystal structure"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We pre-train our model on 380,743 crystal structure data filtered from the recent work (Merchant et al. 2023), excluding structures that are duplicates of downstream datasets or do not have physical or chemical significance.",
+          "page": 4,
+          "section": "Experiments",
+          "inferred": false
+        },
+        {
+          "text": "Merchant et al. (2023) have discovered 2.2 million crystal structures using a deep generative tool. After filtering the repetitive and physically or chemically irrational structures, we utilize 380,743 structures to pre-train our model.",
+          "page": 3,
+          "section": "Method",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "merchant_2023_unlabeled",
+      "usage_role": "pretraining",
+      "purpose": "Collect a large-scale dataset of unlabeled crystal structures for pre-training.",
+      "used_fields": [
+        "crystal structure"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [
+        "excluding structures that are duplicates of downstream datasets",
+        "excluding structures that do not have physical or chemical significance"
+      ],
+      "sample_count": 380743,
+      "evidence": [
+        {
+          "text": "We pre-train our model on 380,743 crystal structure data filtered from the recent work (Merchant et al. 2023), excluding structures that are duplicates of downstream datasets or do not have physical or chemical significance.",
+          "page": 4,
+          "section": "Experiments",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "jarvis",
+      "usage_role": "training",
+      "purpose": "Fine-tune the pre-trained model on downstream crystal property prediction tasks.",
+      "used_fields": [
+        "crystal structure",
+        "bandgap",
+        "formation_energy",
+        "energy_above_hull",
+        "total_energy"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 55722,
+      "evidence": [
+        {
+          "text": "The JARVIS dataset contains 55,722 materials with critical crystal properties for functional material design, including bandgaps, formation energies, energy above hull, total energy and so on.",
+          "page": 4,
+          "section": "Experiments",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "materials_project",
+      "usage_role": "training",
+      "purpose": "Fine-tune the pre-trained model on downstream crystal property prediction tasks.",
+      "used_fields": [
+        "crystal structure",
+        "formation_energy",
+        "band_gap",
+        "bulk_moduli",
+        "shear_moduli"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 69239,
+      "evidence": [
+        {
+          "text": "The Materials Project dataset aggregates several key crystal property datasets, including formation energy, band gap, bulk moduli, and shear moduli. Among them, 69,239 crystals are labeled with properties of formation energy and band gap, while only 5,451 crystal structures are labeled with the properties of bulk moduli and shear moduli.",
+          "page": 4,
+          "section": "Experiments",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "jarvis",
+      "usage_role": "test",
+      "purpose": "Evaluate the accuracy of crystal property prediction using Mean Absolute Error (MAE).",
+      "used_fields": [
+        "crystal structure",
+        "bandgap",
+        "formation_energy",
+        "energy_above_hull",
+        "total_energy"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 55722,
+      "evidence": [
+        {
+          "text": "Table 1: The experimental results in terms of MAE on JARVIS dataset.",
+          "page": 3,
+          "section": "Method",
+          "inferred": false
+        },
+        {
+          "text": "The JARVIS dataset contains 55,722 materials with critical crystal properties for functional material design, including bandgaps, formation energies, energy above hull, total energy and so on.",
+          "page": 4,
+          "section": "Experiments",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "materials_project",
+      "usage_role": "test",
+      "purpose": "Evaluate the accuracy of crystal property prediction using Mean Absolute Error (MAE).",
+      "used_fields": [
+        "crystal structure",
+        "formation_energy",
+        "band_gap",
+        "bulk_moduli",
+        "shear_moduli"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 69239,
+      "evidence": [
+        {
+          "text": "To verify the effectiveness and generalization performance of our pre-training framework, we fine-tune the model on two commonly used benchmarks, i.e., JARVIS and Materials Project.",
+          "page": 4,
+          "section": "Experiments",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

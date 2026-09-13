@@ -1,0 +1,29 @@
+{
+  "entity_counts": {
+    "Dataset": 70,
+    "DatasetUse": 140,
+    "Evidence": 140,
+    "MaterialSystem": 5,
+    "Method": 7,
+    "Paper": 43,
+    "RDStage": 8,
+    "Representation": 10,
+    "TargetProperty": 10,
+    "Task": 43
+  },
+  "relation_counts": {
+    "DESCRIBES_DATASET": 140,
+    "HAS_DATASET_USE": 140,
+    "HAS_TASK": 43,
+    "PROVIDES_REPRESENTATION": 290,
+    "REQUIRES_REPRESENTATION": 69,
+    "STUDIES_MATERIAL_SYSTEM": 45,
+    "SUPPORTED_BY_EVIDENCE": 140,
+    "SUPPORTS_RD_STAGE": 576,
+    "SUPPORTS_TASK": 138,
+    "TARGETS_PROPERTY": 96,
+    "USES_DATASET": 138,
+    "USES_METHOD": 30
+  },
+  "source_raw_dir": "C:\\Users\\li\\Desktop\\材料大数据\\知识库构建_模拟PVLDB\\llm_wiki_all\\raw"
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "task_description": "Predicting multiple physical and electronic properties of crystalline materials—including formation energy, bandgap, total energy, bulk modulus, shear modulus, Ehull, spillage, SLME, and dielectric-related properties—using graph neural network models enhanced by distilled knowledge from a pre-trained GNN on unlabeled crystal structures.",
+    "task_tags": [
+      "property prediction",
+      "crystal structure modeling",
+      "knowledge distillation"
+    ],
+    "datasets": [
+      {
+        "db_title": "Materials Project (MP) 2018.6.1",
+        "db_description": "A DFT-calculated dataset containing 69,239 crystalline materials with two key properties: formation energy and optical bandgap. It is used as a property-tagged downstream dataset for training and evaluating distilled SOTA property predictors (e.g., CGCNN, ALIGNN). The paper explicitly states this version is a subset of the pre-training data and serves as a benchmark for measuring MAE improvements from knowledge distillation.",
+        "db_link": "https://materialsproject.org/"
+      },
+      {
+        "db_title": "JARVIS-DFT (2021.8.18)",
+        "db_description": "A DFT-based materials database comprising 55,722 crystalline materials with 19 computed properties—including formation energy, bandgap (MBJ and OPT), total energy, bulk modulus, shear modulus, Ehull, spillage, SLME, and electronic properties like epsilon_x/y/z and n-Seebeck. Used as an independent downstream evaluation dataset (not seen during pre-training) to assess generalization of distilled models across diverse structural and electronic properties.",
+        "db_link": "https://jarvis.nist.gov/"
+      },
+      {
+        "db_title": "OQMD-EXP",
+        "db_description": "A small experimental dataset of 1,500 materials with measured formation energy values, derived from the Open Quantum Materials Database. It is used specifically to evaluate how distilled knowledge from CrysGNN helps mitigate DFT-induced bias—by training models on mixed DFT + experimental data and testing on held-out experimental data—to quantify reduction in MAE against ground-truth experimental measurements.",
+        "db_link": "https://oqmd.org/"
+      },
+      {
+        "db_title": "CrysGNN Curated Dataset (800K crystal graphs)",
+        "db_description": "An author-curated, unlabeled dataset of 800,000 crystal graphs assembled from OQMD (661K) and Materials Project (139K), represented as multi-graphs with node features (electronegativity, valence electrons, covalent radius), edge features (bond lengths), space group numbers, and crystal system labels. Used exclusively for self-supervised pre-training of CrysGNN via node-level reconstruction (features & connectivity) and graph-level objectives (space group classification and contrastive learning over crystal systems).",
+        "db_link": "https://github.com/kdmsit/crysgnn"
+      }
+    ]
+  }
+]

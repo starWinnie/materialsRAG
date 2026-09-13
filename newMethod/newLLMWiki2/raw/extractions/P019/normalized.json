@@ -1,0 +1,567 @@
+{
+  "paper": {
+    "paper_id": "P019",
+    "title": "Dielectric tensor prediction for inorganic materials using latent information from preferred potential",
+    "year": 2024,
+    "doi": "10.1038/s41524-024-01450-z",
+    "file_name": "19_DTNet_Dielectric_Tensor.pdf",
+    "research_summary": "This study leverages multi-rank equivariant structural embeddings from a universal neural network potential to enhance predictions of dielectric tensors. We develop an equivariant readout decoder to predict total, electronic, and ionic dielectric tensors while preserving O(3) equivariance, and benchmark its performance against state-of-the-art algorithms. Virtual screening of thermodynamically stable materials from Materials Project for two discovery tasks, high-dielectric and highly anisotropic materials, identifies promising candidates including Cs2Ti(WO4)3 (band gap Eg = 2.93eV, dielectric constant ε = 180.90) and CsZrCuSe3 (anisotropic ratio αr = 121.89). The results demonstrate our model’s accuracy in predicting dielectric tensors and its potential for discovering novel dielectric materials.",
+    "extraction_status": "completed"
+  },
+  "tasks": [
+    {
+      "task_id": "T_P019_01",
+      "paper_id": "P019",
+      "task_name_raw": "Dielectric tensor prediction for inorganic materials",
+      "task_name_canonical": "dielectric_tensor_prediction",
+      "objective": "Predict the three types of dielectric tensors, ε∞ij, ε0ij and εij, for inorganic materials across 72 supported elements with the equivariance to the input structure.",
+      "material_scope": [
+        "inorganic materials"
+      ],
+      "target_properties": [
+        "dielectric tensor",
+        "electronic dielectric tensor",
+        "ionic dielectric tensor",
+        "total dielectric tensor"
+      ],
+      "constraints": [
+        "O(3) equivariance",
+        "thermodynamic stability"
+      ],
+      "input_requirements": [
+        "crystal structure",
+        "atomic numbers and positions",
+        "Materials Project database structures"
+      ],
+      "output_goal": [
+        "3 × 3 dielectric tensor preserving rotational equivariance"
+      ],
+      "parent_task_id": null,
+      "task_level": "main_task",
+      "evidence": [
+        {
+          "text": "In this study, we propose Dielectric Tensor Neural Network(DTNet) to predict the three types of dielectric tensors, ε1 ij , ε0 ij and εij, for inorganic materials across 72 supported elements with the equivairance to the input structure.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "By leveraging transfer learning, the PFP was treated as the frozen base model to encode material graphs with integrated elemental and structural information. A light-weight trainable equivariant readout module is connected to integrate information in different tensorial orders for the final outputs.",
+          "page": 11,
+          "section": "Methods",
+          "inferred": false
+        }
+      ]
+    }
+  ],
+  "stages": [
+    {
+      "stage_id": "S_P019_01",
+      "paper_id": "P019",
+      "task_id": "T_P019_01",
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "Data acquisition from Materials Project",
+      "stage_order": 1,
+      "stage_goal": "Obtain dielectric tensor data for training and evaluation",
+      "stage_input": [
+        "Materials Project (v2023.11.1) database"
+      ],
+      "stage_output": [
+        "7277 relaxed materials with calculated dielectric constants"
+      ],
+      "evidence": [
+        {
+          "text": "The Materials Project (v2023.11.1) contains a dataset of 7277 dielectric tensors.",
+          "page": 11,
+          "section": "Methods",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P019_02",
+      "paper_id": "P019",
+      "task_id": "T_P019_01",
+      "stage_type": "data_preparation",
+      "stage_name_raw": "Data cleaning and filtering",
+      "stage_order": 2,
+      "stage_goal": "Prepare a clean dataset by restricting dielectric constants and filtering unsupported elements",
+      "stage_input": [
+        "7277 dielectric tensors from Materials Project"
+      ],
+      "stage_output": [
+        "6648 structures retained for model training"
+      ],
+      "evidence": [
+        {
+          "text": "We clean up the dataset by restricting the element in total dielectric constants εij ∈[−10, 100] for ∀i, j∈{1,2,3} and filtering out structures that contain elements not supported by PFP. Finally there are 6648 structures retained for model training.",
+          "page": 3,
+          "section": "unknown",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P019_03",
+      "paper_id": "P019",
+      "task_id": "T_P019_01",
+      "stage_type": "model_training",
+      "stage_name_raw": "Training DTNet with pretrained PFP features",
+      "stage_order": 3,
+      "stage_goal": "Train the equivariant readout module using pretrained PFP-L4 features",
+      "stage_input": [
+        "6648 cleaned structures",
+        "pretrained PFP-L4 features"
+      ],
+      "stage_output": [
+        "DTNet model for dielectric tensor prediction"
+      ],
+      "evidence": [
+        {
+          "text": "By leveraging a pretrained PFP model as an efﬁcient and expressive encoder, we demonstrated that the pretrained PFP processes a rich set of high-order latent compositional and structural information for tensorial property prediction.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "PFP-L4 is taken as the feature generator and is utilized for the subsequent study.",
+          "page": 4,
+          "section": "unknown",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P019_04",
+      "paper_id": "P019",
+      "task_id": "T_P019_01",
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "Benchmarking against state-of-the-art models",
+      "stage_order": 4,
+      "stage_goal": "Evaluate DTNet performance on dielectric tensor prediction using MAE metrics",
+      "stage_input": [
+        "DTNet model",
+        "test set from Materials Project",
+        "Matbench dataset"
+      ],
+      "stage_output": [
+        "MAEten, MAEmean-diag, MAEdiag, MAEoff-diag metrics",
+        "superior performance over PaiNN, M3GNet and MatTen"
+      ],
+      "evidence": [
+        {
+          "text": "To evaluate the performance of DTNet, we compared it against existing methods, PaiNN31, M3GNet36 and MatTen37, on the dataset obtained from Materials Project (MP)38.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P019_05",
+      "paper_id": "P019",
+      "task_id": "T_P019_01",
+      "stage_type": "candidate_generation",
+      "stage_name_raw": "Preparation of candidate structures for virtual screening",
+      "stage_order": 5,
+      "stage_goal": "Generate a set of thermodynamically stable candidate materials for screening",
+      "stage_input": [
+        "Materials Project database"
+      ],
+      "stage_output": [
+        "14,375 non-metal materials with energy above convex hull Ehull = 0"
+      ],
+      "evidence": [
+        {
+          "text": "To prepare the candidate set for screening, we downloaded 14,375 non-metal materials from the MP database. These materials are speciﬁcally selected based on the energy above convex hull Ehull = 0 to estimate their thermodynamic stability, so that only stable materials are included in the candidate set.",
+          "page": 8,
+          "section": "unknown",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P019_06",
+      "paper_id": "P019",
+      "task_id": "T_P019_01",
+      "stage_type": "candidate_screening",
+      "stage_name_raw": "Virtual screening for high-dielectric and highly anisotropic materials",
+      "stage_order": 6,
+      "stage_goal": "Identify promising candidates using ensemble DTNet predictions and active learning",
+      "stage_input": [
+        "14,375 candidate structures",
+        "ensemble DTNet models"
+      ],
+      "stage_output": [
+        "top candidates for high-dielectric and highly anisotropic materials"
+      ],
+      "evidence": [
+        {
+          "text": "We conducted the virtual screening by employing DTNet-ε to predict total dielectric constant scalar ε for all structures in the candidate set.",
+          "page": 9,
+          "section": "unknown",
+          "inferred": false
+        },
+        {
+          "text": "We performed virtual screening based on iterative active learning to search for candidates for the two problems.",
+          "page": 12,
+          "section": "Virtual screening",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P019_07",
+      "paper_id": "P019",
+      "task_id": "T_P019_01",
+      "stage_type": "computational_validation",
+      "stage_name_raw": "DFPT validation of screened candidates",
+      "stage_order": 7,
+      "stage_goal": "Validate top candidates using density functional perturbation theory calculations",
+      "stage_input": [
+        "top candidates from virtual screening"
+      ],
+      "stage_output": [
+        "35 successfully converged DFPT calculations for high-dielectric task",
+        "41 successfully converged DFPT calculations for highly anisotropic task"
+      ],
+      "evidence": [
+        {
+          "text": "To validate the promising materials identiﬁed by DTNet, we conducted a three-round active exploration, with each round proposing 20 top candidates for validation.",
+          "page": 9,
+          "section": "unknown",
+          "inferred": false
+        },
+        {
+          "text": "Finally, totally 35 out of the 60 structures across 3 iterations are successfully converged through ﬁrst-principle calculations.",
+          "page": 9,
+          "section": "unknown",
+          "inferred": false
+        },
+        {
+          "text": "Consequently, 41 out of the 60 screened structures were successfully validated via DFPT computations.",
+          "page": 10,
+          "section": "unknown",
+          "inferred": false
+        }
+      ]
+    }
+  ],
+  "datasets": [
+    {
+      "dataset_id": "D_materials_project_v2023_11_1_dielectric_dataset",
+      "canonical_name": "Materials Project v2023.11.1 dielectric dataset",
+      "raw_names": [
+        "Materials Project v2023.11.1 dielectric dataset",
+        "Materials Project (v2023.11.1)",
+        "MP v2023.11.1",
+        "Materials Project"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "inorganic materials"
+      ],
+      "available_properties": [
+        "dielectric tensor",
+        "electronic dielectric tensor",
+        "ionic dielectric tensor",
+        "total dielectric tensor",
+        "band gap"
+      ],
+      "available_fields": [
+        "ε∞ij",
+        "ε0ij",
+        "εij",
+        "Ehull",
+        "band gap (Eg)"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "The Materials Project (v2023.11.1) contains a dataset of 7277 dielectric tensors.",
+          "page": 11,
+          "section": "Methods",
+          "inferred": false,
+          "paper_id": "P019"
+        },
+        {
+          "text": "The Materials Project (v2023.11.1) contains a dataset of 7277 dielectric tensors. The dielectric properties are calculated using the Vienna Ab-Initio Simulation Package (VASP version 5.3.4), employing the generalized gradient approximation GGA/PBE exchange-correlation functional57 with the +U correction58,59 to account for electron-electron interactions within the transition metal orbitals. Projector Augmented Wave pseudopotentials60,61 were also included.",
+          "page": 11,
+          "section": "Methods",
+          "inferred": false,
+          "paper_id": "P019"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:materials_project_v2023_11_1_dielectric_dataset"
+    },
+    {
+      "dataset_id": "D_P019_cleaned_materials_project_dielectric_dataset_6648_structures",
+      "canonical_name": "Cleaned Materials Project dielectric dataset (6648 structures)",
+      "raw_names": [
+        "Cleaned Materials Project dielectric dataset (6648 structures)",
+        "cleaned dataset",
+        "6648 structures",
+        "6648 structures retained for model training"
+      ],
+      "dataset_type": "derived_subset",
+      "source_dataset_id": "D_materials_project_v2023_11_1_dielectric_dataset",
+      "material_scope": [
+        "inorganic materials"
+      ],
+      "available_properties": [
+        "dielectric tensor",
+        "electronic dielectric tensor",
+        "ionic dielectric tensor",
+        "total dielectric tensor"
+      ],
+      "available_fields": [
+        "ε∞ij",
+        "ε0ij",
+        "εij"
+      ],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "We clean up the dataset by restricting the element in total dielectric constants εij ∈[−10, 100] for ∀i, j∈{1,2,3} and filtering out structures that contain elements not supported by PFP. Finally there are 6648 structures retained for model training.",
+          "page": 3,
+          "section": "unknown",
+          "inferred": false,
+          "paper_id": "P019"
+        },
+        {
+          "text": "We clean up the dataset by filtering out dielectric constants that contain any element out of the range of [−10, 100]. Structures that contain elements not supported by PFP (shown in Fig. 4c) are cleaned up, and finally there are 6,648 structures retained for model training.",
+          "page": 11,
+          "section": "Methods",
+          "inferred": false,
+          "paper_id": "P019"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "P019:derived_subset:cleaned_materials_project_dielectric_dataset_6648_structures"
+    },
+    {
+      "dataset_id": "D_matbench_dielectric_dataset",
+      "canonical_name": "Matbench dielectric dataset",
+      "raw_names": [
+        "Matbench dielectric dataset",
+        "Matbench dataset",
+        "Matbench",
+        "dielectric task"
+      ],
+      "dataset_type": "public_subset",
+      "source_dataset_id": "D_materials_project_v2023_11_1_dielectric_dataset",
+      "material_scope": [
+        "inorganic materials"
+      ],
+      "available_properties": [
+        "refractive index",
+        "electronic dielectric tensor"
+      ],
+      "available_fields": [
+        "η",
+        "ε∞"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "The Matbench dataset22 include the dielectric task for benchmarking various material property models. The property in this task is the refractive index (η) which is related to the electronic dielectric constant, as given by η = √ε1.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false,
+          "paper_id": "P019"
+        },
+        {
+          "text": "To further validate the accuracy of our method, we evaluated its performance on the dielectric task using the Matbench dataset22, which is a subset of structures from the Materials Project.",
+          "page": 5,
+          "section": "unknown",
+          "inferred": false,
+          "paper_id": "P019"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:matbench_dielectric_dataset"
+    },
+    {
+      "dataset_id": "D_P019_materials_project_candidate_set_14_375_non_metal_materials",
+      "canonical_name": "Materials Project candidate set (14,375 non-metal materials)",
+      "raw_names": [
+        "Materials Project candidate set (14,375 non-metal materials)",
+        "candidate set",
+        "14,375 non-metal materials",
+        "14,375 candidate structures"
+      ],
+      "dataset_type": "paper_specific",
+      "source_dataset_id": "D_materials_project_v2023_11_1_dielectric_dataset",
+      "material_scope": [
+        "inorganic materials",
+        "non-metal materials"
+      ],
+      "available_properties": [
+        "energy above convex hull",
+        "band gap"
+      ],
+      "available_fields": [
+        "Ehull",
+        "Eg"
+      ],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "To prepare the candidate set for screening, we downloaded 14,375 non-metal materials from the MP database. These materials are specifically selected based on the energy above convex hull Ehull = 0 to estimate their thermodynamic stability, so that only stable materials are included in the candidate set.",
+          "page": 8,
+          "section": "unknown",
+          "inferred": false,
+          "paper_id": "P019"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "P019:paper_specific:materials_project_candidate_set_14_375_non_metal_materials"
+    }
+  ],
+  "dataset_uses": [
+    {
+      "dataset_use_id": "DU_P019_001",
+      "paper_id": "P019",
+      "task_id": "T_P019_01",
+      "stage_id": "S_P019_01",
+      "dataset_id": "D_materials_project_v2023_11_1_dielectric_dataset",
+      "usage_role": "source",
+      "purpose": "Data acquisition for dielectric tensor prediction",
+      "used_fields": [
+        "ε∞ij",
+        "ε0ij",
+        "εij"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 7277,
+      "evidence": [
+        {
+          "text": "The Materials Project (v2023.11.1) contains a dataset of 7277 dielectric tensors.",
+          "page": 11,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P019_002",
+      "paper_id": "P019",
+      "task_id": "T_P019_01",
+      "stage_id": "S_P019_02",
+      "dataset_id": "D_P019_cleaned_materials_project_dielectric_dataset_6648_structures",
+      "usage_role": "training",
+      "purpose": "Model training after data cleaning and filtering",
+      "used_fields": [
+        "ε∞ij",
+        "ε0ij",
+        "εij"
+      ],
+      "is_derived": true,
+      "construction_method": "Restricting εij ∈ [−10, 100] for all i,j and filtering out structures containing elements not supported by PFP",
+      "filter_conditions": [
+        "εij ∈ [−10, 100]",
+        "elements supported by PFP"
+      ],
+      "sample_count": 6648,
+      "evidence": [
+        {
+          "text": "We clean up the dataset by restricting the element in total dielectric constants εij ∈[−10, 100] for ∀i, j∈{1,2,3} and filtering out structures that contain elements not supported by PFP. Finally there are 6648 structures retained for model training.",
+          "page": 3,
+          "section": "unknown",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P019_003",
+      "paper_id": "P019",
+      "task_id": "T_P019_01",
+      "stage_id": "S_P019_04",
+      "dataset_id": "D_materials_project_v2023_11_1_dielectric_dataset",
+      "usage_role": "test",
+      "purpose": "Benchmarking DTNet against state-of-the-art models",
+      "used_fields": [
+        "ε∞ij",
+        "ε0ij",
+        "εij"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "To evaluate the performance of DTNet, we compared it against existing methods, PaiNN31, M3GNet36 and MatTen37, on the dataset obtained from Materials Project (MP)38.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P019_004",
+      "paper_id": "P019",
+      "task_id": "T_P019_01",
+      "stage_id": "S_P019_04",
+      "dataset_id": "D_matbench_dielectric_dataset",
+      "usage_role": "benchmark",
+      "purpose": "Benchmarking DTNet on the official Matbench dielectric task",
+      "used_fields": [
+        "η"
+      ],
+      "is_derived": true,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "To further validate the accuracy of our method, we evaluated its performance on the dielectric task using the Matbench dataset22, which is a subset of structures from the Materials Project.",
+          "page": 5,
+          "section": "unknown",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P019_005",
+      "paper_id": "P019",
+      "task_id": "T_P019_01",
+      "stage_id": "S_P019_05",
+      "dataset_id": "D_P019_materials_project_candidate_set_14_375_non_metal_materials",
+      "usage_role": "candidate_pool",
+      "purpose": "Virtual screening for high-dielectric and highly anisotropic materials",
+      "used_fields": [
+        "Ehull",
+        "Eg"
+      ],
+      "is_derived": true,
+      "construction_method": "Selection of non-metal materials with Ehull = 0 from Materials Project",
+      "filter_conditions": [
+        "non-metal",
+        "Ehull = 0"
+      ],
+      "sample_count": 14375,
+      "evidence": [
+        {
+          "text": "To prepare the candidate set for screening, we downloaded 14,375 non-metal materials from the MP database. These materials are speciﬁcally selected based on the energy above convex hull Ehull = 0 to estimate their thermodynamic stability, so that only stable materials are included in the candidate set.",
+          "page": 8,
+          "section": "unknown",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

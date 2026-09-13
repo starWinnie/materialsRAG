@@ -1,0 +1,263 @@
+{
+  "paper": {
+    "title": "Machine learning for improved density functional theory thermodynamics",
+    "year": 2025,
+    "doi": "10.1038/s41598-025-02088-7",
+    "research_summary": "This work presents a machine learning approach to systematically correct intrinsic energy resolution errors in density functional theory (DFT) calculations of alloy formation enthalpies, improving reliability for ternary phase stability predictions. A neural network model is trained to predict the discrepancy (Hcorr = HDFT − Hexpt) between DFT-calculated and experimentally measured enthalpies of formation for binary and ternary alloys (specifically Al–Ni–Pd and Al–Ni–Ti), using structured features including elemental concentrations, atomic numbers, and interaction terms. The corrected enthalpies (Hpred = HDFT − Hcorr) enable more accurate determination of phase stability."
+  },
+  "task": {
+    "task_name_raw": "ML-based correction of DFT formation enthalpy errors for improved phase stability prediction",
+    "task_name_canonical": "dft_formation_enthalpy_error_correction",
+    "objective": "To systematically correct intrinsic energy resolution errors in DFT-calculated formation enthalpies to improve the reliability of first-principles predictions of phase stability, particularly in ternary systems.",
+    "material_scope": [
+      "binary alloys",
+      "ternary alloys",
+      "intermetallic compounds",
+      "Al–Ni–Pd system",
+      "Al–Ni–Ti system"
+    ],
+    "target_properties": [
+      "formation enthalpy (Hf)",
+      "phase stability"
+    ],
+    "constraints": [
+      "ambient-temperature (0 K) conditions",
+      "metallic systems",
+      "limited training dataset",
+      "physically meaningful feature set"
+    ],
+    "input_requirements": [
+      "DFT-calculated formation enthalpies (HDFT)",
+      "experimental formation enthalpies (Hexpt)",
+      "elemental concentrations",
+      "atomic numbers",
+      "pairwise and triplet interaction terms"
+    ],
+    "output_goal": [
+      "corrected formation enthalpy (Hpred = HDFT − Hcorr)",
+      "reduced RMSE in formation enthalpy prediction (from ~41 meV/atom to ~10 meV/atom)"
+    ],
+    "evidence": [
+      {
+        "text": "In this work, we present a machine learning (ML) approach to systematically correct these errors, improving the reliability of first-principles predictions. A neural network model has been trained to predict the discrepancy between DFT-calculated and experimentally measured enthalpies for binary and ternary alloys and compounds.",
+        "page": 1,
+        "section": null,
+        "inferred": false
+      },
+      {
+        "text": "The purpose of this work is to outline a way to reduce this error.",
+        "page": 3,
+        "section": null,
+        "inferred": false
+      },
+      {
+        "text": "We have investigated a machine learning-based approach and its ability to enhance the accuracy of density functional theory (DFT) calculations for alloy formation enthalpies, particularly in ternary phase stability calculations.",
+        "page": 7,
+        "section": "Conclusion",
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "Collection of experimental formation enthalpy data",
+      "stage_order": 1,
+      "stage_goal": "Acquire reliable experimental values of formation enthalpies for binary and ternary alloys to serve as ground truth for training and evaluation.",
+      "stage_input": [],
+      "stage_output": [
+        "dataset of experimental formation enthalpies (Hexpt)"
+      ],
+      "evidence": [
+        {
+          "text": "A training dataset of reliable experimental values of the enthalphy of formation is initially filtered to exclude missing or unreliable enthalpy values, ensuring that only well-defined data points are used for training of the neural network.",
+          "page": 3,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "We have performed DFT calculations, as described above, for all the known enthalpies of formation of the two ternary phase diagrams, for Al–Ni–Pd and Al–Ni–Ti, at ambient conditions, resulting in a total of 34 systems.",
+          "page": 4,
+          "section": "Results and discussion",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_preparation",
+      "stage_name_raw": "Feature engineering and normalization",
+      "stage_order": 2,
+      "stage_goal": "Construct and normalize a physically meaningful feature set from elemental composition and properties to capture chemical and structural effects.",
+      "stage_input": [
+        "elemental concentrations",
+        "atomic numbers"
+      ],
+      "stage_output": [
+        "normalized feature vector X including concentrations, weighted atomic numbers, and pairwise/triplet interaction terms"
+      ],
+      "evidence": [
+        {
+          "text": "Each material is characterized using a structured set of input features, including elemental concentrations, atomic numbers, and interaction terms.",
+          "page": 3,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "The input features are also normalized to prevent variations in scale from affecting model performance.",
+          "page": 3,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "The final feature set consists of the original concentrations, weighted atomic numbers, and interaction terms: X = [xA, xB, xC, . . . , xAZA, xBZB, xCZC, . . . , xAB, xAC, xBC, . . . , xABC, xABD, . . .]",
+          "page": 3,
+          "section": null,
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "label_generation",
+      "stage_name_raw": "Calculation of DFT-experiment discrepancy (Hcorr)",
+      "stage_order": 3,
+      "stage_goal": "Compute the target labels (Hcorr) as the difference between DFT-calculated and experimental formation enthalpies for each material in the dataset.",
+      "stage_input": [
+        "DFT-calculated formation enthalpies (HDFT)",
+        "experimental formation enthalpies (Hexpt)"
+      ],
+      "stage_output": [
+        "Hcorr = HDFT − Hexpt"
+      ],
+      "evidence": [
+        {
+          "text": "The error inherent in DFT calculations (that has its origin from the approximation used for the exchange and correlation functional) can be quantified as the difference between the experimental and theoretical determined enthalpy of formation. Hence, we introduce the term Hcorr as Hcorr = HDFT − Hexpt, and we strive here to use machine learning algorithms to make good estimates of Hcorr when experimental data (Hexpt) are missing.",
+          "page": 3,
+          "section": null,
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "Supervised training of neural network regressor",
+      "stage_order": 4,
+      "stage_goal": "Train a multi-layer perceptron (MLP) regressor to predict Hcorr from the engineered feature set, using cross-validation and regularization to prevent overfitting.",
+      "stage_input": [
+        "feature vector X",
+        "Hcorr labels"
+      ],
+      "stage_output": [
+        "trained MLP model with optimized parameters θ"
+      ],
+      "evidence": [
+        {
+          "text": "A neural network model has been trained to predict the discrepancy between DFT-calculated and experimentally measured enthalpies for binary and ternary alloys and compounds.",
+          "page": 1,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "A neural network model has been implemented as a multi-layer perceptron (MLP) regressor with three hidden layers containing up to 250, 150, and 100 neurons, respectively.",
+          "page": 4,
+          "section": "Results and discussion",
+          "inferred": false
+        },
+        {
+          "text": "Overfitting in the training steps has been controlled through several strategies: 1. Leave-one-out cross-validation (LOOCV) that ensures that each data point is tested individually, preventing memorization of training data; 2. Feature selection that ensures avoidance redundant descriptors; and 3. Early stopping that prevents excessive weight updates once validation performance stabilizes, avoiding unnecessary complexity.",
+          "page": 4,
+          "section": "Results and discussion",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "Performance evaluation using cross-validation",
+      "stage_order": 5,
+      "stage_goal": "Assess predictive accuracy of the trained model using root-mean-square error (RMSE) across LOOCV and k-fold cross-validation.",
+      "stage_input": [
+        "trained MLP model",
+        "test set features and labels"
+      ],
+      "stage_output": [
+        "RMSE on training and test sets",
+        "convergence analysis"
+      ],
+      "evidence": [
+        {
+          "text": "The model’s predictive performance has been evaluated using the root-mean-square error (RMSE) across both LOOCV and k-fold cross-validation (in this work we used five folds).",
+          "page": 4,
+          "section": "Results and discussion",
+          "inferred": false
+        },
+        {
+          "text": "The error of the training set is on the order of 25 meV/atom, while that of the test set is on the order of 31 meV/atom.",
+          "page": 4,
+          "section": "Results and discussion",
+          "inferred": false
+        },
+        {
+          "text": "The RMSE of the difference between Hcorr from experimental and neural network-generated data (Eqs. 6 and 10, respectively) is 2.7 meV/atom for the training set. The corresponding value for the test set is 10.6 meV/atom.",
+          "page": 6,
+          "section": null,
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_screening",
+      "stage_name_raw": "Comparison of linear vs. neural network correction models",
+      "stage_order": 6,
+      "stage_goal": "Screen and compare candidate correction approaches (linear regression vs. MLP) to identify the superior method for reducing DFT enthalpy error.",
+      "stage_input": [
+        "linear model predictions",
+        "neural network predictions",
+        "experimental Hcorr"
+      ],
+      "stage_output": [
+        "quantitative comparison showing MLP superiority (e.g., RMSE reduction from 31.4 to 10.6 meV/atom)"
+      ],
+      "evidence": [
+        {
+          "text": "While the linear model offers some level of correction, its predictive power is ultimately constrained by its functional form. Even with interaction terms such as xAxB and xAxBxC, it cannot fully account for the intricate relationships governing enthalpy corrections. The neural network, in contrast, demonstrates a much greater ability to capture these relationships, leading to a substantial improvement in predictive accuracy.",
+          "page": 6,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "Figure 5 [...] highlights the difference between experimental data and the DFT corrected values of H, as obtained from the linear and neural network models. Nearly all points of the ML model exhibit a reduction in error compared to the linear model, confirming that the machine learning approach better captures the errors of the DFT calculations.",
+          "page": 6,
+          "section": null,
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "computational_validation",
+      "stage_name_raw": "Application of ML-corrected enthalpies to phase stability assessment",
+      "stage_order": 7,
+      "stage_goal": "Validate the utility of ML-corrected formation enthalpies (Hpred) for determining relative stability of competing phases in ternary systems.",
+      "stage_input": [
+        "ML-corrected enthalpies (Hpred = HDFT − Hcorr)"
+      ],
+      "stage_output": [
+        "improved phase stability predictions",
+        "reduced RMSE in Hpred vs. Hexpt"
+      ],
+      "evidence": [
+        {
+          "text": "The total DFT corrected enthalpy is given by Hpred = HDFT − Hcorr, where HDFT is the enthalpy from DFT calculations. As is demonstrated below, a neural network that is trained for certain concentrations of a ternary system where Hexpt is known, can give reliable values for Hpred even for concentrations where Hexpt is missing.",
+          "page": 4,
+          "section": "Results and discussion",
+          "inferred": false
+        },
+        {
+          "text": "The presented results demonstrate that the ML-corrected predictions of formation enthalpy are significantly closer to experimental values, reducing the typical DFT error by a factor of 4–5.",
+          "page": 7,
+          "section": "Conclusion",
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

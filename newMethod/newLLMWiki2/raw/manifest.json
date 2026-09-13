@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0",
+  "created_at": "2026-08-05T09:47:33.612220+00:00",
+  "standard_source": "材料论文抽取与LLM_Wiki构建规范.md",
+  "input_directory": "C:\\Users\\li\\Desktop\\材料大数据\\知识库构建_模拟PVLDB\\数据集论文\\无机晶体材料论文语料_公开全文\\papers\\111",
+  "output_directory": "C:\\Users\\li\\Desktop\\材料大数据\\知识库构建_模拟PVLDB\\newMethod\\newLLMWiki2",
+  "selection_rule": "First N PDFs by natural numeric filename prefix; original paper numbers retained.",
+  "requested_limit": 3,
+  "selected_papers": [
+    {
+      "paper_id": "P007",
+      "file_name": "07_EATGNN_Piezoelectric_Tensor.pdf",
+      "path": "C:\\Users\\li\\Desktop\\材料大数据\\知识库构建_模拟PVLDB\\数据集论文\\无机晶体材料论文语料_公开全文\\papers\\111\\07_EATGNN_Piezoelectric_Tensor.pdf"
+    },
+    {
+      "paper_id": "P008",
+      "file_name": "08_HiBoFL_Thermal_Conductivity.pdf",
+      "path": "C:\\Users\\li\\Desktop\\材料大数据\\知识库构建_模拟PVLDB\\数据集论文\\无机晶体材料论文语料_公开全文\\papers\\111\\08_HiBoFL_Thermal_Conductivity.pdf"
+    },
+    {
+      "paper_id": "P041",
+      "file_name": "41_An efficient forgetting-aware fine-tuning framework for pretrained universal machine-learning interatomic potentials.pdf",
+      "path": "C:\\Users\\li\\Desktop\\材料大数据\\知识库构建_模拟PVLDB\\数据集论文\\无机晶体材料论文语料_公开全文\\papers\\111\\41_An efficient forgetting-aware fine-tuning framework for pretrained universal machine-learning interatomic potentials.pdf"
+    }
+  ],
+  "model": "qwen-plus",
+  "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+  "page_numbering": "1-based physical PDF page",
+  "descriptive_language": "paper original language"
+}

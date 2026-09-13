@@ -1,0 +1,27 @@
+{
+  "paper_id": "P038",
+  "file_name": "38_Rational design of nanoscale stabilized oxide catalysts for OER with OC22.pdf",
+  "status": "completed",
+  "completed_at": "2026-08-05T08:19:44.119937+00:00",
+  "model": "qwen-plus",
+  "stage1_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "stage2_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "counts": {
+    "tasks": 1,
+    "stages": 6,
+    "datasets": 4,
+    "dataset_uses": 6
+  }
+}

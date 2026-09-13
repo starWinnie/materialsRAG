@@ -1,0 +1,27 @@
+[
+  {
+    "task_description": "Predicting the synthesis feasibility of two-dimensional silver/bismuth (AgBi) iodide perovskites given an organic spacer molecule, i.e., classifying whether a candidate organic amine precursor will successfully form a stable 2D AgBiI8 perovskite structure under standardized experimental conditions.",
+    "task_tags": [
+      "synthesis feasibility prediction",
+      "perovskite screening",
+      "material classification"
+    ],
+    "datasets": [
+      {
+        "db_title": "High-throughput experimental dataset of 80 amines",
+        "db_description": "A laboratory-acquired dataset containing synthesis outcomes for 80 organic amine precursors tested under identical experimental conditions (same inorganic precursors, solvent, concentration, temperature), resulting in 14 successful (2D perovskite) and 66 failed (non-2D perovskite) syntheses; used to train and validate the support vector classification (SVC) model for synthesis feasibility prediction.",
+        "db_link": "None"
+      },
+      {
+        "db_title": "PubChem subset of 8406 organic molecules",
+        "db_description": "A computationally curated set of 8406 organic molecules extracted from PubChem, filtered for structural similarity to the 80-amine training set; used as the prediction pool to screen for novel organic spacers with high synthesis feasibility for 2D AgBi iodide perovskites using the trained ML model and final equation.",
+        "db_link": "https://pubchem.ncbi.nlm.nih.gov/"
+      },
+      {
+        "db_title": "Supplementary experimental data (Synthesis Data 1 & 2)",
+        "db_description": "Curated supplementary data files containing detailed synthesis results (including crystal structures, PXRD patterns, UV–vis spectra, and bandgap values) for the 14 experimentally confirmed 2D AgBi perovskites and the 13 validation compounds; used to verify model predictions, assess phase purity, confirm structural identity, and benchmark optical properties of newly synthesized candidates.",
+        "db_link": "None"
+      }
+    ]
+  }
+]

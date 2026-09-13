@@ -1,0 +1,257 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "perovskite_database",
+      "canonical_name": "Perovskite Database",
+      "raw_names": ["Perovskite Database", "the Perovskite Database", "the Perovskite Database Project"],
+      "dataset_type": "paper_specific",
+      "source_dataset_key": null,
+      "material_scope": ["metal-halide perovskites", "perovskite solar cells"],
+      "available_properties": [
+        "power conversion efficiency (PCE)",
+        "open-circuit voltage (Voc)",
+        "bandgap (Eg)",
+        "stability (T80)",
+        "scalability (cell area)",
+        "device stack composition"
+      ],
+      "available_fields": [
+        "reference data",
+        "cell-related data",
+        "substrate",
+        "electron transport layer (ETL)",
+        "perovskite",
+        "hole transport layer (HTL)",
+        "back contact",
+        "synthesis related data",
+        "current–voltage metrics",
+        "quantum efficiency metrics",
+        "stability metrics",
+        "outdoor performance",
+        "DOI number",
+        "publication date",
+        "authors",
+        "sample ID",
+        "chemicals",
+        "solvents",
+        "deposition procedures",
+        "deposition conditions",
+        "dopants/additives",
+        "quenching/antisolvent",
+        "annealing",
+        "atmosphere",
+        "humidity",
+        "storage",
+        "composition",
+        "dimensionality",
+        "thickness",
+        "doping"
+      ],
+      "availability": "public",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "The database, graphics and analysis tools are made available to the community and will continue to evolve as an open-source initiative.",
+          "page": 1,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "Once extracted, the data have been consistently formatted according to the instruction in the supporting documentation and is now freely available in the Perovskite Database.",
+          "page": 3,
+          "section": "Data",
+          "inferred": false
+        },
+        {
+          "text": "The project has a dedicated website, www.perovskitedatabase.com that provide access to all resources. Among those are: the Perovskite Database, interactive graphics exploring the database, instructions for what is found in the database, templates and instructions for uploading new data, links to all works related to the project and so on.",
+          "page": 7,
+          "section": "Data availability",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "perovskite_database",
+      "usage_role": "source",
+      "purpose": "to identify and collect all relevant peer-reviewed papers on metal-halide perovskite solar cells via manual literature search",
+      "used_fields": ["publication date", "DOI number", "authors"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": ["'perovskite solar' in Web of Science", "up to end of February 2020"],
+      "sample_count": 15000,
+      "evidence": [
+        {
+          "text": "We have manually gone through every paper found in the Web of Science with the search phrase ‘perovskite solar’ up to the end of February 2020 (that is, over 15,000 papers).",
+          "page": 2,
+          "section": "Data",
+          "inferred": false
+        },
+        {
+          "text": "The search phrase ‘perovskite solar’ in the Web of Science generated over 15,000 entries by the end of February 2020.",
+          "page": 7,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "perovskite_database",
+      "usage_role": "training",
+      "purpose": "to extract and format device-level data from papers using a 95-attribute protocol",
+      "used_fields": [
+        "reference data",
+        "cell-related data",
+        "substrate",
+        "electron transport layer (ETL)",
+        "perovskite",
+        "hole transport layer (HTL)",
+        "back contact",
+        "synthesis related data",
+        "current–voltage metrics",
+        "quantum efficiency metrics",
+        "stability metrics",
+        "outdoor performance"
+      ],
+      "is_derived": false,
+      "construction_method": "manual extraction and consistent formatting according to supporting documentation",
+      "filter_conditions": [],
+      "sample_count": 42400,
+      "evidence": [
+        {
+          "text": "In total, we have manually extracted data for over 42,400 devices. While a few devices with extractable data will have slipped through our net, the devices in the database represent almost every device someone has thought is worth the effort to describe in detail in the peer-reviewed literature.",
+          "page": 2,
+          "section": "Data",
+          "inferred": false
+        },
+        {
+          "text": "Our original data extraction protocol contained 95 attributes with metadata, process data and performance data.",
+          "page": 2,
+          "section": "Data",
+          "inferred": false
+        },
+        {
+          "text": "Once extracted, the data have been consistently formatted according to the instruction in the supporting documentation and is now freely available in the Perovskite Database.",
+          "page": 3,
+          "section": "Data",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "perovskite_database",
+      "usage_role": "computational_validation",
+      "purpose": "to develop interactive web-based tools for exploration, analysis, filtering and visualization without programming knowledge",
+      "used_fields": [
+        "power conversion efficiency (PCE)",
+        "open-circuit voltage (Voc)",
+        "bandgap (Eg)",
+        "stability (T80)",
+        "scalability (cell area)",
+        "device stack composition",
+        "publication date",
+        "perovskite composition",
+        "solvents",
+        "deposition procedures",
+        "HTL",
+        "ETL"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 42400,
+      "evidence": [
+        {
+          "text": "To increase the usability of the data, we have developed interactive tools for simple exploration, analysis, filtering and visualization that can be used without programming knowledge.",
+          "page": 3,
+          "section": "Data",
+          "inferred": false
+        },
+        {
+          "text": "What follows is a small selection of analyses, visualizations and insights made possible by the Perovskite Database and the associated toolbox.",
+          "page": 3,
+          "section": "Example uses of the Perovskite Database",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "perovskite_database",
+      "usage_role": "benchmark",
+      "purpose": "to demonstrate database utility through example analyses yielding scientific insights",
+      "used_fields": [
+        "power conversion efficiency (PCE)",
+        "open-circuit voltage (Voc)",
+        "bandgap (Eg)",
+        "stability (T80)",
+        "scalability (cell area)",
+        "publication date",
+        "perovskite composition",
+        "HTL",
+        "ETL",
+        "solvents",
+        "deposition procedures"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 42400,
+      "evidence": [
+        {
+          "text": "What follows is a small selection of analyses, visualizations and insights made possible by the Perovskite Database and the associated toolbox.",
+          "page": 3,
+          "section": "Example uses of the Perovskite Database",
+          "inferred": false
+        },
+        {
+          "text": "As a first example, the perovskite solar cell development is illustrated by binning the performance for all available devices and plotting those as a function of publication date (Fig. 3a).",
+          "page": 3,
+          "section": "Example uses of the Perovskite Database",
+          "inferred": false
+        },
+        {
+          "text": "The previous examples illustrate the power of having access to large, diverse, consistently formatted and interoperable datasets.",
+          "page": 5,
+          "section": "Density",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "perovskite_database",
+      "usage_role": "computational_validation",
+      "purpose": "to establish FAIR-compliant protocols, infrastructure, and long-term maintenance",
+      "used_fields": ["DOI number", "publication date", "reference data", "metadata ontology"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 42400,
+      "evidence": [
+        {
+          "text": "The key goals of the project are to: collect all perovskite solar cell data ever published in one open-access database; develop free interactive web-based tools for simple and interactive exploration, analysis, filtering and visualization of the data; develop procedures and protocols to simplify dissemination and collection of new perovskite data according to the FAIR data principles; release an open-source code base that can be used as a blueprint for similar projects and give a few demonstrations of insights and analysis that can be easily done if all data are consistently formatted and found in one place.",
+          "page": 2,
+          "section": "Data",
+          "inferred": false
+        },
+        {
+          "text": "To ensure the project’s longevity, we have secured support from the Helmholtz Organization in Germany, which acts as a guarantor ensuring that the web resources, that is, database, webpage and the GitHub account, will be operational and maintained for the coming decade, with an option of possible prolongation.",
+          "page": 6,
+          "section": "Future expansion of the database",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

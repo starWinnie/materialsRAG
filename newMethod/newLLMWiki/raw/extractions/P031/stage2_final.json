@@ -1,0 +1,319 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "SuperCon3D",
+      "canonical_name": "SuperCon3D",
+      "raw_names": [
+        "SuperCon3D"
+      ],
+      "dataset_type": "paper_specific",
+      "source_dataset_key": null,
+      "material_scope": [
+        "crystals",
+        "superconductors",
+        "ordered and disordered structures"
+      ],
+      "available_properties": [
+        "superconducting transition temperature (Tc)"
+      ],
+      "available_fields": [
+        "chemical formula",
+        "crystal structure",
+        "Tc",
+        "space group",
+        "lattice parameter"
+      ],
+      "availability": "public",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "Hence, we present a new dataset for data-driven approaches, namely SuperCon3D, containing both 3D crystal structures and experimental superconducting transition temperature (Tc) for the first time.",
+          "page": 1,
+          "section": "Abstract",
+          "inferred": false
+        },
+        {
+          "text": "We extracted approximately 33,000 superconductors with their chemical formulas and corresponding critical temperatures from SuperCon. After removing duplicates and non-superconductors, we identified 11,949 superconducting materials. Additionally, over 200,000 ordered and disordered crystal structures were gathered from the ICSD database [3]. We then matched these 11,949 SuperCon entries with 208,425 ICSD entries based on chemical composition, space group and lattice parameter. Moreover, Tc values and structural data for hydrogen-enriched superconductors were collated from various literature sources. This process resulted in 1,578 superconductor data entries, each featuring both Tc and crystal structure.",
+          "page": 7,
+          "section": "5.1.1 SuperCon3D dataset.",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "SuperCon",
+      "canonical_name": "SuperCon",
+      "raw_names": [
+        "SuperCon"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "superconductors"
+      ],
+      "available_properties": [
+        "chemical formula",
+        "critical temperature (Tc)"
+      ],
+      "available_fields": [
+        "chemical formulas",
+        "Tc"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We extracted approximately 33,000 superconductors with their chemical formulas and corresponding critical temperatures from SuperCon.",
+          "page": 7,
+          "section": "5.1.1 SuperCon3D dataset.",
+          "inferred": false
+        },
+        {
+          "text": "The SuperCon database encompasses around 33,000 superconductors, providing only their chemical formulas.",
+          "page": 2,
+          "section": "2.1 Superconducting Dataset",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "ICSD",
+      "canonical_name": "Inorganic Crystal Structure Database (ICSD)",
+      "raw_names": [
+        "ICSD",
+        "the ICSD database"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "crystals",
+        "ordered and disordered structures"
+      ],
+      "available_properties": [],
+      "available_fields": [
+        "ordered and disordered crystal structures",
+        "chemical composition",
+        "space group",
+        "lattice parameter"
+      ],
+      "availability": "restricted",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Additionally, over 200,000 ordered and disordered crystal structures were gathered from the ICSD database [3].",
+          "page": 7,
+          "section": "5.1.1 SuperCon3D dataset.",
+          "inferred": false
+        },
+        {
+          "text": "The inorganic crystal structure data base. Journal of Chemical Information and Computer Sciences, 23(2):66–69, 1983.",
+          "page": 10,
+          "section": "References",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "Materials_Project_OQMD_Matgen_ICSD_pretrain",
+      "canonical_name": "Materials Project, OQMD, Matgen, and ICSD pre-training pool",
+      "raw_names": [
+        "Materials Project",
+        "OQMD",
+        "Matgen",
+        "ICSD"
+      ],
+      "dataset_type": "public_subset",
+      "source_dataset_key": null,
+      "material_scope": [
+        "crystals"
+      ],
+      "available_properties": [],
+      "available_fields": [],
+      "availability": "public|restricted",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Considering the SuperCon3D dataset’s limited structures, which doesn’t fully capture the diversity in atomic species, lattice parameters, and atomic spatial distributions, we pre-trained our model on approximately 1.14 million unique 3D crystals sourced from existing databases, including Materials Project, OQMD, ICSD and Matgen.",
+          "page": 7,
+          "section": "4.2.3 Pre-training",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "SuperCon",
+      "usage_role": "source",
+      "purpose": "Source of superconductors' chemical formulas and Tc values for constructing SuperCon3D",
+      "used_fields": [
+        "chemical formulas",
+        "Tc"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [
+        "remove duplicates and non-superconductors"
+      ],
+      "sample_count": 11949,
+      "evidence": [
+        {
+          "text": "We extracted approximately 33,000 superconductors with their chemical formulas and corresponding critical temperatures from SuperCon. After removing duplicates and non-superconductors, we identified 11,949 superconducting materials.",
+          "page": 7,
+          "section": "5.1.1 SuperCon3D dataset.",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "ICSD",
+      "usage_role": "source",
+      "purpose": "Source of ordered and disordered crystal structures for matching with SuperCon entries to construct SuperCon3D",
+      "used_fields": [
+        "ordered and disordered crystal structures",
+        "chemical composition",
+        "space group",
+        "lattice parameter"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 208425,
+      "evidence": [
+        {
+          "text": "Additionally, over 200,000 ordered and disordered crystal structures were gathered from the ICSD database [3]. We then matched these 11,949 SuperCon entries with 208,425 ICSD entries based on chemical composition, space group and lattice parameter.",
+          "page": 7,
+          "section": "5.1.1 SuperCon3D dataset.",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "SuperCon3D",
+      "usage_role": "candidate_pool",
+      "purpose": "Final constructed dataset containing 1,578 entries with both crystal structure and experimental Tc, used as the core dataset for all downstream modeling",
+      "used_fields": [
+        "crystal structure",
+        "Tc"
+      ],
+      "is_derived": false,
+      "construction_method": "Matching SuperCon entries with ICSD entries based on chemical composition, space group and lattice parameter; collating Tc and structural data for hydrogen-enriched superconductors from literature",
+      "filter_conditions": [],
+      "sample_count": 1578,
+      "evidence": [
+        {
+          "text": "This process resulted in 1,578 superconductor data entries, each featuring both Tc and crystal structure.",
+          "page": 7,
+          "section": "5.1.1 SuperCon3D dataset.",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "SuperCon3D",
+      "usage_role": "training",
+      "purpose": "Training SODNet for Tc prediction on both ordered and disordered crystal structures",
+      "used_fields": [
+        "crystal structure",
+        "Tc"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Based on SuperCon3D, we propose two deep learning methods for designing high Tc superconductors. The first is SODNet, a novel equivariant graph attention model for screening known structures, which differs from existing models in incorporating both ordered and disordered geometric content.",
+          "page": 1,
+          "section": "Abstract",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "SuperCon3D",
+      "usage_role": "training",
+      "purpose": "Training DiffCSP-SC for inverse design, using SuperCon3D as the target dataset for fine-tuning after pre-training",
+      "used_fields": [
+        "crystal structure",
+        "Tc"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Additionally, we introduce DiffCSP-SC, a transformer-based equivariant diffusion model for inverse design, capable of generating novel high Tc superconductor candidates.",
+          "page": 2,
+          "section": "Introduction",
+          "inferred": false
+        },
+        {
+          "text": "Based on DiffCSP [27], we further equip our method with superconductivity guidance for crystal generation. [...] We extend DiffCSP with a more powerful architecture for SuperCon3D dataset.",
+          "page": 6,
+          "section": "4.2 DiffCSP-SC",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "Materials_Project_OQMD_Matgen_ICSD_pretrain",
+      "usage_role": "pretraining",
+      "purpose": "Pre-training DiffCSP-SC on large-scale crystal structures to address limited diversity in SuperCon3D",
+      "used_fields": [],
+      "is_derived": false,
+      "construction_method": "Deduplication of crystal structures from Materials Project, OQMD, Matgen, and ICSD",
+      "filter_conditions": [
+        "exclude molecular crystals"
+      ],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Considering the SuperCon3D dataset’s limited structures, which doesn’t fully capture the diversity in atomic species, lattice parameters, and atomic spatial distributions, we pre-trained our model on approximately 1.14 million unique 3D crystals sourced from existing databases, including Materials Project, OQMD, ICSD and Matgen.",
+          "page": 7,
+          "section": "4.2.3 Pre-training",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 6,
+      "dataset_key": "ICSD",
+      "usage_role": "candidate_pool",
+      "purpose": "Screening the entire ICSD database with SODNet to identify potential high-Tc superconductors",
+      "used_fields": [
+        "crystal structures"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Using our model, we screened the ICSD database to identify potential high-Tc superconductors. Appendix E.2 lists 27 candidates, including cuprate, H-rich, heavy-Fermion, iron-based, and other types.",
+          "page": 9,
+          "section": "5.2.4 Potential Superconducting Materials.",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

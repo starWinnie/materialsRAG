@@ -1,0 +1,800 @@
+{
+  "paper": {
+    "paper_id": "P035",
+    "title": "Correcting DFT formation energies towards experimental accuracy using foundational MLIPs and latent-feature delta-learning",
+    "year": 2026,
+    "doi": "https://doi.org/10.24435/materialscloud:yb-gw",
+    "file_name": "35_Correcting DFT formation energies towards experimental accuracy using foundational MLIPs and latent-feature delta-learning.pdf",
+    "research_summary": "This paper presents a two-stage correction framework to improve the agreement of density functional theory (DFT) formation energies with experimental values. First, it leverages foundational machine learning interatomic potentials (fMLIPs), specifically PET-OMATPES trained at the r2SCAN level, to provide zero-shot formation energy estimates on DFT-relaxed geometries, reducing the mean absolute error (MAE) by more than 40% relative to GGA without additional DFT calculations. Second, it trains classical machine learning models (KRR, RF, GPR) in a delta-learning framework to predict the residual between these fMLIP-estimated energies and experiment, using the information-rich latent features of the fMLIP as input. This second stage further reduces the MAE below 50 meV/atom, bringing it down to values comparable with experimental uncertainty, while carefully balancing accuracy with minimal distortion to relative phase stability through regularization.",
+    "extraction_status": "completed"
+  },
+  "tasks": [
+    {
+      "task_id": "T_P035_01",
+      "paper_id": "P035",
+      "task_name_raw": "Correcting DFT formation energies towards experimental accuracy",
+      "task_name_canonical": "correcting_dft_formation_energies_towards_experimental_accuracy",
+      "objective": "Improve the agreement of DFT-calculated formation energies with experimental formation enthalpies",
+      "material_scope": [
+        "three-dimensional inorganic crystal structures",
+        "experimentally known compounds"
+      ],
+      "target_properties": [
+        "formation energy",
+        "energy above the convex hull"
+      ],
+      "constraints": [
+        "must be applicable to existing GGA databases without re-running DFT",
+        "must limit impact on relative phase stability"
+      ],
+      "input_requirements": [
+        "DFT-relaxed geometries",
+        "experimental formation enthalpy references"
+      ],
+      "output_goal": [
+        "formation energies with MAE < 50 meV/atom relative to experiment"
+      ],
+      "parent_task_id": null,
+      "task_level": "main_task",
+      "evidence": [
+        {
+          "text": "Correcting DFT formation energies towards experimental accuracy using foundational MLIPs and latent-feature delta-learning",
+          "page": 1,
+          "section": "ABSTRACT",
+          "inferred": false
+        },
+        {
+          "text": "The central contribution of this work is the improvement of formation energy agreement with experiment.",
+          "page": 9,
+          "section": "DISCUSSION",
+          "inferred": false
+        },
+        {
+          "text": "We show that zero-shot r2SCAN formation energies from the foundational MLIP PET-OMATPES already reduce the MAE by more than 40% relative to GGA, without any additional DFT calculations.",
+          "page": 9,
+          "section": "DISCUSSION",
+          "inferred": false
+        }
+      ]
+    }
+  ],
+  "stages": [
+    {
+      "stage_id": "S_P035_01",
+      "paper_id": "P035",
+      "task_id": "T_P035_01",
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "Comparison of DFT formation energies against experimental formation enthalpies",
+      "stage_order": 1,
+      "stage_goal": "Assess the baseline accuracy of DFT formation energies relative to experiment",
+      "stage_input": [
+        "DFT formation energies",
+        "experimental formation enthalpies"
+      ],
+      "stage_output": [
+        "baseline MAE, ME, RMSE metrics"
+      ],
+      "evidence": [
+        {
+          "text": "Having validated the MC3D thermodynamic stability data against other computational databases, we now compare the DFT calculated formation energies against experimental formation enthalpies (see Methods for dataset details).",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        },
+        {
+          "text": "Fig. 2 (top left) shows the systematic overestimation by GGA formation energies with respect to experimental values, especially for strongly bound systems [30]. The error metrics in Fig. 2 (bottom left) confirm the large MAE (>170 meV/atom) and a significant positive bias (ME ≈130 meV/atom); PBE and PBEsol perform similarly poorly on this subset.",
+          "page": 3,
+          "section": "RESULTS",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P035_02",
+      "paper_id": "P035",
+      "task_id": "T_P035_01",
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "Evaluation of zero-shot fMLIP formation energies",
+      "stage_order": 2,
+      "stage_goal": "Evaluate the improvement in formation energy accuracy achieved by using foundational MLIPs (PET-OMATPES) on DFT-relaxed geometries",
+      "stage_input": [
+        "DFT-relaxed geometries",
+        "PET-OMATPES r2SCAN MLIP"
+      ],
+      "stage_output": [
+        "zero-shot r2SCAN formation energies",
+        "reduced MAE"
+      ],
+      "evidence": [
+        {
+          "text": "Fig. 2b shows that zero-shot formation energies [62] from the PET-OMATPES model [63, 64]—one of the top-performing models in community benchmarks at the time of publication [65], trained on the OMAT [66] and MATPES [37] datasets at the r2SCAN level—reduce the MAE by more than 40% when evaluated at the DFT (GGA) relaxed geometry.",
+          "page": 3,
+          "section": "RESULTS",
+          "inferred": false
+        },
+        {
+          "text": "We show that zero-shot r2SCAN formation energies from the foundational MLIP PET-OMATPES already reduce the MAE by more than 40% relative to GGA, without any additional DFT calculations.",
+          "page": 9,
+          "section": "DISCUSSION",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P035_03",
+      "paper_id": "P035",
+      "task_id": "T_P035_01",
+      "stage_type": "model_training",
+      "stage_name_raw": "Training classical ML models for delta-learning correction",
+      "stage_order": 3,
+      "stage_goal": "Train ML models to predict the residual between fMLIP-estimated formation energies and experiment",
+      "stage_input": [
+        "PET-OMATPES latent features",
+        "delta targets (δ∆HMLIP_f)"
+      ],
+      "stage_output": [
+        "trained KRR, RF, and GPR models"
+      ],
+      "evidence": [
+        {
+          "text": "Going beyond zero-shot MLIP energies, we train classical ML models (KRR, Random Forest, and GPR) in a delta-learning framework to predict the residual between calculated or estimated formation energies and experiment. Using the latent features of PET-OMATPES as input, our best models achieve a MAE below 50 meV/atom...",
+          "page": 9,
+          "section": "DISCUSSION",
+          "inferred": false
+        },
+        {
+          "text": "The adopted framework follows a delta-learning approach, i.e., the model tries to learn the difference between the calculated formation energy and experiment, which can be applied as a correction after successful training.",
+          "page": 10,
+          "section": "METHODS",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P035_04",
+      "paper_id": "P035",
+      "task_id": "T_P035_01",
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "Evaluation of ML-corrected formation energies",
+      "stage_order": 4,
+      "stage_goal": "Assess the final accuracy of the delta-learning corrected formation energies and their impact on phase stability",
+      "stage_input": [
+        "ML-corrected formation energies",
+        "experimental references",
+        "PBEsol baseline"
+      ],
+      "stage_output": [
+        "final MAE < 50 meV/atom",
+        "stability flip rate"
+      ],
+      "evidence": [
+        {
+          "text": "Using the latent features of PET-OMATPES as input, our best models achieve a MAE below 50 meV/atom (and potentially even less, depending on the data split) both for the PBEsol and r2SCAN targets, becoming comparable to the experimental uncertainty itself.",
+          "page": 9,
+          "section": "DISCUSSION",
+          "inferred": false
+        },
+        {
+          "text": "Fig. 3b shows the stability flip rate, i.e., the fraction of structures whose stability classification changes upon correction.",
+          "page": 5,
+          "section": "RESULTS",
+          "inferred": false
+        }
+      ]
+    }
+  ],
+  "datasets": [
+    {
+      "dataset_id": "D_P035_materials_cloud_three_dimensional_crystals_database",
+      "canonical_name": "Materials Cloud three-dimensional crystals database",
+      "raw_names": [
+        "Materials Cloud three-dimensional crystals database",
+        "MC3D"
+      ],
+      "dataset_type": "paper_specific",
+      "source_dataset_id": null,
+      "material_scope": [
+        "three-dimensional inorganic crystal structures",
+        "experimentally known compounds"
+      ],
+      "available_properties": [
+        "formation energy",
+        "energy above the convex hull"
+      ],
+      "available_fields": [
+        "DFT formation energies",
+        "PBE-v1",
+        "PBEsol-v1",
+        "ICSD ID",
+        "spacegroup",
+        "lowest-energy polymorph"
+      ],
+      "availability": "public",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "Here, we present the thermodynamic stability of the fully open-source, reproducible, and experimentally focused Materials Cloud three-dimensional crystals database (MC3D).",
+          "page": 1,
+          "section": "ABSTRACT",
+          "inferred": false,
+          "paper_id": "P035"
+        },
+        {
+          "text": "In this work, we introduce formation energies to the Materials Cloud three-dimensional crystals database [17], a fully reproducible and open-source DFT curated database of three-dimensional inorganic crystal structures with a particular focus on experimentally known compounds.",
+          "page": 9,
+          "section": "METHODS",
+          "inferred": false,
+          "paper_id": "P035"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "P035:paper_specific:materials_cloud_three_dimensional_crystals_database"
+    },
+    {
+      "dataset_id": "D_experimental_formation_enthalpy_references_from_wang_et_al",
+      "canonical_name": "Experimental formation enthalpy references from Wang et al.",
+      "raw_names": [
+        "Experimental formation enthalpy references from Wang et al.",
+        "expt formation enthalpy kingsbury dataset",
+        "experimental references collected by Wang et al.",
+        "matminer package [73] as the expt formation enthalpy kingsbury dataset"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "inorganic compounds"
+      ],
+      "available_properties": [
+        "experimental formation enthalpy"
+      ],
+      "available_fields": [
+        "experimental uncertainty",
+        "ICSD ID"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "To assess the performance of the DFT calculated formation energies, we use the experimental references collected by Wang et al. [43] and published in the matminer package [73] as the expt formation enthalpy kingsbury dataset [43, 81–87].",
+          "page": 9,
+          "section": "METHODS",
+          "inferred": false,
+          "paper_id": "P035"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:experimental_formation_enthalpy_references_from_wang_et_al"
+    },
+    {
+      "dataset_id": "D_experimental_formation_enthalpy_references_from_kirklin_et_al",
+      "canonical_name": "Experimental formation enthalpy references from Kirklin et al.",
+      "raw_names": [
+        "Experimental formation enthalpy references from Kirklin et al.",
+        "experimental references used by Kirklin et al. [10]"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "inorganic compounds"
+      ],
+      "available_properties": [
+        "experimental formation enthalpy"
+      ],
+      "available_fields": [],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "To increase the amount and diversity of experimental reference data, which is typically the limiting factor in data-driven studies, we combine this with the experimental references used by Kirklin et al. [10], yielding 2726 unique compounds in total.",
+          "page": 9,
+          "section": "METHODS",
+          "inferred": false,
+          "paper_id": "P035"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:experimental_formation_enthalpy_references_from_kirklin_et_al"
+    },
+    {
+      "dataset_id": "D_omat_dataset",
+      "canonical_name": "OMAT dataset",
+      "raw_names": [
+        "OMAT dataset",
+        "OMAT [66]"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "crystal structures"
+      ],
+      "available_properties": [
+        "r2SCAN energies",
+        "forces"
+      ],
+      "available_fields": [],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Fig. 2b shows that zero-shot formation energies [62] from the PET-OMATPES model [63, 64]—one of the top-performing models in community benchmarks at the time of publication [65], trained on the OMAT [66] and MATPES [37] datasets at the r2SCAN level—reduce the MAE by more than 40% when evaluated at the DFT (GGA) relaxed geometry.",
+          "page": 3,
+          "section": "RESULTS",
+          "inferred": false,
+          "paper_id": "P035"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:omat_dataset"
+    },
+    {
+      "dataset_id": "D_matpes_dataset",
+      "canonical_name": "MATPES dataset",
+      "raw_names": [
+        "MATPES dataset",
+        "MATPES [37]"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "crystal structures"
+      ],
+      "available_properties": [
+        "r2SCAN energies",
+        "forces"
+      ],
+      "available_fields": [],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Fig. 2b shows that zero-shot formation energies [62] from the PET-OMATPES model [63, 64]—one of the top-performing models in community benchmarks at the time of publication [65], trained on the OMAT [66] and MATPES [37] datasets at the r2SCAN level—reduce the MAE by more than 40% when evaluated at the DFT (GGA) relaxed geometry.",
+          "page": 3,
+          "section": "RESULTS",
+          "inferred": false,
+          "paper_id": "P035"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:matpes_dataset"
+    },
+    {
+      "dataset_id": "D_alexandria_database",
+      "canonical_name": "Alexandria database",
+      "raw_names": [
+        "Alexandria database"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "crystal structures"
+      ],
+      "available_properties": [
+        "formation energy",
+        "energy above hull"
+      ],
+      "available_fields": [
+        "PBEsol",
+        "SCAN"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We validate the use of PET-OMATPES r2SCAN formation energies as the baseline for δ∆HMLIP\nf\ntargets against the Alexandria database (see SI Fig. S9). Since no meta-GGA DFT version of MC3D currently exists, Alexandria serves as the reference and confirms that the MLIP-estimated stability data agrees well with DFT, validating the use of the PET-OMATPES r2SCAN formation energies and energies above hull as the reference for the stability flip rate analysis.",
+          "page": 5,
+          "section": "unknown",
+          "inferred": false,
+          "paper_id": "P035"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:alexandria_database"
+    },
+    {
+      "dataset_id": "D_oqmd",
+      "canonical_name": "Open Quantum Materials Database",
+      "raw_names": [
+        "Open Quantum Materials Database",
+        "OQMD",
+        "Open Quantum Materials Database [9, 10]"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "crystal structures"
+      ],
+      "available_properties": [
+        "formation energy"
+      ],
+      "available_fields": [
+        "ICSD ID"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We then compare against two other DFT databases, the Open Quantum Materials Database (OQMD) and the Materials Project (MP), as well as against experimental formation enthalpies.",
+          "page": 1,
+          "section": "ABSTRACT",
+          "inferred": false,
+          "paper_id": "P035"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:oqmd"
+    },
+    {
+      "dataset_id": "D_materials_project",
+      "canonical_name": "Materials Project",
+      "raw_names": [
+        "Materials Project",
+        "MP",
+        "Materials Project [7, 8]"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "crystal structures"
+      ],
+      "available_properties": [
+        "formation energy"
+      ],
+      "available_fields": [
+        "ICSD ID"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We then compare against two other DFT databases, the Open Quantum Materials Database (OQMD) and the Materials Project (MP), as well as against experimental formation enthalpies.",
+          "page": 1,
+          "section": "ABSTRACT",
+          "inferred": false,
+          "paper_id": "P035"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:materials_project"
+    }
+  ],
+  "dataset_uses": [
+    {
+      "dataset_use_id": "DU_P035_001",
+      "paper_id": "P035",
+      "task_id": "T_P035_01",
+      "stage_id": "S_P035_01",
+      "dataset_id": "D_P035_materials_cloud_three_dimensional_crystals_database",
+      "usage_role": "source",
+      "purpose": "Baseline DFT formation energies for comparison against experimental formation enthalpies",
+      "used_fields": [
+        "DFT formation energies",
+        "PBE-v1",
+        "PBEsol-v1"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Having validated the MC3D thermodynamic stability data against other computational databases, we now compare the DFT calculated formation energies against experimental formation enthalpies (see Methods for dataset details).",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P035_002",
+      "paper_id": "P035",
+      "task_id": "T_P035_01",
+      "stage_id": "S_P035_01",
+      "dataset_id": "D_experimental_formation_enthalpy_references_from_wang_et_al",
+      "usage_role": "label_source",
+      "purpose": "Experimental formation enthalpy references for evaluating DFT formation energy accuracy",
+      "used_fields": [
+        "experimental formation enthalpy"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "To assess the performance of the DFT calculated formation energies, we use the experimental references collected by Wang et al. [43] and published in the matminer package [73] as the expt formation enthalpy kingsbury dataset [43, 81–87].",
+          "page": 9,
+          "section": "METHODS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P035_003",
+      "paper_id": "P035",
+      "task_id": "T_P035_01",
+      "stage_id": "S_P035_01",
+      "dataset_id": "D_experimental_formation_enthalpy_references_from_kirklin_et_al",
+      "usage_role": "label_source",
+      "purpose": "Experimental formation enthalpy references for evaluating DFT formation energy accuracy",
+      "used_fields": [
+        "experimental formation enthalpy"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "To increase the amount and diversity of experimental reference data, which is typically the limiting factor in data-driven studies, we combine this with the experimental references used by Kirklin et al. [10], yielding 2726 unique compounds in total.",
+          "page": 9,
+          "section": "METHODS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P035_004",
+      "paper_id": "P035",
+      "task_id": "T_P035_01",
+      "stage_id": "S_P035_02",
+      "dataset_id": "D_P035_materials_cloud_three_dimensional_crystals_database",
+      "usage_role": "source",
+      "purpose": "DFT-relaxed geometries for zero-shot evaluation of PET-OMATPES r2SCAN MLIP",
+      "used_fields": [
+        "PBEsol-v1",
+        "PBE-v1",
+        "geometries"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Fig. 2b shows that zero-shot formation energies [62] from the PET-OMATPES model [63, 64]—one of the top-performing models in community benchmarks at the time of publication [65], trained on the OMAT [66] and MATPES [37] datasets at the r2SCAN level—reduce the MAE by more than 40% when evaluated at the DFT (GGA) relaxed geometry.",
+          "page": 3,
+          "section": "RESULTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P035_005",
+      "paper_id": "P035",
+      "task_id": "T_P035_01",
+      "stage_id": "S_P035_02",
+      "dataset_id": "D_omat_dataset",
+      "usage_role": "training",
+      "purpose": "Training dataset for PET-OMATPES foundational MLIP",
+      "used_fields": [
+        "r2SCAN energies",
+        "forces"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Fig. 2b shows that zero-shot formation energies [62] from the PET-OMATPES model [63, 64]—one of the top-performing models in community benchmarks at the time of publication [65], trained on the OMAT [66] and MATPES [37] datasets at the r2SCAN level—reduce the MAE by more than 40% when evaluated at the DFT (GGA) relaxed geometry.",
+          "page": 3,
+          "section": "RESULTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P035_006",
+      "paper_id": "P035",
+      "task_id": "T_P035_01",
+      "stage_id": "S_P035_02",
+      "dataset_id": "D_matpes_dataset",
+      "usage_role": "training",
+      "purpose": "Training dataset for PET-OMATPES foundational MLIP",
+      "used_fields": [
+        "r2SCAN energies",
+        "forces"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Fig. 2b shows that zero-shot formation energies [62] from the PET-OMATPES model [63, 64]—one of the top-performing models in community benchmarks at the time of publication [65], trained on the OMAT [66] and MATPES [37] datasets at the r2SCAN level—reduce the MAE by more than 40% when evaluated at the DFT (GGA) relaxed geometry.",
+          "page": 3,
+          "section": "RESULTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P035_007",
+      "paper_id": "P035",
+      "task_id": "T_P035_01",
+      "stage_id": "S_P035_03",
+      "dataset_id": "D_P035_materials_cloud_three_dimensional_crystals_database",
+      "usage_role": "source",
+      "purpose": "Source of DFT-relaxed geometries for latent feature extraction",
+      "used_fields": [
+        "PBEsol-v1",
+        "geometries"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Using the latent features of PET-OMATPES as input, our best models achieve a MAE below 50 meV/atom (and potentially even less, depending on the data split) both for the PBEsol and r2SCAN targets, becoming comparable to the experimental uncertainty itself.",
+          "page": 9,
+          "section": "DISCUSSION",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P035_008",
+      "paper_id": "P035",
+      "task_id": "T_P035_01",
+      "stage_id": "S_P035_03",
+      "dataset_id": "D_experimental_formation_enthalpy_references_from_wang_et_al",
+      "usage_role": "label_source",
+      "purpose": "Experimental formation enthalpy references for delta-learning target (δ∆HPBEsol_f and δ∆HMLIP_f)",
+      "used_fields": [
+        "experimental formation enthalpy"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "To assess the performance of the DFT calculated formation energies, we use the experimental references collected by Wang et al. [43] and published in the matminer package [73] as the expt formation enthalpy kingsbury dataset [43, 81–87].",
+          "page": 9,
+          "section": "METHODS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P035_009",
+      "paper_id": "P035",
+      "task_id": "T_P035_01",
+      "stage_id": "S_P035_03",
+      "dataset_id": "D_experimental_formation_enthalpy_references_from_kirklin_et_al",
+      "usage_role": "label_source",
+      "purpose": "Experimental formation enthalpy references for delta-learning target (δ∆HPBEsol_f and δ∆HMLIP_f)",
+      "used_fields": [
+        "experimental formation enthalpy"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "To increase the amount and diversity of experimental reference data, which is typically the limiting factor in data-driven studies, we combine this with the experimental references used by Kirklin et al. [10], yielding 2726 unique compounds in total.",
+          "page": 9,
+          "section": "METHODS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P035_010",
+      "paper_id": "P035",
+      "task_id": "T_P035_01",
+      "stage_id": "S_P035_04",
+      "dataset_id": "D_P035_materials_cloud_three_dimensional_crystals_database",
+      "usage_role": "source",
+      "purpose": "Source of PBEsol baseline formation energies for stability flip rate analysis",
+      "used_fields": [
+        "PBEsol-v1",
+        "formation energies",
+        "energy above hull"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Fig. 3b shows the stability flip rate, i.e., the fraction of structures whose stability classification changes upon correction.",
+          "page": 5,
+          "section": "RESULTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P035_011",
+      "paper_id": "P035",
+      "task_id": "T_P035_01",
+      "stage_id": "S_P035_04",
+      "dataset_id": "D_alexandria_database",
+      "usage_role": "benchmark",
+      "purpose": "Reference for validating PET-OMATPES r2SCAN formation energies and stability data",
+      "used_fields": [
+        "PBEsol",
+        "SCAN",
+        "energy above hull"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We validate the use of PET-OMATPES r2SCAN formation energies as the baseline for δ∆HMLIP\nf\ntargets against the Alexandria database (see SI Fig. S9). Since no meta-GGA DFT version of MC3D currently exists, Alexandria serves as the reference and confirms that the MLIP-estimated stability data agrees well with DFT, validating the use of the PET-OMATPES r2SCAN formation energies and energies above hull as the reference for the stability flip rate analysis.",
+          "page": 5,
+          "section": "unknown",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P035_012",
+      "paper_id": "P035",
+      "task_id": "T_P035_01",
+      "stage_id": "S_P035_04",
+      "dataset_id": "D_oqmd",
+      "usage_role": "benchmark",
+      "purpose": "Comparison of MC3D thermodynamic stability data against established computational databases",
+      "used_fields": [
+        "ICSD ID",
+        "formation energies"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Having validated the MC3D thermodynamic stability data against other computational databases, we now compare the DFT calculated formation energies against experimental formation enthalpies (see Methods for dataset details).",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P035_013",
+      "paper_id": "P035",
+      "task_id": "T_P035_01",
+      "stage_id": "S_P035_04",
+      "dataset_id": "D_materials_project",
+      "usage_role": "benchmark",
+      "purpose": "Comparison of MC3D thermodynamic stability data against established computational databases",
+      "used_fields": [
+        "ICSD ID",
+        "formation energies"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Having validated the MC3D thermodynamic stability data against other computational databases, we now compare the DFT calculated formation energies against experimental formation enthalpies (see Methods for dataset details).",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

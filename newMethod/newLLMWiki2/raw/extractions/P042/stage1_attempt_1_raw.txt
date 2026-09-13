@@ -1,0 +1,114 @@
+{
+  "paper": {
+    "title": "An open-access database and analysis tool for perovskite solar cells based on the FAIR data principles",
+    "year": 2022,
+    "doi": "10.1038/s41560-021-00941-3",
+    "research_summary": "Here we extract all the meaningful device data from peer-reviewed papers on metal-halide perovskite solar cells published so far and make them available in a database. We collect data from over 42,400 photovoltaic devices with up to 100 parameters per device. We then develop open-source and accessible procedures to analyse the data, providing examples of insights that can be gleaned from the analysis of a large dataset. The database, graphics and analysis tools are made available to the community and will continue to evolve as an open-source initiative."
+  },
+  "task": {
+    "task_name_raw": "creation of an open-access database and analysis tool for perovskite solar cells",
+    "task_name_canonical": "create_open_access_perovskite_solar_cell_database_and_analysis_tool",
+    "objective": "to expand the normal research cycle by collecting all perovskite solar cell data, both past and future, in one place; to make all historical data accessible and provide means to upload new experimental data; to implement interactive graphical data visualization tools that enable simple and interactive exploration, analysis and filtering",
+    "material_scope": ["metal-halide perovskites", "perovskite solar cells"],
+    "target_properties": ["power conversion efficiency (PCE)", "open-circuit voltage (Voc)", "bandgap (Eg)", "stability (T80)", "scalability (cell area)"],
+    "constraints": ["FAIR data principles (findable, accessible, interoperable, reusable)", "consistently formatted data", "peer-reviewed literature only", "up to end of February 2020"],
+    "input_requirements": ["peer-reviewed papers on metal-halide perovskite solar cells", "device-level experimental data", "metadata, process data and performance data"],
+    "output_goal": ["open-access database containing >42,400 photovoltaic devices", "interactive web-based tools for exploration, analysis, filtering and visualization", "open-source code base", "protocols and metadata ontology for reporting device data"],
+    "evidence": [
+      {
+        "text": "Here we extract all the meaningful device data from peer-reviewed papers on metal-halide perovskite solar cells published so far and make them available in a database. We collect data from over 42,400 photovoltaic devices with up to 100 parameters per device.",
+        "page": 1,
+        "section": null,
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "manual extraction of device data from peer-reviewed papers",
+      "stage_order": 1,
+      "stage_goal": "to collect all perovskite solar cell data ever published in one open-access database",
+      "stage_input": ["over 15,000 papers found in Web of Science with search phrase 'perovskite solar' up to end of February 2020"],
+      "stage_output": ["data for over 42,400 photovoltaic devices"],
+      "evidence": [
+        {
+          "text": "We have manually gone through every paper found in the Web of Science with the search phrase ‘perovskite solar’ up to the end of February 2020 (that is, over 15,000 papers). In total, we have manually extracted data for over 42,400 devices.",
+          "page": 2,
+          "section": "Data",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_preparation",
+      "stage_name_raw": "consistent formatting of extracted data according to protocol",
+      "stage_order": 2,
+      "stage_goal": "to increase the usability of the data by consistently formatting it according to instruction in supporting documentation",
+      "stage_input": ["manually extracted raw device data", "original data extraction protocol containing 95 attributes"],
+      "stage_output": ["consistently formatted device data ready for database ingestion"],
+      "evidence": [
+        {
+          "text": "Once extracted, the data have been consistently formatted according to the instruction in the supporting documentation and is now freely available in the Perovskite Database.",
+          "page": 3,
+          "section": "Data",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_generation",
+      "stage_name_raw": "development of interactive web-based tools for data exploration and visualization",
+      "stage_order": 3,
+      "stage_goal": "to provide means for simple and interactive exploration, analysis, filtering and visualization of the data without programming knowledge",
+      "stage_input": ["consistently formatted database", "Python programming language"],
+      "stage_output": ["interactive graphics exploring the database", "web-based tools for filtering and visualization"],
+      "evidence": [
+        {
+          "text": "Apart from making all historical data accessible and providing means to upload new experimental data, interactive graphical data visualization tools have been implemented that enable simple and interactive exploration, analysis and filtering (Fig. 1).",
+          "page": 2,
+          "section": "Data",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "development of open-source analysis procedures and fitting models",
+      "stage_order": 4,
+      "stage_goal": "to develop free interactive web-based tools and procedures for analysis, including bandgap fitting and statistical estimation",
+      "stage_input": ["aggregated, consistently formatted device data"],
+      "stage_output": ["analysis code (e.g., second-degree polynomial fitting for bandgap)", "procedures for kernel density estimation (KDE)"],
+      "evidence": [
+        {
+          "text": "With the analysis code freely available, a fitting procedure such as that in Fig. 4c could easily be done for any compositional range where sufficient data are available and it can be updated whenever new data are made available.",
+          "page": 5,
+          "section": "Density",
+          "inferred": false
+        },
+        {
+          "text": "In Fig. 4a, the kernel density estimation, that is, the smoothed average, of the open-circuit voltage (Voc) is given for three common HTLs.",
+          "page": 4,
+          "section": "Publication date",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "demonstration of insights via example analyses",
+      "stage_order": 5,
+      "stage_goal": "to validate the utility of the database and tools by providing concrete examples of insights derived from aggregated data",
+      "stage_input": ["interactive tools", "formatted database"],
+      "stage_output": ["validated insights on record development, tandem integration, stability and scalability", "figures illustrating trends (e.g., PCE vs publication date, Voc KDE, bandgap fitting)"],
+      "evidence": [
+        {
+          "text": "We demonstrate the capabilities of the database and the associated tools by giving a few examples of insights that can be gleaned from the analysis of this large dataset in terms of, for example, record development, tandem integration, stability and scalability.",
+          "page": 7,
+          "section": "Conclusions",
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

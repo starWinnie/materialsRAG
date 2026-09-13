@@ -1,0 +1,159 @@
+{
+  "paper": {
+    "title": "RETHINKING THE ROLE OF FRAMES FOR SE(3)-INVARIANT CRYSTAL STRUCTURE MODELING",
+    "year": 2025,
+    "doi": null,
+    "research_summary": "This paper proposes 'dynamic frames' for SE(3)-invariant crystal structure modeling, challenging the conventional use of static, structure-aligned frames. Dynamic frames are constructed per atom and per message-passing layer using learned attention weights to reflect local interatomic interactions, rather than global structural symmetry. The concept is implemented in CrystalFramer, a transformer-based architecture extending Crystalformer, and evaluated on crystal property prediction tasks across JARVIS, Materials Project, and OQMD datasets."
+  },
+  "task": {
+    "task_name_raw": "crystal structure modeling for SE(3)-invariant property prediction",
+    "task_name_canonical": "crystal_structure_modeling_for_se3_invariant_property_prediction",
+    "objective": "To develop a method for crystal structure modeling that achieves SE(3) invariance by rethinking the role of coordinate frames, moving from static, globally aligned frames to dynamic, interaction-aware frames.",
+    "material_scope": [
+      "crystals"
+    ],
+    "target_properties": [
+      "formation energy",
+      "total energy",
+      "bandgap",
+      "energy above hull (E hull)",
+      "bulk modulus",
+      "shear modulus"
+    ],
+    "constraints": [
+      "SE(3) invariance",
+      "periodic SE(3) invariance",
+      "invariance to unit-cell variations"
+    ],
+    "input_requirements": [
+      "crystal structure represented as unit cell (A, P, L)",
+      "atomic species and 3D Cartesian coordinates",
+      "lattice vectors"
+    ],
+    "output_goal": [
+      "prediction of material properties invariant under rigid transformations"
+    ],
+    "evidence": [
+      {
+        "text": "Crystal structure modeling with graph neural networks is essential for various applications in materials informatics, and capturing SE(3)-invariant geometric features is a fundamental requirement for these networks.",
+        "page": 1,
+        "section": "ABSTRACT",
+        "inferred": false
+      },
+      {
+        "text": "A key requirement for these networks is the ability to capture essential features of materials embedded in their crystal structures. Crystal structures are periodic, infinitely repeating arrangements of atoms in 3D space... Material properties, such as formation energy and bandgap, are invariant under rigid transformations (i.e., rotations and translations) in crystal structures... This fact leads to the so-called periodic SE(3) invariance...",
+        "page": 1,
+        "section": "INTRODUCTION",
+        "inferred": false
+      },
+      {
+        "text": "We demonstrate this concept by utilizing the attention mechanism in a recent transformer-based crystal encoder, resulting in a new architecture called CrystalFramer. Extensive experiments show that CrystalFramer outperforms conventional frames and existing crystal encoders in various crystal property prediction tasks.",
+        "page": 1,
+        "section": "ABSTRACT",
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "acquisition of crystal structure datasets",
+      "stage_order": 1,
+      "stage_goal": "To obtain large-scale, publicly available datasets of crystal structures with DFT-simulated material properties.",
+      "stage_input": [],
+      "stage_output": [
+        "JARVIS dataset",
+        "Materials Project (MP) dataset",
+        "Open Quantum Materials Database (OQMD) dataset"
+      ],
+      "evidence": [
+        {
+          "text": "We use three datasets: JARVIS (55,723 materials), MP (69,239 materials), and OQMD (817,636 materials), using snapshots available through a Python package (jarvis-tools). These datasets provide several material properties, such as formation energy and bandgap, simulated by DFT calculations.",
+          "page": 8,
+          "section": "Datasets.",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "training of CrystalFramer architecture",
+      "stage_order": 2,
+      "stage_goal": "To train the CrystalFramer model using Adam optimizer and mean absolute error loss on crystal property prediction tasks.",
+      "stage_input": [
+        "crystal structures from JARVIS, MP, and OQMD datasets",
+        "DFT-simulated property labels"
+      ],
+      "stage_output": [
+        "trained CrystalFramer model with dynamic frames"
+      ],
+      "evidence": [
+        {
+          "text": "To assess the pure effects of introducing the frames, we precisely follow the training settings of the baseline method, Crystalformer (Taniai et al., 2024), with only one modification. We have increased the number of training epochs to account for the increased complexity of our edge feature design...",
+          "page": 8,
+          "section": "Training settings.",
+          "inferred": false
+        },
+        {
+          "text": "Specifically, for the JARVIS dataset, we train our model from scratch by optimizing the mean absolute loss function using Adam (Kingma & Ba, 2015) for a total of 2000 epochs, while enabling the frames from the beginning.",
+          "page": 8,
+          "section": "Training settings.",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "evaluation on crystal property prediction tasks",
+      "stage_order": 3,
+      "stage_goal": "To benchmark the performance of CrystalFramer against conventional frame methods and state-of-the-art crystal encoders on multiple property prediction tasks.",
+      "stage_input": [
+        "trained CrystalFramer model",
+        "test splits of JARVIS, MP, and OQMD datasets"
+      ],
+      "stage_output": [
+        "mean absolute errors for formation energy, bandgap, E hull, bulk modulus, shear modulus"
+      ],
+      "evidence": [
+        {
+          "text": "Tables 1 and 2 extensively compare the mean absolute errors of the proposed and existing methods for the JARVIS (5 tasks) and MP (4 tasks) datasets.",
+          "page": 8,
+          "section": "5.1 CRYSTAL PROPERTY PREDICTION",
+          "inferred": false
+        },
+        {
+          "text": "It is important to note that the current state-of-the-art, ComFormer, uses finely-tuned hyperparameters (e.g., learning rate, loss function, number of layers, graph structure) for each individual task, whereas we simply adjust the number of epochs and batch size for each dataset.",
+          "page": 8,
+          "section": "5.1 CRYSTAL PROPERTY PREDICTION",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "ablation_study",
+      "stage_name_raw": "comparison of dynamic frame variants",
+      "stage_order": 4,
+      "stage_goal": "To validate the effectiveness of dynamic frames by comparing different frame construction methods (max frames, weighted PCA frames, static local frames) against conventional static frames.",
+      "stage_input": [
+        "CrystalFramer models with different frame types"
+      ],
+      "stage_output": [
+        "performance comparison showing superiority of max frames"
+      ],
+      "evidence": [
+        {
+          "text": "Our method with max frames outperforms others in most tasks, significantly enhancing the performance of the baseline Crystalformer model.",
+          "page": 8,
+          "section": "5.1 CRYSTAL PROPERTY PREDICTION",
+          "inferred": false
+        },
+        {
+          "text": "Additionally, we evaluated a variant using static local frames. These frames are similar to max frames but constructed with static weights, wij(n) = exp −r2 ij(n) . As a result, these static local frames rely only on the distances to neighbors and do not account for dynamic self-attention weights. The max frame method outperforms this static counterpart in most tasks.",
+          "page": 8,
+          "section": "5.1 CRYSTAL PROPERTY PREDICTION",
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

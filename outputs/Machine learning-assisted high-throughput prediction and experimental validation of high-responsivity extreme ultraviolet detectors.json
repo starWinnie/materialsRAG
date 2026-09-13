@@ -1,0 +1,27 @@
+[
+  {
+    "task_description": "Predicting the EUV (extreme ultraviolet, ~13.5 nm / 92 eV) responsivity of semiconductor materials for high-performance radiation detection, using machine learning models trained on visible and UV photoresponse data to overcome the scarcity of direct EUV experimental measurements.",
+    "task_tags": [
+      "responsivity prediction",
+      "cross-spectral modeling",
+      "EUV detector material screening"
+    ],
+    "datasets": [
+      {
+        "db_title": "Expanded photodetector responsivity dataset (1927 samples)",
+        "db_description": "A curated dataset of 1927 experimental photodetector samples compiled from 29 published studies, covering visible and ultraviolet (UV) spectral ranges—with a small subset extending into EUV—containing measured responsivity (1.9×10⁻⁴ to 239.43 A/W) and 23 features including material properties (e.g., bandgap, atomic number, density, mobility), device architecture (PIN, NIP, FET, Schottky, etc.), and experimental conditions (wavelength, bias voltage, intensity, thickness). This dataset is used to train and validate the Extremely Randomized Trees regression model for cross-spectral prediction of EUV responsivity.",
+        "db_link": "https://doi.org/10.6084/m9.figshare.28146911"
+      },
+      {
+        "db_title": "Materials Project API",
+        "db_description": "A computational materials database providing theoretically derived material properties—including bandgaps, densities, atomic compositions, and electronic structures—for thousands of inorganic compounds. In this paper, it supplied supplementary physical descriptors (e.g., valence electron count, average atomic number) for materials not fully characterized in experimental literature, enabling feature enrichment and generalization of the responsivity prediction model across diverse candidate materials.",
+        "db_link": "https://materialsproject.org"
+      },
+      {
+        "db_title": "NIST XCOM Photon Cross Sections Database",
+        "db_description": "A publicly available NIST database containing photon interaction cross sections (photoelectric, Compton, pair production) and attenuation coefficients for elements and compounds across energies from 1 keV to 100 GeV. Here, it provided EUV-range attenuation coefficients and fundamental optical constants (e.g., mass absorption coefficient) used to inform physical interpretability of predictions—particularly supporting the rationale for α-MoO₃’s high EUV responsivity via its high atomic number (Z=42) and density—and validating Monte Carlo simulation inputs.",
+        "db_link": "https://www.nist.gov/pml/xcom-photon-cross-sections-database"
+      }
+    ]
+  }
+]

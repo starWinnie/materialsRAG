@@ -1,0 +1,150 @@
+{
+  "paper": {
+    "title": "COMPLETE AND EFFICIENT GRAPH TRANSFORMERS FOR CRYSTAL MATERIAL PROPERTY PREDICTION",
+    "year": 2024,
+    "doi": null,
+    "research_summary": "Crystal structures are characterized by atomic bases within a primitive unit cell that repeats along a regular lattice throughout 3D space. The periodic and infinite nature of crystals poses unique challenges for geometric graph representation learning. Specifically, constructing graphs that effectively capture the complete geometric information of crystals and handle chiral crystals remains an unsolved and challenging problem. In this paper, we introduce a novel approach that utilizes the periodic patterns of unit cells to establish the lattice-based representation for each atom, enabling efficient and expressive graph representations of crystals. Furthermore, we propose ComFormer, a SE(3) transformer designed specifically for crystalline materials. ComFormer includes two variants; namely, iComFormer that employs invariant geometric descriptors of Euclidean distances and angles, and eComFormer that utilizes equivariant vector representations. Experimental results demonstrate the state-of-the-art predictive accuracy of ComFormer variants on various tasks across three widely-used crystal benchmarks."
+  },
+  "task": {
+    "task_name_raw": "crystal property prediction",
+    "task_name_canonical": "crystal_property_prediction",
+    "objective": "predict the target property value y, where y ∈R for regression tasks or y ∈{1, 2, · · · , C} for classification tasks with C classes by using crystal structure (A, P, L) as input.",
+    "material_scope": [
+      "crystalline materials"
+    ],
+    "target_properties": [
+      "formation energy",
+      "bandgap",
+      "total energy",
+      "Ehull",
+      "bulk moduli",
+      "shear moduli"
+    ],
+    "constraints": [
+      "geometric completeness",
+      "crystal passive symmetries (unit cell SE(3) invariance, unit cell SO(3) equivariance, periodic invariance)"
+    ],
+    "input_requirements": [
+      "crystal structure (A, P, L)"
+    ],
+    "output_goal": [
+      "target property value y"
+    ],
+    "evidence": [
+      {
+        "text": "In this paper, we aim to predict the target property value y, where y ∈R for regression tasks or y ∈{1, 2, · · · , C} for classification tasks with C classes by using crystal structure (A, P, L) as input.",
+        "page": 2,
+        "section": "2.1 CRYSTAL STRUCTURES AND CRYSTAL PROPERTY PREDICTION",
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "using three widely-used crystal benchmarks",
+      "stage_order": 1,
+      "stage_goal": "acquire crystal structure data and corresponding property labels",
+      "stage_input": [],
+      "stage_output": [
+        "JARVIS dataset",
+        "Materials Project dataset",
+        "MatBench dataset"
+      ],
+      "evidence": [
+        {
+          "text": "We assess the expressiveness of our iComFormer and eComFormer models by conducting evaluations on three widely-used crystal benchmarks: JARVIS (Choudhary et al., 2020), the Materials Project (Chen et al., 2019), and MatBench (Dunn et al., 2020).",
+          "page": 8,
+          "section": "5 EXPERIMENTS",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_preparation",
+      "stage_name_raw": "constructing SE(3) invariant and SO(3) equivariant crystal graphs",
+      "stage_order": 2,
+      "stage_goal": "construct geometrically complete graph representations from crystal structures",
+      "stage_input": [
+        "crystal structure (A, P, L)"
+      ],
+      "stage_output": [
+        "SE(3) invariant crystal graph",
+        "SO(3) equivariant crystal graph"
+      ],
+      "evidence": [
+        {
+          "text": "To achieve geometric completeness for crystalline materials, we introduce three periodic vectors, eii1, eii2, and eii3, to serve as the lattice representation for node i. The lattice representations for different nodes are perfectly aligned because all atoms in a crystal share the same periodic patterns.",
+          "page": 4,
+          "section": "3.2 SE(3) INVARIANT CRYSTAL GRAPH REPRESENTATIONS",
+          "inferred": false
+        },
+        {
+          "text": "In addition to SE(3) invariant crystal graphs, we propose SO(3) equivariant crystal graphs that achieve geometric completeness by using vector representations.",
+          "page": 5,
+          "section": "3.3 SO(3) EQUIVARIANT CRYSTAL GRAPH REPRESENTATIONS",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "training iComFormer and eComFormer models",
+      "stage_order": 3,
+      "stage_goal": "train the ComFormer variants on crystal property prediction tasks",
+      "stage_input": [
+        "SE(3) invariant crystal graph",
+        "SO(3) equivariant crystal graph",
+        "property labels"
+      ],
+      "stage_output": [
+        "trained iComFormer model",
+        "trained eComFormer model"
+      ],
+      "evidence": [
+        {
+          "text": "iComFormer is trained using MSE loss with Adam (Kingma & Ba, 2015) optimizer for the tasks of MBJ bandgap and Ehull for 500 epochs, and formation energy for 700 epochs, with Onecycle (Smith & Topin, 2018) scheduler and pct start of 0.3.",
+          "page": 24,
+          "section": "A.6.1 HYPERPARAMETER SETTINGS OF COMFORMER FOR DIFFERENT TASKS",
+          "inferred": false
+        },
+        {
+          "text": "eComFormer is trained using MSE loss with Adam (Kingma & Ba, 2015) optimizer for all tasks for 500 epochs except OPT bandgap, with Onecycle (Smith & Topin, 2018) scheduler and pct start of 0.3.",
+          "page": 24,
+          "section": "A.6.1 HYPERPARAMETER SETTINGS OF COMFORMER FOR DIFFERENT TASKS",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "evaluating ComFormer variants on crystal benchmarks",
+      "stage_order": 4,
+      "stage_goal": "assess predictive accuracy of ComFormer variants on crystal property prediction tasks",
+      "stage_input": [
+        "trained iComFormer model",
+        "trained eComFormer model",
+        "test set crystals"
+      ],
+      "stage_output": [
+        "test MAE",
+        "test RMSE",
+        "state-of-the-art performance"
+      ],
+      "evidence": [
+        {
+          "text": "Experimental results demonstrate the state-of-the-art predictive accuracy of ComFormer variants on various tasks across three widely-used crystal benchmarks.",
+          "page": 1,
+          "section": "ABSTRACT",
+          "inferred": false
+        },
+        {
+          "text": "As shown in Table 1, compared with highly competitive baselines, ComFormer variants achieve the best performances on all tasks.",
+          "page": 8,
+          "section": "5.1 EXPERIMENTAL RESULTS",
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

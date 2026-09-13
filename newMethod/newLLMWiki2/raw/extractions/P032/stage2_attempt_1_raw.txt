@@ -1,0 +1,353 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "qcml",
+      "canonical_name": "QCML",
+      "raw_names": ["QCML", "the QCML database", "the new QCML database"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["molecules", "small organic molecules", "ionic systems", "metallic systems", "reactive intermediates", "transition states"],
+      "available_properties": ["atomic forces", "energies", "spin and charge states", "pairwise distances", "displacement vectors"],
+      "available_fields": ["3D atomic positions", "atomic numbers", "spin and charge states", "pairwise distances", "displacement vectors"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "QCML ranges across the periodic table, including out-of-equilibrium structures and different spin and charge states, and includes properties for a subset of ∼30 × 10⁶ entries calculated with density functional theory accuracy at the PBE0 level (including dispersion corrections).",
+          "page": 3,
+          "section": "We examine the effects of forgoing almost all commonly",
+          "inferred": false
+        },
+        {
+          "text": "we perform supervised pretraining on the new QCML dataset.",
+          "page": 5,
+          "section": "Pretraining performance",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "md17",
+      "canonical_name": "MD17",
+      "raw_names": ["MD17", "MD17-10k", "MD17@CCSD(T)"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["small organic molecules"],
+      "available_properties": ["atomic forces", "energies", "NVE simulation stability", "NVT simulation fidelity"],
+      "available_fields": ["MD trajectories", "conformers", "temporal slices"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We evaluate MD-ET on QCML,45 MD17,15 Ko2020,67 xxMD,68 and SPICE,69 each presenting distinct challenges.",
+          "page": 5,
+          "section": "Pretraining performance",
+          "inferred": false
+        },
+        {
+          "text": "The MD17 dataset15 consists of MD trajectories for small organic molecules and has been proposed as a benchmark by Fu et al.74",
+          "page": 5,
+          "section": "Pretraining performance",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "ko2020",
+      "canonical_name": "Ko2020",
+      "raw_names": ["Ko2020", "Ko et al.67"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["molecular systems", "metallic systems", "ionic systems"],
+      "available_properties": ["atomic forces", "RMSE"],
+      "available_fields": ["C10H2/C10H+", "Na8/Cl+", "Ag+/−3", "Au2–MgO"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We evaluate MD-ET on QCML,45 MD17,15 Ko2020,67 xxMD,68 and SPICE,69 each presenting distinct challenges.",
+          "page": 5,
+          "section": "Pretraining performance",
+          "inferred": false
+        },
+        {
+          "text": "Ko et al.67 introduce a molecular dataset consisting of molecular (e.g., C10H2 and C10H+) and metallic systems (e.g., Ag+/−3), which are typically challenging for conventional MLFFs.",
+          "page": 7,
+          "section": "Ko2020",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "xxmd",
+      "canonical_name": "xxMD",
+      "raw_names": ["xxMD", "xxMD-DFT"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["reactive intermediates", "transition states", "chemical reactions"],
+      "available_properties": ["atomic forces", "MAE", "nonadiabatic MD trajectories"],
+      "available_fields": ["geometries sampled from the PES", "temporally split trajectories"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We evaluate MD-ET on QCML,45 MD17,15 Ko2020,67 xxMD,68 and SPICE,69 each presenting distinct challenges.",
+          "page": 5,
+          "section": "Pretraining performance",
+          "inferred": false
+        },
+        {
+          "text": "The xxMD dataset by Pengmei et al.68 goes beyond the MD17 dataset by incorporating nonadiabatic MD trajectories specifically designed to capture chemical reactions, including geometries sampled from the PES of reactive intermediates, transition states, and products.",
+          "page": 7,
+          "section": "xxMD",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "spice",
+      "canonical_name": "SPICE",
+      "raw_names": ["SPICE"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["drug-like molecules", "peptides"],
+      "available_properties": ["atomic forces", "MAE"],
+      "available_fields": ["conformers of multiple structures", "PubChem", "DES370K Monomers", "DES370K Dimers", "Dipeptides", "Solvated amino acids"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We evaluate MD-ET on QCML,45 MD17,15 Ko2020,67 xxMD,68 and SPICE,69 each presenting distinct challenges.",
+          "page": 5,
+          "section": "Pretraining performance",
+          "inferred": false
+        },
+        {
+          "text": "All previously evaluated datasets contain conformers of a single, relatively small structure (∼10-20 atoms). The SPICE dataset contains several subsets with conformers of multiple structures with a size of up to 96 atoms.69",
+          "page": 7,
+          "section": "SPICE",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "qcml",
+      "usage_role": "source",
+      "purpose": "acquisition of large-scale quantum chemistry reference data spanning the periodic table, including out-of-equilibrium structures and different spin and charge states",
+      "used_fields": ["3D atomic positions", "atomic numbers", "spin and charge states", "pairwise distances", "displacement vectors"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 30000000,
+      "evidence": [
+        {
+          "text": "QCML ranges across the periodic table, including out-of-equilibrium structures and different spin and charge states, and includes properties for a subset of ∼30 × 10⁶ entries calculated with density functional theory accuracy at the PBE0 level (including dispersion corrections).",
+          "page": 3,
+          "section": "We examine the effects of forgoing almost all commonly",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "qcml",
+      "usage_role": "training",
+      "purpose": "create train/validation/test splits ensuring conformational integrity and apply random rotations/reflections to learn approximate O(3)-equivariance",
+      "used_fields": ["conformations", "normal modes"],
+      "is_derived": true,
+      "construction_method": "90%/5%/5% split with conformational integrity; random rotations and reflections applied during pretraining",
+      "filter_conditions": ["all conformations of a structure assigned to same split"],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We create an approximate 90%/5%/5% split from QCML. As QCML contains multiple conformations for each structure sampled along its normal modes, we ensure that all conformations of a structure are assigned to the same split. To learn approximate equivariance, we use data augmentation: during pretraining, we duplicate each batch once and apply random rotations and reflections to both copies to form an augmented batch.",
+          "page": 5,
+          "section": "Pretraining performance",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "qcml",
+      "usage_role": "training",
+      "purpose": "supervised pretraining to directly predict atomic forces",
+      "used_fields": ["atomic forces"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Instead of predicting a combined loss of energies and forces or calculating forces as the negative gradient of the predicted energy with respect to positions, we predict forces directly.",
+          "page": 3,
+          "section": "We examine the effects of forgoing almost all commonly",
+          "inferred": false
+        },
+        {
+          "text": "we perform supervised pretraining on the new QCML dataset. [...] We train MD-ET for 880k steps on QCML using a batch size of 1024",
+          "page": 5,
+          "section": "Pretraining performance",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "md17",
+      "usage_role": "benchmark",
+      "purpose": "few-shot fine-tuning on benchmark datasets",
+      "used_fields": ["MD trajectories", "conformers"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "For downstream task evaluation, we fine-tune the model for a small number of steps only.",
+          "page": 3,
+          "section": "We examine the effects of forgoing almost all commonly",
+          "inferred": false
+        },
+        {
+          "text": "In addition to fine-tuning ET-MD for 2000 steps, which we see as the default way to use a large-scale pretrained model, we also report results for training the model directly on MD17.",
+          "page": 5,
+          "section": "Pretraining performance",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "md17_ccsdt",
+      "usage_role": "benchmark",
+      "purpose": "few-shot fine-tuning on CCSD(T)-level samples",
+      "used_fields": ["MD trajectories", "conformers"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 1000,
+      "evidence": [
+        {
+          "text": "When fine-tuned on 1000 CCSD(T)-level samples, MD-ET achieves lower mean absolute error (MAE) than all competing models for three of the five structures.",
+          "page": 5,
+          "section": "MD17@CCSD(T)",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "qcml",
+      "usage_role": "test",
+      "purpose": "benchmark evaluation of force prediction accuracy",
+      "used_fields": ["atomic forces"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "In Table I, we present the mean absolute error (MAE) of force predictions for MD-ET, SpookyNet, and PaiNN on the QCML evaluation set at the end of pretraining.",
+          "page": 5,
+          "section": "Pretraining performance",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "md17",
+      "usage_role": "test",
+      "purpose": "benchmark evaluation of force prediction accuracy",
+      "used_fields": ["atomic forces"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We evaluate MD-ET on QCML,45 MD17,15 Ko2020,67 xxMD,68 and SPICE,69 each presenting distinct challenges.",
+          "page": 5,
+          "section": "Pretraining performance",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "ko2020",
+      "usage_role": "test",
+      "purpose": "benchmark evaluation of force prediction accuracy",
+      "used_fields": ["atomic forces"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We evaluate MD-ET on QCML,45 MD17,15 Ko2020,67 xxMD,68 and SPICE,69 each presenting distinct challenges.",
+          "page": 5,
+          "section": "Pretraining performance",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "xxmd",
+      "usage_role": "test",
+      "purpose": "benchmark evaluation of force prediction accuracy",
+      "used_fields": ["atomic forces"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We evaluate MD-ET on QCML,45 MD17,15 Ko2020,67 xxMD,68 and SPICE,69 each presenting distinct challenges.",
+          "page": 5,
+          "section": "Pretraining performance",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "spice",
+      "usage_role": "test",
+      "purpose": "benchmark evaluation of force prediction accuracy",
+      "used_fields": ["atomic forces"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We evaluate MD-ET on QCML,45 MD17,15 Ko2020,67 xxMD,68 and SPICE,69 each presenting distinct challenges.",
+          "page": 5,
+          "section": "Pretraining performance",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

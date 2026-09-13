@@ -1,0 +1,226 @@
+{
+  "paper": {
+    "title": "Probing out-of-distribution generalization in machine learning for materials",
+    "year": 2025,
+    "doi": "10.1038/s43246-024-00731-w",
+    "research_summary": "This paper systematically evaluates the out-of-distribution (OOD) generalization capabilities of various machine learning models across over 700 OOD tasks derived from three large ab initio materials databases (JARVIS, Materials Project, OQMD). It challenges the validity of heuristic-based OOD task definitions (e.g., leave-one-element-out, leave-one-period-out, space group exclusion) by showing most such tasks are not truly challenging—test data often reside within the representational training domain (interpolation), not outside it (extrapolation). The study reveals that robust OOD performance is common even for simple models like XGBoost and random forests, and that neural scaling laws (improvement with larger training sets or longer training time) fail for representationally OOD tasks, sometimes worsening performance. It introduces representational domain identification via UMAP and kernel-density estimation to distinguish interpolation from true extrapolation, arguing that current OOD benchmarks overestimate generalizability and scaling benefits due to domain misidentification."
+  },
+  "task": {
+    "task_name_raw": "Probing out-of-distribution generalization in machine learning for materials",
+    "task_name_canonical": "probing_ood_generalization",
+    "objective": "To systematically examine the performance of various ML methods across over 700 OOD tasks within large materials datasets and identify what constitutes a truly challenging OOD task.",
+    "material_scope": [
+      "crystalline solids"
+    ],
+    "target_properties": [
+      "formation energy",
+      "band gap",
+      "bulk modulus"
+    ],
+    "constraints": [
+      "tasks must have at least 200 test samples",
+      "OOD defined as statistical distribution difference in one or more attributes between training and test sets"
+    ],
+    "input_requirements": [
+      "ab initio-derived materials databases (JARVIS, Materials Project, OQMD)",
+      "materials representations (embeddings or descriptors)"
+    ],
+    "output_goal": [
+      "quantitative assessment of OOD generalization performance (MAE, R2) across models and tasks",
+      "identification of representationally OOD vs. ID test data",
+      "analysis of scaling effects on OOD performance"
+    ],
+    "evidence": [
+      {
+        "text": "In this work, we conduct a systematic examination of the performance of various ML methods across over 700 OOD tasks within large materials datasets. These tasks are speciﬁcally designed to challenge common heuristics based on chemistry or structural symmetry.",
+        "page": 1,
+        "section": "Results",
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "Selection of ab initio-derived materials databases",
+      "stage_order": 1,
+      "stage_goal": "To acquire diverse, large-scale, precomputed materials property data for robust OOD evaluation.",
+      "stage_input": [],
+      "stage_output": [
+        "JARVIS dataset",
+        "Materials Project (MP) dataset",
+        "Open Quantum Materials Database (OQMD) dataset"
+      ],
+      "evidence": [
+        {
+          "text": "Three ab initio-derived materials databases have been selected for this evaluation: Joint Automated Repository for Various Integrated Simulations (JARVIS), Materials Project (MP), and the Open Quantum Materials Database (OQMD).",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_preparation",
+      "stage_name_raw": "Dataset preprocessing and OOD task construction",
+      "stage_order": 2,
+      "stage_goal": "To prepare datasets by removing outliers and construct over 700 OOD tasks using six criteria based on chemistry or structural symmetry.",
+      "stage_input": [
+        "JARVIS, MP, OQMD datasets"
+      ],
+      "stage_output": [
+        "700+ OOD tasks (e.g., leave-one-element-out, leave-one-period-out, leave-one-space-group-out)"
+      ],
+      "evidence": [
+        {
+          "text": "We primarily consider six criteria for deﬁning OOD test data: (1) materials containing element X, (2) materials containing any element in the period X, (3) materials containing any element in the group X, (4) materials of space group X, (5) materials of point group X, (6) materials of crystal system X. We consider these leave-one-X-out tasks for all possible values of X but exclude those with fewer than 200 test samples.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "The combination of datasets and grouping criteria leads to over 700 OOD tasks.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "Training representative ML models on OOD tasks",
+      "stage_order": 3,
+      "stage_goal": "To train a diverse set of ML models—including tree ensembles, neural networks, graph neural networks, and LLMs—on each OOD task using consistent hyperparameters tuned on in-distribution validation sets.",
+      "stage_input": [
+        "700+ OOD tasks",
+        "Matminer descriptors",
+        "GMP features",
+        "crystal graphs",
+        "crystal text descriptions"
+      ],
+      "stage_output": [
+        "trained RF, XGB, ALIGNN, GMP, LLM-Prop models for each OOD task"
+      ],
+      "evidence": [
+        {
+          "text": "OOD performance is evaluated by training a representative set of ML models, including (1) random forest (RF) and XGBoost (XGB) models with Matminer descriptors. (2) single neural network with Gaussian multipole (GMP) expansion on electron density (3) atomistic line graph neural network (ALIGNN), and (4) the large language model (LLM) based LLM-Prop with crystal text descriptions.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "Our strategy is to perform the hyperparameter tuning on an in-distribution validation set randomly sampled from the whole dataset; then we apply the same optimal hyper-parameters to every OOD task.",
+          "page": 8,
+          "section": "Methods",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "Quantitative evaluation of OOD performance",
+      "stage_order": 4,
+      "stage_goal": "To assess model performance on each OOD task using MAE and R2 metrics and compare across models and task types.",
+      "stage_input": [
+        "trained models",
+        "OOD test sets"
+      ],
+      "stage_output": [
+        "MAE and R2 scores for each model-task pair",
+        "performance rankings (e.g., number of tasks above R2 threshold)"
+      ],
+      "evidence": [
+        {
+          "text": "OOD performance is evaluated by training a representative set of ML models... It therefore covers not only common ML architectures from lightweight tree ensembles and neural networks to graph neural networks and transformer-based large language models, but also distinct input representations...",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "We utilize two complementary performance metrics: mean absolute error (MAE) and coefﬁcient of determination (R2).",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "computational_validation",
+      "stage_name_raw": "Representational domain identification via UMAP and kernel-density estimation",
+      "stage_order": 5,
+      "stage_goal": "To computationally determine whether OOD test data lie within or outside the high-dimensional representational training domain using dimensionality reduction and density estimation.",
+      "stage_input": [
+        "model embeddings (ALIGNN) or descriptors (XGB)",
+        "training data",
+        "OOD test data"
+      ],
+      "stage_output": [
+        "representationally ID/OOD classification for each test sample",
+        "kernel-density estimates"
+      ],
+      "evidence": [
+        {
+          "text": "We propose to inspect materials not from the perspective of a single human-deﬁned attribute (e.g., element identity), but from the high-dimensional representation space of materials. Furthermore, we propose to deﬁne and distinguish two types of OOD. A test set is considered statistically OOD if the statistical distribution of one or more attributes differs from the training set, whereas a test set is considered representationally OOD if the test data are outside the region of the training set when viewed from the high-dimensional representation space.",
+          "page": 5,
+          "section": "unknown",
+          "inferred": false
+        },
+        {
+          "text": "Uniform Manifold Approximation and Projection (UMAP) is used to project the high-dimensional materials representations to a two-dimensional plane... For each OOD task, we apply a Gaussian kernel to the training data and evaluate the kernel density estimate of the training data for every test data point in the UMAP embedding space. Test data points with high/low density estimates are considered as representationally ID/OOD data.",
+          "page": 5,
+          "section": "unknown",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "computational_validation",
+      "stage_name_raw": "Analysis of scaling effects on OOD generalization",
+      "stage_order": 6,
+      "stage_goal": "To computationally investigate how increasing training time and training set size affects OOD performance, distinguishing between representationally ID and OOD tasks.",
+      "stage_input": [
+        "learning curves (MAE vs. training time/size)",
+        "representational domain labels"
+      ],
+      "stage_output": [
+        "identification of tasks where scaling improves, harms, or has marginal effect on OOD performance",
+        "violation of neural scaling laws for representationally OOD tasks"
+      ],
+      "evidence": [
+        {
+          "text": "Learning curves for out-of-distribution generalization... neural scaling laws are found to be valid only for representationally ID generalization, while the scaling effects are marginally beneﬁcial or even adverse for representationally OOD generalization.",
+          "page": 5,
+          "section": "unknown",
+          "inferred": false
+        },
+        {
+          "text": "Figure 5a–c shows the learning curves of MAE versus training time in the leave-one-element-out tasks for F, O, and H... For the leave-F-out task, the training and ID test MAEs decrease with increasing training time of the XGB model. However, the OOD MAE decreases only during the initial 20 training rounds, then continuously increases with more training.",
+          "page": 5,
+          "section": "unknown",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "other",
+      "stage_name_raw": "SHAP-based bias source analysis for chemistry-based OOD tasks",
+      "stage_order": 7,
+      "stage_goal": "To computationally identify whether poor OOD performance for nonmetals (H, F, O) stems from compositional or structural biases using SHAP explanations.",
+      "stage_input": [
+        "XGB model predictions",
+        "compositional and structural features"
+      ],
+      "stage_output": [
+        "SHAP feature contributions quantifying compositional vs. structural bias"
+      ],
+      "evidence": [
+        {
+          "text": "We propose a SHAP-based (SHapley Additive exPlanations) method to identify the sources of biases. This involves training a second model to correct the model for each leave-one-element-out task and evaluating the contributions from compositional and structural features to the corrections.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

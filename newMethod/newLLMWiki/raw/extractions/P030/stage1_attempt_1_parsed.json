@@ -1,0 +1,183 @@
+{
+  "paper": {
+    "title": "A Recipe for Charge Density Prediction",
+    "year": 2024,
+    "doi": null,
+    "research_summary": "The paper proposes a machine learning method to predict quantum-mechanical charge density for atomic systems, aiming to overcome the accuracy–efficiency trade-off in existing approaches. It introduces three key ingredients: (1) representing charge density using atomic and virtual orbitals (spherical fields centered at atoms and bond midpoints), (2) using expressive, domain-informed, and learnable even-tempered Gaussian basis sets, and (3) employing a high-capacity equivariant neural network (eSCN). The method achieves state-of-the-art accuracy while being >30× faster than prior methods on the QM9 charge density benchmark."
+  },
+  "task": {
+    "task_name_raw": "charge density prediction",
+    "task_name_canonical": "charge_density_prediction",
+    "objective": "To accurately and efficiently predict the quantum-mechanical charge density ρ(r) of atomic systems from their atomic coordinates and types, bypassing iterative DFT self-consistent field convergence.",
+    "material_scope": [
+      "small organic molecules",
+      "crystalline materials"
+    ],
+    "target_properties": [
+      "charge density"
+    ],
+    "constraints": [
+      "SE(3)-equivariance",
+      "scalability to large systems",
+      "flexible efficiency–accuracy trade-offs"
+    ],
+    "input_requirements": [
+      "atomic numbers",
+      "atomic coordinates",
+      "grid positions for evaluation"
+    ],
+    "output_goal": [
+      "predicted charge density values ρ̂(r) at all grid points in the voxel"
+    ],
+    "evidence": [
+      {
+        "text": "In density functional theory, the charge density is the core attribute of atomic systems from which all chemical properties can be derived. Machine learning methods are promising as a means of significantly accelerating charge density predictions, yet existing approaches either lack accuracy or scalability. We propose a recipe that can achieve both.",
+        "page": 1,
+        "section": "Abstract",
+        "inferred": false
+      },
+      {
+        "text": "Using the atomic orbital basis set representation of charge density, the prediction model aims to predict the basis set coefficients ci,j,m and the scaling factors si,j for each real and virtual node such that the predicted charge density matches the ground truth density obtained from DFT calculations.",
+        "page": 5,
+        "section": "3.2 Prediction Model",
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "acquisition of DFT-calculated charge density data",
+      "stage_order": 1,
+      "stage_goal": "Obtain ground-truth charge density data computed via density functional theory for training and evaluation.",
+      "stage_input": [],
+      "stage_output": [
+        "QM9 charge density dataset",
+        "MD charge density dataset",
+        "Cubic charge density dataset"
+      ],
+      "evidence": [
+        {
+          "text": "The QM9 charge density dataset [18, 19, 7] contains charge density calculations for 133,845 small organic molecules using the Vienna Ab initio Simulation Package (VASP).",
+          "page": 7,
+          "section": "4 Experiments",
+          "inferred": false
+        },
+        {
+          "text": "We also benchmark our method on the MD charge density dataset [43, 44, 12] and the Cubic charge density dataset [45].",
+          "page": 7,
+          "section": "4 Experiments",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_preparation",
+      "stage_name_raw": "construction of atomic and virtual node representations",
+      "stage_order": 2,
+      "stage_goal": "Construct input representations by placing atomic orbitals at atom centers and virtual orbitals at bond midpoints, ensuring SE(3)-equivariance.",
+      "stage_input": [
+        "atomic coordinates",
+        "chemical bonds"
+      ],
+      "stage_output": [
+        "real node coordinates",
+        "virtual node coordinates",
+        "node types"
+      ],
+      "evidence": [
+        {
+          "text": "Due to the critical importance of chemical bonds in defining the overall electronic structure, we insert virtual nodes into the midpoint of all chemical bonds for a given molecule (illustrated in Figure 2 (a)). With this method, the coordinates to insert the virtual nodes are SE(3)-equivariant with regard to the input atom coordinates.",
+          "page": 4,
+          "section": "3.1 Charge Density Representation",
+          "inferred": false
+        },
+        {
+          "text": "For the molecules in the MD dataset, we use bond centers as coordinates for virtual nodes. For the materials in the Cubic dataset, we iteratively insert virtual nodes up to the number of atoms in the unit cell using an algorithm based on Voronoi diagrams [55].",
+          "page": 15,
+          "section": "Appendix",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "end-to-end training of equivariant neural network with fine-tuning",
+      "stage_order": 3,
+      "stage_goal": "Train the eSCN-based model to predict basis coefficients and orbital exponent scaling factors, first pretraining with fixed exponents then fine-tuning with learnable scaling factors.",
+      "stage_input": [
+        "atomic numbers",
+        "node coordinates",
+        "ground-truth charge density"
+      ],
+      "stage_output": [
+        "trained SCDP model parameters"
+      ],
+      "evidence": [
+        {
+          "text": "We train the model end-to-end with a mean-absolute error loss L over the charge density: L = Er∈Data [|ρ(r) −ˆρ(r)|].",
+          "page": 6,
+          "section": "3.2 Prediction Model",
+          "inferred": false
+        },
+        {
+          "text": "The scaling factors at the exponents lead to significant training instability when the network is trained from scratch. Therefore, we use a fine-tuning approach, where we first pre-train the model with fixed basis set exponents (an even-tempered Gaussian basis derived from def2-QZVPPD) and then fine-tune the prediction model with a small learning rate with the learning for scaling factors enabled.",
+          "page": 7,
+          "section": "3.2 Prediction Model",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "benchmarking against baseline models on multiple datasets",
+      "stage_order": 4,
+      "stage_goal": "Quantitatively evaluate prediction accuracy (NMAE) and computational efficiency (mol/min) on QM9, MD, and Cubic benchmarks.",
+      "stage_input": [
+        "trained model",
+        "test set charge densities",
+        "hardware configuration"
+      ],
+      "stage_output": [
+        "NMAE scores",
+        "efficiency metrics",
+        "Pareto-optimal trade-off curves"
+      ],
+      "evidence": [
+        {
+          "text": "We benchmark the prediction accuracy with the normalized mean absolute error... We benchmark the efficiency of different methods by the number of molecules predicted per minute (Mol. per min.) on a single NVIDIA A100-80GB-PCIe GPU for the QM9 test split.",
+          "page": 7,
+          "section": "4 Experiments",
+          "inferred": false
+        },
+        {
+          "text": "The metrics for all methods are presented in Table 1... Our best-performing model... achieves an NMAE of 0.178 on the QM9 charge density test set... significantly outperforms ChargE3Net [15] — a probe-based method.",
+          "page": 8,
+          "section": "4 Experiments",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "computational_validation",
+      "stage_order": 5,
+      "stage_name_raw": "evaluation of predicted charge density for physical property derivation",
+      "stage_goal": "Assess utility of predicted charge density by verifying its ability to recover downstream physical observables (e.g., energy, forces) or reduce self-consistent field iterations.",
+      "stage_input": [
+        "predicted charge density"
+      ],
+      "stage_output": [
+        "recovered physical observables",
+        "reduction in SCF steps"
+      ],
+      "evidence": [
+        {
+          "text": "To better validate the practical utility of the predicted charge density, evaluation on the reduction of self-consistent field calculations, or on recovering physical observables, such as energy and forces [7, 56, 15], will be highly valuable.",
+          "page": 9,
+          "section": "5 Discussion",
+          "inferred": true
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "paper_id": "P032",
+  "file_name": "32_How simple can you go - An off-the-shelf transformer approach to molecular dynamics.pdf",
+  "status": "completed",
+  "completed_at": "2026-08-06T01:48:38.379117+00:00",
+  "model": "qwen-plus",
+  "stage1_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "stage2_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "counts": {
+    "tasks": 1,
+    "stages": 6,
+    "datasets": 5,
+    "dataset_uses": 8
+  }
+}

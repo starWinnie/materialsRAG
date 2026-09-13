@@ -1,0 +1,24 @@
+{
+  "source_json": "C:\\Users\\li\\Desktop\\材料大数据\\知识库构建_模拟PVLDB\\outputs\\30results.json",
+  "paper_count": 30,
+  "task_count": 30,
+  "dataset_count": 54,
+  "dataset_use_count": 99,
+  "hypernode_count": 101,
+  "hyperedge_count": 153,
+  "dataset_use_edge_count": 99,
+  "dataset_capability_edge_count": 54,
+  "node_type_counts": {
+    "data_source_type": 6,
+    "dataset_family": 60,
+    "material_system": 5,
+    "rd_stage": 6,
+    "representation": 9,
+    "target_property": 10,
+    "task_type": 5
+  },
+  "edge_type_counts": {
+    "DatasetUseEdge": 99,
+    "DatasetCapabilityEdge": 54
+  }
+}

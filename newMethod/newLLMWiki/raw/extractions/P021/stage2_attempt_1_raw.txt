@@ -1,0 +1,189 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "jarvis",
+      "canonical_name": "JARVIS",
+      "raw_names": ["JARVIS"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["crystalline materials"],
+      "available_properties": ["formation energy", "bandgap", "total energy", "Ehull", "bulk moduli", "shear moduli"],
+      "available_fields": ["crystal structure (A, P, L)", "property labels"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We assess the expressiveness of our iComFormer and eComFormer models by conducting evaluations on three widely-used crystal benchmarks: JARVIS (Choudhary et al., 2020), the Materials Project (Chen et al., 2019), and MatBench (Dunn et al., 2020).",
+          "page": 8,
+          "section": "5 EXPERIMENTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "materials_project",
+      "canonical_name": "Materials Project",
+      "raw_names": ["the Materials Project", "MP"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["crystalline materials"],
+      "available_properties": ["formation energy", "bandgap", "bulk moduli", "shear moduli"],
+      "available_fields": ["crystal structure (A, P, L)", "property labels"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We assess the expressiveness of our iComFormer and eComFormer models by conducting evaluations on three widely-used crystal benchmarks: JARVIS (Choudhary et al., 2020), the Materials Project (Chen et al., 2019), and MatBench (Dunn et al., 2020).",
+          "page": 8,
+          "section": "5 EXPERIMENTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "matbench",
+      "canonical_name": "MatBench",
+      "raw_names": ["MatBench"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["crystalline materials"],
+      "available_properties": ["formation energy", "bandgap"],
+      "available_fields": ["crystal structure (A, P, L)", "property labels"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We assess the expressiveness of our iComFormer and eComFormer models by conducting evaluations on three widely-used crystal benchmarks: JARVIS (Choudhary et al., 2020), the Materials Project (Chen et al., 2019), and MatBench (Dunn et al., 2020).",
+          "page": 8,
+          "section": "5 EXPERIMENTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "jarvis",
+      "usage_role": "benchmark",
+      "purpose": "acquire crystal structure data and corresponding property labels for training and evaluation",
+      "used_fields": ["crystal structure (A, P, L)", "property labels"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We assess the expressiveness of our iComFormer and eComFormer models by conducting evaluations on three widely-used crystal benchmarks: JARVIS (Choudhary et al., 2020), the Materials Project (Chen et al., 2019), and MatBench (Dunn et al., 2020).",
+          "page": 8,
+          "section": "5 EXPERIMENTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "materials_project",
+      "usage_role": "benchmark",
+      "purpose": "acquire crystal structure data and corresponding property labels for training and evaluation",
+      "used_fields": ["crystal structure (A, P, L)", "property labels"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We assess the expressiveness of our iComFormer and eComFormer models by conducting evaluations on three widely-used crystal benchmarks: JARVIS (Choudhary et al., 2020), the Materials Project (Chen et al., 2019), and MatBench (Dunn et al., 2020).",
+          "page": 8,
+          "section": "5 EXPERIMENTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "matbench",
+      "usage_role": "benchmark",
+      "purpose": "acquire crystal structure data and corresponding property labels for training and evaluation",
+      "used_fields": ["crystal structure (A, P, L)", "property labels"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We assess the expressiveness of our iComFormer and eComFormer models by conducting evaluations on three widely-used crystal benchmarks: JARVIS (Choudhary et al., 2020), the Materials Project (Chen et al., 2019), and MatBench (Dunn et al., 2020).",
+          "page": 8,
+          "section": "5 EXPERIMENTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "jarvis",
+      "usage_role": "benchmark",
+      "purpose": "assess the predictive accuracy of the trained models on various crystal property prediction tasks",
+      "used_fields": ["crystal structure (A, P, L)", "property labels"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We assess the expressiveness of our iComFormer and eComFormer models by conducting evaluations on three widely-used crystal benchmarks: JARVIS (Choudhary et al., 2020), the Materials Project (Chen et al., 2019), and MatBench (Dunn et al., 2020).",
+          "page": 8,
+          "section": "5 EXPERIMENTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "materials_project",
+      "usage_role": "benchmark",
+      "purpose": "assess the predictive accuracy of the trained models on various crystal property prediction tasks",
+      "used_fields": ["crystal structure (A, P, L)", "property labels"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We assess the expressiveness of our iComFormer and eComFormer models by conducting evaluations on three widely-used crystal benchmarks: JARVIS (Choudhary et al., 2020), the Materials Project (Chen et al., 2019), and MatBench (Dunn et al., 2020).",
+          "page": 8,
+          "section": "5 EXPERIMENTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "matbench",
+      "usage_role": "benchmark",
+      "purpose": "assess the predictive accuracy of the trained models on various crystal property prediction tasks",
+      "used_fields": ["crystal structure (A, P, L)", "property labels"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We assess the expressiveness of our iComFormer and eComFormer models by conducting evaluations on three widely-used crystal benchmarks: JARVIS (Choudhary et al., 2020), the Materials Project (Chen et al., 2019), and MatBench (Dunn et al., 2020).",
+          "page": 8,
+          "section": "5 EXPERIMENTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

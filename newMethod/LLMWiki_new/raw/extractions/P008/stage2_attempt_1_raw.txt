@@ -1,0 +1,268 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "mp_full",
+      "canonical_name": "Materials Project database",
+      "raw_names": ["Materials Project database", "MP database"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["semiconductors"],
+      "available_properties": ["energy above convex hull (Ehull)", "band gap (Eg)", "crystal structure", "unit cell atoms", "elements per compound"],
+      "available_fields": ["Ehull", "Eg", "structure", "Natoms", "Nelements"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Initially, we start by acquiring all the materials from the MP database based on its API, resulting in a total of 1,54,718 entries saved in a JSON ﬁle as the Python dictionary object.",
+          "page": 3,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "The dataset used in this study is publicly available from the Materials Project database: https://next-gen.materialsproject.org/.",
+          "page": 10,
+          "section": "Data availability",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "first_level_dataset",
+      "canonical_name": "first-level dataset",
+      "raw_names": ["first-level dataset", "2675 three-dimensional crystal structures"],
+      "dataset_type": "derived_subset",
+      "source_dataset_key": "mp_full",
+      "material_scope": ["semiconductors"],
+      "available_properties": ["thermodynamic stability (Ehull ≤ 0.05 eV/atom)", "band gap (0.1–2 eV)", "unit cell atoms < 20", "elements per compound < 4", "exclusion of H, lanthanides, actinides"],
+      "available_fields": ["Ehull", "Eg", "Natoms", "Nelements", "elements"],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "Ultimately, through excluding the materials containing hydrogen, lanthanides, and actinides, and conducting structural analysis, we further obtain 2675 three-dimensional (3D) crystal structures without calculation errors. These materials constitute the first-level dataset for our in-depth investigations.",
+          "page": 3,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "second_level_dataset",
+      "canonical_name": "second-level dataset",
+      "raw_names": ["second-level dataset", "two problem-specific clusters (C1 and C2)", "704 materials"],
+      "dataset_type": "derived_subset",
+      "source_dataset_key": "first_level_dataset",
+      "material_scope": ["semiconductors"],
+      "available_properties": ["κL similarity", "cluster membership (C1/C2)"],
+      "available_fields": ["cluster", "κL_similarity"],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "Since the materials with a high likelihood of possessing relatively low κL tend to group into the two clusters of C1 and C2, the exploration scope for ﬁnding materials with low κL is reduced from 2675 materials to 704 materials, narrowing by approximately three-quarters. As a result, these two problem-speciﬁc clusters (C1 and C2) further constitute our second-level dataset.",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "local_database",
+      "canonical_name": "local database",
+      "raw_names": ["local database", "labeled repository of thermal conductivity", "661 labeled materials with κPET values"],
+      "dataset_type": "paper_specific",
+      "source_dataset_key": "second_level_dataset",
+      "material_scope": ["semiconductors"],
+      "available_properties": ["κPET at 300 K", "binary label (ultralow/non-ultralow κL)"],
+      "available_fields": ["κPET", "label"],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "Given the success of unsupervised learning in signiﬁcantly reducing the broad material search space, it has become feasible to further extend the second-level dataset into a labeled repository of thermal conductivity through HTC at affordable computational costs. Based on the PET empirical equation within the high-throughput framework, we derive the κPET values at 300 K ignoring the anisotropy for materials in the second-level dataset...",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "The basic information and corresponding κPET values of the resulting 661 materials are then stored in a local database using MongoDB64, serving as a valuable repository to retrieve data and prioritize detailed theoretical and experimental investigations.",
+          "page": 5,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "mp_full",
+      "usage_role": "source",
+      "purpose": "Acquire initial theoretical dataset of semiconductors for screening",
+      "used_fields": ["all materials"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 154718,
+      "evidence": [
+        {
+          "text": "Initially, we start by acquiring all the materials from the MP database based on its API, resulting in a total of 1,54,718 entries saved in a JSON ﬁle as the Python dictionary object.",
+          "page": 3,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "first_level_dataset",
+      "usage_role": "candidate_pool",
+      "purpose": "Narrow down the material pool using thermodynamic, electronic, and computational constraints",
+      "used_fields": ["Ehull", "Eg", "Natoms", "Nelements", "elements"],
+      "is_derived": true,
+      "construction_method": "filtering from mp_full on Ehull ≤ 0.05 eV/atom, 0.1 eV ≤ Eg ≤ 2 eV, Natoms < 20, Nelements < 4, exclusion of H, lanthanides, actinides",
+      "filter_conditions": ["Ehull ≤ 0.05 eV/atom", "0.1 eV ≤ Eg ≤ 2 eV", "Natoms < 20", "Nelements < 4", "no H, lanthanides, actinides"],
+      "sample_count": 2675,
+      "evidence": [
+        {
+          "text": "Ultimately, through excluding the materials containing hydrogen, lanthanides, and actinides, and conducting structural analysis, we further obtain 2675 three-dimensional (3D) crystal structures without calculation errors. These materials constitute the first-level dataset for our in-depth investigations.",
+          "page": 3,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "first_level_dataset",
+      "usage_role": "source",
+      "purpose": "Unsupervised learning for clustering materials with similar κL",
+      "used_fields": ["composition-based features ({E})", "structure-based features ({S})"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 2675,
+      "evidence": [
+        {
+          "text": "Following the generation of the ﬁrst-level dataset as input, the materials should be transformed into the length-ﬁxed vectors as the so-called descriptors... composition-based features are generated based on Magpie data and denoted by {E}... structure-based features can be derived from Voronoi tessellations... each material can generate a total of 273 descriptors automatically... jointly denoted by {E, S}.",
+          "page": 3,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "second_level_dataset",
+      "usage_role": "candidate_pool",
+      "purpose": "Identify problem-specific clusters likely to contain materials with ultralow κL",
+      "used_fields": ["cluster membership"],
+      "is_derived": true,
+      "construction_method": "k-means clustering on first_level_dataset descriptors",
+      "filter_conditions": ["C1 and C2 clusters"],
+      "sample_count": 704,
+      "evidence": [
+        {
+          "text": "Since the materials with a high likelihood of possessing relatively low κL tend to group into the two clusters of C1 and C2, the exploration scope for ﬁnding materials with low κL is reduced from 2675 materials to 704 materials, narrowing by approximately three-quarters. As a result, these two problem-speciﬁc clusters (C1 and C2) further constitute our second-level dataset.",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "second_level_dataset",
+      "usage_role": "computational_validation",
+      "purpose": "Assign property labels (κPET values) to materials in C1 and C2 using low-cost PET model",
+      "used_fields": ["structure"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 704,
+      "evidence": [
+        {
+          "text": "Given the success of unsupervised learning in signiﬁcantly reducing the broad material search space, it has become feasible to further extend the second-level dataset into a labeled repository of thermal conductivity through HTC at affordable computational costs. Based on the PET empirical equation within the high-throughput framework, we derive the κPET values at 300 K ignoring the anisotropy for materials in the second-level dataset...",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "local_database",
+      "usage_role": "training",
+      "purpose": "Train supervised classification model to predict ultralow κL (κPET ≤ 2 W/mK)",
+      "used_fields": ["κPET", "273 descriptors (Magpie + Voronoi)"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 661,
+      "evidence": [
+        {
+          "text": "After labeling the materials in the second-level dataset based on our HTC framework to obtain the local database, we develop interpretable supervised classiﬁcation models to predict ultralow κL for efﬁciently by-passing the complex ab initio calculations...",
+          "page": 7,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "The basic information and corresponding κPET values of the resulting 661 materials are then stored in a local database using MongoDB64...",
+          "page": 5,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 6,
+      "dataset_key": "local_database",
+      "usage_role": "validation",
+      "purpose": "Assess predictive accuracy and robustness of the trained model",
+      "used_fields": ["κPET", "273 descriptors (Magpie + Voronoi)"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 661,
+      "evidence": [
+        {
+          "text": "As a result, the performances of the optimal CatBoost classiﬁcation model are characterized by the ROC curve and the confusion matrix (Fig. 6b), showing its great ability in classifying semiconductors with ultralow κL due to the high ROC AUC (0.94), accuracy (0.90), precision (0.89), recall (0.90) and F1-score (0.89).",
+          "page": 7,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 9,
+      "dataset_key": "local_database",
+      "usage_role": "label_source",
+      "purpose": "Generate training labels for supervised classification",
+      "used_fields": ["κPET"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 661,
+      "evidence": [
+        {
+          "text": "Here, materials with κPET not exceeding 2 W/mK are labeled as 1, which are considered to possess ultralow κL; otherwise, they are labeled as 0, signifying non-ultralow κL.",
+          "page": 7,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

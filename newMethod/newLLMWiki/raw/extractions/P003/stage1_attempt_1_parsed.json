@@ -1,0 +1,231 @@
+{
+  "paper": {
+    "title": "Accurate prediction of tensorial spectra using equivariant graph neural network",
+    "year": 2026,
+    "doi": "10.1038/s41467-026-69159-9",
+    "research_summary": "This paper introduces the Tensorial Spectra Equivariant Neural Network (TSENN), an equivariant graph neural network that maps crystal structures directly to their full photon-frequency-dependent optical tensors—specifically, the complex dielectric tensor εαβ(ω) = εαβ₁(ω) + iεαβ₂—trained on frequency-dependent dielectric tensors of 1,432 bulk semiconductors. The model encodes isotropic (ℓ=0) and anisotropic (ℓ=2) sequential tensor components into spherical tensor representations to ensure symmetry-aware predictions consistent with crystalline symmetry constraints, achieving a mean absolute error of 0.127."
+  },
+  "task": {
+    "task_name_raw": "prediction of tensorial spectra",
+    "task_name_canonical": "prediction_of_tensorial_spectra",
+    "objective": "Map crystal structures directly to their full photon-frequency-dependent optical tensors",
+    "material_scope": [
+      "bulk semiconductors"
+    ],
+    "target_properties": [
+      "frequency-dependent dielectric tensor",
+      "complex dielectric tensor",
+      "optical tensor"
+    ],
+    "constraints": [
+      "crystalline symmetry constraints",
+      "rotational and inversion symmetries",
+      "isotropic and anisotropic sequential components"
+    ],
+    "input_requirements": [
+      "crystal structure",
+      "periodic crystal graph",
+      "atomic species",
+      "relative atomic positions"
+    ],
+    "output_goal": [
+      "full photon-frequency-dependent optical tensors",
+      "complex dielectric tensor εαβ(ω) = εαβ₁(ω) + iεαβ₂"
+    ],
+    "evidence": [
+      {
+        "text": "Here we introduce the Tensorial Spectra Equivariant Neural Network (TSENN), an equivariant graph neural network architecture that maps crystal structures directly to their full photon-frequency-dependent optical tensors.",
+        "page": 1,
+        "section": null,
+        "inferred": false
+      },
+      {
+        "text": "By encoding isotropic sequential scalar components and anisotropic sequential tensor components into spherical tensor representations, TSENN ensures symmetry-aware predictions consistent with crystalline symmetry constraints.",
+        "page": 1,
+        "section": null,
+        "inferred": false
+      },
+      {
+        "text": "Trained on frequency-dependent dielectric tensors of 1,432 bulk semiconductors, the model achieves a mean absolute error of 0.127, demonstrating its potential for efﬁcient and general modeling of optical properties.",
+        "page": 1,
+        "section": null,
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "ab initio calculation of dielectric tensors",
+      "stage_order": 1,
+      "stage_goal": "Compute frequency-dependent dielectric tensors for 1432 nonmagnetic semiconductors using first-principles methods",
+      "stage_input": [
+        "crystal structures",
+        "OpenMX software",
+        "Kubo formula"
+      ],
+      "stage_output": [
+        "1432 frequency-dependent dielectric tensors"
+      ],
+      "evidence": [
+        {
+          "text": "By training TSENN on the aforementioned dataset, we achieve a mean absolute error (MAE) of 0.127 in the predicted imaginary part of the dielectric tensor.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "We demonstrate the capabilities of TSENN by considering the frequency-dependent dielectric tensors of a dataset of 1432 nonmagnetic semiconductors calculated via ﬁrst-principles methods using OpenMX37–40.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "The dielectric tensors were computed using the Kubo formula for photon energies ranging from 0 to 30 eV, with an increment of 0.01 eV, resulting in 1432 frequency-dependent dielectric tensors satisfying the symmetry constraints of the crystal systems considered45–47.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_preparation",
+      "stage_name_raw": "spherical-harmonics decomposition of dielectric tensors",
+      "stage_order": 2,
+      "stage_goal": "Transform Cartesian dielectric tensors into spherical-harmonics basis to encode rotational symmetry",
+      "stage_input": [
+        "Cartesian dielectric tensors",
+        "spherical-harmonics basis"
+      ],
+      "stage_output": [
+        "frequency-dependent spherical-harmonic coefficients"
+      ],
+      "evidence": [
+        {
+          "text": "To predict the dielectric tensor using an equivariant neural network, we express it in the spherical-harmonics basis, which naturally encodes rotational symmetry.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "Since we are dealing with frequency-dependent tensors, we take the Cartesian tensor at each photon energy, perform this change-of-basis operation, and obtain the frequency-dependent spherical-harmonic coefficients as our target, as shown in Fig. 2.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "training TSENN on spherical-harmonic coefficients",
+      "stage_order": 3,
+      "stage_goal": "Train equivariant graph neural network to predict spherical-harmonic coefficients from crystal graphs",
+      "stage_input": [
+        "crystal graphs",
+        "spherical-harmonic coefficients",
+        "composite loss function"
+      ],
+      "stage_output": [
+        "trained TSENN model"
+      ],
+      "evidence": [
+        {
+          "text": "After the final pointwise convolution layer, we apply mean pooling over all nodes to obtain a global representation of the material. The network output is then partitioned into two parts: a scalar component corresponding to ℓ= 0 and a tensor component corresponding to ℓ= 2.",
+          "page": 3,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "To train the model, we define a composite loss function L, which separately evaluates the scalar and tensor components of the predicted optical spectra.",
+          "page": 3,
+          "section": null,
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "evaluation of dielectric tensor prediction accuracy",
+      "stage_order": 4,
+      "stage_goal": "Quantify prediction accuracy using MAE and other metrics on full-tensor and per-component levels",
+      "stage_input": [
+        "predicted dielectric tensors",
+        "ground-truth dielectric tensors"
+      ],
+      "stage_output": [
+        "MAE = 0.127",
+        "MAEaniso = 0.096",
+        "MAEnorm_aniso = 0.141"
+      ],
+      "evidence": [
+        {
+          "text": "To evaluate the model’s performance, the most direct measure is the MAE of the dielectric tensor, MAE = 1/(6nω) Σ_ω Σ_{α≤β} |bε_αβ(ω) − ε_αβ(ω)|.",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "Table 1 summarizes error metrics for dielectric tensor predictions across chemically and structurally diverse test systems. The overall tensor MAE is 0.127 (0.097 median), establishing TSENN’s robust baseline accuracy.",
+          "page": 5,
+          "section": null,
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "computational_validation",
+      "stage_name_raw": "reconstruction of real dielectric part via Kramers–Kronig relations",
+      "stage_order": 5,
+      "stage_goal": "Validate internal consistency of predicted spectra by reconstructing real part from predicted imaginary part",
+      "stage_input": [
+        "predicted imaginary part of dielectric tensor",
+        "Kramers–Kronig relations"
+      ],
+      "stage_output": [
+        "reconstructed real part of dielectric tensor"
+      ],
+      "evidence": [
+        {
+          "text": "With the accurately predicted imaginary parts, we used K–K relations to obtain the real parts of the dielectric tensors.",
+          "page": 6,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "In Fig. 4b, we compare the real parts obtained via K–K relations from the predicted imaginary spectra against the reference real parts computed directly using the Kubo formula.",
+          "page": 6,
+          "section": null,
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_screening",
+      "stage_name_raw": "symmetry-preserving validation across crystal systems",
+      "stage_order": 6,
+      "stage_goal": "Verify model preserves crystalline symmetry by comparing predicted vs. target tensors across symmetry classes",
+      "stage_input": [
+        "predicted dielectric tensors",
+        "crystal symmetry constraints",
+        "symmetry-based masking procedure"
+      ],
+      "stage_output": [
+        "symmetry-consistent predicted tensors"
+      ],
+      "evidence": [
+        {
+          "text": "To further confirm symmetry preservation, we applied a symmetry-based masking procedure to the predicted tensor at each photon energy (see Methods).",
+          "page": 8,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "In the Cartesian tensor representation, the predicted dielectric tensor exhibits symmetry-consistent behavior, correctly reproducing the expected nonzero tensor components in agreement with the ground truth.",
+          "page": 8,
+          "section": null,
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

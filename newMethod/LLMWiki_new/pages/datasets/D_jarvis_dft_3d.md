@@ -1,0 +1,111 @@
+# Dataset: JARVIS-DFT 3D
+
+- Dataset ID: `D_jarvis_dft_3d`
+- Dataset type: `public_subset`
+- Source dataset: `D_jarvis_dft`
+- Availability: public
+- Recommendable: true
+- Confidence: 1.0
+
+## Raw names
+
+- JARVIS-DFT 3D 2021
+- JARVIS
+- dft_3d_2021
+- dft_3d
+- JARVIS-DFT (3D 2021)
+- JARVIS-3D
+- JARVIS 3D
+- JARVIS-3D dataset
+- JARVIS-DFT 3D
+- JARVIS-DFT (dft_3d)
+
+## Observed material scopes
+
+- crystals
+- crystal structures
+- 3D materials
+- inorganic materials
+- computational materials
+- materials of technological interest
+
+## Observed research tasks
+
+- crystal property prediction
+- Predicting physical properties of materials from their crystal structures
+- materials property prediction
+- benchmarking of materials design methods
+
+## Observed research stages
+
+- data_acquisition
+- data_preparation
+- model_training
+- model_evaluation
+
+## Observed properties
+
+- formation_energy_peratom
+- optb88vdw_total_energy
+- optb88vdw_bandgap
+- mbj_bandgap
+- ehull
+- formation energy
+- total energy
+- bandgap
+- energy above hull
+- 46 properties
+- bulk modulus
+- forces
+- exfoliation energy
+- elastic properties
+- thermal properties
+- optical properties
+- electronic properties
+- phonon spectra
+- dielectric functions
+- solar cell efficiencies
+- superconducting transition temperatures
+- strain-stress
+- vibroscopy
+- XRD
+- STEM
+- STM
+
+## Observed fields
+
+- formation_energy_peratom
+- optb88vdw_total_energy
+- optb88vdw_bandgap
+- mbj_bandgap
+- ehull
+- crystal structure
+- formation energy
+- total energy
+- bandgap
+- energy above hull
+- crystal structure files (POSCAR)
+- atomic structure
+- identifier (id)
+
+## Usage evidence
+
+- P010 (RETHINKING THE ROLE OF FRAMES FOR SE(3)-INVARIANT CRYSTAL STRUCTURE MODELING): source in using datasets derived from JARVIS, Materials Project (MP), and Open Quantum Materials Database (OQMD) — acquire crystal structure data and associated DFT-simulated properties
+- P010 (RETHINKING THE ROLE OF FRAMES FOR SE(3)-INVARIANT CRYSTAL STRUCTURE MODELING): training in using consistent data splits and preprocessing — prepare data using standardized splits and preprocessing for fair comparison
+- P010 (RETHINKING THE ROLE OF FRAMES FOR SE(3)-INVARIANT CRYSTAL STRUCTURE MODELING): training in training CrystalFramer with dynamic frames — train the CrystalFramer architecture with dynamic frame construction
+- P010 (RETHINKING THE ROLE OF FRAMES FOR SE(3)-INVARIANT CRYSTAL STRUCTURE MODELING): benchmark in comparing mean absolute errors on crystal property prediction tasks — evaluate performance against baselines using mean absolute error metrics
+- P022 (CRYSTALFORMER: INFINITELY CONNECTED ATTENTION FOR PERIODIC STRUCTURE ENCODING): source in using Materials Project and JARVIS-DFT datasets — acquire crystal structure data with DFT-calculated properties for training and evaluation
+- P022 (CRYSTALFORMER: INFINITELY CONNECTED ATTENTION FOR PERIODIC STRUCTURE ENCODING): test in evaluating model performance with mean absolute errors — assess the predictive accuracy of the trained Crystalformer model on held-out test sets
+- P024 (Structure-aware graph neural network based deep transfer learning framework for enhanced predictive analytics on diverse materials datasets): candidate_pool in acquisition of diverse materials datasets — acquisition of diverse materials datasets
+- P028 (JARVIS-Leaderboard: a large scale benchmark of materials design methods): source in populate reference dataset — to generate a benchmark dataset with well-defined data splits
+
+## Dataset evidence
+
+- P010, PDF page 8, CRYSTAL PROPERTY PREDICTION: "Datasets. We use three datasets: JARVIS (55,723 materials), MP (69,239 materials), and OQMD (817,636 materials), using snapshots available through a Python package (jarvis-tools). These datasets provide several material properties, such as formation energy and bandgap, simulated by DFT calculations."
+- P010, PDF page 17, C DATASET SPECIFICATIONS: "The JARVIS-DFT 3D 2021 is a collection of 55,723 materials provided by Choudhary et al. (2020) and is accessible as dft_3d_2021 via jarvis-tools (or as dft_3d in older versions). These materials are annotated with various simulated properties using two DFT calculation methods, OptB88vdW (OPT) and TBmBJ (MBJ). Following recent studies (Yan et al., 2022; 2024; Lin et al., 2023; Taniai et al., 2024), we use formation energy (formation_energy_peratom), total energy (optb88vdw_total_energy), bandgap (optb88vdw_bandgap and mbj_bandgap), and energy above hull or E hull (ehull) as regression targets."
+- P022, PDF page 7, EXPERIMENTS: "JARVIS-DFT (3D 2021) is a collection of 55,723 materials by Choudhary et al. (2020). Following Yan et al. (2022), we perform regression tasks of formation energy, total energy, bandgap, and energy above hull (E hull). For bandgap, the dataset provides property values obtained by DFT calculation methods using the OptB88vdW functional (OPT) or the Tran-Blaha modified Becke-Johnson potential (MBJ)."
+- P024, PDF page 2, RESULTS: "We use nine datasets of DFT-computed and experimental properties in this work: Materials Project (MP)4, Joint Automated Repository for Various Integrated Simulations (JARVIS) 3D with 46 properties and 2D with 32 properties5, Flla44 with three properties, Dielectric Constant (DC)45 with five properties, Piezoelectric Tensor (PT)46 with two properties, Experimental Formation Energy (EFE)47 with one property, Kingsbury Experimental Formation Energy (KEFE)48 with one property, Kingsbury Experimental Bandgap (KEB)49 with one property, and Harvard Organic Photovoltaic Dataset (HOPV)50 with 24 properties."
+- P028, PDF page 3: "Fig. 1 | Leaderboard snapshot with an example output for AI-based formation energy per atom model on the JARVIS-DFT (dft_3d) dataset."
+- P028, PDF page 4, Results and discussion: "AI benchmarks have pre-deﬁned training/validation/test identiﬁers and target data in a corresponding json.zip ﬁle..."
+- P028, PDF page 6: "In Fig. 6(a) we see the comparison of 12 AI models (each AI model had a well-deﬁned 80:10:10 split for training, validation and testing respectively from the JARVIS-3D database)..."
+- P028, PDF page 9: "a formation-energy-per atom model using AI for JARVIS-DFT 3D dataset with 5572 materials in the test set"

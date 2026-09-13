@@ -1,0 +1,27 @@
+{
+  "paper_id": "P037",
+  "file_name": "37_Assessing data-driven predictions of band gap and electrical conductivity for transparent conducting materials.pdf",
+  "status": "completed",
+  "completed_at": "2026-08-06T01:58:32.558068+00:00",
+  "model": "qwen-plus",
+  "stage1_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "stage2_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "counts": {
+    "tasks": 1,
+    "stages": 6,
+    "datasets": 6,
+    "dataset_uses": 11
+  }
+}

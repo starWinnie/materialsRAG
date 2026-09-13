@@ -1,0 +1,172 @@
+{
+  "paper": {
+    "title": "A Denoising Pre-training Framework for Accelerating Novel Material Discovery",
+    "year": 2025,
+    "doi": null,
+    "research_summary": "The paper introduces an unsupervised Denoising Pre-training Framework (DPF) for crystal structures to overcome the scarcity of labeled data in crystal property prediction. DPF pre-trains models on 380,743 unlabeled crystal structures by reconstructing masked atom types, perturbed atom positions, and perturbed lattice constants; the pre-trained models are then fine-tuned on downstream crystal property prediction tasks such as formation energy, band gap, total energy, energy above hull, bulk moduli, and shear moduli."
+  },
+  "task": {
+    "task_name_raw": "crystal property prediction",
+    "task_name_canonical": "crystal_property_prediction",
+    "objective": "Predicting the property of a given crystal structure C = {A, P, L} by learning a function f to predict its corresponding property.",
+    "material_scope": [
+      "crystal structures"
+    ],
+    "target_properties": [
+      "formation energy",
+      "band gap",
+      "total energy",
+      "energy above hull",
+      "bulk moduli",
+      "shear moduli"
+    ],
+    "constraints": [
+      "labeled data is notably scarce and varies across different properties",
+      "target properties lack comparability"
+    ],
+    "input_requirements": [
+      "crystal structure C = {A, P, L} characterized by atom types A, atom positions P, and lattice constants L"
+    ],
+    "output_goal": [
+      "predicted property value (e.g., in eV/atom, eV, log(GPa))"
+    ],
+    "evidence": [
+      {
+        "text": "The crystal property prediction problem involves predicting the property of a given crystal structure C = {A, P, L} by learning a function f to predict its corresponding property.",
+        "page": 3,
+        "section": "Preliminary and Notations",
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "acquiring unlabeled crystal structures for pre-training",
+      "stage_order": 1,
+      "stage_goal": "Collect a large-scale dataset of unlabeled crystal structures to enable unsupervised pre-training.",
+      "stage_input": [],
+      "stage_output": [
+        "380,743 unlabeled crystal structures"
+      ],
+      "evidence": [
+        {
+          "text": "We pre-train our model on 380,743 crystal structure data filtered from the recent work (Merchant et al. 2023), excluding structures that are duplicates of downstream datasets or do not have physical or chemical significance.",
+          "page": 4,
+          "section": "Experimental Setup",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_preparation",
+      "stage_name_raw": "perturbing crystal representations for denoising pre-training",
+      "stage_order": 2,
+      "stage_goal": "Generate corrupted inputs by masking atom types and adding noise to atom positions and lattice constants.",
+      "stage_input": [
+        "unlabeled crystal structures"
+      ],
+      "stage_output": [
+        "masked atom types",
+        "perturbed atom positions",
+        "perturbed lattice constants"
+      ],
+      "evidence": [
+        {
+          "text": "At the pre-training stage, we mask the types of crystal atoms and add noise on atom positions and lattice constants to acquire perturbed representations.",
+          "page": 2,
+          "section": "Figure 2 caption",
+          "inferred": false
+        },
+        {
+          "text": "For mask language modeling, we randomly select γ of atoms in a crystal and assign a type unknown to them... For each atom in a crystal, we randomly sample a noise η ∈R3 ∼N(0, 1) and apply it to the atom positions... We also perturb the lattice constants with a randomly sampled Gaussian noise σ ∈R6 ∼N(0, 1)",
+          "page": 3,
+          "section": "Denoising Pre-training Framework",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "pre-training denoising models on corrupted crystal representations",
+      "stage_order": 3,
+      "stage_goal": "Train crystal models to reconstruct original atom types, positions, and lattice constants from perturbed inputs.",
+      "stage_input": [
+        "masked atom types",
+        "perturbed atom positions",
+        "perturbed lattice constants"
+      ],
+      "stage_output": [
+        "pre-trained crystal model with learned latent representation"
+      ],
+      "evidence": [
+        {
+          "text": "Then perturbed crystal structures are fed into the crystal model that you want to pre-train, to reconstruct the original structure.",
+          "page": 2,
+          "section": "unknown",
+          "inferred": false
+        },
+        {
+          "text": "With the three denoising self-supervised tasks, the model is pre-trained to capture the intrinsic features of crystal structure representations.",
+          "page": 4,
+          "section": "Denoising Pre-training Framework",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "fine-tuning pre-trained models on labeled crystal property data",
+      "stage_order": 4,
+      "stage_goal": "Adapt the pre-trained model to specific downstream crystal property prediction tasks using labeled data.",
+      "stage_input": [
+        "pre-trained crystal model",
+        "labeled crystal property datasets (JARVIS, Materials Project)"
+      ],
+      "stage_output": [
+        "fine-tuned model for crystal property prediction"
+      ],
+      "evidence": [
+        {
+          "text": "We pre-train models on a dataset of 380,743 unlabeled crystal structures and fine-tune them on downstream property prediction tasks.",
+          "page": 1,
+          "section": "Abstract",
+          "inferred": false
+        },
+        {
+          "text": "Subsequently, we fine-tune our model on downstream crystal property prediction tasks for 500 epochs...",
+          "page": 4,
+          "section": "Implementation details",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "evaluating fine-tuned models on crystal property prediction benchmarks",
+      "stage_order": 5,
+      "stage_goal": "Assess prediction accuracy using Mean Absolute Error (MAE) on standard benchmarks.",
+      "stage_input": [
+        "fine-tuned model",
+        "test sets from JARVIS and Materials Project"
+      ],
+      "stage_output": [
+        "MAE scores across multiple properties"
+      ],
+      "evidence": [
+        {
+          "text": "We employ the Mean Absolute Error (MAE) to evaluate the accuracy of crystal property prediction.",
+          "page": 5,
+          "section": "Evaluation metrics",
+          "inferred": false
+        },
+        {
+          "text": "Extensive experiments demonstrate the effectiveness of our framework... Table 1: The experimental results in terms of MAE on JARVIS dataset.",
+          "page": 4,
+          "section": "Method",
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "paper_id": "P021",
+  "file_name": "21_ComFormer.pdf",
+  "status": "completed",
+  "completed_at": "2026-08-05T07:49:34.509788+00:00",
+  "model": "qwen-plus",
+  "stage1_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "stage2_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "counts": {
+    "tasks": 1,
+    "stages": 4,
+    "datasets": 3,
+    "dataset_uses": 3
+  }
+}

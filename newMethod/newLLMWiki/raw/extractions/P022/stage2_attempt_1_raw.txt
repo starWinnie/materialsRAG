@@ -1,0 +1,178 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "materials_project_megnet",
+      "canonical_name": "Materials Project (MEGNet)",
+      "raw_names": ["Materials Project (MEGNet)"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["crystal structures"],
+      "available_properties": ["formation energy", "bandgap", "bulk modulus", "shear modulus"],
+      "available_fields": ["crystal structure", "formation energy", "bandgap", "bulk modulus", "shear modulus"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Materials Project (MEGNet) is a collection of 69,239 materials from the Materials Project database retrieved by Chen et al. (2019). Following Yan et al. (2022), we perform regression tasks of formation energy, bandgap, bulk modulus, and shear modulus.",
+          "page": 7,
+          "section": "EXPERIMENTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "jarvis_dft_3d_2021",
+      "canonical_name": "JARVIS-DFT (3D 2021)",
+      "raw_names": ["JARVIS-DFT (3D 2021)"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["crystal structures"],
+      "available_properties": ["formation energy", "total energy", "bandgap", "energy above hull"],
+      "available_fields": ["crystal structure", "formation energy", "total energy", "bandgap", "energy above hull"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "JARVIS-DFT (3D 2021) is a collection of 55,723 materials by Choudhary et al. (2020). Following Yan et al. (2022), we perform regression tasks of formation energy, total energy, bandgap, and energy above hull (E hull). For bandgap, the dataset provides property values obtained by DFT calculation methods using the OptB88vdW functional (OPT) or the Tran-Blaha modified Becke-Johnson potential (MBJ).",
+          "page": 7,
+          "section": "EXPERIMENTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "materials_project_megnet",
+      "usage_role": "source",
+      "purpose": "Acquire crystal structure data with DFT-calculated properties for training and evaluation",
+      "used_fields": ["crystal structure", "formation energy", "bandgap", "bulk modulus", "shear modulus"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 69239,
+      "evidence": [
+        {
+          "text": "Materials Project (MEGNet) is a collection of 69,239 materials from the Materials Project database retrieved by Chen et al. (2019). Following Yan et al. (2022), we perform regression tasks of formation energy, bandgap, bulk modulus, and shear modulus.",
+          "page": 7,
+          "section": "EXPERIMENTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "jarvis_dft_3d_2021",
+      "usage_role": "source",
+      "purpose": "Acquire crystal structure data with DFT-calculated properties for training and evaluation",
+      "used_fields": ["crystal structure", "formation energy", "total energy", "bandgap", "energy above hull"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 55723,
+      "evidence": [
+        {
+          "text": "JARVIS-DFT (3D 2021) is a collection of 55,723 materials by Choudhary et al. (2020). Following Yan et al. (2022), we perform regression tasks of formation energy, total energy, bandgap, and energy above hull (E hull). For bandgap, the dataset provides property values obtained by DFT calculation methods using the OptB88vdW functional (OPT) or the Tran-Blaha modified Becke-Johnson potential (MBJ).",
+          "page": 7,
+          "section": "EXPERIMENTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "materials_project_megnet",
+      "usage_role": "training",
+      "purpose": "Train the Crystalformer model to predict material properties from crystal structures",
+      "used_fields": ["crystal structure", "formation energy", "bandgap", "bulk modulus", "shear modulus"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 69239,
+      "evidence": [
+        {
+          "text": "Materials Project (MEGNet) is a collection of 69,239 materials from the Materials Project database retrieved by Chen et al. (2019). Following Yan et al. (2022), we perform regression tasks of formation energy, bandgap, bulk modulus, and shear modulus.",
+          "page": 7,
+          "section": "EXPERIMENTS",
+          "inferred": false
+        },
+        {
+          "text": "For each regression task in the Materials Project dataset, we train our model by optimizing the mean absolute error loss function via stochastic gradient descent (SGD) with a batch size of 128 materials for 500 epochs.",
+          "page": 7,
+          "section": "EXPERIMENTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "materials_project_megnet",
+      "usage_role": "test",
+      "purpose": "Evaluate the trained model's performance on predicting various material properties",
+      "used_fields": ["crystal structure", "formation energy", "bandgap", "bulk modulus", "shear modulus"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 4239,
+      "evidence": [
+        {
+          "text": "Tables 1 and 2 summarize the mean absolute errors (MAEs) for totally nine regression tasks of the Materials Project and JARVIS-DFT datasets, comparing our method with eight existing methods.",
+          "page": 7,
+          "section": "EXPERIMENTS",
+          "inferred": false
+        },
+        {
+          "text": "Table 1: MAE comparison on the Materials Project (MEGNet) dataset. The three numbers below each property name indicate the sizes of training, validation, and testing subsets.",
+          "page": 8,
+          "section": "Method",
+          "inferred": false
+        },
+        {
+          "text": "Formation energy\nBandgap\nBulk modulus\nShear modulus\n60000 / 5000 / 4239\n60000 / 5000 / 4239\n4664 / 393 / 393\n4664 / 392 / 393",
+          "page": 8,
+          "section": "Method",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "jarvis_dft_3d_2021",
+      "usage_role": "test",
+      "purpose": "Evaluate the trained model's performance on predicting various material properties",
+      "used_fields": ["crystal structure", "formation energy", "total energy", "bandgap", "energy above hull"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 5572,
+      "evidence": [
+        {
+          "text": "Tables 1 and 2 summarize the mean absolute errors (MAEs) for totally nine regression tasks of the Materials Project and JARVIS-DFT datasets, comparing our method with eight existing methods.",
+          "page": 7,
+          "section": "EXPERIMENTS",
+          "inferred": false
+        },
+        {
+          "text": "Table 2: MAE comparison on the JARVIS-DFT 3D 2021 dataset. The bandgap prediction is evaluated with the ground truth values provided by two DFT calculation methods, OPT and MBJ.",
+          "page": 8,
+          "section": "Method",
+          "inferred": false
+        },
+        {
+          "text": "Form. energy\nTotal energy\nBandgap (OPT)\nBandgap (MBJ)\nE hull\n44578 / 5572 / 5572\n44578 / 5572 / 5572\n44578 / 5572 / 5572\n14537 / 1817 / 1817\n44296 / 5537 / 5537",
+          "page": 8,
+          "section": "Method",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

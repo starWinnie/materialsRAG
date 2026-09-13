@@ -1,0 +1,166 @@
+{
+  "paper": {
+    "title": "A foundation machine learning potential with polarizable long-range interactions for materials modelling",
+    "year": 2025,
+    "doi": "10.1038/s41467-025-65496-3",
+    "research_summary": "We present a foundation framework that integrates explicit polarizable long-range physics with an equivariant graph neural network potential. It employs a physically motivated polarizable charge equilibration scheme that directly optimizes electrostatic interaction energies rather than partial charges. The foundation model, trained across the periodic table up to Pu, demonstrates strong performance across key materials modeling challenges. It effectively captures long-range interactions that are challenging for traditional message-passing mechanisms and accurately reproduces polarization effects under external electric fields. We have applied the model to mechanical properties, ionic diffusivity in solid-state electrolytes, ferroelectric phase transitions, and reactive dynamics at electrode-electrolyte interfaces, highlighting the model’s capacity to balance accuracy and computational efficiency. Furthermore, we show that as a foundation model, it can be efficiently finetuned to achieve high-level accuracy for specific challenging systems."
+  },
+  "task": {
+    "task_name_raw": "developing a foundation machine learning interatomic potential with polarizable long-range interactions",
+    "task_name_canonical": "develop_foundation_ml_interatomic_potential_with_polarizable_long_range_interactions",
+    "objective": "to construct a mapping from atomic coordinates ri and atomic types Zi to the total potential energy Epot that integrates explicit polarizable long-range physics with an equivariant graph neural network potential",
+    "material_scope": ["materials across the periodic table up to Pu", "charged clusters (e.g., Ag3+/−, Na8/9Cl8+)", "molecular systems (e.g., water, C10H2/C10H3+)", "periodic systems (e.g., Au2-MgO, BTA-Cu, BaTiO3, c-LLZO, β-Li3PS4/Li)"],
+    "target_properties": ["total potential energy", "forces", "stress", "partial charges", "electrostatic interaction energies", "polarization effects", "mechanical properties (e.g., bulk modulus)", "ionic diffusivity", "phase transition behavior", "reactive interface dynamics"],
+    "constraints": ["must maintain computational efficiency", "must capture long-range electrostatic and dispersion interactions explicitly", "must reproduce polarization effects under external electric fields", "must be transferable across diverse chemical systems and charge states"],
+    "input_requirements": ["atomic coordinates (ri)", "atomic types (Zi)", "boundary conditions"],
+    "output_goal": ["total potential energy Epot = E0 + EPQEq + ED3", "forces", "stress", "partial charges", "accurate prediction of materials properties and behaviors"],
+    "evidence": [
+      {
+        "text": "Our framework, which integrates neural network potential and polarizable long-range interactions, is depicted in Fig. 1. For a given chemical system and boundary conditions, our goal is to construct a mapping from atomic coordinates ri and atomic types Zi to the total potential energy Epot.",
+        "page": 2,
+        "section": "Theoretical framework",
+        "inferred": false
+      },
+      {
+        "text": "We present a foundation framework that integrates explicit polarizable long-range physics with an equivariant graph neural network potential.",
+        "page": 1,
+        "section": "unknown",
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "acquiring training datasets",
+      "stage_order": 1,
+      "stage_goal": "to obtain diverse, high-quality quantum mechanical reference data covering the periodic table and various charge states",
+      "stage_input": ["DFT calculations with PBE/PBE+U functionals", "Materials Project database", "specialized charge-state datasets"],
+      "stage_output": ["MPtrj dataset", "C10H2/C10H3+, Na8/9Cl8+, Ag3+/−, Au2-MgO, BTA-Cu, BTA(H2O)-Cu datasets"],
+      "evidence": [
+        {
+          "text": "To train the foundation equivariance neural network potential, we used the MPtrj dataset16 sourced from Materials Projects48 as the training dataset. All configurations were calculated using DFT with the PBE82/PBE + U83 exchange-correlation functional and pseudopotential basis.",
+          "page": 9,
+          "section": "Methods",
+          "inferred": false
+        },
+        {
+          "text": "To evaluate the capability of our framework in capturing different charge states and long-range interactions, we validated our framework against the dataset developed by Ko et al.28 and Maruf et al.38, which encompass various charge states and charge transfer systems.",
+          "page": 3,
+          "section": "Validation on diverse charge-state datasets",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "training the foundation equivariant neural network potential with polarizable long-range interactions",
+      "stage_order": 2,
+      "stage_goal": "to train an equivariant graph neural network (NequIP) component (E0) and integrate it with a physically motivated polarizable charge equilibration (PQEq) scheme for electrostatics and DFT-D3 for dispersion",
+      "stage_input": ["MPtrj dataset", "PQEq parameters", "DFT-D3 dispersion correction", "NequIP architecture with six equivariant layers"],
+      "stage_output": ["trained foundation model with integrated E0, EPQEq, and ED3 components"],
+      "evidence": [
+        {
+          "text": "For equivariant neural network training, the NequIP12 model was utilized, incorporating six equivariant layers with node features set at 256 × 0e + 256 × 1e. Spherical harmonic basis functions were used to represent interatomic directions... Interatomic distances were described using eight Bessel basis functions, and a cut-off value of 5.0 Å was chosen...",
+          "page": 9,
+          "section": "Methods",
+          "inferred": false
+        },
+        {
+          "text": "The potential energy is expressed as the sum of the second-order expansion30 with respect to charge fluctuations and the density functional theory39 D3 (DFT-D3) van der Waals dispersion energies correction... Epot = Σi Ei0[ri, Zi] + χ0i qi + 1/2 η0i q2i + 1/2 Ki s |ric − ris|2 + Σik > jl Cik, jl[rik, jl] qik qjl + ED3 = Σi Ei0 + EPQEq + ED3",
+          "page": 3,
+          "section": "unknown",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "benchmarking the foundation model on diverse charge-state datasets",
+      "stage_order": 3,
+      "stage_goal": "to evaluate the model's ability to capture different charge states and long-range interactions against reference datasets and competing models",
+      "stage_input": ["C10H2/C10H3+, Na8/9Cl8+, Ag3+/−, Au2-MgO, BTA-Cu, BTA(H2O)-Cu datasets", "4G-HDNNP and NequIP baselines"],
+      "stage_output": ["root-mean-square test error metrics for energy and force", "qualitative agreement with DFT partial charge distributions", "correct prediction of preferential adsorption geometries"],
+      "evidence": [
+        {
+          "text": "To evaluate the capability of our framework in capturing different charge states and long-range interactions, we validated our framework against the dataset developed by Ko et al.28 and Maruf et al.38, which encompass various charge states and charge transfer systems.",
+          "page": 3,
+          "section": "Validation on diverse charge-state datasets",
+          "inferred": false
+        },
+        {
+          "text": "Table 1 | A comparison of root-mean-square test error metrics across different charge-state datasets28,38 was performed among 4G-HDNNP28, Maruf’s NequIP38, and our work",
+          "page": 3,
+          "section": "unknown",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "benchmarking the foundation model on the MPtrj dataset and long-range dimer interactions",
+      "stage_order": 4,
+      "stage_goal": "to assess the foundation model's accuracy on large-scale materials property prediction and its ability to capture extended-range ionic interactions beyond typical MLIP cutoffs",
+      "stage_input": ["MPtrj dataset test set", "Na-Na and Na-Cl dimer potential energy surfaces from DFT", "DFT-calculated bulk modulus values"],
+      "stage_output": ["mean absolute errors (MAE) for energy, force, and stress", "reproduced DFT potential energy surfaces for dimers up to 12.0 Å", "R² values and MAE for bulk modulus prediction"],
+      "evidence": [
+        {
+          "text": "We trained a foundation model for all the periodic table elements up to Pu using the MPtrj dataset16 following our framework (our model), as described in the Methods section... The former one demonstrated mean absolute errors (MAE) of 18 meV per atom for energies, 0.065 eV·Å−1 for forces, and 0.301 GPa for stresses across the test set...",
+          "page": 4,
+          "section": "Foundation model benchmark",
+          "inferred": false
+        },
+        {
+          "text": "As shown in Fig. 2a, both models (our model and the w/o-lr model) trained on the MPtrj dataset accurately reproduce the equilibrium bond lengths of the two dimers. However, the w/o-lr model failed to differentiate interaction energies beyond the MLIPs cutoff distance, i.e., 5.0 Å, while our model successfully captured the DFT potential energy surface throughout the entire distance range...",
+          "page": 4,
+          "section": "Foundation model benchmark",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "computational_validation",
+      "stage_name_raw": "applying the foundation model to materials modeling applications",
+      "stage_order": 5,
+      "stage_goal": "to computationally validate the model's predictive power on complex, real-world materials science problems including ionic diffusion, ferroelectric phase transitions, and reactive interface dynamics",
+      "stage_input": ["c-LLZO crystal structure", "BaTiO3 supercell", "β-Li3PS4/Li interface structure"],
+      "stage_output": ["Arrhenius plots and diffusion coefficients for Li-ion in c-LLZO", "phase transition temperatures and lattice constants for BaTiO3", "SEI formation mechanism, partial charge evolution, and RDF analysis for β-Li3PS4/Li interface"],
+      "evidence": [
+        {
+          "text": "To demonstrate the capability of our model to reproduce results from AIMD simulations, we simulate the kinetic transport properties of a solid-state electrolyte. Speciﬁcally, we investigated lithium-ion diffusivity within the cubic phase of Li7La3Zr2O12 (c-LLZO)... Figure 3a presents the Arrhenius plots derived from our model, w/o-lr model, and AIMD51 simulations.",
+          "page": 5,
+          "section": "Materials modeling applications",
+          "inferred": false
+        },
+        {
+          "text": "To show the application of polarizable potentials, we performed MD simulations on a typical perovskite ferroelectric material, BaTiO3... Figure 4 illustrates the simulation results, which clearly identify four distinct phases and the three ﬁrst-order phase transitions within the simulated temperature range.",
+          "page": 5,
+          "section": "Materials modeling applications",
+          "inferred": false
+        },
+        {
+          "text": "To investigate the formation of SEI, we utilized the foundation model to simulate the interfacial reactive MD of the solid electrolyte β-Li3PS4 in contact with the lithium metal anode, encompassing a system of 13,760 atoms.",
+          "page": 7,
+          "section": "Materials modeling applications",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_screening",
+      "stage_name_raw": "finetuning the foundation model for ab initio accuracy on specific challenging systems",
+      "stage_order": 6,
+      "stage_goal": "to adapt the foundation model to achieve quantum-accurate predictions for targeted systems through efficient finetuning",
+      "stage_input": ["20% subsets of configurations from Na8/9Cl8+ clusters and Au2 dimers on MgO surfaces", "mean squared force error loss function"],
+      "stage_output": ["finetuned model with good agreement with DFT references", "accurately distinguished potential energy surfaces for positive charged clusters and surface conditions"],
+      "evidence": [
+        {
+          "text": "While our foundation model demonstrates general performance, achieving ab initio accuracy for speciﬁc systems requires ﬁnetuning. Using Na8/9Cl8+ clusters and Au2 dimers on MgO surfaces from Ko et al.28 as test cases, we performed targeted ﬁnetuning using 20% subsets of conﬁgurations and mean squared force error as the sole loss function. After ﬁnetuning, our model achieved good agreement with DFT references, accurately distinguishing potential energy surfaces for positive charged clusters and surface conditions...",
+          "page": 7,
+          "section": "Finetuning for enhanced accuracy",
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

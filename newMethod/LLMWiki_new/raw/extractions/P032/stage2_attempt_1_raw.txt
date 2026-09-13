@@ -1,0 +1,277 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "qcml",
+      "canonical_name": "QCML",
+      "raw_names": ["QCML"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["molecules", "ionic systems", "metallic systems"],
+      "available_properties": ["atomic forces", "total energy", "spin and charge states"],
+      "available_fields": ["3D atomic positions", "atomic numbers", "spin and charge states", "pairwise distances and displacement vectors"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "QCML ranges across the periodic table, including out-of-equilibrium structures and different spin and charge states, and includes properties for a subset of ∼30 × 10⁶ entries calculated with density functional theory accuracy at the PBE0 level46,47 (including dispersion corrections48,49).",
+          "page": 3,
+          "section": "We examine the effects of forgoing almost all commonly",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "md17",
+      "canonical_name": "MD17",
+      "raw_names": ["MD17"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["small organic molecules"],
+      "available_properties": ["atomic forces", "total energy"],
+      "available_fields": ["3D atomic positions", "atomic numbers"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We evaluate the performance of our proposed MD-ET model across several standard MD benchmarks. We compare MD-ET with established MLFFs, focusing on their accuracy, stability, and efficiency. We evaluated MD-ET on QCML,45 MD17,15 Ko2020,67 xxMD,68 and SPICE,69 each presenting distinct challenges.",
+          "page": 5,
+          "section": "IV. EXPERIMENTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "ko2020",
+      "canonical_name": "Ko2020",
+      "raw_names": ["Ko2020"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["molecular systems", "metallic systems"],
+      "available_properties": ["atomic forces"],
+      "available_fields": ["3D atomic positions", "atomic numbers"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We evaluate the performance of our proposed MD-ET model across several standard MD benchmarks. We compare MD-ET with established MLFFs, focusing on their accuracy, stability, and efficiency. We evaluated MD-ET on QCML,45 MD17,15 Ko2020,67 xxMD,68 and SPICE,69 each presenting distinct challenges.",
+          "page": 5,
+          "section": "IV. EXPERIMENTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "xxmd",
+      "canonical_name": "xxMD",
+      "raw_names": ["xxMD"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["reactive intermediates", "transition states", "reaction products"],
+      "available_properties": ["atomic forces"],
+      "available_fields": ["3D atomic positions", "atomic numbers"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We evaluate the performance of our proposed MD-ET model across several standard MD benchmarks. We compare MD-ET with established MLFFs, focusing on their accuracy, stability, and efficiency. We evaluated MD-ET on QCML,45 MD17,15 Ko2020,67 xxMD,68 and SPICE,69 each presenting distinct challenges.",
+          "page": 5,
+          "section": "IV. EXPERIMENTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "spice",
+      "canonical_name": "SPICE",
+      "raw_names": ["SPICE"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["drug-like molecules", "peptides"],
+      "available_properties": ["atomic forces"],
+      "available_fields": ["3D atomic positions", "atomic numbers"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We evaluate the performance of our proposed MD-ET model across several standard MD benchmarks. We compare MD-ET with established MLFFs, focusing on their accuracy, stability, and efficiency. We evaluated MD-ET on QCML,45 MD17,15 Ko2020,67 xxMD,68 and SPICE,69 each presenting distinct challenges.",
+          "page": 5,
+          "section": "IV. EXPERIMENTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "qcml",
+      "usage_role": "source",
+      "purpose": "Acquisition of large-scale quantum chemistry reference dataset spanning the periodic table, including out-of-equilibrium structures and different spin and charge states.",
+      "used_fields": ["3D atomic positions", "atomic numbers", "spin and charge states", "pairwise distances and displacement vectors"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 30000000,
+      "evidence": [
+        {
+          "text": "QCML ranges across the periodic table, including out-of-equilibrium structures and different spin and charge states, and includes properties for a subset of ∼30 × 10⁶ entries calculated with density functional theory accuracy at the PBE0 level46,47 (including dispersion corrections48,49).",
+          "page": 3,
+          "section": "We examine the effects of forgoing almost all commonly",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "qcml",
+      "usage_role": "training",
+      "purpose": "Partition QCML into train/validation/test splits while preserving conformational grouping, and apply random rotations and reflections to enable learning of approximate O(3)-equivariance.",
+      "used_fields": ["3D atomic positions", "atomic numbers", "spin and charge states"],
+      "is_derived": true,
+      "construction_method": "90%/5%/5% split with grouped conformers; augmented batches with rotated/mirrored copies",
+      "filter_conditions": ["all conformations of a structure assigned to same split"],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We create an approximate 90%/5%/5% split from QCML. As QCML contains multiple conformations for each structure sampled along its normal modes, we ensure that all conformations of a structure are assigned to the same split.",
+          "page": 5,
+          "section": "Pretraining performance",
+          "inferred": false
+        },
+        {
+          "text": "To learn approximate equivariance, we use data augmentation: during pretraining, we duplicate each batch once and apply random rotations and reflections to both copies to form an augmented batch.",
+          "page": 5,
+          "section": "Pretraining performance",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "qcml",
+      "usage_role": "training",
+      "purpose": "Supervised pretraining of MD-ET to predict atomic forces directly using mean absolute error loss.",
+      "used_fields": ["atomic forces", "3D atomic positions", "atomic numbers", "spin and charge states"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We perform supervised pretraining on the new QCML dataset.45 [...] During training, we use two randomly rotated and mirrored copies of each sampled structure so that our model can learn approximate O(3)-equivariance. Instead of predicting a combined loss50 of energies and forces or calculating forces as the negative gradient of the predicted energy with respect to positions, we predict forces directly.",
+          "page": 3,
+          "section": "We examine the effects of forgoing almost all commonly",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "qcml",
+      "usage_role": "benchmark",
+      "purpose": "Benchmark evaluation of pretrained MD-ET's zero-shot and few-shot performance measuring force MAE.",
+      "used_fields": ["atomic forces", "3D atomic positions"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We evaluate the performance of our proposed MD-ET model across several standard MD benchmarks. We compare MD-ET with established MLFFs, focusing on their accuracy, stability, and efficiency. We evaluated MD-ET on QCML,45 MD17,15 Ko2020,67 xxMD,68 and SPICE,69 each presenting distinct challenges.",
+          "page": 5,
+          "section": "IV. EXPERIMENTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "md17",
+      "usage_role": "benchmark",
+      "purpose": "Benchmark evaluation of pretrained MD-ET's zero-shot and few-shot performance measuring force MAE, simulation stability, and faithfulness (h(r)).",
+      "used_fields": ["atomic forces", "3D atomic positions"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We evaluate the performance of our proposed MD-ET model across several standard MD benchmarks. We compare MD-ET with established MLFFs, focusing on their accuracy, stability, and efficiency. We evaluated MD-ET on QCML,45 MD17,15 Ko2020,67 xxMD,68 and SPICE,69 each presenting distinct challenges.",
+          "page": 5,
+          "section": "IV. EXPERIMENTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "ko2020",
+      "usage_role": "benchmark",
+      "purpose": "Benchmark evaluation of pretrained MD-ET's zero-shot and few-shot performance measuring force RMSE on molecular and metallic systems.",
+      "used_fields": ["atomic forces", "3D atomic positions"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We evaluate the performance of our proposed MD-ET model across several standard MD benchmarks. We compare MD-ET with established MLFFs, focusing on their accuracy, stability, and efficiency. We evaluated MD-ET on QCML,45 MD17,15 Ko2020,67 xxMD,68 and SPICE,69 each presenting distinct challenges.",
+          "page": 5,
+          "section": "IV. EXPERIMENTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "xxmd",
+      "usage_role": "benchmark",
+      "purpose": "Benchmark evaluation of pretrained MD-ET's zero-shot and few-shot performance measuring force MAE on nonadiabatic MD trajectories capturing chemical reactions.",
+      "used_fields": ["atomic forces", "3D atomic positions"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We evaluate the performance of our proposed MD-ET model across several standard MD benchmarks. We compare MD-ET with established MLFFs, focusing on their accuracy, stability, and efficiency. We evaluated MD-ET on QCML,45 MD17,15 Ko2020,67 xxMD,68 and SPICE,69 each presenting distinct challenges.",
+          "page": 5,
+          "section": "IV. EXPERIMENTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "spice",
+      "usage_role": "benchmark",
+      "purpose": "Benchmark evaluation of pretrained MD-ET's zero-shot and few-shot performance measuring force MAE on drug-like molecules and peptides up to 96 atoms.",
+      "used_fields": ["atomic forces", "3D atomic positions"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We evaluate the performance of our proposed MD-ET model across several standard MD benchmarks. We compare MD-ET with established MLFFs, focusing on their accuracy, stability, and efficiency. We evaluated MD-ET on QCML,45 MD17,15 Ko2020,67 xxMD,68 and SPICE,69 each presenting distinct challenges.",
+          "page": 5,
+          "section": "IV. EXPERIMENTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

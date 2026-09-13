@@ -1,0 +1,7 @@
+{
+  "attempt": 1,
+  "errors": [
+    "JSONDecodeError: Expecting ',' delimiter: line 1085 column 6 (char 48391)"
+  ],
+  "exception": "JSONDecodeError(\"Expecting ',' delimiter: line 1085 column 6 (char 48391)\")"
+}

@@ -1,0 +1,242 @@
+{
+  "paper": {
+    "title": "A framework to evaluate machine learning crystal stability predictions",
+    "year": 2025,
+    "doi": "10.1038/s42256-025-01055-1",
+    "research_summary": "We present Matbench Discovery as an example evaluation framework for machine learning energy models, here applied as pre-filters to first-principles computed data in a high-throughput search for stable inorganic crystals."
+  },
+  "task": {
+    "task_name_raw": "ML-guided materials discovery",
+    "task_name_canonical": "ml_guided_materials_discovery",
+    "objective": "To accelerate high-throughput computational materials discovery by using machine learning models as efficient pre-filters for DFT calculations, specifically to identify thermodynamically stable inorganic crystals.",
+    "material_scope": [
+      "inorganic crystals"
+    ],
+    "target_properties": [
+      "thermodynamic stability",
+      "distance to convex hull phase diagram"
+    ],
+    "constraints": [
+      "models must predict relaxed energy from unrelaxed structure input",
+      "test set must simulate prospective discovery workflow with covariate shift",
+      "benchmark must use convex hull distance—not formation energy—as primary stability indicator"
+    ],
+    "input_requirements": [
+      "unrelaxed crystal structures"
+    ],
+    "output_goal": [
+      "classification of whether material is on or below convex hull (i.e., thermodynamically stable)"
+    ],
+    "evidence": [
+      {
+        "text": "We present Matbench Discovery as an example evaluation framework for machine learning energy models, here applied as pre-filters to first-principles computed data in a high-throughput search for stable inorganic crystals.",
+        "page": 1,
+        "section": "nature machine intelligence",
+        "inferred": false
+      },
+      {
+        "text": "Our work aims to identify the state-of-the-art model by proposing an evaluation framework that closely simulates a real-world discovery campaign guided by ML models.",
+        "page": 2,
+        "section": "Article",
+        "inferred": false
+      },
+      {
+        "text": "This work proposes a benchmark task designed to address four fundamental challenges that we believe are essential to justify the effort of experimentally validating ML predictions:",
+        "page": 2,
+        "section": "Article",
+        "inferred": false
+      },
+      {
+        "text": "The convex hull distance of a relaxed structure is chosen as the measure of its thermodynamic stability, rather than the formation energy, as it informs the decision on whether to pursue a potential candidate crystal.",
+        "page": 6,
+        "section": "Methods",
+        "inferred": false
+      },
+      {
+        "text": "We design the benchmark considering a positive label for classification as being on or below the convex hull of the MP training set.",
+        "page": 7,
+        "section": "Article",
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "acquiring training data from Materials Project database",
+      "stage_order": 1,
+      "stage_goal": "Collect large-scale, diverse DFT-computed data including energies, forces, stresses, and magnetic moments for training ML models.",
+      "stage_input": [
+        "Materials Project v.2022.10.28 database release"
+      ],
+      "stage_output": [
+        "MP training set snapshot: energies, forces, stresses, magnetic moments for all ionic steps"
+      ],
+      "evidence": [
+        {
+          "text": "Our benchmark defines the training set as all data available from the v.2022.10.28 MP release. We recorded a snapshot of energies, forces, stresses and magnetic moments for all MP ionic steps on 15 March 2023 as the canonical training set for Matbench Discovery...",
+          "page": 7,
+          "section": "Article",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "acquiring test data from WBM dataset",
+      "stage_order": 2,
+      "stage_goal": "Obtain prospectively generated, out-of-distribution unrelaxed crystal structures for realistic evaluation of discovery performance.",
+      "stage_input": [
+        "Wang-Botti-Marques (WBM) dataset"
+      ],
+      "stage_output": [
+        "WBM unique protostructure test set: 215,488 unrelaxed structures with DFT-relaxed hull distances"
+      ],
+      "evidence": [
+        {
+          "text": "Our test set consists of the unrelaxed structures in the WBM dataset50. Their target values are the PBE formation energies of the corresponding DFT-relaxed structures.",
+          "page": 7,
+          "section": "Article",
+          "inferred": false
+        },
+        {
+          "text": "We cleaned the WBM test set based on protostructure matching... leaving 215,488 structures in the unique prototype test set.",
+          "page": 8,
+          "section": "Article",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_preparation",
+      "stage_name_raw": "cleaning and filtering WBM test set",
+      "stage_order": 3,
+      "stage_goal": "Remove pathological and duplicated structures to ensure test set integrity and avoid leakage from MP training set.",
+      "stage_input": [
+        "raw WBM dataset"
+      ],
+      "stage_output": [
+        "cleaned WBM unique protostructure test set"
+      ],
+      "evidence": [
+        {
+          "text": "First we removed 524 pathological structures in WBM based on formation energies being larger than 5 eV per atom or smaller than −5 eV per atom. We then removed from the WBM test set all examples where the final protostructure of a WBM material matched the final protostructure of an MP material. In total, 11,175 materials were cleaned using this filter. We further removed all duplicated protostructures within WBM, keeping the lowest energy structure in each instance, leaving 215,488 structures in the unique prototype test set.",
+          "page": 8,
+          "section": "Article",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "label_generation",
+      "stage_name_raw": "computing convex hull distance labels",
+      "stage_order": 4,
+      "stage_goal": "Calculate ground-truth thermodynamic stability labels (on/below vs. above convex hull) for all WBM test structures using MP training set convex hull.",
+      "stage_input": [
+        "DFT-relaxed energies of WBM structures",
+        "MP training set convex hull"
+      ],
+      "stage_output": [
+        "binary stability labels: EMP hull dist ≤ 0"
+      ],
+      "evidence": [
+        {
+          "text": "Throughout this work, we define stability as being on or below the convex hull of the MP training set (EMP hull dist ≤ 0). In total, 32,942 of 215,488 materials in the WBM unique prototype test set satisfy this criterion.",
+          "page": 8,
+          "section": "Article",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "training ML models on MP data",
+      "stage_order": 5,
+      "stage_goal": "Train diverse ML models—including universal interatomic potentials and energy-only predictors—on MP-derived data to predict relaxed energies from unrelaxed inputs.",
+      "stage_input": [
+        "MP training set (energies, forces, stresses, magnetic moments)",
+        "model architectures (e.g., EquiformerV2, MACE, CGCNN)"
+      ],
+      "stage_output": [
+        "trained ML models for IS2RE prediction"
+      ],
+      "evidence": [
+        {
+          "text": "We propose an evaluation framework that places no constraints on the type of data a model is trained on as long as it would be available to a practitioner conducting a real materials discovery campaign... any subset of the energies, forces, stresses or any other properties that can be routinely extracted from DFT calculations... are valid training targets.",
+          "page": 6,
+          "section": "Methods",
+          "inferred": false
+        },
+        {
+          "text": "Models may train on the complete set of relaxation frames, or any subset thereof such as the final relaxed structures. Any subsets of the energies, forces and stresses are valid training targets.",
+          "page": 7,
+          "section": "Article",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_generation",
+      "stage_name_raw": "ranking candidates by predicted hull distance",
+      "stage_order": 6,
+      "stage_goal": "Rank all WBM test structures by model-predicted convex hull distance to simulate prioritization in a resource-limited discovery campaign.",
+      "stage_input": [
+        "trained ML models",
+        "WBM unrelaxed structures"
+      ],
+      "stage_output": [
+        "ordered list of materials ranked from most to least stable (lowest to highest predicted hull distance)"
+      ],
+      "evidence": [
+        {
+          "text": "A typical discovery campaign will rank hypothetical materials by model-predicted hull distance from most to least stable and validate the most stable predictions first.",
+          "page": 5,
+          "section": "Article",
+          "inferred": false
+        },
+        {
+          "text": "For each model, we iterate through that list and calculate at each step the precision and recall of correctly identified stable materials. This simulates exactly how these models would be used in a prospective materials discovery campaign...",
+          "page": 5,
+          "section": "Article",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "evaluating classification performance against convex hull",
+      "stage_order": 7,
+      "stage_goal": "Assess model utility for discovery using classification metrics (F1, DAF, precision-recall curves) rather than regression metrics alone.",
+      "stage_input": [
+        "ranked candidate lists",
+        "ground-truth stability labels"
+      ],
+      "stage_output": [
+        "F1 score",
+        "discovery acceleration factor (DAF)",
+        "precision-recall curves",
+        "rolling MAE vs. hull distance"
+      ],
+      "evidence": [
+        {
+          "text": "Evaluate model + strategy predictions in terms of classification performance against convex hull",
+          "page": 4,
+          "section": "Article",
+          "inferred": false
+        },
+        {
+          "text": "The discovery acceleration factor (DAF) quantifies how many times more effective a model is at finding stable structures compared with random selection from the test set.",
+          "page": 4,
+          "section": "Article",
+          "inferred": false
+        },
+        {
+          "text": "Our analysis reveals that universal interatomic potentials (UIPs) surpass all other methodologies we evaluated in terms of both accuracy and robustness.",
+          "page": 2,
+          "section": "Article",
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

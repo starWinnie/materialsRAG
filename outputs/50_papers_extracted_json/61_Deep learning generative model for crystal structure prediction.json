@@ -1,0 +1,27 @@
+[
+  {
+    "task_description": "Predicting physically plausible crystal structures for a given chemical composition and external pressure condition, without requiring post-generation local optimization, to accelerate crystal structure prediction (CSP) — specifically, generating candidate structures that closely approximate local energy minima on the potential energy surface for subsequent validation or property evaluation.",
+    "task_tags": [
+      "crystal structure prediction",
+      "conditional generation",
+      "pressure-aware structure generation"
+    ],
+    "datasets": [
+      {
+        "db_title": "MP60-CALYPSO dataset",
+        "db_description": "A curated, combined dataset of 670,979 locally stable crystal structures spanning 86 elements, 85,824 chemical compositions, and 114,733 structural prototypes; it integrates ambient-pressure experimental and theoretical structures from the Materials Project (MP) database (up to 60 atoms per unit cell) with high-pressure structures generated via CALYPSO-based CSP simulations by the broader CALYPSO user community. The dataset includes diverse hydrogen- and boron-rich phases (146,245 and 217,263 instances, respectively), all pre-relaxed using DFT, and is used to train and validate the conditional generative model (Cond-CDVAE) for composition- and pressure-conditioned crystal structure generation.",
+        "db_link": "None"
+      },
+      {
+        "db_title": "Materials Project (MP) database",
+        "db_description": "A public database containing nearly all experimentally stable inorganic crystal structures sourced from the Inorganic Crystal Structure Database (ICSD), supplemented by computationally predicted structures; structures are DFT-relaxed at ambient pressure and include metadata such as formation energy and energy above hull. In this work, MP contributes ~99,243 structures (with ≤60 atoms/unit cell, negative formation energy, and energy above hull ≤0.2 eV/atom) to the MP60-CALYPSO dataset, providing broad chemical diversity and serving as the ambient-pressure anchor for training the pressure-conditional generative model.",
+        "db_link": "https://materialsproject.org"
+      },
+      {
+        "db_title": "CALYPSO dataset",
+        "db_description": "A collection of crystal structures generated through prior CSP simulations using the CALYPSO code, contributed by the global CALYPSO user community; these structures are predominantly high-pressure configurations, DFT-relaxed under varied pressure conditions, and cover complex systems like superhydrides and superhard materials. In this paper, 571,736 structures were selected (after duplicate removal and filtering based on interatomic distance, cell volume, and energy ranking) to form the high-pressure component of the MP60-CALYPSO dataset, enabling the model to learn pressure-dependent structural motifs and lattice responses.",
+        "db_link": "http://www.calypso.cn"
+      }
+    ]
+  }
+]

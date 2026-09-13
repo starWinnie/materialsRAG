@@ -1,0 +1,540 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "matbench_dielectric",
+      "canonical_name": "matbench_dielectric",
+      "raw_names": [
+        "matbench_dielectric",
+        "dielectric dataset"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "inorganic materials",
+        "crystalline solids",
+        "dielectric materials"
+      ],
+      "available_properties": [
+        "refractive index"
+      ],
+      "available_fields": [
+        "crystal structures",
+        "refractive index"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Table 2 | Details of the three benchmark datasets used in this work\nDataset\nTarget property\nTotal samples\nOriginal source\nMatBench best algorithm (MAE)\nUnit\nmatbench_dielectric\nRefractive index\n4764\nMaterials Project40,70\nMODNet71 (0.2711)\nUnitless",
+          "page": 4,
+          "section": "Dataset",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "matbench_log_gvrh",
+      "canonical_name": "matbench_log_gvrh",
+      "raw_names": [
+        "matbench_log_gvrh",
+        "elasticity dataset"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "inorganic materials",
+        "crystalline solids",
+        "elastic materials"
+      ],
+      "available_properties": [
+        "shear modulus"
+      ],
+      "available_fields": [
+        "crystal structures",
+        "shear modulus"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Table 2 | Details of the three benchmark datasets used in this work\nDataset\nTarget property\nTotal samples\nOriginal source\nMatBench best algorithm (MAE)\nUnit\nmatbench_log_gvrh\nShear modulus\n10987\nMaterials Project40,70\ncoNGN36 (0.0670)\nlog10(GPa)",
+          "page": 4,
+          "section": "Dataset",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "matbench_perovskites",
+      "canonical_name": "matbench_perovskites",
+      "raw_names": [
+        "matbench_perovskites",
+        "perovskites dataset"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "inorganic materials",
+        "crystalline solids",
+        "perovskites"
+      ],
+      "available_properties": [
+        "formation energy"
+      ],
+      "available_fields": [
+        "crystal structures",
+        "formation energy"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Table 2 | Details of the three benchmark datasets used in this work\nDataset\nTarget property\nTotal samples\nOriginal source\nMatBench best algorithm (MAE)\nUnit\nmatbench_perovskites\nFormation energy\n18928\nCastelli et al.72\ncoGN36 (0.0269)\neV/unit cell",
+          "page": 4,
+          "section": "Dataset",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "matbench_dielectric",
+      "usage_role": "source",
+      "purpose": "Acquire structure-property dataset suitable for OOD evaluation",
+      "used_fields": [
+        "crystal structures",
+        "refractive index"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 4764,
+      "evidence": [
+        {
+          "text": "Table 2 | Details of the three benchmark datasets used in this work\nDataset\nTarget property\nTotal samples\nOriginal source\nMatBench best algorithm (MAE)\nUnit\nmatbench_dielectric\nRefractive index\n4764\nMaterials Project40,70\nMODNet71 (0.2711)\nUnitless",
+          "page": 4,
+          "section": "Dataset",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "matbench_log_gvrh",
+      "usage_role": "source",
+      "purpose": "Acquire structure-property dataset suitable for OOD evaluation",
+      "used_fields": [
+        "crystal structures",
+        "shear modulus"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 10987,
+      "evidence": [
+        {
+          "text": "Table 2 | Details of the three benchmark datasets used in this work\nDataset\nTarget property\nTotal samples\nOriginal source\nMatBench best algorithm (MAE)\nUnit\nmatbench_log_gvrh\nShear modulus\n10987\nMaterials Project40,70\ncoNGN36 (0.0670)\nlog10(GPa)",
+          "page": 4,
+          "section": "Dataset",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "matbench_perovskites",
+      "usage_role": "source",
+      "purpose": "Acquire structure-property dataset suitable for OOD evaluation",
+      "used_fields": [
+        "crystal structures",
+        "formation energy"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 18928,
+      "evidence": [
+        {
+          "text": "Table 2 | Details of the three benchmark datasets used in this work\nDataset\nTarget property\nTotal samples\nOriginal source\nMatBench best algorithm (MAE)\nUnit\nmatbench_perovskites\nFormation energy\n18928\nCastelli et al.72\ncoGN36 (0.0269)\neV/unit cell",
+          "page": 4,
+          "section": "Dataset",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "matbench_dielectric",
+      "usage_role": "pretraining",
+      "purpose": "Convert raw crystal structures into low-dimensional representations for clustering-based OOD test set generation",
+      "used_fields": [
+        "crystal structures"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Initially, we apply the k-means algorithm61 based on the orbital-field matrix (OFM) features62 to cluster the whole dataset into 50 clusters.",
+          "page": 4,
+          "section": "OOD test set generation",
+          "inferred": false
+        },
+        {
+          "text": "In this method, we begin by converting material structures into the 1024-dimension OFM feature space.",
+          "page": 4,
+          "section": "OOD test set generation",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "matbench_log_gvrh",
+      "usage_role": "pretraining",
+      "purpose": "Convert raw crystal structures into low-dimensional representations for clustering-based OOD test set generation",
+      "used_fields": [
+        "crystal structures"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Initially, we apply the k-means algorithm61 based on the orbital-field matrix (OFM) features62 to cluster the whole dataset into 50 clusters.",
+          "page": 4,
+          "section": "OOD test set generation",
+          "inferred": false
+        },
+        {
+          "text": "In this method, we begin by converting material structures into the 1024-dimension OFM feature space.",
+          "page": 4,
+          "section": "OOD test set generation",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "matbench_perovskites",
+      "usage_role": "pretraining",
+      "purpose": "Convert raw crystal structures into low-dimensional representations for clustering-based OOD test set generation",
+      "used_fields": [
+        "crystal structures"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Initially, we apply the k-means algorithm61 based on the orbital-field matrix (OFM) features62 to cluster the whole dataset into 50 clusters.",
+          "page": 4,
+          "section": "OOD test set generation",
+          "inferred": false
+        },
+        {
+          "text": "In this method, we begin by converting material structures into the 1024-dimension OFM feature space.",
+          "page": 4,
+          "section": "OOD test set generation",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "matbench_dielectric",
+      "usage_role": "candidate_pool",
+      "purpose": "Generate five types of OOD test sets via clustering and density estimation",
+      "used_fields": [
+        "crystal structures",
+        "refractive index"
+      ],
+      "is_derived": true,
+      "construction_method": "k-means clustering on OFM features; t-SNE dimension reduction; Gaussian Kernel Density estimation; selection of sparse X/Y points/clusters",
+      "filter_conditions": [
+        "lowest structure density",
+        "lowest property density",
+        "leave-one-cluster-out"
+      ],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We propose the following target set generation methods to simulate real-world conditions for materials property prediction.\nLeave-one-cluster-out (LOCO). [...] Single-point targets with the lowest structure density (SparseXsingle). [...] Single-point targets with the lowest property density (SparseYsingle). [...] Cluster targets with the lowest structure density (SparseXcluster). [...] Cluster targets with the lowest property density (SparseYcluster).",
+          "page": 4,
+          "section": "OOD test set generation",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "matbench_log_gvrh",
+      "usage_role": "candidate_pool",
+      "purpose": "Generate five types of OOD test sets via clustering and density estimation",
+      "used_fields": [
+        "crystal structures",
+        "shear modulus"
+      ],
+      "is_derived": true,
+      "construction_method": "k-means clustering on OFM features; t-SNE dimension reduction; Gaussian Kernel Density estimation; selection of sparse X/Y points/clusters",
+      "filter_conditions": [
+        "lowest structure density",
+        "lowest property density",
+        "leave-one-cluster-out"
+      ],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We propose the following target set generation methods to simulate real-world conditions for materials property prediction.\nLeave-one-cluster-out (LOCO). [...] Single-point targets with the lowest structure density (SparseXsingle). [...] Single-point targets with the lowest property density (SparseYsingle). [...] Cluster targets with the lowest structure density (SparseXcluster). [...] Cluster targets with the lowest property density (SparseYcluster).",
+          "page": 4,
+          "section": "OOD test set generation",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "matbench_perovskites",
+      "usage_role": "candidate_pool",
+      "purpose": "Generate five types of OOD test sets via clustering and density estimation",
+      "used_fields": [
+        "crystal structures",
+        "formation energy"
+      ],
+      "is_derived": true,
+      "construction_method": "k-means clustering on OFM features; t-SNE dimension reduction; Gaussian Kernel Density estimation; selection of sparse X/Y points/clusters",
+      "filter_conditions": [
+        "lowest structure density",
+        "lowest property density",
+        "leave-one-cluster-out"
+      ],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We propose the following target set generation methods to simulate real-world conditions for materials property prediction.\nLeave-one-cluster-out (LOCO). [...] Single-point targets with the lowest structure density (SparseXsingle). [...] Single-point targets with the lowest property density (SparseYsingle). [...] Cluster targets with the lowest structure density (SparseXcluster). [...] Cluster targets with the lowest property density (SparseYcluster).",
+          "page": 4,
+          "section": "OOD test set generation",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "matbench_dielectric",
+      "usage_role": "training",
+      "purpose": "Train eight GNN models on each fold using OOD train/val splits",
+      "used_fields": [
+        "crystal structures",
+        "refractive index"
+      ],
+      "is_derived": true,
+      "construction_method": "50-fold LOCO, SparseXsingle, SparseXcluster, SparseYsingle, SparseYcluster splits",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "For each fold, we selected a cluster as the test set, and the rest as training and validation sets, and averaged the results over 50 folds to get the final result.",
+          "page": 3,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "matbench_log_gvrh",
+      "usage_role": "training",
+      "purpose": "Train eight GNN models on each fold using OOD train/val splits",
+      "used_fields": [
+        "crystal structures",
+        "shear modulus"
+      ],
+      "is_derived": true,
+      "construction_method": "50-fold LOCO, SparseXsingle, SparseXcluster, SparseYsingle, SparseYcluster splits",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "For each fold, we selected a cluster as the test set, and the rest as training and validation sets, and averaged the results over 50 folds to get the final result.",
+          "page": 3,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "matbench_perovskites",
+      "usage_role": "training",
+      "purpose": "Train eight GNN models on each fold using OOD train/val splits",
+      "used_fields": [
+        "crystal structures",
+        "formation energy"
+      ],
+      "is_derived": true,
+      "construction_method": "50-fold LOCO, SparseXsingle, SparseXcluster, SparseYsingle, SparseYcluster splits",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "For each fold, we selected a cluster as the test set, and the rest as training and validation sets, and averaged the results over 50 folds to get the final result.",
+          "page": 3,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "matbench_dielectric",
+      "usage_role": "test",
+      "purpose": "Evaluating model performance using MAE on OOD test sets",
+      "used_fields": [
+        "refractive index"
+      ],
+      "is_derived": true,
+      "construction_method": "50-fold LOCO, SparseXsingle, SparseXcluster, SparseYsingle, SparseYcluster splits",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The results of the dielectric dataset for five different OOD target generation methods are summarized in Table 3.",
+          "page": 4,
+          "section": "Performance comparison on OOD test sets",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "matbench_log_gvrh",
+      "usage_role": "test",
+      "purpose": "Evaluating model performance using MAE on OOD test sets",
+      "used_fields": [
+        "shear modulus"
+      ],
+      "is_derived": true,
+      "construction_method": "50-fold LOCO, SparseXsingle, SparseXcluster, SparseYsingle, SparseYcluster splits",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Table4showsthesummarizedresultsfor ﬁvetypesofOODtestsetson the elasticity dataset.",
+          "page": 4,
+          "section": "MEGNet",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "matbench_perovskites",
+      "usage_role": "test",
+      "purpose": "Evaluating model performance using MAE on OOD test sets",
+      "used_fields": [
+        "formation energy"
+      ],
+      "is_derived": true,
+      "construction_method": "50-fold LOCO, SparseXsingle, SparseXcluster, SparseYsingle, SparseYcluster splits",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Results on the perovskites dataset are summarized in Table 5.",
+          "page": 6,
+          "section": "MEGNet",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 6,
+      "dataset_key": "matbench_dielectric",
+      "usage_role": "benchmark",
+      "purpose": "Comparing OOD MAEs against MatBench i.i.d. baselines and analyzing latent spaces",
+      "used_fields": [
+        "refractive index"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "To investigate the issue of performance degradation of GNN models in OOD material property prediction, we compared the MatBench SOTA algorithms’ performance on the OOD datasets with those on the Matbench study (Fig.5).",
+          "page": 7,
+          "section": "Performance comparison with MatBench SOTA performance",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 6,
+      "dataset_key": "matbench_log_gvrh",
+      "usage_role": "benchmark",
+      "purpose": "Comparing OOD MAEs against MatBench i.i.d. baselines and analyzing latent spaces",
+      "used_fields": [
+        "shear modulus"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Similar comparison results on the elasticity dataset are shown in Fig. 5b.",
+          "page": 8,
+          "section": "unknown",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 6,
+      "dataset_key": "matbench_perovskites",
+      "usage_role": "benchmark",
+      "purpose": "Comparing OOD MAEs against MatBench i.i.d. baselines and analyzing latent spaces",
+      "used_fields": [
+        "formation energy"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Finally, we showed the performance degradation on the perovskites dataset of the MAEs for all MatBench SOTA algorithms by comparing the OOD results in Fig. 5c and their i.i.d. performance in Table 2.",
+          "page": 9,
+          "section": "unknown",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

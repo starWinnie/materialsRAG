@@ -1,0 +1,164 @@
+{
+  "paper": {
+    "title": "Structure-aware graph neural network based deep transfer learning framework for enhanced predictive analytics on diverse materials datasets",
+    "year": 2024,
+    "doi": "10.1038/s41524-023-01185-3",
+    "research_summary": "This paper presents a structure-aware graph neural network (GNN) based deep transfer learning framework to improve predictive performance for materials properties using sparse data. It leverages the ALIGNN architecture trained on large source datasets (e.g., Materials Project formation energy) and applies transfer learning—via fine-tuning or feature extraction—to small target datasets across diverse materials classes (3D/2D, inorganic/organic, computational/experimental) and properties. Evaluation across 115 dataset-property combinations shows transfer learning models outperform scratch-trained models in ≈90% of cases, with particular gains for small datasets and extrapolation tasks."
+  },
+  "task": {
+    "task_name_raw": "materials property prediction",
+    "task_name_canonical": "materials_property_prediction",
+    "objective": "To accurately predict materials properties using crystal structure information, especially when training data is sparse.",
+    "material_scope": ["3D materials", "2D materials", "inorganic materials", "organic materials", "computational materials", "experimental materials"],
+    "target_properties": ["formation energy", "band gap", "elastic tensor components", "dielectric constant", "piezoelectric tensor", "exfoliation energy", "SLME", "Meps", "PMDi", "MaxM", "MinM", "MaxIrM", "MinIrM", "PMEij", "Poisson ratio", "ShearGV", "BulkKV", "ETC", "NSB", "PSB", "PPF", "NPF", "Deltae", "Ehull", "Encut", "Magoszi", "Magout", "Epsx", "Epsy", "Epsz", "KLU", "BgOptb", "BgMbj", "AvgME", "AvgMH", "Spillage", "Exfoli", "b3lyp gap", "b3lyp homo", "b3lyp lumo", "b3lyp scharber jsc", "b3lyp scharber pce", "b3lyp scharber voc", "bp86 gap", "bp86 homo", "bp86 lumo", "bp86 scharber jsc", "bp86 scharber pce", "bp86 scharber voc", "m06 gap", "m06 homo", "m06 lumo", "m06 scharber jsc", "m06 scharber pce", "m06 scharber voc", "pbe0 gap", "pbe0 homo", "pbe0 lumo", "pbe0 scharber jsc", "pbe0 scharber pce", "pbe0 scharber voc"],
+    "constraints": ["small dataset size", "diverse materials classes", "cross-property transfer", "cross-materials class transfer", "need for structure-aware input"],
+    "input_requirements": ["crystal structure files (e.g., POSCAR)", "atomic positions", "lattice geometry", "atom, bond, and angle information"],
+    "output_goal": ["predicted numerical value of a target materials property"],
+    "evidence": [
+      {
+        "text": "Here we present a framework for materials property prediction tasks using structure information that leverages graph neural network-based architecture along with deep-transfer-learning techniques to drastically improve the model’s predictive ability on diverse materials (3D/2D, inorganic/organic, computational/experimental) data.",
+        "page": 1,
+        "section": "INTRODUCTION",
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "acquisition of diverse materials datasets",
+      "stage_order": 1,
+      "stage_goal": "To collect a broad set of publicly available materials datasets covering diverse structures, classes, and properties.",
+      "stage_input": [],
+      "stage_output": ["Materials Project (MP)", "JARVIS-3D", "JARVIS-2D", "Flla", "Dielectric Constant (DC)", "Piezoelectric Tensor (PT)", "Experimental Formation Energy (EFE)", "Kingsbury Experimental Formation Energy (KEFE)", "Kingsbury Experimental Bandgap (KEB)", "Harvard Organic Photovoltaic Dataset (HOPV)"],
+      "evidence": [
+        {
+          "text": "We use nine datasets of DFT-computed and experimental properties in this work: Materials Project (MP)4, Joint Automated Repository for Various Integrated Simulations (JARVIS) 3D with 46 properties and 2D with 32 properties5, Flla44 with three properties, Dielectric Constant (DC)45 with five properties, Piezoelectric Tensor (PT)46 with two properties, Experimental Formation Energy (EFE)47 with one property, Kingsbury Experimental Formation Energy (KEFE)48 with one property, Kingsbury Experimental Bandgap (KEB)49 with one property, and Harvard Organic Photovoltaic Dataset (HOPV)50 with 24 properties.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_preparation",
+      "stage_name_raw": "preprocessing of structure files into atom/bond/angle features",
+      "stage_order": 2,
+      "stage_goal": "To convert raw crystal structure files (e.g., POSCAR) into structured graph representations suitable for ALIGNN input.",
+      "stage_input": ["structure file containing information on lattice geometry and the ionic positions of a compound"],
+      "stage_output": ["atom-based features", "bond-based features", "angle-based features"],
+      "evidence": [
+        {
+          "text": "The structure file containing information on lattice geometry and the ionic positions of a compound is divided into atom, bond, and angle-based features before feeding into the ALIGNN-based Feature Extractor where we perform feature extraction.",
+          "page": 3,
+          "section": "ALIGNN-based Feature Extractor",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "training of source model (ALIGNN on MP formation energy)",
+      "stage_order": 3,
+      "stage_goal": "To train a robust, structure-aware source model on a large dataset (MP formation energy) to capture generalizable chemical and structural knowledge.",
+      "stage_input": ["Materials Project dataset", "formation energy labels", "structure files (POSCAR)"],
+      "stage_output": ["pre-trained ALIGNN source model"],
+      "evidence": [
+        {
+          "text": "A model trained on the formation energy of the MP dataset39 is used as the source model to perform fine-tuning and feature extraction-based transfer learning as formation energy has shown to lead to meaningful representations from large source datasets36, which can then be applied during the model training on the smaller target datasets to improve their predictive performance.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        },
+        {
+          "text": "We build source models using a structure-aware GNN-based architecture called ALIGNN on the MP dataset by using only formation energy as the source materials property.",
+          "page": 5,
+          "section": "DISCUSSION",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "transfer learning via fine-tuning on target datasets",
+      "stage_order": 4,
+      "stage_goal": "To adapt the pre-trained ALIGNN source model to each target dataset by initializing weights from the source model and refining them on target data.",
+      "stage_input": ["pre-trained ALIGNN source model", "target dataset (e.g., JARVIS-3D property)", "target structure files", "target property labels"],
+      "stage_output": ["fine-tuned target model"],
+      "evidence": [
+        {
+          "text": "Fine-tuning uses the weights from the pre-trained model as the preliminary weight initialization for the network, which are further refined using the target dataset.",
+          "page": 2,
+          "section": "INTRODUCTION",
+          "inferred": false
+        },
+        {
+          "text": "For TL models, we use a model pretrained on the MP dataset with formation energy as the materials property using ALIGNN as the model architecture. The TL techniques comprise of traditional fine-tuning and a feature extraction method from a graph neural network. Fine-tuning uses the weights from the pre-trained model as the preliminary weight initialization for the network (which is the same architecture as used during source model training) and is further refined using a small dataset.",
+          "page": 8,
+          "section": "METHODS",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_generation",
+      "stage_name_raw": "feature extraction from pre-trained ALIGNN for target compounds",
+      "stage_order": 5,
+      "stage_goal": "To generate fixed-dimensional, structure-aware feature vectors (atom-bond-angle features) from the pre-trained ALIGNN model for each compound in the target dataset.",
+      "stage_input": ["pre-trained ALIGNN source model", "target structure files"],
+      "stage_output": ["256-dimensional atom-based feature vector per compound", "256-dimensional bond-based feature vector per compound", "256-dimensional angle-based feature vector per compound", "768-dimensional concatenated atom-bond-angle feature vector per compound"],
+      "evidence": [
+        {
+          "text": "In the feature extraction method, we treat the pre-trained model as a feature extractor to extract robust features for the target dataset and use them to build the target model using representation learning.",
+          "page": 2,
+          "section": "INTRODUCTION",
+          "inferred": false
+        },
+        {
+          "text": "In the feature extraction method, we treat the pre-trained model as the feature extractor and extract atom, bond, and angle-based features from a given layer, each containing a variable number of rows depending on the number of the atom, bond, and angle information present in the input file and 256 columns as features for each row.",
+          "page": 9,
+          "section": "METHODS",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "training of target model on extracted features",
+      "stage_order": 6,
+      "stage_goal": "To train a simple deep neural network (NN-17) on the extracted ALIGNN features to predict the target property.",
+      "stage_input": ["extracted atom-bond-angle features (last)", "target property labels"],
+      "stage_output": ["NN-17 target model"],
+      "evidence": [
+        {
+          "text": "Next, we perform model training using the above-defined set of features as input for the deep neural network where we use a 17-layered neural network comprising of stacks of fully connected layers and ReLU as the activation function inspired from21,22,55 as the base architecture and formation energy of JARVIS-3D dataset as the materials property for property prediction task, the results of which are shown in Table 1.",
+          "page": 3,
+          "section": "ALIGNN-based Feature Extractor",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "evaluation of predictive performance using MAE",
+      "stage_order": 7,
+      "stage_goal": "To quantitatively assess and compare the accuracy of scratch-trained, fine-tuned, and feature-extraction-based models using mean absolute error (MAE) on holdout test sets.",
+      "stage_input": ["holdout test set predictions", "ground truth property values"],
+      "stage_output": ["test MAE for each model", "percent error change"],
+      "evidence": [
+        {
+          "text": "We use mean absolute error (MAE) as the primary evaluation metric for all models.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        },
+        {
+          "text": "Table 2 presents the prediction accuracy of the best SC and best TL model on the test set for each of the 48 target properties.",
+          "page": 4,
+          "section": "JARVIS-3D database",
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

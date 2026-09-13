@@ -1,0 +1,211 @@
+{
+  "paper": {
+    "title": "Virtual Node Graph Neural Network for Full Phonon Prediction",
+    "year": 2023,
+    "doi": null,
+    "research_summary": "The paper introduces the Virtual Node Graph Neural Network (VGNN) to predict phonon spectra and bandstructures directly from atomic coordinates, addressing challenges of variable-length output and complex unit cells. It presents three variants—vector (VVN), matrix (MVN), and momentum-dependent matrix (k-MVN) virtual nodes—to predict Γ-point phonons and full phonon dispersion. The models are trained on ab initio DFPT phonon data and validated on diverse alloy systems; MVN is used to build a Γ-phonon database of 146,000+ Materials Project materials."
+  },
+  "task": {
+    "task_name_raw": "Full Phonon Prediction",
+    "task_name_canonical": "full_phonon_prediction",
+    "objective": "Predict phonon spectra and full phonon band structures directly from atomic coordinates",
+    "material_scope": [
+      "crystalline inorganic materials",
+      "alloys",
+      "high-entropy alloys",
+      "topological Weyl semimetals"
+    ],
+    "target_properties": [
+      "Γ-phonon spectra",
+      "full phonon band structure",
+      "phonon dispersion relations"
+    ],
+    "constraints": [
+      "complex unit cells",
+      "material-dependent, variable-length output",
+      "no prior knowledge of interatomic forces"
+    ],
+    "input_requirements": [
+      "atomic coordinates",
+      "crystal structure (e.g., POSCAR)",
+      "unit cell vectors"
+    ],
+    "output_goal": [
+      "3m Γ-phonon energies for m atoms per unit cell",
+      "full phonon band structure at arbitrary k points in the Brillouin zone"
+    ],
+    "evidence": [
+      {
+        "text": "By developing three types of virtual node approaches - the vector, matrix, and momentum-dependent matrix virtual nodes, we achieve direct prediction of Γ-phonon spectra and full dispersion only using atomic coordinates as input.",
+        "page": 1,
+        "section": "ABSTRACT",
+        "inferred": false
+      },
+      {
+        "text": "We study materials’ phonon spectra and dispersion relations, given that phonons bands are challenging to compute or measure with high computational cost and limited experimental resources.",
+        "page": 2,
+        "section": "Results",
+        "inferred": false
+      },
+      {
+        "text": "Here we present the virtual node graph neural network to address the challenges. By developing three types of virtual node approaches - the vector, matrix, and momentum-dependent matrix virtual nodes, we achieve direct prediction of Γ-phonon spectra and full dispersion only using atomic coordinates as input.",
+        "page": 1,
+        "section": "ABSTRACT",
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "Phonon data acquisition from ab initio databases",
+      "stage_order": 1,
+      "stage_goal": "Acquire high-quality phonon data for training and validation",
+      "stage_input": [
+        "density-functional perturbation theory (DFPT) calculations",
+        "frozen phonon database"
+      ],
+      "stage_output": [
+        "phonon dispersion along highly symmetric paths",
+        "Γ-point phonon energies",
+        "phonon band structures"
+      ],
+      "evidence": [
+        {
+          "text": "We trained all of our models against an ab initio DFPT computational database for phonon dispersion in harmonic model25. The data set contains material structures (the same as the primitive structure obtained from the Material Project12), second-order derivatives of energies with respect to atomic perturbations for regular points inside the irreducible zone, and phonon dispersion along highly symmetric paths of 1,521 crystalline inorganic materials.",
+          "page": 9,
+          "section": "Methods",
+          "inferred": false
+        },
+        {
+          "text": "We also got phonon dispersion of complex (more number of atoms per unit cell) materials from Atsushi Togo’s phonon database31.",
+          "page": 9,
+          "section": "Methods",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_preparation",
+      "stage_name_raw": "Phonon data preparation and splitting",
+      "stage_order": 2,
+      "stage_goal": "Prepare, filter, and split phonon datasets for training, validation, and testing",
+      "stage_input": [
+        "DFPT phonon database",
+        "Togo phonon database"
+      ],
+      "stage_output": [
+        "training set (90% of 1,521 materials)",
+        "test set (10% of 1,521 materials)",
+        "complex-material test set (156 materials with >40 atoms/unit cell)"
+      ],
+      "evidence": [
+        {
+          "text": "The data set contains material structures (the same as the primitive structure obtained from the Material Project12), second-order derivatives of energies with respect to atomic perturbations for regular points inside the irreducible zone, and phonon dispersion along highly symmetric paths of 1,521 crystalline inorganic materials. These materials have 2 to 40 atoms per unit cell, with an average of 7.38. For this work, we only used the highly symmetric path phonon dispersion as our training data. The dispersion is between wave vectors⃗k in the fractional reciprocal unit and response spectra in cm−1. All models randomly split the data into 90% training (1,365 materials), and 10% testing (156 materials) sets.",
+          "page": 9,
+          "section": "Methods",
+          "inferred": false
+        },
+        {
+          "text": "We also got phonon dispersion of complex (more number of atoms per unit cell) materials from Atsushi Togo’s phonon database31. ... We selected materials whose lowest Γ-phonon band is higher than −0.07 cm−1. We also filtered the material to get only the ones with more than 40 atoms per unit cell. Finally, we randomly selected 156 (the same as the number of data in the testing set for ease of comparison) out of 505 filtered materials.",
+          "page": 9,
+          "section": "Methods",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "Training VGNN models (VVN, MVN, k-MVN)",
+      "stage_order": 3,
+      "stage_goal": "Optimize neural network parameters to minimize prediction error on phonon data",
+      "stage_input": [
+        "atomic coordinates",
+        "phonon dispersion labels",
+        "crystal symmetry information"
+      ],
+      "stage_output": [
+        "trained VVN model",
+        "trained MVN model",
+        "trained k-MVN model"
+      ],
+      "evidence": [
+        {
+          "text": "The model is optimized by minimizing the mean squared error (MSE) loss function between the phonon of the training data set and the one predicted by the model after normalizing them by the maximum phonon frequency of each material.",
+          "page": 10,
+          "section": "Methods",
+          "inferred": false
+        },
+        {
+          "text": "We optimize the values of the training parameters. The set of parameters that gives the best results for VVN, MVN, k-MVN are shown in Table S1.",
+          "page": 17,
+          "section": "III NEURAL NETWORK TRAINING AND OPTIMIZATION",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "Evaluating phonon prediction accuracy",
+      "stage_order": 4,
+      "stage_goal": "Assess model performance on test sets using loss distribution and correlation plots",
+      "stage_input": [
+        "trained models",
+        "test set phonon data (DFPT and Togo databases)"
+      ],
+      "stage_output": [
+        "loss distribution plots",
+        "correlation plots (predicted vs. ground truth)",
+        "error tertile comparisons"
+      ],
+      "evidence": [
+        {
+          "text": "The main results using the VVN for Γ-phonon prediction are shown in Figure 2b. The three-row spectral comparison plots are randomly selected samples from the test set within each error tertile (top-to-bottom rows are top-to-bottom performance tertiles, respectively).",
+          "page": 2,
+          "section": "unknown",
+          "inferred": false
+        },
+        {
+          "text": "The predicted phonons using MVN are summarized in Figure 3b, which shares the same structure with Figure 2b as error tertile plots from the high-quality DFPT database (blue) and database for complex materials (orange).",
+          "page": 4,
+          "section": "unknown",
+          "inferred": false
+        },
+        {
+          "text": "Figure 4b shows the prediction results of phonon band structures. Here 12 materials are selected from the same dataset for training (blue color) and the additional dataset for complex materials (orange color).",
+          "page": 5,
+          "section": "unknown",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "computational_validation",
+      "stage_name_raw": "Computational validation on alloy systems and large databases",
+      "stage_order": 5,
+      "stage_goal": "Validate model generalizability on unseen complex materials and large-scale databases",
+      "stage_input": [
+        "SiGe, FeCoNi, NiCo, NiFe, NiFeCo, MoTaNbWV, VWNbTaTi alloy structures",
+        "146,323 Materials Project entries"
+      ],
+      "stage_output": [
+        "validated phonon predictions for alloys",
+        "Γ-phonon database of 146,000+ materials"
+      ],
+      "evidence": [
+        {
+          "text": "Additional tests on SiGe alloys, FeCoNi alloys, and other high-energy alloys are performed, which agree well with existing literature (Supplementary Information VI).",
+          "page": 6,
+          "section": "Discussion",
+          "inferred": false
+        },
+        {
+          "text": "Finally, by using MVN, we build a database containing the Γ-phonon spectra for over 140,000 materials listed in Materials Project (Supplementary Data and Supplementary Information VII). It took an eight-GPU system less than ﬁve hours to obtain all results, even though some materials contain over 400 atoms per unit cell.",
+          "page": 6,
+          "section": "Discussion",
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

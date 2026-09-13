@@ -1,0 +1,36 @@
+{
+  "paper_id": "P001",
+  "file_name": "01_PRDNet.pdf",
+  "status": "completed",
+  "completed_at": "2026-07-27T03:40:41.591640+00:00",
+  "model": "qwen-plus",
+  "stage1_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "stage2_attempts": [
+    {
+      "attempt": 1,
+      "errors": [
+        "dataset_uses[3].sample_count is not explicitly printed in its evidence",
+        "dataset_uses[4].sample_count is not explicitly printed in its evidence",
+        "dataset_uses[5].sample_count is not explicitly printed in its evidence"
+      ],
+      "exception": null
+    },
+    {
+      "attempt": 2,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "counts": {
+    "tasks": 1,
+    "stages": 4,
+    "datasets": 3,
+    "dataset_uses": 6
+  }
+}

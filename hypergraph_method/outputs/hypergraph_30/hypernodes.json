@@ -1,0 +1,1012 @@
+[
+  {
+    "node_id": "data_source_type:benchmark suite",
+    "node_type": "data_source_type",
+    "value": "benchmark suite",
+    "edge_count": 46,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "data_source_type:dft",
+    "node_type": "data_source_type",
+    "value": "dft",
+    "edge_count": 82,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "data_source_type:experimental",
+    "node_type": "data_source_type",
+    "value": "experimental",
+    "edge_count": 14,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "data_source_type:high-throughput calculated",
+    "node_type": "data_source_type",
+    "value": "high-throughput calculated",
+    "edge_count": 28,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "data_source_type:literature-curated",
+    "node_type": "data_source_type",
+    "value": "literature-curated",
+    "edge_count": 43,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "data_source_type:simulation trajectory",
+    "node_type": "data_source_type",
+    "value": "simulation trajectory",
+    "edge_count": 10,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:2dmatpedia",
+    "node_type": "dataset_family",
+    "value": "2dmatpedia",
+    "edge_count": 2,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:380,743 unlabeled crystal structures (merchant et al. 2023-derived)",
+    "node_type": "dataset_family",
+    "value": "380,743 unlabeled crystal structures (merchant et al. 2023-derived)",
+    "edge_count": 2,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:aflow",
+    "node_type": "dataset_family",
+    "value": "aflow",
+    "edge_count": 2,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:c2db",
+    "node_type": "dataset_family",
+    "value": "c2db",
+    "edge_count": 3,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:cubic charge density dataset",
+    "node_type": "dataset_family",
+    "value": "cubic charge density dataset",
+    "edge_count": 2,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:custom dft dataset for fcc metals",
+    "node_type": "dataset_family",
+    "value": "custom dft dataset for fcc metals",
+    "edge_count": 2,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:dielectric constant (dc) database",
+    "node_type": "dataset_family",
+    "value": "dielectric constant (dc) database",
+    "edge_count": 2,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:double perovskite oxides database (talapatra et al.)",
+    "node_type": "dataset_family",
+    "value": "double perovskite oxides database (talapatra et al.)",
+    "edge_count": 2,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:experimental formation energy (efe)",
+    "node_type": "dataset_family",
+    "value": "experimental formation energy (efe)",
+    "edge_count": 2,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:experimental round-robin co₂ adsorption data for zsm-5 zeolite",
+    "node_type": "dataset_family",
+    "value": "experimental round-robin co₂ adsorption data for zsm-5 zeolite",
+    "edge_count": 2,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:flla",
+    "node_type": "dataset_family",
+    "value": "flla",
+    "edge_count": 2,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:gnome materials dataset (subset)",
+    "node_type": "dataset_family",
+    "value": "gnome materials dataset (subset)",
+    "edge_count": 2,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:harvard organic photovoltaic dataset (hopv)",
+    "node_type": "dataset_family",
+    "value": "harvard organic photovoltaic dataset (hopv)",
+    "edge_count": 2,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:hibofl local database (pet-derived)",
+    "node_type": "dataset_family",
+    "value": "hibofl local database (pet-derived)",
+    "edge_count": 2,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:hoip dataset",
+    "node_type": "dataset_family",
+    "value": "hoip dataset",
+    "edge_count": 3,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:icsd family",
+    "node_type": "dataset_family",
+    "value": "icsd family",
+    "edge_count": 10,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:in-house dft-relaxed novel structures dataset",
+    "node_type": "dataset_family",
+    "value": "in-house dft-relaxed novel structures dataset",
+    "edge_count": 2,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:inorganic crystal structure database",
+    "node_type": "dataset_family",
+    "value": "inorganic crystal structure database",
+    "edge_count": 2,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:jarvis database",
+    "node_type": "dataset_family",
+    "value": "jarvis database",
+    "edge_count": 8,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:jarvis family",
+    "node_type": "dataset_family",
+    "value": "jarvis family",
+    "edge_count": 25,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:jarvis-2d",
+    "node_type": "dataset_family",
+    "value": "jarvis-2d",
+    "edge_count": 2,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:jarvis-dft",
+    "node_type": "dataset_family",
+    "value": "jarvis-dft",
+    "edge_count": 9,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:kingsbury experimental bandgap (keb)",
+    "node_type": "dataset_family",
+    "value": "kingsbury experimental bandgap (keb)",
+    "edge_count": 2,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:kingsbury experimental formation energy (kefe)",
+    "node_type": "dataset_family",
+    "value": "kingsbury experimental formation energy (kefe)",
+    "edge_count": 2,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:li-containing oxides dataset (mp-derived)",
+    "node_type": "dataset_family",
+    "value": "li-containing oxides dataset (mp-derived)",
+    "edge_count": 2,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:matbench",
+    "node_type": "dataset_family",
+    "value": "matbench",
+    "edge_count": 4,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:matbench family",
+    "node_type": "dataset_family",
+    "value": "matbench family",
+    "edge_count": 13,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:matbench_dielectric",
+    "node_type": "dataset_family",
+    "value": "matbench_dielectric",
+    "edge_count": 3,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:matbench_log_gvrh",
+    "node_type": "dataset_family",
+    "value": "matbench_log_gvrh",
+    "edge_count": 2,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:matbench_perovskites",
+    "node_type": "dataset_family",
+    "value": "matbench_perovskites",
+    "edge_count": 2,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:materials project",
+    "node_type": "dataset_family",
+    "value": "materials project",
+    "edge_count": 23,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:materials project (mp) charge density dataset",
+    "node_type": "dataset_family",
+    "value": "materials project (mp) charge density dataset",
+    "edge_count": 2,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:materials project (mp) γ-phonon database (vgnn-predicted)",
+    "node_type": "dataset_family",
+    "value": "materials project (mp) γ-phonon database (vgnn-predicted)",
+    "edge_count": 2,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:materials project (v2023.11.1) dielectric dataset",
+    "node_type": "dataset_family",
+    "value": "materials project (v2023.11.1) dielectric dataset",
+    "edge_count": 2,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:materials project family",
+    "node_type": "dataset_family",
+    "value": "materials project family",
+    "edge_count": 86,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:materials project phonon database (dfpt-based)",
+    "node_type": "dataset_family",
+    "value": "materials project phonon database (dfpt-based)",
+    "edge_count": 2,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:matgen",
+    "node_type": "dataset_family",
+    "value": "matgen",
+    "edge_count": 2,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:matscholar embeddings",
+    "node_type": "dataset_family",
+    "value": "matscholar embeddings",
+    "edge_count": 2,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:mc3d dataset",
+    "node_type": "dataset_family",
+    "value": "mc3d dataset",
+    "edge_count": 2,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:md charge density dataset",
+    "node_type": "dataset_family",
+    "value": "md charge density dataset",
+    "edge_count": 2,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:mendeleev similarity metrics",
+    "node_type": "dataset_family",
+    "value": "mendeleev similarity metrics",
+    "edge_count": 2,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:moleculenet",
+    "node_type": "dataset_family",
+    "value": "moleculenet",
+    "edge_count": 2,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:nmc (nickel manganese cobalt) battery cathode dataset",
+    "node_type": "dataset_family",
+    "value": "nmc (nickel manganese cobalt) battery cathode dataset",
+    "edge_count": 2,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:ofm (orbital field matrix) features",
+    "node_type": "dataset_family",
+    "value": "ofm (orbital field matrix) features",
+    "edge_count": 2,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:open quantum materials database",
+    "node_type": "dataset_family",
+    "value": "open quantum materials database",
+    "edge_count": 7,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:openkim interatomic potential repository",
+    "node_type": "dataset_family",
+    "value": "openkim interatomic potential repository",
+    "edge_count": 2,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:oqmd family",
+    "node_type": "dataset_family",
+    "value": "oqmd family",
+    "edge_count": 13,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:perovskite halides dataset (literature-curated)",
+    "node_type": "dataset_family",
+    "value": "perovskite halides dataset (literature-curated)",
+    "edge_count": 2,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:phonondb (kyoto university)",
+    "node_type": "dataset_family",
+    "value": "phonondb (kyoto university)",
+    "edge_count": 2,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:piezoelectric tensor (pt) database",
+    "node_type": "dataset_family",
+    "value": "piezoelectric tensor (pt) database",
+    "edge_count": 2,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:qm9",
+    "node_type": "dataset_family",
+    "value": "qm9",
+    "edge_count": 2,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:qm9 charge density dataset",
+    "node_type": "dataset_family",
+    "value": "qm9 charge density dataset",
+    "edge_count": 3,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:qm9 family",
+    "node_type": "dataset_family",
+    "value": "qm9 family",
+    "edge_count": 7,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:radonpy polymer dataset",
+    "node_type": "dataset_family",
+    "value": "radonpy polymer dataset",
+    "edge_count": 2,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:supercon3d",
+    "node_type": "dataset_family",
+    "value": "supercon3d",
+    "edge_count": 2,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:textedge",
+    "node_type": "dataset_family",
+    "value": "textedge",
+    "edge_count": 2,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:transition metal oxides dataset (mp-derived)",
+    "node_type": "dataset_family",
+    "value": "transition metal oxides dataset (mp-derived)",
+    "edge_count": 2,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:tsenn dielectric tensor dataset",
+    "node_type": "dataset_family",
+    "value": "tsenn dielectric tensor dataset",
+    "edge_count": 2,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:wang-botti-marques (wbm) dataset",
+    "node_type": "dataset_family",
+    "value": "wang-botti-marques (wbm) dataset",
+    "edge_count": 2,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "dataset_family:xrd features (from pymatgen)",
+    "node_type": "dataset_family",
+    "value": "xrd features (from pymatgen)",
+    "edge_count": 2,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "material_system:2d material",
+    "node_type": "material_system",
+    "value": "2d material",
+    "edge_count": 12,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "material_system:battery material",
+    "node_type": "material_system",
+    "value": "battery material",
+    "edge_count": 2,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "material_system:inorganic crystal",
+    "node_type": "material_system",
+    "value": "inorganic crystal",
+    "edge_count": 91,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "material_system:molecule",
+    "node_type": "material_system",
+    "value": "molecule",
+    "edge_count": 15,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "material_system:perovskite",
+    "node_type": "material_system",
+    "value": "perovskite",
+    "edge_count": 13,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "rd_stage:benchmarking / evaluation",
+    "node_type": "rd_stage",
+    "value": "benchmarking / evaluation",
+    "edge_count": 65,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "rd_stage:dataset selection",
+    "node_type": "rd_stage",
+    "value": "dataset selection",
+    "edge_count": 142,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "rd_stage:model training",
+    "node_type": "rd_stage",
+    "value": "model training",
+    "edge_count": 104,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "rd_stage:representation / feature construction",
+    "node_type": "rd_stage",
+    "value": "representation / feature construction",
+    "edge_count": 79,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "rd_stage:screening / prediction",
+    "node_type": "rd_stage",
+    "value": "screening / prediction",
+    "edge_count": 153,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "rd_stage:validation",
+    "node_type": "rd_stage",
+    "value": "validation",
+    "edge_count": 70,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "representation:atomic coordinates",
+    "node_type": "representation",
+    "value": "atomic coordinates",
+    "edge_count": 7,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "representation:cif",
+    "node_type": "representation",
+    "value": "cif",
+    "edge_count": 4,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "representation:composition",
+    "node_type": "representation",
+    "value": "composition",
+    "edge_count": 32,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "representation:crystal graph",
+    "node_type": "representation",
+    "value": "crystal graph",
+    "edge_count": 10,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "representation:crystal structure",
+    "node_type": "representation",
+    "value": "crystal structure",
+    "edge_count": 78,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "representation:descriptor",
+    "node_type": "representation",
+    "value": "descriptor",
+    "edge_count": 26,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "representation:lattice vectors",
+    "node_type": "representation",
+    "value": "lattice vectors",
+    "edge_count": 13,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "representation:smiles",
+    "node_type": "representation",
+    "value": "smiles",
+    "edge_count": 4,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "representation:spectrum or tensor",
+    "node_type": "representation",
+    "value": "spectrum or tensor",
+    "edge_count": 28,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "target_property:band gap",
+    "node_type": "target_property",
+    "value": "band gap",
+    "edge_count": 58,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "target_property:bulk modulus",
+    "node_type": "target_property",
+    "value": "bulk modulus",
+    "edge_count": 18,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "target_property:conductivity",
+    "node_type": "target_property",
+    "value": "conductivity",
+    "edge_count": 4,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "target_property:dielectric property",
+    "node_type": "target_property",
+    "value": "dielectric property",
+    "edge_count": 21,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "target_property:energy above hull",
+    "node_type": "target_property",
+    "value": "energy above hull",
+    "edge_count": 23,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "target_property:formation energy",
+    "node_type": "target_property",
+    "value": "formation energy",
+    "edge_count": 57,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "target_property:shear modulus",
+    "node_type": "target_property",
+    "value": "shear modulus",
+    "edge_count": 21,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "target_property:stability",
+    "node_type": "target_property",
+    "value": "stability",
+    "edge_count": 31,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "target_property:synthesis condition",
+    "node_type": "target_property",
+    "value": "synthesis condition",
+    "edge_count": 2,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "target_property:total energy",
+    "node_type": "target_property",
+    "value": "total energy",
+    "edge_count": 14,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "task_type:benchmark",
+    "node_type": "task_type",
+    "value": "benchmark",
+    "edge_count": 65,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "task_type:inverse design",
+    "node_type": "task_type",
+    "value": "inverse design",
+    "edge_count": 8,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "task_type:materials discovery",
+    "node_type": "task_type",
+    "value": "materials discovery",
+    "edge_count": 49,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "task_type:property prediction",
+    "node_type": "task_type",
+    "value": "property prediction",
+    "edge_count": 152,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  },
+  {
+    "node_id": "task_type:synthesis assessment",
+    "node_type": "task_type",
+    "value": "synthesis assessment",
+    "edge_count": 2,
+    "edge_types": [
+      "DatasetCapabilityEdge",
+      "DatasetUseEdge"
+    ]
+  }
+]

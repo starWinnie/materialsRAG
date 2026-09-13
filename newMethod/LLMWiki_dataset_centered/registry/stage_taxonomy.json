@@ -1,0 +1,49 @@
+{
+  "version": "1.0",
+  "stage_types": [
+    {
+      "stage_type": "data_acquisition",
+      "description": "Acquiring source records or measurements."
+    },
+    {
+      "stage_type": "data_preparation",
+      "description": "Cleaning, filtering, transforming, or splitting data."
+    },
+    {
+      "stage_type": "label_generation",
+      "description": "Generating target labels by calculation, annotation, or experiment."
+    },
+    {
+      "stage_type": "model_training",
+      "description": "Fitting or pretraining a model."
+    },
+    {
+      "stage_type": "model_evaluation",
+      "description": "Evaluating or benchmarking model performance."
+    },
+    {
+      "stage_type": "ablation_study",
+      "description": "Ablating model components or design choices."
+    },
+    {
+      "stage_type": "candidate_generation",
+      "description": "Generating a material candidate space."
+    },
+    {
+      "stage_type": "candidate_screening",
+      "description": "Ranking or filtering material candidates."
+    },
+    {
+      "stage_type": "computational_validation",
+      "description": "Validating candidates with computation or simulation."
+    },
+    {
+      "stage_type": "experimental_validation",
+      "description": "Validating candidates experimentally."
+    },
+    {
+      "stage_type": "other",
+      "description": "A paper-specific R&D stage not represented above."
+    }
+  ]
+}

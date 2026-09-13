@@ -1,0 +1,619 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "MP21",
+      "canonical_name": "Materials Project 2021",
+      "raw_names": [
+        "MP21",
+        "Materials Project database (MP21)",
+        "MP database",
+        "Materials Project",
+        "The Materials Project"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "inorganic materials"
+      ],
+      "available_properties": [
+        "formation energy per atom (eV/atoms)",
+        "band gap (eV)",
+        "phonon frequency (Hz)",
+        "refractive index",
+        "log10 of shear modulus (log (GPa))",
+        "log10 of bulk modulus (log (GPa))",
+        "energy above the convex hull (eV/atom)",
+        "Fermi energy (eV)"
+      ],
+      "available_fields": [
+        "material compositions",
+        "crystal structures",
+        "tabulated physical and chemical descriptors"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "In order to evaluate the performance of our hybrid model (CrysCo), for training and testing purposes we used DFT-calculated solid-state properties from the MP21 database4.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "To benchmark CrysCo’s performance, we used 8 properties datasets (Table 1) that include material compositions, crystal structures, and tabulated physical and chemical descriptors as inputs.",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "In this study, we use 9 datasets obtained from the Materials Project database (MP21).",
+          "page": 10,
+          "section": "Methods",
+          "inferred": false
+        },
+        {
+          "text": "We use The Materials Project63 dataset in this work.",
+          "page": 12,
+          "section": "Data availability",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "Mp_eform",
+      "canonical_name": "MP21 Formation Energy Dataset",
+      "raw_names": [
+        "Mp_eform (Ef)",
+        "Mp_eform"
+      ],
+      "dataset_type": "public_subset",
+      "source_dataset_key": "MP21",
+      "material_scope": [
+        "inorganic materials"
+      ],
+      "available_properties": [
+        "formation energy per atom (eV/atoms)"
+      ],
+      "available_fields": [
+        "material compositions",
+        "crystal structures"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Table 1 | The eight datasets derived from the MP21 database and used in the present study\nDataset name\tSource\tMaterial property\t# Crystal structures\nMp_eform (Ef)\tMP21\tFormation energy per atom (eV/atoms)\t126,785",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "Mp_bgap",
+      "canonical_name": "MP21 Band Gap Dataset",
+      "raw_names": [
+        "Mp_bgap (Eg)",
+        "Mp_bgap"
+      ],
+      "dataset_type": "public_subset",
+      "source_dataset_key": "MP21",
+      "material_scope": [
+        "inorganic materials"
+      ],
+      "available_properties": [
+        "band gap (eV)"
+      ],
+      "available_fields": [
+        "material compositions",
+        "crystal structures"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Table 1 | The eight datasets derived from the MP21 database and used in the present study\nDataset name\tSource\tMaterial property\t# Crystal structures\nMp_bgap (Eg)\tMP21\tBand gap (eV)\t126,728",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "Phonons",
+      "canonical_name": "MP21 Phonon Frequency Dataset",
+      "raw_names": [
+        "Phonons"
+      ],
+      "dataset_type": "public_subset",
+      "source_dataset_key": "MP21",
+      "material_scope": [
+        "inorganic materials"
+      ],
+      "available_properties": [
+        "phonon frequency (Hz)"
+      ],
+      "available_fields": [
+        "material compositions",
+        "crystal structures"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Table 1 | The eight datasets derived from the MP21 database and used in the present study\nDataset name\tSource\tMaterial property\t# Crystal structures\nPhonons\tMP21\tPhonon frequency (Hz)\t1265",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "Dielectric",
+      "canonical_name": "MP21 Dielectric (Refractive Index) Dataset",
+      "raw_names": [
+        "Dielectric"
+      ],
+      "dataset_type": "public_subset",
+      "source_dataset_key": "MP21",
+      "material_scope": [
+        "inorganic materials"
+      ],
+      "available_properties": [
+        "refractive index"
+      ],
+      "available_fields": [
+        "material compositions",
+        "crystal structures"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Table 1 | The eight datasets derived from the MP21 database and used in the present study\nDataset name\tSource\tMaterial property\t# Crystal structures\nDielectric\tMP21\tRefractive index\t4674",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "Elasticity_log10_G",
+      "canonical_name": "MP21 Elasticity log10(Shear Modulus) Dataset",
+      "raw_names": [
+        "Elasticity_log10(G)"
+      ],
+      "dataset_type": "public_subset",
+      "source_dataset_key": "MP21",
+      "material_scope": [
+        "inorganic materials"
+      ],
+      "available_properties": [
+        "log10 of shear modulus (log (GPa))"
+      ],
+      "available_fields": [
+        "material compositions",
+        "crystal structures"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Table 1 | The eight datasets derived from the MP21 database and used in the present study\nDataset name\tSource\tMaterial property\t# Crystal structures\nElasticity_log10(G)\tMP21\tlog10 of shear modulus (log (GPa))\t12,086",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "Elasticity_log10_K",
+      "canonical_name": "MP21 Elasticity log10(Bulk Modulus) Dataset",
+      "raw_names": [
+        "Elasticity_log10(K)"
+      ],
+      "dataset_type": "public_subset",
+      "source_dataset_key": "MP21",
+      "material_scope": [
+        "inorganic materials"
+      ],
+      "available_properties": [
+        "log10 of bulk modulus (log (GPa))"
+      ],
+      "available_fields": [
+        "material compositions",
+        "crystal structures"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Table 1 | The eight datasets derived from the MP21 database and used in the present study\nDataset name\tSource\tMaterial property\t# Crystal structures\nElasticity_log10(K)\tMP21\tlog10 of bulk modulus (log (GPa))\t12,086",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "MP_ehull",
+      "canonical_name": "MP21 Energy Above Convex Hull Dataset",
+      "raw_names": [
+        "MP_ehull (EHull)",
+        "MP_ehull"
+      ],
+      "dataset_type": "public_subset",
+      "source_dataset_key": "MP21",
+      "material_scope": [
+        "inorganic materials"
+      ],
+      "available_properties": [
+        "energy above the convex hull (eV/atom)"
+      ],
+      "available_fields": [
+        "material compositions",
+        "crystal structures"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Table 1 | The eight datasets derived from the MP21 database and used in the present study\nDataset name\tSource\tMaterial property\t# Crystal structures\nMP_ehull (EHull)\tMP21\tEnergy above the convex hull (eV/atom)\t126,785",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "Fe_energy",
+      "canonical_name": "MP21 Fermi Energy Dataset",
+      "raw_names": [
+        "Fe_energy"
+      ],
+      "dataset_type": "public_subset",
+      "source_dataset_key": "MP21",
+      "material_scope": [
+        "inorganic materials"
+      ],
+      "available_properties": [
+        "Fermi energy (eV)"
+      ],
+      "available_fields": [
+        "material compositions",
+        "crystal structures"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Table 1 | The eight datasets derived from the MP21 database and used in the present study\nDataset name\tSource\tMaterial property\t# Crystal structures\nFe_energy\tMP21\tFermi energy (eV)\t26,078",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "MP21",
+      "usage_role": "source",
+      "purpose": "acquire training and testing data for material property prediction",
+      "used_fields": [
+        "DFT-calculated solid-state properties"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "In order to evaluate the performance of our hybrid model (CrysCo), for training and testing purposes we used DFT-calculated solid-state properties from the MP21 database4.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "Mp_eform",
+      "usage_role": "benchmark",
+      "purpose": "benchmark CrysCo's performance on formation energy prediction",
+      "used_fields": [
+        "material compositions",
+        "crystal structures"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 126785,
+      "evidence": [
+        {
+          "text": "Table 1 | The eight datasets derived from the MP21 database and used in the present study\nDataset name\tSource\tMaterial property\t# Crystal structures\nMp_eform (Ef)\tMP21\tFormation energy per atom (eV/atoms)\t126,785",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "Mp_bgap",
+      "usage_role": "benchmark",
+      "purpose": "benchmark CrysCo's performance on band gap prediction",
+      "used_fields": [
+        "material compositions",
+        "crystal structures"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 126728,
+      "evidence": [
+        {
+          "text": "Table 1 | The eight datasets derived from the MP21 database and used in the present study\nDataset name\tSource\tMaterial property\t# Crystal structures\nMp_bgap (Eg)\tMP21\tBand gap (eV)\t126,728",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "Phonons",
+      "usage_role": "benchmark",
+      "purpose": "benchmark CrysCo's performance on phonon frequency prediction",
+      "used_fields": [
+        "material compositions",
+        "crystal structures"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 1265,
+      "evidence": [
+        {
+          "text": "Table 1 | The eight datasets derived from the MP21 database and used in the present study\nDataset name\tSource\tMaterial property\t# Crystal structures\nPhonons\tMP21\tPhonon frequency (Hz)\t1265",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "Dielectric",
+      "usage_role": "benchmark",
+      "purpose": "benchmark CrysCo's performance on refractive index prediction",
+      "used_fields": [
+        "material compositions",
+        "crystal structures"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 4674,
+      "evidence": [
+        {
+          "text": "Table 1 | The eight datasets derived from the MP21 database and used in the present study\nDataset name\tSource\tMaterial property\t# Crystal structures\nDielectric\tMP21\tRefractive index\t4674",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "Elasticity_log10_G",
+      "usage_role": "benchmark",
+      "purpose": "benchmark CrysCo's performance on log10 of shear modulus prediction",
+      "used_fields": [
+        "material compositions",
+        "crystal structures"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 12086,
+      "evidence": [
+        {
+          "text": "Table 1 | The eight datasets derived from the MP21 database and used in the present study\nDataset name\tSource\tMaterial property\t# Crystal structures\nElasticity_log10(G)\tMP21\tlog10 of shear modulus (log (GPa))\t12,086",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "Elasticity_log10_K",
+      "usage_role": "benchmark",
+      "purpose": "benchmark CrysCo's performance on log10 of bulk modulus prediction",
+      "used_fields": [
+        "material compositions",
+        "crystal structures"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 12086,
+      "evidence": [
+        {
+          "text": "Table 1 | The eight datasets derived from the MP21 database and used in the present study\nDataset name\tSource\tMaterial property\t# Crystal structures\nElasticity_log10(K)\tMP21\tlog10 of bulk modulus (log (GPa))\t12,086",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "MP_ehull",
+      "usage_role": "benchmark",
+      "purpose": "benchmark CrysCo's performance on energy above convex hull prediction",
+      "used_fields": [
+        "material compositions",
+        "crystal structures"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 126785,
+      "evidence": [
+        {
+          "text": "Table 1 | The eight datasets derived from the MP21 database and used in the present study\nDataset name\tSource\tMaterial property\t# Crystal structures\nMP_ehull (EHull)\tMP21\tEnergy above the convex hull (eV/atom)\t126,785",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "Fe_energy",
+      "usage_role": "benchmark",
+      "purpose": "benchmark CrysCo's performance on Fermi energy prediction",
+      "used_fields": [
+        "material compositions",
+        "crystal structures"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 26078,
+      "evidence": [
+        {
+          "text": "Table 1 | The eight datasets derived from the MP21 database and used in the present study\nDataset name\tSource\tMaterial property\t# Crystal structures\nFe_energy\tMP21\tFermi energy (eV)\t26,078",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "Mp_eform",
+      "usage_role": "training",
+      "purpose": "train the hybrid model on primary properties (formation energy)",
+      "used_fields": [
+        "material compositions",
+        "crystal structures"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 126785,
+      "evidence": [
+        {
+          "text": "We first trained parent models on primary properties (Eg, Ef, and EHull), with dataset sizes ranging from 126,728 to 126,785 entries from MP21.",
+          "page": 6,
+          "section": "Interpolation analysis",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "MP_ehull",
+      "usage_role": "training",
+      "purpose": "train the hybrid model on primary properties (energy above convex hull)",
+      "used_fields": [
+        "material compositions",
+        "crystal structures"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 126785,
+      "evidence": [
+        {
+          "text": "We first trained parent models on primary properties (Eg, Ef, and EHull), with dataset sizes ranging from 126,728 to 126,785 entries from MP21.",
+          "page": 6,
+          "section": "Interpolation analysis",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "Mp_eform",
+      "usage_role": "pretraining",
+      "purpose": "pre-train model on formation energy for transfer learning to data-scarce properties",
+      "used_fields": [
+        "material compositions",
+        "crystal structures"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 126785,
+      "evidence": [
+        {
+          "text": "We first trained parent models on primary properties (Eg, Ef, and EHull), with dataset sizes ranging from 126,728 to 126,785 entries from MP21.",
+          "page": 6,
+          "section": "Interpolation analysis",
+          "inferred": false
+        },
+        {
+          "text": "CrysCoT-Mp_eform (TL model using a source model pre-trained on Ef)",
+          "page": 6,
+          "section": "Interpolation analysis",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "MP_ehull",
+      "usage_role": "pretraining",
+      "purpose": "pre-train model on energy above convex hull for transfer learning to data-scarce properties",
+      "used_fields": [
+        "material compositions",
+        "crystal structures"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 126785,
+      "evidence": [
+        {
+          "text": "We first trained parent models on primary properties (Eg, Ef, and EHull), with dataset sizes ranging from 126,728 to 126,785 entries from MP21.",
+          "page": 6,
+          "section": "Interpolation analysis",
+          "inferred": false
+        },
+        {
+          "text": "CrysCoT-Mp_ehull (using a model pre-trained on EHull)",
+          "page": 6,
+          "section": "Interpolation analysis",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

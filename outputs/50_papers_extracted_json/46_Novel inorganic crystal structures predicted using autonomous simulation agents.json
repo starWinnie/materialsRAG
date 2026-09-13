@@ -1,0 +1,22 @@
+[
+  {
+    "task_description": "Predicting the thermodynamic stability (i.e., energy above the convex hull) of hypothetical inorganic crystal structures to identify novel stable and metastable materials, specifically targeting structures within 1 meV/atom (ground states) and 200 meV/atom (metastable) of the convex hull for accelerated materials discovery.",
+    "task_tags": [
+      "crystal structure prediction",
+      "phase stability prediction",
+      "thermodynamic stability screening"
+    ],
+    "datasets": [
+      {
+        "db_title": "CAMD Dataset (2022)",
+        "db_description": "A dataset of 96,640 DFT-computed inorganic crystal structures generated via the CAMD autonomous active-learning workflow, including pymatgen Structure objects, formation energies (eV/atom), energies above the convex hull (stability), space groups, chemical systems, reduced formulas, and 273 composition- and structure-derived features. It is used to train and validate machine learning models for predicting formation energy and phase stability, and to screen for thermodynamically stable/metastable candidates during active-learning campaigns.",
+        "db_link": "https://doi.org/10.6084/m9.figshare.19601956.v1"
+      },
+      {
+        "db_title": "OQMD-ICSD (Open Quantum Materials Database — Inorganic Crystal Structure Database subset)",
+        "db_description": "A seed dataset of 34,463 experimentally derived crystal structures from the ICSD, integrated into the OQMD, used to initialize the CAMD active-learning agents and define the baseline convex hull against which the thermodynamic stability of newly predicted structures is measured. It provides ground-truth experimental reference structures and formation energies essential for computing energy-above-hull values and training initial ML models.",
+        "db_link": "https://oqmd.org/"
+      }
+    ]
+  }
+]

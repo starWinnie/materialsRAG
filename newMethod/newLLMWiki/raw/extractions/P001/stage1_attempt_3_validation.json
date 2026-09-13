@@ -1,0 +1,7 @@
+{
+  "attempt": 3,
+  "errors": [
+    "APIConnectionError: Connection error."
+  ],
+  "exception": "APIConnectionError('Connection error.')"
+}

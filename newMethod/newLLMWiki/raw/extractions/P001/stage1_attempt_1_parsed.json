@@ -1,0 +1,163 @@
+{
+  "paper": {
+    "title": "BEYOND STRUCTURE: INVARIANT CRYSTAL PROPERTY PREDICTION WITH PSEUDO-PARTICLE RAY DIFFRACTION",
+    "year": 2026,
+    "doi": null,
+    "research_summary": "Crystal property prediction, governed by quantum mechanical principles, is computationally prohibitive to solve exactly for large many-body systems using traditional density functional theory. While machine learning models have emerged as efficient approximations for large-scale applications, their performance is strongly influenced by the choice of atomic representation. Although modern graph-based approaches have progressively incorporated more structural information, they often fail to capture long-range atomic interactions due to finite receptive fields and local encoding schemes. This limitation leads to distinct crystals being mapped to identical representations, hindering accurate property prediction. To address this, we introduce PRDNet that leverages unique reciprocal-space diffraction besides graph representations. To enhance sensitivity to elemental and environmental variations, we employ a data-driven pseudo-particle to generate a synthetic diffraction pattern. PRDNet ensures full invariance to crystallographic symmetries. Extensive experiments are conducted on Materials Project, JARVIS-DFT, and MatBench, demonstrating that the proposed model achieves state-of-the-art performance."
+  },
+  "task": {
+    "task_name_raw": "Crystal Property Prediction",
+    "task_name_canonical": "crystal_property_prediction",
+    "objective": "estimate a physical property y from the crystal structure, represented as a tuple (A, P, L)",
+    "material_scope": [
+      "crystals"
+    ],
+    "target_properties": [
+      "formation energy",
+      "band gap",
+      "bulk modulus",
+      "shear modulus",
+      "Young's modulus",
+      "metal/non-metal classification",
+      "exfoliation energy",
+      "refractive index",
+      "total energy",
+      "energy above the hull"
+    ],
+    "constraints": [
+      "full invariance to crystallographic symmetries",
+      "E(3)-invariant",
+      "permutation invariance",
+      "translation invariance",
+      "rotation invariance",
+      "periodic invariance",
+      "symmetry invariance"
+    ],
+    "input_requirements": [
+      "crystal structure represented as M = (A, P, L) where A denotes atomic types, P contains coordinates, and L defines the periodic lattice"
+    ],
+    "output_goal": [
+      "physical property y which may be continuous (y ∈ R) in regression tasks or categorical (y ∈ {1, 2, ..., C}) in classification tasks"
+    ],
+    "evidence": [
+      {
+        "text": "Crystal property prediction thus aims to estimate a physical property y from the crystal structure, represented as a tuple (A, P, L). The target property y may be continuous (y ∈R) in regression tasks or categorical (y ∈{1, 2, . . . , C}) in classification tasks with C classes.",
+        "page": 5,
+        "section": "Problem definition",
+        "inferred": false
+      },
+      {
+        "text": "PRDNet outperforms previous approaches by capturing long-range atomic correlations through a physically invariant reciprocal-space representation embedded within the neural network.",
+        "page": 10,
+        "section": "CONCLUSION",
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "Retrieving crystal datasets",
+      "stage_order": 1,
+      "stage_goal": "obtain crystal structure and property data from standard evaluation suites",
+      "stage_input": [],
+      "stage_output": [
+        "Materials Project dataset",
+        "JARVIS-DFT dataset",
+        "Matbench dataset"
+      ],
+      "evidence": [
+        {
+          "text": "We benchmark the models on three standard evaluation suites, all independently retrieved from the official websites.",
+          "page": 8,
+          "section": "Datasets",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_preparation",
+      "stage_name_raw": "Crystal structure representation",
+      "stage_order": 2,
+      "stage_goal": "represent crystal structures as graphs and unit cells for input to the model",
+      "stage_input": [
+        "crystal structure"
+      ],
+      "stage_output": [
+        "graph G = (V, E)",
+        "unit cell representation M = (A, P, L)"
+      ],
+      "evidence": [
+        {
+          "text": "Crystal structures can be described using a fundamental unit, such as a primitive cell, conventional unit cell, Bravais lattice, or asymmetric unit, together with its associated atoms. The unit is defined by a 3 × 3 lattice matrix that specifies its geometry in real space. Formally, a crystal structure is represented as M = (A, P, L), where A denotes atomic types, P = [p1, . . . , pN] ∈R3×N contains the fractional or Cartesian coordinates of the N atoms, and L = [ℓ1, ℓ2, ℓ3] ∈R3×3 defines the periodic lattice in real space.",
+          "page": 4,
+          "section": "PRELIMINARIES",
+          "inferred": false
+        },
+        {
+          "text": "A crystal structure is represented as a graph G = (V, E), where vertices V = {v1, v2, . . . , vN} correspond to atoms one-hot encoded attributes (Xie & Grossman, 2018) and edges E ⊆V × V encode atomic interactions within a cutoff radius.",
+          "page": 5,
+          "section": "Graph embedding",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "Training PRDNet with Huber loss and AdamW optimizer",
+      "stage_order": 3,
+      "stage_goal": "train the PRDNet model to predict crystal properties using robust loss and optimized parameters",
+      "stage_input": [
+        "graph representations",
+        "diffraction features",
+        "property labels"
+      ],
+      "stage_output": [
+        "trained PRDNet model"
+      ],
+      "evidence": [
+        {
+          "text": "To accommodate the diverse nature of crystal property prediction tasks and improve training stability, PRDNet employs Huber loss (Meyer, 2021) for training.",
+          "page": 16,
+          "section": "A.4.1 HUBER LOSS FOR OUTLIER ROBUSTNESS",
+          "inferred": false
+        },
+        {
+          "text": "PRDNet employs the AdamW optimizer, which decouples weight decay from gradient-based updates:",
+          "page": 17,
+          "section": "A.4.2 ADAMW WITH DECOUPLED WEIGHT DECAY",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "Evaluating model performance on benchmark datasets",
+      "stage_order": 4,
+      "stage_goal": "assess PRDNet's predictive accuracy across multiple crystal property tasks using standard metrics",
+      "stage_input": [
+        "trained PRDNet model",
+        "test sets from MP, JARVIS-DFT, Matbench"
+      ],
+      "stage_output": [
+        "MAE scores",
+        "accuracy scores",
+        "SOTA comparisons"
+      ],
+      "evidence": [
+        {
+          "text": "Extensive experiments are conducted on Materials Project, JARVIS-DFT, and MatBench, demonstrating that the proposed model achieves state-of-the-art performance.",
+          "page": 1,
+          "section": "ABSTRACT",
+          "inferred": false
+        },
+        {
+          "text": "Model performance is evaluated using the Mean Absolute Error (MAE) and accuracy.",
+          "page": 8,
+          "section": "Implementation details",
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

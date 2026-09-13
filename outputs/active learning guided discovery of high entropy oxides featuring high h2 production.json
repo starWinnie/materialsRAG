@@ -1,0 +1,17 @@
+[
+  {
+    "task_description": "Discovering high entropy spinel oxides (HESOs) with high catalytic activity for hydrogen production via the water-gas shift reaction, by efficiently navigating a vast compositional space of 14,443 candidate materials to identify those exhibiting both single-phase spinel structure and low T90 (temperature for 90% CO conversion), thereby enabling accelerated experimental validation of top-performing catalysts.",
+    "task_tags": [
+      "catalyst discovery",
+      "high entropy oxide design",
+      "water-gas shift catalysis"
+    ],
+    "datasets": [
+      {
+        "db_title": "Custom HESO Experimental Dataset",
+        "db_description": "A curated experimental dataset comprising 514 synthesized high entropy spinel oxide (HESO) samples, derived from 305 Kennard-Stone-sampled candidates plus 209 preliminary samples. Each entry includes composition (14 transition metal concentrations), XRD-derived Ω value (quantifying spinel phase purity, where Ω = 1 indicates single phase), and experimentally measured T90 (temperature for 90% CO conversion in WGS reaction). This dataset was used to train and iteratively update XGBoost classifier (for phase purity prediction) and regressor (for T90 prediction) within the active learning loop to guide synthesis toward high-activity, single-phase HESOs.",
+        "db_link": "None"
+      }
+    ]
+  }
+]

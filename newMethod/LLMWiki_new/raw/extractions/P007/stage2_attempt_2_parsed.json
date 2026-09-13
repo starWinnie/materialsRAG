@@ -1,0 +1,483 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "materials_project_bulk",
+      "canonical_name": "Materials Project",
+      "raw_names": [
+        "Materials Project"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "bulk crystals"
+      ],
+      "available_properties": [
+        "piezoelectric tensor (eijk)"
+      ],
+      "available_fields": [
+        "crystal structure",
+        "piezoelectric tensor"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "The piezoelectric tensor data of bulk crystals in this work was obtained from the Materials Project21 and a recent high-throughput computational study on piezoelectric tensors24,30.",
+          "page": 3,
+          "section": "unknown",
+          "inferred": false
+        },
+        {
+          "text": "The two-dimensional materials used in this study were obtained from the C2DB database (https://c2db.fysik.dtu.dk/), while the bulk material data were sourced from the Materials Project and the JARVIS database (https://jarvis.nist.gov/login?next=/jarvisdft/).",
+          "page": 7,
+          "section": "Data availability",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "jarvis_bulk",
+      "canonical_name": "JARVIS database",
+      "raw_names": [
+        "JARVIS database"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "bulk crystals"
+      ],
+      "available_properties": [
+        "piezoelectric tensor (eijk)"
+      ],
+      "available_fields": [
+        "crystal structure",
+        "piezoelectric tensor"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "The two-dimensional materials used in this study were obtained from the C2DB database (https://c2db.fysik.dtu.dk/), while the bulk material data were sourced from the Materials Project and the JARVIS database (https://jarvis.nist.gov/login?next=/jarvisdft/).",
+          "page": 7,
+          "section": "Data availability",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "choudhary_2020_bulk",
+      "canonical_name": "Choudhary et al. high-throughput computational study on piezoelectric tensors",
+      "raw_names": [
+        "a recent high-throughput computational study on piezoelectric tensors24,30"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "bulk crystals"
+      ],
+      "available_properties": [
+        "piezoelectric tensor (eijk)"
+      ],
+      "available_fields": [
+        "crystal structure",
+        "piezoelectric tensor"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "The piezoelectric tensor data of bulk crystals in this work was obtained from the Materials Project21 and a recent high-throughput computational study on piezoelectric tensors24,30.",
+          "page": 3,
+          "section": "unknown",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "c2db_2d",
+      "canonical_name": "Computational 2D Materials Database",
+      "raw_names": [
+        "C2DB database",
+        "Computational 2D Materials Database"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "two-dimensional materials"
+      ],
+      "available_properties": [
+        "piezoelectric tensor (eijk)"
+      ],
+      "available_fields": [
+        "crystal structure",
+        "piezoelectric tensor"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "The piezoelectric tensor data of 2D materials was obtained from the C2DB database33,34, comprising a total of 1382 data points...",
+          "page": 5,
+          "section": "unknown",
+          "inferred": false
+        },
+        {
+          "text": "The training data for the model presented in this work is sourced from Computational 2D Materials Database (C2DB)33,34, the Material Project21 and a recent high-throughput computational study on piezoelectric tensors30.",
+          "page": 7,
+          "section": "Dataset",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "2dmatpedia_2d",
+      "canonical_name": "2DMatPedia database",
+      "raw_names": [
+        "2DMatPedia database"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "two-dimensional materials"
+      ],
+      "available_properties": [
+        "crystal structure"
+      ],
+      "available_fields": [
+        "crystal structure"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "In order to discover new potential high-performance piezoelectric materials, we use our model on both 3D and 2D materials in the Materials Project and 2DMatPedia database36, respectively. Our selection criteria are 1) out of the training datasets, 2) inversion asymmetry, 3) Egap > 0.1 eV, and 4) Nuc < 30 atoms.",
+          "page": 6,
+          "section": "unknown",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "bulk_derived_subset",
+      "canonical_name": "EATGNN bulk piezoelectric dataset",
+      "raw_names": [
+        "dataset comprising 3444 entries"
+      ],
+      "dataset_type": "derived_subset",
+      "source_dataset_key": "materials_project_bulk",
+      "material_scope": [
+        "bulk crystals"
+      ],
+      "available_properties": [
+        "piezoelectric tensor (eijk)"
+      ],
+      "available_fields": [
+        "crystal structure",
+        "piezoelectric tensor"
+      ],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "Ultimately, we obtained a dataset comprising 3444 entries, and these data were randomly divided into training and test sets in a 9:1 ratio.",
+          "page": 4,
+          "section": "unknown",
+          "inferred": false
+        },
+        {
+          "text": "Due to the presence of a significant number of outliers in the piezoelectric tensors, we performed data resampling before applying machine learning techniques to prevent overfitting. Additionally, we restricted the materials used in this work to a unit cell containing no more than 25 atoms to ensure a reasonable distribution of data. We examined all materials dataset to ensure that the target piezoelectric tensors are consistent with the material’s symmetry. Furthermore, we mathematically adjusted those piezoelectric tensors that did not conform to the material’s symmetry to be invariant under crystallographic symmetry operations.",
+          "page": 3,
+          "section": "unknown",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "2d_derived_subset",
+      "canonical_name": "EATGNN 2D piezoelectric dataset",
+      "raw_names": [
+        "1350 data points"
+      ],
+      "dataset_type": "derived_subset",
+      "source_dataset_key": "c2db_2d",
+      "material_scope": [
+        "two-dimensional materials"
+      ],
+      "available_properties": [
+        "piezoelectric tensor (eijk)"
+      ],
+      "available_fields": [
+        "crystal structure",
+        "piezoelectric tensor"
+      ],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "The piezoelectric tensor data of 2D materials was obtained from the C2DB database33,34, comprising a total of 1382 data points, after analyzing and removing some extreme outliers to prevent the model from learning an inaccurate data distribution, 1350 data points were retained and randomly split into training and test sets with 9:1 ratio.",
+          "page": 5,
+          "section": "unknown",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "materials_project_bulk",
+      "usage_role": "source",
+      "purpose": "To acquire piezoelectric tensor data for bulk crystals",
+      "used_fields": [
+        "crystal structure",
+        "piezoelectric tensor"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The piezoelectric tensor data of bulk crystals in this work was obtained from the Materials Project21 and a recent high-throughput computational study on piezoelectric tensors24,30.",
+          "page": 3,
+          "section": "unknown",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "jarvis_bulk",
+      "usage_role": "source",
+      "purpose": "To acquire piezoelectric tensor data for bulk crystals",
+      "used_fields": [
+        "crystal structure",
+        "piezoelectric tensor"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The two-dimensional materials used in this study were obtained from the C2DB database (https://c2db.fysik.dtu.dk/), while the bulk material data were sourced from the Materials Project and the JARVIS database (https://jarvis.nist.gov/login?next=/jarvisdft/).",
+          "page": 7,
+          "section": "Data availability",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "choudhary_2020_bulk",
+      "usage_role": "source",
+      "purpose": "To acquire piezoelectric tensor data for bulk crystals",
+      "used_fields": [
+        "crystal structure",
+        "piezoelectric tensor"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The piezoelectric tensor data of bulk crystals in this work was obtained from the Materials Project21 and a recent high-throughput computational study on piezoelectric tensors24,30.",
+          "page": 3,
+          "section": "unknown",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "c2db_2d",
+      "usage_role": "source",
+      "purpose": "To acquire piezoelectric tensor data for 2D materials",
+      "used_fields": [
+        "crystal structure",
+        "piezoelectric tensor"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The piezoelectric tensor data of 2D materials was obtained from the C2DB database33,34, comprising a total of 1382 data points...",
+          "page": 5,
+          "section": "unknown",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "bulk_derived_subset",
+      "usage_role": "training",
+      "purpose": "To train EATGNN model on cleaned, symmetry-compliant bulk piezoelectric data",
+      "used_fields": [
+        "crystal structure",
+        "piezoelectric tensor"
+      ],
+      "is_derived": true,
+      "construction_method": "data resampling, symmetry correction, unit cell size restriction (<25 atoms)",
+      "filter_conditions": [
+        "no more than 25 atoms per unit cell",
+        "symmetry-compliant piezoelectric tensor"
+      ],
+      "sample_count": 3444,
+      "evidence": [
+        {
+          "text": "Ultimately, we obtained a dataset comprising 3444 entries, and these data were randomly divided into training and test sets in a 9:1 ratio.",
+          "page": 4,
+          "section": "unknown",
+          "inferred": false
+        },
+        {
+          "text": "Due to the presence of a significant number of outliers in the piezoelectric tensors, we performed data resampling before applying machine learning techniques to prevent overfitting. Additionally, we restricted the materials used in this work to a unit cell containing no more than 25 atoms to ensure a reasonable distribution of data. We examined all materials dataset to ensure that the target piezoelectric tensors are consistent with the material’s symmetry. Furthermore, we mathematically adjusted those piezoelectric tensors that did not conform to the material’s symmetry to be invariant under crystallographic symmetry operations.",
+          "page": 3,
+          "section": "unknown",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "2d_derived_subset",
+      "usage_role": "training",
+      "purpose": "To train EATGNN model on cleaned, symmetry-compliant 2D piezoelectric data",
+      "used_fields": [
+        "crystal structure",
+        "piezoelectric tensor"
+      ],
+      "is_derived": true,
+      "construction_method": "outlier removal, symmetry correction",
+      "filter_conditions": [
+        "symmetry-compliant piezoelectric tensor"
+      ],
+      "sample_count": 1350,
+      "evidence": [
+        {
+          "text": "The piezoelectric tensor data of 2D materials was obtained from the C2DB database33,34, comprising a total of 1382 data points, after analyzing and removing some extreme outliers to prevent the model from learning an inaccurate data distribution, 1350 data points were retained and randomly split into training and test sets with 9:1 ratio.",
+          "page": 5,
+          "section": "unknown",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "bulk_derived_subset",
+      "usage_role": "test",
+      "purpose": "To evaluate EATGNN performance on held-out bulk test set",
+      "used_fields": [
+        "crystal structure",
+        "piezoelectric tensor"
+      ],
+      "is_derived": true,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Ultimately, we obtained a dataset comprising 3444 entries, and these data were randomly divided into training and test sets in a 9:1 ratio.",
+          "page": 4,
+          "section": "unknown",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "2d_derived_subset",
+      "usage_role": "test",
+      "purpose": "To evaluate EATGNN performance on held-out 2D test set",
+      "used_fields": [
+        "crystal structure",
+        "piezoelectric tensor"
+      ],
+      "is_derived": true,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The piezoelectric tensor data of 2D materials was obtained from the C2DB database33,34, comprising a total of 1382 data points, after analyzing and removing some extreme outliers to prevent the model from learning an inaccurate data distribution, 1350 data points were retained and randomly split into training and test sets with 9:1 ratio.",
+          "page": 5,
+          "section": "unknown",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "materials_project_bulk",
+      "usage_role": "candidate_pool",
+      "purpose": "To screen candidate bulk piezoelectric materials using trained EATGNN",
+      "used_fields": [
+        "crystal structure"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [
+        "out of the training datasets",
+        "inversion asymmetry",
+        "Egap > 0.1 eV",
+        "Nuc < 30 atoms"
+      ],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "In order to discover new potential high-performance piezoelectric materials, we use our model on both 3D and 2D materials in the Materials Project and 2DMatPedia database36, respectively. Our selection criteria are 1) out of the training datasets, 2) inversion asymmetry, 3) Egap > 0.1 eV, and 4) Nuc < 30 atoms.",
+          "page": 6,
+          "section": "unknown",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "2dmatpedia_2d",
+      "usage_role": "candidate_pool",
+      "purpose": "To screen candidate 2D piezoelectric materials using trained EATGNN",
+      "used_fields": [
+        "crystal structure"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [
+        "out of the training datasets",
+        "inversion asymmetry",
+        "Egap > 0.1 eV",
+        "Nuc < 30 atoms"
+      ],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "In order to discover new potential high-performance piezoelectric materials, we use our model on both 3D and 2D materials in the Materials Project and 2DMatPedia database36, respectively. Our selection criteria are 1) out of the training datasets, 2) inversion asymmetry, 3) Egap > 0.1 eV, and 4) Nuc < 30 atoms.",
+          "page": 6,
+          "section": "unknown",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

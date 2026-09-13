@@ -1,0 +1,231 @@
+{
+  "paper": {
+    "title": "How simple can you go? An off-the-shelf transformer approach to molecular dynamics",
+    "year": 2026,
+    "doi": "10.1063/5.0295035",
+    "research_summary": "This paper presents MD-ET, an edge transformer adapted for molecular dynamics with minimal physical inductive biases (no built-in rotational equivariance or energy conservation), trained on the QCML dataset. It evaluates performance on benchmarks (QCML, MD17, Ko2020, xxMD, SPICE), analyzes approximate equivariance and energy conservation, and assesses stability and faithfulness of NVE and NVT simulations."
+  },
+  "task": {
+    "task_name_raw": "molecular dynamics simulation using machine learning force fields",
+    "task_name_canonical": "molecular_dynamics_simulation",
+    "objective": "Develop and evaluate a minimally biased neural network model for predicting atomic forces to enable stable and faithful molecular dynamics simulations.",
+    "material_scope": [
+      "molecules",
+      "ionic systems",
+      "metallic systems"
+    ],
+    "target_properties": [
+      "atomic forces",
+      "energy conservation",
+      "rotational equivariance",
+      "NVE/NVT simulation stability",
+      "observables (e.g., h(r), velocity autocorrelation spectra)"
+    ],
+    "constraints": [
+      "no built-in rotational equivariance",
+      "no built-in energy conservation",
+      "off-the-shelf transformer architecture with minimal modification"
+    ],
+    "input_requirements": [
+      "3D atomic positions",
+      "atomic numbers",
+      "spin and charge states",
+      "pairwise distances and displacement vectors"
+    ],
+    "output_goal": [
+      "predicted atomic forces",
+      "stable NVE and NVT molecular dynamics trajectories",
+      "faithful reproduction of physical observables"
+    ],
+    "evidence": [
+      {
+        "text": "We present a recipe for MD using an edge transformer (ET), an “off-the-shelf” transformer architecture that has been minimally modified for the MD domain, termed MD-ET. Our model implements neither built-in equivariance nor energy conservation.",
+        "page": 2,
+        "section": "ABSTRACT",
+        "inferred": false
+      },
+      {
+        "text": "We thus study an extreme case: we present and evaluate the best MD model we can build using a minimal amount of MD-specific design features. Specifically, we aim to use an architecture that could be used in some related ML setting with minimal changes.",
+        "page": 3,
+        "section": "We examine the effects of forgoing almost all commonly",
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "acquisition of QCML dataset",
+      "stage_order": 1,
+      "stage_goal": "Obtain a large-scale quantum chemistry reference dataset spanning the periodic table, including out-of-equilibrium structures and different spin and charge states.",
+      "stage_input": [],
+      "stage_output": [
+        "QCML database (~30 × 10^6 molecular structures)"
+      ],
+      "evidence": [
+        {
+          "text": "We modify an edge transformer (ET)43,44 with MD-specific embedding layers and train on the new QCML database.45 QCML ranges across the periodic table, including out-of-equilibrium structures and different spin and charge states, and includes properties for a subset of ∼30 × 106 entries calculated with density functional theory accuracy at the PBE0 level46,47 (including dispersion corrections48,49).",
+          "page": 3,
+          "section": "We examine the effects of forgoing almost all commonly",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_preparation",
+      "stage_name_raw": "data splitting and augmentation",
+      "stage_order": 2,
+      "stage_goal": "Create train/validation/test splits ensuring conformational integrity and apply random rotations and reflections to learn approximate O(3)-equivariance.",
+      "stage_input": [
+        "QCML database"
+      ],
+      "stage_output": [
+        "90%/5%/5% split",
+        "augmented batches with rotated/mirrored structures"
+      ],
+      "evidence": [
+        {
+          "text": "We create an approximate 90%/5%/5% split from QCML. As QCML contains multiple conformations for each structure sampled along its normal modes, we ensure that all conformations of a structure are assigned to the same split. To learn approximate equivariance, we use data augmentation: during pretraining, we duplicate each batch once and apply random rotations and reflections to both copies to form an augmented batch.",
+          "page": 5,
+          "section": "Pretraining performance",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "supervised pretraining on QCML",
+      "stage_order": 3,
+      "stage_goal": "Train the MD-ET model to predict atomic forces directly (not via energy gradient) on the QCML dataset.",
+      "stage_input": [
+        "QCML split",
+        "augmented batches"
+      ],
+      "stage_output": [
+        "pretrained MD-ET model"
+      ],
+      "evidence": [
+        {
+          "text": "Instead of predicting a combined loss50 of energies and forces or calculating forces as the negative gradient of the predicted energy with respect to positions, we predict forces directly.",
+          "page": 3,
+          "section": "We examine the effects of forgoing almost all commonly",
+          "inferred": false
+        },
+        {
+          "text": "We perform supervised pretraining on the new QCML dataset.45",
+          "page": 5,
+          "section": "Pretraining performance",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "fine-tuning on downstream datasets",
+      "stage_order": 4,
+      "stage_goal": "Adapt the pretrained MD-ET model to specific molecular systems (e.g., MD17, Ko2020, xxMD, SPICE) with a small number of training steps.",
+      "stage_input": [
+        "pretrained MD-ET model",
+        "downstream benchmark datasets"
+      ],
+      "stage_output": [
+        "fine-tuned MD-ET models"
+      ],
+      "evidence": [
+        {
+          "text": "For downstream task evaluation, we fine-tune the model for a small number of steps only.",
+          "page": 3,
+          "section": "We examine the effects of forgoing almost all commonly",
+          "inferred": false
+        },
+        {
+          "text": "We also report results for training the model directly on MD17. Since there is some overlap with the pretraining set, fine-tuning results for ethanol (marked with a ∗) have only limited significance.",
+          "page": 5,
+          "section": "Pretraining performance",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "benchmark evaluation on force prediction accuracy",
+      "stage_order": 5,
+      "stage_goal": "Assess the mean absolute error (MAE) of predicted atomic forces against ground truth on standard datasets (QCML, MD17, Ko2020, xxMD, SPICE).",
+      "stage_input": [
+        "pretrained/fine-tuned MD-ET models",
+        "ground truth force labels"
+      ],
+      "stage_output": [
+        "MAE scores",
+        "RMSE scores"
+      ],
+      "evidence": [
+        {
+          "text": "In Table I, we present the mean absolute error (MAE) of force predictions for MD-ET, SpookyNet,70 and PaiNN21 on the QCML evaluation set at the end of pretraining.",
+          "page": 5,
+          "section": "Pretraining performance",
+          "inferred": false
+        },
+        {
+          "text": "Table IV compares the force root mean squared errors (RMSE) of MD-ET with a 4th-generation Behler–Parinello neural network, 4G-BPNN (high-dimensional neural network potential, 4G-HDNNP),67 and SpookyNet70 on selected systems from the Ko2020 dataset.",
+          "page": 7,
+          "section": "Ko2020",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "evaluation of MD simulation stability and faithfulness",
+      "stage_order": 6,
+      "stage_goal": "Run NVE and NVT molecular dynamics simulations and measure stability (time until instability), faithfulness (h(r) score), and observables (velocity autocorrelation spectra).",
+      "stage_input": [
+        "pretrained/fine-tuned MD-ET models",
+        "molecular structures"
+      ],
+      "stage_output": [
+        "simulation stability metrics",
+        "h(r) distributions",
+        "velocity autocorrelation power spectra"
+      ],
+      "evidence": [
+        {
+          "text": "Stability is measured by the time until a simulation becomes unstable (capped at 300 ps), and faithfulness is measured by h(r), the distribution of interatomic distances.74",
+          "page": 5,
+          "section": "MD17-10k",
+          "inferred": false
+        },
+        {
+          "text": "To evaluate the degree to which MD-ET produces faithful MD simulations, we run 1 ns NVT simulations using the stochastic velocity rescaling (SVR or Bussi) thermostat... We then produce velocity–velocity autocorrelation spectra from these trajectories.",
+          "page": 12,
+          "section": "unknown",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "ablation_study",
+      "stage_name_raw": "analysis of equivariance and energy conservation",
+      "stage_order": 7,
+      "stage_goal": "Quantify the model's approximate rotational equivariance (via equivariance error Eeq) and approximate energy conservation (via Jacobian antisymmetry ratio λ and NVE energy drift).",
+      "stage_input": [
+        "pretrained/fine-tuned MD-ET models",
+        "rotated input structures",
+        "NVE simulation trajectories"
+      ],
+      "stage_output": [
+        "equivariance error Eeq",
+        "antisymmetric ratio λ",
+        "total energy variation plots"
+      ],
+      "evidence": [
+        {
+          "text": "Bigi et al.29 examine the Jacobian matrix of the force prediction with respect to atom positions J ∈R3n×3n to quantify energy conservation. The Jacobian of a perfectly energy-conserving prediction should be a symmetric matrix since it is the Hessian of the molecular energy.",
+          "page": 11,
+          "section": "unknown",
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

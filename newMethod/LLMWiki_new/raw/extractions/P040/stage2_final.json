@@ -1,0 +1,496 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "10Ni_30La_CeO2_catalyst",
+      "canonical_name": "10Ni/30La-CeO2 catalyst",
+      "raw_names": [
+        "10Ni/30La-CeO2 catalyst",
+        "10Ni/30La-CeO2"
+      ],
+      "dataset_type": "paper_specific",
+      "source_dataset_key": null,
+      "material_scope": [
+        "Ni",
+        "La-doped CeO2"
+      ],
+      "available_properties": [
+        "structural morphology",
+        "Ni particle size distribution",
+        "Ni cluster size (1–2 nm)",
+        "Niδ+ proportion (51.1%)",
+        "Ce3+ content (43%)",
+        "oxygen vacancy concentration",
+        "H2 production rate (279.2 mmolH2·gNi−1·min−1)"
+      ],
+      "available_fields": [
+        "HAADF-STEM images",
+        "EDX mapping",
+        "XRD patterns",
+        "FTIR spectra",
+        "XPS spectra",
+        "EXAFS data",
+        "Raman spectra",
+        "H2-TPR profiles",
+        "NH3-TPD profiles",
+        "CO2-TPD profiles",
+        "in situ ETEM videos"
+      ],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "Herein, Ni-based catalysts supported on La-doped CeO2 (10Ni/30La-CeO2, where nLa: nCe = 3: 7) and undoped CeO2 (10Ni/CeO2) were synthesized respectively to catalyze the ammonia decomposition reaction.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "The successful construction of a stable Ni cluster catalyst has enabled a H2 production rate (500 °C, 279.2 mmolH2·gNi−1·min−1) and exceptional thermal stability.",
+          "page": 2,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "Quantitative analysis revealed that the 10Ni/30La-CeO2 catalyst exhibited a significantly higher proportion of Niδ+ species (51.1%) compared to the 10Ni/CeO2 reference (30.6%), demonstrating the promotional effect of La doping on the stabilization of oxidized Ni sites.",
+          "page": 3,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "10Ni_CeO2_catalyst",
+      "canonical_name": "10Ni/CeO2 catalyst",
+      "raw_names": [
+        "10Ni/CeO2 catalyst",
+        "10Ni/CeO2"
+      ],
+      "dataset_type": "paper_specific",
+      "source_dataset_key": null,
+      "material_scope": [
+        "Ni",
+        "CeO2"
+      ],
+      "available_properties": [
+        "structural morphology",
+        "Ni particle size (5–10 nm)",
+        "Niδ+ proportion (30.6%)",
+        "Ce3+ content (31%)",
+        "oxygen vacancy concentration",
+        "H2 production rate (lower than 10Ni/30La-CeO2)"
+      ],
+      "available_fields": [
+        "HAADF-STEM images",
+        "EDX mapping",
+        "XRD patterns",
+        "FTIR spectra",
+        "XPS spectra",
+        "EXAFS data",
+        "Raman spectra",
+        "H2-TPR profiles",
+        "NH3-TPD profiles",
+        "CO2-TPD profiles"
+      ],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "Herein, Ni-based catalysts supported on La-doped CeO2 (10Ni/30La-CeO2, where nLa: nCe = 3: 7) and undoped CeO2 (10Ni/CeO2) were synthesized respectively to catalyze the ammonia decomposition reaction.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "Quantitative analysis revealed that the 10Ni/30La-CeO2 catalyst exhibited a significantly higher proportion of Niδ+ species (51.1%) compared to the 10Ni/CeO2 reference (30.6%), demonstrating the promotional effect of La doping on the stabilization of oxidized Ni sites.",
+          "page": 3,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "The content of Ce3+ in 10Ni/30La-CeO2 (43%) was notably higher than that in 10Ni/CeO2 (31%), indicating a significantly greater concentration of OVs.",
+          "page": 7,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "30La_CeO2_nanorods",
+      "canonical_name": "30La-CeO2 nanorods",
+      "raw_names": [
+        "30La-CeO2 nanorods",
+        "30La-CeO2"
+      ],
+      "dataset_type": "paper_specific",
+      "source_dataset_key": null,
+      "material_scope": [
+        "La-doped CeO2"
+      ],
+      "available_properties": [
+        "nanorod morphology",
+        "lattice expansion (0.54° downshift)",
+        "surface stress",
+        "BET surface area (97.5 m²·g⁻¹ as-prepared)",
+        "thermal stability"
+      ],
+      "available_fields": [
+        "TEM images",
+        "XRD patterns",
+        "EDX mapping",
+        "BET surface area measurements"
+      ],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "CeO2 nanorods doped with La were prepared via the hydrothermal method.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "The 30La-CeO2 nanorods were synthesized by the hydrothermal method.",
+          "page": 9,
+          "section": "Methods",
+          "inferred": false
+        },
+        {
+          "text": "The analysis revealed only the characteristic diffraction peaks of CeO2, which exhibited a notable downshift (0.54°) upon La doping, indicating the lattice expansion (Fig. 3a).",
+          "page": 3,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "CeO2_nanorods",
+      "canonical_name": "CeO2 nanorods",
+      "raw_names": [
+        "CeO2 nanorods",
+        "CeO2"
+      ],
+      "dataset_type": "paper_specific",
+      "source_dataset_key": null,
+      "material_scope": [
+        "CeO2"
+      ],
+      "available_properties": [
+        "nanorod morphology",
+        "BET surface area (99.1 m²·g⁻¹ as-prepared)",
+        "thermal sintering behavior"
+      ],
+      "available_fields": [
+        "TEM images",
+        "XRD patterns",
+        "BET surface area measurements"
+      ],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "CeO2 nanorods doped with La were prepared via the hydrothermal method. TEM images showed that both CeO2 and 30La-CeO2 exhibited regular nanorod morphologies, with La doping exerting minimal impact on the structural characteristics (Supplementary Fig. 1).",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "The reference CeO2 nanorods were prepared by the same method.",
+          "page": 9,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "10Ni_30La_CeO2_catalyst",
+      "usage_role": "source",
+      "purpose": "Synthesis of catalyst for comparative study and subsequent pretreatment",
+      "used_fields": [
+        "structural morphology",
+        "Ni loading (7.3 wt.%)"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Herein, Ni-based catalysts supported on La-doped CeO2 (10Ni/30La-CeO2, where nLa: nCe = 3: 7) and undoped CeO2 (10Ni/CeO2) were synthesized respectively to catalyze the ammonia decomposition reaction.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "10Ni_CeO2_catalyst",
+      "usage_role": "source",
+      "purpose": "Synthesis of catalyst for comparative study and subsequent pretreatment",
+      "used_fields": [
+        "structural morphology",
+        "Ni loading (7.6 wt.%)"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Herein, Ni-based catalysts supported on La-doped CeO2 (10Ni/30La-CeO2, where nLa: nCe = 3: 7) and undoped CeO2 (10Ni/CeO2) were synthesized respectively to catalyze the ammonia decomposition reaction.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "30La_CeO2_nanorods",
+      "usage_role": "source",
+      "purpose": "Support material for Ni catalyst synthesis",
+      "used_fields": [
+        "nanorod morphology",
+        "lattice parameters"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "CeO2 nanorods doped with La were prepared via the hydrothermal method.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "CeO2_nanorods",
+      "usage_role": "source",
+      "purpose": "Support material for Ni catalyst synthesis (reference)",
+      "used_fields": [
+        "nanorod morphology"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "CeO2 nanorods doped with La were prepared via the hydrothermal method. TEM images showed that both CeO2 and 30La-CeO2 exhibited regular nanorod morphologies, with La doping exerting minimal impact on the structural characteristics (Supplementary Fig. 1).",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "10Ni_30La_CeO2_catalyst",
+      "usage_role": "candidate_pool",
+      "purpose": "Generate distinct Ni species states (particles → clusters) through controlled thermal treatment under NH3 or H2",
+      "used_fields": [
+        "Ni particle size (5–10 nm)",
+        "Ni cluster size (1–2 nm)"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "HAADF-STEM analysis revealed a large number of particles with sizes of 5−10 nm on the surface of the 10Ni/30La-CeO2 catalyst (Fig. 1a), which was treated with NH3 at 500 °C for 0.5 h. Further, only a limited number of Ni particles along with a substantial amount of Ni clusters were observed after being treated at 600 °C for 1 h (Fig. 1b, Supplementary Fig. 4). On this basis, the dispersion of Ni species was markedly improved when the treatment time was extended to 120 h. The metallic Ni particles were no longer detectable on the surface of the 10Ni/30La-CeO2 catalyst. A significant number of stable Ni clusters were observed, with an average size of 1−2 nm (Fig. 1c, Supplementary Fig. 5).",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "10Ni_CeO2_catalyst",
+      "usage_role": "candidate_pool",
+      "purpose": "Control experiment to demonstrate lack of dispersion under identical conditions",
+      "used_fields": [
+        "Ni particle size (5–10 nm)",
+        "structural collapse"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "In contrast, after being subjected to the same treatments, the structure of the 10Ni/CeO2 catalyst collapsed, and a large number of metallic Ni particles with sizes of 5−10 nm precipitated (Supplementary Fig. 8 and 9).",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "10Ni_30La_CeO2_catalyst",
+      "usage_role": "computational_validation",
+      "purpose": "Validate thermodynamic and kinetic feasibility of Ni particle dispersion via Ni–O–La/Ce bonding and quantify interfacial energy evolution",
+      "used_fields": [
+        "Ni-O-La adsorption energy (−0.75 eV)",
+        "Ni-O-Ce adsorption energy (−0.26 eV)"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "DFT calculations revealed that the reactive Oads coordinated with either Ce or La atoms on the catalyst surface could establish strong MSI with Ni species, consequently promoting the redispersion of Ni nanoparticles (Fig. 4f).",
+          "page": 5,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "This phenomenon can be attributed to the fact that when Ni atoms on the catalyst surface were directly bonded to O atoms in proximity to La, the negative adsorption energy (−0.75 eV) led to the formation of a stable adsorption structure.",
+          "page": 7,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "10Ni_CeO2_catalyst",
+      "usage_role": "computational_validation",
+      "purpose": "Comparative computational validation to demonstrate weaker Ni–O–Ce interaction",
+      "used_fields": [
+        "Ni-O-Ce adsorption energy (−0.26 eV)",
+        "multi-layer Ni distribution"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "DFT calculations revealed distinct adsorption behaviors depending on the coordination environment of Ni. When Ni atoms formed direct bonds with Ce (Eads = 1.97 eV) or La (Eads = 1.71 eV) atoms in the support, the positive adsorption energies indicated thermodynamic instability. In contrast, Ni coordination with O atoms adjacent to Ce sites exhibited a lower adsorption energy (Eads = −0.26 eV), favoring stable configurations.",
+          "page": 5,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "Molecular dynamics simulations confirmed that these effects led to a multi-layer Ni distribution on 10Ni/CeO2.",
+          "page": 7,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "10Ni_30La_CeO2_catalyst",
+      "usage_role": "experimental_validation",
+      "purpose": "Directly observe and confirm real-time structural evolution from Ni particles to clusters under operando conditions",
+      "used_fields": [
+        "time-resolved ETEM images",
+        "particle contraction → complete dispersion → retained highly dispersed state"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "In order to directly observe the formation process of these Ni clusters, in situ aberration-corrected ETEM was employed to characterize the 10Ni/30La-CeO2 catalyst. The nanoparticles gradually contracted when the temperature increased from room temperature to 450 °C under a H2 atmosphere (Fig. 2a, b). Then, the particles completely dispersed upon further increasing the temperature to 600 °C, and the highly dispersed state was retained even after returning to ambient temperature (Fig. 2c, d).",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "10Ni_30La_CeO2_catalyst",
+      "usage_role": "benchmark",
+      "purpose": "Establish causal links between La-induced support stabilization, enhanced MSI, oxygen vacancy concentration, Niδ+ speciation, and catalytic performance",
+      "used_fields": [
+        "Niδ+ proportion (51.1%)",
+        "Ce3+ content (43%)",
+        "ID/IF2g ratio",
+        "H2 production rate (279.2 mmolH2·gNi−1·min−1)"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Quantitative analysis revealed that the 10Ni/30La-CeO2 catalyst exhibited a significantly higher proportion of Niδ+ species (51.1%) compared to the 10Ni/CeO2 reference (30.6%), demonstrating the promotional effect of La doping on the stabilization of oxidized Ni sites.",
+          "page": 3,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "The content of Ce3+ in 10Ni/30La-CeO2 (43%) was notably higher than that in 10Ni/CeO2 (31%), indicating a significantly greater concentration of OVs.",
+          "page": 7,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "The optimized 10Ni/30La-CeO2 catalyst exhibits a remarkably high H2 production rate (500 °C, 279.2 mmolH2·gNi−1·min−1) and exceptional thermal stability.",
+          "page": 1,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "10Ni_CeO2_catalyst",
+      "usage_role": "benchmark",
+      "purpose": "Reference benchmark for correlative analysis of structural, electronic, and catalytic properties",
+      "used_fields": [
+        "Niδ+ proportion (30.6%)",
+        "Ce3+ content (31%)",
+        "lower H2 production rate"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Quantitative analysis revealed that the 10Ni/30La-CeO2 catalyst exhibited a significantly higher proportion of Niδ+ species (51.1%) compared to the 10Ni/CeO2 reference (30.6%), demonstrating the promotional effect of La doping on the stabilization of oxidized Ni sites.",
+          "page": 3,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "The content of Ce3+ in 10Ni/30La-CeO2 (43%) was notably higher than that in 10Ni/CeO2 (31%), indicating a significantly greater concentration of OVs.",
+          "page": 7,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

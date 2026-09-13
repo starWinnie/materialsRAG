@@ -1,0 +1,18 @@
+{
+  "attempt": 3,
+  "errors": [
+    "dataset_uses[4] duplicates a dataset use in the same stage",
+    "dataset_uses[5] duplicates a dataset use in the same stage",
+    "dataset_uses[7] duplicates a dataset use in the same stage",
+    "dataset_uses[8] duplicates a dataset use in the same stage",
+    "dataset_uses[10] duplicates a dataset use in the same stage",
+    "dataset_uses[11] duplicates a dataset use in the same stage",
+    "dataset_uses[12].sample_count is not explicitly printed in its evidence",
+    "dataset_uses[13].sample_count is not explicitly printed in its evidence",
+    "dataset_uses[14].sample_count is not explicitly printed in its evidence",
+    "dataset_uses[15].sample_count is not explicitly printed in its evidence",
+    "dataset_uses[16].sample_count is not explicitly printed in its evidence",
+    "dataset_uses[17].sample_count is not explicitly printed in its evidence"
+  ],
+  "exception": null
+}

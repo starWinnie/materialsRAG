@@ -1,0 +1,317 @@
+{
+  "paper": {
+    "title": "Hierarchy-boosted funnel learning for identifying semiconductors with ultralow lattice thermal conductivity",
+    "year": 2025,
+    "doi": "10.1038/s41524-025-01583-9",
+    "research_summary": "The paper proposes a hierarchy-boosted funnel learning (HiBoFL) framework that integrates unsupervised and supervised learning to efficiently identify semiconductors with ultralow lattice thermal conductivity (κL), circumventing large-scale brute-force ab initio calculations. It uses unsupervised clustering on descriptors to narrow the search space, performs low-cost high-throughput calculations (HTC) on selected clusters to build a labeled local database, trains a CatBoost classifier for direct prediction, and conducts interpretable analysis to uncover structure-property relationships—particularly a new descriptor Lmin governing structural anharmonicity."
+  },
+  "task": {
+    "task_name_raw": "identifying semiconductors with ultralow lattice thermal conductivity",
+    "task_name_canonical": "identify_semiconductors_with_ultralow_lattice_thermal_conductivity",
+    "objective": "efficiently discover semiconductors exhibiting ultralow lattice thermal conductivity (κL) for thermoelectric applications",
+    "material_scope": [
+      "semiconductors"
+    ],
+    "target_properties": [
+      "lattice thermal conductivity (κL)"
+    ],
+    "constraints": [
+      "ultralow κL (≤2 W/mK)",
+      "thermodynamic stability (Ehull ≤0.05 eV/atom)",
+      "band gap 0.1–2 eV",
+      "Natoms < 20",
+      "Nelements < 4",
+      "exclude H, lanthanides, actinides"
+    ],
+    "input_requirements": [
+      "chemical composition",
+      "crystal structure",
+      "descriptors derived from Magpie and Voronoi tessellations"
+    ],
+    "output_goal": [
+      "list of candidate semiconductors with ultralow κL",
+      "interpretable descriptors governing κL modulation",
+      "new factor influencing structural anharmonicity"
+    ],
+    "evidence": [
+      {
+        "text": "Here, we propose a novel hierarchy-boosted funnel learning (HiBoFL) framework, which is successfully applied to identify semiconductors with ultralow lattice thermal conductivity (κL).",
+        "page": 1,
+        "section": null,
+        "inferred": false
+      },
+      {
+        "text": "We then apply this HiBoFL framework to efﬁciently identify semiconductors with ultralow κL as shown in Fig. 1b.",
+        "page": 2,
+        "section": "Results",
+        "inferred": false
+      },
+      {
+        "text": "As a compelling demonstration, this framework has been successfully applied to identify semiconductors with ultralow κL, which circumvents large-scale brute-force ab initio calculations without clear objectives.",
+        "page": 9,
+        "section": "Discussion",
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "obtaining material dataset from Materials Project database",
+      "stage_order": 1,
+      "stage_goal": "acquire initial theoretical dataset of semiconductors for screening",
+      "stage_input": [
+        "Materials Project (MP) database API"
+      ],
+      "stage_output": [
+        "154,718 material entries in JSON file"
+      ],
+      "evidence": [
+        {
+          "text": "Initially, we start by acquiring all the materials from the MP database based on its API, resulting in a total of 1,54,718 entries saved in a JSON ﬁle as the Python dictionary object.",
+          "page": 3,
+          "section": "Preliminary high-throughput screening",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_preparation",
+      "stage_name_raw": "preliminary high-throughput screening and data cleaning",
+      "stage_order": 2,
+      "stage_goal": "filter raw MP dataset to obtain stable, semiconducting, computationally tractable candidates",
+      "stage_input": [
+        "154,718 material entries",
+        "thermodynamic stability criterion",
+        "band gap range",
+        "unit cell size constraints"
+      ],
+      "stage_output": [
+        "2675 three-dimensional crystal structures"
+      ],
+      "evidence": [
+        {
+          "text": "Ultimately, through excluding the materials containing hydrogen, lanthanides, and actinides, and conducting structural analysis, we further obtain 2675 three-dimensional (3D) crystal structures without calculation errors. These materials constitute the ﬁrst-level dataset for our in-depth investigations.",
+          "page": 3,
+          "section": "Preliminary high-throughput screening",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_generation",
+      "stage_name_raw": "unsupervised learning to identify problem-specific clusters with similar κL",
+      "stage_order": 3,
+      "stage_goal": "group materials into clusters based on compositional and structural similarity to prioritize those likely exhibiting low κL",
+      "stage_input": [
+        "first-level dataset (2675 materials)",
+        "Magpie composition descriptors {E}",
+        "Voronoi structure descriptors {S}"
+      ],
+      "stage_output": [
+        "seven k-means clusters (C1–C7)",
+        "problem-specific clusters C1 and C2 (704 materials)"
+      ],
+      "evidence": [
+        {
+          "text": "K-means clustering41,42 is then employed to identify materials with similar κL, which is visualized in a low-dimensional space using t-distributed stochastic neighbor embedding (t-SNE)43, and problem-speciﬁc clusters are selected based on similarity design rules to form the second-level dataset.",
+          "page": 3,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "Since the materials with a high likelihood of possessing relatively low κL tend to group into the two clusters of C1 and C2, the exploration scope for ﬁnding materials with low κL is reduced from 2675 materials to 704 materials, narrowing by approximately three-quarters. As a result, these two problem-speciﬁc clusters (C1 and C2) further constitute our second-level dataset.",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "computational_validation",
+      "stage_name_raw": "high-throughput calculation (HTC) of κPET on problem-specific clusters",
+      "stage_order": 4,
+      "stage_goal": "assign approximate κL labels to materials in C1 and C2 using the low-cost PET empirical model",
+      "stage_input": [
+        "second-level dataset (704 materials)",
+        "PET model44"
+      ],
+      "stage_output": [
+        "local database of 661 materials with κPET values at 300 K"
+      ],
+      "evidence": [
+        {
+          "text": "We use the phonon-elasticity-thermal (PET) model44 to perform low-cost HTC on the materials in the second-level dataset, establishing a local database based on the HTC results.",
+          "page": 3,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "Based on the PET empirical equation within the high-throughput framework, we derive the κPET values at 300 K ignoring the anisotropy for materials in the second-level dataset, while excluding structures that do not satisfy the mechanical stability criteria. The basic information and corresponding κPET values of the resulting 661 materials are then stored in a local database using MongoDB64, serving as a valuable repository...",
+          "page": 5,
+          "section": null,
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "label_generation",
+      "stage_name_raw": "labeling materials as ultralow or non-ultralow κL based on κPET threshold",
+      "stage_order": 5,
+      "stage_goal": "generate binary classification labels for supervised learning using κPET ≤2 W/mK as cutoff",
+      "stage_input": [
+        "κPET values from HTC",
+        "threshold of 2 W/mK"
+      ],
+      "stage_output": [
+        "binary labels: 1 (ultralow κL) or 0 (non-ultralow κL)"
+      ],
+      "evidence": [
+        {
+          "text": "Here, materials with κPET not exceeding 2 W/mK are labeled as 1, which are considered to possess ultralow κL; otherwise, they are labeled as 0, signifying non-ultralow κL.",
+          "page": 7,
+          "section": "Interpretable supervised learning for predicting ultralow κL",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "training CatBoost classifier on labeled local database",
+      "stage_order": 6,
+      "stage_goal": "train robust supervised classification model to predict ultralow κL directly from descriptors",
+      "stage_input": [
+        "labeled local database (661 materials)",
+        "273 descriptors",
+        "CatBoost algorithm",
+        "feature selection (top 11 descriptors)"
+      ],
+      "stage_output": [
+        "trained CatBoost classification model"
+      ],
+      "evidence": [
+        {
+          "text": "We perform ensemble learning on the labeled local database for directly classifying ultralow κL, training a robust CatBoost classifier45.",
+          "page": 3,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "Beyond the input dataset itself, identifying the most relevant features and appropriate algorithms can significantly enhance the generalization and accuracy of ML models... Most algorithms demonstrate good performances, with the CatBoost algorithm achieving the best results, which is chosen to build the follow-up classiﬁcation model.",
+          "page": 7,
+          "section": "Interpretable supervised learning for predicting ultralow κL",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "evaluating CatBoost model performance",
+      "stage_order": 7,
+      "stage_goal": "assess classification accuracy and robustness using standard metrics",
+      "stage_input": [
+        "test set",
+        "ROC AUC",
+        "accuracy",
+        "precision",
+        "recall",
+        "F1-score"
+      ],
+      "stage_output": [
+        "ROC AUC = 0.94",
+        "accuracy = 0.90",
+        "precision = 0.89",
+        "recall = 0.90",
+        "F1-score = 0.89"
+      ],
+      "evidence": [
+        {
+          "text": "As a result, the performances of the optimal CatBoost classiﬁcation model are characterized by the ROC curve and the confusion matrix (Fig. 6b), showing its great ability in classifying semiconductors with ultralow κL due to the high ROC AUC (0.94), accuracy (0.90), precision (0.89), recall (0.90) and F1-score (0.89).",
+          "page": 7,
+          "section": "Interpretable supervised learning for predicting ultralow κL",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_screening",
+      "stage_name_raw": "screening candidate materials with ultralow κL for in-depth mechanism analysis",
+      "stage_order": 8,
+      "stage_goal": "select top-performing candidates from HTC and model predictions for first-principles validation",
+      "stage_input": [
+        "κPET ≤2 W/mK list",
+        "formula type ranking",
+        "Cs2SnSe3 and Cs2GeSe3"
+      ],
+      "stage_output": [
+        "Cs2SnSe3 and Cs2GeSe3 selected for BTE calculation"
+      ],
+      "evidence": [
+        {
+          "text": "To further validate the results and conduct in-depth analysis of the phonon thermal transport mechanisms, we calculate more precise κL values according to ﬁrst-principles derived force constants and Boltzmann transport theory for the unreported materials Cs2SnSe3 and Cs2GeSe3, which are screened out based on the formula type ranking among the materials with the lowest κPET values.",
+          "page": 5,
+          "section": null,
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "experimental_validation",
+      "stage_name_raw": "first-principles computational validation via phonon BTE solving",
+      "stage_order": 9,
+      "stage_goal": "verify ultralow κL predictions and reveal underlying phonon transport mechanisms",
+      "stage_input": [
+        "Cs2SnSe3 and Cs2GeSe3 crystal structures",
+        "ShengBTE package",
+        "phonon BTE"
+      ],
+      "stage_output": [
+        "precise κL values (<0.25 W/mK at 300 K)",
+        "phonon dispersion",
+        "anharmonicity analysis"
+      ],
+      "evidence": [
+        {
+          "text": "To further validate κPET from the PET empirical equation and investigate the phonon thermal transport mechanisms, we calculated more accurate κL values for Cs2SnSe3 and Cs2SnSe3 by iteratively solving the phonon BTE94,97...",
+          "page": 10,
+          "section": "Methods",
+          "inferred": false
+        },
+        {
+          "text": "Figure 4e depicts the calculated κL as the function of temperature ranging from 100 to 500 K at different axes in the discussed two semiconductors... Moreover, these materials all exhibit intrinsically ultralow κL, with values all below 0.25 W/mK in any direction at 300 K, significantly lower than the κL (~2.3 W/mK) of the traditional TE material PbTe71.",
+          "page": 5,
+          "section": null,
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "computational_validation",
+      "stage_name_raw": "interpretable analysis using SHAP to link descriptors to κL mechanisms",
+      "stage_order": 10,
+      "stage_goal": "identify key descriptors governing ultralow κL and uncover physical origin (e.g., Lmin’s role in anharmonicity)",
+      "stage_input": [
+        "pre-trained CatBoost model",
+        "SHAP method46–48"
+      ],
+      "stage_output": [
+        "descriptor importance ranking",
+        "Lmin identified as new factor influencing structural anharmonicity and phonon lifetime"
+      ],
+      "evidence": [
+        {
+          "text": "The interpretable analysis of the pre-trained model based on the SHapley Additive exPlanations (SHAP) method46–48 further reveals the inﬂuence of important descriptors on ultralow κL. A new factor capable of signiﬁcantly reducing κL via enhancing structural anharmonicity is discovered, eventually building a bridge between the ML model interpretability and ﬁrst-principles analysis.",
+          "page": 3,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "We proposethat the ratio of these two terms, i.e., Lmin, might potentially reﬂect the anharmonicity of materials... This implies that when a structure features lower minfLig and higher mean{Li}, it may possess rigidly distorted and weakly bound units with a signiﬁcant bonding hierarchy, typically leading to stronger anharmonicity...",
+          "page": 9,
+          "section": null,
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

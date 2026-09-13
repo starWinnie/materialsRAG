@@ -1,0 +1,27 @@
+[
+  {
+    "task_description": "Designing de novo underwater adhesive hydrogels with maximized adhesive strength (Fa) for glass substrates in saline environments, by identifying optimal monomer compositions that statistically replicate sequence patterns from natural adhesive proteins.",
+    "task_tags": [
+      "hydrogel design",
+      "adhesive strength optimization",
+      "de novo soft material design"
+    ],
+    "datasets": [
+      {
+        "db_title": "NCBI Adhesive Protein Database",
+        "db_description": "A curated dataset of 24,707 adhesive protein sequences from 3,822 organisms (archaea, bacteria, eukaryotes, viruses, and artificial proteins), compiled from the NCBI protein database using the keyword 'adhesive protein'. It includes full-length sequences (average length 300–500 amino acids) with taxonomy annotations. This dataset was used to extract statistical sequence features—specifically, functional class pair frequencies and consensus patterns—enabling the derivation of bioinspired monomer composition descriptors for hydrogel design.",
+        "db_link": "https://www.ncbi.nlm.nih.gov/protein"
+      },
+      {
+        "db_title": "Resilin Protein Dataset",
+        "db_description": "A control dataset of 2,537 resilin protein sequences sourced from the NCBI protein database using the keyword 'resilin'. It was used to validate the specificity of adhesive protein–derived sequence features: hydrogels formulated from this dataset showed poor underwater adhesion, confirming that only adhesive-protein–specific patterns support high Fa. This dataset supports the task by serving as a negative-control benchmark for biological relevance in sequence-guided design.",
+        "db_link": "https://www.ncbi.nlm.nih.gov/protein"
+      },
+      {
+        "db_title": "180-Hydrogel Training Dataset",
+        "db_description": "An experimentally generated dataset of 180 synthetic hydrogels (G-001 to G-180), each defined by six monomer proportions (ϕBA, ϕHEA, ϕCBEA, ϕATAC, ϕAAm, ϕPEA) derived from adhesive protein DM. Each sample includes measured underwater adhesive strength (Fa) on glass in normal saline (0.154 M NaCl), plus auxiliary properties (swelling ratio, rheology). This dataset serves as the initial training set for machine learning models to predict and optimize Fa, directly supporting the task of discovering high-Fa formulations via data-driven optimization.",
+        "db_link": "https://github.com/sheng-hu/hydrogels"
+      }
+    ]
+  }
+]

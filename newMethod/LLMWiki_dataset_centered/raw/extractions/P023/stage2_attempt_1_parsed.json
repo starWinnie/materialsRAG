@@ -1,0 +1,277 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "materials_project",
+      "canonical_name": "Materials Project",
+      "raw_names": [
+        "Materials Project (MP)"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "crystalline materials"
+      ],
+      "available_properties": [],
+      "available_fields": [
+        "crystal structure (A, F, L)"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We collect 800K untagged crystal graph data from two popular materials databases, Materials Project (MP) (Jain et al. 2013) and OQMD (Saal et al. 2013), to pre-train the CrysDiff model.",
+          "page": 6,
+          "section": "Experimental Settings",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "oqmd",
+      "canonical_name": "Open Quantum Materials Database",
+      "raw_names": [
+        "OQMD"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "crystalline materials"
+      ],
+      "available_properties": [],
+      "available_fields": [
+        "crystal structure (A, F, L)"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We collect 800K untagged crystal graph data from two popular materials databases, Materials Project (MP) (Jain et al. 2013) and OQMD (Saal et al. 2013), to pre-train the CrysDiff model.",
+          "page": 6,
+          "section": "Experimental Settings",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "jarvis_dft",
+      "canonical_name": "JARVIS-DFT",
+      "raw_names": [
+        "JARVIS-DFT",
+        "2021.8.18 version of JARVIS-DFT"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "crystalline materials"
+      ],
+      "available_properties": [
+        "formation energy",
+        "bandgap (OPT)",
+        "total energy",
+        "Ehull",
+        "bandgap (MBJ)",
+        "bulk modulus (Kv)",
+        "shear modulus (Gv)",
+        "SLME (%)",
+        "spillage"
+      ],
+      "available_fields": [
+        "crystal structure (A, F, L)",
+        "target property values"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Further, to evaluate the fine-tuning performance of CrysDiff compared with other crystal property predictors, we select the 2021.8.18 version of JARVIS-DFT (Choudhary et al. 2020), another popular materials database, for the downstream property prediction task. JARVIS-DFT consists of 55,722 materials with 19 properties, like formation energy, bandgap, total energy, bulk modulus, etc., which depend significantly on crystal structures and atom features.",
+          "page": 6,
+          "section": "Experimental Settings",
+          "inferred": false
+        },
+        {
+          "text": "Table 1: The prediction performance (MAE) of nine properties on the JARVIS-DFT dataset for the proposed CrysDiff model against existing train-from-scratch and pretrain-finetune models.",
+          "page": 6,
+          "section": "Total Energy",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "oqmd_exp",
+      "canonical_name": "OQMD-EXP",
+      "raw_names": [
+        "OQMD-EXP"
+      ],
+      "dataset_type": "public_subset",
+      "source_dataset_key": "oqmd",
+      "material_scope": [
+        "crystalline materials"
+      ],
+      "available_properties": [
+        "formation energy"
+      ],
+      "available_fields": [
+        "crystal structure (A, F, L)",
+        "experimental formation energy values"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Therefore, to investigate how our model helps to mitigate the DFT error, we also take a small dataset OQMD-EXP (Kirklin et al. 2015), containing 1,500 available experimental data of formation energy.",
+          "page": 6,
+          "section": "Experimental Settings",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "materials_project",
+      "usage_role": "source",
+      "purpose": "pre-training via crystal structure reconstruction using unlabeled crystal graph data",
+      "used_fields": [
+        "crystal structure (A, F, L)"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We collect 800K untagged crystal graph data from two popular materials databases, Materials Project (MP) (Jain et al. 2013) and OQMD (Saal et al. 2013), to pre-train the CrysDiff model.",
+          "page": 6,
+          "section": "Experimental Settings",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "oqmd",
+      "usage_role": "source",
+      "purpose": "pre-training via crystal structure reconstruction using unlabeled crystal graph data",
+      "used_fields": [
+        "crystal structure (A, F, L)"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We collect 800K untagged crystal graph data from two popular materials databases, Materials Project (MP) (Jain et al. 2013) and OQMD (Saal et al. 2013), to pre-train the CrysDiff model.",
+          "page": 6,
+          "section": "Experimental Settings",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "jarvis_dft",
+      "usage_role": "training",
+      "purpose": "fine-tuning and evaluation of crystal property prediction on nine target properties",
+      "used_fields": [
+        "crystal structure (A, F, L)",
+        "target property values"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 55722,
+      "evidence": [
+        {
+          "text": "Further, to evaluate the fine-tuning performance of CrysDiff compared with other crystal property predictors, we select the 2021.8.18 version of JARVIS-DFT (Choudhary et al. 2020), another popular materials database, for the downstream property prediction task. JARVIS-DFT consists of 55,722 materials with 19 properties, like formation energy, bandgap, total energy, bulk modulus, etc., which depend significantly on crystal structures and atom features.",
+          "page": 6,
+          "section": "Experimental Settings",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "oqmd_exp",
+      "usage_role": "training",
+      "purpose": "mitigating DFT error by fine-tuning with experimental formation energy data",
+      "used_fields": [
+        "crystal structure (A, F, L)",
+        "experimental formation energy values"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 1500,
+      "evidence": [
+        {
+          "text": "Therefore, to investigate how our model helps to mitigate the DFT error, we also take a small dataset OQMD-EXP (Kirklin et al. 2015), containing 1,500 available experimental data of formation energy.",
+          "page": 6,
+          "section": "Experimental Settings",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "jarvis_dft",
+      "usage_role": "test",
+      "purpose": "downstream task evaluation on nine crystal properties using MAE",
+      "used_fields": [
+        "crystal structure (A, F, L)",
+        "target property values"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "In Table 1, we report the MAE of different predicted crystal properties.",
+          "page": 6,
+          "section": "Total Energy",
+          "inferred": false
+        },
+        {
+          "text": "Table 1: The prediction performance (MAE) of nine properties on the JARVIS-DFT dataset for the proposed CrysDiff model against existing train-from-scratch and pretrain-finetune models.",
+          "page": 6,
+          "section": "Total Energy",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 6,
+      "dataset_key": "jarvis_dft",
+      "usage_role": "benchmark",
+      "purpose": "ablation study on key design components for Formation Energy and Bandgap (MBJ)",
+      "used_fields": [
+        "crystal structure (A, F, L)",
+        "target property values"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Figure 5: The prediction performance (MAE) of two properties for CrysDiff variants on the JARVIS-DFT dataset.",
+          "page": 7,
+          "section": "Ablation Study",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

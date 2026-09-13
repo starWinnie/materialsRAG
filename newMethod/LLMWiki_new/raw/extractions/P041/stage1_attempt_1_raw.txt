@@ -1,0 +1,130 @@
+{
+  "paper": {
+    "title": "An efficient forgetting-aware fine-tuning framework for pretrained universal machine-learning interatomic potentials",
+    "year": 2026,
+    "doi": "10.1038/s41524-025-01895-w",
+    "research_summary": "Pretrained universal machine-learning interatomic potentials (MLIPs) have revolutionized computational materials science by enabling rapid atomistic simulations as efficient alternatives to ab initio methods. Fine-tuning pretrained MLIPs offers a practical approach to improving accuracy for materials and properties where predictive performance is insufficient. However, this approach often induces catastrophic forgetting, undermining the generalizability that is a key advantage of pretrained MLIPs. Herein, we propose reEWC, an advanced fine-tuning strategy that integrates Experience Replay and Elastic Weight Consolidation (EWC) to effectively balance forgetting prevention with fine-tuning efficiency. Using Li6PS5Cl (LPSC), a sulfide-based Li solid-state electrolyte, as a fine-tuning target, we show that reEWC significantly improves the accuracy of a pretrained MLIP, resolving well-known issues of potential energy surface softening and overestimated Li diffusivities. Moreover, reEWC preserves the generalizability of the pretrained MLIP and enables knowledge transfer to chemically distinct systems, including other sulfide, oxide, nitride, and halide electrolytes. Compared to Experience Replay and EWC used individually, reEWC delivers clear synergistic benefits, mitigating their respective limitations while maintaining computational efficiency. These results establish reEWC as a robust and effective solution for continual learning in MLIPs, enabling universal models that can advance materials research through large-scale, high-throughput simulations across diverse chemistries."
+  },
+  "task": {
+    "task_name_raw": "fine-tuning pretrained universal machine-learning interatomic potentials",
+    "task_name_canonical": "fine_tuning_pretrained_mlips",
+    "objective": "improve accuracy of a pretrained MLIP for a specific system while preserving its generalizability and preventing catastrophic forgetting",
+    "material_scope": ["Li6PS5Cl (LPSC)", "other argyrodite-type materials", "non-argyrodite-type materials (sulfides, oxides, nitrides, halides, hydrides)"],
+    "target_properties": ["potential energy surface (PES) accuracy", "Li-ion diffusivity", "structural stability (quasi-melting behavior)"],
+    "constraints": ["prevent catastrophic forgetting", "maintain computational efficiency", "enable knowledge transfer to chemically distinct systems"],
+    "input_requirements": ["pretrained universal MLIP (SevenNet-0)", "fine-tuning dataset (AIMD trajectories of LPSC)", "pretrained dataset (MPtrj) for Replay and FIM computation"],
+    "output_goal": ["forgetting-aware fine-tuned MLIP model (reEWC) with improved PES accuracy and preserved generalizability"],
+    "evidence": [
+      {
+        "text": "Herein, we propose reEWC, an advanced fine-tuning strategy that integrates Experience Replay and Elastic Weight Consolidation (EWC) to effectively balance forgetting prevention with fine-tuning efficiency.",
+        "page": 1,
+        "section": null,
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "constructing the fine-tuning dataset from AIMD trajectories of LPSC",
+      "stage_order": 1,
+      "stage_goal": "generate training data capturing diverse Li-ion hopping events and high-energy configurations for LPSC",
+      "stage_input": ["AIMD simulations of LPSC unit cell at 600 and 1000 K"],
+      "stage_output": ["fine-tuning dataset of 1000 structures (900 training + 100 validation)"],
+      "evidence": [
+        {
+          "text": "To construct the fine-tuning dataset, we focus on LPSC, one of the most extensively studied argyrodite-type Li SSEs55. It exhibits fairly high ionic conductivity, approximately 5 mS/cm56, at room temperature. This feature facilitates efficient sampling of diverse Li-ion hopping events within a limited simulation time, making LPSC an ideal system for generating the fine-tuning dataset aimed at enhancing the predictability of Li diffusion in Li SSE systems. The fine-tuning dataset is constructed from MD trajectories of an LPSC unit cell (52 atoms) obtained from 100 ps simulations conducted at 600 and 1000 K. At each temperature, 500 structures are uniformly sampled at 200 fs intervals, resulting in a total of 1000 structures. These structures are then randomly split into training and validation datasets at a 9:1 ratio.",
+          "page": 4,
+          "section": "Fine-tuning MLIPs on LPSC dataset",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "constructing the Replay set by random sampling from the pretrained dataset",
+      "stage_order": 2,
+      "stage_goal": "obtain a representative subset of the pretrained dataset to mitigate catastrophic forgetting during fine-tuning",
+      "stage_input": ["pretrained dataset (MPtrj)"],
+      "stage_output": ["Replay set (10% of MPtrj dataset)"],
+      "evidence": [
+        {
+          "text": "On the other hand, to construct the Replay set for both Replay and reEWC, we randomly sample 10% of the MPtrj dataset.",
+          "page": 4,
+          "section": "Fine-tuning MLIPs on LPSC dataset",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "fine-tuning SevenNet-0 using reEWC method",
+      "stage_order": 3,
+      "stage_goal": "refine the pretrained MLIP parameters using the hybrid reEWC strategy combining Experience Replay and Elastic Weight Consolidation",
+      "stage_input": ["pretrained SevenNet-0 model", "fine-tuning dataset", "Replay set", "Fisher Information Matrix (FIM) computed from pretrained dataset"],
+      "stage_output": ["reEWC-fine-tuned MLIP model"],
+      "evidence": [
+        {
+          "text": "reEWC is a hybrid approach that combines the Replay and EWC methods. In the present work, the reEWC method is implemented by adopting the mini-batch training process, like in the Replay approach, while incorporating the EWC regularization term into the loss function during parameter updates.",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "Fine-tuning the pretrained MLIP starts from the SevenNet-0 parameters and train for 400 epochs using the Adam optimizer, regardless of the fine-tuning methods.",
+          "page": 12,
+          "section": "Fine-tuning of MLIP",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "evaluating forgetting prevention and learning performance on sMPtrj and fine-tuning validation sets",
+      "stage_order": 4,
+      "stage_goal": "assess memory retention (loss on sMPtrj) and target system learning (loss on LPSC validation set)",
+      "stage_input": ["reEWC-fine-tuned MLIP model", "sMPtrj test set (10% of MPtrj)", "LPSC fine-tuning validation set"],
+      "stage_output": ["learning curves", "forgetting curves", "total loss metrics"],
+      "evidence": [
+        {
+          "text": "The effectiveness of the fine-tuning methods studied in this work is evaluated from three perspectives: (i) learning of the target system, assessed by the reduction of loss on the fine-tuning dataset; (ii) prevention of forgetting, assessed by the maintenance of loss on the original pretrained dataset; and (iii) preservation of generalizability, assessed by the extent of parameter shifts relative to the pretrained model. We generate a test set by randomly sampling 10% of the MPtrj dataset (referred to as sMPtrj), which is used to evaluate forgetting prevention across all fine-tuning methods.",
+          "page": 4,
+          "section": "Forgetting behavior of fine-tuned MLIPs",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "evaluating PES accuracy on argyrodite and non-argyrodite test sets",
+      "stage_order": 5,
+      "stage_goal": "quantify improvements in energy/force prediction accuracy and softening scales across diverse Li SSEs",
+      "stage_input": ["reEWC-fine-tuned MLIP model", "test sets of argyrodite-type and non-argyrodite-type Li SSEs"],
+      "stage_output": ["energy and force MAEs", "softening scales", "element-specific accuracy analysis"],
+      "evidence": [
+        {
+          "text": "We evaluate the predictive accuracy of the fine-tuned MLIPs across a range of Li SSEs with diverse compositions and structures. This allows us to assess whether the PES predictions can be improved beyond the fine-tuning domain despite the training dataset being limited to LPSC, and thus, evaluate the extent of knowledge transfer enabled by each fine-tuning method.",
+          "page": 5,
+          "section": "PES evaluation of Li SSEs",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "computational_validation",
+      "stage_name_raw": "performing MD simulations to assess dynamical properties (Li diffusivity and quasi-melting behavior)",
+      "stage_order": 6,
+      "stage_goal": "validate that the fine-tuned MLIP accurately describes finite-temperature atomic motion and associated dynamical properties",
+      "stage_input": ["reEWC-fine-tuned MLIP model", "MD simulation protocols"],
+      "stage_output": ["Li-ion diffusivity predictions", "quasi-melting ratios", "MSD curves"],
+      "evidence": [
+        {
+          "text": "So far, we have evaluated the predictive capability of the fine-tuned MLIPs for DFT energies and forces based on snapshots from AIMD trajectories. As a next step, we explicitly perform MD simulations using the fine-tuned MLIPs to assess whether they accurately describe the PES governing atomic motion at finite temperatures, and thereby capture the associated dynamical properties. To this end, we evaluate the diffusivity of Li ions by calculating mean-squared displacements (MSDs) at 800, 1000, and 1200 K, and compare the results with DFT benchmarks...",
+          "page": 7,
+          "section": "Dynamical properties",
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

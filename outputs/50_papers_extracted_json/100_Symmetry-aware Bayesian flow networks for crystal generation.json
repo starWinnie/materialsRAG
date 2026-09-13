@@ -1,0 +1,27 @@
+[
+  {
+    "task_description": "Generating novel, stable, and synthetically viable crystalline material structures conditioned on desired physical properties (e.g., formation energy per atom, bandgap), while accurately reproducing the empirical distribution of space groups observed in real materials — all with high computational efficiency.",
+    "task_tags": [
+      "crystal generation",
+      "property-conditioned generation",
+      "space group modeling"
+    ],
+    "datasets": [
+      {
+        "db_title": "MP-20",
+        "db_description": "A subset of the Materials Project database containing 40,476 experimentally observed or DFT-stable crystal structures, each with up to 20 atoms per unit cell. It includes formation energy per atom and bandgap values computed using M3GNet. This dataset is used to train and evaluate SymmBFN for de novo crystal generation, space group distribution fidelity, stability assessment (via CHGNet), and property-conditioned generation.",
+        "db_link": "https://materialsproject.org"
+      },
+      {
+        "db_title": "Perov-5",
+        "db_description": "A dataset of 18,928 perovskite materials, each with exactly five atoms per unit cell and compositions drawn from a set of 56 elements; all share the perovskite prototype structure. Most entries are unstable. It is used to evaluate SymmBFN’s performance on a structurally constrained but compositionally diverse material class, particularly for structural validity and sampling behavior — though stability and S.U.N. metrics are not applicable due to inherent instability.",
+        "db_link": "https://www.materialscloud.org/discover/perovskite"
+      },
+      {
+        "db_title": "MPTS-52",
+        "db_description": "A challenging subset of the Materials Project containing 40,476 crystal structures with up to 52 atoms per unit cell, chronologically split into 27,380 training, 5,000 validation, and 8,096 test samples. It is used to benchmark SymmBFN’s scalability, efficiency, and stability performance on larger, more complex crystals — specifically testing how the symmetry-aware asymmetric-unit representation reduces computational cost compared to full-cell methods.",
+        "db_link": "https://matbench-genmetrics.github.io"
+      }
+    ]
+  }
+]

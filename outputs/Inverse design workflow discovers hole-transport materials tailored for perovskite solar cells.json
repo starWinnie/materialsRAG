@@ -1,0 +1,34 @@
+[
+  {
+    "task_description": "Discovering novel hole-transport materials (HTMs) optimized for high power conversion efficiency (PCE) in perovskite solar cells (PSCs) through inverse molecular design — i.e., predicting and synthesizing new organic small-molecule HTMs with tailored structural features that maximize device-level PCE, starting from a virtual chemical space of ~1 million candidates.",
+    "task_tags": [
+      "inverse design",
+      "materials discovery",
+      "hole-transport material optimization",
+      "perovskite solar cell",
+      "PCE prediction"
+    ],
+    "datasets": [
+      {
+        "db_title": "Synthesized HTM Database (Initial + Iteration)",
+        "db_description": "A curated experimental dataset comprising 149 synthesized small-molecule HTMs, including 101 molecules from the initial high-throughput synthesis campaign and 48 additional molecules from two iterative Bayesian optimization campaigns. Each entry includes molecular structure (B-A-B type via Suzuki coupling), DFT-calculated descriptors (HOMO/LUMO levels, dipole moment, logP, rotational constants, etc.), and experimentally measured device performance metrics (PCE, Jsc, Voc, FF) from p-i-n perovskite solar cells normalized to PTAA reference devices. This dataset was used to train and validate multitask Gaussian process regressors for predicting PCE and guiding closed-loop synthesis.",
+        "db_link": "None"
+      },
+      {
+        "db_title": "Virtual HTM Library (1 million candidates)",
+        "db_description": "A computationally generated library of ~1 million B-A-B–type conjugated molecules constructed by combinatorially pairing 1132 commercially available A-type (brominated aromatic) and 850 B-type (boronic acid derivative) monomers using RDKit, constrained by Suzuki coupling rules. The library includes DFT-computed molecular descriptors (e.g., HOMO, LUMO, bandgap, dipole, TPSA, atom counts) for all candidates. It served as the candidate space for Bayesian optimization to screen and prioritize molecules for synthesis based on predicted PCE.",
+        "db_link": "None"
+      },
+      {
+        "db_title": "Intermediate DFT Database (13,000 molecules)",
+        "db_description": "A subset of 13,000 molecules randomly sampled from the 1-million-candidate virtual library, for which full density functional theory (DFT) calculations were performed in TURBOMOLE to compute robust electronic, geometric, and physicochemical descriptors (e.g., orbital energies, solubility logP, aromatic bond count, heteroatom presence). This dataset enabled descriptor enrichment and informed the selection of the synthetic database via Kennard-Stone sampling and Bayesian iteration, supporting feature engineering and model generalizability analysis.",
+        "db_link": "None"
+      },
+      {
+        "db_title": "Monomer Source Database (1132 A + 850 B monomers)",
+        "db_description": "A chemically validated collection of 1132 A-type (aromatic bromides) and 850 B-type (aromatic boronic acids/esters) commercially available building blocks compatible with Suzuki cross-coupling. Each monomer was annotated across seven chemical dimensions (e.g., aromatic unit type, conjugation length, substituent species, electronic/steric effects) using RDKit. This database formed the foundational chemical space for generating both the virtual library and synthetic campaigns, enabling systematic exploration of structural diversity in HTM design.",
+        "db_link": "None"
+      }
+    ]
+  }
+]

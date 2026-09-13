@@ -1,0 +1,247 @@
+{
+  "paper": {
+    "title": "Advancing extrapolative predictions of material properties through learning to learn using extrapolative episodic training",
+    "year": 2025,
+    "doi": "10.1038/s43246-025-00754-x",
+    "research_summary": "This study develops a meta-learning methodology—extrapolative episodic training (E2T)—to enhance machine learning models' ability to predict material properties beyond the distribution of training data. Using attention-based matching neural networks (MNNs) trained on arbitrarily generated extrapolative tasks, the approach demonstrates superior generalization for unseen material domains, particularly in transfer-learning scenarios with limited target-domain data. The method is validated on two tasks: predicting physical properties (specific heat and refractive index) of polymeric materials across distinct polymer classes, and predicting bandgaps of hybrid organic–inorganic perovskites excluding specific elemental combinations (Ge+F or Pb+I)."
+  },
+  "task": {
+    "task_name_raw": "Extrapolative prediction of material properties",
+    "task_name_canonical": "extrapolative_prediction_of_material_properties",
+    "objective": "To develop a machine-learning methodology that enables extrapolative generalization—predicting material properties for unexplored material spaces beyond the boundaries of existing training data.",
+    "material_scope": [
+      "polymeric materials",
+      "hybrid organic–inorganic perovskites"
+    ],
+    "target_properties": [
+      "specific heat at constant pressure (Cp)",
+      "refractive index",
+      "bandgap"
+    ],
+    "constraints": [
+      "limited availability of data resources",
+      "machine-learning predictors are inherently interpolative",
+      "goal is to discover 'innovative' materials from unexplored material space"
+    ],
+    "input_requirements": [
+      "compositional and structural features of materials encoded as vector representations (e.g., Morgan fingerprint for polymers, crystal structure embeddings for perovskites)"
+    ],
+    "output_goal": [
+      "real-valued physical property prediction y ∈ ℝ for input material x, where (x, y) lies outside the training domain S"
+    ],
+    "evidence": [
+      {
+        "text": "Central to this progress is the development of rapidly computable property predictors, which allow identifying novel materials with the desired properties from vast material spaces.",
+        "page": 1,
+        "section": null,
+        "inferred": false
+      },
+      {
+        "text": "The most signiﬁcant challenge in data-driven materials research is the scarcity of data resources... the ultimate goal of materials science is to discover “innovative” materials from an unexplored material space. However, machine-learning predictors are generally interpolative and their predictability is limited to the neighboring domain of the training data.",
+        "page": 1,
+        "section": null,
+        "inferred": false
+      },
+      {
+        "text": "In this study, we leveraged the attention-based architecture of neural networks and a meta-learning algorithm to enhance extrapolative generalization capabilities. Meta-learners trained repeatedly on arbitrarily generated extrapolative tasks show outstanding generalization for unexplored material spaces.",
+        "page": 1,
+        "section": null,
+        "inferred": false
+      },
+      {
+        "text": "This study focuses on a real-valued output y ∈ ℝ that represents a physical property.",
+        "page": 3,
+        "section": null,
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "Acquisition of polymer property dataset",
+      "stage_order": 1,
+      "stage_goal": "To obtain computational property data for amorphous polymers including specific heat and refractive index.",
+      "stage_input": [],
+      "stage_output": [
+        "69,480 samples of Cp and 68,700 samples of refractive index for amorphous homopolymers"
+      ],
+      "evidence": [
+        {
+          "text": "Data. In the polymer-property prediction experiments, 69,480 samples of Cp and 68,700 samples of the refractive index were used for the amorphous homopolymers. The data were generated using RadonPy36, which is a Python tool to construct a workflow for fully automated calculations of various polymeric properties using all-atom MD simulations.",
+          "page": 8,
+          "section": "Methods",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "Acquisition of perovskite compound dataset",
+      "stage_order": 2,
+      "stage_goal": "To obtain density functional theory-calculated bandgap data for hybrid organic–inorganic perovskites.",
+      "stage_input": [],
+      "stage_output": [
+        "1345 perovskite compounds and their properties, including bandgaps"
+      ],
+      "evidence": [
+        {
+          "text": "Data. The HOIP dataset40,41 contains 1345 perovskite compounds and their properties, including bandgaps, dielectric constants, and relative energies, calculated using the density functional theory.",
+          "page": 10,
+          "section": "Methods",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_preparation",
+      "stage_name_raw": "Descriptor generation for polymers",
+      "stage_order": 3,
+      "stage_goal": "To encode polymer repeating unit structures into fixed-length numerical vectors.",
+      "stage_input": [
+        "chemical structure of polymer repeating unit"
+      ],
+      "stage_output": [
+        "2048-dimensional Morgan fingerprint descriptor vector"
+      ],
+      "evidence": [
+        {
+          "text": "Descriptor. The count-based Morgan fingerprint38, a type of extended connectivity fingerprint (ECFP)39, was utilized as a descriptor for the repeating unit of a homopolymer. The descriptor was calculated using RDKit55, with a radius of 3 and bit length of 2048.",
+          "page": 9,
+          "section": "Methods",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_preparation",
+      "stage_name_raw": "Crystal structure embedding for perovskites",
+      "stage_order": 4,
+      "stage_goal": "To transform input crystal structures into latent vector representations.",
+      "stage_input": [
+        "crystal structure of perovskite compounds"
+      ],
+      "stage_output": [
+        "32-dimensional latent vector"
+      ],
+      "evidence": [
+        {
+          "text": "Embedding function of crystal structures. The MPNN44 was employed as the encoder for the crystal structures in all models... In the experiment using the HOIP dataset, the MPNN was employed as an embedding function ϕ that transformed an input crystal structure into a 32-dimensional latent vector.",
+          "page": 10,
+          "section": "Methods",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_generation",
+      "stage_name_raw": "Generation of extrapolative episodes",
+      "stage_order": 5,
+      "stage_goal": "To construct training episodes where test instances (x, y) lie outside the support set S, enabling extrapolative learning.",
+      "stage_input": [
+        "dataset D",
+        "support set S",
+        "input-output pair (x, y)"
+      ],
+      "stage_output": [
+        "episodes (xi, yi, Si) with extrapolative relationships"
+      ],
+      "evidence": [
+        {
+          "text": "Numerous episodes were generated from a given dataset D, each comprising a training set S and test set Q containing instances outside the training domain S.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "For instance, (xi, yi) represents the physical property yi of a cellulose derivative xi, whereas Si represents a dataset from other polymer classes, such as conventional plastic resins. Alternatively, (xi, yi) can correspond to a compound containing element species that do not exist in the training compounds comprising Si.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "Training of MNNs via extrapolative episodic training (E2T)",
+      "stage_order": 6,
+      "stage_goal": "To train attention-based matching neural networks using E2T to learn the mapping y = f(x, S) for extrapolative prediction.",
+      "stage_input": [
+        "episodes (xi, yi, Si)",
+        "embedding function ϕ",
+        "kernel ridge regressor head"
+      ],
+      "stage_output": [
+        "trained MNN model with extrapolative prediction capability"
+      ],
+      "evidence": [
+        {
+          "text": "We employed a meta-learning algorithm30–34, commonly known as “learning to learn,” to impart extrapolative prediction capabilities to the MNNs. Numerous episodes were generated from a given dataset D, each comprising a training set S and test set Q containing instances outside the training domain S. The objective was to learn a generic model y = f(x; S) representing the mapping from material x to property y, where (x, y) belong to domain Q.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "Training of MNNs by E2T. The attention-based model, which resembles the kernel ridge regressor in Eq. (2), was implemented in PyTorch56. A three-layer FCNN with the rectified linear unit (ReLU) activation function was used as the embedding function ϕ...",
+          "page": 9,
+          "section": "Methods",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "Evaluation of extrapolative prediction performance",
+      "stage_order": 7,
+      "stage_goal": "To assess model generalization on unseen material domains using metrics including RMSE and R².",
+      "stage_input": [
+        "trained MNN",
+        "test data from unseen polymer class or perovskite domain"
+      ],
+      "stage_output": [
+        "RMSE and R² scores for extrapolative prediction tasks"
+      ],
+      "evidence": [
+        {
+          "text": "To evaluate the prediction performance for an unseen polymer class, the following process was implemented: (1) a model was trained using randomly selected samples from 19 of the 20 polymer classes and (2) its generalizability was assessed using data from the remaining polymer class.",
+          "page": 3,
+          "section": "Experimental results",
+          "inferred": false
+        },
+        {
+          "text": "Table 1 | Evaluation of extrapolative prediction performance (RMSE and R2) on the HOIP dataset",
+          "page": 6,
+          "section": null,
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_screening",
+      "stage_name_raw": "Fine-tuning for target domain adaptation",
+      "stage_order": 8,
+      "stage_goal": "To adapt pretrained E2T models to specific target domains using limited target-domain data.",
+      "stage_input": [
+        "pretrained MNN",
+        "small dataset from target domain"
+      ],
+      "stage_output": [
+        "fine-tuned MNN specialized for target domain"
+      ],
+      "evidence": [
+        {
+          "text": "Fine-tuning was performed on the RadonPy dataset. In this experiment, a pretrained E2T model with a source data size of 38,000 was fine-tuned on data from the target domain corresponding to a particular polymer class.",
+          "page": 6,
+          "section": "Fine-tuning to extrapolative domains",
+          "inferred": false
+        },
+        {
+          "text": "An MNN pretrained by E2T with a source data size of 1248 (HOIP-GeF) or 1228 (HOIP-PbI) was fine-tuned on data, including data from the target domain.",
+          "page": 11,
+          "section": "Fine-tuning experiments",
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "paper_id": "P031",
+  "file_name": "31_Superconductivity_Ordered_Disordered.pdf",
+  "status": "completed",
+  "completed_at": "2026-08-06T01:47:02.668728+00:00",
+  "model": "qwen-plus",
+  "stage1_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "stage2_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "counts": {
+    "tasks": 1,
+    "stages": 6,
+    "datasets": 5,
+    "dataset_uses": 7
+  }
+}

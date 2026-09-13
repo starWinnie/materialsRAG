@@ -1,0 +1,44 @@
+# Dataset: MP21 Formation Energy Dataset
+
+- Dataset ID: `D_mp21_formation_energy_dataset`
+- Dataset type: `public_subset`
+- Source dataset: `D_materials_project`
+- Availability: public
+- Recommendable: true
+- Confidence: 1.0
+
+## Raw names
+
+- MP21 Formation Energy Dataset
+- Mp_eform (Ef)
+- MP21 Mp_eform
+- formation energy per atom (eV/atoms)
+
+## Observed material scopes
+
+- inorganic materials
+
+## Observed research tasks
+
+- materials property prediction
+
+## Observed research stages
+
+- model_evaluation
+
+## Observed properties
+
+- formation energy per atom
+
+## Observed fields
+
+- material compositions
+- crystal structures
+
+## Usage evidence
+
+- P013 (Accelerating materials property prediction via a hybrid Transformer Graph framework that leverages four body interactions): benchmark in benchmarking CrysCo's performance against state-of-the-art models — benchmark CrysCo's performance on formation energy prediction
+
+## Dataset evidence
+
+- P013, PDF page 4: "Table 1 | The eight datasets derived from the MP21 database and used in the present study Dataset name Source Material property # Crystal structures Mp_eform (Ef) MP21 Formation energy per atom (eV/atoms) 126,785"

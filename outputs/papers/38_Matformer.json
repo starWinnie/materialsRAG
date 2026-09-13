@@ -1,0 +1,22 @@
+[
+  {
+    "task_description": "Predicting multiple physical and electronic properties of crystalline materials from their atomic structure, including formation energy, band gap, bulk modulus, and shear modulus, using periodic graph representations that respect crystal symmetry and repeating lattice patterns.",
+    "task_tags": [
+      "crystal property prediction",
+      "materials property prediction",
+      "periodic graph learning"
+    ],
+    "datasets": [
+      {
+        "db_title": "The Materials Project",
+        "db_description": "A large-scale computational database containing over 130,000+ calculated material structures and properties, derived from density functional theory (DFT) simulations. In this paper, the Materials Project-2018.6.1 subset with 69,239 crystals is used specifically for training and evaluating property predictors on formation energy, band gap, bulk modulus, and shear modulus. The dataset provides unit cell geometry (atomic positions, lattice vectors), composition, and computed scalar properties — and is used to train and benchmark the Matformer model's ability to predict these target properties from periodic crystal graphs.",
+        "db_link": "https://materialsproject.org/"
+      },
+      {
+        "db_title": "JARVIS (Joint Automated Repository for Various Integrated Simulations)",
+        "db_description": "A curated, DFT-computed materials database containing structural and property data for ~100,000 materials, designed for data-driven materials discovery. In this paper, the JARVIS dataset is used to evaluate Matformer on five tasks: formation energy, optical band gap (OPT), total energy, energy above hull (Ehull), and modified Becke–Johnson (MBJ) band gap. It provides standardized crystal structures (including lattice matrices and atomic coordinates) and associated property labels, supporting validation of periodic invariance and pattern encoding in crystal representation learning.",
+        "db_link": "https://jarvis.nist.gov/"
+      }
+    ]
+  }
+]

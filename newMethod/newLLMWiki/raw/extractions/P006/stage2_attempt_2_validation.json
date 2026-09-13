@@ -1,0 +1,8 @@
+{
+  "attempt": 2,
+  "errors": [
+    "dataset_uses[6] duplicates a dataset use in the same stage",
+    "dataset_uses[7] duplicates a dataset use in the same stage"
+  ],
+  "exception": null
+}

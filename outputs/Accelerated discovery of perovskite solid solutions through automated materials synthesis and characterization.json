@@ -1,0 +1,27 @@
+[
+  {
+    "task_description": "Discovering synthesizable perovskite solid solution compositions with high dielectric tunability and low loss for microwave applications, by iteratively screening candidate materials using machine learning, validating their single-phase synthesis via automated robotic synthesis and rapid sintering, and experimentally characterizing their high-frequency dielectric properties to close the prediction–synthesis–characterization loop.",
+    "task_tags": [
+      "materials discovery",
+      "perovskite solid solutions",
+      "dielectric property optimization"
+    ],
+    "datasets": [
+      {
+        "db_title": "ICSD-derived experimental perovskite dataset",
+        "db_description": "A curated experimental dataset of 1758 perovskites and 227 non-perovskites, extracted from the Inorganic Crystal Structure Database (ICSD), containing crystal structure information (e.g., space group, lattice parameters, atomic positions) used to train ML classifiers for perovskite likelihood prediction. This dataset supported the core task of screening ~0.6 million candidate compositions for structural stability and synthesizability prior to robotic validation.",
+        "db_link": "https://icsd.fiz-karlsruhe.de/"
+      },
+      {
+        "db_title": "Materials Project stable perovskite subset",
+        "db_description": "A subset of 487 ABO3 perovskite compositions with energy above the convex hull <10 meV/atom, obtained from the Materials Project database using Pymatgen. These thermodynamically stable/meta-stable reference materials were used to compute embedding-based distances (via Mat2vec and Skipatom) for data mining—ranking ML-predicted disordered perovskites by proximity to known stable structures—to prioritize candidates most likely to be synthesizable as single phases.",
+        "db_link": "https://materialsproject.org/"
+      },
+      {
+        "db_title": "Author-curated experimental synthesis and characterization dataset",
+        "db_description": "A newly generated, author-curated dataset comprising XRD patterns, SEM images, density measurements, Rietveld refinement outputs (Rwp, Rp, χ²), dielectric permittivity/tunability (0.2–3 GHz, 1–100 kHz), loss tangent, FOM, and sintering condition metadata (temperature, time, atmosphere) for 15+ perovskite samples—including doped BST (Ta/Nb/Zr/Hf), BTS variants (BTS12, BTS14, BTS16), and ML-predicted (Ba₀.₈Sr₀.₂)CeO₃ and (Ba₀.₄Sr₀.₆)CeO₃. This dataset directly supports the task by enabling experimental validation of ML predictions, correlation of synthesis parameters with phase purity and dielectric performance, and iterative refinement of ML models.",
+        "db_link": "https://doi.org/10.17632/j59wsrzt6f.169"
+      }
+    ]
+  }
+]

@@ -1,0 +1,34 @@
+{
+  "paper_id": "P007",
+  "file_name": "07_EATGNN_Piezoelectric_Tensor.pdf",
+  "status": "completed",
+  "completed_at": "2026-07-27T03:56:55.745542+00:00",
+  "model": "qwen-plus",
+  "stage1_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "stage2_attempts": [
+    {
+      "attempt": 1,
+      "errors": [
+        "dataset_uses[9].dataset_key does not exist"
+      ],
+      "exception": null
+    },
+    {
+      "attempt": 2,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "counts": {
+    "tasks": 1,
+    "stages": 6,
+    "datasets": 7,
+    "dataset_uses": 10
+  }
+}

@@ -1,0 +1,164 @@
+﻿version: 1
+name: materials_dataset_discovery_ontology
+source_wiki: llm_wiki_all
+
+purpose: >
+  Ontology schema for materials-science dataset discovery over an LLM Wiki.
+  The ontology defines entity types, relations, and retrieval preferences used by
+  an agent to map fuzzy research intent to minimal data-requirement subtasks.
+
+entities:
+  Paper:
+    id: paper_id
+    description: Source paper from which task and dataset evidence is extracted.
+    fields:
+      - paper_id
+      - paper_file
+      - title
+  Task:
+    id: task_id
+    description: Research task or intent described by a paper.
+    fields:
+      - task_id
+      - paper_id
+      - task_description
+      - task_tags
+      - task_type
+  Dataset:
+    id: dataset_id
+    description: Canonical dataset entity, with aliases and links merged across papers.
+    fields:
+      - dataset_id
+      - canonical_name
+      - aliases
+      - links
+  DatasetUse:
+    id: dataset_use_id
+    description: Paper-specific relation explaining how a dataset supports a task.
+    fields:
+      - dataset_use_id
+      - paper_id
+      - task_id
+      - dataset_id
+      - usage_description
+      - link
+  MaterialSystem:
+    id: material_system_id
+    description: Material family, chemical system, or application domain.
+    examples:
+      - perovskite
+      - inorganic crystal
+      - catalyst
+      - alloy
+      - battery material
+      - 2D material
+  TargetProperty:
+    id: target_property_id
+    description: Property or target variable involved in the research task.
+    examples:
+      - band gap
+      - formation energy
+      - energy above hull
+      - adsorption energy
+      - bulk modulus
+      - dielectric tensor
+  Representation:
+    id: representation_id
+    description: Input representation or data modality needed by the model/task.
+    examples:
+      - composition
+      - crystal structure
+      - atomic coordinates
+      - lattice vectors
+      - crystal graph
+      - CIF
+      - SMILES
+      - descriptors
+  Method:
+    id: method_id
+    description: Computational or modeling method appearing in task/dataset evidence.
+    examples:
+      - DFT
+      - graph neural network
+      - transformer
+      - equivariant neural network
+      - machine learning
+  RDStage:
+    id: stage_name
+    description: R&D process stage supported by a task or dataset-use record.
+  Evidence:
+    id: evidence_id
+    description: Textual evidence from Wiki pages or extracted records.
+
+relations:
+  HAS_TASK:
+    from: Paper
+    to: Task
+  USES_DATASET:
+    from: Paper
+    to: Dataset
+  HAS_DATASET_USE:
+    from: Task
+    to: DatasetUse
+  DESCRIBES_DATASET:
+    from: DatasetUse
+    to: Dataset
+  SUPPORTS_TASK:
+    from: Dataset
+    to: Task
+  STUDIES_MATERIAL_SYSTEM:
+    from: Task
+    to: MaterialSystem
+  TARGETS_PROPERTY:
+    from: Task
+    to: TargetProperty
+  REQUIRES_REPRESENTATION:
+    from: Task
+    to: Representation
+  PROVIDES_REPRESENTATION:
+    from: DatasetUse
+    to: Representation
+  USES_METHOD:
+    from: Task
+    to: Method
+  SUPPORTS_RD_STAGE:
+    from: DatasetUse
+    to: RDStage
+  SUPPORTED_BY_EVIDENCE:
+    from: DatasetUse
+    to: Evidence
+
+retrieval_policy:
+  dataset_recommendation:
+    preferred_entity_types:
+      - DatasetUse
+      - Dataset
+      - Task
+    ontology_path:
+      - MaterialSystem
+      - TargetProperty
+      - Task
+      - DatasetUse
+      - Dataset
+      - Paper
+  paper_search:
+    preferred_entity_types:
+      - Paper
+      - Task
+      - DatasetUse
+  dataset_usage_search:
+    preferred_entity_types:
+      - Dataset
+      - DatasetUse
+      - Paper
+  method_search:
+    preferred_entity_types:
+      - Method
+      - Task
+      - Paper
+
+minimality_principle: >
+  Keep only subtasks and datasets that cover a necessary data requirement for the
+  user's research intent. Remove datasets that do not add target-label coverage,
+  material-scope alignment, representation availability, validation evidence, or
+  benchmark/evaluation value.

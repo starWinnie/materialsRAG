@@ -1,0 +1,466 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "10Ni_30La_CeO2",
+      "canonical_name": "10Ni/30La-CeO2 catalyst",
+      "raw_names": [
+        "10Ni/30La-CeO2",
+        "10Ni/30La-CeO2 catalyst"
+      ],
+      "dataset_type": "paper_specific",
+      "source_dataset_key": null,
+      "material_scope": [
+        "Ni",
+        "La-doped CeO2 (30La-CeO2)",
+        "CeO2"
+      ],
+      "available_properties": [
+        "H2 production rate",
+        "NH3 conversion",
+        "thermal stability",
+        "cluster size (1–2 nm)",
+        "Ni dispersion state",
+        "Ni oxidation state",
+        "oxygen vacancy concentration",
+        "surface alkalinity",
+        "SBET",
+        "pore size"
+      ],
+      "available_fields": [
+        "HAADF-STEM images",
+        "EDX mapping",
+        "XRD patterns",
+        "FTIR spectra",
+        "XPS spectra",
+        "XAS spectra",
+        "Raman spectra",
+        "CO2-TPD profiles",
+        "NH3-TPD profiles",
+        "H2-TPR profiles",
+        "in situ ETEM videos",
+        "catalytic performance metrics"
+      ],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "Herein, Ni-based catalysts supported on La-doped CeO2 (10Ni/30La-CeO2, where nLa: nCe = 3: 7) and undoped CeO2 (10Ni/CeO2) were synthesized respectively to catalyze the ammonia decomposition reaction.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "The successful construction of a stable Ni cluster catalyst has enabled a H2 production rate (500 °C, 279.2 mmolH2·gNi−1·min−1) and exceptional thermal stability.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "10Ni_CeO2",
+      "canonical_name": "10Ni/CeO2 catalyst",
+      "raw_names": [
+        "10Ni/CeO2",
+        "10Ni/CeO2 catalyst"
+      ],
+      "dataset_type": "paper_specific",
+      "source_dataset_key": null,
+      "material_scope": [
+        "Ni",
+        "CeO2"
+      ],
+      "available_properties": [
+        "NH3 conversion",
+        "thermal stability",
+        "particle size (5–10 nm)",
+        "Ni oxidation state",
+        "oxygen vacancy concentration",
+        "SBET",
+        "pore size"
+      ],
+      "available_fields": [
+        "HAADF-STEM images",
+        "EDX mapping",
+        "XRD patterns",
+        "FTIR spectra",
+        "XPS spectra",
+        "Raman spectra",
+        "CO2-TPD profiles",
+        "NH3-TPD profiles",
+        "H2-TPR profiles",
+        "catalytic performance metrics"
+      ],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "Herein, Ni-based catalysts supported on La-doped CeO2 (10Ni/30La-CeO2, where nLa: nCe = 3: 7) and undoped CeO2 (10Ni/CeO2) were synthesized respectively to catalyze the ammonia decomposition reaction.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "In contrast, after being subjected to the same treatments, the structure of the 10Ni/CeO2 catalyst collapsed, and a large number of metallic Ni particles with sizes of 5−10 nm precipitated (Supplementary Fig. 8 and 9).",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "30La_CeO2",
+      "canonical_name": "30La-CeO2 nanorods",
+      "raw_names": [
+        "30La-CeO2",
+        "30La-CeO2 nanorods"
+      ],
+      "dataset_type": "paper_specific",
+      "source_dataset_key": null,
+      "material_scope": [
+        "La-doped CeO2 (30La-CeO2)",
+        "CeO2"
+      ],
+      "available_properties": [
+        "crystal structure",
+        "lattice expansion",
+        "oxygen mobility",
+        "surface stress",
+        "SBET",
+        "pore size"
+      ],
+      "available_fields": [
+        "XRD patterns",
+        "TEM images",
+        "EDX mapping",
+        "FTIR spectra",
+        "XPS spectra",
+        "Raman spectra",
+        "H2-TPR profiles",
+        "in situ XRD"
+      ],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "CeO2 nanorods doped with La were prepared via the hydrothermal method.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "Preparation of supports. The 30La-CeO2 nanorods were synthesized by the hydrothermal method.",
+          "page": 9,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "CeO2_nanorods",
+      "canonical_name": "CeO2 nanorods",
+      "raw_names": [
+        "CeO2 nanorods",
+        "CeO2"
+      ],
+      "dataset_type": "paper_specific",
+      "source_dataset_key": null,
+      "material_scope": [
+        "CeO2"
+      ],
+      "available_properties": [
+        "crystal structure",
+        "SBET",
+        "pore size"
+      ],
+      "available_fields": [
+        "TEM images",
+        "XRD patterns",
+        "in situ XRD"
+      ],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "CeO2 nanorods doped with La were prepared via the hydrothermal method. TEM images showed that both CeO2 and 30La-CeO2 exhibited regular nanorod morphologies, with La doping exerting minimal impact on the structural characteristics (Supplementary Fig. 1).",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "10Ni_30La_CeO2",
+      "usage_role": "source",
+      "purpose": "Catalyst used for comparative study of Ni-based catalysts on doped and undoped CeO2 supports",
+      "used_fields": [
+        "HAADF-STEM images",
+        "EDX mapping",
+        "XRD patterns",
+        "FTIR spectra",
+        "XPS spectra",
+        "XAS spectra",
+        "Raman spectra",
+        "CO2-TPD profiles",
+        "NH3-TPD profiles",
+        "H2-TPR profiles"
+      ],
+      "is_derived": false,
+      "construction_method": "deposition-precipitation method onto 30La-CeO2 support",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Herein, Ni-based catalysts supported on La-doped CeO2 (10Ni/30La-CeO2, where nLa: nCe = 3: 7) and undoped CeO2 (10Ni/CeO2) were synthesized respectively to catalyze the ammonia decomposition reaction.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "10Ni_CeO2",
+      "usage_role": "source",
+      "purpose": "Reference catalyst for comparative study of Ni-based catalysts on doped and undoped CeO2 supports",
+      "used_fields": [
+        "HAADF-STEM images",
+        "EDX mapping",
+        "XRD patterns",
+        "FTIR spectra",
+        "XPS spectra",
+        "Raman spectra",
+        "CO2-TPD profiles",
+        "NH3-TPD profiles",
+        "H2-TPR profiles"
+      ],
+      "is_derived": false,
+      "construction_method": "deposition-precipitation method onto CeO2 support",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Herein, Ni-based catalysts supported on La-doped CeO2 (10Ni/30La-CeO2, where nLa: nCe = 3: 7) and undoped CeO2 (10Ni/CeO2) were synthesized respectively to catalyze the ammonia decomposition reaction.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "30La_CeO2",
+      "usage_role": "source",
+      "purpose": "Support material for Ni catalyst synthesis",
+      "used_fields": [
+        "TEM images",
+        "XRD patterns",
+        "EDX mapping",
+        "FTIR spectra",
+        "XPS spectra",
+        "Raman spectra",
+        "H2-TPR profiles",
+        "in situ XRD"
+      ],
+      "is_derived": false,
+      "construction_method": "hydrothermal method",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "CeO2 nanorods doped with La were prepared via the hydrothermal method.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "CeO2_nanorods",
+      "usage_role": "source",
+      "purpose": "Support material for Ni catalyst synthesis and reference for La-doping effects",
+      "used_fields": [
+        "TEM images",
+        "XRD patterns",
+        "in situ XRD"
+      ],
+      "is_derived": false,
+      "construction_method": "hydrothermal method",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "CeO2 nanorods doped with La were prepared via the hydrothermal method. TEM images showed that both CeO2 and 30La-CeO2 exhibited regular nanorod morphologies, with La doping exerting minimal impact on the structural characteristics (Supplementary Fig. 1).",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "10Ni_30La_CeO2",
+      "usage_role": "candidate_pool",
+      "purpose": "Source material for generating distinct Ni species states (particles → clusters) via controlled thermal treatment under NH3 or H2",
+      "used_fields": [
+        "HAADF-STEM images",
+        "EDX mapping"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Firstly, HAADF-STEM analysis revealed a large number of particles with sizes of 5−10 nm on the surface of the 10Ni/30La-CeO2 catalyst (Fig. 1a), which was treated with NH3 at 500 °C for 0.5 h. Further, only a limited number of Ni particles along with a substantial amount of Ni clusters were observed after being treated at 600 °C for 1 h (Fig. 1b, Supplementary Fig. 4).",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "10Ni_CeO2",
+      "usage_role": "candidate_pool",
+      "purpose": "Reference material for comparative analysis of Ni species evolution under identical pretreatment conditions",
+      "used_fields": [
+        "HAADF-STEM images",
+        "EDX mapping"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "In contrast, after being subjected to the same treatments, the structure of the 10Ni/CeO2 catalyst collapsed, and a large number of metallic Ni particles with sizes of 5−10 nm precipitated (Supplementary Fig. 8 and 9).",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "10Ni_30La_CeO2",
+      "usage_role": "computational_validation",
+      "purpose": "Input for DFT and ML-MD simulations to validate thermodynamic feasibility and atomic-scale mechanism of Ni particle dispersion",
+      "used_fields": [
+        "Ni-O-La/Ce bonding interactions",
+        "adsorption energies",
+        "migration pathways"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "DFT calculations revealed that the reactive Oads coordinated with either Ce or La atoms on the catalyst surface could establish strong MSI with Ni species, consequently promoting the redispersion of Ni nanoparticles.",
+          "page": 5,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "Machine learning force field based molecular dynamics fielded visually demonstrate that Ni particles indeed dispersed under the influence of this strong bonding (Fig. 4f).",
+          "page": 7,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "10Ni_CeO2",
+      "usage_role": "computational_validation",
+      "purpose": "Reference system for comparative DFT analysis of Ni dispersion energetics on undoped support",
+      "used_fields": [
+        "Ni-O-Ce bonding interactions",
+        "adsorption energies"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "DFT calculations revealed distinct adsorption behaviors depending on the coordination environment of Ni. When Ni atoms formed direct bonds with Ce (Eads = 1.97 eV) or La (Eads = 1.71 eV) atoms in the support, the positive adsorption energies indicated thermodynamic instability. In contrast, Ni coordination with O atoms adjacent to Ce sites exhibited a lower adsorption energy (Eads = −0.26 eV), favoring stable configurations.",
+          "page": 5,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "10Ni_30La_CeO2",
+      "usage_role": "experimental_validation",
+      "purpose": "Material for in situ ETEM and HAADF-STEM observation of particle-to-cluster transition under operando conditions",
+      "used_fields": [
+        "in situ ETEM images",
+        "HAADF-STEM images"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "In order to directly observe the formation process of these Ni clusters, in situ aberration-corrected ETEM was employed to characterize the 10Ni/30La-CeO2 catalyst. The nanoparticles gradually contracted when the temperature increased from room temperature to 450 °C under a H2 atmosphere (Fig. 2a, b). Then, the particles completely dispersed upon further increasing the temperature to 600 °C, and the highly dispersed state was retained even after returning to ambient temperature (Fig. 2c, d).",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "10Ni_30La_CeO2",
+      "usage_role": "benchmark",
+      "purpose": "Quantify functional success of reverse regulation via H2 production rate, stability, and mechanistic parameters",
+      "used_fields": [
+        "NH3 conversion",
+        "H2 production rate",
+        "stability",
+        "apparent activation energy"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "10Ni/30La-CeO2 with an actual Ni loading of only 7.3% (determined by ICP-MS, Table 1) exhibited a superior NH3 conversion of 61% at 500 °C (GHSV = 30,000 mL·gcat−1h−1, Fig. 5a, Supplementary Fig. 23).",
+          "page": 7,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "Notably, the 10Ni/30La-CeO2 catalyst demonstrated exceptional hydrogen production performance, achieving a H2 formation rate of 279.2 mmolH2·gNi−1·min−1 at 500 °C, which was among the highest values for reported non-noble metal catalysts in ammonia decomposition.",
+          "page": 7,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

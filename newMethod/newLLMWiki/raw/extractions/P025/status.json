@@ -1,0 +1,27 @@
+{
+  "paper_id": "P025",
+  "file_name": "25_ChargE3Net.pdf",
+  "status": "completed",
+  "completed_at": "2026-07-27T05:10:13.522198+00:00",
+  "model": "qwen-plus",
+  "stage1_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "stage2_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "counts": {
+    "tasks": 1,
+    "stages": 5,
+    "datasets": 4,
+    "dataset_uses": 4
+  }
+}

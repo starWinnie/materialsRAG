@@ -1,0 +1,29 @@
+[
+  {
+    "task_description": "Probing and characterizing out-of-distribution (OOD) generalization capabilities of machine learning models for materials property prediction—specifically, identifying which OOD tasks (defined by unseen chemistry or structural symmetries) genuinely challenge models versus those that merely reflect interpolation within the representational training domain, and evaluating how model performance scales with training set size and training time on these tasks.",
+    "task_tags": [
+      "OOD generalization",
+      "distributional robustness",
+      "materials property prediction",
+      "scaling law analysis",
+      "domain identification"
+    ],
+    "datasets": [
+      {
+        "db_title": "Materials Project (MP)",
+        "db_description": "A database of ~146k ab initio–computed inorganic crystalline materials, containing formation energies, band gaps, bulk moduli, crystal structures (space groups, point groups, crystal systems), and chemical compositions. In this paper, it is used to construct over 700 OOD tasks—including leave-one-element-out, leave-one-period-out, leave-one-group-out, leave-one-space-group-out, and leave-one-crystal-system-out splits—to evaluate ML model generalization on formation energy prediction and assess representational domain coverage via UMAP embedding analysis.",
+        "db_link": "https://materialsproject.org"
+      },
+      {
+        "db_title": "JARVIS (Joint Automated Repository for Various Integrated Simulations)",
+        "db_description": "A database of ~76k DFT-computed materials properties, including formation energies and crystal structures, curated from multiple sources and standardized for materials informatics. It is used alongside MP and OQMD to ensure robust conclusions across data distributions; specifically, it supports chemistry- and structure-based OOD evaluations (e.g., leave-Mg-out, leave-O-out) and UMAP-based representational domain analysis for formation energy prediction.",
+        "db_link": "https://jarvis.nist.gov"
+      },
+      {
+        "db_title": "OQMD (Open Quantum Materials Database)",
+        "db_description": "A large-scale ab initio database of ~1M predicted stable and metastable inorganic compounds, with formation energies, crystal structures, and elemental compositions. Its scale (~10× larger than MP) enables rigorous scaling analysis: the paper uses it to validate learning curves (training set size and time effects) on representationally OOD tasks (e.g., leave-H-out), confirm domain misidentification biases, and demonstrate adverse scaling behavior where increased data degrades OOD performance.",
+        "db_link": "https://oqmd.org"
+      }
+    ]
+  }
+]

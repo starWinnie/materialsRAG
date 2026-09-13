@@ -1,0 +1,13 @@
+{
+  "paper_id": "P007",
+  "file_name": "07_EATGNN_Piezoelectric_Tensor.pdf",
+  "status": "failed",
+  "error": {
+    "paper_id": "P007",
+    "file_name": "07_EATGNN_Piezoelectric_Tensor.pdf",
+    "phase": "paper_extraction",
+    "error_type": "RuntimeError",
+    "error": "stage2 failed after 3 attempts: datasets[4].evidence has no excerpt matching its stated PDF page",
+    "occurred_at": "2026-08-13T08:11:31.672233+00:00"
+  }
+}

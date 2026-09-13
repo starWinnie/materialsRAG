@@ -1,0 +1,595 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "ani1x",
+      "canonical_name": "ANI-1x",
+      "raw_names": [
+        "ANI-1x",
+        "ANI-1x data set"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "organic molecules"
+      ],
+      "available_properties": [
+        "total energies",
+        "atomic forces"
+      ],
+      "available_fields": [
+        "atomic configurations",
+        "reference energies",
+        "reference atomic forces"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "ANI-1x as a heterogeneous molecular data set (Smith et al., 2020)",
+          "page": 5,
+          "section": "5.1. Models and Data Sets",
+          "inferred": false
+        },
+        {
+          "text": "The ANI-1x data set is a heterogeneous molecular data set and includes 63,865 organic molecules (with chemical elements H, C, N, and O) whose size ranges from 4 to 64 atoms (Smith et al., 2020). The ML model requires learning total energies and atomic forces for various molecules and their conformations. Total energies and atomic forces are obtained through DFT calculations.",
+          "page": 15,
+          "section": "C.3. Description of the Data Sets",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "tio2",
+      "canonical_name": "TiO2",
+      "raw_names": [
+        "TiO2",
+        "TiO2 data set"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "inorganic materials",
+        "transition-metal oxide"
+      ],
+      "available_properties": [
+        "total energies",
+        "atomic forces"
+      ],
+      "available_fields": [
+        "atomic configurations",
+        "reference energies",
+        "reference atomic forces"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "TiO2 as a data set for inorganic materials (Artrith & Urban, 2016)",
+          "page": 5,
+          "section": "5.1. Models and Data Sets",
+          "inferred": false
+        },
+        {
+          "text": "TiO2 dataset includes 7815 bulk structures of several TiO2 phases whose reference energies and forces are obtained through DFT calculations (Artrith & Urban, 2016). The number of atoms in a single configuration ranges from 6 to 95.",
+          "page": 15,
+          "section": "C.3. Description of the Data Sets",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "rmd17",
+      "canonical_name": "revised MD17",
+      "raw_names": [
+        "rMD17",
+        "revised MD17",
+        "rMD17 data set"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "organic molecules",
+        "aspirin"
+      ],
+      "available_properties": [
+        "total energies",
+        "atomic forces"
+      ],
+      "available_fields": [
+        "atomic configurations",
+        "reference energies",
+        "reference atomic forces"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "the revised MD17 (rMD17) data set containing small molecules with sampled configurational spaces for each (Chmiela et al., 2017; 2018; Christensen & von Lilienfeld, 2020)",
+          "page": 5,
+          "section": "5.1. Models and Data Sets",
+          "inferred": false
+        },
+        {
+          "text": "The rMD17 data set includes ten small organic molecules, including 100,000 configurations obtained by running MD simulations for each (Christensen & von Lilienfeld, 2020). The ML model requires learning the total energies and atomic forces for each molecule. In this revised version of the MD17 data set, the molecules are taken from the original MD17 data set (Chmiela et al., 2017; 2018). However, the energies and forces are recalculated at the PBE/def2-SVP level of theory using very tight SCF convergence and a very dense DFT integration grid.",
+          "page": 15,
+          "section": "C.3. Description of the Data Sets",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "md22",
+      "canonical_name": "MD22",
+      "raw_names": [
+        "MD22",
+        "MD22 data set"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "organic molecules",
+        "buckyball catcher"
+      ],
+      "available_properties": [
+        "total energies",
+        "atomic forces"
+      ],
+      "available_fields": [
+        "atomic configurations",
+        "reference energies",
+        "reference atomic forces"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "the MD22 data set containing larger molecules (Chmiela et al., 2023)",
+          "page": 5,
+          "section": "5.1. Models and Data Sets",
+          "inferred": false
+        },
+        {
+          "text": "The MD22 data set (Chmiela et al., 2023) includes seven larger organic molecules, such as a small peptide and a double-walled nanotube, whose size ranges from 42 to 370 atoms. The data set consists of MD trajectories sampled at temperatures between 400 and 500 K. The ML model requires learning the total energies and atomic forces for each molecule. The energies and forces are calculated at the PBE+MBD level of theory.",
+          "page": 15,
+          "section": "C.3. Description of the Data Sets",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "lmnto",
+      "canonical_name": "LMNTO",
+      "raw_names": [
+        "LMNTO",
+        "Li-Mo-Ni-Ti oxide (LMNTO)",
+        "LMNTO data set"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "transition-metal oxide",
+        "Li-Mo-Ni-Ti oxide (LMNTO)"
+      ],
+      "available_properties": [
+        "total energies",
+        "atomic forces"
+      ],
+      "available_fields": [
+        "atomic configurations",
+        "reference energies",
+        "reference atomic forces"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "LMNTO as another material data set (Cooper et al., 2020)",
+          "page": 5,
+          "section": "5.1. Models and Data Sets",
+          "inferred": false
+        },
+        {
+          "text": "The Li-Mo-Ni-Ti oxide (LMNTO) is of technological significance as a potential high-capacity positive electrode material for lithium-ion batteries. It exhibits substitutional disorder, with Li, Mo, Ni, and Ti all sharing the same sublattice. This data set includes LMNTO with the composition Li8Mo2Ni7Ti7O32 and configurations obtained from an MD simulation, resulting in approximately 2600 structures in total (Cooper et al., 2020).",
+          "page": 15,
+          "section": "C.3. Description of the Data Sets",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "md17_ccsd",
+      "canonical_name": "MD17(CCSD)",
+      "raw_names": [
+        "MD17(CCSD)",
+        "MD17-CC",
+        "MD17 aspirin data with CCSC(T) labels"
+      ],
+      "dataset_type": "derived_subset",
+      "source_dataset_key": "rmd17",
+      "material_scope": [
+        "aspirin"
+      ],
+      "available_properties": [
+        "total energies"
+      ],
+      "available_fields": [
+        "atomic configurations",
+        "reference energies"
+      ],
+      "availability": "public",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "We consider fine-tuning MACE-OFF (large) (Kovács et al., 2023), a MACE model pre-trained on the SPICE data set(Eastman et al., 2023), including QMugs and liquid water subsets (Isert et al., 2022; Schran et al., 2021). The foundation model is fine-tuned using the aspirin data set with energies and forces evaluated at the CCSD level of theory (Chmiela et al., 2018). We consider a more challenging scenario, e.g., where CC energies are extrapolated to the CBS limit. Thus, we use only energy labels for training.",
+          "page": 7,
+          "section": "5.4. Fine-Tuning of Foundation Models",
+          "inferred": false
+        },
+        {
+          "text": "Table 3: Results for models trained on the MD17(CCSD) data set without reference atomic forces. All models are trained on aspirin data without force labels.",
+          "page": 8,
+          "section": "5.4. Fine-Tuning of Foundation Models",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "md22_buckyball_catcher",
+      "canonical_name": "MD22 buckyball catcher",
+      "raw_names": [
+        "buckyball catcher",
+        "MD22 buckyball catcher",
+        "buckyball-catcher molecule from MD22"
+      ],
+      "dataset_type": "derived_subset",
+      "source_dataset_key": "md22",
+      "material_scope": [
+        "buckyball catcher"
+      ],
+      "available_properties": [
+        "total energies",
+        "atomic forces"
+      ],
+      "available_fields": [
+        "atomic configurations",
+        "reference energies",
+        "reference atomic forces"
+      ],
+      "availability": "public",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "We also evaluate the impact of PIWSL on data sets containing conformations of a single large molecule. For this purpose, we have chosen the buckyball catcher molecule from the MD22 data set (Chmiela et al., 2023) with 148 atoms.",
+          "page": 8,
+          "section": "5.4. Fine-Tuning of Foundation Models",
+          "inferred": false
+        },
+        {
+          "text": "Table A9: Energy (E) and force (F) mean-absolute errors (MAEs) for the MD22 data set. We have chosen buckyball catcher for our experiments.",
+          "page": 18,
+          "section": "PIWSL",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "ani1x",
+      "usage_role": "training",
+      "purpose": "training MLIPs with PIWSL loss",
+      "used_fields": [
+        "atomic configurations",
+        "reference energies",
+        "reference atomic forces"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "To evaluate the effect and dependency of the physics-informed weakly supervised approach in detail, we performed the training on various data sets: ANI-1x as a heterogeneous molecular data set (Smith et al., 2020)",
+          "page": 5,
+          "section": "5.1. Models and Data Sets",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "tio2",
+      "usage_role": "training",
+      "purpose": "training MLIPs with PIWSL loss",
+      "used_fields": [
+        "atomic configurations",
+        "reference energies",
+        "reference atomic forces"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "To evaluate the effect and dependency of the physics-informed weakly supervised approach in detail, we performed the training on various data sets: ... TiO2 as a data set for inorganic materials (Artrith & Urban, 2016)",
+          "page": 5,
+          "section": "5.1. Models and Data Sets",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "rmd17",
+      "usage_role": "training",
+      "purpose": "training MLIPs with PIWSL loss",
+      "used_fields": [
+        "atomic configurations",
+        "reference energies",
+        "reference atomic forces"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "To evaluate the effect and dependency of the physics-informed weakly supervised approach in detail, we performed the training on various data sets: ... the revised MD17 (rMD17) data set containing small molecules with sampled configurational spaces for each (Chmiela et al., 2017; 2018; Christensen & von Lilienfeld, 2020)",
+          "page": 5,
+          "section": "5.1. Models and Data Sets",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "md22",
+      "usage_role": "training",
+      "purpose": "training MLIPs with PIWSL loss",
+      "used_fields": [
+        "atomic configurations",
+        "reference energies",
+        "reference atomic forces"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "To evaluate the effect and dependency of the physics-informed weakly supervised approach in detail, we performed the training on various data sets: ... the MD22 data set containing larger molecules (Chmiela et al., 2023)",
+          "page": 5,
+          "section": "5.1. Models and Data Sets",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "lmnto",
+      "usage_role": "training",
+      "purpose": "training MLIPs with PIWSL loss",
+      "used_fields": [
+        "atomic configurations",
+        "reference energies",
+        "reference atomic forces"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "To evaluate the effect and dependency of the physics-informed weakly supervised approach in detail, we performed the training on various data sets: ... LMNTO as another material data set (Cooper et al., 2020)",
+          "page": 5,
+          "section": "5.1. Models and Data Sets",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "ani1x",
+      "usage_role": "test",
+      "purpose": "benchmarking models trained with PIWSL",
+      "used_fields": [
+        "atomic configurations",
+        "reference energies",
+        "reference atomic forces"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 10000,
+      "evidence": [
+        {
+          "text": "In the following, all evaluation metrics are computed for the test data set.",
+          "page": 5,
+          "section": "5.2. Benchmark Results",
+          "inferred": false
+        },
+        {
+          "text": "We used 10,000 test configurations for ANI-1x",
+          "page": 14,
+          "section": "Splitting Data Sets",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "tio2",
+      "usage_role": "test",
+      "purpose": "benchmarking models trained with PIWSL",
+      "used_fields": [
+        "atomic configurations",
+        "reference energies",
+        "reference atomic forces"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 1000,
+      "evidence": [
+        {
+          "text": "We used 1000 for TiO2",
+          "page": 14,
+          "section": "Splitting Data Sets",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "rmd17",
+      "usage_role": "test",
+      "purpose": "benchmarking models trained with PIWSL",
+      "used_fields": [
+        "atomic configurations",
+        "reference energies",
+        "reference atomic forces"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 10000,
+      "evidence": [
+        {
+          "text": "for the rMD17 data set, following (Fu et al., 2023), we used 9000 configurations as a validation data set and another 10,000 for testing.",
+          "page": 14,
+          "section": "Splitting Data Sets",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "lmnto",
+      "usage_role": "test",
+      "purpose": "benchmarking models trained with PIWSL",
+      "used_fields": [
+        "atomic configurations",
+        "reference energies",
+        "reference atomic forces"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 1000,
+      "evidence": [
+        {
+          "text": "We used 1000 for TiO2 and LMNTO.",
+          "page": 14,
+          "section": "Splitting Data Sets",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "rmd17",
+      "usage_role": "experimental_validation",
+      "purpose": "evaluating robustness during MD simulations",
+      "used_fields": [
+        "atomic configurations"
+      ],
+      "is_derived": true,
+      "construction_method": "subset selection",
+      "filter_conditions": [
+        "aspirin molecule"
+      ],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "To further assess PIWSL’s impact, we evaluate the robustness during MD simulations of the MLIP models trained with and without PIWSL. We consider MD simulations of the aspirin molecule, with corresponding results presented in figure 3.",
+          "page": 7,
+          "section": "5.3. Qualitative Impact of PIWSL",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "md17_ccsd",
+      "usage_role": "candidate_pool",
+      "purpose": "fine-tuning foundation models with PIWSL",
+      "used_fields": [
+        "atomic configurations",
+        "reference energies"
+      ],
+      "is_derived": true,
+      "construction_method": "subset selection and label restriction",
+      "filter_conditions": [
+        "aspirin data",
+        "without force labels"
+      ],
+      "sample_count": 950,
+      "evidence": [
+        {
+          "text": "Table 3: Results for models trained on the MD17(CCSD) data set without reference atomic forces. All models are trained on aspirin data without force labels.",
+          "page": 8,
+          "section": "5.4. Fine-Tuning of Foundation Models",
+          "inferred": false
+        },
+        {
+          "text": "The data includes 1500 samples which are splitted into 950/50/500 as train/validation/test datasets.",
+          "page": 22,
+          "section": "E.5. Training setup for MD17-CCSD(T) Experiments",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "md22_buckyball_catcher",
+      "usage_role": "candidate_pool",
+      "purpose": "fine-tuning foundation models with PIWSL",
+      "used_fields": [
+        "atomic configurations",
+        "reference energies",
+        "reference atomic forces"
+      ],
+      "is_derived": true,
+      "construction_method": "subset selection",
+      "filter_conditions": [
+        "buckyball catcher molecule"
+      ],
+      "sample_count": 50,
+      "evidence": [
+        {
+          "text": "We also evaluate the impact of PIWSL on data sets containing conformations of a single large molecule. For this purpose, we have chosen the buckyball catcher molecule from the MD22 data set (Chmiela et al., 2023) with 148 atoms.",
+          "page": 8,
+          "section": "5.4. Fine-Tuning of Foundation Models",
+          "inferred": false
+        },
+        {
+          "text": "both models were trained using only 50 samples.",
+          "page": 8,
+          "section": "5.4. Fine-Tuning of Foundation Models",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

@@ -1,0 +1,186 @@
+{
+  "paper": {
+    "title": "An open-access database and analysis tool for perovskite solar cells based on the FAIR data principles",
+    "year": 2022,
+    "doi": "10.1038/s41560-021-00941-3",
+    "research_summary": "Here we extract all the meaningful device data from peer-reviewed papers on metal-halide perovskite solar cells published so far and make them available in a database. We collect data from over 42,400 photovoltaic devices with up to 100 parameters per device. We then develop open-source and accessible procedures to analyse the data, providing examples of insights that can be gleaned from the analysis of a large dataset. The database, graphics and analysis tools are made available to the community and will continue to evolve as an open-source initiative."
+  },
+  "task": {
+    "task_name_raw": "creation of an open-access database and analysis tool for perovskite solar cells",
+    "task_name_canonical": "create_open_access_perovskite_solar_cell_database_and_analysis_tool",
+    "objective": "to expand the normal research cycle by collecting all perovskite solar cell data, both past and future, in one place; to make all historical data accessible and provide means to upload new experimental data; to implement interactive graphical data visualization tools that enable simple and interactive exploration, analysis and filtering",
+    "material_scope": [
+      "metal-halide perovskites",
+      "perovskite solar cells"
+    ],
+    "target_properties": [
+      "power conversion efficiency (PCE)",
+      "open-circuit voltage (Voc)",
+      "bandgap (Eg)",
+      "stability (T80)",
+      "scalability (cell area)",
+      "device stack composition"
+    ],
+    "constraints": [
+      "FAIR data principles (findable, accessible, interoperable, reusable)",
+      "consistently formatted data",
+      "peer-reviewed literature only",
+      "up to end of February 2020"
+    ],
+    "input_requirements": [
+      "peer-reviewed papers on metal-halide perovskite solar cells",
+      "data extraction protocol with 95 attributes",
+      "metadata ontology",
+      "interactive web-based tools development"
+    ],
+    "output_goal": [
+      "open-access database containing >42,400 photovoltaic devices",
+      "free interactive web-based tools for exploration, analysis, filtering and visualization",
+      "open-source code base",
+      "procedures and protocols for FAIR-compliant data dissemination"
+    ],
+    "evidence": [
+      {
+        "text": "Here we extract all the meaningful device data from peer-reviewed papers on metal-halide perovskite solar cells published so far and make them available in a database. We collect data from over 42,400 photovoltaic devices with up to 100 parameters per device. We then develop open-source and accessible procedures to analyse the data, providing examples of insights that can be gleaned from the analysis of a large dataset. The database, graphics and analysis tools are made available to the community and will continue to evolve as an open-source initiative.",
+        "page": 1,
+        "section": null,
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "manual literature search and data collection",
+      "stage_order": 1,
+      "stage_goal": "to identify and collect all relevant peer-reviewed papers on metal-halide perovskite solar cells",
+      "stage_input": [
+        "Web of Science search phrase 'perovskite solar'"
+      ],
+      "stage_output": [
+        "over 15,000 papers identified by end of February 2020"
+      ],
+      "evidence": [
+        {
+          "text": "We have manually gone through every paper found in the Web of Science with the search phrase ‘perovskite solar’ up to the end of February 2020 (that is, over 15,000 papers).",
+          "page": 2,
+          "section": "Data",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_preparation",
+      "stage_name_raw": "manual data extraction and formatting",
+      "stage_order": 2,
+      "stage_goal": "to extract device-level data from papers and format consistently according to protocol",
+      "stage_input": [
+        "peer-reviewed papers with original experimental device data"
+      ],
+      "stage_output": [
+        "over 42,400 devices extracted with up to 100 parameters per device, consistently formatted"
+      ],
+      "evidence": [
+        {
+          "text": "In total, we have manually extracted data for over 42,400 devices. While a few devices with extractable data will have slipped through our net, the devices in the database represent almost every device someone has thought is worth the effort to describe in detail in the peer-reviewed literature.",
+          "page": 2,
+          "section": "Data",
+          "inferred": false
+        },
+        {
+          "text": "Once extracted, the data have been consistently formatted according to the instruction in the supporting documentation and is now freely available in the Perovskite Database.",
+          "page": 3,
+          "section": "Data",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_generation",
+      "stage_name_raw": "development of interactive analysis and visualization tools",
+      "stage_order": 3,
+      "stage_goal": "to build open-source, web-based tools enabling simple and interactive exploration, analysis, filtering and visualization without programming knowledge",
+      "stage_input": [
+        "consistently formatted database",
+        "Python programming language"
+      ],
+      "stage_output": [
+        "interactive graphics exploring the database",
+        "web-based tools for filtering and visualization"
+      ],
+      "evidence": [
+        {
+          "text": "To increase the usability of the data, we have developed interactive tools for simple exploration, analysis, filtering and visualization that can be used without programming knowledge. The code base for the project is written in Python and is available at GitHub (https://github.com/Jesperkemist/perovskitedatabase), and everyone is invited to contribute and expand the scope of the project.",
+          "page": 3,
+          "section": "Data",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "demonstration of database utility through example analyses",
+      "stage_order": 4,
+      "stage_goal": "to validate the database and tools by performing illustrative analyses yielding scientific insights",
+      "stage_input": [
+        "database",
+        "interactive tools"
+      ],
+      "stage_output": [
+        "example analyses including PCE evolution over time, HTL impact on Voc, bandgap-composition fitting, scalability trends, stability T80 analysis"
+      ],
+      "evidence": [
+        {
+          "text": "What follows is a small selection of analyses, visualizations and insights made possible by the Perovskite Database and the associated toolbox.",
+          "page": 3,
+          "section": "Example uses of the Perovskite Database",
+          "inferred": false
+        },
+        {
+          "text": "As a first example, the perovskite solar cell development is illustrated by binning the performance for all available devices and plotting those as a function of publication date (Fig. 3a).",
+          "page": 3,
+          "section": "Example uses of the Perovskite Database",
+          "inferred": false
+        },
+        {
+          "text": "The previous examples illustrate the power of having access to large, diverse, consistently formatted and interoperable datasets.",
+          "page": 5,
+          "section": "Density",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "other",
+      "stage_name_raw": "establishment of FAIR-compliant protocols and infrastructure",
+      "stage_order": 5,
+      "stage_goal": "to develop procedures, templates, and infrastructure ensuring long-term sustainability, trustworthiness, and community adoption",
+      "stage_input": [
+        "FAIR data principles",
+        "community input",
+        "Helmholtz Organization support"
+      ],
+      "stage_output": [
+        "Excel template for data upload",
+        "metadata ontology",
+        "GitHub repository",
+        "project website (www.perovskitedatabase.com)",
+        "guarantee of operational maintenance for a decade"
+      ],
+      "evidence": [
+        {
+          "text": "The key goals of the project are to: collect all perovskite solar cell data ever published in one open-access database; develop free interactive web-based tools for simple and interactive exploration, analysis, filtering and visualization of the data; develop procedures and protocols to simplify dissemination and collection of new perovskite data according to the FAIR data principles; release an open-source code base that can be used as a blueprint for similar projects and give a few demonstrations of insights and analysis that can be easily done if all data are consistently formatted and found in one place.",
+          "page": 2,
+          "section": "Data",
+          "inferred": false
+        },
+        {
+          "text": "To ensure the project’s longevity, we have secured support from the Helmholtz Organization in Germany, which acts as a guarantor ensuring that the web resources, that is, database, webpage and the GitHub account, will be operational and maintained for the coming decade, with an option of possible prolongation.",
+          "page": 6,
+          "section": "Future expansion of the database",
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

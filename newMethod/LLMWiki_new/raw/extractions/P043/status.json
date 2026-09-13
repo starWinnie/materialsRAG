@@ -1,0 +1,27 @@
+{
+  "paper_id": "P043",
+  "file_name": "43_Machine learning for improved density functional theory thermodynamics.pdf",
+  "status": "completed",
+  "completed_at": "2026-08-06T02:13:55.874448+00:00",
+  "model": "qwen-plus",
+  "stage1_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "stage2_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "counts": {
+    "tasks": 1,
+    "stages": 7,
+    "datasets": 2,
+    "dataset_uses": 7
+  }
+}

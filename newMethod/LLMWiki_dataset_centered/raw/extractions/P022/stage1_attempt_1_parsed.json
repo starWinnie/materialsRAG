@@ -1,0 +1,169 @@
+{
+  "paper": {
+    "title": "CRYSTALFORMER: INFINITELY CONNECTED ATTENTION FOR PERIODIC STRUCTURE ENCODING",
+    "year": 2024,
+    "doi": null,
+    "research_summary": "Predicting physical properties of materials from their crystal structures is a fundamental problem in materials science. In this work, we show that this infinitely connected attention can lead to a computationally tractable formulation, interpreted as neural potential summation, that performs infinite interatomic potential summations in a deeply learned feature space. We then propose a simple yet effective Transformer-based encoder architecture for crystal structures called Crystalformer."
+  },
+  "task": {
+    "task_name_raw": "Predicting physical properties of materials from their crystal structures",
+    "task_name_canonical": "crystal_structure_to_physical_property_prediction",
+    "objective": "Predicting physical properties of materials from their crystal structures without actually synthesizing materials is important for accelerating the discovery of new materials with desired properties",
+    "material_scope": [
+      "crystal structures"
+    ],
+    "target_properties": [
+      "formation energy",
+      "bandgap",
+      "bulk modulus",
+      "shear modulus",
+      "total energy",
+      "energy above hull"
+    ],
+    "constraints": [
+      "periodicity",
+      "permutation invariance",
+      "SE(3) invariance",
+      "periodic invariance"
+    ],
+    "input_requirements": [
+      "crystal structures represented as unit cell points and lattice vectors"
+    ],
+    "output_goal": [
+      "predicted physical property values"
+    ],
+    "evidence": [
+      {
+        "text": "Predicting physical properties of materials from their crystal structures is a fundamental problem in materials science.",
+        "page": 1,
+        "section": "ABSTRACT",
+        "inferred": false
+      },
+      {
+        "text": "Predicting physical properties of materials from their crystal structures without actually synthesizing materials is important for accelerating the discovery of new materials with desired properties (Pollice et al., 2021).",
+        "page": 1,
+        "section": "INTRODUCTION",
+        "inferred": false
+      },
+      {
+        "text": "We consider a problem of estimating physical properties of a given crystal structure.",
+        "page": 3,
+        "section": "CRYSTALFORMER",
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "Using Materials Project and JARVIS-DFT datasets",
+      "stage_order": 1,
+      "stage_goal": "Acquire crystal structure data with DFT-calculated properties for training and evaluation",
+      "stage_input": [
+        "crystal structures",
+        "DFT-calculated properties"
+      ],
+      "stage_output": [
+        "dataset of crystal structures with properties"
+      ],
+      "evidence": [
+        {
+          "text": "Following our most relevant work by Yan et al. (2022), we use the following datasets with DFT-calculated properties.\nMaterials Project (MEGNet) is a collection of 69,239 materials from the Materials Project database retrieved by Chen et al. (2019). Following Yan et al. (2022), we perform regression tasks of formation energy, bandgap, bulk modulus, and shear modulus.\nJARVIS-DFT (3D 2021) is a collection of 55,723 materials by Choudhary et al. (2020). Following Yan et al. (2022), we perform regression tasks of formation energy, total energy, bandgap, and energy above hull.",
+          "page": 7,
+          "section": "EXPERIMENTS",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_preparation",
+      "stage_name_raw": "Representing crystal structures with unit cell points and lattice vectors",
+      "stage_order": 2,
+      "stage_goal": "Prepare crystal structure data in a format suitable for the model, using unit cell representation",
+      "stage_input": [
+        "crystal structures"
+      ],
+      "stage_output": [
+        "unit cell points",
+        "lattice vectors"
+      ],
+      "evidence": [
+        {
+          "text": "Assume a periodic structure system on a lattice in 3D space, which consists of finite sets of points and their attributes, P = {p1, p2, ..., pN} and X 0 = {x0\n1, x0\n2, ..., x0\nN}, in a unit cell as well as lattice vectors, l1, l2, l3 ∈R3, defining the unit cell translations.",
+          "page": 2,
+          "section": "PRELIMINARIES",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "Training Crystalformer model with mean absolute error loss",
+      "stage_order": 3,
+      "stage_goal": "Train the Crystalformer model to predict material properties from crystal structures",
+      "stage_input": [
+        "prepared crystal structure data",
+        "target property values"
+      ],
+      "stage_output": [
+        "trained Crystalformer model"
+      ],
+      "evidence": [
+        {
+          "text": "For each regression task in the Materials Project dataset, we train our model by optimizing the mean absolute error loss function via stochastic gradient descent (SGD) with a batch size of 128 materials for 500 epochs.",
+          "page": 7,
+          "section": "EXPERIMENTS",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "Evaluating model performance with mean absolute errors",
+      "stage_order": 4,
+      "stage_goal": "Evaluate the trained model's performance on predicting material properties",
+      "stage_input": [
+        "trained Crystalformer model",
+        "test dataset"
+      ],
+      "stage_output": [
+        "mean absolute errors for various properties"
+      ],
+      "evidence": [
+        {
+          "text": "Tables 1 and 2 summarize the mean absolute errors (MAEs) for totally nine regression tasks of the Materials Project and JARVIS-DFT datasets, comparing our method with eight existing methods",
+          "page": 7,
+          "section": "EXPERIMENTS",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "ablation_study",
+      "stage_name_raw": "Ablation studies on value position encoding and number of self-attention blocks",
+      "stage_order": 5,
+      "stage_goal": "Analyze the contribution of different components of the model architecture",
+      "stage_input": [
+        "Crystalformer model variants",
+        "validation dataset"
+      ],
+      "stage_output": [
+        "performance comparison of model variants"
+      ],
+      "evidence": [
+        {
+          "text": "We compare the proposed model with its simplified version removing value position encoding ψ, as a variant close to Graphormer (Ying et al., 2021). Table 4 shows consistent performance improvements by the inclusion of ψ, most notably on the formation and total energy predictions but less so on the others.",
+          "page": 8,
+          "section": "ABLATION STUDIES",
+          "inferred": false
+        },
+        {
+          "text": "We further study the effects of the number of self-attention blocks. We here utilize the simplified variant because of its relatively good performance and high efficiency (Table 3). The results in Table A3 suggest that the performance moderately mounts on a plateau with four or more blocks.",
+          "page": 20,
+          "section": "DETAILED ABLATION STUDIES",
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

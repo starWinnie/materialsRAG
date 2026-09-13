@@ -1,0 +1,272 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "materials_project",
+      "canonical_name": "Materials Project",
+      "raw_names": [
+        "Materials Project"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "crystalline solids"
+      ],
+      "available_properties": [
+        "total energy",
+        "band gap",
+        "bulk modulus",
+        "shear modulus"
+      ],
+      "available_fields": [
+        "atomic numbers",
+        "fractional coordinates",
+        "3×3 lattice vectors",
+        "space group identifier (1-230)"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "For our primary benchmark experiments, we use data from the Materials Project, one of the largest databases of computational material properties (Jain et al., 2013).",
+          "page": 7,
+          "section": "5.1 EXPERIMENTAL SETUP",
+          "inferred": false
+        },
+        {
+          "text": "For each material, the model receives the atomic numbers and fractional coordinates of atoms within the unit cell, the 3×3 lattice vectors, and the corresponding space group identifier (1-230).",
+          "page": 7,
+          "section": "5.1 EXPERIMENTAL SETUP",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "synthetic_230_space_groups",
+      "canonical_name": "Synthetic dataset for all 230 space groups",
+      "raw_names": [
+        "synthetic dataset containing 100,000 samples for each of the 230 space groups"
+      ],
+      "dataset_type": "paper_specific",
+      "source_dataset_key": null,
+      "material_scope": [
+        "crystalline solids"
+      ],
+      "available_properties": [
+        "orbit distance"
+      ],
+      "available_fields": [
+        "atomic positions",
+        "space group",
+        "lattice vectors"
+      ],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "We construct a synthetic dataset containing 100,000 samples for each of the 230 space groups. Each sample consists of a pair of random atomic positions as fractional coordinates in [0, 1)3, a space group, and randomly generated lattice vectors that satisfy the constraints of the Bravais lattice for the group.",
+          "page": 8,
+          "section": "5.2 SYMMETRY-ADAPTED ENCODINGS CAPTURE ORBIT DISTANCE",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "materials_project",
+      "usage_role": "source",
+      "purpose": "Acquire crystal structures annotated with space group identifiers for material property prediction tasks.",
+      "used_fields": [
+        "atomic numbers",
+        "fractional coordinates",
+        "3×3 lattice vectors",
+        "space group identifier (1-230)"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 152149,
+      "evidence": [
+        {
+          "text": "For our primary benchmark experiments, we use data from the Materials Project, one of the largest databases of computational material properties (Jain et al., 2013).",
+          "page": 7,
+          "section": "5.1 EXPERIMENTAL SETUP",
+          "inferred": false
+        },
+        {
+          "text": "For each material, the model receives the atomic numbers and fractional coordinates of atoms within the unit cell, the 3×3 lattice vectors, and the corresponding space group identifier (1-230).",
+          "page": 7,
+          "section": "5.1 EXPERIMENTAL SETUP",
+          "inferred": false
+        },
+        {
+          "text": "At the time of training, there were 152,149 crystals with known total energies and band gaps, and 11,997 crystals with known bulk and shear moduli in the Materials Project database.",
+          "page": 7,
+          "section": "5.1 EXPERIMENTAL SETUP",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "synthetic_230_space_groups",
+      "usage_role": "training",
+      "purpose": "Train the symmetry-adapted encoding module to produce embeddings whose Euclidean distance matches the orbit distance.",
+      "used_fields": [
+        "atomic positions",
+        "space group",
+        "lattice vectors"
+      ],
+      "is_derived": false,
+      "construction_method": "synthetic generation of random atomic positions, space groups, and lattice vectors satisfying Bravais lattice constraints",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We construct a synthetic dataset containing 100,000 samples for each of the 230 space groups. Each sample consists of a pair of random atomic positions as fractional coordinates in [0, 1)3, a space group, and randomly generated lattice vectors that satisfy the constraints of the Bravais lattice for the group.",
+          "page": 8,
+          "section": "5.2 SYMMETRY-ADAPTED ENCODINGS CAPTURE ORBIT DISTANCE",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "materials_project",
+      "usage_role": "training",
+      "purpose": "Train the full Crystal Fourier Transformer (CFT) architecture on material property prediction tasks using pretrained positional encodings.",
+      "used_fields": [
+        "atomic numbers",
+        "fractional coordinates",
+        "3×3 lattice vectors",
+        "space group identifier (1-230)",
+        "total energy",
+        "band gap",
+        "bulk modulus",
+        "shear modulus"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Having validated our encoding module, we now evaluate the full CFT architecture on the task of predicting material properties from the Materials Project dataset.",
+          "page": 8,
+          "section": "5.3 MATERIAL PROPERTY PREDICTION",
+          "inferred": false
+        },
+        {
+          "text": "For our primary benchmark experiments, we use data from the Materials Project, one of the largest databases of computational material properties (Jain et al., 2013).",
+          "page": 7,
+          "section": "5.1 EXPERIMENTAL SETUP",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 6,
+      "dataset_key": "materials_project",
+      "usage_role": "test",
+      "purpose": "Evaluate CFT's performance against state-of-the-art baselines on predicting total energy, band gap, bulk modulus, and shear modulus.",
+      "used_fields": [
+        "atomic numbers",
+        "fractional coordinates",
+        "3×3 lattice vectors",
+        "space group identifier (1-230)",
+        "total energy",
+        "band gap",
+        "bulk modulus",
+        "shear modulus"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The task is to predict four key material properties from the crystal structure: total energy (eV/atom), band gap (eV), bulk modulus (log GPa), and shear modulus (log GPa).",
+          "page": 7,
+          "section": "5.1 EXPERIMENTAL SETUP",
+          "inferred": false
+        },
+        {
+          "text": "Table 1 shows the test MAE for CFT and baseline models.",
+          "page": 8,
+          "section": "5.3 MATERIAL PROPERTY PREDICTION",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 7,
+      "dataset_key": "materials_project",
+      "usage_role": "candidate_pool",
+      "purpose": "Select space groups for zero-shot evaluation by holding out those with inversion symmetry.",
+      "used_fields": [
+        "space group identifier (1-230)"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [
+        "space groups containing inversion symmetry"
+      ],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We test this hypothesis in a zero-shot setting by holding out all space groups containing inversion symmetry from the training set.",
+          "page": 9,
+          "section": "5.4 ZERO-SHOT GENERALIZATION TO UNSEEN SPACE GROUPS",
+          "inferred": false
+        },
+        {
+          "text": "Let Ginv denote the set of space groups with inversion symmetry (centrosymmetric groups).",
+          "page": 9,
+          "section": "5.4 ZERO-SHOT GENERALIZATION TO UNSEEN SPACE GROUPS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 8,
+      "dataset_key": "materials_project",
+      "usage_role": "computational_validation",
+      "purpose": "Perform zero-shot inference on unseen space groups by providing precomputed routing matrices MG at inference time.",
+      "used_fields": [
+        "atomic numbers",
+        "fractional coordinates",
+        "3×3 lattice vectors",
+        "space group identifier (1-230)"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [
+        "space groups containing inversion symmetry"
+      ],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "For CFT in the zero-shot regime, we simply provide at inference time the precomputed routing matrix MG corresponding to the unseen group G; no parameter updates or fine-tuning are performed.",
+          "page": 9,
+          "section": "5.4 ZERO-SHOT GENERALIZATION TO UNSEEN SPACE GROUPS",
+          "inferred": false
+        },
+        {
+          "text": "Figure 3 plots these signed gaps ∆MAEG for all held-out groups with at least 20 data points for both shear modulus and total energy;",
+          "page": 9,
+          "section": "5.4 ZERO-SHOT GENERALIZATION TO UNSEEN SPACE GROUPS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

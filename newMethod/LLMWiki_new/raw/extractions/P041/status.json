@@ -1,0 +1,27 @@
+{
+  "paper_id": "P041",
+  "file_name": "41_An efficient forgetting-aware fine-tuning framework for pretrained universal machine-learning interatomic potentials.pdf",
+  "status": "completed",
+  "completed_at": "2026-08-06T03:15:58.838740+00:00",
+  "model": "qwen-plus",
+  "stage1_attempts": [
+    {
+      "attempt": "cached",
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "stage2_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "counts": {
+    "tasks": 1,
+    "stages": 6,
+    "datasets": 6,
+    "dataset_uses": 11
+  }
+}

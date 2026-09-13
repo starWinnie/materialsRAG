@@ -1,0 +1,126 @@
+{
+  "paper": {
+    "title": "Structure-aware graph neural network based deep transfer learning framework for enhanced predictive analytics on diverse materials datasets",
+    "year": 2024,
+    "doi": "10.1038/s41524-023-01185-3",
+    "research_summary": "This paper presents a structure-aware graph neural network (GNN) based deep transfer learning framework to improve predictive performance for materials properties using sparse data. It leverages the ALIGNN architecture trained on large source datasets (e.g., Materials Project formation energy) and applies transfer learning—via fine-tuning or feature extraction—to small target datasets across diverse materials classes (3D/2D, inorganic/organic, computational/experimental). The framework is evaluated on 115 dataset-property combinations, showing TL models outperform scratch-trained models in ≈90% of cases, especially for extrapolation and small-data regimes."
+  },
+  "task": {
+    "task_name_raw": "materials property prediction",
+    "task_name_canonical": "materials_property_prediction",
+    "objective": "to accurately predict materials properties prior to synthesis to prioritize resources for simulations and experiments and accelerate materials discovery",
+    "material_scope": ["3D materials", "2D materials", "inorganic materials", "organic materials", "computational materials", "experimental materials"],
+    "target_properties": ["formation energy", "band gap", "dielectric constant", "piezoelectric tensor", "exfoliation energy", "elastic tensor components", "Poisson ratio", "shear modulus", "bulk modulus", "electron effective mass", "optical properties", "magnetic properties", "vibrational properties", "electronic properties"],
+    "constraints": ["small dataset size", "cross-property transfer", "cross-materials class transfer", "extrapolation capability"],
+    "input_requirements": ["crystal structure files (e.g., POSCAR)", "atomic positions", "lattice geometry", "composition"],
+    "output_goal": ["predicted numerical value of a target materials property"],
+    "evidence": [
+      {
+        "text": "An essential component in the process of materials discovery is to know which material(s) will possess desirable properties.",
+        "page": 1,
+        "section": "INTRODUCTION",
+        "inferred": false
+      },
+      {
+        "text": "Accurate materials property prediction using crystal structure occupies a primary and often critical role in materials science, particularly when screening through a near-infinite space of candidate materials for desirable materials performance.",
+        "page": 1,
+        "section": "INTRODUCTION",
+        "inferred": false
+      },
+      {
+        "text": "the ability to accurately predict the properties of interest of the material prior to synthesis can be extremely useful to prioritize available resources for simulations and experiments, which can significantly accelerate the process of materials exploration and discovery.",
+        "page": 1,
+        "section": "INTRODUCTION",
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "acquisition of diverse materials datasets",
+      "stage_order": 1,
+      "stage_goal": "to collect large and small, computational and experimental, 3D and 2D materials datasets with crystal structure information",
+      "stage_input": [],
+      "stage_output": ["Materials Project (MP) dataset", "JARVIS-3D dataset", "JARVIS-2D dataset", "Flla dataset", "Dielectric Constant (DC) dataset", "Piezoelectric Tensor (PT) dataset", "Experimental Formation Energy (EFE) dataset", "Kingsbury Experimental Formation Energy (KEFE) dataset", "Kingsbury Experimental Bandgap (KEB) dataset", "Harvard Organic Photovoltaic Dataset (HOPV)"],
+      "evidence": [
+        {
+          "text": "We use nine datasets of DFT-computed and experimental properties in this work: Materials Project (MP)4, Joint Automated Repository for Various Integrated Simulations (JARVIS) 3D with 46 properties and 2D with 32 properties5, Flla44 with three properties, Dielectric Constant (DC)45 with five properties, Piezoelectric Tensor (PT)46 with two properties, Experimental Formation Energy (EFE)47 with one property, Kingsbury Experimental Formation Energy (KEFE)48 with one property, Kingsbury Experimental Bandgap (KEB)49 with one property, and Harvard Organic Photovoltaic Dataset (HOPV)50 with 24 properties.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_preparation",
+      "stage_name_raw": "preprocessing of structure files into graph representations",
+      "stage_order": 2,
+      "stage_goal": "to convert crystal structure files (e.g., POSCAR) into atom, bond, and angle-based graph features suitable for GNN input",
+      "stage_input": ["structure file containing information on lattice geometry and the ionic positions of a compound"],
+      "stage_output": ["atom-based features", "bond-based features", "angle-based features"],
+      "evidence": [
+        {
+          "text": "The structure file containing information on lattice geometry and the ionic positions of a compound is divided into atom, bond, and angle-based features before feeding into the ALIGNN-based Feature Extractor where we perform feature extraction.",
+          "page": 3,
+          "section": "ALIGNN-based Feature Extractor",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "training of source model (ALIGNN) on large dataset",
+      "stage_order": 3,
+      "stage_goal": "to train a structure-aware GNN (ALIGNN) on formation energy of the Materials Project dataset to learn transferable structural representations",
+      "stage_input": ["MP dataset", "formation energy labels", "structure files (POSCAR)"],
+      "stage_output": ["pre-trained ALIGNN source model"],
+      "evidence": [
+        {
+          "text": "A model trained on the formation energy of the MP dataset39 is used as the source model to perform fine-tuning and feature extraction-based transfer learning as formation energy has shown to lead to meaningful representations from large source datasets36, which can then be applied during the model training on the smaller target datasets to improve their predictive performance.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_generation",
+      "stage_name_raw": "generation of transfer learning models via fine-tuning and feature extraction",
+      "stage_order": 4,
+      "stage_goal": "to generate two types of target models: (1) fine-tuned ALIGNN and (2) feature-extracted representations fed to a deep neural network",
+      "stage_input": ["pre-trained ALIGNN source model", "small target datasets"],
+      "stage_output": ["fine-tuned ALIGNN target model", "feature-extracted target model (using atom-bond-angle features(last))"],
+      "evidence": [
+        {
+          "text": "For TL models, we use a model pretrained on the MP dataset with formation energy as the materials property using ALIGNN as the model architecture. The TL techniques comprise of traditional fine-tuning and a feature extraction method from a graph neural network.",
+          "page": 8,
+          "section": "METHODS",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "evaluation of predictive performance using MAE",
+      "stage_order": 5,
+      "stage_goal": "to quantitatively compare transfer learning models against scratch-trained models and a naive baseline using mean absolute error (MAE)",
+      "stage_input": ["holdout test sets", "predictions from TL and SC models"],
+      "stage_output": ["test MAE values", "percent error change", "statistical significance (p < 0.01)"],
+      "evidence": [
+        {
+          "text": "We use mean absolute error (MAE) as the primary evaluation metric for all models.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        },
+        {
+          "text": "We perform uncertainty and statistical signiﬁcance analysis using different materials properties... we perform a corrected resampled t-test57 and obtain p value < 0.01 for all cases.",
+          "page": 6,
+          "section": "DISCUSSION",
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

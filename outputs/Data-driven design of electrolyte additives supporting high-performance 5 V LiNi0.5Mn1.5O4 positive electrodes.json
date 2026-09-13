@@ -1,0 +1,17 @@
+[
+  {
+    "task_description": "Designing and selecting high-performing binary electrolyte additive combinations for LiNi0.5Mn1.5O4 (LNMO)-based lithium-ion batteries by predicting three key electrochemical performance metrics: final area-specific impedance (ASI), impedance rise (ΔASI), and final specific capacity (Q), with the goal of identifying formulations that simultaneously minimize ASI and ΔASI while maximizing Q.",
+    "task_tags": [
+      "electrolyte design",
+      "additive screening",
+      "battery performance prediction"
+    ],
+    "datasets": [
+      {
+        "db_title": "LNMO Electrolyte Additive Performance Dataset",
+        "db_description": "A custom experimental dataset comprising electrochemical performance measurements from 28 electrolyte formulations tested in Gr||LNMO coin cells, including 10 single additives and 18 dual additives (each composed of one positive-electrode and one negative-electrode additive), plus a baseline solvent (1.0 M LiPF6 in EC/EMC). For each formulation, the dataset contains measured values of final area-specific impedance (ASI), impedance rise (ΔASI), and final specific capacity (Q), along with corresponding chemical compositions (e.g., '1% VC + 1% TMSPi') and weight percentages. This dataset was used to train and validate Gaussian Process Regression models to predict ASI, ΔASI, and Q for unseen dual-additive candidates.",
+        "db_link": "https://doi.org/10.1038/s41467-025-57961-w#Sec17"
+      }
+    ]
+  }
+]

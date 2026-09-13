@@ -1,0 +1,504 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "lp_sc_fine_tuning",
+      "canonical_name": "LPSC fine-tuning dataset",
+      "raw_names": [
+        "fine-tuning dataset",
+        "LPSC fine-tuning dataset",
+        "fine-tuning set"
+      ],
+      "dataset_type": "paper_specific",
+      "source_dataset_key": null,
+      "material_scope": [
+        "Li6PS5Cl (LPSC)"
+      ],
+      "available_properties": [
+        "potential energy",
+        "atomic forces"
+      ],
+      "available_fields": [
+        "atomic positions",
+        "cell parameters",
+        "energies",
+        "forces"
+      ],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "The fine-tuning dataset is constructed from MD trajectories of an LPSC unit cell (52atoms) obtained from 100 ps simulations conducted at 600 and 1000 K. At each temperature, 500 structures are uniformly sampled at 200 fs intervals, resulting in a total of 1000 structures. These structures are then randomly split into training and validation datasets at a 9:1 ratio.",
+          "page": 4,
+          "section": "Fine-tuning MLIPs on LPSC dataset",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "m_ptrj",
+      "canonical_name": "MPtrj dataset",
+      "raw_names": [
+        "MPtrj dataset",
+        "pretrained dataset",
+        "MPtrj"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "most elements in the periodic table"
+      ],
+      "available_properties": [
+        "potential energy",
+        "atomic forces"
+      ],
+      "available_fields": [
+        "atomic positions",
+        "cell parameters",
+        "energies",
+        "forces"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "As the pretrained MLIP to be fine-tuned, we employ SevenNet-0 (version dated 11 July 202454), which was trained on the MPtrj dataset22.",
+          "page": 4,
+          "section": "Fine-tuning MLIPs on LPSC dataset",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "s_m_ptrj",
+      "canonical_name": "sMPtrj test set",
+      "raw_names": [
+        "sMPtrj",
+        "test set",
+        "sMPtrj dataset"
+      ],
+      "dataset_type": "derived_subset",
+      "source_dataset_key": "m_ptrj",
+      "material_scope": [
+        "most elements in the periodic table"
+      ],
+      "available_properties": [
+        "potential energy",
+        "atomic forces"
+      ],
+      "available_fields": [
+        "atomic positions",
+        "cell parameters",
+        "energies",
+        "forces"
+      ],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "We generate a test set by randomly sampling 10% of the MPtrj dataset (referred to as sMPtrj), which is used to evaluate forgetting prevention across all fine-tuning methods.",
+          "page": 4,
+          "section": "Forgetting behavior of fine-tuned MLIPs",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "replay_set",
+      "canonical_name": "Replay set",
+      "raw_names": [
+        "Replay set",
+        "Replay dataset"
+      ],
+      "dataset_type": "derived_subset",
+      "source_dataset_key": "m_ptrj",
+      "material_scope": [
+        "most elements in the periodic table"
+      ],
+      "available_properties": [
+        "potential energy",
+        "atomic forces"
+      ],
+      "available_fields": [
+        "atomic positions",
+        "cell parameters",
+        "energies",
+        "forces"
+      ],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "On the other hand, to construct the Replay set for both Replay and reEWC, we randomly sample 10% of the MPtrj dataset.",
+          "page": 4,
+          "section": "Fine-tuning MLIPs on LPSC dataset",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "argyrodite_test_set",
+      "canonical_name": "argyrodite-type test set",
+      "raw_names": [
+        "argyrodite-type test set",
+        "argyrodite test set"
+      ],
+      "dataset_type": "paper_specific",
+      "source_dataset_key": null,
+      "material_scope": [
+        "argyrodite-type materials"
+      ],
+      "available_properties": [
+        "potential energy",
+        "atomic forces",
+        "Li-ion diffusivity",
+        "quasi-melting behavior"
+      ],
+      "available_fields": [
+        "atomic positions",
+        "cell parameters",
+        "energies",
+        "forces",
+        "MSD",
+        "quasi-melting ratio"
+      ],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "To generate a speciﬁc test dataset, we ﬁrst optimize the structures of the selected materials at 0 K and then perform ab initio molecular dynamics (AIMD) simulations for 100 ps under the NVT ensemble. Each system is gradually heated from 300 to 1200 K to probe the PES across the temperature range typically used for simulating Li diffusion in SSEs. Test conﬁgurations are sampled every 200 fs, resulting in 500 structures per material.",
+          "page": 6,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "non_argyrodite_test_set",
+      "canonical_name": "non-argyrodite-type test set",
+      "raw_names": [
+        "non-argyrodite-type test set",
+        "non-argyrodite test set"
+      ],
+      "dataset_type": "paper_specific",
+      "source_dataset_key": null,
+      "material_scope": [
+        "oxides",
+        "sulfides",
+        "nitrides",
+        "halides",
+        "hydrides"
+      ],
+      "available_properties": [
+        "potential energy",
+        "atomic forces",
+        "Li-ion diffusivity",
+        "quasi-melting behavior"
+      ],
+      "available_fields": [
+        "atomic positions",
+        "cell parameters",
+        "energies",
+        "forces",
+        "MSD",
+        "quasi-melting ratio"
+      ],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "For non-argyrodite types, the test set includes nine well-known Li SSE materials: oxides (Li7La3Zr2O12; LLZO, Li1:33Ti1:67Al0:33ðPO4Þ3; LATP)62,63, sulﬁdes (Li10GeP2S12; LGPS, Li7P3S11; LPS)64,65, halides (Li3YCl6; LYC, Li3YBr6; LYB)66, nitrides (Li3N, Li9S3N; LSN)67,68, and hydrides (LiBH4)69.",
+          "page": 6,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "lp_sc_fine_tuning",
+      "usage_role": "training",
+      "purpose": "generate training data capturing diverse Li-ion hopping events and high-energy configurations for LPSC",
+      "used_fields": [
+        "atomic positions",
+        "cell parameters",
+        "energies",
+        "forces"
+      ],
+      "is_derived": false,
+      "construction_method": "constructed from AIMD trajectories of LPSC unit cell at 600 and 1000 K",
+      "filter_conditions": [],
+      "sample_count": 1000,
+      "evidence": [
+        {
+          "text": "The fine-tuning dataset is constructed from MD trajectories of an LPSC unit cell (52atoms) obtained from 100 ps simulations conducted at 600 and 1000 K. At each temperature, 500 structures are uniformly sampled at 200 fs intervals, resulting in a total of 1000 structures. These structures are then randomly split into training and validation datasets at a 9:1 ratio.",
+          "page": 4,
+          "section": "Fine-tuning MLIPs on LPSC dataset",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "m_ptrj",
+      "usage_role": "source",
+      "purpose": "provide source data for constructing the Replay set",
+      "used_fields": [
+        "atomic positions",
+        "cell parameters",
+        "energies",
+        "forces"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "On the other hand, to construct the Replay set for both Replay and reEWC, we randomly sample 10% of the MPtrj dataset.",
+          "page": 4,
+          "section": "Fine-tuning MLIPs on LPSC dataset",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "replay_set",
+      "usage_role": "candidate_pool",
+      "purpose": "obtain a representative subset of the pretrained dataset to mitigate catastrophic forgetting during fine-tuning",
+      "used_fields": [
+        "atomic positions",
+        "cell parameters",
+        "energies",
+        "forces"
+      ],
+      "is_derived": true,
+      "construction_method": "random sampling of 10% of the MPtrj dataset",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "On the other hand, to construct the Replay set for both Replay and reEWC, we randomly sample 10% of the MPtrj dataset.",
+          "page": 4,
+          "section": "Fine-tuning MLIPs on LPSC dataset",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "lp_sc_fine_tuning",
+      "usage_role": "training",
+      "purpose": "refine the pretrained MLIP parameters using the hybrid reEWC strategy",
+      "used_fields": [
+        "atomic positions",
+        "cell parameters",
+        "energies",
+        "forces"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Fine-tuning the pretrained MLIP starts from the SevenNet-0 parameters and train for 400 epochs using the Adam optimizer, regardless of the fine-tuning methods.",
+          "page": 12,
+          "section": "Fine-tuning of MLIP",
+          "inferred": false
+        }
+      ],
+      "confidence": 0.95
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "replay_set",
+      "usage_role": "training",
+      "purpose": "refine the pretrained MLIP parameters using the hybrid reEWC strategy",
+      "used_fields": [
+        "atomic positions",
+        "cell parameters",
+        "energies",
+        "forces"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "reEWC is a hybrid approach that combines the Replay and EWC methods. In the present work, the reEWC method is implemented by adopting the mini-batch training process, like in the Replay approach, while incorporating the EWC regularization term into the loss function during parameter updates.",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 0.95
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "s_m_ptrj",
+      "usage_role": "benchmark",
+      "purpose": "assess memory retention (loss on sMPtrj)",
+      "used_fields": [
+        "atomic positions",
+        "cell parameters",
+        "energies",
+        "forces"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We generate a test set by randomly sampling 10% of the MPtrj dataset (referred to as sMPtrj), which is used to evaluate forgetting prevention across all fine-tuning methods.",
+          "page": 4,
+          "section": "Forgetting behavior of fine-tuned MLIPs",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "lp_sc_fine_tuning",
+      "usage_role": "validation",
+      "purpose": "assess target system learning (loss on LPSC validation set)",
+      "used_fields": [
+        "atomic positions",
+        "cell parameters",
+        "energies",
+        "forces"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The effectiveness of the fine-tuning methods studied in this work is evaluated from three perspectives: (i) learning of the target system, assessed by the reduction of loss on the fine-tuning dataset; (ii) prevention of forgetting, assessed by the maintenance of loss on the original pretrained dataset; and (iii) preservation of generalizability, assessed by the extent of parameter shifts relative to the pretrained model.",
+          "page": 4,
+          "section": "Forgetting behavior of fine-tuned MLIPs",
+          "inferred": false
+        }
+      ],
+      "confidence": 0.95
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "argyrodite_test_set",
+      "usage_role": "benchmark",
+      "purpose": "quantify improvements in energy/force prediction accuracy and softening scales across argyrodite-type Li SSEs",
+      "used_fields": [
+        "atomic positions",
+        "cell parameters",
+        "energies",
+        "forces",
+        "MSD",
+        "quasi-melting ratio"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We evaluate the predictive accuracy of the fine-tuned MLIPs across a range of Li SSEs with diverse compositions and structures. This allows us to assess whether the PES predictions can be improved beyond the fine-tuning domain despite the training dataset being limited to LPSC, and thus, evaluate the extent of knowledge transfer enabled by each fine-tuning method.",
+          "page": 5,
+          "section": "PES evaluation of Li SSEs",
+          "inferred": false
+        }
+      ],
+      "confidence": 0.95
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "non_argyrodite_test_set",
+      "usage_role": "benchmark",
+      "purpose": "quantify improvements in energy/force prediction accuracy and softening scales across non-argyrodite-type Li SSEs",
+      "used_fields": [
+        "atomic positions",
+        "cell parameters",
+        "energies",
+        "forces",
+        "MSD",
+        "quasi-melting ratio"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We evaluate the predictive accuracy of the fine-tuned MLIPs across a range of Li SSEs with diverse compositions and structures. This allows us to assess whether the PES predictions can be improved beyond the fine-tuning domain despite the training dataset being limited to LPSC, and thus, evaluate the extent of knowledge transfer enabled by each fine-tuning method.",
+          "page": 5,
+          "section": "PES evaluation of Li SSEs",
+          "inferred": false
+        }
+      ],
+      "confidence": 0.95
+    },
+    {
+      "stage_order": 6,
+      "dataset_key": "argyrodite_test_set",
+      "usage_role": "computational_validation",
+      "purpose": "validate that the fine-tuned MLIP accurately describes finite-temperature atomic motion and associated dynamical properties for argyrodite-type materials",
+      "used_fields": [
+        "atomic positions",
+        "cell parameters",
+        "MSD",
+        "quasi-melting ratio"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "So far, we have evaluated the predictive capability of the fine-tuned MLIPs for DFT energies and forces based on snapshots from AIMD trajectories. As a next step, we explicitly perform MD simulations using the fine-tuned MLIPs to assess whether they accurately describe the PES governing atomic motion at finite temperatures, and thereby capture the associated dynamical properties.",
+          "page": 7,
+          "section": "Dynamical properties",
+          "inferred": false
+        }
+      ],
+      "confidence": 0.95
+    },
+    {
+      "stage_order": 6,
+      "dataset_key": "non_argyrodite_test_set",
+      "usage_role": "computational_validation",
+      "purpose": "validate that the fine-tuned MLIP accurately describes finite-temperature atomic motion and associated dynamical properties for non-argyrodite-type materials",
+      "used_fields": [
+        "atomic positions",
+        "cell parameters",
+        "MSD",
+        "quasi-melting ratio"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "So far, we have evaluated the predictive capability of the fine-tuned MLIPs for DFT energies and forces based on snapshots from AIMD trajectories. As a next step, we explicitly perform MD simulations using the fine-tuned MLIPs to assess whether they accurately describe the PES governing atomic motion at finite temperatures, and thereby capture the associated dynamical properties.",
+          "page": 7,
+          "section": "Dynamical properties",
+          "inferred": false
+        }
+      ],
+      "confidence": 0.95
+    }
+  ]
+}

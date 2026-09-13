@@ -1,0 +1,370 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "jarvis_dft_3d",
+      "canonical_name": "JARVIS-DFT 3D",
+      "raw_names": ["JARVIS-DFT", "JARVIS-DFT 3D", "dft_3d"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["perfect and defect materials"],
+      "available_properties": [
+        "formation energy",
+        "bandgap",
+        "bulk modulus",
+        "Voigt bulk modulus",
+        "forces",
+        "electron bandstructures",
+        "dielectric functions",
+        "solar cell efficiencies",
+        "superconducting transition temperatures",
+        "heat capacity",
+        "hMOF data"
+      ],
+      "available_fields": ["atomic structures", "identifier (id)"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "The jarvis_populate_data.py scripts generate a benchmark dataset.",
+          "page": 3,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "A user can populate the reference dataset (with well-deﬁned data splits) used for a speciﬁc benchmark (e.g., for 2D exfoliation energies in JARVIS-DFT dataset using an AI method: “AI-SinglePropertyPrediction-exfoliation_energy-dft_3d-test”).",
+          "page": 4,
+          "section": "Results and discussion",
+          "inferred": false
+        },
+        {
+          "text": "Fig. 6(a) we see the comparison of 12 AI models (each AI model had a well-deﬁned 80:10:10 split for training, validation and testing respectively from the JARVIS-3D database)",
+          "page": 6,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "Fig. 9(a), we ﬁnd that formation energy is one of the easiest quantities to train AI models [...] for JARVIS-DFT 3D dataset with 5572 materials in the test set",
+          "page": 9,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "jarvis_dft_2d",
+      "canonical_name": "JARVIS-DFT 2D",
+      "raw_names": ["JARVIS-DFT 2D", "dft_2d"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["perfect and defect materials"],
+      "available_properties": ["exfoliation energy"],
+      "available_fields": ["atomic structures", "identifier (id)"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "A user can populate the reference dataset (with well-deﬁned data splits) used for a speciﬁc benchmark (e.g., for 2D exfoliation energies in JARVIS-DFT dataset using an AI method: “AI-SinglePropertyPrediction-exfoliation_energy-dft_3d-test”).",
+          "page": 4,
+          "section": "Results and discussion",
+          "inferred": false
+        }
+      ],
+      "confidence": 0.9
+    },
+    {
+      "dataset_key": "materials_project",
+      "canonical_name": "Materials Project",
+      "raw_names": ["Materials Project", "MP"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["perfect and defect materials"],
+      "available_properties": ["formation energy", "bandgap", "bulk modulus", "elastic", "thermal", "optical", "electronic properties"],
+      "available_fields": ["atomic structures"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "For atomic structure datasets, we use DFT datasets such as JARVIS-DFT70,71, Materials Project (MP)65, Tight binding three-body dataset (TB3)72, Quantum-Machine 9 (QM9)139,140.",
+          "page": 10,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "qm9",
+      "canonical_name": "QM9",
+      "raw_names": ["Quantum-Machine 9", "QM9"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["molecules"],
+      "available_properties": ["formation energy", "bandgap", "forces"],
+      "available_fields": ["molecular structures"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "For atomic structure datasets, we use DFT datasets such as JARVIS-DFT70,71, Materials Project (MP)65, Tight binding three-body dataset (TB3)72, Quantum-Machine 9 (QM9)139,140.",
+          "page": 10,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "tb3",
+      "canonical_name": "Tight binding three-body dataset",
+      "raw_names": ["Tight binding three-body dataset", "TB3"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["perfect and defect materials"],
+      "available_properties": ["formation energy", "bandgap"],
+      "available_fields": ["atomic structures"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "For atomic structure datasets, we use DFT datasets such as JARVIS-DFT70,71, Materials Project (MP)65, Tight binding three-body dataset (TB3)72, Quantum-Machine 9 (QM9)139,140.",
+          "page": 10,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "arxiv",
+      "canonical_name": "arXiv dataset",
+      "raw_names": ["arXiv dataset"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["text"],
+      "available_properties": [],
+      "available_fields": ["text"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "For text data, we have used the publicly available arXiv dataset.",
+          "page": 10,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "stem_2d_image",
+      "canonical_name": "STEM 2D image dataset",
+      "raw_names": ["stem_2d_image"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["2D materials"],
+      "available_properties": [],
+      "available_fields": ["scanning transmission electron microscope (STEM) images", "scanning tunneling microscopy (STM) images"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "For images, we have simulated and experimental scanning transmission electron microscope (STEM) and scanning tunneling microscopy (STM) images for 2D materials.",
+          "page": 10,
+          "section": "Methods",
+          "inferred": false
+        },
+        {
+          "text": "Each of the csv.zip ﬁles must contain six components in the ﬁlename to place the contribution in the appropriate webpage. The components are the categories (such as AI), sub-categories (such as ImageClass), property (such as bravais_lattice), dataset-name (such as stem_2d_image as available in the JARVIS-Tools database page), and data-split.",
+          "page": 5,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "qe_tb",
+      "canonical_name": "ThreeBodyTB.jl fitting dataset",
+      "raw_names": ["qe-tb", "ThreeBodyTB.jl fitting dataset"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["perfect and defect materials"],
+      "available_properties": [],
+      "available_fields": ["atomic structures"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "In Fig. 4b). In this case, qe-tb (ﬁtting dataset for ThreeBodyTB.jl72) is one of the largest datasets available in the leaderboard.",
+          "page": 5,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "jarvis_dft_3d",
+      "usage_role": "source",
+      "purpose": "populate benchmark dataset with well-defined data splits",
+      "used_fields": ["atomic structures", "identifier (id)"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "A user can populate the reference dataset (with well-deﬁned data splits) used for a speciﬁc benchmark (e.g., for 2D exfoliation energies in JARVIS-DFT dataset using an AI method: “AI-SinglePropertyPrediction-exfoliation_energy-dft_3d-test”).",
+          "page": 4,
+          "section": "Results and discussion",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "jarvis_dft_2d",
+      "usage_role": "source",
+      "purpose": "populate benchmark dataset for 2D exfoliation energies",
+      "used_fields": ["atomic structures", "identifier (id)"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "A user can populate the reference dataset (with well-deﬁned data splits) used for a speciﬁc benchmark (e.g., for 2D exfoliation energies in JARVIS-DFT dataset using an AI method: “AI-SinglePropertyPrediction-exfoliation_energy-dft_3d-test”).",
+          "page": 4,
+          "section": "Results and discussion",
+          "inferred": false
+        }
+      ],
+      "confidence": 0.9
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "materials_project",
+      "usage_role": "source",
+      "purpose": "provide atomic structure datasets for AI models",
+      "used_fields": ["atomic structures"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "For atomic structure datasets, we use DFT datasets such as JARVIS-DFT70,71, Materials Project (MP)65, Tight binding three-body dataset (TB3)72, Quantum-Machine 9 (QM9)139,140.",
+          "page": 10,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "qm9",
+      "usage_role": "source",
+      "purpose": "provide atomic structure datasets for AI models",
+      "used_fields": ["molecular structures"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "For atomic structure datasets, we use DFT datasets such as JARVIS-DFT70,71, Materials Project (MP)65, Tight binding three-body dataset (TB3)72, Quantum-Machine 9 (QM9)139,140.",
+          "page": 10,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "tb3",
+      "usage_role": "source",
+      "purpose": "provide atomic structure datasets for AI models",
+      "used_fields": ["atomic structures"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "For atomic structure datasets, we use DFT datasets such as JARVIS-DFT70,71, Materials Project (MP)65, Tight binding three-body dataset (TB3)72, Quantum-Machine 9 (QM9)139,140.",
+          "page": 10,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "arxiv",
+      "usage_role": "source",
+      "purpose": "provide text data for AI models",
+      "used_fields": ["text"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "For text data, we have used the publicly available arXiv dataset.",
+          "page": 10,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "stem_2d_image",
+      "usage_role": "source",
+      "purpose": "provide image data for AI models",
+      "used_fields": ["scanning transmission electron microscope (STEM) images", "scanning tunneling microscopy (STM) images"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "For images, we have simulated and experimental scanning transmission electron microscope (STEM) and scanning tunneling microscopy (STM) images for 2D materials.",
+          "page": 10,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "qe_tb",
+      "usage_role": "source",
+      "purpose": "provide atomic structure dataset for leaderboard",
+      "used_fields": ["atomic structures"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "In Fig. 4b). In this case, qe-tb (ﬁtting dataset for ThreeBodyTB.jl72) is one of the largest datasets available in the leaderboard.",
+          "page": 5,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

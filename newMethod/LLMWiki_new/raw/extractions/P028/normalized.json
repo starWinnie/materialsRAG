@@ -1,0 +1,790 @@
+{
+  "paper": {
+    "paper_id": "P028",
+    "title": "JARVIS-Leaderboard: a large scale benchmark of materials design methods",
+    "year": 2024,
+    "doi": "10.1038/s41524-024-01259-w",
+    "file_name": "28_JARVIS_Leaderboard.pdf",
+    "research_summary": "JARVIS-Leaderboard is an open-source, community-driven platform for benchmarking and enhancing reproducibility in materials science. It integrates computational, experimental, and data-analytics methods across five categories—Artificial Intelligence (AI), Electronic Structure (ES), Force-fields (FF), Quantum Computation (QC), and Experiments (EXP)—and supports multiple data modalities (atomic structures, spectra, images, text). The platform hosts 274 benchmarks, 152 methods, 1281 contributions, and over 8 million data points, enabling systematic, transparent, and unbiased validation of materials design approaches.",
+    "extraction_status": "completed"
+  },
+  "tasks": [
+    {
+      "task_id": "T_P028_01",
+      "paper_id": "P028",
+      "task_name_raw": "benchmarking of materials design methods",
+      "task_name_canonical": "materials_design_method_benchmarking",
+      "objective": "to provide a comprehensive, reproducible, transparent, and unbiased framework for benchmarking materials design methods across multiple categories and data modalities",
+      "material_scope": [
+        "materials of technological interest"
+      ],
+      "target_properties": [
+        "formation energy",
+        "bandgap",
+        "bulk modulus",
+        "forces",
+        "exfoliation energy",
+        "CO2 adsorption",
+        "elastic properties",
+        "thermal properties",
+        "optical properties",
+        "electronic properties",
+        "phonon spectra",
+        "dielectric functions",
+        "solar cell efficiencies",
+        "superconducting transition temperatures",
+        "strain-stress",
+        "magnetometry",
+        "vibroscopy",
+        "XRD",
+        "STEM",
+        "STM"
+      ],
+      "constraints": [
+        "must be based on well-characterized/well-known samples/tasks with digital object identifier/peer-reviewed article links",
+        "must include run script to exactly reproduce results",
+        "must include metadata file with team name, contact information, computational timing and software/hardware used"
+      ],
+      "input_requirements": [
+        "reference benchmark data (e.g., experimental data, DFT data, analytical results)",
+        "user-submitted method outputs (e.g., predictions, measurements, simulations)"
+      ],
+      "output_goal": [
+        "performance rankings across methods for each benchmark",
+        "reproducible, comparable, and interpretable evaluation metrics (e.g., MAE, accuracy, ROUGE)"
+      ],
+      "parent_task_id": null,
+      "task_level": "main_task",
+      "evidence": [
+        {
+          "text": "This work introduces JARVIS-Leaderboard, an open-source and community-driven platform that facilitates benchmarking and enhances reproducibility.",
+          "page": 1,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "The goal of this project is to provide a more comprehensive framework for materials benchmarking than previous works.",
+          "page": 2,
+          "section": null,
+          "inferred": false
+        }
+      ]
+    }
+  ],
+  "stages": [
+    {
+      "stage_id": "S_P028_01",
+      "paper_id": "P028",
+      "task_id": "T_P028_01",
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "populate reference dataset",
+      "stage_order": 1,
+      "stage_goal": "to generate a benchmark dataset with well-defined data splits",
+      "stage_input": [
+        "well-known and published experimental data, density functional theory, or numerical solutions"
+      ],
+      "stage_output": [
+        "reference benchmark dataset (json.zip file)"
+      ],
+      "evidence": [
+        {
+          "text": "There is a helper script jarvis_populate_data.py to generate a benchmark dataset.",
+          "page": 4,
+          "section": "Results and discussion",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P028_02",
+      "paper_id": "P028",
+      "task_id": "T_P028_01",
+      "stage_type": "candidate_generation",
+      "stage_name_raw": "apply method, train models, or run experiments",
+      "stage_order": 2,
+      "stage_goal": "to produce predictions or measurements using a specific method on the benchmark dataset",
+      "stage_input": [
+        "benchmark dataset",
+        "user's method (e.g., AI model, DFT software, experimental setup)"
+      ],
+      "stage_output": [
+        "method-specific outputs (e.g., predicted formation energies, measured CO2 adsorption isotherms)"
+      ],
+      "evidence": [
+        {
+          "text": "A user can apply their method, train models, or run experiments on that dataset and prepare a csv.zip file, a metadata.json file, and also if possible, a conda environment.yaml/Nix/Dockerfile and a run.sh file.",
+          "page": 4,
+          "section": "Results and discussion",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P028_03",
+      "paper_id": "P028",
+      "task_id": "T_P028_01",
+      "stage_type": "data_preparation",
+      "stage_name_raw": "prepare contribution files",
+      "stage_order": 3,
+      "stage_goal": "to package method outputs and metadata into standardized, reproducible submission format",
+      "stage_input": [
+        "method outputs",
+        "metadata (team name, DOI, software version, hardware, timing)",
+        "run script"
+      ],
+      "stage_output": [
+        "csv.zip file (identifier-prediction pairs)",
+        "metadata.json file",
+        "run.sh script",
+        "optional Dockerfile or notebook"
+      ],
+      "evidence": [
+        {
+          "text": "A user can apply their method, train models, or run experiments on that dataset and prepare a csv.zip file, a metadata.json file, and also if possible, a conda environment.yaml/Nix/Dockerfile and a run.sh file.",
+          "page": 4,
+          "section": "Results and discussion",
+          "inferred": false
+        },
+        {
+          "text": "The csv.zip file contains entries of identiﬁer (id) and corresponding prediction values as obtained by the corresponding model/method.",
+          "page": 4,
+          "section": "Results and discussion",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P028_04",
+      "paper_id": "P028",
+      "task_id": "T_P028_01",
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "compute performance metrics",
+      "stage_order": 4,
+      "stage_goal": "to quantitatively evaluate method performance against reference benchmark data",
+      "stage_input": [
+        "csv.zip (predictions)",
+        "json.zip (reference benchmark data)"
+      ],
+      "stage_output": [
+        "performance metrics (e.g., MAE, accuracy, ROUGE)"
+      ],
+      "evidence": [
+        {
+          "text": "These test identiﬁers (such as JVASP-1408) must match the test set ids in the json.zip ﬁle in the benchmarks folder for the metric measurements to work.",
+          "page": 4,
+          "section": "Results and discussion",
+          "inferred": false
+        },
+        {
+          "text": "We use several metrics in the leaderboard depending on the “sub-categories” mentioned above. We use mean absolute error (MAE), accuracy (acc), multi-mae (L1 norm of multi-dimensional data), recall-oriented understudy for gisting evaluation (ROUGE) for the single property prediction, single property classiﬁcation, spectra/eigensolver/atomic forces and textGen/text summary subcategories respectively.",
+          "page": 11,
+          "section": "Metrics used",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P028_05",
+      "paper_id": "P028",
+      "task_id": "T_P028_01",
+      "stage_type": "computational_validation",
+      "stage_name_raw": "local verification and automated testing",
+      "stage_order": 5,
+      "stage_goal": "to verify contribution reproducibility and correctness before public release",
+      "stage_input": [
+        "contribution folder (csv.zip, metadata.json, run.sh, etc.)"
+      ],
+      "stage_output": [
+        "verified contribution ready for pull request"
+      ],
+      "evidence": [
+        {
+          "text": "The contributions can be locally checked by the user using jarvis_serve.py script.",
+          "page": 3,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "This script automatically forks the parent usnistgov/jarvis_leaderboard repo for the user, adds the team-name folder with its ﬁles in that forked repo, runs a few minimal sanity checks on the new contribution, and then makes a pull request to the parent repo. The contribution addition and automated testings are carried out using GitHub actions.",
+          "page": 4,
+          "section": "Results and discussion",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P028_06",
+      "paper_id": "P028",
+      "task_id": "T_P028_01",
+      "stage_type": "experimental_validation",
+      "stage_name_raw": "administrator verification and benchmark curation",
+      "stage_order": 6,
+      "stage_goal": "to ensure benchmark trustworthiness and methodological rigor through expert review",
+      "stage_input": [
+        "contributions",
+        "reference benchmark data with DOI",
+        "metadata and run scripts"
+      ],
+      "stage_output": [
+        "validated contribution integrated into leaderboard website"
+      ],
+      "evidence": [
+        {
+          "text": "The administrators of the JARVIS-Leaderboard at NIST will verify the contributions and then ﬁnally, it will become part of the leaderboard website.",
+          "page": 4,
+          "section": "Results and discussion",
+          "inferred": false
+        },
+        {
+          "text": "A new benchmark must be associated with a peer-reviewed article and a DOI, in order to have trust in the reference benchmark data. A new benchmark must also be veriﬁed by the JARVIS-Leaderboard administrators.",
+          "page": 5,
+          "section": null,
+          "inferred": false
+        }
+      ]
+    }
+  ],
+  "datasets": [
+    {
+      "dataset_id": "D_jarvis_dft_3d",
+      "canonical_name": "JARVIS-DFT 3D",
+      "raw_names": [
+        "JARVIS-DFT 3D",
+        "JARVIS-DFT (dft_3d)",
+        "dft_3d"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "materials of technological interest"
+      ],
+      "available_properties": [
+        "formation energy",
+        "bandgap",
+        "bulk modulus",
+        "forces",
+        "exfoliation energy",
+        "elastic properties",
+        "thermal properties",
+        "optical properties",
+        "electronic properties",
+        "phonon spectra",
+        "dielectric functions",
+        "solar cell efficiencies",
+        "superconducting transition temperatures",
+        "strain-stress",
+        "vibroscopy",
+        "XRD",
+        "STEM",
+        "STM"
+      ],
+      "available_fields": [
+        "atomic structure",
+        "identifier (id)"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Fig. 1 | Leaderboard snapshot with an example output for AI-based formation energy per atom model on the JARVIS-DFT (dft_3d) dataset.",
+          "page": 3,
+          "section": null,
+          "inferred": false,
+          "paper_id": "P028"
+        },
+        {
+          "text": "AI benchmarks have pre-deﬁned training/validation/test identiﬁers and target data in a corresponding json.zip ﬁle...",
+          "page": 4,
+          "section": "Results and discussion",
+          "inferred": false,
+          "paper_id": "P028"
+        },
+        {
+          "text": "In Fig. 6(a) we see the comparison of 12 AI models (each AI model had a well-deﬁned 80:10:10 split for training, validation and testing respectively from the JARVIS-3D database)...",
+          "page": 6,
+          "section": null,
+          "inferred": false,
+          "paper_id": "P028"
+        },
+        {
+          "text": "a formation-energy-per atom model using AI for JARVIS-DFT 3D dataset with 5572 materials in the test set",
+          "page": 9,
+          "section": null,
+          "inferred": false,
+          "paper_id": "P028"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:jarvis_dft_3d"
+    },
+    {
+      "dataset_id": "D_jarvis_dft_2d",
+      "canonical_name": "JARVIS-DFT 2D",
+      "raw_names": [
+        "JARVIS-DFT 2D",
+        "JARVIS-DFT dataset",
+        "2D exfoliation energies in JARVIS-DFT dataset"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "materials of technological interest"
+      ],
+      "available_properties": [
+        "exfoliation energy"
+      ],
+      "available_fields": [
+        "atomic structure",
+        "identifier (id)"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "The user can populate the reference dataset (with well-deﬁned data splits) used for a speciﬁc benchmark (e.g., for 2D exfoliation energies in JARVIS-DFT dataset using an AI method: “AI-SinglePropertyPrediction-exfoliation_energy-dft_3d-test”).",
+          "page": 4,
+          "section": "Results and discussion",
+          "inferred": false,
+          "paper_id": "P028"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:jarvis_dft_2d"
+    },
+    {
+      "dataset_id": "D_jarvis_tools",
+      "canonical_name": "JARVIS-Tools",
+      "raw_names": [
+        "JARVIS-Tools",
+        "JARVIS-Tools package"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "materials of technological interest"
+      ],
+      "available_properties": [],
+      "available_fields": [],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "In each of these sub-folders, there are .json.zip ﬁles with well-deﬁned reference datasets and available properties as also available in the JARVIS-Tools package https://pages.nist.gov/jarvis/databases/.",
+          "page": 5,
+          "section": null,
+          "inferred": false,
+          "paper_id": "P028"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:jarvis_tools"
+    },
+    {
+      "dataset_id": "D_materials_project",
+      "canonical_name": "Materials Project",
+      "raw_names": [
+        "Materials Project",
+        "MP"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "materials of technological interest"
+      ],
+      "available_properties": [],
+      "available_fields": [],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "For atomic structure datasets, we use DFT datasets such as JARVIS-DFT70,71, Materials Project (MP)65, Tight binding three-body dataset (TB3)72, Quantum-Machine 9 (QM9)139,140.",
+          "page": 10,
+          "section": "Methods",
+          "inferred": false,
+          "paper_id": "P028"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:materials_project"
+    },
+    {
+      "dataset_id": "D_qm9",
+      "canonical_name": "QM9",
+      "raw_names": [
+        "QM9",
+        "Quantum-Machine 9 (QM9)"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "materials of technological interest"
+      ],
+      "available_properties": [],
+      "available_fields": [],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "For atomic structure datasets, we use DFT datasets such as JARVIS-DFT70,71, Materials Project (MP)65, Tight binding three-body dataset (TB3)72, Quantum-Machine 9 (QM9)139,140.",
+          "page": 10,
+          "section": "Methods",
+          "inferred": false,
+          "paper_id": "P028"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:qm9"
+    },
+    {
+      "dataset_id": "D_tight_binding_three_body_dataset",
+      "canonical_name": "Tight binding three-body dataset",
+      "raw_names": [
+        "Tight binding three-body dataset",
+        "Tight binding three-body dataset (TB3)",
+        "TB3"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "materials of technological interest"
+      ],
+      "available_properties": [],
+      "available_fields": [],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "For atomic structure datasets, we use DFT datasets such as JARVIS-DFT70,71, Materials Project (MP)65, Tight binding three-body dataset (TB3)72, Quantum-Machine 9 (QM9)139,140.",
+          "page": 10,
+          "section": "Methods",
+          "inferred": false,
+          "paper_id": "P028"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:tight_binding_three_body_dataset"
+    },
+    {
+      "dataset_id": "D_arxiv",
+      "canonical_name": "arXiv",
+      "raw_names": [
+        "arXiv",
+        "arXiv dataset"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "materials of technological interest"
+      ],
+      "available_properties": [],
+      "available_fields": [],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "For text data, we have used the publicly available arXiv dataset.",
+          "page": 10,
+          "section": "Methods",
+          "inferred": false,
+          "paper_id": "P028"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:arxiv"
+    },
+    {
+      "dataset_id": "D_stem_2d_image_dataset",
+      "canonical_name": "STEM 2D image dataset",
+      "raw_names": [
+        "STEM 2D image dataset",
+        "stem_2d_image"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "2D materials"
+      ],
+      "available_properties": [],
+      "available_fields": [
+        "images"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "For entries in the AI category, the data is in train-validation-test splits (using a ﬁxed random number generator). For the current leaderboard format, we report the performance accuracy in the test set only. These ﬁles can be easily edited with common text editors. Each contribution folder (e.g. alignn-model) consists of one or several csv.zip ﬁles corresponding to each benchmark (such as for formation energies, bandgap, etc.).",
+          "page": 5,
+          "section": null,
+          "inferred": false,
+          "paper_id": "P028"
+        },
+        {
+          "text": "The components are the categories (such as AI), sub-categories (such as ImageClass), property (such as bravais_lattice), dataset-name (such as stem_2d_image as available in the JARVIS-Tools database page), and data-split.",
+          "page": 5,
+          "section": null,
+          "inferred": false,
+          "paper_id": "P028"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:stem_2d_image_dataset"
+    },
+    {
+      "dataset_id": "D_qe_tb",
+      "canonical_name": "qe-tb",
+      "raw_names": [
+        "qe-tb"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "materials of technological interest"
+      ],
+      "available_properties": [],
+      "available_fields": [],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Note that these datasets contain all varieties of data modalities, such as atomic structure, images, spectra, and text. In Fig. 5, we show the fractional distribution of periodic table elements in the entire dataset. We ﬁnd that the most common elements are C, N, O, Cu, which is similar to the natural abundance of these elements.",
+          "page": 5,
+          "section": null,
+          "inferred": false,
+          "paper_id": "P028"
+        },
+        {
+          "text": "In this case, qe-tb (ﬁtting dataset for ThreeBodyTB.jl72) is one of the largest datasets available in the leaderboard.",
+          "page": 5,
+          "section": null,
+          "inferred": false,
+          "paper_id": "P028"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:qe_tb"
+    }
+  ],
+  "dataset_uses": [
+    {
+      "dataset_use_id": "DU_P028_001",
+      "paper_id": "P028",
+      "task_id": "T_P028_01",
+      "stage_id": "S_P028_01",
+      "dataset_id": "D_jarvis_dft_3d",
+      "usage_role": "source",
+      "purpose": "to generate a benchmark dataset with well-defined data splits",
+      "used_fields": [
+        "atomic structure",
+        "identifier (id)"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 5572,
+      "evidence": [
+        {
+          "text": "In Fig. 6(a) we see the comparison of 12 AI models (each AI model had a well-deﬁned 80:10:10 split for training, validation and testing respectively from the JARVIS-3D database)...",
+          "page": 6,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "a formation-energy-per atom model using AI for JARVIS-DFT 3D dataset with 5572 materials in the test set",
+          "page": 9,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P028_002",
+      "paper_id": "P028",
+      "task_id": "T_P028_01",
+      "stage_id": "S_P028_01",
+      "dataset_id": "D_jarvis_dft_2d",
+      "usage_role": "source",
+      "purpose": "to generate a benchmark dataset with well-defined data splits",
+      "used_fields": [
+        "atomic structure",
+        "identifier (id)"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The user can populate the reference dataset (with well-deﬁned data splits) used for a speciﬁc benchmark (e.g., for 2D exfoliation energies in JARVIS-DFT dataset using an AI method: “AI-SinglePropertyPrediction-exfoliation_energy-dft_3d-test”).",
+          "page": 4,
+          "section": "Results and discussion",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P028_003",
+      "paper_id": "P028",
+      "task_id": "T_P028_01",
+      "stage_id": "S_P028_01",
+      "dataset_id": "D_jarvis_tools",
+      "usage_role": "source",
+      "purpose": "to generate a benchmark dataset with well-defined data splits",
+      "used_fields": [],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "In each of these sub-folders, there are .json.zip ﬁles with well-deﬁned reference datasets and available properties as also available in the JARVIS-Tools package https://pages.nist.gov/jarvis/databases/.",
+          "page": 5,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P028_004",
+      "paper_id": "P028",
+      "task_id": "T_P028_01",
+      "stage_id": "S_P028_01",
+      "dataset_id": "D_materials_project",
+      "usage_role": "source",
+      "purpose": "to generate a benchmark dataset with well-defined data splits",
+      "used_fields": [],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "For atomic structure datasets, we use DFT datasets such as JARVIS-DFT70,71, Materials Project (MP)65, Tight binding three-body dataset (TB3)72, Quantum-Machine 9 (QM9)139,140.",
+          "page": 10,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P028_005",
+      "paper_id": "P028",
+      "task_id": "T_P028_01",
+      "stage_id": "S_P028_01",
+      "dataset_id": "D_qm9",
+      "usage_role": "source",
+      "purpose": "to generate a benchmark dataset with well-defined data splits",
+      "used_fields": [],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "For atomic structure datasets, we use DFT datasets such as JARVIS-DFT70,71, Materials Project (MP)65, Tight binding three-body dataset (TB3)72, Quantum-Machine 9 (QM9)139,140.",
+          "page": 10,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P028_006",
+      "paper_id": "P028",
+      "task_id": "T_P028_01",
+      "stage_id": "S_P028_01",
+      "dataset_id": "D_tight_binding_three_body_dataset",
+      "usage_role": "source",
+      "purpose": "to generate a benchmark dataset with well-defined data splits",
+      "used_fields": [],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "For atomic structure datasets, we use DFT datasets such as JARVIS-DFT70,71, Materials Project (MP)65, Tight binding three-body dataset (TB3)72, Quantum-Machine 9 (QM9)139,140.",
+          "page": 10,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P028_007",
+      "paper_id": "P028",
+      "task_id": "T_P028_01",
+      "stage_id": "S_P028_01",
+      "dataset_id": "D_arxiv",
+      "usage_role": "source",
+      "purpose": "to generate a benchmark dataset with well-defined data splits",
+      "used_fields": [],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "For text data, we have used the publicly available arXiv dataset.",
+          "page": 10,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P028_008",
+      "paper_id": "P028",
+      "task_id": "T_P028_01",
+      "stage_id": "S_P028_01",
+      "dataset_id": "D_stem_2d_image_dataset",
+      "usage_role": "source",
+      "purpose": "to generate a benchmark dataset with well-defined data splits",
+      "used_fields": [
+        "images"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The components are the categories (such as AI), sub-categories (such as ImageClass), property (such as bravais_lattice), dataset-name (such as stem_2d_image as available in the JARVIS-Tools database page), and data-split.",
+          "page": 5,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P028_009",
+      "paper_id": "P028",
+      "task_id": "T_P028_01",
+      "stage_id": "S_P028_01",
+      "dataset_id": "D_qe_tb",
+      "usage_role": "source",
+      "purpose": "to generate a benchmark dataset with well-defined data splits",
+      "used_fields": [],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "In this case, qe-tb (ﬁtting dataset for ThreeBodyTB.jl72) is one of the largest datasets available in the leaderboard.",
+          "page": 5,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

@@ -1,0 +1,304 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "mp",
+      "canonical_name": "Materials Project",
+      "raw_names": [
+        "Materials Project",
+        "MP"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "crystals"
+      ],
+      "available_properties": [
+        "formation energy",
+        "band gap",
+        "metal/non-metal classification",
+        "bulk modulus",
+        "shear modulus",
+        "Young's modulus"
+      ],
+      "available_fields": [
+        "structure",
+        "formation energy",
+        "band gap",
+        "metal/non-metal classification",
+        "bulk modulus",
+        "shear modulus",
+        "Young's modulus"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "• Materials Project (MP) Database: We use stable structures retrieved from the Materials Project (Jain et al., 2020), comprising 122,959 entries with annotated formation energy, band gap, and metal/non-metal classification labels. Additionally, 9,473 of these entries include mechanical properties such as bulk modulus, shear modulus and Young’s modulus.",
+          "page": 8,
+          "section": "Datasets",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "jarvis_dft",
+      "canonical_name": "JARVIS-DFT",
+      "raw_names": [
+        "JARVIS-DFT",
+        "dft_3d"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "crystals"
+      ],
+      "available_properties": [
+        "formation energy",
+        "band gap",
+        "bulk modulus",
+        "shear modulus",
+        "total energy",
+        "energy above the hull"
+      ],
+      "available_fields": [
+        "structure",
+        "formation energy",
+        "band gap",
+        "bulk modulus",
+        "shear modulus",
+        "total energy",
+        "energy above the hull"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "• JARVIS-DFT (dft_3d): This dataset contains 75,993 entries, each annotated with formation energy, band gap (calculated using either the OptB88vDW functional, denoted as OPT, or the TBMBJ functional, denoted as MBJ), bulk modulus, shear modulus, total energy (calculated using the OptB88vDW functional), and energy above the hull (Ehull ) (Choudhary et al., 2020). We also evaluate the baselines on the JARVIS-DFT-3D-2021 dataset (55,723 entries), which serves as an important supplementary benchmark.",
+          "page": 8,
+          "section": "Datasets",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "matbench",
+      "canonical_name": "Matbench",
+      "raw_names": [
+        "Matbench",
+        "MB"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "crystals"
+      ],
+      "available_properties": [
+        "exfoliation energy",
+        "formation energy",
+        "shear modulus",
+        "refractive index"
+      ],
+      "available_fields": [
+        "structure",
+        "exfoliation energy",
+        "formation energy",
+        "shear modulus",
+        "refractive index"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "• Matbench (MB) Suite: We evaluate the models on several tasks from the Matbench suite (Dunn et al., 2020): matbench_jdft2d (636 entries; exfoliation energy), matbench_mp_e_form (132,752 entries; formation energy), matbench_log_gvrh (10,987 entries; shear modulus), and matbench_dielectric (4,764 entries; refractive index).",
+          "page": 8,
+          "section": "Datasets",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "mp",
+      "usage_role": "source",
+      "purpose": "retrieve crystal structure and property data for benchmarking",
+      "used_fields": [
+        "structure",
+        "formation energy",
+        "band gap",
+        "metal/non-metal classification",
+        "bulk modulus",
+        "shear modulus",
+        "Young's modulus"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 122959,
+      "evidence": [
+        {
+          "text": "• Materials Project (MP) Database: We use stable structures retrieved from the Materials Project (Jain et al., 2020), comprising 122,959 entries with annotated formation energy, band gap, and metal/non-metal classification labels. Additionally, 9,473 of these entries include mechanical properties such as bulk modulus, shear modulus and Young’s modulus.",
+          "page": 8,
+          "section": "Datasets",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "jarvis_dft",
+      "usage_role": "source",
+      "purpose": "retrieve crystal structure and property data for benchmarking",
+      "used_fields": [
+        "structure",
+        "formation energy",
+        "band gap",
+        "bulk modulus",
+        "shear modulus",
+        "total energy",
+        "energy above the hull"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 75993,
+      "evidence": [
+        {
+          "text": "• JARVIS-DFT (dft_3d): This dataset contains 75,993 entries, each annotated with formation energy, band gap (calculated using either the OptB88vDW functional, denoted as OPT, or the TBMBJ functional, denoted as MBJ), bulk modulus, shear modulus, total energy (calculated using the OptB88vDW functional), and energy above the hull (Ehull ) (Choudhary et al., 2020). We also evaluate the baselines on the JARVIS-DFT-3D-2021 dataset (55,723 entries), which serves as an important supplementary benchmark.",
+          "page": 8,
+          "section": "Datasets",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "matbench",
+      "usage_role": "source",
+      "purpose": "retrieve crystal structure and property data for benchmarking",
+      "used_fields": [
+        "structure",
+        "exfoliation energy",
+        "formation energy",
+        "shear modulus",
+        "refractive index"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 132752,
+      "evidence": [
+        {
+          "text": "• Matbench (MB) Suite: We evaluate the models on several tasks from the Matbench suite (Dunn et al., 2020): matbench_jdft2d (636 entries; exfoliation energy), matbench_mp_e_form (132,752 entries; formation energy), matbench_log_gvrh (10,987 entries; shear modulus), and matbench_dielectric (4,764 entries; refractive index).",
+          "page": 8,
+          "section": "Datasets",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "mp",
+      "usage_role": "test",
+      "purpose": "evaluate model performance on crystal property prediction tasks",
+      "used_fields": [
+        "formation energy",
+        "band gap",
+        "metal/non-metal classification",
+        "bulk modulus",
+        "shear modulus",
+        "Young's modulus"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Extensive experiments are conducted on Materials Project, JARVIS-DFT, and MatBench, demonstrating that the proposed model achieves state-of-the-art performance.",
+          "page": 1,
+          "section": "ABSTRACT",
+          "inferred": false
+        },
+        {
+          "text": "Model performance is evaluated using the Mean Absolute Error (MAE) and accuracy.",
+          "page": 8,
+          "section": "Implementation details",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "jarvis_dft",
+      "usage_role": "test",
+      "purpose": "evaluate model performance on crystal property prediction tasks",
+      "used_fields": [
+        "formation energy",
+        "band gap",
+        "bulk modulus",
+        "shear modulus",
+        "total energy",
+        "energy above the hull"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Extensive experiments are conducted on Materials Project, JARVIS-DFT, and MatBench, demonstrating that the proposed model achieves state-of-the-art performance.",
+          "page": 1,
+          "section": "ABSTRACT",
+          "inferred": false
+        },
+        {
+          "text": "Model performance is evaluated using the Mean Absolute Error (MAE) and accuracy.",
+          "page": 8,
+          "section": "Implementation details",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "matbench",
+      "usage_role": "test",
+      "purpose": "evaluate model performance on crystal property prediction tasks",
+      "used_fields": [
+        "exfoliation energy",
+        "formation energy",
+        "shear modulus",
+        "refractive index"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Extensive experiments are conducted on Materials Project, JARVIS-DFT, and MatBench, demonstrating that the proposed model achieves state-of-the-art performance.",
+          "page": 1,
+          "section": "ABSTRACT",
+          "inferred": false
+        },
+        {
+          "text": "Model performance is evaluated using the Mean Absolute Error (MAE) and accuracy.",
+          "page": 8,
+          "section": "Implementation details",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

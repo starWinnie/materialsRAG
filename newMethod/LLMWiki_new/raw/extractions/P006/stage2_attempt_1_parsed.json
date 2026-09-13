@@ -1,0 +1,496 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "mp_2018",
+      "canonical_name": "Materials Project (2018.6.1)",
+      "raw_names": [
+        "MP",
+        "MP44",
+        "MP dataset"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "crystals"
+      ],
+      "available_properties": [
+        "formation energy",
+        "bandgap",
+        "total energy",
+        "total magnetization"
+      ],
+      "available_fields": [
+        "CIF files",
+        "atomic species",
+        "atomic coordinates",
+        "PBE bandgap",
+        "formation energy"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "To examine the atomic embeddings tensors obtained from different models, we used MP and MP* dataset for formation energy (Ef) and PBE bandgap (Eg), which are key properties for evaluating their chemical stabilities and electronic performances. MP stands for the 2018.6.1 version for MP44 dataset, which contains 69,239 materials with properties.",
+          "page": 2,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "mp_2023",
+      "canonical_name": "Materials Project (2023.6.23)",
+      "raw_names": [
+        "MP*",
+        "MP* dataset"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "crystals"
+      ],
+      "available_properties": [
+        "formation energy",
+        "bandgap",
+        "total energy",
+        "total magnetization"
+      ],
+      "available_fields": [
+        "CIF files",
+        "atomic species",
+        "atomic coordinates",
+        "PBE bandgap",
+        "formation energy"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "To examine the atomic embeddings tensors obtained from different models, we used MP and MP* dataset for formation energy (Ef) and PBE bandgap (Eg), which are key properties for evaluating their chemical stabilities and electronic performances. MP* denotes the 2023.6.23 version, which contains 134,243 materials.",
+          "page": 2,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "jarvis",
+      "canonical_name": "JARVIS dataset",
+      "raw_names": [
+        "JARVIS dataset",
+        "Jarvis dataset"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "crystals"
+      ],
+      "available_properties": [
+        "formation energy",
+        "bandgap"
+      ],
+      "available_fields": [
+        "CIF files",
+        "atomic species",
+        "atomic coordinates",
+        "formation energy",
+        "bandgap"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "The ability and transferability of the universal atomic embedding are further tested on different databases and tasks. Each is cut into 8:1:1 for training, validation, and testing. Details on the dataset can be found in Supplementary 2A. As for the Jarvis dataset49, the result is shown in Table 1.",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "mc3d",
+      "canonical_name": "MC3D dataset",
+      "raw_names": [
+        "MC3D dataset",
+        "MC3D"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "crystals"
+      ],
+      "available_properties": [
+        "total energy"
+      ],
+      "available_fields": [
+        "CIF files",
+        "atomic species",
+        "atomic coordinates",
+        "total energy"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "The ability and transferability of the universal atomic embedding are further tested on different databases and tasks. Each is cut into 8:1:1 for training, validation, and testing. Details on the dataset can be found in Supplementary 2A. As for the Jarvis dataset49, the result is shown in Table 1.",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 0.95
+    },
+    {
+      "dataset_key": "hoip_merged",
+      "canonical_name": "Hybrid Organic-Inorganic Perovskite (HOIP) dataset",
+      "raw_names": [
+        "HOIP materials",
+        "HOIP crystals",
+        "hybrid perovskite (HOIP) datasets",
+        "HOIP dataset"
+      ],
+      "dataset_type": "derived_subset",
+      "source_dataset_key": "mp_2018",
+      "material_scope": [
+        "hybrid organic-inorganic perovskites"
+      ],
+      "available_properties": [
+        "formation energy"
+      ],
+      "available_fields": [
+        "CIF files",
+        "atomic species",
+        "atomic coordinates",
+        "formation energy"
+      ],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "After merging two distinct datasets of HOIP materials69,70, we created a more diverse dataset containing 2103 HOIP crystals, which is still small compared to other material databases such as the MP dataset44.",
+          "page": 7,
+          "section": "Application in hybrid organic-inorganic perovskite crystals",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "mp_2018",
+      "usage_role": "source",
+      "purpose": "Source dataset for acquiring crystal structure and property data for training and evaluation",
+      "used_fields": [
+        "CIF files",
+        "atomic species",
+        "atomic coordinates",
+        "formation energy",
+        "PBE bandgap"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 69239,
+      "evidence": [
+        {
+          "text": "To examine the atomic embeddings tensors obtained from different models, we used MP and MP* dataset for formation energy (Ef) and PBE bandgap (Eg), which are key properties for evaluating their chemical stabilities and electronic performances. MP stands for the 2018.6.1 version for MP44 dataset, which contains 69,239 materials with properties.",
+          "page": 2,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "mp_2023",
+      "usage_role": "source",
+      "purpose": "Source dataset for acquiring crystal structure and property data for training and evaluation",
+      "used_fields": [
+        "CIF files",
+        "atomic species",
+        "atomic coordinates",
+        "formation energy",
+        "PBE bandgap"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 134243,
+      "evidence": [
+        {
+          "text": "To examine the atomic embeddings tensors obtained from different models, we used MP and MP* dataset for formation energy (Ef) and PBE bandgap (Eg), which are key properties for evaluating their chemical stabilities and electronic performances. MP* denotes the 2023.6.23 version, which contains 134,243 materials.",
+          "page": 2,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "jarvis",
+      "usage_role": "source",
+      "purpose": "Source dataset for acquiring crystal structure and property data for training and evaluation",
+      "used_fields": [
+        "CIF files",
+        "atomic species",
+        "atomic coordinates",
+        "formation energy",
+        "bandgap"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The ability and transferability of the universal atomic embedding are further tested on different databases and tasks. Each is cut into 8:1:1 for training, validation, and testing. Details on the dataset can be found in Supplementary 2A. As for the Jarvis dataset49, the result is shown in Table 1.",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 0.95
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "mc3d",
+      "usage_role": "source",
+      "purpose": "Source dataset for acquiring crystal structure and property data for training and evaluation",
+      "used_fields": [
+        "CIF files",
+        "atomic species",
+        "atomic coordinates",
+        "total energy"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The ability and transferability of the universal atomic embedding are further tested on different databases and tasks. Each is cut into 8:1:1 for training, validation, and testing. Details on the dataset can be found in Supplementary 2A. As for the Jarvis dataset49, the result is shown in Table 1.",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 0.95
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "hoip_merged",
+      "usage_role": "source",
+      "purpose": "Source dataset for acquiring crystal structure and property data for training and evaluation of hybrid perovskites",
+      "used_fields": [
+        "CIF files",
+        "atomic species",
+        "atomic coordinates",
+        "formation energy"
+      ],
+      "is_derived": true,
+      "construction_method": "merging two distinct HOIP datasets",
+      "filter_conditions": [],
+      "sample_count": 2103,
+      "evidence": [
+        {
+          "text": "After merging two distinct datasets of HOIP materials69,70, we created a more diverse dataset containing 2103 HOIP crystals, which is still small compared to other material databases such as the MP dataset44.",
+          "page": 7,
+          "section": "Application in hybrid organic-inorganic perovskite crystals",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "mp_2023",
+      "usage_role": "training",
+      "purpose": "Training the CrystalTransformer model on formation energy and bandgap prediction tasks",
+      "used_fields": [
+        "CIF files",
+        "atomic species",
+        "atomic coordinates",
+        "formation energy",
+        "PBE bandgap"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Front-end models as CrystalTransformer, CGCNN, ALIGNN, and MEGNET are ﬁrst pre-trained on the expanded MP* dataset, focusing on the bandgap energy Eg and formation energy Ef predictive tasks.",
+          "page": 3,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "mp_2018",
+      "usage_role": "test",
+      "purpose": "Evaluating ct-UAE transfer performance on back-end models (CGCNN, MEGNET, ALIGNN) for formation energy and bandgap prediction",
+      "used_fields": [
+        "CIF files",
+        "atomic species",
+        "atomic coordinates",
+        "formation energy",
+        "PBE bandgap"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "By performing experiments on widely-used materials database, our CrystalTransformer-based UAEs (ct-UAEs) are shown to accurately capture complex atomic features, leading to a 14% improvement in prediction accuracy on CGCNN and 18% on ALIGNN when using formation energies as the target, based on the Materials Project database.",
+          "page": 1,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "jarvis",
+      "usage_role": "test",
+      "purpose": "Evaluating ct-UAE transfer performance on back-end models (CGCNN) for formation energy and bandgap prediction",
+      "used_fields": [
+        "CIF files",
+        "atomic species",
+        "atomic coordinates",
+        "formation energy",
+        "bandgap"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The ability and transferability of the universal atomic embedding are further tested on different databases and tasks. Each is cut into 8:1:1 for training, validation, and testing. Details on the dataset can be found in Supplementary 2A. As for the Jarvis dataset49, the result is shown in Table 1.",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 0.95
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "mc3d",
+      "usage_role": "test",
+      "purpose": "Evaluating ct-UAE transfer performance on back-end models (CGCNN, MEGNET, ALIGNN) for total energy prediction",
+      "used_fields": [
+        "CIF files",
+        "atomic species",
+        "atomic coordinates",
+        "total energy"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The ability and transferability of the universal atomic embedding are further tested on different databases and tasks. Each is cut into 8:1:1 for training, validation, and testing. Details on the dataset can be found in Supplementary 2A. As for the Jarvis dataset49, the result is shown in Table 1.",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 0.95
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "hoip_merged",
+      "usage_role": "test",
+      "purpose": "Evaluating ct-UAE transfer performance on back-end models (CGCNN, MEGNET) for formation energy prediction in hybrid perovskites",
+      "used_fields": [
+        "CIF files",
+        "atomic species",
+        "atomic coordinates",
+        "formation energy"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "After applying ct-UAEs to predict formation energy in hybrid perovskites database, we realized an improvement in accuracy, with a 34% boost in MEGNET and 16% in CGCNN, showcasing their potential as atomic ﬁngerprints to address the data scarcity challenges.",
+          "page": 1,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "mp_2018",
+      "usage_role": "computational_validation",
+      "purpose": "Computational validation of ct-UAE interpretability via clustering analysis on oxide compounds",
+      "used_fields": [
+        "CIF files",
+        "atomic species",
+        "atomic coordinates",
+        "formation energy",
+        "bandgap",
+        "total magnetization"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [
+        "oxides",
+        "contain data on formation energy, bandgap, and total magnetization"
+      ],
+      "sample_count": 62068,
+      "evidence": [
+        {
+          "text": "To further interpret the element classiﬁcation and without loss of generality, we chose oxide compounds from the Materials Project, which yielded a total of 62,068 retrieved materials. From these, we ﬁltered for those that contain data on formation energy, bandgap, and total magnetization.",
+          "page": 5,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 6,
+      "dataset_key": "mp_2018",
+      "usage_role": "label_source",
+      "purpose": "Providing elemental properties (atomic radius, boiling temperature, etc.) for reverse prediction to validate physical interpretability of ct-UAEs",
+      "used_fields": [
+        "atomic radius",
+        "boiling temperature",
+        "melting temperature",
+        "electrical conductivity",
+        "first ionization energy"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "To further investigate the intrinsic information of the embeddings, we conduct reverse training experiments, which involves taking a series of important elemental properties, including atomic radius, boiling temperature, melting temperature, electrical conductivity, ﬁrst ionization energy as training targets to train a Catboost model66. 80% of atomic embeddings are selected randomly as training data, while the rest serves as validation to calculate R2 (coefﬁcient of determination).",
+          "page": 6,
+          "section": "Boiling Temperature",
+          "inferred": false
+        }
+      ],
+      "confidence": 0.95
+    }
+  ]
+}

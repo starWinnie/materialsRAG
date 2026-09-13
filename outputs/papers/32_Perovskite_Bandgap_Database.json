@@ -1,0 +1,37 @@
+[
+  {
+    "task_description": "Predicting the bandgaps of mixed ABX3 perovskites (where A = Cs, FA, or MA; B = Pb or Sn; X = Br, Cl, or I) with continuously varying compositions to enable thermodynamic modeling and prediction of light-induced halide segregation behavior under illumination.",
+    "task_tags": [
+      "bandgap prediction",
+      "halide segregation prediction",
+      "perovskite property modeling"
+    ],
+    "datasets": [
+      {
+        "db_title": "Perovskite Solar Cell (PSC) Database",
+        "db_description": "A publicly available experimental database established by Jacobsson et al., containing experimentally measured bandgap values for various perovskite solar cell materials. In this paper, it contributed to the experimental bandgap dataset (645 total entries after curation), used to fine-tune machine learning models and validate predictions of mixed-halide perovskite bandgaps.",
+        "db_link": "https://doi.org/10.1038/s41560-022-01002-7"
+      },
+      {
+        "db_title": "Liu et al. experimental bandgap dataset",
+        "db_description": "A curated collection of 227 experimentally reported bandgap values for ABX3 perovskites, sourced from literature and used in this work to augment the experimental training set. After deduplication and averaging of repeated compositions, it formed part of the 645-entry experimental bandgap dataset used to train and evaluate the Atomsets-MLP model for accurate bandgap prediction.",
+        "db_link": "https://doi.org/10.1016/j.orgel.2022.106426"
+      },
+      {
+        "db_title": "Yang et al. experimental bandgap dataset",
+        "db_description": "A set of 610 experimentally measured bandgaps for hybrid perovskites, collected from published studies and integrated into the authors’ unified experimental bandgap dataset (645 entries after filtering). It provided compositional diversity and experimental ground truth for transfer learning and model validation targeting bandgap prediction of mixed-cation/mixed-anion perovskites.",
+        "db_link": "https://doi.org/10.1021/acsami.3c04027"
+      },
+      {
+        "db_title": "DFT-calculated bandgap dataset (PBE functional)",
+        "db_description": "A custom computational dataset comprising 108 DFT-calculated bandgaps for mixed halide perovskites (e.g., FAPb(I1-xBrx)3, MAPb(I1-xBrx)3, CsPb(I1-xBrx)3, and multi-cation variants), generated using VASP with the PBE functional and structural models built via Pymatgen. This dataset was combined with experimental data to train transfer-learned models (e.g., Fine-Tuned MEGNet, Atomsets-MLP) to bridge accuracy gaps between DFT and experiment.",
+        "db_link": "None"
+      },
+      {
+        "db_title": "Materials Project database",
+        "db_description": "A public repository of computed materials properties, including ~69,640 DFT (PBE)-calculated bandgaps for crystals, used to pre-train foundational models (MEGNet, MatGL) before fine-tuning on perovskite-specific data. In this paper, it served as the source of pre-trained weights for transfer learning, enabling improved generalization for perovskite bandgap prediction despite domain shift.",
+        "db_link": "https://materialsproject.org"
+      }
+    ]
+  }
+]

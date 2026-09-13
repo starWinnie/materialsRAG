@@ -1,0 +1,138 @@
+{
+  "paper": {
+    "title": "Correcting DFT formation energies towards experimental accuracy using foundational MLIPs and latent-feature delta-learning",
+    "year": 2026,
+    "doi": "https://doi.org/10.24435/materialscloud:yb-gw",
+    "research_summary": "The paper presents a two-stage correction framework to improve the agreement of density functional theory (DFT) formation energies with experimental values. First, it leverages foundational machine learning interatomic potentials (fMLIPs), specifically PET-OMATPES trained at the r2SCAN level, to compute zero-shot formation energies on DFT-relaxed geometries, reducing mean absolute error (MAE) by over 40% relative to GGA without additional DFT calculations. Second, it trains classical machine learning models (KRR, RF, GPR) in a delta-learning framework using the latent features of the fMLIP to predict the residual between the fMLIP-estimated formation energy and experiment, achieving a final MAE below 50 meV/atom—comparable to experimental uncertainty—while controlling the impact on relative phase stability through careful regularization."
+  },
+  "task": {
+    "task_name_raw": "Correcting DFT formation energies towards experimental accuracy",
+    "task_name_canonical": "correct_dft_formation_energy",
+    "objective": "Improve the agreement of DFT-calculated formation energies with experimental formation enthalpies",
+    "material_scope": ["three-dimensional inorganic crystal structures", "experimentally known compounds"],
+    "target_properties": ["formation energy", "energy above the convex hull"],
+    "constraints": ["must be applicable to existing GGA databases without re-running DFT", "must limit distortion of relative phase stability"],
+    "input_requirements": ["DFT-relaxed geometries (e.g., PBEsol)", "foundational MLIP (e.g., PET-OMATPES)", "experimental formation enthalpy references"],
+    "output_goal": ["formation energies with MAE < 50 meV/atom vs. experiment", "stability classifications (e.g., energy above hull) preserved or physically justified"],
+    "evidence": [
+      {
+        "text": "Correcting DFT formation energies towards experimental accuracy using foundational MLIPs and latent-feature delta-learning",
+        "page": 1,
+        "section": "ABSTRACT",
+        "inferred": false
+      },
+      {
+        "text": "Our results validate and extend the established practice of combining PBEsol geometries with meta-GGA energies to the era of foundational MLIPs. Finally, we train classical machine learning models to further correct the formation energies in a delta-learning framework, where we use the information-rich latent features of the foundational MLIP.",
+        "page": 1,
+        "section": "ABSTRACT",
+        "inferred": false
+      },
+      {
+        "text": "These models further reduce the mean absolute error below 50 meV/atom, bringing it down to values comparable with the experimental uncertainty itself.",
+        "page": 1,
+        "section": "ABSTRACT",
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "Compare DFT formation energies against experimental formation enthalpies",
+      "stage_order": 1,
+      "stage_goal": "Quantify the initial discrepancy between DFT formation energies and experiment to establish baseline error metrics",
+      "stage_input": ["DFT formation energies (PBE, PBEsol)", "experimental formation enthalpies"],
+      "stage_output": ["baseline MAE, ME, RMSE", "systematic bias identification (e.g., overbinding of oxygen)"],
+      "evidence": [
+        {
+          "text": "We then compare the DFT calculated formation energies against experimental formation enthalpies (see Methods for dataset details).",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        },
+        {
+          "text": "Fig. 2 (top left) shows the systematic overestimation by GGA formation energies with respect to experimental values, especially for strongly bound systems [30]. The error metrics in Fig. 2 (bottom left) confirm the large MAE (>170 meV/atom) and a significant positive bias (ME ≈130 meV/atom); PBE and PBEsol perform similarly poorly on this subset.",
+          "page": 3,
+          "section": "RESULTS",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "Evaluate zero-shot fMLIP formation energies on DFT geometries",
+      "stage_order": 2,
+      "stage_goal": "Assess improvement in formation energy accuracy using foundational MLIPs (PET-OMATPES) without structural relaxation",
+      "stage_input": ["DFT-relaxed geometries (PBEsol)", "PET-OMATPES r2SCAN MLIP"],
+      "stage_output": ["zero-shot r2SCAN formation energies", "reduced MAE (e.g., >40% improvement)"],
+      "evidence": [
+        {
+          "text": "Fig. 2b shows that zero-shot formation energies [62] from the PET-OMATPES model [63, 64]—one of the top-performing models in community benchmarks at the time of publication [65], trained on the OMAT [66] and MATPES [37] datasets at the r2SCAN level—reduce the MAE by more than 40% when evaluated at the DFT (GGA) relaxed geometry.",
+          "page": 3,
+          "section": "RESULTS",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "Train classical ML models in delta-learning framework using fMLIP latent features",
+      "stage_order": 3,
+      "stage_goal": "Learn empirical corrections to the zero-shot fMLIP formation energies using their latent features as input",
+      "stage_input": ["PET-OMATPES latent features", "delta target (δ∆HMLIP_f = PET-OMATPES r2SCAN formation energy − experimental formation enthalpy)"],
+      "stage_output": ["trained KRR/GPR/RF models", "predicted residual corrections"],
+      "evidence": [
+        {
+          "text": "Finally, we train classical machine learning models to further correct the formation energies in a delta-learning framework, where we use the information-rich latent features of the foundational MLIP.",
+          "page": 1,
+          "section": "ABSTRACT",
+          "inferred": false
+        },
+        {
+          "text": "We train classical ML models (KRR, Random Forest, and GPR) in a delta-learning framework to predict the residual between calculated or estimated formation energies and experiment. Using the latent features of PET-OMATPES as input, our best models achieve a MAE below 50 meV/atom...",
+          "page": 9,
+          "section": "DISCUSSION",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "Evaluate ML-corrected formation energies against experiment",
+      "stage_order": 4,
+      "stage_goal": "Quantify final accuracy (MAE < 50 meV/atom) and assess impact on relative phase stability (stability flip rate)",
+      "stage_input": ["ML-predicted corrections", "zero-shot PET-OMATPES r2SCAN formation energies", "experimental formation enthalpies"],
+      "stage_output": ["final corrected formation energies", "MAE, stability flip rate"],
+      "evidence": [
+        {
+          "text": "These models further reduce the mean absolute error below 50 meV/atom, bringing it down to values comparable with the experimental uncertainty itself.",
+          "page": 1,
+          "section": "ABSTRACT",
+          "inferred": false
+        },
+        {
+          "text": "Fig. 3a shows the test MAE for each model and feature combination across 30 train-test splits... GPR and KRR achieve the best results: a MAE of 52 meV/atom for δ∆HPBEsol_f and 50 and 49 meV/atom for GPR and KRR on δ∆HMLIP_f, respectively.",
+          "page": 5,
+          "section": "RESULTS",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_screening",
+      "stage_name_raw": "Select optimal model via regularization tuning",
+      "stage_order": 5,
+      "stage_goal": "Balance formation energy accuracy and stability reliability by selecting regularization strength (α) for KRR-LAP-LF",
+      "stage_input": ["KRR-LAP-LF models with varying α", "MAE and stability flip rate metrics"],
+      "stage_output": ["selected model (KRR-LAP-LF with α = 0.1)"],
+      "evidence": [
+        {
+          "text": "Based on the trade-off in Fig. 4a and b, we select the KRR-LAP-LF model with α = 0.1.",
+          "page": 7,
+          "section": "RESULTS",
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+[
+  {
+    "task_description": "Designing multi-principal-element alloys with simultaneously high yield strength (≥1.7 GPa) and high uniform elongation (≥25%) by navigating the vast compositional space of Fe–Ni–Co–Al–Ta high-entropy alloys, using domain knowledge-informed active learning to identify optimal compositions that enable dual-precipitate microstructures (coherent L12 nanoprecipitates + incoherent B2 microprecipitates) for unprecedented strength–ductility synergy.",
+    "task_tags": [
+      "alloy design",
+      "strength-ductility optimization",
+      "multi-principal-element alloy discovery"
+    ],
+    "datasets": [
+      {
+        "db_title": "AlCoCrFeNiTa Alloy System Dataset",
+        "db_description": "A dataset comprising 140 experimentally measured FCC high-entropy alloys within the AlCoCrFeNiTa system, each with reported yield strength (σy) and elongation to fracture (εf). The data were collected from literature and the authors’ own laboratory experiments, all prepared via arc melting, homogenization, cold rolling, and heat treatment. This dataset served as the initial training set for the domain-knowledge-informed active learning model to predict and iteratively optimize compositions targeting high σy while preserving ductility.",
+        "db_link": "https://github.com/diegoxue/Active-learning-for-Record-Setting-Alloy"
+      }
+    ]
+  }
+]

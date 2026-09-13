@@ -1,0 +1,383 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "exp_227_abx3",
+      "canonical_name": "Experimental ABX3-type perovskite bandgap dataset",
+      "raw_names": [
+        "227 sets of experimental bandgap data of perovskites",
+        "227 data points of experimental values",
+        "experimental data derived from experimental reports"
+      ],
+      "dataset_type": "paper_specific",
+      "source_dataset_key": null,
+      "material_scope": [
+        "ABX3-type perovskites"
+      ],
+      "available_properties": [
+        "bandgap"
+      ],
+      "available_fields": [
+        "chemical composition",
+        "bandgap"
+      ],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "The present work adopts machine learning (ML) to predict bandgaps of perovskites, where we collect 227 sets of experimental bandgap data of perovskites from the latest 1254 publications, to establish and identify 4 models from 24 kinds of ML models.",
+          "page": 1,
+          "section": "A B S T R A C T",
+          "inferred": false
+        },
+        {
+          "text": "In our work, the use of the experimental data derived from experimental reports (227 data points of experimental values collected from 1254 published papers) ensures that our BPMs is more realistic.",
+          "page": 2,
+          "section": "Build model",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "exp_cbm_vbm_115",
+      "canonical_name": "Experimental CBM and VBM dataset for ABX3-type perovskites",
+      "raw_names": [
+        "CBM and VBM databases contain 115 valid data points"
+      ],
+      "dataset_type": "paper_specific",
+      "source_dataset_key": null,
+      "material_scope": [
+        "ABX3-type perovskites"
+      ],
+      "available_properties": [
+        "conduction band minimum (CBM)",
+        "valence band maximum (VBM)"
+      ],
+      "available_fields": [
+        "chemical composition",
+        "CBM",
+        "VBM"
+      ],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "The establishment of ML prediction models for conduction band minimum (CBM) and valence band maximum(VBM). Because the data features are similar to features of bandgap, the prediction models of CBM and VBM are directly adopted the Xgboost algorithm without algorithm screening. The CBM and VBM databases contain 115 valid data points.",
+          "page": 3,
+          "section": "Results and analysis",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "exp_subsets_abx3",
+      "canonical_name": "Subdivided ABX3-type perovskite datasets",
+      "raw_names": [
+        "all-inorganic perovskites",
+        "inorganic-organic hybrid perovskites",
+        "Tin-free perovskites",
+        "BPM-all inorganic perovskites",
+        "BPM-hybrid perovskites",
+        "BPM-Tin-free perovskites"
+      ],
+      "dataset_type": "derived_subset",
+      "source_dataset_key": "exp_227_abx3",
+      "material_scope": [
+        "all-inorganic perovskites",
+        "inorganic-organic hybrid perovskites",
+        "Tin-free perovskites"
+      ],
+      "available_properties": [
+        "bandgap"
+      ],
+      "available_fields": [
+        "chemical composition",
+        "bandgap"
+      ],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "Therefore, we have re-subdivided the types of ABX3-type perovskites, and established a database containing three types of perovskites, including: all-inorganic perovskites; inorganic-organic hybrid perovskites; Tin-free perovskites (TableS3-S8, Electronic supplementary information).",
+          "page": 3,
+          "section": "Results and analysis",
+          "inferred": false
+        },
+        {
+          "text": "Namely, the BPM-ABX3-type perovskites (using Tables S1–S2); the BPM-all inorganic perovskites (using Tables S3–S4); the BPM-hybrid perovskites (using Tables S5–S6); the BPM-Tin-free perovskites (using Tables S7–S8);",
+          "page": 4,
+          "section": "four",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "exp_227_abx3",
+      "usage_role": "source",
+      "purpose": "Source of experimental bandgap data for building the perovskite database",
+      "used_fields": [
+        "chemical composition",
+        "bandgap"
+      ],
+      "is_derived": false,
+      "construction_method": "Literature search using keyword 'perovskite bandgap' in Web of Science, followed by download from ACS, Nature, Science, Wiley, Elsevier, etc.",
+      "filter_conditions": [
+        "ABX3-type perovskites selected due to largest data volume and wide usage"
+      ],
+      "sample_count": 227,
+      "evidence": [
+        {
+          "text": "The present work adopts machine learning (ML) to predict bandgaps of perovskites, where we collect 227 sets of experimental bandgap data of perovskites from the latest 1254 publications, to establish and identify 4 models from 24 kinds of ML models.",
+          "page": 1,
+          "section": "A B S T R A C T",
+          "inferred": false
+        },
+        {
+          "text": "In our work, the use of the experimental data derived from experimental reports (227 data points of experimental values collected from 1254 published papers) ensures that our BPMs is more realistic.",
+          "page": 2,
+          "section": "Build model",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "exp_227_abx3",
+      "usage_role": "training",
+      "purpose": "Training dataset after cleaning and splitting / Test dataset after cleaning and splitting",
+      "used_fields": [
+        "chemical composition",
+        "bandgap"
+      ],
+      "is_derived": true,
+      "construction_method": "Database cleaning: removal of duplicate (composition + bandgap), retention of same-composition/different-bandgap entries; manual split into training/test sets ensuring test set contains no input repeated in training set.",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The second step is the establishment and cleaning of the database. First, data with the same chemical composition and bandgap are removed, but due to the different conditions and environments of the experiments, there will be data with the same chemical composition (input data) but different bandgap values (output data). In order to ensure the authenticity of the data and avoid the non-uniform distribution of the data, we choose to keep them in the training dataset.",
+          "page": 2,
+          "section": "Build model",
+          "inferred": false
+        },
+        {
+          "text": "We set up a training dataset and a test dataset of ABX3-type perovskites containing 204 and 23 data to train and evaluate the pros and cons of the algorithm.",
+          "page": 3,
+          "section": "Results and analysis",
+          "inferred": false
+        },
+        {
+          "text": "We set up a training dataset and a test dataset of ABX3-type perovskites containing 204 and 23 data to train and evaluate the pros and cons of the algorithm.",
+          "page": 3,
+          "section": "Results and analysis",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "exp_227_abx3",
+      "usage_role": "training",
+      "purpose": "Training input for multiple ML models (LR, KNN, SVR, RF, MLP, Xgboost)",
+      "used_fields": [
+        "chemical composition",
+        "bandgap"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 204,
+      "evidence": [
+        {
+          "text": "We set up a training dataset and a test dataset of ABX3-type perovskites containing 204 and 23 data to train and evaluate the pros and cons of the algorithm.",
+          "page": 3,
+          "section": "Results and analysis",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "exp_227_abx3",
+      "usage_role": "test",
+      "purpose": "Test input for evaluating model performance (RMSE, r)",
+      "used_fields": [
+        "chemical composition",
+        "bandgap"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 23,
+      "evidence": [
+        {
+          "text": "We set up a training dataset and a test dataset of ABX3-type perovskites containing 204 and 23 data to train and evaluate the pros and cons of the algorithm.",
+          "page": 3,
+          "section": "Results and analysis",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "exp_cbm_vbm_115",
+      "usage_role": "training",
+      "purpose": "Training input for CBM and VBM prediction models using Xgboost",
+      "used_fields": [
+        "chemical composition",
+        "CBM",
+        "VBM"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 115,
+      "evidence": [
+        {
+          "text": "The CBM and VBM databases contain 115 valid data points. The test set data points account for 20% of the database and are mutually exclusive with the training set.",
+          "page": 3,
+          "section": "Results and analysis",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "exp_cbm_vbm_115",
+      "usage_role": "test",
+      "purpose": "Test input for evaluating CBM and VBM model performance",
+      "used_fields": [
+        "chemical composition",
+        "CBM",
+        "VBM"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The CBM and VBM databases contain 115 valid data points. The test set data points account for 20% of the database and are mutually exclusive with the training set.",
+          "page": 3,
+          "section": "Results and analysis",
+          "inferred": false
+        }
+      ],
+      "confidence": 0.95
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "exp_227_abx3",
+      "usage_role": "computational_validation",
+      "purpose": "Reference for comparison between ML predictions and DFT calculations on new compositions",
+      "used_fields": [
+        "chemical composition",
+        "bandgap"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [
+        "3 different compositions new to the ML model"
+      ],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We have also conducted the comparison with the DFT calculations on the bandgap values of the perovskites with 3 different compositions, which are new to our ML model.",
+          "page": 4,
+          "section": "four",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 6,
+      "dataset_key": "exp_227_abx3",
+      "usage_role": "experimental_validation",
+      "purpose": "Reference for experimental validation of ML prediction on synthesized Cs0.05(FA0.85MA0.15)0.95Pb(I0.85Br0.15)3",
+      "used_fields": [
+        "chemical composition",
+        "bandgap"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "To verify the accuracy of our ML model and predication ability for new perovskites, we synthesize the Cs0.05(FA0.85MA0.15)0.95Pb (I0.85Br0.15)3 perovskite thin films for bandgap determination.",
+          "page": 4,
+          "section": "four",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 7,
+      "dataset_key": "exp_227_abx3",
+      "usage_role": "screening",
+      "purpose": "Input for SHAP-based feature importance analysis to identify key chemical components influencing bandgap",
+      "used_fields": [
+        "chemical composition",
+        "bandgap"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Through the means of ML explanation (SHapley Additive exPlanations, abbreviated as SHAP), it is found that the contents of B-site metal and X-site halogen ion have the key influence on the bandgaps of ABX3-type perovskites.",
+          "page": 2,
+          "section": "Build model",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "exp_subsets_abx3",
+      "usage_role": "training",
+      "purpose": "Training input for specialized BPMs (all-inorganic, hybrid, Tin-free) / Test input for specialized BPMs (all-inorganic, hybrid, Tin-free)",
+      "used_fields": [
+        "chemical composition",
+        "bandgap"
+      ],
+      "is_derived": true,
+      "construction_method": "Re-subdivision of ABX3-type perovskites into three types: all-inorganic, inorganic-organic hybrid, Tin-free; each with dedicated training/test splits (Tables S3–S8).",
+      "filter_conditions": [
+        "all-inorganic perovskites",
+        "inorganic-organic hybrid perovskites",
+        "Tin-free perovskites"
+      ],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Therefore, we have re-subdivided the types of ABX3-type perovskites, and established a database containing three types of perovskites, including: all-inorganic perovskites; inorganic-organic hybrid perovskites; Tin-free perovskites (TableS3-S8, Electronic supplementary information).",
+          "page": 3,
+          "section": "Results and analysis",
+          "inferred": false
+        },
+        {
+          "text": "Therefore, we have re-subdivided the types of ABX3-type perovskites, and established a database containing three types of perovskites, including: all-inorganic perovskites; inorganic-organic hybrid perovskites; Tin-free perovskites (TableS3-S8, Electronic supplementary information).",
+          "page": 3,
+          "section": "Results and analysis",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

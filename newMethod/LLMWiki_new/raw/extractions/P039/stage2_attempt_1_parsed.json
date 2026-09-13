@@ -1,0 +1,253 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "MPtrj",
+      "canonical_name": "MPtrj dataset",
+      "raw_names": [
+        "MPtrj dataset"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "materials across the periodic table up to Pu"
+      ],
+      "available_properties": [
+        "total potential energy",
+        "forces",
+        "stress"
+      ],
+      "available_fields": [
+        "atomic coordinates",
+        "atomic types",
+        "boundary conditions"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "To train the foundation equivariance neural network potential, we used the MPtrj dataset16 sourced from Materials Projects48 as the training dataset.",
+          "page": 9,
+          "section": "Methods",
+          "inferred": false
+        },
+        {
+          "text": "The MPtrj dataset is also publicly available from the reference94 through https://doi.org/10.6084/m9.figshare.23713842.",
+          "page": 10,
+          "section": "Data availability",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "Ko_et_al_2021_charge_state",
+      "canonical_name": "Ko et al. charge-state dataset",
+      "raw_names": [
+        "dataset developed by Ko et al.28",
+        "Ag3+/−",
+        "Na8/9Cl8+",
+        "C10H2/C10H3+",
+        "Au2-MgO"
+      ],
+      "dataset_type": "public_subset",
+      "source_dataset_key": null,
+      "material_scope": [
+        "charged clusters (e.g., Ag3+/−, Na8/9Cl8+)",
+        "molecular systems (e.g., water, C10H2/C10H3+)",
+        "periodic systems (e.g., Au2-MgO)"
+      ],
+      "available_properties": [
+        "total potential energy",
+        "forces"
+      ],
+      "available_fields": [
+        "atomic coordinates",
+        "atomic types",
+        "boundary conditions"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "To evaluate the capability of our framework in capturing different charge states and long-range interactions, we validated our framework against the dataset developed by Ko et al.28 and Maruf et al.38, which encompass various charge states and charge transfer systems. They contain six distinct subsets: Ag cluster with positive and negative total charge, (Ag3+/−), Na-Cl ionic cluster with one neutral Na removed (Na8/9Cl8+), hydrogenated carbon chains in both neutral and cationic states (C10H2/C10H3+), a periodic system consisting of Au clusters adsorbed on an MgO-(001) surface...",
+          "page": 3,
+          "section": "Validation on diverse charge-state datasets",
+          "inferred": false
+        },
+        {
+          "text": "For datasets containing different charge states, the C10H2/C10H3+, Na8/9Cl8+, Ag3+/−and Au2-MgO datasets are publicly available from the reference93 at https://doi.org/10.24435/materialscloud:f3-yh...",
+          "page": 10,
+          "section": "Data availability",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "Maruf_et_al_2025_charge_state",
+      "canonical_name": "Maruf et al. charge-state dataset",
+      "raw_names": [
+        "dataset developed by ... Maruf et al.38",
+        "BTA-Cu",
+        "BTA (H2O)-Cu"
+      ],
+      "dataset_type": "public_subset",
+      "source_dataset_key": null,
+      "material_scope": [
+        "periodic systems (e.g., BTA-Cu, BTA(H2O)-Cu)"
+      ],
+      "available_properties": [
+        "total potential energy",
+        "forces"
+      ],
+      "available_fields": [
+        "atomic coordinates",
+        "atomic types",
+        "boundary conditions"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "To evaluate the capability of our framework in capturing different charge states and long-range interactions, we validated our framework against the dataset developed by Ko et al.28 and Maruf et al.38, which encompass various charge states and charge transfer systems. They contain six distinct subsets: ... benzotriazole interactions with Cu-(111) surfaces in dry (BTA-Cu) and aqueous (BTA (H2O)-Cu) environments.",
+          "page": 3,
+          "section": "Validation on diverse charge-state datasets",
+          "inferred": false
+        },
+        {
+          "text": "For datasets containing different charge states, ... BTA-Cu and BTA (H2O)-Cu datasets are available at https://github.com/ahmad-research-group/nequip-charge.",
+          "page": 10,
+          "section": "Data availability",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "MPtrj",
+      "usage_role": "training",
+      "purpose": "to train the foundation equivariance neural network potential",
+      "used_fields": [
+        "atomic coordinates",
+        "atomic types",
+        "boundary conditions"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [
+        "excluded Yb-containing configurations due to transferability issues"
+      ],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "To train the foundation equivariance neural network potential, we used the MPtrj dataset16 sourced from Materials Projects48 as the training dataset. All configurations were calculated using DFT with the PBE82/PBE + U83 exchange-correlation functional and pseudopotential basis.",
+          "page": 9,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "Ko_et_al_2021_charge_state",
+      "usage_role": "benchmark",
+      "purpose": "to evaluate the capability of the framework in capturing different charge states and long-range interactions",
+      "used_fields": [
+        "atomic coordinates",
+        "atomic types",
+        "boundary conditions"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "To evaluate the capability of our framework in capturing different charge states and long-range interactions, we validated our framework against the dataset developed by Ko et al.28 and Maruf et al.38, which encompass various charge states and charge transfer systems.",
+          "page": 3,
+          "section": "Validation on diverse charge-state datasets",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "Maruf_et_al_2025_charge_state",
+      "usage_role": "benchmark",
+      "purpose": "to evaluate the capability of the framework in capturing different charge states and long-range interactions",
+      "used_fields": [
+        "atomic coordinates",
+        "atomic types",
+        "boundary conditions"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "To evaluate the capability of our framework in capturing different charge states and long-range interactions, we validated our framework against the dataset developed by Ko et al.28 and Maruf et al.38, which encompass various charge states and charge transfer systems.",
+          "page": 3,
+          "section": "Validation on diverse charge-state datasets",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "MPtrj",
+      "usage_role": "test",
+      "purpose": "to benchmark the foundation model's accuracy on large-scale materials property prediction",
+      "used_fields": [
+        "atomic coordinates",
+        "atomic types",
+        "boundary conditions"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We trained a foundation model for all the periodic table elements up to Pu using the MPtrj dataset16 following our framework (our model), as described in the Methods section... The former one demonstrated mean absolute errors (MAE) of 18 meV per atom for energies, 0.065 eV·Å−1 for forces, and 0.301 GPa for stresses across the test set...",
+          "page": 4,
+          "section": "Foundation model benchmark",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 6,
+      "dataset_key": "Ko_et_al_2021_charge_state",
+      "usage_role": "finetuning",
+      "purpose": "to perform targeted finetuning for ab initio accuracy on specific challenging systems",
+      "used_fields": [
+        "atomic coordinates",
+        "atomic types",
+        "boundary conditions"
+      ],
+      "is_derived": true,
+      "construction_method": "using 20% subsets of configurations",
+      "filter_conditions": [
+        "Na8/9Cl8+ clusters and Au2 dimers on MgO surfaces"
+      ],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Using Na8/9Cl8+ clusters and Au2 dimers on MgO surfaces from Ko et al.28 as test cases, we performed targeted finetuning using 20% subsets of configurations and mean squared force error as the sole loss function.",
+          "page": 7,
+          "section": "Finetuning for enhanced accuracy",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

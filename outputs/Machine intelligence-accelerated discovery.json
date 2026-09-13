@@ -1,0 +1,27 @@
+[
+  {
+    "task_description": "Designing all-natural, biodegradable plastic substitutes with programmable optical transparency, fire retardancy, and mechanical resilience by predicting optimal compositions of natural building blocks (MMT, CNF, gelatin, glycerol) to meet user-specified property requirements — enabling inverse design of functional substitutes for existing petrochemical plastics without iterative experimentation.",
+    "task_tags": [
+      "inverse design",
+      "property prediction",
+      "biodegradable material design"
+    ],
+    "datasets": [
+      {
+        "db_title": "Robotically Fabricated Nanocomposite Film Dataset",
+        "db_description": "A custom experimental dataset comprising 286 initial nanocomposite films prepared by an OT-2 robot using varying weight-percent ratios of four GRAS natural components: montmorillonite (MMT) nanosheets, cellulose nanofibers (CNFs), gelatin, and glycerol. Each sample is labeled with composition (four continuous wt.% values) and categorical film quality grade (A–D based on detachability and flatness). This dataset was used to train a support-vector machine (SVM) classifier to define the feasible design space for high-quality (A-grade) films.",
+        "db_link": "https://doi.org/10.5281/zenodo.7916360"
+      },
+      {
+        "db_title": "Active Learning Nanocomposite Property Dataset",
+        "db_description": "An expanded, iteratively curated dataset of 135 all-natural nanocomposite films fabricated across 14 active learning loops, each characterized for multiple physicochemical properties: optical transmittance at 365 nm (TUV), 550 nm (TVis), and 950 nm (TIR); fire resistance residual ratio (RR); and five mechanical labels derived from tensile testing (ultimate tensile strength σu, fracture strain εf, Young’s modulus E, and two Bézier shape parameters α, β). Combined with in silico data augmentation (1,000× virtual-to-real ratio), this dataset trained an artificial neural network (ANN) model for multi-property prediction and inverse design.",
+        "db_link": "https://doi.org/10.5281/zenodo.7916360"
+      },
+      {
+        "db_title": "Chitosan-Expanded Nanocomposite Dataset",
+        "db_description": "A follow-up dataset generated during model expansion to incorporate chitosan as a fifth building block, consisting of 133 additional experiments (90 for SVM refinement, 43 for ANN retraining), enabling prediction and inverse design of five-component nanocomposites. This dataset supports extending the design space and improving strain performance (e.g., increasing εf from ~15% to ~34%), and was used to validate the generalizability of the prediction framework beyond the original four-component system.",
+        "db_link": "https://doi.org/10.5281/zenodo.7916360"
+      }
+    ]
+  }
+]

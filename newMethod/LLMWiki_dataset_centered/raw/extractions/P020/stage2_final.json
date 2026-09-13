@@ -1,0 +1,128 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "jarvis_dft",
+      "canonical_name": "JARVIS-DFT",
+      "raw_names": [
+        "JARVIS-DFT database",
+        "JARVIS-DFT"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "crystalline materials"
+      ],
+      "available_properties": [
+        "dielectric tensor",
+        "piezoelectric tensor",
+        "elastic tensor"
+      ],
+      "available_fields": [
+        "crystal structure M = (A, P, L)",
+        "tensor property values"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "In our research, a dataset is curated specifically focusing on crystal tensor properties, including dielectric, piezoelectric, and elastic tensors, sourced from the JARVIS-DFT database (Choudhary et al., 2020).",
+          "page": 7,
+          "section": "5.1. Curated Crystal Tensor Property Dataset",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "curated_tensor_dataset",
+      "canonical_name": "Curated Crystal Tensor Property Dataset",
+      "raw_names": [
+        "curated dataset",
+        "curated crystal tensor property dataset",
+        "dataset"
+      ],
+      "dataset_type": "derived_subset",
+      "source_dataset_key": "jarvis_dft",
+      "material_scope": [
+        "crystalline materials"
+      ],
+      "available_properties": [
+        "dielectric tensor",
+        "piezoelectric tensor",
+        "elastic tensor"
+      ],
+      "available_fields": [
+        "crystal structure M = (A, P, L)",
+        "tensor property values"
+      ],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "In our research, a dataset is curated specifically focusing on crystal tensor properties, including dielectric, piezoelectric, and elastic tensors, sourced from the JARVIS-DFT database (Choudhary et al., 2020). This dataset has been constructed with a keen emphasis on ensuring congruence between the properties and structures, achieved by extracting both the tensor property values and corresponding crystal structures directly from the DFT calculation files.",
+          "page": 7,
+          "section": "5.1. Curated Crystal Tensor Property Dataset",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "jarvis_dft",
+      "usage_role": "source",
+      "purpose": "source dielectric, piezoelectric, and elastic tensors for curating the crystal tensor property dataset",
+      "used_fields": [
+        "crystal structure M = (A, P, L)",
+        "tensor property values"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "In our research, a dataset is curated specifically focusing on crystal tensor properties, including dielectric, piezoelectric, and elastic tensors, sourced from the JARVIS-DFT database (Choudhary et al., 2020).",
+          "page": 7,
+          "section": "5.1. Curated Crystal Tensor Property Dataset",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "curated_tensor_dataset",
+      "usage_role": "training",
+      "purpose": "training, validation, and test data for GMTNet across dielectric, piezoelectric, and elastic tensor prediction tasks",
+      "used_fields": [
+        "crystal structure M = (A, P, L)",
+        "tensor property values"
+      ],
+      "is_derived": true,
+      "construction_method": "extracting both the tensor property values and corresponding crystal structures directly from the DFT calculation files of JARVIS-DFT",
+      "filter_conditions": [
+        "congruence between properties and structures",
+        "consistent DFT core computation"
+      ],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "In our research, a dataset is curated specifically focusing on crystal tensor properties, including dielectric, piezoelectric, and elastic tensors, sourced from the JARVIS-DFT database (Choudhary et al., 2020). This dataset has been constructed with a keen emphasis on ensuring congruence between the properties and structures, achieved by extracting both the tensor property values and corresponding crystal structures directly from the DFT calculation files. This approach guarantees that the symmetry of the properties aligns with that of the structures. Notably, each tensor property within this dataset is computed using a consistent DFT core, ensuring uniformity in the calculation method.",
+          "page": 7,
+          "section": "5.1. Curated Crystal Tensor Property Dataset",
+          "inferred": false
+        },
+        {
+          "text": "Table 1. Dataset statistics. Fnorm denotes Frobenius norm.\nDataset\n# Samples\nFnorm Mean\nFnorm STD\n# Elem.\nUnit\nDielectric\n4713\n14.7\n18.2\n87\nUnitless\nPiezo\n4998\n0.43\n3.09\n87\nC/m2\nElastic\n14220\n327\n249\n87\nGPa",
+          "page": 7,
+          "section": "5.1. Curated Crystal Tensor Property Dataset",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

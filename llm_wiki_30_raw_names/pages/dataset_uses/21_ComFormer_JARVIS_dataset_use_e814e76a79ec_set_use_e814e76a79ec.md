@@ -1,0 +1,35 @@
+# 21_ComFormer - JARVIS
+
+## Dataset Use
+
+JARVIS is a curated dataset of crystalline materials containing over 69,000 structures with computed properties such as formation energy, total energy, bandgap (OPT and MBJ), and energy above hull. It includes both experimentally observed and computationally predicted structures. In this paper, JARVIS is used to train and evaluate the ComFormer models on five regression tasks, with specific train/validation/test splits (e.g., 44,578/5,572/5,572 for formation energy), and serves to validate the model's ability to predict diverse material properties using geometrically complete crystal graphs.
+
+## Links
+
+- Paper: [21 ComFormer](../papers/21_ComFormer_paper_7eb9d3cfd258.md)
+- Task: [task page](../tasks/21_ComFormer_task_1_task_b2fdc1e458d6.md)
+- Dataset: [JARVIS](../datasets/JARVIS_dataset_e3bdea4f0a48.md)
+- Dataset URL: https://jarvis.nist.gov/
+
+## Task Context
+
+Predicting physical and chemical properties of crystalline materials from their atomic structure, specifically by learning geometrically complete graph representations that distinguish any minor structural differences between crystals while remaining invariant or equivariant under crystal passive symmetries (unit cell SE(3) invariance, unit cell SO(3) equivariance, and periodic invariance).
+
+## Metadata
+
+- Dataset use ID: `dataset_use_e814e76a79ec`
+- Original dataset title: JARVIS
+- Tags: crystal property prediction, geometric completeness, graph representation learning
+
+<!-- RD_STAGES_START -->
+## R&D Stages
+
+This dataset-use record supports the following R&D stages:
+
+- Dataset Selection
+- Representation / Feature Construction
+- Model Training
+- Screening / Prediction
+- Validation
+- Benchmarking / Evaluation
+<!-- RD_STAGES_END -->

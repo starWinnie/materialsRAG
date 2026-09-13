@@ -1,0 +1,179 @@
+{
+  "paper": {
+    "title": "LLM-Prop: predicting the properties of crystalline materials using large language models",
+    "year": 2025,
+    "doi": "10.1038/s41524-025-01536-2",
+    "research_summary": "The paper develops LLM-Prop, a method leveraging large language models (LLMs) to predict properties of crystalline materials from their text descriptions, outperforming state-of-the-art GNN-based methods and domain-specific MatBERT on multiple property prediction tasks."
+  },
+  "task": {
+    "task_name_raw": "predicting the properties of crystalline materials",
+    "task_name_canonical": "crystal_property_prediction",
+    "objective": "Predict physical and electronic properties of crystalline materials from their text descriptions",
+    "material_scope": [
+      "crystalline materials"
+    ],
+    "target_properties": [
+      "band gap",
+      "formation energy per atom",
+      "energy above hull",
+      "crystal volume",
+      "energy per atom",
+      "whether the band gap is direct or indirect"
+    ],
+    "constraints": [],
+    "input_requirements": [
+      "crystal text descriptions"
+    ],
+    "output_goal": [
+      "numerical values for regression tasks (e.g., band gap in eV, volume in A³/cell) and binary classification labels (e.g., direct/indirect band gap)"
+    ],
+    "evidence": [
+      {
+        "text": "LLM-Prop, a method that leverages the general-purpose learning capabilities of large language models (LLMs) to predict properties of crystals from their text descriptions.",
+        "page": 1,
+        "section": null,
+        "inferred": false
+      },
+      {
+        "text": "Our LLM-Prop framework (Fig. 1a) is composed of a carefully ﬁne-tuned encoder part of small version of T5 model (Fig. 1b)31 on text descriptions of crystal structures to learn crystal representations that are used to predict the physical and electronic properties of any crystal material.",
+        "page": 2,
+        "section": "Results",
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "collecting dataset from Materials Project database",
+      "stage_order": 1,
+      "stage_goal": "Acquire crystal structure-description pairs for training and evaluation",
+      "stage_input": [],
+      "stage_output": [
+        "dataset of 144,931 crystal structure-description pairs"
+      ],
+      "evidence": [
+        {
+          "text": "We collected the dataset used in this work from the Materials Project database40 using the Materials Project free API as of November 1, 2022.",
+          "page": 4,
+          "section": "Data collection and analysis",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_preparation",
+      "stage_name_raw": "generating crystal text descriptions using Robocrystallographer",
+      "stage_order": 2,
+      "stage_goal": "Convert crystal structures into human-readable text descriptions",
+      "stage_input": [
+        "CIF files"
+      ],
+      "stage_output": [
+        "crystal text descriptions"
+      ],
+      "evidence": [
+        {
+          "text": "We generated the crystal text descriptions using Robocrystallographer41, a tool that generates a deterministic human readable text description of a structure given its CIF ﬁle.",
+          "page": 4,
+          "section": "Data collection and analysis",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_preparation",
+      "stage_name_raw": "preprocessing text descriptions",
+      "stage_order": 3,
+      "stage_goal": "Prepare text inputs for LLM fine-tuning by removing stopwords, replacing numerical tokens, and adding [CLS] token",
+      "stage_input": [
+        "crystal text descriptions"
+      ],
+      "stage_output": [
+        "preprocessed text descriptions with [CLS], [NUM], [ANG] tokens"
+      ],
+      "evidence": [
+        {
+          "text": "For the input preprocessing step we did the following: (1) We removed stopwords from the text descriptions as this preprocessing step has been shown to improve performance on predictive tasks34,35. We processed all publicly available English stopwords and excluded them from the crystal text descriptions, except for digits and certain signs that may carry important information for crystal representation such as bond distances and angles. (2) We Replaced bond distance with a [NUM] token and bond angle with an [ANG] token. Several works have shown that LLMs struggle to resolve contextual numerical information required for general common-sense reasoning36–39. For example, Zhang et al.37. replaced numbers in the training data with their scientiﬁc notation using the [EXP] token (i.e., 314.1 with 3141[EXP]2) to train a new BERT model which outperforms the original BERT on tasks that require numerical reasoning skills such as question answering. In our case, numbers not only add reasoning complexity but also increase the input sequence tokens since they are generally tokenized on a digit basis. We replace all bond distances and bond angles in the crystal text descriptions along with their units with [NUM] and [ANG] tokens, respectively. Those tokens are then added to the vocabulary as new tokens (i.e., we replace 3.03 A˚ with [NUM] and 120 degrees or 120° with [ANG]). While we are aware that this might also limit LLM-Prop to learn from the information related to bond distances and angles between atoms and molecules in the crystal structure, our results show that compressing the description as described—representing bond distances and angles with the same two special tokens described above—enables LLM-Prop to see more context in the text and achieve better performance. (3) We removed bond distances and bond angles. To further investigate the importance of having bond lengths and bond angles versus removing them entirely to more compress the input description, we also train LLM-Prop on the descriptions where bond lengths and bond angles are retained and when they are removed to see the effect this information have on LLMs in general when predicting crystal properties. (4) We prepended a [CLS] token to the input. Delvin et al.32 showed that prepending a [CLS] token to every input, updating the embedding of that token together with the input tokens, and then using it for prediction improves predictive performance on downstream tasks. We used this same preprocessing step on LLM-Prop, adding a [CLS] token in front of every input and also in the vocabulary, and then learning its representation jointly with the rest of the model. We used the embedding of the [CLS] token as the input to the linear layer for prediction.",
+          "page": 3,
+          "section": null,
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "label_generation",
+      "stage_name_raw": "obtaining property labels from Materials Project",
+      "stage_order": 4,
+      "stage_goal": "Extract ground-truth property values for regression and classification tasks",
+      "stage_input": [
+        "Materials Project database entries"
+      ],
+      "stage_output": [
+        "band gap",
+        "formation energy per atom",
+        "energy above hull",
+        "crystal volume",
+        "energy per atom",
+        "Is-gap-direct indicator"
+      ],
+      "evidence": [
+        {
+          "text": "We focus on six crystal properties that include both regression and classiﬁcation tasks and are diverse enough to evaluate the capabilities of any property predictor. We collect the data of band gap, formation energy per atom (FEPA), energy above hull (Ehull), crystal volume, energy per atom (EPA), and an indicator of whether the band gap is direct or indirect (Is-gap-direct).",
+          "page": 4,
+          "section": "Data collection and analysis",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "fine-tuning T5 encoder for regression and classification",
+      "stage_order": 5,
+      "stage_goal": "Train LLM-Prop by fine-tuning T5 encoder with linear prediction layer on preprocessed text and property labels",
+      "stage_input": [
+        "preprocessed text descriptions",
+        "property labels"
+      ],
+      "stage_output": [
+        "fine-tuned LLM-Prop model"
+      ],
+      "evidence": [
+        {
+          "text": "LLM-Prop leverages T5 by directly adding a linear layer on top of its encoder for regression tasks. This linear layer can be composed with a sigmoid or softmax activation for classiﬁcation tasks.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "For LLM-Prop, we directly ﬁne-tune the encoder only part of the original T5-small encoder-decoder model (with about 60 millions parameters) on our benchmark dataset without further pre-training it on domain-speciﬁc data.",
+          "page": 11,
+          "section": "Methods",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "evaluating performance on test set",
+      "stage_order": 6,
+      "stage_goal": "Assess predictive accuracy of LLM-Prop against baselines using MAE and AUC metrics",
+      "stage_input": [
+        "fine-tuned LLM-Prop model",
+        "test set"
+      ],
+      "stage_output": [
+        "MAE for regression tasks",
+        "AUC for classification task"
+      ],
+      "evidence": [
+        {
+          "text": "For regression tasks, we train both MatBERT and LLM-Prop with the mean absolute error (MAE) loss and evaluate them in terms of MAE error while the GNN-based models are trained with root mean square error (RMSE) loss and evaluated with the MAE error. For classiﬁcation, we train them with binary cross entropy (BCE) loss and evaluate with the area under the ROC curve (AUC).",
+          "page": 11,
+          "section": "Methods",
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

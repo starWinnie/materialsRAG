@@ -1,0 +1,181 @@
+{
+  "paper": {
+    "title": "BEYOND STRUCTURE: INVARIANT CRYSTAL PROPERTY PREDICTION WITH PSEUDO-PARTICLE RAY DIFFRACTION",
+    "year": 2026,
+    "doi": null,
+    "research_summary": "Crystal property prediction, governed by quantum mechanical principles, is computationally prohibitive to solve exactly for large many-body systems using traditional density functional theory. While machine learning models have emerged as efficient approximations for large-scale applications, their performance is strongly influenced by the choice of atomic representation. Although modern graph-based approaches have progressively incorporated more structural information, they often fail to capture long-range atomic interactions due to finite receptive fields and local encoding schemes. This limitation leads to distinct crystals being mapped to identical representations, hindering accurate property prediction. To address this, we introduce PRDNet that leverages unique reciprocal-space diffraction besides graph representations. To enhance sensitivity to elemental and environmental variations, we employ a data-driven pseudo-particle to generate a synthetic diffraction pattern. PRDNet ensures full invariance to crystallographic symmetries. Extensive experiments are conducted on Materials Project, JARVIS-DFT, and MatBench, demonstrating that the proposed model achieves state-of-the-art performance."
+  },
+  "task": {
+    "task_name_raw": "Crystal Property Prediction",
+    "task_name_canonical": "crystal_property_prediction",
+    "objective": "estimate a physical property y from the crystal structure, represented as a tuple (A, P, L)",
+    "material_scope": [
+      "crystals"
+    ],
+    "target_properties": [
+      "formation energy",
+      "band gap",
+      "bulk modulus",
+      "shear modulus",
+      "Young's modulus",
+      "metal/non-metal classification",
+      "exfoliation energy",
+      "refractive index",
+      "total energy",
+      "energy above the hull"
+    ],
+    "constraints": [
+      "full invariance to crystallographic symmetries",
+      "E(3)-invariance (rotation, reflection, translation)"
+    ],
+    "input_requirements": [
+      "crystal structure represented as M = (A, P, L) where A denotes atomic types, P contains coordinates, L defines periodic lattice"
+    ],
+    "output_goal": [
+      "physical property y, which may be continuous (y ∈ R) in regression tasks or categorical (y ∈ {1, 2, ..., C}) in classification tasks"
+    ],
+    "evidence": [
+      {
+        "text": "Problem definition\nMany material properties can be derived from the fundamental equations\nof electronic behavior, where the dynamics of electrons are fully determined by the external po-\ntential imposed by the atomic arrangement in a crystal (Martin, 2020). Crystal property predic-\ntion thus aims to estimate a physical property y from the crystal structure, represented as a tuple\n(A, P, L). The target property y may be continuous (y ∈R) in regression tasks or categorical\n(y ∈{1, 2, . . . , C}) in classification tasks with C classes.",
+        "page": 5,
+        "section": "Problem definition",
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "Dataset retrieval and benchmarking",
+      "stage_order": 1,
+      "stage_goal": "retrieve and use standard evaluation datasets for benchmarking",
+      "stage_input": [
+        "official websites"
+      ],
+      "stage_output": [
+        "Materials Project (MP) Database",
+        "JARVIS-DFT (dft_3d)",
+        "Matbench (MB) Suite"
+      ],
+      "evidence": [
+        {
+          "text": "Datasets\nWe benchmark the models on three standard evaluation suites, all independently re-\ntrieved from the official websites. The definitions and background of the regression and classifi-\ncation targets are introduced in the Appendix E.\n• Materials Project (MP) Database: We use stable structures retrieved from the Materials Project\n(Jain et al., 2020), comprising 122,959 entries with annotated formation energy, band gap, and\nmetal/non-metal classification labels. Additionally, 9,473 of these entries include mechanical\nproperties such as bulk modulus, shear modulus and Young’s modulus. The dataset is managed\nusing the Atomic Simulation Environment (ASE), and is available at https://huggingface.\nco/datasets/caobin/CPPbenchmark.\n• JARVIS-DFT (dft_3d): This dataset contains 75,993 entries, each annotated with formation\nenergy, band gap (calculated using either the OptB88vDW functional, denoted as OPT, or the\nTBMBJ functional, denoted as MBJ), bulk modulus, shear modulus, total energy (calculated us-\ning the OptB88vDW functional), and energy above the hull (Ehull ) (Choudhary et al., 2020).\nWe also evaluate the baselines on the JARVIS-DFT-3D-2021 dataset (55,723 entries), which\nserves as an important supplementary benchmark.\n• Matbench (MB) Suite: We evaluate the models on several tasks from the Matbench suite (Dunn\net al., 2020): matbench_jdft2d (636 entries; exfoliation energy), matbench_mp_e_form\n(132,752 entries; formation energy), matbench_log_gvrh (10,987 entries; shear modulus),\nand matbench_dielectric (4,764 entries; refractive index).",
+          "page": 8,
+          "section": "Datasets",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_preparation",
+      "stage_name_raw": "Crystal structure representation and graph construction",
+      "stage_order": 2,
+      "stage_goal": "represent crystal structures as graphs with node and edge features",
+      "stage_input": [
+        "crystal structure M = (A, P, L)",
+        "cutoff radius"
+      ],
+      "stage_output": [
+        "graph G = (V, E)",
+        "node features h(0)_i",
+        "edge features e_ij"
+      ],
+      "evidence": [
+        {
+          "text": "Crystal Structures\nCrystal structures can be described using a fundamental unit, such as a prim-\nitive cell, conventional unit cell, Bravais lattice, or asymmetric unit, together with its associated\natoms.\nThe unit is defined by a 3 × 3 lattice matrix that specifies its geometry in real space.\nFormally, a crystal structure is represented as M = (A, P, L), where A denotes atomic types,\nP = [p1, . . . , pN] ∈R3×N contains the fractional or Cartesian coordinates of the N atoms, and\nL = [ℓ1, ℓ2, ℓ3] ∈R3×3 defines the periodic lattice in real space.",
+          "page": 4,
+          "section": "Crystal Structures",
+          "inferred": false
+        },
+        {
+          "text": "Graph embedding\nA crystal structure is represented as a graph G = (V, E), where vertices V =\n{v1, v2, . . . , vN} correspond to atoms one-hot encoded attributes (Xie & Grossman, 2018) and\nedges E ⊆V × V encode atomic interactions within a cutoff radius. Each atom i is characterized\nby a node feature h(0)\ni\n= Embed(vi) ∈Rd and coordinates ri = (xi, yi, zi) ∈R3. Edge features\nbetween atoms i and j are defined as:\neij = RBF(dij) ⊕SBF(θijk) ⊕dij,\ndij = ∥ri −rj∥,\n(6)\nwhere RBF(·) denotes a radial basis function, SBF(·) a spherical basis function (Gasteiger et al.),\nθijk is the angle between bond ij and bond ik, and ⊕indicates concatenation.",
+          "page": 5,
+          "section": "Graph embedding",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "PRDNet architecture training with physics-informed constraints",
+      "stage_order": 3,
+      "stage_goal": "train PRDNet to integrate graph embeddings and learned pseudo-particle diffraction while enforcing E(3)-invariance",
+      "stage_input": [
+        "graph embeddings",
+        "pseudo-particle diffraction representations",
+        "Huber loss",
+        "AdamW optimizer",
+        "cosine annealing schedule"
+      ],
+      "stage_output": [
+        "trained PRDNet model"
+      ],
+      "evidence": [
+        {
+          "text": "Multi-Modal Feature Fusion\nThe integration of graph-based crystal real-space features h(L)\ni\nand\nphysics-based diffraction representations Fconcat is achieved through a fusion mechanism:\ng = GlobalPool({h(L)\ni\n}N\ni=1),\nd = MLPdiff(Fconcat),\nzfused = MLPfusion([g ⊕d]).\n(7)\nGlobalPool(·) aggregates node features across the entire crystal structure, MLPdiff(·) maps physics-\nbased descriptors to the embedding space, and MLPfusion(·) produces the final fused representation.",
+          "page": 6,
+          "section": "Multi-Modal Feature Fusion",
+          "inferred": false
+        },
+        {
+          "text": "Model Invariance\nCrystals are inherently symmetrical. Following existing work (Yan et al., 2024;\nLiu et al., 2024; Zheng et al., 2024), we force the model prediction to be invariant to E(3) group\n(i.e., the rotation, reflection, and translation of input crystals). Specifically, according to Eq. 7, the\nfinal representation output zfused depends on the g and d. Since g depends on the relative geometric\nfeatures dij and θijk (Eq.6) that remain unchanged under E(3) operations, g is E(3)-invariant.\nConsequently, because d is also E(3)-invariant, the model output is E(3)-invariant, as shown in\nSection 4.3.",
+          "page": 6,
+          "section": "Model Invariance",
+          "inferred": false
+        },
+        {
+          "text": "A.4.1\nHUBER LOSS FOR OUTLIER ROBUSTNESS\nTo accommodate the diverse nature of crystal property prediction tasks and improve training stabil-\nity, PRDNet employs Huber loss (Meyer, 2021) for training.\nThe Huber loss combines the advantages of L2 loss for small errors and L1 loss for large errors:\nLHuber(ˆy, y; δ) =\n\u001a 1\n2(ˆy −y)2\nif |ˆy −y| ≤δ\nδ|ˆy −y| −1\n2δ2\notherwise\n(27)\nwhere δ > 0 is a hyperparameter that controls the transition point between quadratic and linear\nregimes. This formulation provides robustness against outliers while maintaining smooth gradients\nfor small errors.",
+          "page": 16,
+          "section": "A.4.1 HUBER LOSS FOR OUTLIER ROBUSTNESS",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "Quantitative evaluation on benchmark datasets",
+      "stage_order": 4,
+      "stage_goal": "assess PRDNet performance against baselines using MAE and accuracy metrics",
+      "stage_input": [
+        "trained PRDNet model",
+        "MP",
+        "JARVIS-DFT",
+        "Matbench"
+      ],
+      "stage_output": [
+        "MAE scores",
+        "accuracy scores",
+        "SOTA performance claims"
+      ],
+      "evidence": [
+        {
+          "text": "5.1\nRESULTS\nBenchmarks Performance\nAcross the MP, JARVIS-DFT, and Matbench benchmarks, PRDNet\nconsistently delivers superior or competitive performance compared with existing models. On the\nMP dataset (Table 1), PRDNet surpasses all baselines, achieving the lowest errors in formation en-\nergy (0.028 eV/atom), band gap (0.151 eV), bulk modulus (0.035 log(GPa)), shear modulus (0.108\nlog(GPa)), and Young’s modulus (0.104 log(GPa)), while also reaching the highest metal/non-metal\nclassification accuracy (93.3%).",
+          "page": 9,
+          "section": "5.1 RESULTS",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_screening",
+      "stage_name_raw": "Ablation study to validate architectural components",
+      "stage_order": 5,
+      "stage_goal": "isolate contributions of individual modules (diffraction, attention, residuals, edge features)",
+      "stage_input": [
+        "PRDNet architecture variants"
+      ],
+      "stage_output": [
+        "performance degradation metrics",
+        "component importance ranking"
+      ],
+      "evidence": [
+        {
+          "text": "Ablation Study\nTo validate the effectiveness of each component in the PRDNet architecture, we\nperform systematic ablation studies that isolate the contributions of individual modules and design\nchoices. We evaluate PRDNet across diverse property prediction tasks using the Materials Project,\nJARVIS-DFT and Matbench databases, ensuring a comprehensive assessment. Table 3 presents the\nablation results on the MP dataset, while Appendix B, Table 5, and Table 6 report the results on\nJARVIS-DFT and Matbench, respectively. The results show that each component is essential for\noptimal performance. Removing the diffraction module causes the obversely performance drop,\nunderscoring its critical role. Likewise, using single-head attention, removing residual connections,\nor excluding edge features consistently degrades performance, indicating that multi-head attention,\nresidual updates, and edge features collectively strengthen representation learning. These findings\nconfirm the effectiveness of our default architecture, in which all modules work synergistically to\nachieve the highest accuracy across material property predictions.",
+          "page": 9,
+          "section": "Ablation Study",
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

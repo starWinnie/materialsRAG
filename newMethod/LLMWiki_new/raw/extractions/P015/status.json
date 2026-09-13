@@ -1,0 +1,27 @@
+{
+  "paper_id": "P015",
+  "file_name": "15_Extrapolative_Episodic_Training.pdf",
+  "status": "completed",
+  "completed_at": "2026-08-06T01:22:18.252847+00:00",
+  "model": "qwen-plus",
+  "stage1_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "stage2_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "counts": {
+    "tasks": 1,
+    "stages": 6,
+    "datasets": 2,
+    "dataset_uses": 10
+  }
+}

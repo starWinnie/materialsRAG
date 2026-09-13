@@ -1,0 +1,640 @@
+{
+  "paper": {
+    "paper_id": "P032",
+    "title": "How simple can you go? An off-the-shelf transformer approach to molecular dynamics",
+    "year": 2026,
+    "doi": "10.1063/5.0295035",
+    "file_name": "32_How simple can you go - An off-the-shelf transformer approach to molecular dynamics.pdf",
+    "research_summary": "This paper presents MD-ET, a minimally modified edge transformer architecture for molecular dynamics (MD) that intentionally omits built-in rotational equivariance and energy conservation—two common physical inductive biases in neural MD models. Trained on ∼30 × 10⁶ structures from the QCML database via supervised pretraining, MD-ET achieves state-of-the-art results on multiple benchmarks after few-shot fine-tuning. The study evaluates how well an 'off-the-shelf' transformer can learn approximate equivariance and energy conservation purely from data, and assesses its ability to perform stable NVE and faithful NVT MD simulations.",
+    "extraction_status": "completed"
+  },
+  "tasks": [
+    {
+      "task_id": "T_P032_01",
+      "paper_id": "P032",
+      "task_name_raw": "molecular dynamics simulation using a neural network force field",
+      "task_name_canonical": "molecular_dynamics_simulation",
+      "objective": "To develop and evaluate a neural network force field for molecular dynamics simulation that relies minimally on architectural physical inductive biases (e.g., built-in rotational equivariance or energy conservation), instead learning approximate physical consistency from data.",
+      "material_scope": [
+        "molecules",
+        "ionic systems",
+        "metallic systems"
+      ],
+      "target_properties": [
+        "atomic forces",
+        "total energy conservation",
+        "NVE/NVT simulation stability",
+        "observables (e.g., h(r), velocity–velocity autocorrelation spectra)"
+      ],
+      "constraints": [
+        "no built-in rotational equivariance",
+        "no built-in energy conservation",
+        "no automatic differentiation of energy to obtain forces",
+        "dense attention with O(N³) complexity"
+      ],
+      "input_requirements": [
+        "3D atomic positions",
+        "atomic numbers",
+        "spin and charge states",
+        "pairwise distances and displacement vectors"
+      ],
+      "output_goal": [
+        "predicted atomic forces",
+        "stable molecular dynamics trajectories (NVE and NVT ensembles)"
+      ],
+      "parent_task_id": null,
+      "task_level": "main_task",
+      "evidence": [
+        {
+          "text": "We present a recipe for MD using an edge transformer (ET), an “off-the-shelf” transformer architecture that has been minimally modified for the MD domain, termed MD-ET. Our model implements neither built-in equivariance nor energy conservation.",
+          "page": 2,
+          "section": "ABSTRACT",
+          "inferred": false
+        },
+        {
+          "text": "We thus study an extreme case: we present and evaluate the best MD model we can build using a minimal amount of MD-specific design features. Specifically, we aim to use an architecture that could be used in some related ML setting with minimal changes.",
+          "page": 3,
+          "section": "We examine the effects of forgoing almost all commonly",
+          "inferred": false
+        },
+        {
+          "text": "Instead of predicting a combined loss50 of energies and forces or calculating forces as the negative gradient of the predicted energy with respect to positions, we predict forces directly.",
+          "page": 3,
+          "section": "We examine the effects of forgoing almost all commonly",
+          "inferred": false
+        }
+      ]
+    }
+  ],
+  "stages": [
+    {
+      "stage_id": "S_P032_01",
+      "paper_id": "P032",
+      "task_id": "T_P032_01",
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "acquisition of QCML dataset",
+      "stage_order": 1,
+      "stage_goal": "Obtain a large-scale quantum chemistry reference dataset spanning the periodic table, including out-of-equilibrium structures and different spin and charge states.",
+      "stage_input": [],
+      "stage_output": [
+        "QCML dataset (∼30 × 10⁶ molecular structures)"
+      ],
+      "evidence": [
+        {
+          "text": "QCML ranges across the periodic table, including out-of-equilibrium structures and different spin and charge states, and includes properties for a subset of ∼30 × 10⁶ entries calculated with density functional theory accuracy at the PBE0 level46,47 (including dispersion corrections48,49).",
+          "page": 3,
+          "section": "We examine the effects of forgoing almost all commonly",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P032_02",
+      "paper_id": "P032",
+      "task_id": "T_P032_01",
+      "stage_type": "data_preparation",
+      "stage_name_raw": "dataset splitting and augmentation",
+      "stage_order": 2,
+      "stage_goal": "Partition QCML into train/validation/test splits while preserving conformational grouping, and apply random rotations and reflections to enable learning of approximate O(3)-equivariance.",
+      "stage_input": [
+        "QCML dataset"
+      ],
+      "stage_output": [
+        "90%/5%/5% split with grouped conformers",
+        "augmented batches with rotated/mirrored copies"
+      ],
+      "evidence": [
+        {
+          "text": "We create an approximate 90%/5%/5% split from QCML. As QCML contains multiple conformations for each structure sampled along its normal modes, we ensure that all conformations of a structure are assigned to the same split.",
+          "page": 5,
+          "section": "Pretraining performance",
+          "inferred": false
+        },
+        {
+          "text": "To learn approximate equivariance, we use data augmentation: during pretraining, we duplicate each batch once and apply random rotations and reflections to both copies to form an augmented batch.",
+          "page": 5,
+          "section": "Pretraining performance",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P032_03",
+      "paper_id": "P032",
+      "task_id": "T_P032_01",
+      "stage_type": "model_training",
+      "stage_name_raw": "supervised pretraining of MD-ET on QCML",
+      "stage_order": 3,
+      "stage_goal": "Train the MD-adapted edge transformer (MD-ET) to predict atomic forces directly (not via energy gradients) using mean absolute error loss on QCML.",
+      "stage_input": [
+        "QCML train split",
+        "augmented batches",
+        "MD-ET architecture with MD-specific embedding layers"
+      ],
+      "stage_output": [
+        "pretrained MD-ET checkpoint"
+      ],
+      "evidence": [
+        {
+          "text": "We perform supervised pretraining on the new QCML dataset.45 [...] During training, we use two randomly rotated and mirrored copies of each sampled structure so that our model can learn approximate O(3)-equivariance. Instead of predicting a combined loss50 of energies and forces or calculating forces as the negative gradient of the predicted energy with respect to positions, we predict forces directly.",
+          "page": 3,
+          "section": "We examine the effects of forgoing almost all commonly",
+          "inferred": false
+        },
+        {
+          "text": "We train MD-ET for 880k steps on QCML using a batch size of 1024 (i.e., 512 before data augmentation), which takes ∼16 A100 GPU-days",
+          "page": 5,
+          "section": "Pretraining performance",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P032_04",
+      "paper_id": "P032",
+      "task_id": "T_P032_01",
+      "stage_type": "candidate_screening",
+      "stage_name_raw": "benchmark evaluation on standard MD datasets",
+      "stage_order": 4,
+      "stage_goal": "Assess pretrained MD-ET’s zero-shot and few-shot performance across diverse MD benchmarks (QCML, MD17, Ko2020, xxMD, SPICE) measuring force MAE, simulation stability, faithfulness (h(r)), and inference speed.",
+      "stage_input": [
+        "pretrained MD-ET checkpoint",
+        "MD17, Ko2020, xxMD, SPICE datasets"
+      ],
+      "stage_output": [
+        "benchmark scores (MAE, stability time, h(r), FPS)"
+      ],
+      "evidence": [
+        {
+          "text": "We evaluate the performance of our proposed MD-ET model across several standard MD benchmarks. We compare MD-ET with established MLFFs, focusing on their accuracy, stability, and efficiency. We evaluated MD-ET on QCML,45 MD17,15 Ko2020,67 xxMD,68 and SPICE,69 each presenting distinct challenges.",
+          "page": 5,
+          "section": "IV. EXPERIMENTS",
+          "inferred": false
+        },
+        {
+          "text": "For MD simulations, we evaluate either the pretrained model without further training (zero-shot) or fine-tune using a small number of samples of the target structure (few-shot).",
+          "page": 3,
+          "section": "IV. EXPERIMENTS",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P032_05",
+      "paper_id": "P032",
+      "task_id": "T_P032_01",
+      "stage_type": "computational_validation",
+      "stage_name_raw": "quantitative analysis of equivariance and energy conservation",
+      "stage_order": 5,
+      "stage_goal": "Compute equivariance error E_eq and antisymmetric ratio λ (Jacobian symmetry metric) to quantify how closely MD-ET approximates rotational equivariance and energy conservation.",
+      "stage_input": [
+        "pretrained MD-ET checkpoint",
+        "test structures",
+        "rotation matrices"
+      ],
+      "stage_output": [
+        "equivariance error (E_eq)",
+        "antisymmetric ratio (λ)",
+        "NVE energy drift profiles"
+      ],
+      "evidence": [
+        {
+          "text": "Bigi et al.29 examine the Jacobian matrix of the force prediction with respect to atom positions J ∈R3n×3n to quantify energy conservation. The Jacobian of a perfectly energy-conserving prediction should be a symmetric matrix since it is the Hessian of the molecular energy. Bigi et al.29 quantify the symmetry of J by decomposing the matrix into its symmetric and antisymmetric components and calculating the ratio between the Frobenius norm of the antisymmetric component and the Frobenius norm of the entire matrix, i.e., λ = ∥Janti∥F / ∥J∥F",
+          "page": 11,
+          "section": "unknown",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P032_06",
+      "paper_id": "P032",
+      "task_id": "T_P032_01",
+      "stage_type": "experimental_validation",
+      "stage_name_raw": "NVE and NVT molecular dynamics simulations",
+      "stage_order": 6,
+      "stage_goal": "Run and analyze MD simulations (NVE and NVT ensembles) to empirically validate stability, energy conservation, and observables fidelity (e.g., h(r), velocity–velocity autocorrelation spectra, free energy surfaces).",
+      "stage_input": [
+        "pretrained or fine-tuned MD-ET",
+        "molecular structures (e.g., alkanes, n-octane, alanine dipeptide)",
+        "thermostats (SVR/Bussi)"
+      ],
+      "stage_output": [
+        "NVE energy drift curves",
+        "NVT h(r) distributions",
+        "velocity–velocity autocorrelation power spectra",
+        "free energy surfaces"
+      ],
+      "evidence": [
+        {
+          "text": "We find that NVE simulations with MD-ET are approximately energy-conserving for some small systems, but with increasing system size, the total energy tends to increase with time (see Fig. 3).",
+          "page": 10,
+          "section": "C. Unconstrained models can learn to approximately conserve energy without explicit inductive biases",
+          "inferred": false
+        },
+        {
+          "text": "To evaluate the degree to which MD-ET produces faithful MD simulations, we run 1 ns NVT simulations using the stochastic velocity rescaling (SVR or Bussi) thermostat [...] We then produce velocity–velocity autocorrelation spectra from these trajectories (see Fig. 7, top).",
+          "page": 12,
+          "section": "D. Unconstrained models are able to reproduce observables in NVT simulations",
+          "inferred": false
+        }
+      ]
+    }
+  ],
+  "datasets": [
+    {
+      "dataset_id": "D_qcml",
+      "canonical_name": "QCML",
+      "raw_names": [
+        "QCML"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "molecules",
+        "ionic systems",
+        "metallic systems"
+      ],
+      "available_properties": [
+        "atomic forces",
+        "total energy",
+        "spin and charge states"
+      ],
+      "available_fields": [
+        "3D atomic positions",
+        "atomic numbers",
+        "spin and charge states",
+        "pairwise distances and displacement vectors"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "QCML ranges across the periodic table, including out-of-equilibrium structures and different spin and charge states, and includes properties for a subset of ∼30 × 10⁶ entries calculated with density functional theory accuracy at the PBE0 level46,47 (including dispersion corrections48,49).",
+          "page": 3,
+          "section": "We examine the effects of forgoing almost all commonly",
+          "inferred": false,
+          "paper_id": "P032"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:qcml"
+    },
+    {
+      "dataset_id": "D_md17",
+      "canonical_name": "MD17",
+      "raw_names": [
+        "MD17"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "small organic molecules"
+      ],
+      "available_properties": [
+        "atomic forces",
+        "total energy"
+      ],
+      "available_fields": [
+        "3D atomic positions",
+        "atomic numbers"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We evaluate the performance of our proposed MD-ET model across several standard MD benchmarks. We compare MD-ET with established MLFFs, focusing on their accuracy, stability, and efficiency. We evaluated MD-ET on QCML,45 MD17,15 Ko2020,67 xxMD,68 and SPICE,69 each presenting distinct challenges.",
+          "page": 5,
+          "section": "IV. EXPERIMENTS",
+          "inferred": false,
+          "paper_id": "P032"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:md17"
+    },
+    {
+      "dataset_id": "D_ko2020",
+      "canonical_name": "Ko2020",
+      "raw_names": [
+        "Ko2020"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "molecular systems",
+        "metallic systems"
+      ],
+      "available_properties": [
+        "atomic forces"
+      ],
+      "available_fields": [
+        "3D atomic positions",
+        "atomic numbers"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We evaluate the performance of our proposed MD-ET model across several standard MD benchmarks. We compare MD-ET with established MLFFs, focusing on their accuracy, stability, and efficiency. We evaluated MD-ET on QCML,45 MD17,15 Ko2020,67 xxMD,68 and SPICE,69 each presenting distinct challenges.",
+          "page": 5,
+          "section": "IV. EXPERIMENTS",
+          "inferred": false,
+          "paper_id": "P032"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:ko2020"
+    },
+    {
+      "dataset_id": "D_xxmd",
+      "canonical_name": "xxMD",
+      "raw_names": [
+        "xxMD"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "reactive intermediates",
+        "transition states",
+        "reaction products"
+      ],
+      "available_properties": [
+        "atomic forces"
+      ],
+      "available_fields": [
+        "3D atomic positions",
+        "atomic numbers"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We evaluate the performance of our proposed MD-ET model across several standard MD benchmarks. We compare MD-ET with established MLFFs, focusing on their accuracy, stability, and efficiency. We evaluated MD-ET on QCML,45 MD17,15 Ko2020,67 xxMD,68 and SPICE,69 each presenting distinct challenges.",
+          "page": 5,
+          "section": "IV. EXPERIMENTS",
+          "inferred": false,
+          "paper_id": "P032"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:xxmd"
+    },
+    {
+      "dataset_id": "D_spice",
+      "canonical_name": "SPICE",
+      "raw_names": [
+        "SPICE"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "drug-like molecules",
+        "peptides"
+      ],
+      "available_properties": [
+        "atomic forces"
+      ],
+      "available_fields": [
+        "3D atomic positions",
+        "atomic numbers"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We evaluate the performance of our proposed MD-ET model across several standard MD benchmarks. We compare MD-ET with established MLFFs, focusing on their accuracy, stability, and efficiency. We evaluated MD-ET on QCML,45 MD17,15 Ko2020,67 xxMD,68 and SPICE,69 each presenting distinct challenges.",
+          "page": 5,
+          "section": "IV. EXPERIMENTS",
+          "inferred": false,
+          "paper_id": "P032"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:spice"
+    }
+  ],
+  "dataset_uses": [
+    {
+      "dataset_use_id": "DU_P032_001",
+      "paper_id": "P032",
+      "task_id": "T_P032_01",
+      "stage_id": "S_P032_01",
+      "dataset_id": "D_qcml",
+      "usage_role": "source",
+      "purpose": "Acquisition of large-scale quantum chemistry reference dataset spanning the periodic table, including out-of-equilibrium structures and different spin and charge states.",
+      "used_fields": [
+        "3D atomic positions",
+        "atomic numbers",
+        "spin and charge states",
+        "pairwise distances and displacement vectors"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "QCML ranges across the periodic table, including out-of-equilibrium structures and different spin and charge states, and includes properties for a subset of ∼30 × 10⁶ entries calculated with density functional theory accuracy at the PBE0 level46,47 (including dispersion corrections48,49).",
+          "page": 3,
+          "section": "We examine the effects of forgoing almost all commonly",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P032_002",
+      "paper_id": "P032",
+      "task_id": "T_P032_01",
+      "stage_id": "S_P032_02",
+      "dataset_id": "D_qcml",
+      "usage_role": "training",
+      "purpose": "Partition QCML into train/validation/test splits while preserving conformational grouping, and apply random rotations and reflections to enable learning of approximate O(3)-equivariance.",
+      "used_fields": [
+        "3D atomic positions",
+        "atomic numbers",
+        "spin and charge states"
+      ],
+      "is_derived": true,
+      "construction_method": "90%/5%/5% split with grouped conformers; augmented batches with rotated/mirrored copies",
+      "filter_conditions": [
+        "all conformations of a structure assigned to same split"
+      ],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We create an approximate 90%/5%/5% split from QCML. As QCML contains multiple conformations for each structure sampled along its normal modes, we ensure that all conformations of a structure are assigned to the same split.",
+          "page": 5,
+          "section": "Pretraining performance",
+          "inferred": false
+        },
+        {
+          "text": "To learn approximate equivariance, we use data augmentation: during pretraining, we duplicate each batch once and apply random rotations and reflections to both copies to form an augmented batch.",
+          "page": 5,
+          "section": "Pretraining performance",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P032_003",
+      "paper_id": "P032",
+      "task_id": "T_P032_01",
+      "stage_id": "S_P032_03",
+      "dataset_id": "D_qcml",
+      "usage_role": "training",
+      "purpose": "Supervised pretraining of MD-ET to predict atomic forces directly using mean absolute error loss.",
+      "used_fields": [
+        "atomic forces",
+        "3D atomic positions",
+        "atomic numbers",
+        "spin and charge states"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We perform supervised pretraining on the new QCML dataset.45 [...] During training, we use two randomly rotated and mirrored copies of each sampled structure so that our model can learn approximate O(3)-equivariance. Instead of predicting a combined loss50 of energies and forces or calculating forces as the negative gradient of the predicted energy with respect to positions, we predict forces directly.",
+          "page": 3,
+          "section": "We examine the effects of forgoing almost all commonly",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P032_004",
+      "paper_id": "P032",
+      "task_id": "T_P032_01",
+      "stage_id": "S_P032_04",
+      "dataset_id": "D_qcml",
+      "usage_role": "benchmark",
+      "purpose": "Benchmark evaluation of pretrained MD-ET's zero-shot and few-shot performance measuring force MAE.",
+      "used_fields": [
+        "atomic forces",
+        "3D atomic positions"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We evaluate the performance of our proposed MD-ET model across several standard MD benchmarks. We compare MD-ET with established MLFFs, focusing on their accuracy, stability, and efficiency. We evaluated MD-ET on QCML,45 MD17,15 Ko2020,67 xxMD,68 and SPICE,69 each presenting distinct challenges.",
+          "page": 5,
+          "section": "IV. EXPERIMENTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P032_005",
+      "paper_id": "P032",
+      "task_id": "T_P032_01",
+      "stage_id": "S_P032_04",
+      "dataset_id": "D_md17",
+      "usage_role": "benchmark",
+      "purpose": "Benchmark evaluation of pretrained MD-ET's zero-shot and few-shot performance measuring force MAE, simulation stability, and faithfulness (h(r)).",
+      "used_fields": [
+        "atomic forces",
+        "3D atomic positions"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We evaluate the performance of our proposed MD-ET model across several standard MD benchmarks. We compare MD-ET with established MLFFs, focusing on their accuracy, stability, and efficiency. We evaluated MD-ET on QCML,45 MD17,15 Ko2020,67 xxMD,68 and SPICE,69 each presenting distinct challenges.",
+          "page": 5,
+          "section": "IV. EXPERIMENTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P032_006",
+      "paper_id": "P032",
+      "task_id": "T_P032_01",
+      "stage_id": "S_P032_04",
+      "dataset_id": "D_ko2020",
+      "usage_role": "benchmark",
+      "purpose": "Benchmark evaluation of pretrained MD-ET's zero-shot and few-shot performance measuring force RMSE on molecular and metallic systems.",
+      "used_fields": [
+        "atomic forces",
+        "3D atomic positions"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We evaluate the performance of our proposed MD-ET model across several standard MD benchmarks. We compare MD-ET with established MLFFs, focusing on their accuracy, stability, and efficiency. We evaluated MD-ET on QCML,45 MD17,15 Ko2020,67 xxMD,68 and SPICE,69 each presenting distinct challenges.",
+          "page": 5,
+          "section": "IV. EXPERIMENTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P032_007",
+      "paper_id": "P032",
+      "task_id": "T_P032_01",
+      "stage_id": "S_P032_04",
+      "dataset_id": "D_xxmd",
+      "usage_role": "benchmark",
+      "purpose": "Benchmark evaluation of pretrained MD-ET's zero-shot and few-shot performance measuring force MAE on nonadiabatic MD trajectories capturing chemical reactions.",
+      "used_fields": [
+        "atomic forces",
+        "3D atomic positions"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We evaluate the performance of our proposed MD-ET model across several standard MD benchmarks. We compare MD-ET with established MLFFs, focusing on their accuracy, stability, and efficiency. We evaluated MD-ET on QCML,45 MD17,15 Ko2020,67 xxMD,68 and SPICE,69 each presenting distinct challenges.",
+          "page": 5,
+          "section": "IV. EXPERIMENTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P032_008",
+      "paper_id": "P032",
+      "task_id": "T_P032_01",
+      "stage_id": "S_P032_04",
+      "dataset_id": "D_spice",
+      "usage_role": "benchmark",
+      "purpose": "Benchmark evaluation of pretrained MD-ET's zero-shot and few-shot performance measuring force MAE on drug-like molecules and peptides up to 96 atoms.",
+      "used_fields": [
+        "atomic forces",
+        "3D atomic positions"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We evaluate the performance of our proposed MD-ET model across several standard MD benchmarks. We compare MD-ET with established MLFFs, focusing on their accuracy, stability, and efficiency. We evaluated MD-ET on QCML,45 MD17,15 Ko2020,67 xxMD,68 and SPICE,69 each presenting distinct challenges.",
+          "page": 5,
+          "section": "IV. EXPERIMENTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

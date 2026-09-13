@@ -1,0 +1,221 @@
+{
+  "paper": {
+    "title": "BEYOND STRUCTURE: INVARIANT CRYSTAL PROPERTY PREDICTION WITH PSEUDO-PARTICLE RAY DIFFRACTION",
+    "year": 2026,
+    "doi": null,
+    "research_summary": "Crystal property prediction, governed by quantum mechanical principles, is computationally prohibitive to solve exactly for large many-body systems using traditional density functional theory. While machine learning models have emerged as efficient approximations for large-scale applications, their performance is strongly influenced by the choice of atomic representation. Although modern graph-based approaches have progressively incorporated more structural information, they often fail to capture long-range atomic interactions due to finite receptive fields and local encoding schemes. This limitation leads to distinct crystals being mapped to identical representations, hindering accurate property prediction. To address this, we introduce PRDNet that leverages unique reciprocal-space diffraction besides graph representations. To enhance sensitivity to elemental and environmental variations, we employ a data-driven pseudo-particle to generate a synthetic diffraction pattern. PRDNet ensures full invariance to crystallographic symmetries. Extensive experiments are conducted on Materials Project, JARVIS-DFT, and MatBench, demonstrating that the proposed model achieves state-of-the-art performance."
+  },
+  "task": {
+    "task_name_raw": "Crystal Property Prediction",
+    "task_name_canonical": "crystal_property_prediction",
+    "objective": "estimate a physical property y from the crystal structure, represented as a tuple (A, P, L)",
+    "material_scope": [
+      "crystals"
+    ],
+    "target_properties": [
+      "formation energy",
+      "band gap",
+      "bulk modulus",
+      "shear modulus",
+      "Young's modulus",
+      "metal/non-metal classification",
+      "exfoliation energy",
+      "refractive index",
+      "total energy",
+      "energy above the hull"
+    ],
+    "constraints": [
+      "invariant to rotations, reflections, and translations of crystals",
+      "invariant to crystallographic symmetries",
+      "full invariance to E(3) group"
+    ],
+    "input_requirements": [
+      "crystal structure represented as M = (A, P, L) where A denotes atomic types, P contains coordinates, and L defines the periodic lattice"
+    ],
+    "output_goal": [
+      "physical property y which may be continuous (y ∈ R) in regression tasks or categorical (y ∈ {1, 2, . . . , C}) in classification tasks"
+    ],
+    "evidence": [
+      {
+        "text": "Problem definition\nMany material properties can be derived from the fundamental equations\nof electronic behavior, where the dynamics of electrons are fully determined by the external po-\ntential imposed by the atomic arrangement in a crystal (Martin, 2020). Crystal property predic-\ntion thus aims to estimate a physical property y from the crystal structure, represented as a tuple\n(A, P, L). The target property y may be continuous (y ∈R) in regression tasks or categorical\n(y ∈{1, 2, . . . , C}) in classification tasks with C classes.",
+        "page": 5,
+        "section": "Problem definition",
+        "inferred": false
+      },
+      {
+        "text": "Model Invariance\nCrystals are inherently symmetrical. Following existing work (Yan et al., 2024;\nLiu et al., 2024; Zheng et al., 2024), we force the model prediction to be invariant to E(3) group\n(i.e., the rotation, reflection, and translation of input crystals).",
+        "page": 6,
+        "section": "Model Invariance",
+        "inferred": false
+      },
+      {
+        "text": "PRDNet outperforms previous approaches by capturing long-range atomic correlations through a physically invariant reciprocal-space representation embedded within the neural network.",
+        "page": 10,
+        "section": "CONCLUSION",
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "Retrieving crystal datasets",
+      "stage_order": 1,
+      "stage_goal": "obtain standard evaluation suites for benchmarking",
+      "stage_input": [],
+      "stage_output": [
+        "Materials Project dataset",
+        "JARVIS-DFT dataset",
+        "Matbench dataset"
+      ],
+      "evidence": [
+        {
+          "text": "Datasets\nWe benchmark the models on three standard evaluation suites, all independently re-\ntrieved from the official websites.",
+          "page": 8,
+          "section": "Datasets",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_preparation",
+      "stage_name_raw": "Crystal structure representation",
+      "stage_order": 2,
+      "stage_goal": "represent crystal structures as graphs and unit cells for input to the model",
+      "stage_input": [
+        "crystal structure"
+      ],
+      "stage_output": [
+        "graph G = (V, E)",
+        "unit cell with lattice matrix L",
+        "atomic positions P",
+        "atomic types A"
+      ],
+      "evidence": [
+        {
+          "text": "Crystal Structures\nCrystal structures can be described using a fundamental unit, such as a prim-\nitive cell, conventional unit cell, Bravais lattice, or asymmetric unit, together with its associated\natoms.\nThe unit is defined by a 3 × 3 lattice matrix that specifies its geometry in real space.\nFormally, a crystal structure is represented as M = (A, P, L), where A denotes atomic types,\nP = [p1, . . . , pN] ∈R3×N contains the fractional or Cartesian coordinates of the N atoms, and\nL = [ℓ1, ℓ2, ℓ3] ∈R3×3 defines the periodic lattice in real space.",
+          "page": 4,
+          "section": "Crystal Structures",
+          "inferred": false
+        },
+        {
+          "text": "A crystal structure is represented as a graph G = (V, E), where vertices V =\n{v1, v2, . . . , vN} correspond to atoms one-hot encoded attributes (Xie & Grossman, 2018) and\nedges E ⊆V × V encode atomic interactions within a cutoff radius.",
+          "page": 5,
+          "section": "Graph embedding",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "Training PRDNet with Huber loss and AdamW optimizer",
+      "stage_order": 3,
+      "stage_goal": "train the PRDNet model to predict crystal properties using robust loss and optimization",
+      "stage_input": [
+        "crystal structure representations",
+        "target property labels"
+      ],
+      "stage_output": [
+        "trained PRDNet model"
+      ],
+      "evidence": [
+        {
+          "text": "A.4.1\nHUBER LOSS FOR OUTLIER ROBUSTNESS\nTo accommodate the diverse nature of crystal property prediction tasks and improve training stabil-\nity, PRDNet employs Huber loss (Meyer, 2021) for training.",
+          "page": 16,
+          "section": "A.4.1 HUBER LOSS FOR OUTLIER ROBUSTNESS",
+          "inferred": false
+        },
+        {
+          "text": "A.4.2\nADAMW WITH DECOUPLED WEIGHT DECAY\nPRDNet employs the AdamW optimizer, which decouples weight decay from gradient-based up-\ndates:",
+          "page": 17,
+          "section": "A.4.2 ADAMW WITH DECOUPLED WEIGHT DECAY",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "Evaluating model performance on benchmark datasets",
+      "stage_order": 4,
+      "stage_goal": "assess PRDNet's predictive accuracy across multiple crystal property tasks",
+      "stage_input": [
+        "trained PRDNet model",
+        "test sets from MP, JARVIS-DFT, Matbench"
+      ],
+      "stage_output": [
+        "Mean Absolute Error (MAE)",
+        "accuracy scores",
+        "comparative performance against baselines"
+      ],
+      "evidence": [
+        {
+          "text": "Implementation details\nThe specific hyperparameters used are listed in Appendix D. All models\nfollow the original open-source settings without additional tuning. Model performance is evaluated\nusing the Mean Absolute Error (MAE) and accuracy.",
+          "page": 8,
+          "section": "Implementation details",
+          "inferred": false
+        },
+        {
+          "text": "5.1\nRESULTS\nBenchmarks Performance\nAcross the MP, JARVIS-DFT, and Matbench benchmarks, PRDNet\nconsistently delivers superior or competitive performance compared with existing models.",
+          "page": 9,
+          "section": "5.1 RESULTS",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_screening",
+      "stage_name_raw": "Ablation study to validate architectural components",
+      "stage_order": 5,
+      "stage_goal": "isolate contributions of individual modules (diffraction, attention, residuals, edge features) to confirm their necessity",
+      "stage_input": [
+        "PRDNet variants with components removed"
+      ],
+      "stage_output": [
+        "performance degradation metrics",
+        "confirmation of component importance"
+      ],
+      "evidence": [
+        {
+          "text": "Ablation Study\nTo validate the effectiveness of each component in the PRDNet architecture, we\nperform systematic ablation studies that isolate the contributions of individual modules and design\nchoices.",
+          "page": 9,
+          "section": "Ablation Study",
+          "inferred": false
+        },
+        {
+          "text": "Table 3: Ablation study on the Materials Project. Diff. indicates whether the diffraction module is\nused, MH denotes single-head or multi-head attention, Res. specifies whether residual connections\nare applied during node attribute updates, and EF refers to the inclusion of edge features",
+          "page": 10,
+          "section": "Table 3",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "computational_validation",
+      "stage_name_raw": "Pseudo-particle vs. X-ray photon comparison",
+      "stage_order": 6,
+      "stage_goal": "demonstrate enriched representation sensitivity of learned pseudo-particle over tabulated X-ray form factors",
+      "stage_input": [
+        "PRDNet-Learned (learned pseudo-particle)",
+        "PRDNet-Tabulated (tabulated X-ray photon)"
+      ],
+      "stage_output": [
+        "lower MAEs for formation energy, bandgap, mechanical moduli",
+        "higher classification accuracy"
+      ],
+      "evidence": [
+        {
+          "text": "Pseudo-Particle vs. X-ray Photon\nFor evidencing the enriched representation of Pseudo-Particle\non crystal sensitivity, we compare two PRDNet variants: (1) PRDNet-Learned: employs learned\npseudo-particle form factors f ∗\ni (Eq. 13); (2) PRDNet-Tabulated: substitutes f ∗\ni with tabulated X-\nray photon form factors.",
+          "page": 10,
+          "section": "Pseudo-Particle vs. X-ray Photon",
+          "inferred": false
+        },
+        {
+          "text": "As summarized in Table 7 (Appendix B), the pseudo-particle representation\nconsistently outperforms the X-ray counterpart across all datasets and property prediction tasks.\nSpecifically, it achieves lower MAEs for formation energy, bandgap, and mechanical moduli, while\nalso delivering higher classification accuracy in metal/non-metal discrimination.",
+          "page": 10,
+          "section": "Pseudo-Particle vs. X-ray Photon",
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

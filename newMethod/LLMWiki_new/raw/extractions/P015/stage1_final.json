@@ -1,0 +1,211 @@
+{
+  "paper": {
+    "title": "Advancing extrapolative predictions of material properties through learning to learn using extrapolative episodic training",
+    "year": 2025,
+    "doi": "10.1038/s43246-025-00754-x",
+    "research_summary": "This study develops a meta-learning methodology—extrapolative episodic training (E2T)—to enhance the ability of machine learning models to predict material properties beyond the distribution of training data. Using attention-based matching neural networks (MNNs) trained on arbitrarily generated extrapolative episodes, the approach demonstrates superior generalization for unseen material domains in two case studies: predicting specific heat and refractive index of polymeric materials, and bandgap of hybrid organic–inorganic perovskites. The method enables rapid adaptation to target domains via fine-tuning with limited data."
+  },
+  "task": {
+    "task_name_raw": "extrapolative prediction of material properties",
+    "task_name_canonical": "extrapolative_property_prediction",
+    "objective": "To develop a machine-learning methodology that enables extrapolative generalization—predicting physical properties of materials outside the domain covered by training data.",
+    "material_scope": [
+      "polymeric materials",
+      "hybrid organic–inorganic perovskites"
+    ],
+    "target_properties": [
+      "specific heat at constant pressure (Cp)",
+      "refractive index",
+      "bandgap"
+    ],
+    "constraints": [
+      "limited availability of data resources",
+      "machine-learning predictors are inherently interpolative",
+      "need to discover innovative materials from unexplored material spaces"
+    ],
+    "input_requirements": [
+      "material representation (e.g., Morgan fingerprint for polymers, crystal structure for perovskites)"
+    ],
+    "output_goal": [
+      "real-valued physical property prediction (y ∈ ℝ) for unseen material domains"
+    ],
+    "evidence": [
+      {
+        "text": "The goal of materials science is to predict material properties beyond the data distribution range. This study presented a machine-learning methodology to address this fundamental challenge.",
+        "page": 7,
+        "section": "Discussion",
+        "inferred": false
+      },
+      {
+        "text": "Central to this progress is the development of rapidly computable property predictors, which allow identifying novel materials with the desired properties from vast material spaces.",
+        "page": 1,
+        "section": "unknown",
+        "inferred": false
+      },
+      {
+        "text": "In this study, we leveraged the attention-based architecture of neural networks and a meta-learning algorithm to enhance extrapolative generalization capabilities.",
+        "page": 1,
+        "section": "unknown",
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "acquisition of polymer and perovskite datasets",
+      "stage_order": 1,
+      "stage_goal": "To obtain computational property data for polymeric materials and hybrid organic–inorganic perovskites.",
+      "stage_input": [],
+      "stage_output": [
+        "69,480 amorphous polymers with Cp and refractive index",
+        "1345 perovskite compounds with bandgaps"
+      ],
+      "evidence": [
+        {
+          "text": "In the polymer-property prediction experiments, 69,480 samples of Cp and 68,700 samples of the refractive index were used for the amorphous homopolymers. The data were generated using RadonPy36, which is a Python tool to construct a workflow for fully automated calculations of various polymeric properties using all-atom MD simulations.",
+          "page": 8,
+          "section": "Methods",
+          "inferred": false
+        },
+        {
+          "text": "The HOIP dataset40,41 contains 1345 perovskite compounds and their properties, including bandgaps, dielectric constants, and relative energies, calculated using the density functional theory.",
+          "page": 10,
+          "section": "Methods",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_preparation",
+      "stage_name_raw": "material representation encoding",
+      "stage_order": 2,
+      "stage_goal": "To convert chemical structures into numerical descriptors suitable for model input.",
+      "stage_input": [
+        "polymer repeating unit",
+        "perovskite crystal structure"
+      ],
+      "stage_output": [
+        "2048-dimensional Morgan fingerprint vector",
+        "32-dimensional latent vector from MPNN"
+      ],
+      "evidence": [
+        {
+          "text": "The MPNN44 was employed as the encoder for the crystal structures in all models. The MPNN architecture was designed in a manner similar to that proposed by Na and Park42, with an embedding size of 32.",
+          "page": 10,
+          "section": "Methods",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_generation",
+      "stage_name_raw": "generation of extrapolative episodes",
+      "stage_order": 3,
+      "stage_goal": "To construct training episodes where test instances (x, y) lie outside the support set S’s domain, enabling extrapolative learning.",
+      "stage_input": [
+        "dataset D",
+        "domain partitioning rules (e.g., polymer classes, cation/anion combinations)"
+      ],
+      "stage_output": [
+        "episodes (xi, yi, Si) with extrapolative relationships"
+      ],
+      "evidence": [
+        {
+          "text": "Numerous episodes were generated from a given dataset D, each comprising a training set S and test set Q containing instances outside the training domain S.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "For instance, (xi, yi) represents the physical property yi of a cellulose derivative xi, whereas Si represents a dataset from other polymer classes, such as conventional plastic resins. Alternatively, (xi, yi) can correspond to a compound containing element species that do not exist in the training compounds comprising Si.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "meta-training of MNNs via extrapolative episodic training (E2T)",
+      "stage_order": 4,
+      "stage_goal": "To train matching neural networks (MNNs) to learn the mapping y = f(x, S) using extrapolative episodes.",
+      "stage_input": [
+        "episodes (xi, yi, Si)",
+        "embedding function ϕ (FCNN or MPNN)",
+        "kernel ridge regressor head"
+      ],
+      "stage_output": [
+        "trained MNN meta-learner"
+      ],
+      "evidence": [
+        {
+          "text": "We employed a meta-learning algorithm30–34, commonly known as “learning to learn,” to impart extrapolative prediction capabilities to the MNNs.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "E2T learning is formulated as ℓ2 loss minimization as follows: Jϕ = Σ(xi,yi,Si)∈T (yi − f(xi, Si))²",
+          "page": 3,
+          "section": "unknown",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "evaluation of extrapolative prediction performance",
+      "stage_order": 5,
+      "stage_goal": "To assess generalization on unseen material domains (e.g., left-out polymer class or perovskite composition).",
+      "stage_input": [
+        "trained MNN",
+        "test data from extrapolative domain"
+      ],
+      "stage_output": [
+        "RMSE, R² scores for Cp, refractive index, bandgap"
+      ],
+      "evidence": [
+        {
+          "text": "To evaluate the prediction performance for an unseen polymer class, the following process was implemented: (1) a model was trained using randomly selected samples from 19 of the 20 polymer classes and (2) its generalizability was assessed using data from the remaining polymer class.",
+          "page": 3,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "We performed numerical experiments using the same setting as that employed by Na et al.42,43. The HOIP dataset was divided into 12 groups based on the combinations of four anions and three cations... During the inference phase, the entire training dataset D was assigned to S.",
+          "page": 5,
+          "section": "Results",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_screening",
+      "stage_name_raw": "fine-tuning for downstream extrapolative domains",
+      "stage_order": 6,
+      "stage_goal": "To adapt pretrained meta-learners to target domains using limited data from those domains.",
+      "stage_input": [
+        "pretrained MNN",
+        "small dataset from target domain (e.g., one polymer class, HOIP-GeF)"
+      ],
+      "stage_output": [
+        "fine-tuned predictor optimized for target domain"
+      ],
+      "evidence": [
+        {
+          "text": "Fine-tuning was performed on the RadonPy dataset. In this experiment, a pretrained E2T model with a source data size of 38,000 was fine-tuned on data from the target domain corresponding to a particular polymer class.",
+          "page": 6,
+          "section": "Fine-tuning to extrapolative domains",
+          "inferred": false
+        },
+        {
+          "text": "An MNN pretrained by E2T with a source data size of 1248 (HOIP-GeF) or 1228 (HOIP-PbI) was fine-tuned on data, including data from the target domain.",
+          "page": 11,
+          "section": "Fine-tuning experiments",
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

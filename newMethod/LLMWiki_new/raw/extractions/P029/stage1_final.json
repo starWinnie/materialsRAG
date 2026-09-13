@@ -1,0 +1,231 @@
+{
+  "paper": {
+    "title": "Structure-based out-of-distribution (OOD) materials property prediction: a benchmark study",
+    "year": 2024,
+    "doi": "10.1038/s41524-024-01316-4",
+    "research_summary": "This paper presents a comprehensive benchmark study evaluating graph neural network (GNN) models for predicting material properties on out-of-distribution (OOD) test sets—materials structurally or property-wise distinct from the training set. It introduces five OOD test set generation methods (LOCO, SparseXsingle, SparseXcluster, SparseYsingle, SparseYcluster) applied to three MatBench datasets (dielectric, elasticity, perovskites), trains and evaluates eight SOTA GNNs across 250 folds, and analyzes performance degradation relative to i.i.d. baselines, revealing significant generalization gaps and identifying CGCNN, ALIGNN, and DeeperGATGNN as comparatively robust."
+  },
+  "task": {
+    "task_name_raw": "Structure-based out-of-distribution (OOD) materials property prediction",
+    "task_name_canonical": "structure_based_ood_materials_property_prediction",
+    "objective": "To objectively evaluate ML model performances in property prediction of out-of-distribution (OOD) materials that are different from the training set",
+    "material_scope": [
+      "inorganic materials",
+      "crystalline solids",
+      "perovskites",
+      "dielectric materials",
+      "elastic materials"
+    ],
+    "target_properties": [
+      "refractive index",
+      "shear modulus",
+      "formation energy"
+    ],
+    "constraints": [
+      "test set comprises no labeled samples",
+      "OOD test sets must deviate significantly from training/validation set in distribution",
+      "evaluation must reflect real-world material discovery where outlier materials are of interest"
+    ],
+    "input_requirements": [
+      "crystal structures",
+      "orbital-field matrix (OFM) features",
+      "property values (y-values)"
+    ],
+    "output_goal": [
+      "predicted property values for OOD materials",
+      "quantified generalization gap (e.g., MAE increase over i.i.d. baseline)"
+    ],
+    "evidence": [
+      {
+        "text": "It is thus a pressing question to provide an objective evaluation of ML model performances in property prediction of out-of-distribution (OOD) materials that are different from the training set.",
+        "page": 1,
+        "section": "unknown",
+        "inferred": false
+      },
+      {
+        "text": "Here we present a comprehensive benchmark study of structure-based graph neural networks (GNNs) for extrapolative OOD materials property prediction.",
+        "page": 1,
+        "section": "unknown",
+        "inferred": false
+      },
+      {
+        "text": "We formulated five different categories of OOD ML problems for three benchmark datasets from the MatBench study.",
+        "page": 1,
+        "section": "unknown",
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "Selecting three benchmark datasets from MatBench",
+      "stage_order": 1,
+      "stage_goal": "Acquire structure-property datasets suitable for OOD evaluation",
+      "stage_input": [],
+      "stage_output": [
+        "matbench_dielectric dataset",
+        "matbench_log_gvrh dataset",
+        "matbench_perovskites dataset"
+      ],
+      "evidence": [
+        {
+          "text": "We analyze eight GNN models for material property regression tasks using three datasets sourced from MatBench26 and mentioned in Table 1.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "Table 2 | Details of the three benchmark datasets used in this work\nDataset\nTarget property\nTotal samples\nOriginal source\nMatBench best algorithm (MAE)\nUnit\nmatbench_dielectric\nRefractive index\n4764\nMaterials Project40,70\nMODNet71 (0.2711)\nUnitless\nmatbench_log_gvrh\nShear modulus\n10987\nMaterials Project40,70\ncoNGN36 (0.0670)\nlog10(GPa)\nmatbench_perovskites\nFormation energy\n18928\nCastelli et al.72\ncoGN36 (0.0269)\neV/unit cell",
+          "page": 4,
+          "section": "Dataset",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_preparation",
+      "stage_name_raw": "Preprocessing crystal structures into OFM feature space and applying t-SNE",
+      "stage_order": 2,
+      "stage_goal": "Convert raw crystal structures into low-dimensional representations for clustering-based OOD test set generation",
+      "stage_input": [
+        "crystal structures"
+      ],
+      "stage_output": [
+        "1024-dimension OFM feature space",
+        "2D t-SNE embedding"
+      ],
+      "evidence": [
+        {
+          "text": "Initially, we apply the k-means algorithm61 based on the orbital-field matrix (OFM) features62 to cluster the whole dataset into 50 clusters. OFM captures the electronic structure of materials by considering the orbitals’ interactions, which are fundamental to understanding the material’s properties, and easily interpretable due to their physical basis63. The OFM features were calculated fast using the MatMiner23 package.",
+          "page": 4,
+          "section": "OOD test set generation",
+          "inferred": false
+        },
+        {
+          "text": "In this method, we begin by converting material structures into the 1024-dimension OFM feature space. Subsequently, we apply the t-distributed stochastic neighbor embedding (t-SNE)64 for dimension reduction converting the OFM feature space to a 2D space (x-value).",
+          "page": 4,
+          "section": "OOD test set generation",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_generation",
+      "stage_name_raw": "Generating five types of OOD test sets via clustering and density estimation",
+      "stage_order": 3,
+      "stage_goal": "Produce five distinct OOD test set configurations (LOCO, SparseXsingle, SparseXcluster, SparseYsingle, SparseYcluster) that deviate from training distribution",
+      "stage_input": [
+        "OFM feature space",
+        "property values (y-values)",
+        "t-SNE 2D embedding"
+      ],
+      "stage_output": [
+        "50-fold LOCO test sets",
+        "50-fold SparseXsingle test sets",
+        "50-fold SparseXcluster test sets",
+        "50-fold SparseYsingle test sets",
+        "50-fold SparseYcluster test sets"
+      ],
+      "evidence": [
+        {
+          "text": "We proposed five practical scenarios for predicting material properties. These scenarios are designed to focus on properties of less common or underrepresented materials in the dataset, which are often of particular interest to material researchers who are more interested in discovering novel exceptional outlier materials.",
+          "page": 3,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "We propose the following target set generation methods to simulate real-world conditions for materials property prediction.\nLeave-one-cluster-out (LOCO). [...] Single-point targets with the lowest structure density (SparseXsingle). [...] Single-point targets with the lowest property density (SparseYsingle). [...] Cluster targets with the lowest structure density (SparseXcluster). [...] Cluster targets with the lowest property density (SparseYcluster).",
+          "page": 4,
+          "section": "OOD test set generation",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "Training eight GNN models on each fold using OOD train/val splits",
+      "stage_order": 4,
+      "stage_goal": "Train each GNN model on the training+validation portion of each 50-fold OOD split",
+      "stage_input": [
+        "OOD train/val splits",
+        "GNN architectures (CGCNN, SchNet, MEGNet, DimeNet++, ALIGNN, DeeperGATGNN, coGN, coNGN)"
+      ],
+      "stage_output": [
+        "trained GNN models (6000 total)"
+      ],
+      "evidence": [
+        {
+          "text": "For each fold, we selected a cluster as the test set, and the rest as training and validation sets, and averaged the results over 50 folds to get the final result.",
+          "page": 3,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "In total, we trained a total of 6000 deep learning GNN models, analyzed the results and drew important conclusions from them.",
+          "page": 10,
+          "section": "Discussion",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "Evaluating model performance using MAE on OOD test sets",
+      "stage_order": 5,
+      "stage_goal": "Quantify prediction accuracy of each trained GNN on its corresponding OOD test fold using mean absolute error (MAE)",
+      "stage_input": [
+        "trained GNN models",
+        "OOD test sets"
+      ],
+      "stage_output": [
+        "MAE scores per fold",
+        "aggregated MAE per model per OOD type"
+      ],
+      "evidence": [
+        {
+          "text": "We use the mean absolute error (MAE) metric, which is a standard evaluation criterion for regression-based materials property prediction problems.",
+          "page": 12,
+          "section": "Evaluation criterion",
+          "inferred": false
+        },
+        {
+          "text": "The results of the dielectric dataset for five different OOD target generation methods are summarized in Table 3.",
+          "page": 4,
+          "section": "Performance comparison on OOD test sets",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "computational_validation",
+      "stage_name_raw": "Comparing OOD MAEs against MatBench i.i.d. baselines and analyzing latent spaces",
+      "stage_order": 6,
+      "stage_goal": "Validate robustness claims by quantifying performance degradation and interpreting physical latent representations",
+      "stage_input": [
+        "OOD MAEs",
+        "MatBench i.i.d. baseline MAEs",
+        "latent representations from trained GNNs"
+      ],
+      "stage_output": [
+        "percentage performance change vs. baseline",
+        "t-SNE diagrams of latent spaces",
+        "insights on clustering smoothness and property separation"
+      ],
+      "evidence": [
+        {
+          "text": "To investigate the issue of performance degradation of GNN models in OOD material property prediction, we compared the MatBench SOTA algorithms’ performance on the OOD datasets with those on the Matbench study (Fig.5).",
+          "page": 7,
+          "section": "Performance comparison with MatBench SOTA performance",
+          "inferred": false
+        },
+        {
+          "text": "We utilized t-distributed stochastic neighbor embedding (t-SNE)64, a commonly utilized non-linear method for visualizing and interpreting complex, high-dimensional data, to investigate specific insights into the materials’ physics.",
+          "page": 10,
+          "section": "Physical insights",
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

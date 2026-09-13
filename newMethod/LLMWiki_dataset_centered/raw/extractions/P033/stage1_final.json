@@ -1,0 +1,279 @@
+{
+  "paper": {
+    "title": "Study on bandgap predications of ABX3-type perovskites by machine learning",
+    "year": 2022,
+    "doi": "10.1016/j.orgel.2021.106426",
+    "research_summary": "This paper develops machine learning models to predict the experimental bandgaps of ABX3-type perovskites using 227 experimentally measured bandgap values collected from 1254 publications. It evaluates 24 model variants across 4 databases and 6 algorithms, identifies Xgboost and MLP as top performers, validates predictions against new experimental synthesis and DFT calculations, and uses SHAP to interpret chemical composition effects—finding B-site metal and X-site halogen ions dominate bandgap control, consistent with B–X bond length and angle physics."
+  },
+  "task": {
+    "task_name_raw": "bandgap prediction of ABX3-type perovskites",
+    "task_name_canonical": "bandgap_prediction_of_abx3_perovskites",
+    "objective": "To accurately predict the experimental bandgap values of ABX3-type perovskites for solar cell device design",
+    "material_scope": [
+      "ABX3-type perovskites",
+      "all-inorganic perovskites",
+      "inorganic-organic hybrid perovskites",
+      "tin-free perovskites"
+    ],
+    "target_properties": [
+      "bandgap"
+    ],
+    "constraints": [
+      "model must be interpretable via SHAP",
+      "predictions must align with physical mechanisms (B-X bond length/angle)"
+    ],
+    "input_requirements": [
+      "chemical composition descriptors: A-site cations (Cs+, MA+, FA+), B-site metals (Pb2+, Sn2+), X-site halogens (I−, Br−, Cl−)"
+    ],
+    "output_goal": [
+      "numerical bandgap value in eV"
+    ],
+    "evidence": [
+      {
+        "text": "The accurate bandgap prediction of perovskites has great significance for solar cell devices.",
+        "page": 1,
+        "section": "Introduction",
+        "inferred": false
+      },
+      {
+        "text": "to establish and identify 4 models from 24 kinds of ML models. The results of the models achieve high accuracy with root mean square error (RMSE) of down to 0.55 and meanwhile, the pearson correlation coefficient of up to 99%.",
+        "page": 1,
+        "section": "ABSTRACT",
+        "inferred": false
+      },
+      {
+        "text": "We collected experimental data of bandgaps from published papers, and established four kinds of BPM(ABX3-type perovskites, all-inorganic perovskites, hybrid organic perovskites, Tin-free perovskites)",
+        "page": 2,
+        "section": "Conclusion",
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "collection of experimental bandgap data",
+      "stage_order": 1,
+      "stage_goal": "Acquire experimentally measured bandgap values for ABX3-type perovskites from literature",
+      "stage_input": [],
+      "stage_output": [
+        "227 experimental bandgap data points"
+      ],
+      "evidence": [
+        {
+          "text": "we collect 227 sets of experimental bandgap data of perovskites from the latest 1254 publications",
+          "page": 1,
+          "section": "ABSTRACT",
+          "inferred": false
+        },
+        {
+          "text": "The first step is to search articles by using the keyword “perovskite bandgap” in the web of science according to relevance, and then download them in ACS, nature, science, wiley, Elsevier and other.",
+          "page": 2,
+          "section": "Build model",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_preparation",
+      "stage_name_raw": "database establishment and cleaning",
+      "stage_order": 2,
+      "stage_goal": "Construct and clean a database of perovskite compositions and corresponding experimental bandgaps",
+      "stage_input": [
+        "raw experimental bandgap data"
+      ],
+      "stage_output": [
+        "cleaned training dataset (204 samples) and test dataset (23 samples)"
+      ],
+      "evidence": [
+        {
+          "text": "The second step is the establishment and cleaning of the database. First, data with the same chemical composition and bandgap are removed, but due to the different conditions and environments of the experiments, there will be data with the same chemical composition (input data) but different bandgap values (output data). In order to ensure the authenticity of the data and avoid the non-uniform distribution of the data, we choose to keep them in the training dataset.",
+          "page": 2,
+          "section": "Build model",
+          "inferred": false
+        },
+        {
+          "text": "We set up a training dataset and a test dataset of ABX3-type perovskites containing 204 and 23 data to train and evaluate the pros and cons of the algorithm.",
+          "page": 3,
+          "section": "Results and analysis",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_generation",
+      "stage_name_raw": "generation of 24 candidate bandgap prediction models",
+      "stage_order": 3,
+      "stage_goal": "Generate multiple candidate ML models by combining 4 databases and 6 algorithms",
+      "stage_input": [
+        "cleaned database",
+        "six ML algorithms: LR, KNN, SVR, RF, MLP, Xgboost"
+      ],
+      "stage_output": [
+        "24 candidate bandgap prediction models"
+      ],
+      "evidence": [
+        {
+          "text": "By testing 24 kinds of BPMs generated by 4 kinds of databases and 6 kinds of algorithms, the data relevance and the accuracy of the models are guaranteed.",
+          "page": 2,
+          "section": "Introduction",
+          "inferred": false
+        },
+        {
+          "text": "We use six ML algorithms by Scikit-learn and Xgboost modules to build BPMs on the pycharm platform. Linear regression (LR): ... K-nearest neighbors (KNN): ... Support vector regression (SVR): ... Random forest (RF): ... Multilayer Perceptron (MLP): ... Xtreme Gradient Boosting (Xgboost): ...",
+          "page": 3,
+          "section": "Build model",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "model optimization via GridSearchCV and 10-fold cross-validation",
+      "stage_order": 4,
+      "stage_goal": "Optimize hyperparameters of each candidate model to maximize performance",
+      "stage_input": [
+        "training dataset",
+        "24 candidate models"
+      ],
+      "stage_output": [
+        "optimized bandgap prediction models"
+      ],
+      "evidence": [
+        {
+          "text": "For the above models, we optimize the models by adding “GridSearchCV” and “10-fold cross-validation”, in order to find the hyperparameters that make the model optimize the best performance.",
+          "page": 3,
+          "section": "Build model",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "evaluation using RMSE and Pearson correlation coefficient",
+      "stage_order": 5,
+      "stage_goal": "Quantitatively assess prediction accuracy and correlation between predicted and experimental bandgaps",
+      "stage_input": [
+        "optimized models",
+        "test dataset"
+      ],
+      "stage_output": [
+        "RMSE and r values for each model"
+      ],
+      "evidence": [
+        {
+          "text": "Root Mean Square Error (RMSE) is the most commonly used evaluation indicator for ML model which measures the deviation between the observed value and the predicted value. In this statistics, Pearson’s correlation coefficient (r) is often used to represent the correlation between two variables, which we use to test the performance of ML models.",
+          "page": 3,
+          "section": "Build model",
+          "inferred": false
+        },
+        {
+          "text": "Xgboost has a degree of dispersion similar to the experimental value, the lowest RMSE, and the highest correlation coefficient, so Xgboost performs best in this set of data.",
+          "page": 3,
+          "section": "Results and analysis",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_screening",
+      "stage_name_raw": "selection of best-performing models per perovskite subclass",
+      "stage_order": 6,
+      "stage_goal": "Select top-performing models for each perovskite subclass (ABX3, all-inorganic, hybrid, tin-free)",
+      "stage_input": [
+        "evaluation results across subclasses"
+      ],
+      "stage_output": [
+        "final selected models: Xgboost for ABX3/all-inorganic; MLP for hybrid/tin-free"
+      ],
+      "evidence": [
+        {
+          "text": "Then we use the training dataset of all-inorganic perovskite (Table S3) and the training dataset of Tin-free perovskites (Table S7) to train BPM (algorithm is Xgboost), and the test dataset of organic hybrid (Table S6) to test the BPM (algorithm is Xgboost).",
+          "page": 4,
+          "section": "four",
+          "inferred": false
+        },
+        {
+          "text": "After optimization, Xgboost performed best in all-inorganic perovskites data, with RMSE and r values of 0.028 eV and 0.99, respectively. MLP performes the best in hybrid perovskites and Tin-free perovskites data, with RMSE and r values of 0.016eV, 0.99 and 0.038eV, 0.99, respectively.",
+          "page": 4,
+          "section": "four",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "experimental_validation",
+      "stage_name_raw": "validation via synthesis and optical measurement of new perovskite",
+      "stage_order": 7,
+      "stage_goal": "Experimentally synthesize a novel perovskite and measure its bandgap to validate model predictions",
+      "stage_input": [
+        "predicted bandgap for Cs0.05(FA0.85MA0.15)0.95Pb(I0.85Br0.15)3"
+      ],
+      "stage_output": [
+        "experimental bandgap (1.61–1.62 eV) vs. predicted (1.60 eV)"
+      ],
+      "evidence": [
+        {
+          "text": "To verify the accuracy of our ML model and predication ability for new perovskites, we synthesize the Cs0.05(FA0.85MA0.15)0.95Pb(I0.85Br0.15)3 perovskite thin films for bandgap determination. ... The bandgap of the present perovskite thin films is in a small variation range of 1.61–1.62 eV. According to the predication of our ML model (BPM-ABX3-type perovskites), the obtained bandgap value is 1.60 eV ... which has a difference with the experimental value less than 1.2% relative.",
+          "page": 4,
+          "section": "four",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "computational_validation",
+      "stage_name_raw": "validation against DFT-calculated bandgaps",
+      "stage_order": 8,
+      "stage_goal": "Compare ML predictions against density functional theory (DFT) calculations for unseen compositions",
+      "stage_input": [
+        "ML-predicted bandgaps",
+        "DFT-calculated bandgaps"
+      ],
+      "stage_output": [
+        "RMSE comparison: ML vs DFT"
+      ],
+      "evidence": [
+        {
+          "text": "We have also conducted the comparison with the DFT calculations on the bandgap values of the perovskites with 3 different compositions, which are new to our ML model. The prediction result of ML and the comparison are shown in Table S12. It is found that the bandgap values obtained by ML model are very close to the values of the DFT calculations.",
+          "page": 4,
+          "section": "four",
+          "inferred": false
+        },
+        {
+          "text": "As shown in Tables 2 and 3, for the bandgap calculation of MASnxPb1-xI3, the RMSE between the predicted ML value and the experimental value is 0.049 eV; the RMSE between the calculated DFT value and the experimental value is 0.052 eV. For the bandgap calculation of CsPb(BrxI1-x)3, the RMSE of the predicted ML value and the experimental value is 0.08 eV, and the RMSE of the calculated DFT value and the experimental value is 0.105 eV.",
+          "page": 6,
+          "section": "Conclusion",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "label_generation",
+      "stage_name_raw": "SHAP-based interpretation of feature contributions to bandgap",
+      "stage_order": 9,
+      "stage_goal": "Quantify and explain how each chemical composition (A/B/X site) contributes to bandgap prediction using SHAP values",
+      "stage_input": [
+        "trained Xgboost and RF models",
+        "feature descriptors"
+      ],
+      "stage_output": [
+        "SHAP importance ranking showing B-site metal and X-site halogen dominate"
+      ],
+      "evidence": [
+        {
+          "text": "our ML models give the effect of each chemical composition constituting the ABX3-type perovskites on the bandgaps by using the SHAP value, and they can be well explained in physics.",
+          "page": 1,
+          "section": "ABSTRACT",
+          "inferred": false
+        },
+        {
+          "text": "Through the further analysis of the SHAP plot, we can see that the bandgaps of ABX3-type perovskites can be effectively reduced with the increase of I and Sn, while the bandgaps of ABX3-type perovskites can be effectively increased with the increase of Br and Pb.",
+          "page": 4,
+          "section": "four",
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

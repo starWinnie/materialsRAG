@@ -1,0 +1,1174 @@
+{
+  "paper": {
+    "paper_id": "P028",
+    "title": "JARVIS-Leaderboard: a large scale benchmark of materials design methods",
+    "year": 2024,
+    "doi": "10.1038/s41524-024-01259-w",
+    "file_name": "28_JARVIS_Leaderboard.pdf",
+    "research_summary": "This work introduces JARVIS-Leaderboard, an open-source and community-driven platform that facilitates benchmarking and enhances reproducibility for materials design methods across multiple categories: Artificial Intelligence (AI), Electronic Structure (ES), Force-fields (FF), Quantum Computation (QC), and Experiments (EXP). It enables users to set up benchmarks with custom tasks and contributions in the form of dataset, code, and metadata submissions, covering various data modalities including atomic structures, spectra, images, and text. The platform includes 1281 contributions to 274 benchmarks using 152 methods with more than 8 million data points.",
+    "extraction_status": "completed"
+  },
+  "tasks": [
+    {
+      "task_id": "T_P028_01",
+      "paper_id": "P028",
+      "task_name_raw": "benchmarking of materials design methods",
+      "task_name_canonical": "materials_design_method_benchmarking",
+      "objective": "to provide a comprehensive framework for systematic, reproducible, transparent, and unbiased scientific development through large-scale benchmarking of materials design methods",
+      "material_scope": [
+        "materials"
+      ],
+      "target_properties": [
+        "formation energy",
+        "bandgap",
+        "bulk modulus",
+        "forces",
+        "Voigt bulk modulus",
+        "exfoliation energy",
+        "CO2 adsorption",
+        "heat capacity",
+        "solar cell efficiencies",
+        "superconducting transition temperatures",
+        "dielectric functions",
+        "electron bandstructures",
+        "phonon spectra",
+        "strain-stress",
+        "magnetometry",
+        "XRD",
+        "vibroscopy",
+        "scanning electron microscopy",
+        "transition electron microscopy"
+      ],
+      "constraints": [
+        "benchmarks must have digital object identifier (DOI) from peer-reviewed article",
+        "contributions must include run script, metadata file, and be reproducible",
+        "experimental data used as reference where available",
+        "high-fidelity computational methods used as reference when experimental data unavailable"
+      ],
+      "input_requirements": [
+        "well-characterized/well-known samples/tasks with DOI/peer-reviewed article links",
+        "scripts/metadata easily available to reproduce results",
+        "reference datasets in json.zip format",
+        "contributions in csv.zip format with matching test identifiers"
+      ],
+      "output_goal": [
+        "leaderboard rankings by performance metric (e.g., MAE)",
+        "comparative analysis across methods and categories",
+        "interactive plots and tools for method comparison",
+        "identification of material space requiring high-fidelity methods",
+        "error estimation and validation of electronic structure methods"
+      ],
+      "parent_task_id": null,
+      "task_level": "main_task",
+      "evidence": [
+        {
+          "text": "This work introduces JARVIS-Leaderboard, an open-source and community-driven platform that facilitates benchmarking and enhances reproducibility.",
+          "page": 1,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "The goal of this project is to provide a more comprehensive framework for materials benchmarking than previous works.",
+          "page": 2,
+          "section": null,
+          "inferred": false
+        }
+      ]
+    }
+  ],
+  "stages": [
+    {
+      "stage_id": "S_P028_01",
+      "paper_id": "P028",
+      "task_id": "T_P028_01",
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "populating reference benchmark datasets",
+      "stage_order": 1,
+      "stage_goal": "to generate well-defined benchmark datasets with reference data from experimental, density functional theory, or numerical solutions published in peer-reviewed articles",
+      "stage_input": [
+        "experimental data",
+        "density functional theory data",
+        "numerical solutions",
+        "peer-reviewed articles with DOIs"
+      ],
+      "stage_output": [
+        "json.zip files containing reference datasets",
+        "well-characterized samples/tasks with DOI links"
+      ],
+      "evidence": [
+        {
+          "text": "There are several categories for the benchmarks, including AI, ES, QC, FF, and EXP and their combinations.",
+          "page": 4,
+          "section": "Results and discussion",
+          "inferred": false
+        },
+        {
+          "text": "A benchmark should be considered the “ground truth” for a particular task. Therefore, it is mandatory to have a digital object identifier (DOI) for each benchmark from a peer-reviewed article.",
+          "page": 5,
+          "section": null,
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P028_02",
+      "paper_id": "P028",
+      "task_id": "T_P028_01",
+      "stage_type": "data_preparation",
+      "stage_name_raw": "generating benchmark datasets with defined data splits",
+      "stage_order": 2,
+      "stage_goal": "to prepare benchmark datasets with well-defined train/validation/test splits for AI methods and reference test sets for other methods",
+      "stage_input": [
+        "reference datasets",
+        "well-defined data splits",
+        "AI-specific training/validation/test identifiers"
+      ],
+      "stage_output": [
+        "json.zip files with training/validation/test identifiers and target data for AI",
+        "reference test sets for ES, FF, QC, EXP"
+      ],
+      "evidence": [
+        {
+          "text": "AI benchmarks have pre-defined training/validation/test identifiers and target data in a corresponding json.zip file, while other methods have only reference test set for evaluation because they do not require model training like an AI method does.",
+          "page": 4,
+          "section": "Results and discussion",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P028_03",
+      "paper_id": "P028",
+      "task_id": "T_P028_01",
+      "stage_type": "candidate_generation",
+      "stage_name_raw": "user submission of methods and models",
+      "stage_order": 3,
+      "stage_goal": "to enable users to apply their methods, train models, or run experiments on benchmark datasets",
+      "stage_input": [
+        "benchmark datasets",
+        "user methods/models/experiments"
+      ],
+      "stage_output": [
+        "csv.zip files with predictions",
+        "metadata.json files",
+        "run.sh scripts",
+        "Dockerfiles (optional)"
+      ],
+      "evidence": [
+        {
+          "text": "A user can apply their method, train models, or run experiments on that dataset and prepare a csv.zip file, a metadata.json file, and also if possible, a conda environment.yaml/Nix/Dockerfile and a run.sh file.",
+          "page": 4,
+          "section": "Results and discussion",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P028_04",
+      "paper_id": "P028",
+      "task_id": "T_P028_01",
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "computing performance metrics against reference benchmarks",
+      "stage_order": 4,
+      "stage_goal": "to calculate performance metrics (e.g., MAE, accuracy) for contributions against reference benchmark data",
+      "stage_input": [
+        "csv.zip files with predictions",
+        "json.zip files with reference data",
+        "test identifiers"
+      ],
+      "stage_output": [
+        "performance metrics (MAE, accuracy, ROUGE, etc.)",
+        "leaderboard rankings"
+      ],
+      "evidence": [
+        {
+          "text": "We use several metrics in the leaderboard depending on the “sub-categories” mentioned above. We use mean absolute error (MAE), accuracy (acc), multi-mae (L1 norm of multi-dimensional data), recall-oriented understudy for gisting evaluation (ROUGE) for the single property prediction, single property classification, spectra/eigensolver/atomic forces and textGen/text summary subcategories respectively.",
+          "page": 11,
+          "section": "Metrics used",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P028_05",
+      "paper_id": "P028",
+      "task_id": "T_P028_01",
+      "stage_type": "computational_validation",
+      "stage_name_raw": "reproducing contributions via automated scripts and infrastructure",
+      "stage_order": 5,
+      "stage_goal": "to verify reproducibility of contributions using run scripts, Dockerfiles, and GitHub actions",
+      "stage_input": [
+        "run.sh scripts",
+        "Dockerfiles",
+        "GitHub actions",
+        "automated jarvis_upload.py script"
+      ],
+      "stage_output": [
+        "verified contributions",
+        "pull requests to parent repository",
+        "automated testing results"
+      ],
+      "evidence": [
+        {
+          "text": "This step helps to reproduce the benchmark. These files are kept in a folder with the name of the folder as the team name and can be uploaded to a user’s GitHub account by the automated jarvis_upload.py script.",
+          "page": 4,
+          "section": "Results and discussion",
+          "inferred": false
+        },
+        {
+          "text": "The contribution addition and automated testings are carried out using GitHub actions.",
+          "page": 4,
+          "section": "Results and discussion",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P028_06",
+      "paper_id": "P028",
+      "task_id": "T_P028_01",
+      "stage_type": "experimental_validation",
+      "stage_name_raw": "inter-laboratory round-robin experimental benchmarking",
+      "stage_order": 6,
+      "stage_goal": "to establish experimental benchmarks through inter-laboratory testing of the same material/property",
+      "stage_input": [
+        "well-characterized materials",
+        "inter-laboratory measurements",
+        "round-robin testing protocols"
+      ],
+      "stage_output": [
+        "experimental benchmark datasets",
+        "CO2 adsorption isotherms",
+        "XRD data",
+        "magnetometry data",
+        "vibroscopy data"
+      ],
+      "evidence": [
+        {
+          "text": "Benchmarking experiments essentially boils down to the comparison of different experiments for the same desired result/s. A systematic way to perform this benchmarking is through round-robin testing.",
+          "page": 10,
+          "section": "Experiments",
+          "inferred": false
+        },
+        {
+          "text": "Specifically in the JARVIS-Leaderboard, we include experimental round-robin results for manometric measurements of CO2 adsorption.",
+          "page": 10,
+          "section": "Experiments",
+          "inferred": false
+        }
+      ]
+    }
+  ],
+  "datasets": [
+    {
+      "dataset_id": "D_jarvis_dft_3d",
+      "canonical_name": "JARVIS-DFT 3D",
+      "raw_names": [
+        "JARVIS-DFT 3D",
+        "JARVIS-DFT",
+        "dft_3d",
+        "JARVIS-3D database"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "materials"
+      ],
+      "available_properties": [
+        "formation energy",
+        "bandgap",
+        "bulk modulus",
+        "forces",
+        "Voigt bulk modulus",
+        "exfoliation energy"
+      ],
+      "available_fields": [
+        "id",
+        "structure",
+        "formation_energy_peratom",
+        "bandgap",
+        "bulk_modulus",
+        "forces",
+        "voigt_bulk_modulus",
+        "exfoliation_energy"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Fig. 1 | Leaderboard snapshot with an example output for AI-based formation energy per atom model on the JARVIS-DFT (dft_3d) dataset.",
+          "page": 3,
+          "section": null,
+          "inferred": false,
+          "paper_id": "P028"
+        },
+        {
+          "text": "AI-SinglePropertyPrediction-formation_energy_peratom-dft_3d-test-mae.csv.zip",
+          "page": 3,
+          "section": null,
+          "inferred": false,
+          "paper_id": "P028"
+        },
+        {
+          "text": "AI-SinglePropertyPrediction-exfoliation_energy-dft_3d-test",
+          "page": 4,
+          "section": "Results and discussion",
+          "inferred": false,
+          "paper_id": "P028"
+        },
+        {
+          "text": "JARVIS-DFT-3D dataset",
+          "page": 5,
+          "section": null,
+          "inferred": false,
+          "paper_id": "P028"
+        },
+        {
+          "text": "formation-energy-per atom model using AI for JARVIS-DFT 3D dataset with 5572 materials in the test set",
+          "page": 9,
+          "section": null,
+          "inferred": false,
+          "paper_id": "P028"
+        },
+        {
+          "text": "12 AI models (each AI model had a well-deﬁned 80:10:10 split for training, validation and testing respectively from the JARVIS-3D database)",
+          "page": 6,
+          "section": null,
+          "inferred": false,
+          "paper_id": "P028"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:jarvis_dft_3d"
+    },
+    {
+      "dataset_id": "D_jarvis_dft_2d",
+      "canonical_name": "JARVIS-DFT 2D",
+      "raw_names": [
+        "JARVIS-DFT 2D",
+        "dft_2d"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "2D materials"
+      ],
+      "available_properties": [
+        "exfoliation energy"
+      ],
+      "available_fields": [
+        "id",
+        "structure",
+        "exfoliation_energy"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "for 2D exfoliation energies in JARVIS-DFT dataset",
+          "page": 4,
+          "section": "Results and discussion",
+          "inferred": false,
+          "paper_id": "P028"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:jarvis_dft_2d"
+    },
+    {
+      "dataset_id": "D_jarvis_tools",
+      "canonical_name": "JARVIS-Tools",
+      "raw_names": [
+        "JARVIS-Tools"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "materials"
+      ],
+      "available_properties": [
+        "all properties available in JARVIS-Tools package"
+      ],
+      "available_fields": [
+        "all fields available in JARVIS-Tools package"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "as also available in the JARVIS-Tools package https://pages.nist.gov/jarvis/databases/",
+          "page": 5,
+          "section": null,
+          "inferred": false,
+          "paper_id": "P028"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:jarvis_tools"
+    },
+    {
+      "dataset_id": "D_materials_project",
+      "canonical_name": "Materials Project",
+      "raw_names": [
+        "Materials Project",
+        "MP"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "inorganic materials"
+      ],
+      "available_properties": [
+        "formation energy",
+        "bandgap",
+        "elastic properties",
+        "thermal properties",
+        "optical properties",
+        "electronic properties"
+      ],
+      "available_fields": [
+        "id",
+        "structure",
+        "formation_energy",
+        "bandgap",
+        "elastic_tensor",
+        "thermal_conductivity",
+        "dielectric_tensor",
+        "bandstructure"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "DFT datasets such as JARVIS-DFT70,71, Materials Project (MP)65, Tight binding three-body dataset (TB3)72, Quantum-Machine 9 (QM9)139,140.",
+          "page": 10,
+          "section": "Methods",
+          "inferred": false,
+          "paper_id": "P028"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:materials_project"
+    },
+    {
+      "dataset_id": "D_qm9",
+      "canonical_name": "QM9",
+      "raw_names": [
+        "QM9",
+        "Quantum-Machine 9"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "small organic molecules"
+      ],
+      "available_properties": [
+        "energy",
+        "forces",
+        "dipole moment",
+        "polarizability",
+        "homo",
+        "lumo",
+        "gap",
+        "zpve",
+        "u0",
+        "u298",
+        "h298",
+        "g298",
+        "cv"
+      ],
+      "available_fields": [
+        "id",
+        "smiles",
+        "geometry",
+        "energy",
+        "forces",
+        "dipole_moment",
+        "polarizability",
+        "homo",
+        "lumo",
+        "gap",
+        "zpve",
+        "u0",
+        "u298",
+        "h298",
+        "g298",
+        "cv"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "DFT datasets such as JARVIS-DFT70,71, Materials Project (MP)65, Tight binding three-body dataset (TB3)72, Quantum-Machine 9 (QM9)139,140.",
+          "page": 10,
+          "section": "Methods",
+          "inferred": false,
+          "paper_id": "P028"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:qm9"
+    },
+    {
+      "dataset_id": "D_tight_binding_three_body_dataset",
+      "canonical_name": "Tight binding three-body dataset",
+      "raw_names": [
+        "Tight binding three-body dataset",
+        "TB3"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "materials"
+      ],
+      "available_properties": [
+        "electronic structure",
+        "phonon spectra"
+      ],
+      "available_fields": [
+        "id",
+        "structure",
+        "hamiltonian",
+        "phonon_spectrum"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "DFT datasets such as JARVIS-DFT70,71, Materials Project (MP)65, Tight binding three-body dataset (TB3)72, Quantum-Machine 9 (QM9)139,140.",
+          "page": 10,
+          "section": "Methods",
+          "inferred": false,
+          "paper_id": "P028"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:tight_binding_three_body_dataset"
+    },
+    {
+      "dataset_id": "D_arxiv",
+      "canonical_name": "arXiv",
+      "raw_names": [
+        "arXiv"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "materials science literature"
+      ],
+      "available_properties": [
+        "text",
+        "metadata"
+      ],
+      "available_fields": [
+        "id",
+        "title",
+        "abstract",
+        "text",
+        "authors",
+        "categories",
+        "date"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "For text data, we have used the publicly available arXiv dataset.",
+          "page": 10,
+          "section": "Methods",
+          "inferred": false,
+          "paper_id": "P028"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:arxiv"
+    },
+    {
+      "dataset_id": "D_oqmd",
+      "canonical_name": "Open Quantum Materials Database",
+      "raw_names": [
+        "Open Quantum Materials Database",
+        "OQMD"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "inorganic materials"
+      ],
+      "available_properties": [
+        "formation energy",
+        "bandgap",
+        "elastic properties"
+      ],
+      "available_fields": [
+        "id",
+        "structure",
+        "formation_energy",
+        "bandgap",
+        "elastic_tensor"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "PBE87 data from Open Quantum Materials Database (OQMD)88,89",
+          "page": 7,
+          "section": null,
+          "inferred": false,
+          "paper_id": "P028"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:oqmd"
+    },
+    {
+      "dataset_id": "D_aflow",
+      "canonical_name": "AFLOW",
+      "raw_names": [
+        "AFLOW"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "inorganic materials"
+      ],
+      "available_properties": [
+        "formation energy",
+        "bandgap",
+        "elastic properties"
+      ],
+      "available_fields": [
+        "id",
+        "structure",
+        "formation_energy",
+        "bandgap",
+        "elastic_tensor"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "PBE87 data from Open Quantum Materials Database (OQMD)88,89, AFLOW90 and Materials Project65 compare well with each other.",
+          "page": 7,
+          "section": null,
+          "inferred": false,
+          "paper_id": "P028"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:aflow"
+    },
+    {
+      "dataset_id": "D_threebodytb_jl_fitting_dataset",
+      "canonical_name": "ThreeBodyTB.jl fitting dataset",
+      "raw_names": [
+        "ThreeBodyTB.jl fitting dataset",
+        "qe-tb"
+      ],
+      "dataset_type": "derived_subset",
+      "source_dataset_id": "D_jarvis_tools",
+      "material_scope": [
+        "materials"
+      ],
+      "available_properties": [
+        "electronic structure",
+        "phonon spectra"
+      ],
+      "available_fields": [
+        "id",
+        "structure",
+        "hamiltonian",
+        "phonon_spectrum"
+      ],
+      "availability": "public",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "qe-tb (ﬁtting dataset for ThreeBodyTB.jl72) is one of the largest datasets available in the leaderboard.",
+          "page": 5,
+          "section": null,
+          "inferred": false,
+          "paper_id": "P028"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:threebodytb_jl_fitting_dataset"
+    },
+    {
+      "dataset_id": "D_stem_2d_image_dataset",
+      "canonical_name": "STEM 2D image dataset",
+      "raw_names": [
+        "STEM 2D image dataset",
+        "stem_2d_image"
+      ],
+      "dataset_type": "derived_subset",
+      "source_dataset_id": "D_jarvis_tools",
+      "material_scope": [
+        "2D materials"
+      ],
+      "available_properties": [
+        "atomic structure images"
+      ],
+      "available_fields": [
+        "id",
+        "image",
+        "structure"
+      ],
+      "availability": "public",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "dataset-name (such as stem_2d_image as available in the JARVIS-Tools database page)",
+          "page": 5,
+          "section": null,
+          "inferred": false,
+          "paper_id": "P028"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:stem_2d_image_dataset"
+    },
+    {
+      "dataset_id": "D_zsm_5_co2_adsorption_isotherms",
+      "canonical_name": "ZSM-5 CO2 adsorption isotherms",
+      "raw_names": [
+        "ZSM-5 CO2 adsorption isotherms",
+        "CO2 capture for zeolite (ZSM-5)",
+        "manometric measurements of CO2 adsorption"
+      ],
+      "dataset_type": "paper_specific",
+      "source_dataset_id": null,
+      "material_scope": [
+        "zeolites"
+      ],
+      "available_properties": [
+        "CO2 adsorption isotherms"
+      ],
+      "available_fields": [
+        "id",
+        "temperature",
+        "pressure",
+        "adsorption_amount"
+      ],
+      "availability": "restricted",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "d CO2 capture for zeolite (ZSM-5) at several labs in inter-laboratory/round-robin fashion.",
+          "page": 9,
+          "section": null,
+          "inferred": false,
+          "paper_id": "P028"
+        },
+        {
+          "text": "Specifically in the JARVIS-Leaderboard, we include experimental round-robin results for manometric measurements of CO2 adsorption95.",
+          "page": 10,
+          "section": "Experiments",
+          "inferred": false,
+          "paper_id": "P028"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:zsm_5_co2_adsorption_isotherms"
+    }
+  ],
+  "dataset_uses": [
+    {
+      "dataset_use_id": "DU_P028_001",
+      "paper_id": "P028",
+      "task_id": "T_P028_01",
+      "stage_id": "S_P028_01",
+      "dataset_id": "D_jarvis_dft_3d",
+      "usage_role": "source",
+      "purpose": "reference benchmark dataset for AI, ES, FF, and QC methods",
+      "used_fields": [
+        "id",
+        "structure",
+        "formation_energy_peratom",
+        "bandgap",
+        "bulk_modulus",
+        "forces",
+        "voigt_bulk_modulus",
+        "exfoliation_energy"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Fig. 1 | Leaderboard snapshot with an example output for AI-based formation energy per atom model on the JARVIS-DFT (dft_3d) dataset.",
+          "page": 3,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P028_002",
+      "paper_id": "P028",
+      "task_id": "T_P028_01",
+      "stage_id": "S_P028_01",
+      "dataset_id": "D_jarvis_dft_2d",
+      "usage_role": "source",
+      "purpose": "reference benchmark dataset for 2D exfoliation energy predictions",
+      "used_fields": [
+        "id",
+        "structure",
+        "exfoliation_energy"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "for 2D exfoliation energies in JARVIS-DFT dataset",
+          "page": 4,
+          "section": "Results and discussion",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P028_003",
+      "paper_id": "P028",
+      "task_id": "T_P028_01",
+      "stage_id": "S_P028_01",
+      "dataset_id": "D_materials_project",
+      "usage_role": "source",
+      "purpose": "reference benchmark dataset for AI methods",
+      "used_fields": [
+        "id",
+        "structure",
+        "formation_energy",
+        "bandgap",
+        "elastic_tensor",
+        "thermal_conductivity",
+        "dielectric_tensor",
+        "bandstructure"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "DFT datasets such as JARVIS-DFT70,71, Materials Project (MP)65, Tight binding three-body dataset (TB3)72, Quantum-Machine 9 (QM9)139,140.",
+          "page": 10,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P028_004",
+      "paper_id": "P028",
+      "task_id": "T_P028_01",
+      "stage_id": "S_P028_01",
+      "dataset_id": "D_qm9",
+      "usage_role": "source",
+      "purpose": "reference benchmark dataset for AI methods",
+      "used_fields": [
+        "id",
+        "smiles",
+        "geometry",
+        "energy",
+        "forces",
+        "dipole_moment",
+        "polarizability",
+        "homo",
+        "lumo",
+        "gap",
+        "zpve",
+        "u0",
+        "u298",
+        "h298",
+        "g298",
+        "cv"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "DFT datasets such as JARVIS-DFT70,71, Materials Project (MP)65, Tight binding three-body dataset (TB3)72, Quantum-Machine 9 (QM9)139,140.",
+          "page": 10,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P028_005",
+      "paper_id": "P028",
+      "task_id": "T_P028_01",
+      "stage_id": "S_P028_01",
+      "dataset_id": "D_tight_binding_three_body_dataset",
+      "usage_role": "source",
+      "purpose": "reference benchmark dataset for AI methods",
+      "used_fields": [
+        "id",
+        "structure",
+        "hamiltonian",
+        "phonon_spectrum"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "DFT datasets such as JARVIS-DFT70,71, Materials Project (MP)65, Tight binding three-body dataset (TB3)72, Quantum-Machine 9 (QM9)139,140.",
+          "page": 10,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P028_006",
+      "paper_id": "P028",
+      "task_id": "T_P028_01",
+      "stage_id": "S_P028_01",
+      "dataset_id": "D_arxiv",
+      "usage_role": "source",
+      "purpose": "reference benchmark dataset for AI text-based methods",
+      "used_fields": [
+        "id",
+        "title",
+        "abstract",
+        "text",
+        "authors",
+        "categories",
+        "date"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "For text data, we have used the publicly available arXiv dataset.",
+          "page": 10,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P028_007",
+      "paper_id": "P028",
+      "task_id": "T_P028_01",
+      "stage_id": "S_P028_01",
+      "dataset_id": "D_oqmd",
+      "usage_role": "source",
+      "purpose": "reference benchmark dataset for ES methods",
+      "used_fields": [
+        "id",
+        "structure",
+        "formation_energy",
+        "bandgap",
+        "elastic_tensor"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "PBE87 data from Open Quantum Materials Database (OQMD)88,89",
+          "page": 7,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P028_008",
+      "paper_id": "P028",
+      "task_id": "T_P028_01",
+      "stage_id": "S_P028_01",
+      "dataset_id": "D_aflow",
+      "usage_role": "source",
+      "purpose": "reference benchmark dataset for ES methods",
+      "used_fields": [
+        "id",
+        "structure",
+        "formation_energy",
+        "bandgap",
+        "elastic_tensor"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "PBE87 data from Open Quantum Materials Database (OQMD)88,89, AFLOW90 and Materials Project65 compare well with each other.",
+          "page": 7,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P028_009",
+      "paper_id": "P028",
+      "task_id": "T_P028_01",
+      "stage_id": "S_P028_01",
+      "dataset_id": "D_threebodytb_jl_fitting_dataset",
+      "usage_role": "source",
+      "purpose": "reference benchmark dataset for ES methods",
+      "used_fields": [
+        "id",
+        "structure",
+        "hamiltonian",
+        "phonon_spectrum"
+      ],
+      "is_derived": true,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "qe-tb (ﬁtting dataset for ThreeBodyTB.jl72) is one of the largest datasets available in the leaderboard.",
+          "page": 5,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P028_010",
+      "paper_id": "P028",
+      "task_id": "T_P028_01",
+      "stage_id": "S_P028_01",
+      "dataset_id": "D_stem_2d_image_dataset",
+      "usage_role": "source",
+      "purpose": "reference benchmark dataset for AI image-based methods",
+      "used_fields": [
+        "id",
+        "image",
+        "structure"
+      ],
+      "is_derived": true,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "dataset-name (such as stem_2d_image as available in the JARVIS-Tools database page)",
+          "page": 5,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P028_011",
+      "paper_id": "P028",
+      "task_id": "T_P028_01",
+      "stage_id": "S_P028_01",
+      "dataset_id": "D_zsm_5_co2_adsorption_isotherms",
+      "usage_role": "experimental_validation",
+      "purpose": "experimental benchmark for CO2 adsorption in zeolites",
+      "used_fields": [
+        "id",
+        "temperature",
+        "pressure",
+        "adsorption_amount"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "d CO2 capture for zeolite (ZSM-5) at several labs in inter-laboratory/round-robin fashion.",
+          "page": 9,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P028_012",
+      "paper_id": "P028",
+      "task_id": "T_P028_01",
+      "stage_id": "S_P028_02",
+      "dataset_id": "D_jarvis_dft_3d",
+      "usage_role": "training",
+      "purpose": "training set for AI models / validation set for AI models / test set for AI models",
+      "used_fields": [
+        "id",
+        "structure",
+        "formation_energy_peratom"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "12 AI models (each AI model had a well-deﬁned 80:10:10 split for training, validation and testing respectively from the JARVIS-3D database)",
+          "page": 6,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "12 AI models (each AI model had a well-deﬁned 80:10:10 split for training, validation and testing respectively from the JARVIS-3D database)",
+          "page": 6,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "formation-energy-per atom model using AI for JARVIS-DFT 3D dataset with 5572 materials in the test set",
+          "page": 9,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P028_013",
+      "paper_id": "P028",
+      "task_id": "T_P028_01",
+      "stage_id": "S_P028_02",
+      "dataset_id": "D_jarvis_dft_2d",
+      "usage_role": "test",
+      "purpose": "test set for 2D exfoliation energy predictions",
+      "used_fields": [
+        "id",
+        "structure",
+        "exfoliation_energy"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "AI-SinglePropertyPrediction-exfoliation_energy-dft_3d-test",
+          "page": 4,
+          "section": "Results and discussion",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

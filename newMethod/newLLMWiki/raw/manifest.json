@@ -1,0 +1,208 @@
+{
+  "schema_version": "1.0",
+  "created_at": "2026-07-27T05:53:37.847705+00:00",
+  "standard_source": "材料论文抽取与LLM_Wiki构建规范.md",
+  "input_directory": "C:\\Users\\li\\Desktop\\材料大数据\\知识库构建_模拟PVLDB\\数据集论文\\无机晶体材料论文语料_公开全文\\papers",
+  "output_directory": "C:\\Users\\li\\Desktop\\材料大数据\\知识库构建_模拟PVLDB\\newMethod\\newLLMWiki",
+  "selection_rule": "First N PDFs by natural numeric filename prefix; original paper numbers retained.",
+  "requested_limit": 30,
+  "selected_papers": [
+    {
+      "paper_id": "P001",
+      "file_name": "01_PRDNet.pdf",
+      "path": "C:\\Users\\li\\Desktop\\材料大数据\\知识库构建_模拟PVLDB\\数据集论文\\无机晶体材料论文语料_公开全文\\papers\\01_PRDNet.pdf"
+    },
+    {
+      "paper_id": "P002",
+      "file_name": "02_CFT_Space_Group_Invariance.pdf",
+      "path": "C:\\Users\\li\\Desktop\\材料大数据\\知识库构建_模拟PVLDB\\数据集论文\\无机晶体材料论文语料_公开全文\\papers\\02_CFT_Space_Group_Invariance.pdf"
+    },
+    {
+      "paper_id": "P003",
+      "file_name": "03_Tensorial_Spectra.pdf",
+      "path": "C:\\Users\\li\\Desktop\\材料大数据\\知识库构建_模拟PVLDB\\数据集论文\\无机晶体材料论文语料_公开全文\\papers\\03_Tensorial_Spectra.pdf"
+    },
+    {
+      "paper_id": "P004",
+      "file_name": "04_Matbench_Discovery.pdf",
+      "path": "C:\\Users\\li\\Desktop\\材料大数据\\知识库构建_模拟PVLDB\\数据集论文\\无机晶体材料论文语料_公开全文\\papers\\04_Matbench_Discovery.pdf"
+    },
+    {
+      "paper_id": "P005",
+      "file_name": "05_Thermodynamic_Stability_Ensemble.pdf",
+      "path": "C:\\Users\\li\\Desktop\\材料大数据\\知识库构建_模拟PVLDB\\数据集论文\\无机晶体材料论文语料_公开全文\\papers\\05_Thermodynamic_Stability_Ensemble.pdf"
+    },
+    {
+      "paper_id": "P006",
+      "file_name": "06_Transformer_Atomic_Embeddings.pdf",
+      "path": "C:\\Users\\li\\Desktop\\材料大数据\\知识库构建_模拟PVLDB\\数据集论文\\无机晶体材料论文语料_公开全文\\papers\\06_Transformer_Atomic_Embeddings.pdf"
+    },
+    {
+      "paper_id": "P007",
+      "file_name": "07_EATGNN_Piezoelectric_Tensor.pdf",
+      "path": "C:\\Users\\li\\Desktop\\材料大数据\\知识库构建_模拟PVLDB\\数据集论文\\无机晶体材料论文语料_公开全文\\papers\\07_EATGNN_Piezoelectric_Tensor.pdf"
+    },
+    {
+      "paper_id": "P008",
+      "file_name": "08_HiBoFL_Thermal_Conductivity.pdf",
+      "path": "C:\\Users\\li\\Desktop\\材料大数据\\知识库构建_模拟PVLDB\\数据集论文\\无机晶体材料论文语料_公开全文\\papers\\08_HiBoFL_Thermal_Conductivity.pdf"
+    },
+    {
+      "paper_id": "P009",
+      "file_name": "09_LLM_Prop.pdf",
+      "path": "C:\\Users\\li\\Desktop\\材料大数据\\知识库构建_模拟PVLDB\\数据集论文\\无机晶体材料论文语料_公开全文\\papers\\09_LLM_Prop.pdf"
+    },
+    {
+      "paper_id": "P010",
+      "file_name": "10_CrystalFramer.pdf",
+      "path": "C:\\Users\\li\\Desktop\\材料大数据\\知识库构建_模拟PVLDB\\数据集论文\\无机晶体材料论文语料_公开全文\\papers\\10_CrystalFramer.pdf"
+    },
+    {
+      "paper_id": "P011",
+      "file_name": "11_DPF.pdf",
+      "path": "C:\\Users\\li\\Desktop\\材料大数据\\知识库构建_模拟PVLDB\\数据集论文\\无机晶体材料论文语料_公开全文\\papers\\11_DPF.pdf"
+    },
+    {
+      "paper_id": "P012",
+      "file_name": "12_PDDFormer.pdf",
+      "path": "C:\\Users\\li\\Desktop\\材料大数据\\知识库构建_模拟PVLDB\\数据集论文\\无机晶体材料论文语料_公开全文\\papers\\12_PDDFormer.pdf"
+    },
+    {
+      "paper_id": "P013",
+      "file_name": "13_CrysCo.pdf",
+      "path": "C:\\Users\\li\\Desktop\\材料大数据\\知识库构建_模拟PVLDB\\数据集论文\\无机晶体材料论文语料_公开全文\\papers\\13_CrysCo.pdf"
+    },
+    {
+      "paper_id": "P014",
+      "file_name": "14_Cross_Scale_Covariance.pdf",
+      "path": "C:\\Users\\li\\Desktop\\材料大数据\\知识库构建_模拟PVLDB\\数据集论文\\无机晶体材料论文语料_公开全文\\papers\\14_Cross_Scale_Covariance.pdf"
+    },
+    {
+      "paper_id": "P015",
+      "file_name": "15_Extrapolative_Episodic_Training.pdf",
+      "path": "C:\\Users\\li\\Desktop\\材料大数据\\知识库构建_模拟PVLDB\\数据集论文\\无机晶体材料论文语料_公开全文\\papers\\15_Extrapolative_Episodic_Training.pdf"
+    },
+    {
+      "paper_id": "P016",
+      "file_name": "16_OOD_Generalization_Materials.pdf",
+      "path": "C:\\Users\\li\\Desktop\\材料大数据\\知识库构建_模拟PVLDB\\数据集论文\\无机晶体材料论文语料_公开全文\\papers\\16_OOD_Generalization_Materials.pdf"
+    },
+    {
+      "paper_id": "P017",
+      "file_name": "17_Known_Unknowns_OOD.pdf",
+      "path": "C:\\Users\\li\\Desktop\\材料大数据\\知识库构建_模拟PVLDB\\数据集论文\\无机晶体材料论文语料_公开全文\\papers\\17_Known_Unknowns_OOD.pdf"
+    },
+    {
+      "paper_id": "P019",
+      "file_name": "19_DTNet_Dielectric_Tensor.pdf",
+      "path": "C:\\Users\\li\\Desktop\\材料大数据\\知识库构建_模拟PVLDB\\数据集论文\\无机晶体材料论文语料_公开全文\\papers\\19_DTNet_Dielectric_Tensor.pdf"
+    },
+    {
+      "paper_id": "P020",
+      "file_name": "20_GMTNet.pdf",
+      "path": "C:\\Users\\li\\Desktop\\材料大数据\\知识库构建_模拟PVLDB\\数据集论文\\无机晶体材料论文语料_公开全文\\papers\\20_GMTNet.pdf"
+    },
+    {
+      "paper_id": "P021",
+      "file_name": "21_ComFormer.pdf",
+      "path": "C:\\Users\\li\\Desktop\\材料大数据\\知识库构建_模拟PVLDB\\数据集论文\\无机晶体材料论文语料_公开全文\\papers\\21_ComFormer.pdf"
+    },
+    {
+      "paper_id": "P022",
+      "file_name": "22_Crystalformer.pdf",
+      "path": "C:\\Users\\li\\Desktop\\材料大数据\\知识库构建_模拟PVLDB\\数据集论文\\无机晶体材料论文语料_公开全文\\papers\\22_Crystalformer.pdf"
+    },
+    {
+      "paper_id": "P023",
+      "file_name": "23_CrysDiff.pdf",
+      "path": "C:\\Users\\li\\Desktop\\材料大数据\\知识库构建_模拟PVLDB\\数据集论文\\无机晶体材料论文语料_公开全文\\papers\\23_CrysDiff.pdf"
+    },
+    {
+      "paper_id": "P024",
+      "file_name": "24_Structure_Aware_Transfer_Learning.pdf",
+      "path": "C:\\Users\\li\\Desktop\\材料大数据\\知识库构建_模拟PVLDB\\数据集论文\\无机晶体材料论文语料_公开全文\\papers\\24_Structure_Aware_Transfer_Learning.pdf"
+    },
+    {
+      "paper_id": "P025",
+      "file_name": "25_ChargE3Net.pdf",
+      "path": "C:\\Users\\li\\Desktop\\材料大数据\\知识库构建_模拟PVLDB\\数据集论文\\无机晶体材料论文语料_公开全文\\papers\\25_ChargE3Net.pdf"
+    },
+    {
+      "paper_id": "P026",
+      "file_name": "26_MD_HIT.pdf",
+      "path": "C:\\Users\\li\\Desktop\\材料大数据\\知识库构建_模拟PVLDB\\数据集论文\\无机晶体材料论文语料_公开全文\\papers\\26_MD_HIT.pdf"
+    },
+    {
+      "paper_id": "P027",
+      "file_name": "27_Virtual_Node_Phonon_Preprint.pdf",
+      "path": "C:\\Users\\li\\Desktop\\材料大数据\\知识库构建_模拟PVLDB\\数据集论文\\无机晶体材料论文语料_公开全文\\papers\\27_Virtual_Node_Phonon_Preprint.pdf"
+    },
+    {
+      "paper_id": "P028",
+      "file_name": "28_JARVIS_Leaderboard.pdf",
+      "path": "C:\\Users\\li\\Desktop\\材料大数据\\知识库构建_模拟PVLDB\\数据集论文\\无机晶体材料论文语料_公开全文\\papers\\28_JARVIS_Leaderboard.pdf"
+    },
+    {
+      "paper_id": "P029",
+      "file_name": "29_Structure_OOD_Benchmark.pdf",
+      "path": "C:\\Users\\li\\Desktop\\材料大数据\\知识库构建_模拟PVLDB\\数据集论文\\无机晶体材料论文语料_公开全文\\papers\\29_Structure_OOD_Benchmark.pdf"
+    },
+    {
+      "paper_id": "P030",
+      "file_name": "30_Charge_Density_Recipe.pdf",
+      "path": "C:\\Users\\li\\Desktop\\材料大数据\\知识库构建_模拟PVLDB\\数据集论文\\无机晶体材料论文语料_公开全文\\papers\\30_Charge_Density_Recipe.pdf"
+    },
+    {
+      "paper_id": "P031",
+      "file_name": "31_Superconductivity_Ordered_Disordered.pdf",
+      "path": "C:\\Users\\li\\Desktop\\材料大数据\\知识库构建_模拟PVLDB\\数据集论文\\无机晶体材料论文语料_公开全文\\papers\\31_Superconductivity_Ordered_Disordered.pdf"
+    }
+  ],
+  "model": "qwen-plus",
+  "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+  "page_numbering": "1-based physical PDF page",
+  "descriptive_language": "paper original language",
+  "updated_at": "2026-07-27T07:41:47.579097+00:00",
+  "completed_paper_ids": [
+    "P001",
+    "P002",
+    "P003",
+    "P004",
+    "P005",
+    "P006",
+    "P007",
+    "P008",
+    "P009",
+    "P010",
+    "P011",
+    "P012",
+    "P013",
+    "P014",
+    "P015",
+    "P016",
+    "P017",
+    "P019",
+    "P020",
+    "P021",
+    "P022",
+    "P023",
+    "P024",
+    "P025",
+    "P026",
+    "P027",
+    "P028",
+    "P029",
+    "P030",
+    "P031"
+  ],
+  "failed_paper_ids": [],
+  "counts": {
+    "papers": 30,
+    "tasks": 30,
+    "stages": 178,
+    "datasets": 85,
+    "dataset_uses": 277,
+    "edges": 1502
+  },
+  "validation_valid": true
+}

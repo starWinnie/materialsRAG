@@ -1,0 +1,489 @@
+{
+  "paper": {
+    "paper_id": "P016",
+    "title": "Probing out-of-distribution generalization in machine learning for materials",
+    "year": 2025,
+    "doi": "10.1038/s43246-024-00731-w",
+    "file_name": "16_OOD_Generalization_Materials.pdf",
+    "research_summary": "This paper systematically evaluates the out-of-distribution (OOD) generalization capabilities of various machine learning models across over 700 OOD tasks derived from large materials datasets (JARVIS, Materials Project, OQMD). It challenges heuristic definitions of OOD tasks—based on chemistry (e.g., leave-one-element-out) or structural symmetry (e.g., leave-one-space-group-out)—by revealing that most such tasks are not truly extrapolative but rather represent interpolation within the high-dimensional materials representation space. Using UMAP-based domain identification and kernel-density estimation, the authors distinguish statistically OOD from representationally OOD test data. They find that robust OOD performance is common—even for simple models like XGBoost—and that poor performance is concentrated in a few cases (e.g., H, F, O compounds) where test data lie outside the training domain. Crucially, neural scaling laws (increasing training size/time improves performance) hold only for representationally in-domain OOD tasks; for representationally OOD tasks, scaling often degrades performance. The work concludes that current OOD benchmarks overestimate generalizability and calls for rigorously challenging, physically meaningful OOD benchmarks.",
+    "extraction_status": "completed"
+  },
+  "tasks": [
+    {
+      "task_id": "T_P016_01",
+      "paper_id": "P016",
+      "task_name_raw": "probing out-of-distribution generalization in machine learning for materials",
+      "task_name_canonical": "probing_out_of_distribution_generalization",
+      "objective": "To systematically examine the performance of various ML methods across over 700 OOD tasks within large materials datasets and identify whether heuristic OOD definitions reflect true extrapolation or merely interpolation.",
+      "material_scope": [
+        "crystalline solids"
+      ],
+      "target_properties": [
+        "formation energy",
+        "band gap",
+        "bulk modulus"
+      ],
+      "constraints": [
+        "OOD tasks must have at least 200 test samples",
+        "test sets must differ statistically from training sets in one or more attributes (e.g., element, period, group, space group, point group, crystal system)"
+      ],
+      "input_requirements": [
+        "ab initio-derived materials databases (JARVIS, Materials Project, OQMD)",
+        "materials representations (embeddings or descriptors)",
+        "OOD splitting criteria based on chemistry or structural symmetry"
+      ],
+      "output_goal": [
+        "quantified OOD generalization performance (MAE, R2) per task",
+        "identification of representationally ID vs. OOD test data",
+        "characterization of scaling behavior (training time/size effects) for different OOD regimes"
+      ],
+      "parent_task_id": null,
+      "task_level": "main_task",
+      "evidence": [
+        {
+          "text": "In this work, we conduct a systematic examination of the performance of various ML methods across over 700 OOD tasks within large materials datasets. These tasks are speciﬁcally designed to challenge common heuristics based on chemistry or structural symmetry.",
+          "page": 1,
+          "section": "Results",
+          "inferred": false
+        }
+      ]
+    }
+  ],
+  "stages": [
+    {
+      "stage_id": "S_P016_01",
+      "paper_id": "P016",
+      "task_id": "T_P016_01",
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "selection of ab initio-derived materials databases",
+      "stage_order": 1,
+      "stage_goal": "To obtain diverse, large-scale, precomputed materials property data for robust OOD evaluation.",
+      "stage_input": [],
+      "stage_output": [
+        "JARVIS dataset",
+        "Materials Project (MP) dataset",
+        "Open Quantum Materials Database (OQMD) dataset"
+      ],
+      "evidence": [
+        {
+          "text": "Three ab initio-derived materials databases have been selected for this evaluation: Joint Automated Repository for Various Integrated Simulations (JARVIS), Materials Project (MP), and the Open Quantum Materials Database (OQMD).",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P016_02",
+      "paper_id": "P016",
+      "task_id": "T_P016_01",
+      "stage_type": "candidate_generation",
+      "stage_name_raw": "definition of OOD tasks using six criteria",
+      "stage_order": 2,
+      "stage_goal": "To generate over 700 distinct OOD evaluation tasks by systematically partitioning datasets according to human-defined chemical and structural heuristics.",
+      "stage_input": [
+        "JARVIS, MP, OQMD datasets"
+      ],
+      "stage_output": [
+        "700+ OOD tasks including leave-one-element-out, leave-one-period-out, leave-one-group-out, leave-one-space-group-out, leave-one-point-group-out, leave-one-crystal-system-out"
+      ],
+      "evidence": [
+        {
+          "text": "We primarily consider six criteria for deﬁning OOD test data: (1) materials containing element X, (2) materials containing any element in the period X, (3) materials containing any element in the group X, (4) materials of space group X, (5) materials of point group X, (6) materials of crystal system X. We consider these leave-one-X-out tasks for all possible values of X but exclude those with fewer than 200 test samples.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P016_03",
+      "paper_id": "P016",
+      "task_id": "T_P016_01",
+      "stage_type": "model_training",
+      "stage_name_raw": "training of representative ML models on each OOD task",
+      "stage_order": 3,
+      "stage_goal": "To evaluate generalization performance by training multiple model architectures—including tree ensembles, neural networks, graph neural networks, and LLMs—on each OOD task using consistent hyperparameters.",
+      "stage_input": [
+        "OOD tasks",
+        "Matminer descriptors",
+        "GMP features",
+        "crystal graphs",
+        "crystal text descriptions"
+      ],
+      "stage_output": [
+        "trained RF, XGB, ALIGNN, GMP, LLM-Prop models per task"
+      ],
+      "evidence": [
+        {
+          "text": "OOD performance is evaluated by training a representative set of ML models, including (1) random forest (RF) and XGBoost (XGB) models with Matminer descriptors. (2) single neural network with Gaussian multipole (GMP) expansion on electron density (3) atomistic line graph neural network (ALIGNN), and (4) the large language model (LLM) based LLM-Prop with crystal text descriptions.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P016_04",
+      "paper_id": "P016",
+      "task_id": "T_P016_01",
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "evaluation of OOD performance using MAE and R2 metrics",
+      "stage_order": 4,
+      "stage_goal": "To quantify generalization capability across tasks using complementary metrics: mean absolute error (MAE) and coefficient of determination (R2).",
+      "stage_input": [
+        "trained models",
+        "OOD test sets"
+      ],
+      "stage_output": [
+        "MAE and R2 scores per model per OOD task"
+      ],
+      "evidence": [
+        {
+          "text": "We utilize two complementary performance metrics: mean absolute error (MAE) and coefﬁcient of determination (R2). While MAE measures the expected error on the original physical scale, its interpretation can be scale-dependent and less intuitive for assessing the goodness of predictions. In contrast, R2 is a dimensionless accuracy measure with a value range between 1 (for a perfect model) and inﬁnitely negative (for arbitrarily bad models) and can be conveniently compared across different OOD test sets.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P016_05",
+      "paper_id": "P016",
+      "task_id": "T_P016_01",
+      "stage_type": "computational_validation",
+      "stage_name_raw": "UMAP-based representational domain identification",
+      "stage_order": 5,
+      "stage_goal": "To distinguish statistically OOD from representationally OOD test data by projecting learned embeddings or descriptors into low-dimensional space and estimating kernel density.",
+      "stage_input": [
+        "learned embeddings (ALIGNN, GMP)",
+        "handcrafted descriptors (XGB, RF)",
+        "training set embeddings/descriptors"
+      ],
+      "stage_output": [
+        "representationally ID/OOD classification for each test sample"
+      ],
+      "evidence": [
+        {
+          "text": "We propose to deﬁne and distinguish two types of OOD. A test set is considered statistically OOD if the statistical distribution of one or more attributes differs from the training set, whereas a test set is considered representationally OOD if the test data are outside the region of the training set when viewed from the high-dimensional representation space.",
+          "page": 5,
+          "section": "Inspecting materials representations",
+          "inferred": false
+        },
+        {
+          "text": "Uniform Manifold Approximation and Projection (UMAP) is used to project the high-dimensional materials representations to a two-dimensional plane... For each OOD task, we apply a Gaussian kernel to the training data and evaluate the kernel density estimate of the training data for every test data point in the UMAP embedding space. Test data points with high/low density estimates are considered as representationally ID/OOD data.",
+          "page": 5,
+          "section": "Inspecting materials representations",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P016_06",
+      "paper_id": "P016",
+      "task_id": "T_P016_01",
+      "stage_type": "ablation_study",
+      "stage_name_raw": "analysis of scaling effects (training time and size) on OOD performance",
+      "stage_order": 6,
+      "stage_goal": "To test whether neural scaling laws hold for OOD generalization by varying training time and training set size and measuring resulting MAE on ID and OOD test sets.",
+      "stage_input": [
+        "trained models",
+        "OOD tasks",
+        "varied training durations and dataset sizes"
+      ],
+      "stage_output": [
+        "learning curves (MAE vs. training time/size) for ID and OOD performance"
+      ],
+      "evidence": [
+        {
+          "text": "Learning curves for out-of-distribution generalization... Here we perform an extensive examination on various OOD tasks and, intriguingly, ﬁnd distinct scaling effects among the OOD tasks. Speciﬁcally, neural scaling laws are found to be valid only for representationally ID generalization, while the scaling effects are marginally beneﬁcial or even adverse for representationally OOD generalization.",
+          "page": 5,
+          "section": "Learning curves for out-of-distribution generalization",
+          "inferred": false
+        },
+        {
+          "text": "Figure 5a–c shows the learning curves of MAE versus training time in the leave-one-element-out tasks for F, O, and H... Figure 5d shows the ALIGNN learning curves for the ID and OOD performance for 3 representative tasks in Materials Project.",
+          "page": 5,
+          "section": "Learning curves for out-of-distribution generalization",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P016_07",
+      "paper_id": "P016",
+      "task_id": "T_P016_01",
+      "stage_type": "candidate_screening",
+      "stage_name_raw": "SHAP-based bias source identification for leave-one-element-out tasks",
+      "stage_order": 7,
+      "stage_goal": "To determine whether poor OOD performance arises from compositional or structural dissimilarity by quantifying feature contributions to prediction corrections.",
+      "stage_input": [
+        "XGB model predictions on full dataset",
+        "prediction errors for element-X-containing materials"
+      ],
+      "stage_output": [
+        "compositional vs. structural SHAP contribution magnitudes for each left-out element"
+      ],
+      "evidence": [
+        {
+          "text": "We propose a SHAP-based (SHapley Additive exPlanations) method to identify the sources of biases. This involves training a second model to correct the model for each leave-one-element-out task and evaluating the contributions from compositional and structural features to the corrections.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ]
+    }
+  ],
+  "datasets": [
+    {
+      "dataset_id": "D_jarvis_dft",
+      "canonical_name": "JARVIS",
+      "raw_names": [
+        "JARVIS",
+        "Joint Automated Repository for Various Integrated Simulations (JARVIS)"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "crystalline solids"
+      ],
+      "available_properties": [
+        "formation energy",
+        "band gap",
+        "bulk modulus"
+      ],
+      "available_fields": [
+        "chemical formula",
+        "crystal structure",
+        "formation energy",
+        "band gap",
+        "bulk modulus"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Three ab initio-derived materials databases have been selected for this evaluation: Joint Automated Repository for Various Integrated Simulations (JARVIS), Materials Project (MP), and the Open Quantum Materials Database (OQMD).",
+          "page": 2,
+          "section": "Results",
+          "inferred": false,
+          "paper_id": "P016"
+        },
+        {
+          "text": "We use the snapshots of the JARVIS, Materials Project, and OMQD databases used in our previous study47, available on Zenodo at https://zenodo.org/records/8200972. The snapshots correspond the JARVIS 2022.12.12 version, the Materials Project 2021.11.10 version, and the OQMD v1.6 version (published in November 2023), and they have been preprocessed to remove materials with formation energies larger than 5 eV/atom.",
+          "page": 8,
+          "section": "Methods",
+          "inferred": false,
+          "paper_id": "P016"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:jarvis_dft"
+    },
+    {
+      "dataset_id": "D_materials_project",
+      "canonical_name": "Materials Project",
+      "raw_names": [
+        "Materials Project",
+        "Materials Project (MP)",
+        "MP"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "crystalline solids"
+      ],
+      "available_properties": [
+        "formation energy",
+        "band gap",
+        "bulk modulus"
+      ],
+      "available_fields": [
+        "chemical formula",
+        "crystal structure",
+        "formation energy",
+        "band gap",
+        "bulk modulus"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Three ab initio-derived materials databases have been selected for this evaluation: Joint Automated Repository for Various Integrated Simulations (JARVIS), Materials Project (MP), and the Open Quantum Materials Database (OQMD).",
+          "page": 2,
+          "section": "Results",
+          "inferred": false,
+          "paper_id": "P016"
+        },
+        {
+          "text": "We use the snapshots of the JARVIS, Materials Project, and OMQD databases used in our previous study47, available on Zenodo at https://zenodo.org/records/8200972. The snapshots correspond the JARVIS 2022.12.12 version, the Materials Project 2021.11.10 version, and the OQMD v1.6 version (published in November 2023), and they have been preprocessed to remove materials with formation energies larger than 5 eV/atom.",
+          "page": 8,
+          "section": "Methods",
+          "inferred": false,
+          "paper_id": "P016"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:materials_project"
+    },
+    {
+      "dataset_id": "D_oqmd",
+      "canonical_name": "Open Quantum Materials Database",
+      "raw_names": [
+        "Open Quantum Materials Database",
+        "Open Quantum Materials Database (OQMD)",
+        "OQMD"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "crystalline solids"
+      ],
+      "available_properties": [
+        "formation energy",
+        "band gap",
+        "bulk modulus"
+      ],
+      "available_fields": [
+        "chemical formula",
+        "crystal structure",
+        "formation energy",
+        "band gap",
+        "bulk modulus"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Three ab initio-derived materials databases have been selected for this evaluation: Joint Automated Repository for Various Integrated Simulations (JARVIS), Materials Project (MP), and the Open Quantum Materials Database (OQMD).",
+          "page": 2,
+          "section": "Results",
+          "inferred": false,
+          "paper_id": "P016"
+        },
+        {
+          "text": "We use the snapshots of the JARVIS, Materials Project, and OMQD databases used in our previous study47, available on Zenodo at https://zenodo.org/records/8200972. The snapshots correspond the JARVIS 2022.12.12 version, the Materials Project 2021.11.10 version, and the OQMD v1.6 version (published in November 2023), and they have been preprocessed to remove materials with formation energies larger than 5 eV/atom.",
+          "page": 8,
+          "section": "Methods",
+          "inferred": false,
+          "paper_id": "P016"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:oqmd"
+    }
+  ],
+  "dataset_uses": [
+    {
+      "dataset_use_id": "DU_P016_001",
+      "paper_id": "P016",
+      "task_id": "T_P016_01",
+      "stage_id": "S_P016_01",
+      "dataset_id": "D_jarvis_dft",
+      "usage_role": "source",
+      "purpose": "To obtain diverse, large-scale, precomputed materials property data for robust OOD evaluation.",
+      "used_fields": [
+        "chemical formula",
+        "crystal structure",
+        "formation energy",
+        "band gap",
+        "bulk modulus"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [
+        "formation energies larger than 5 eV/atom removed"
+      ],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Three ab initio-derived materials databases have been selected for this evaluation: Joint Automated Repository for Various Integrated Simulations (JARVIS), Materials Project (MP), and the Open Quantum Materials Database (OQMD).",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "Table 1 | In-distribution performance for the formation energy prediction ... JARVIS ... Models are arranged in the ascending order of MAEs of the MP dataset from left to right. Best performance is highlighted in bold. TheMP, JARVIS,andOQMD datasets contain146k, 76k,and 1M entries, respectively.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P016_002",
+      "paper_id": "P016",
+      "task_id": "T_P016_01",
+      "stage_id": "S_P016_01",
+      "dataset_id": "D_materials_project",
+      "usage_role": "source",
+      "purpose": "To obtain diverse, large-scale, precomputed materials property data for robust OOD evaluation.",
+      "used_fields": [
+        "chemical formula",
+        "crystal structure",
+        "formation energy",
+        "band gap",
+        "bulk modulus"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [
+        "formation energies larger than 5 eV/atom removed"
+      ],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Three ab initio-derived materials databases have been selected for this evaluation: Joint Automated Repository for Various Integrated Simulations (JARVIS), Materials Project (MP), and the Open Quantum Materials Database (OQMD).",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "Table 1 | In-distribution performance for the formation energy prediction ... MP ... Models are arranged in the ascending order of MAEs of the MP dataset from left to right. Best performance is highlighted in bold. TheMP, JARVIS,andOQMD datasets contain146k, 76k,and 1M entries, respectively.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P016_003",
+      "paper_id": "P016",
+      "task_id": "T_P016_01",
+      "stage_id": "S_P016_01",
+      "dataset_id": "D_oqmd",
+      "usage_role": "source",
+      "purpose": "To obtain diverse, large-scale, precomputed materials property data for robust OOD evaluation.",
+      "used_fields": [
+        "chemical formula",
+        "crystal structure",
+        "formation energy",
+        "band gap",
+        "bulk modulus"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [
+        "formation energies larger than 5 eV/atom removed"
+      ],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Three ab initio-derived materials databases have been selected for this evaluation: Joint Automated Repository for Various Integrated Simulations (JARVIS), Materials Project (MP), and the Open Quantum Materials Database (OQMD).",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "Table 1 | In-distribution performance for the formation energy prediction ... OQMD ... Models are arranged in the ascending order of MAEs of the MP dataset from left to right. Best performance is highlighted in bold. TheMP, JARVIS,andOQMD datasets contain146k, 76k,and 1M entries, respectively.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

@@ -1,0 +1,909 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "mp",
+      "canonical_name": "Materials Project",
+      "raw_names": [
+        "MP",
+        "Materials Project"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "inorganic compounds"
+      ],
+      "available_properties": [
+        "formation energy",
+        "decomposition energy (ΔHd)"
+      ],
+      "available_fields": [
+        "chemical formula",
+        "formation energy",
+        "thermodynamic properties"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "In this work, we compared the performance of various models in predicting the stability of inorganic compounds on three large DFT-computed datasets, MP, OQMD, and JARVIS.",
+          "page": 11,
+          "section": "Methods",
+          "inferred": false
+        },
+        {
+          "text": "Before using these databases, data preprocessing was required. After excluding noble gas and radioactive elements, the MP database contained 85,014 compounds with information on thermodynamic properties such as formation energy.",
+          "page": 11,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "oqmd",
+      "canonical_name": "Open Quantum Materials Database",
+      "raw_names": [
+        "OQMD",
+        "Open Quantum Materials Database"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "inorganic compounds"
+      ],
+      "available_properties": [
+        "formation energy",
+        "decomposition energy (ΔHd)"
+      ],
+      "available_fields": [
+        "chemical formula",
+        "formation energy"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "In this work, we compared the performance of various models in predicting the stability of inorganic compounds on three large DFT-computed datasets, MP, OQMD, and JARVIS.",
+          "page": 11,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "jarvis",
+      "canonical_name": "Joint Automated Repository for Various Integrated Simulations",
+      "raw_names": [
+        "JARVIS",
+        "Joint Automated Repository for Various Integrated Simulations"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "inorganic compounds"
+      ],
+      "available_properties": [
+        "formation energy",
+        "decomposition energy (ΔHd)"
+      ],
+      "available_fields": [
+        "chemical formula",
+        "formation energy"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "In this work, we compared the performance of various models in predicting the stability of inorganic compounds on three large DFT-computed datasets, MP, OQMD, and JARVIS.",
+          "page": 11,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "c2db",
+      "canonical_name": "Computational 2D Materials Database",
+      "raw_names": [
+        "C2DB",
+        "Computational 2D Materials Database"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "two-dimensional materials"
+      ],
+      "available_properties": [
+        "thermodynamic stability"
+      ],
+      "available_fields": [
+        "composition",
+        "stability information"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "First, we extracted the composition and stability information of the materials from the entire C2DB database and trained a model to predict the thermodynamic stability of 2D materials.",
+          "page": 9,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "2dmatpedia",
+      "canonical_name": "2DMatPedia",
+      "raw_names": [
+        "2dMatpedia",
+        "2DMatPedia"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "two-dimensional materials"
+      ],
+      "available_properties": [
+        "bandgap",
+        "thermodynamic stability"
+      ],
+      "available_fields": [
+        "materials",
+        "stability labels"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Then, we tested the trained model on the 2Dmatpedia database, which contains 4743 materials.",
+          "page": 9,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "perovskite_oxide_db",
+      "canonical_name": "Perovskite Oxide Database",
+      "raw_names": [
+        "perovskite oxide database",
+        "database which includes 3469 single/double perovskite oxides"
+      ],
+      "dataset_type": "paper_specific",
+      "source_dataset_key": null,
+      "material_scope": [
+        "perovskite oxides",
+        "double perovskite oxides"
+      ],
+      "available_properties": [
+        "thermodynamic stability",
+        "decomposition energy (ΔHd)"
+      ],
+      "available_fields": [
+        "chemical formula",
+        "stability information"
+      ],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "When exploring new perovskite oxides, we utilized a database which includes 3469 single/double perovskite oxides along with their corresponding stability information.",
+          "page": 11,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "perovskite_halides",
+      "canonical_name": "Perovskite Halides Dataset",
+      "raw_names": [
+        "perovskite halides"
+      ],
+      "dataset_type": "paper_specific",
+      "source_dataset_key": null,
+      "material_scope": [
+        "perovskite halides"
+      ],
+      "available_properties": [
+        "thermodynamic stability"
+      ],
+      "available_fields": [
+        "chemical formula",
+        "stability data"
+      ],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "We extracted thermodynamic stability data for 496 perovskite halides from the literature.",
+          "page": 8,
+          "section": "Prediction in unknown space",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "li_oxides",
+      "canonical_name": "Li-containing Oxides Dataset",
+      "raw_names": [
+        "Li-containing oxides"
+      ],
+      "dataset_type": "paper_specific",
+      "source_dataset_key": null,
+      "material_scope": [
+        "Li-containing oxides"
+      ],
+      "available_properties": [
+        "thermodynamic stability"
+      ],
+      "available_fields": [
+        "chemical formula",
+        "stability labels"
+      ],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "Different from testing in perovskite halides, we extract all materials containing Li and O from MP, resulting in 6168 samples, with 750 stable materials.",
+          "page": 9,
+          "section": "Prediction in unknown space",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "transition_metal_oxides",
+      "canonical_name": "Transition Metal Oxides Dataset",
+      "raw_names": [
+        "transition metal oxides"
+      ],
+      "dataset_type": "paper_specific",
+      "source_dataset_key": null,
+      "material_scope": [
+        "transition metal oxides"
+      ],
+      "available_properties": [
+        "thermodynamic stability"
+      ],
+      "available_fields": [
+        "chemical formula",
+        "stability labels"
+      ],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "In this study, we use Fe-containing oxides and Mn-containing oxides as examples to test the model’s ability to predict unknown transition metal oxides. Similar to our approach with Li-containing oxides, we extracted 7137 transition metal oxides from the MP database...",
+          "page": 9,
+          "section": "Prediction in unknown space",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "mp",
+      "usage_role": "source",
+      "purpose": "Acquire large-scale DFT-computed thermodynamic stability data for inorganic compounds",
+      "used_fields": [
+        "chemical formula",
+        "formation energy",
+        "thermodynamic properties"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [
+        "excluded noble gas and radioactive elements"
+      ],
+      "sample_count": 85014,
+      "evidence": [
+        {
+          "text": "In this work, we compared the performance of various models in predicting the stability of inorganic compounds on three large DFT-computed datasets, MP, OQMD, and JARVIS.",
+          "page": 11,
+          "section": "Methods",
+          "inferred": false
+        },
+        {
+          "text": "Before using these databases, data preprocessing was required. After excluding noble gas and radioactive elements, the MP database contained 85,014 compounds with information on thermodynamic properties such as formation energy.",
+          "page": 11,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "oqmd",
+      "usage_role": "source",
+      "purpose": "Acquire large-scale DFT-computed thermodynamic stability data for inorganic compounds",
+      "used_fields": [
+        "chemical formula",
+        "formation energy"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "In this work, we compared the performance of various models in predicting the stability of inorganic compounds on three large DFT-computed datasets, MP, OQMD, and JARVIS.",
+          "page": 11,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "jarvis",
+      "usage_role": "source",
+      "purpose": "Acquire large-scale DFT-computed thermodynamic stability data for inorganic compounds",
+      "used_fields": [
+        "chemical formula",
+        "formation energy"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "In this work, we compared the performance of various models in predicting the stability of inorganic compounds on three large DFT-computed datasets, MP, OQMD, and JARVIS.",
+          "page": 11,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "c2db",
+      "usage_role": "source",
+      "purpose": "Extract composition and stability information for training a model to predict thermodynamic stability of 2D materials",
+      "used_fields": [
+        "composition",
+        "stability information"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "First, we extracted the composition and stability information of the materials from the entire C2DB database and trained a model to predict the thermodynamic stability of 2D materials.",
+          "page": 9,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "2dmatpedia",
+      "usage_role": "test",
+      "purpose": "Test the trained model on an independent dataset of 2D materials",
+      "used_fields": [
+        "materials",
+        "stability labels"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 4743,
+      "evidence": [
+        {
+          "text": "Then, we tested the trained model on the 2Dmatpedia database, which contains 4743 materials.",
+          "page": 9,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "perovskite_oxide_db",
+      "usage_role": "source",
+      "purpose": "Train a super learner to predict the stability of perovskite oxides",
+      "used_fields": [
+        "chemical formula",
+        "stability information"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 3469,
+      "evidence": [
+        {
+          "text": "When exploring new perovskite oxides, we utilized a database which includes 3469 single/double perovskite oxides along with their corresponding stability information.",
+          "page": 11,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "perovskite_halides",
+      "usage_role": "test",
+      "purpose": "Test the ability of ECSG to predict stability in unknown space",
+      "used_fields": [
+        "chemical formula",
+        "stability data"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [
+        "remove duplicate samples from MP"
+      ],
+      "sample_count": 496,
+      "evidence": [
+        {
+          "text": "We extracted thermodynamic stability data for 496 perovskite halides from the literature.",
+          "page": 8,
+          "section": "Prediction in unknown space",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "li_oxides",
+      "usage_role": "test",
+      "purpose": "Test the predictive ability of ECSG in the space of unexplored Li-containing oxides",
+      "used_fields": [
+        "chemical formula",
+        "stability labels"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [
+        "extract all materials containing Li and O from MP"
+      ],
+      "sample_count": 6168,
+      "evidence": [
+        {
+          "text": "Different from testing in perovskite halides, we extract all materials containing Li and O from MP, resulting in 6168 samples, with 750 stable materials.",
+          "page": 9,
+          "section": "Prediction in unknown space",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "transition_metal_oxides",
+      "usage_role": "test",
+      "purpose": "Test the model’s ability to predict unknown transition metal oxides",
+      "used_fields": [
+        "chemical formula",
+        "stability labels"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [
+        "extracted 7137 transition metal oxides from the MP database"
+      ],
+      "sample_count": 7137,
+      "evidence": [
+        {
+          "text": "In this study, we use Fe-containing oxides and Mn-containing oxides as examples to test the model’s ability to predict unknown transition metal oxides. Similar to our approach with Li-containing oxides, we extracted 7137 transition metal oxides from the MP database...",
+          "page": 9,
+          "section": "Prediction in unknown space",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "mp",
+      "usage_role": "label_source",
+      "purpose": "Assign binary stability labels based on DFT-derived decomposition energy thresholds",
+      "used_fields": [
+        "decomposition energy (ΔHd)"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [
+        "Compounds with a ΔHd below 0 meV/atom were considered stable"
+      ],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Compounds with a ΔHd below 0 meV/atom were considered stable and are labeled accordingly.",
+          "page": 11,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "oqmd",
+      "usage_role": "label_source",
+      "purpose": "Assign binary stability labels based on DFT-derived decomposition energy thresholds",
+      "used_fields": [
+        "decomposition energy (ΔHd)"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [
+        "same data processing method applied"
+      ],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The same data processing method was applied to the OQMD and JARVIS databases, and datasets in unknown spaces.",
+          "page": 11,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "jarvis",
+      "usage_role": "label_source",
+      "purpose": "Assign binary stability labels based on DFT-derived decomposition energy thresholds",
+      "used_fields": [
+        "decomposition energy (ΔHd)"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [
+        "same data processing method applied"
+      ],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The same data processing method was applied to the OQMD and JARVIS databases, and datasets in unknown spaces.",
+          "page": 11,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "mp",
+      "usage_role": "training",
+      "purpose": "Train base-level models (ECCNN, Magpie, Roost) and meta-level model (MLR)",
+      "used_fields": [
+        "chemical formula",
+        "formation energy",
+        "thermodynamic properties"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [
+        "divided into training set Dtr (90%) and test set Dte (10%)"
+      ],
+      "sample_count": 76513,
+      "evidence": [
+        {
+          "text": "In our experiment, we divided our dataset into a test set Dte, which comprised 10% of the total data, and a training set Dtr, which constituted the remaining 90%.",
+          "page": 11,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "oqmd",
+      "usage_role": "training",
+      "purpose": "Train ECSG model and other existing models for performance comparison",
+      "used_fields": [
+        "chemical formula",
+        "formation energy"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "In addition to the MP database, we further trained the ECSG model and other existing models on the OQMD20 and JARVIS50 databases to conduct a more detailed comparison of their performance, as shown in Supplementary Tables 5 and 6.",
+          "page": 4,
+          "section": "Performance benchmarking against existing models",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "jarvis",
+      "usage_role": "training",
+      "purpose": "Train ECSG model and other existing models for performance comparison",
+      "used_fields": [
+        "chemical formula",
+        "formation energy"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "In addition to the MP database, we further trained the ECSG model and other existing models on the OQMD20 and JARVIS50 databases to conduct a more detailed comparison of their performance, as shown in Supplementary Tables 5 and 6.",
+          "page": 4,
+          "section": "Performance benchmarking against existing models",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "mp",
+      "usage_role": "test",
+      "purpose": "Benchmark predictive performance using multiple metrics",
+      "used_fields": [
+        "chemical formula",
+        "formation energy",
+        "thermodynamic properties"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [
+        "test set Dte (10%)"
+      ],
+      "sample_count": 8501,
+      "evidence": [
+        {
+          "text": "In our experiment, we divided our dataset into a test set Dte, which comprised 10% of the total data, and a training set Dtr, which constituted the remaining 90%.",
+          "page": 11,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "oqmd",
+      "usage_role": "test",
+      "purpose": "Benchmark predictive performance using multiple metrics",
+      "used_fields": [
+        "chemical formula",
+        "formation energy"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "In addition to the MP database, we further trained the ECSG model and other existing models on the OQMD20 and JARVIS50 databases to conduct a more detailed comparison of their performance, as shown in Supplementary Tables 5 and 6.",
+          "page": 4,
+          "section": "Performance benchmarking against existing models",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "jarvis",
+      "usage_role": "test",
+      "purpose": "Benchmark predictive performance using multiple metrics",
+      "used_fields": [
+        "chemical formula",
+        "formation energy"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "In addition to the MP database, we further trained the ECSG model and other existing models on the OQMD20 and JARVIS50 databases to conduct a more detailed comparison of their performance, as shown in Supplementary Tables 5 and 6.",
+          "page": 4,
+          "section": "Performance benchmarking against existing models",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "perovskite_halides",
+      "usage_role": "test",
+      "purpose": "Benchmark predictive performance in unknown space",
+      "used_fields": [
+        "chemical formula",
+        "stability data"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [
+        "remove duplicate samples from MP"
+      ],
+      "sample_count": 496,
+      "evidence": [
+        {
+          "text": "We collected thermodynamic stability data for 496 perovskite halides from the literature. Among these materials, there are 408 materials in the MP database. To ensure the perovskite halide data set is independent of the training set, we remove these duplicate samples from MP.",
+          "page": 8,
+          "section": "Prediction in unknown space",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "li_oxides",
+      "usage_role": "test",
+      "purpose": "Benchmark predictive performance in unknown space",
+      "used_fields": [
+        "chemical formula",
+        "stability labels"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [
+        "no Li-containing oxides in the training set"
+      ],
+      "sample_count": 6168,
+      "evidence": [
+        {
+          "text": "Subsequently, we use the remaining data in MP for training and employ the extracted Li-containing oxides for testing. Notably, as there are no Li-containing oxides in the training set, the model encounters a completely unfamiliar space, thereby enhancing the credibility of its prediction ability.",
+          "page": 9,
+          "section": "Prediction in unknown space",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "transition_metal_oxides",
+      "usage_role": "test",
+      "purpose": "Benchmark predictive performance in unknown space",
+      "used_fields": [
+        "chemical formula",
+        "stability labels"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [
+        "extracted 7137 transition metal oxides from the MP database"
+      ],
+      "sample_count": 7137,
+      "evidence": [
+        {
+          "text": "Similar to our approach with Li-containing oxides, we extracted 7137 transition metal oxides from the MP database and used the remaining data of MP to train the models.",
+          "page": 9,
+          "section": "Prediction in unknown space",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 6,
+      "dataset_key": "perovskite_oxide_db",
+      "usage_role": "candidate_pool",
+      "purpose": "Enumerate candidate compounds in unexplored composition space",
+      "used_fields": [
+        "chemical formula"
+      ],
+      "is_derived": false,
+      "construction_method": "combinatorial enumeration of cation/anion combinations under charge neutrality constraints",
+      "filter_conditions": [
+        "all metal elements up to Bi (67 cations)",
+        "perovskite stoichiometric templates (ABO3, A2BB′O6, etc.)"
+      ],
+      "sample_count": 4524608,
+      "evidence": [
+        {
+          "text": "We constructed the candidate space of perovskites by enumerating all possible ABO3, A2BB′O6, AA′B2O6, and AA′BB′O6 compounds. In this process, we considered all metal elements up to Bi, resulting in a total of 67 different types of cations that could occupy A-sites or B-sites.",
+          "page": 10,
+          "section": "Double perovskite oxides",
+          "inferred": false
+        },
+        {
+          "text": "After filtering for charge neutrality, 4,524,608 unique compounds remained, forming the candidate composition space.",
+          "page": 10,
+          "section": "Double perovskite oxides",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 7,
+      "dataset_key": "perovskite_oxide_db",
+      "usage_role": "screening",
+      "purpose": "Screen enumerated candidates using ECSG stability predictions",
+      "used_fields": [
+        "chemical formula"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [
+        "cutoff probability to 0.5"
+      ],
+      "sample_count": 1877443,
+      "evidence": [
+        {
+          "text": "By setting the cutoff probability to 0.5, we identified 1,877,443 perovskite oxides predicted to be stable, substantially narrowing down our search range.",
+          "page": 10,
+          "section": "Double perovskite oxides",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 8,
+      "dataset_key": "oqmd",
+      "usage_role": "computational_validation",
+      "purpose": "Validate predictions via first-principles DFT calculations using convex hull reference",
+      "used_fields": [
+        "chemical formula",
+        "formation energy"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The findings revealed that, out of the 35 compounds, 25 matched our predictions. Using the convex hull of OQMD and JARVIS as references, 26 and 32 materials are stable among these 35 materials, respectively.",
+          "page": 10,
+          "section": "Double perovskite oxides",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 8,
+      "dataset_key": "jarvis",
+      "usage_role": "computational_validation",
+      "purpose": "Validate predictions via first-principles DFT calculations using convex hull reference",
+      "used_fields": [
+        "chemical formula",
+        "formation energy"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The findings revealed that, out of the 35 compounds, 25 matched our predictions. Using the convex hull of OQMD and JARVIS as references, 26 and 32 materials are stable among these 35 materials, respectively.",
+          "page": 10,
+          "section": "Double perovskite oxides",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

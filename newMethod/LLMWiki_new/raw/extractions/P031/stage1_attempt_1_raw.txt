@@ -1,0 +1,160 @@
+{
+  "paper": {
+    "title": "Learning Superconductivity from Ordered and Disordered Material Structures",
+    "year": 2024,
+    "doi": null,
+    "research_summary": "The paper introduces SuperCon3D, a new dataset containing both 3D crystal structures (ordered and disordered) and experimental superconducting transition temperatures (Tc), and proposes two deep learning models: SODNet for screening known structures to predict Tc, and DiffCSP-SC for generating novel high-Tc superconductor candidates. It validates the models by screening ICSD to identify candidate superconductors and generating novel structures, with some candidates further validated via DFT calculations for electronic features like Van Hove singularities."
+  },
+  "task": {
+    "task_name_raw": "designing novel superconducting candidates",
+    "task_name_canonical": "designing_novel_superconducting_candidates",
+    "objective": "design novel material structures that are potential superconducting candidates",
+    "material_scope": ["crystal structures", "superconductors"],
+    "target_properties": ["superconducting transition temperature (Tc)"],
+    "constraints": ["high Tc value"],
+    "input_requirements": ["crystal structure M"],
+    "output_goal": ["novel material structures with high Tc"],
+    "evidence": [
+      {
+        "text": "In this study, we define the design of novel superconducting candidates in two ways: the first is “known materials repurposing\", where the potential superconducting candidates are screened from known structures. And the second involves designing novel material structures that are potential superconducting candidates.",
+        "page": 4,
+        "section": "3.2 Superconducting Candidates Designing",
+        "inferred": false
+      },
+      {
+        "text": "Inverse Superconductor Generation Task. This task predicts the chemical composition A, the Cartesian coordinates X, and the lattice matrix L targeted on higher Tc values.",
+        "page": 4,
+        "section": "3.2 Superconducting Candidates Designing",
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "constructing SuperCon3D dataset",
+      "stage_order": 1,
+      "stage_goal": "construct a dataset combining crystal structures and experimental Tc values",
+      "stage_input": ["SuperCon database", "ICSD database", "literature sources"],
+      "stage_output": ["SuperCon3D dataset containing ordered and disordered crystal structures and experimental Tc"],
+      "evidence": [
+        {
+          "text": "Hence, we present a new dataset for data-driven approaches, namely SuperCon3D, containing both 3D crystal structures and experimental superconducting transition temperature (Tc) for the first time.",
+          "page": 1,
+          "section": "Abstract",
+          "inferred": false
+        },
+        {
+          "text": "We extracted approximately 33,000 superconductors with their chemical formulas and corresponding critical temperatures from SuperCon. After removing duplicates and non-superconductors, we identified 11,949 superconducting materials. Additionally, over 200,000 ordered and disordered crystal structures were gathered from the ICSD database [3]. We then matched these 11,949 SuperCon entries with 208,425 ICSD entries based on chemical composition, space group and lattice parameter. Moreover, Tc values and structural data for hydrogen-enriched superconductors were collated from various literature sources. This process resulted in 1,578 superconductor data entries, each featuring both Tc and crystal structure.",
+          "page": 7,
+          "section": "5.1.1 SuperCon3D dataset.",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "training SODNet for Tc prediction",
+      "stage_order": 2,
+      "stage_goal": "train SODNet to predict Tc values given crystal structure",
+      "stage_input": ["SuperCon3D dataset", "disordered graph representation", "SE(3)-equivariant graph attention"],
+      "stage_output": ["trained SODNet model"],
+      "evidence": [
+        {
+          "text": "Based on SuperCon3D, we propose two deep learning methods for designing high Tc superconductors. The first is SODNet, a novel equivariant graph attention model for screening known structures, which differs from existing models in incorporating both ordered and disordered geometric content.",
+          "page": 1,
+          "section": "Abstract",
+          "inferred": false
+        },
+        {
+          "text": "Regarding the importance of symmetry in 3D physics space, it is essential to respect SE(3)-equivariance conditions in neural networks to reduce the model’s dependence on data. To explore the geometric structures with ordered and disordered graphs in SuperCon3D dataset, we propose SODNet, an effective architecture with SE(3)-equivariant graph attention to exploit 3D geometric content.",
+          "page": 4,
+          "section": "4.1 SODNet",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_screening",
+      "stage_name_raw": "screening ICSD database using SODNet",
+      "stage_order": 3,
+      "stage_goal": "screen the entire ICSD database to identify potential high-Tc superconductor candidates",
+      "stage_input": ["trained SODNet model", "ICSD database"],
+      "stage_output": ["list of candidate superconductors with high Tc"],
+      "evidence": [
+        {
+          "text": "Using our model, we screened the ICSD database to identify potential high-Tc superconductors. Appendix E.2 lists 27 candidates, including cuprate, H-rich, heavy-Fermion, iron-based, and other types.",
+          "page": 8,
+          "section": "5.2.4 Potential Superconducting Materials.",
+          "inferred": false
+        },
+        {
+          "text": "To further validate the efficacy of the model, we apply the predicting model to screen the entire ICSD and identify a list of ordered and disorder superconducting candidates.",
+          "page": 10,
+          "section": "6 Conclusion and Discussion",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "training DiffCSP-SC for inverse design",
+      "stage_order": 4,
+      "stage_goal": "train DiffCSP-SC to generate novel crystal structures targeted on higher Tc values",
+      "stage_input": ["SuperCon3D dataset", "pre-training on 1.14 million crystals", "transformer-based equivariant diffusion architecture"],
+      "stage_output": ["trained DiffCSP-SC model"],
+      "evidence": [
+        {
+          "text": "The second is a diffusion generative model DiffCSP-SC for creating new structures, which enables high Tc-targeted generation.",
+          "page": 1,
+          "section": "Abstract",
+          "inferred": false
+        },
+        {
+          "text": "Additionally, we introduce DiffCSP-SC, a transformer-based equivariant diffusion model for inverse design, capable of generating novel high Tc superconductor candidates.",
+          "page": 2,
+          "section": "Introduction",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_generation",
+      "stage_name_raw": "generating novel superconductor candidates with DiffCSP-SC",
+      "stage_order": 5,
+      "stage_goal": "generate novel high-Tc superconductor candidates using DiffCSP-SC",
+      "stage_input": ["trained DiffCSP-SC model"],
+      "stage_output": ["list of 32 novel high-Tc superconducting candidates"],
+      "evidence": [
+        {
+          "text": "Utilizing our model, we aimed to generate novel superconductor candidates with high Tc values. Table 12 and 13 in Appendix E.4 displays 32 potential high Tc superconducting materials categorized as cuprate, H-rich, heavy-Fermion, iron-based, and other types.",
+          "page": 10,
+          "section": "5.3.3 Candidate Superconductors.",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "computational_validation",
+      "stage_name_raw": "performing DFT calculations on candidates",
+      "stage_order": 6,
+      "stage_goal": "verify superconducting properties of generated candidates via DFT calculations",
+      "stage_input": ["generated candidate structures"],
+      "stage_output": ["electronic structures showing Van Hove singularities (VHS)"],
+      "evidence": [
+        {
+          "text": "Subsequently, density-functional theory (DFT) were performed on selected candidates to verify their superconducting properties. Notably, Van Hove singularities (VHS) were observed in the electronic structures of Ba2CuCl2O2, Lu, and BaFe2Se2, as further detailed in Appendix E.5.",
+          "page": 10,
+          "section": "5.3.3 Candidate Superconductors.",
+          "inferred": false
+        },
+        {
+          "text": "We conduct DFT calculation using the Vienna ab initio package (VASP) [57, 7]. ... The van Hove singularity (VHS) is a notable occurrence in condensed matter physics, specifically in the density of states (DOS) of a material. ... From the density of states (DOS) plot, we can observe the van Hove singularity (VHS) phenomenon.",
+          "page": 26,
+          "section": "E.5 DFT Calculations",
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

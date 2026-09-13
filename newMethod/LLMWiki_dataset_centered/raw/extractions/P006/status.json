@@ -1,0 +1,27 @@
+{
+  "paper_id": "P006",
+  "file_name": "06_Transformer_Atomic_Embeddings.pdf",
+  "status": "completed",
+  "completed_at": "2026-08-13T06:07:45.404493+00:00",
+  "model": "qwen-plus",
+  "stage1_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "stage2_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "counts": {
+    "tasks": 1,
+    "stages": 5,
+    "datasets": 7,
+    "dataset_uses": 7
+  }
+}

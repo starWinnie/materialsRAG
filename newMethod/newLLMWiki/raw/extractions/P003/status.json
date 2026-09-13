@@ -1,0 +1,27 @@
+{
+  "paper_id": "P003",
+  "file_name": "03_Tensorial_Spectra.pdf",
+  "status": "completed",
+  "completed_at": "2026-07-27T05:05:55.107428+00:00",
+  "model": "qwen-plus",
+  "stage1_attempts": [
+    {
+      "attempt": "cached",
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "stage2_attempts": [
+    {
+      "attempt": "cached",
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "counts": {
+    "tasks": 1,
+    "stages": 6,
+    "datasets": 2,
+    "dataset_uses": 6
+  }
+}

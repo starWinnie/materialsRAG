@@ -1,0 +1,29 @@
+{
+  "entity_counts": {
+    "Dataset": 54,
+    "DatasetUse": 99,
+    "Evidence": 99,
+    "MaterialSystem": 4,
+    "Method": 7,
+    "Paper": 30,
+    "RDStage": 8,
+    "Representation": 10,
+    "TargetProperty": 10,
+    "Task": 30
+  },
+  "relation_counts": {
+    "DESCRIBES_DATASET": 99,
+    "HAS_DATASET_USE": 99,
+    "HAS_TASK": 30,
+    "PROVIDES_REPRESENTATION": 224,
+    "REQUIRES_REPRESENTATION": 51,
+    "STUDIES_MATERIAL_SYSTEM": 28,
+    "SUPPORTED_BY_EVIDENCE": 99,
+    "SUPPORTS_RD_STAGE": 407,
+    "SUPPORTS_TASK": 97,
+    "TARGETS_PROPERTY": 66,
+    "USES_DATASET": 97,
+    "USES_METHOD": 24
+  },
+  "source_raw_dir": "C:\\Users\\li\\Desktop\\材料大数据\\知识库构建_模拟PVLDB\\ontology_method\\ontology_wiki_30\\_source_llm_wiki\\raw"
+}

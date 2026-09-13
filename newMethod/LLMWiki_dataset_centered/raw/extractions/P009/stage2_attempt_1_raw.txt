@@ -1,0 +1,236 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "materials_project",
+      "canonical_name": "Materials Project",
+      "raw_names": ["Materials Project database", "Materials Project"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["crystalline materials"],
+      "available_properties": [
+        "band gap",
+        "formation energy per atom",
+        "energy above hull",
+        "unit cell volume",
+        "energy per atom",
+        "whether the band gap is direct or indirect"
+      ],
+      "available_fields": ["crystal structure (CIF)", "property values", "material ID"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We collected the dataset used in this work from the Materials Project database40 using the Materials Project free API as of November 1, 2022.",
+          "page": 4,
+          "section": "Data collection and analysis",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "textedge",
+      "canonical_name": "TextEdge",
+      "raw_names": ["TextEdge", "benchmark dataset", "curated dataset", "benchmark text data"],
+      "dataset_type": "paper_specific",
+      "source_dataset_key": "materials_project",
+      "material_scope": ["crystalline materials"],
+      "available_properties": [
+        "band gap",
+        "formation energy per atom",
+        "energy above hull",
+        "unit cell volume",
+        "energy per atom",
+        "whether the band gap is direct or indirect"
+      ],
+      "available_fields": [
+        "crystal text description",
+        "crystal ID",
+        "structural information",
+        "property values"
+      ],
+      "availability": "public",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "In this paper, we develop and make public a benchmark dataset (TextEdge) that contains crystal text descriptions with their properties.",
+          "page": 1,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "Finally, we release to the public the curated dataset we used as a benchmark, called TextEdge, to accelerate natural language processing (NLP) for materials science research.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "We focus on six crystal properties that include both regression and classification tasks and are diverse enough to evaluate the capabilities of any property predictor. We collect the data of band gap, formation energy per atom (FEPA), energy above hull (Ehull), crystal volume, energy per atom (EPA), and an indicator of whether the band gap is direct or indirect (Is-gap-direct).",
+          "page": 4,
+          "section": "Data collection and analysis",
+          "inferred": false
+        },
+        {
+          "text": "The data originally contained 145,825 crystals structure-description pairs which we randomly split into 125,825 samples for the training set, 10,000 samples for the validation set and 10,000 samples for the test set.",
+          "page": 4,
+          "section": "Data collection and analysis",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "materials_project",
+      "usage_role": "source",
+      "purpose": "acquire raw crystal structural data and associated properties",
+      "used_fields": ["crystal structure (CIF)", "property values"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 145825,
+      "evidence": [
+        {
+          "text": "We collected the dataset used in this work from the Materials Project database40 using the Materials Project free API as of November 1, 2022.",
+          "page": 4,
+          "section": "Data collection and analysis",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "materials_project",
+      "usage_role": "source",
+      "purpose": "generate crystal text descriptions using Robocrystallographer",
+      "used_fields": ["CIF files"],
+      "is_derived": false,
+      "construction_method": "Robocrystallographer applied to CIF files",
+      "filter_conditions": [],
+      "sample_count": 145825,
+      "evidence": [
+        {
+          "text": "We generated the crystal text descriptions using Robocrystallographer41, a tool that generates a deterministic human readable text description of a structure given its CIF file.",
+          "page": 4,
+          "section": "Data collection and analysis",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "materials_project",
+      "usage_role": "label_source",
+      "purpose": "obtain property labels for training and evaluation",
+      "used_fields": [
+        "band gap",
+        "formation energy per atom",
+        "energy above hull",
+        "crystal volume",
+        "energy per atom",
+        "Is-gap-direct"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 145825,
+      "evidence": [
+        {
+          "text": "We collect the data of band gap, formation energy per atom (FEPA), energy above hull (Ehull), crystal volume, energy per atom (EPA), and an indicator of whether the band gap is direct or indirect (Is-gap-direct).",
+          "page": 4,
+          "section": "Data collection and analysis",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "textedge",
+      "usage_role": "training",
+      "purpose": "fine-tune T5 encoder on preprocessed text and property labels",
+      "used_fields": [
+        "crystal text description",
+        "band gap",
+        "formation energy per atom",
+        "energy above hull",
+        "crystal volume",
+        "energy per atom",
+        "Is-gap-direct"
+      ],
+      "is_derived": false,
+      "construction_method": "derived from Materials Project via Robocrystallographer text generation and preprocessing",
+      "filter_conditions": [],
+      "sample_count": 125825,
+      "evidence": [
+        {
+          "text": "The data originally contained 145,825 crystals structure-description pairs which we randomly split into 125,825 samples for the training set, 10,000 samples for the validation set and 10,000 samples for the test set.",
+          "page": 4,
+          "section": "Data collection and analysis",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "textedge",
+      "usage_role": "validation",
+      "purpose": "fine-tune T5 encoder on preprocessed text and property labels",
+      "used_fields": [
+        "crystal text description",
+        "band gap",
+        "formation energy per atom",
+        "energy above hull",
+        "crystal volume",
+        "energy per atom",
+        "Is-gap-direct"
+      ],
+      "is_derived": false,
+      "construction_method": "derived from Materials Project via Robocrystallographer text generation and preprocessing",
+      "filter_conditions": [],
+      "sample_count": 10000,
+      "evidence": [
+        {
+          "text": "The data originally contained 145,825 crystals structure-description pairs which we randomly split into 125,825 samples for the training set, 10,000 samples for the validation set and 10,000 samples for the test set.",
+          "page": 4,
+          "section": "Data collection and analysis",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 6,
+      "dataset_key": "textedge",
+      "usage_role": "test",
+      "purpose": "evaluate prediction performance on test set using MAE and AUC",
+      "used_fields": [
+        "crystal text description",
+        "band gap",
+        "formation energy per atom",
+        "energy above hull",
+        "crystal volume",
+        "energy per atom",
+        "Is-gap-direct"
+      ],
+      "is_derived": false,
+      "construction_method": "derived from Materials Project via Robocrystallographer text generation and preprocessing",
+      "filter_conditions": [],
+      "sample_count": 10000,
+      "evidence": [
+        {
+          "text": "The data originally contained 145,825 crystals structure-description pairs which we randomly split into 125,825 samples for the training set, 10,000 samples for the validation set and 10,000 samples for the test set.",
+          "page": 4,
+          "section": "Data collection and analysis",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

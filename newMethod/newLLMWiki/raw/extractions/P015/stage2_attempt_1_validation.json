@@ -1,0 +1,9 @@
+{
+  "attempt": 1,
+  "errors": [
+    "dataset_uses[5].sample_count is not explicitly printed in its evidence",
+    "dataset_uses[6].sample_count is not explicitly printed in its evidence",
+    "dataset_uses[7].sample_count is not explicitly printed in its evidence"
+  ],
+  "exception": null
+}

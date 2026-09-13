@@ -1,0 +1,27 @@
+{
+  "paper_id": "P024",
+  "file_name": "24_Structure_Aware_Transfer_Learning.pdf",
+  "status": "completed",
+  "completed_at": "2026-08-13T06:44:27.058759+00:00",
+  "model": "qwen-plus",
+  "stage1_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "stage2_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "counts": {
+    "tasks": 1,
+    "stages": 6,
+    "datasets": 10,
+    "dataset_uses": 20
+  }
+}

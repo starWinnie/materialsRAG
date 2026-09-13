@@ -1,0 +1,27 @@
+{
+  "paper_id": "P022",
+  "file_name": "22_Crystalformer.pdf",
+  "status": "completed",
+  "completed_at": "2026-07-27T05:08:44.248661+00:00",
+  "model": "qwen-plus",
+  "stage1_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "stage2_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "counts": {
+    "tasks": 1,
+    "stages": 4,
+    "datasets": 2,
+    "dataset_uses": 5
+  }
+}

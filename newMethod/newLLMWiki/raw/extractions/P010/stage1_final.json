@@ -1,0 +1,161 @@
+{
+  "paper": {
+    "title": "RETHINKING THE ROLE OF FRAMES FOR SE(3)-INVARIANT CRYSTAL STRUCTURE MODELING",
+    "year": 2025,
+    "doi": null,
+    "research_summary": "Crystal structure modeling with graph neural networks is essential for various applications in materials informatics, and capturing SE(3)-invariant geometric features is a fundamental requirement for these networks. A straightforward approach is to model with orientation-standardized structures through structure-aligned coordinate systems, or “frames.” However, unlike molecules, determining frames for crystal structures is challenging due to their infinite and highly symmetric nature. In particular, existing methods rely on a statically fixed frame for each structure, determined solely by its structural information, regardless of the task under consideration. Here, we rethink the role of frames, questioning whether such simplistic alignment with the structure is sufficient, and propose the concept of dynamic frames. While accommodating the infinite and symmetric nature of crystals, these frames provide each atom with a dynamic view of its local environment, focusing on actively interacting atoms. We demonstrate this concept by utilizing the attention mechanism in a recent transformer-based crystal encoder, resulting in a new architecture called CrystalFramer. Extensive experiments show that CrystalFramer outperforms conventional frames and existing crystal encoders in various crystal property prediction tasks."
+  },
+  "task": {
+    "task_name_raw": "crystal property prediction",
+    "task_name_canonical": "crystal_property_prediction",
+    "objective": "predict crystal properties such as formation energy, bandgap, bulk modulus, shear modulus, and energy above hull",
+    "material_scope": [
+      "crystals"
+    ],
+    "target_properties": [
+      "formation energy",
+      "bandgap",
+      "bulk modulus",
+      "shear modulus",
+      "energy above hull"
+    ],
+    "constraints": [
+      "SE(3)-invariance",
+      "periodic SE(3) invariance"
+    ],
+    "input_requirements": [
+      "crystal structure represented by unit cell (A, P, L)"
+    ],
+    "output_goal": [
+      "high-throughput prediction of material properties"
+    ],
+    "evidence": [
+      {
+        "text": "To validate the effectiveness of the proposed dynamic frames, we conducted extensive experiments on crystal property prediction.",
+        "page": 7,
+        "section": "EXPERIMENTS",
+        "inferred": false
+      },
+      {
+        "text": "Tables 1 and 2 extensively compare the mean absolute errors of the proposed and existing methods for the JARVIS (5 tasks) and MP (4 tasks) datasets.",
+        "page": 8,
+        "section": "CRYSTAL PROPERTY PREDICTION",
+        "inferred": false
+      },
+      {
+        "text": "We use formation energy (formation_energy_peratom), total energy (optb88vdw_total_energy), bandgap (optb88vdw_bandgap and mbj_bandgap), and energy above hull or E hull (ehull) as regression targets.",
+        "page": 17,
+        "section": "C DATASET SPECIFICATIONS",
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "using datasets derived from JARVIS, Materials Project (MP), and Open Quantum Materials Database (OQMD)",
+      "stage_order": 1,
+      "stage_goal": "acquire crystal structure data and corresponding DFT-simulated properties",
+      "stage_input": [],
+      "stage_output": [
+        "JARVIS dataset (55,723 materials)",
+        "MP dataset (69,239 materials)",
+        "OQMD dataset (817,636 materials)"
+      ],
+      "evidence": [
+        {
+          "text": "To verify this concept, we develop several types of dynamic frames by utilizing the self-attention mechanism (Taniai et al., 2024) to quantify the interaction engagement. We conduct extensive comparisons on datasets derived from the JARVIS, Materials Project (MP), and Open Quantum Materials Database (OQMD).",
+          "page": 2,
+          "section": "unknown",
+          "inferred": false
+        },
+        {
+          "text": "Datasets. We use three datasets: JARVIS (55,723 materials), MP (69,239 materials), and OQMD (817,636 materials), using snapshots available through a Python package (jarvis-tools). These datasets provide several material properties, such as formation energy and bandgap, simulated by DFT calculations.",
+          "page": 8,
+          "section": "CRYSTAL PROPERTY PREDICTION",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_preparation",
+      "stage_name_raw": "using consistent data splits and preprocessing",
+      "stage_order": 2,
+      "stage_goal": "prepare data using standardized splits and preprocessing for fair comparison",
+      "stage_input": [
+        "JARVIS, MP, OQMD datasets"
+      ],
+      "stage_output": [
+        "training, validation, and test splits for each dataset"
+      ],
+      "evidence": [
+        {
+          "text": "Following these and later studies (Lin et al., 2023; Yan et al., 2024; Taniai et al., 2024), we use the same data splits and cite their reported scores to reduce computational burden.",
+          "page": 8,
+          "section": "CRYSTAL PROPERTY PREDICTION",
+          "inferred": false
+        },
+        {
+          "text": "The sizes of training, validation, and test splits are listed under each property name.",
+          "page": 9,
+          "section": "Table 1",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "training CrystalFramer with dynamic frames",
+      "stage_order": 3,
+      "stage_goal": "train the CrystalFramer architecture with dynamic frame construction",
+      "stage_input": [
+        "prepared datasets",
+        "Crystalformer baseline architecture"
+      ],
+      "stage_output": [
+        "trained CrystalFramer models (max frames, weighted PCA frames)"
+      ],
+      "evidence": [
+        {
+          "text": "To assess the pure effects of introducing the frames, we precisely follow the training settings of the baseline method, Crystalformer (Taniai et al., 2024), with only one modification. We have increased the number of training epochs to account for the increased complexity of our edge feature design (i.e., our method takes longer to converge, but reduces validation losses more rapidly). Specifically, for the JARVIS dataset, we train our model from scratch by optimizing the mean absolute loss function using Adam (Kingma & Ba, 2015) for a total of 2000 epochs, while enabling the frames from the beginning.",
+          "page": 8,
+          "section": "Training settings",
+          "inferred": false
+        },
+        {
+          "text": "We also report additional results for the OQMD dataset using larger models in Table A4. Increasing the number of self-attention blocks enhances the performances of both the baseline and proposed models.",
+          "page": 18,
+          "section": "E FULL BENCHMARK RESULTS",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "comparing mean absolute errors on crystal property prediction tasks",
+      "stage_order": 4,
+      "stage_goal": "evaluate performance against baselines using mean absolute error metrics",
+      "stage_input": [
+        "trained CrystalFramer models",
+        "baseline models (PCA frames, lattice frames, Crystalformer, etc.)"
+      ],
+      "stage_output": [
+        "mean absolute error scores for formation energy, bandgap, bulk modulus, shear modulus, E hull"
+      ],
+      "evidence": [
+        {
+          "text": "Tables 1 and 2 extensively compare the mean absolute errors of the proposed and existing methods for the JARVIS (5 tasks) and MP (4 tasks) datasets.",
+          "page": 8,
+          "section": "CRYSTAL PROPERTY PREDICTION",
+          "inferred": false
+        },
+        {
+          "text": "Table 3: Property prediction results on the OQMD dataset.",
+          "page": 9,
+          "section": "Table 3",
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

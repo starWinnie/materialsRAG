@@ -1,0 +1,234 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "jarvis",
+      "canonical_name": "JARVIS",
+      "raw_names": [
+        "Joint Automated Repository for Various Integrated Simulations (JARVIS)",
+        "JARVIS"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "crystalline solids"
+      ],
+      "available_properties": [
+        "formation energy",
+        "band gap",
+        "bulk modulus"
+      ],
+      "available_fields": [
+        "chemical formula",
+        "crystal structure",
+        "formation energy",
+        "band gap",
+        "bulk modulus"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Three ab initio-derived materials databases have been selected for this evaluation: Joint Automated Repository for Various Integrated Simulations (JARVIS)29,30, Materials Project (MP)31, and the Open Quantum Materials Database (OQMD)32.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "materials_project",
+      "canonical_name": "Materials Project",
+      "raw_names": [
+        "Materials Project (MP)",
+        "MP"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "crystalline solids"
+      ],
+      "available_properties": [
+        "formation energy",
+        "band gap",
+        "bulk modulus"
+      ],
+      "available_fields": [
+        "chemical formula",
+        "crystal structure",
+        "formation energy",
+        "band gap",
+        "bulk modulus"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Three ab initio-derived materials databases have been selected for this evaluation: Joint Automated Repository for Various Integrated Simulations (JARVIS)29,30, Materials Project (MP)31, and the Open Quantum Materials Database (OQMD)32.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "oqmd",
+      "canonical_name": "Open Quantum Materials Database",
+      "raw_names": [
+        "Open Quantum Materials Database (OQMD)",
+        "OQMD"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "crystalline solids"
+      ],
+      "available_properties": [
+        "formation energy",
+        "band gap",
+        "bulk modulus"
+      ],
+      "available_fields": [
+        "chemical formula",
+        "crystal structure",
+        "formation energy",
+        "band gap",
+        "bulk modulus"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Three ab initio-derived materials databases have been selected for this evaluation: Joint Automated Repository for Various Integrated Simulations (JARVIS)29,30, Materials Project (MP)31, and the Open Quantum Materials Database (OQMD)32.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "jarvis",
+      "usage_role": "source",
+      "purpose": "To acquire diverse, large-scale, precomputed materials property data for robust OOD evaluation.",
+      "used_fields": [
+        "chemical formula",
+        "crystal structure",
+        "formation energy",
+        "band gap",
+        "bulk modulus"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [
+        "formation energies larger than 5 eV/atom removed"
+      ],
+      "sample_count": 76000,
+      "evidence": [
+        {
+          "text": "Three ab initio-derived materials databases have been selected for this evaluation: Joint Automated Repository for Various Integrated Simulations (JARVIS)29,30, Materials Project (MP)31, and the Open Quantum Materials Database (OQMD)32.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "Table 1 | In-distribution performance for the formation energy prediction... JARVIS... TheMP, JARVIS,andOQMD datasetscontain146k, 76k,and 1M entries, respectively.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "We use the snapshots of the JARVIS, Materials Project, and OMQD databases used in our previous study47, available on Zenodo at https://zenodo.org/records/8200972. The snapshots correspond the JARVIS 2022.12.12 version... and they have been preprocessed to remove materials with formation energies larger than 5 eV/atom.",
+          "page": 8,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "materials_project",
+      "usage_role": "source",
+      "purpose": "To acquire diverse, large-scale, precomputed materials property data for robust OOD evaluation.",
+      "used_fields": [
+        "chemical formula",
+        "crystal structure",
+        "formation energy",
+        "band gap",
+        "bulk modulus"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [
+        "formation energies larger than 5 eV/atom removed"
+      ],
+      "sample_count": 146000,
+      "evidence": [
+        {
+          "text": "Three ab initio-derived materials databases have been selected for this evaluation: Joint Automated Repository for Various Integrated Simulations (JARVIS)29,30, Materials Project (MP)31, and the Open Quantum Materials Database (OQMD)32.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "Table 1 | In-distribution performance for the formation energy prediction... MP... TheMP, JARVIS,andOQMD datasetscontain146k, 76k,and 1M entries, respectively.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "We use the snapshots of the JARVIS, Materials Project, and OMQD databases used in our previous study47, available on Zenodo at https://zenodo.org/records/8200972. The snapshots correspond the JARVIS 2022.12.12 version, the Materials Project 2021.11.10 version... and they have been preprocessed to remove materials with formation energies larger than 5 eV/atom.",
+          "page": 8,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "oqmd",
+      "usage_role": "source",
+      "purpose": "To acquire diverse, large-scale, precomputed materials property data for robust OOD evaluation.",
+      "used_fields": [
+        "chemical formula",
+        "crystal structure",
+        "formation energy",
+        "band gap",
+        "bulk modulus"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [
+        "formation energies larger than 5 eV/atom removed"
+      ],
+      "sample_count": 1000000,
+      "evidence": [
+        {
+          "text": "Three ab initio-derived materials databases have been selected for this evaluation: Joint Automated Repository for Various Integrated Simulations (JARVIS)29,30, Materials Project (MP)31, and the Open Quantum Materials Database (OQMD)32.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "Table 1 | In-distribution performance for the formation energy prediction... OQMD... TheMP, JARVIS,andOQMD datasetscontain146k, 76k,and 1M entries, respectively.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "We use the snapshots of the JARVIS, Materials Project, and OMQD databases used in our previous study47, available on Zenodo at https://zenodo.org/records/8200972. The snapshots correspond the JARVIS 2022.12.12 version, the Materials Project 2021.11.10 version, and the OQMD v1.6 version (published in November 2023), and they have been preprocessed to remove materials with formation energies larger than 5 eV/atom.",
+          "page": 8,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

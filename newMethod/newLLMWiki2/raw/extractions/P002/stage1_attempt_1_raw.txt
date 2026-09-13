@@ -1,0 +1,198 @@
+{
+  "paper": {
+    "title": "A SINGLE ARCHITECTURE FOR REPRESENTING INVARIANCE UNDER ANY SPACE GROUP",
+    "year": 2026,
+    "doi": null,
+    "research_summary": "This paper introduces the Crystal Fourier Transformer (CFT), a single neural architecture that adapts its weights to enforce exact invariance to any input crystallographic space group. It achieves this by constructing symmetry-adapted Fourier bases through analytical derivation of constraints that group operations impose on Fourier coefficients, encoding these constraints into a group-conditional routing matrix (adjacency matrix of a dual graph). The architecture enables weight sharing across all 230 space groups, supports zero-shot generalization to unseen groups, and is validated on material property prediction tasks."
+  },
+  "task": {
+    "task_name_raw": "developing a single machine learning architecture that is capable of adapting its weights automatically to enforce invariance to any input space group",
+    "task_name_canonical": "space_group_invariant_architecture_development",
+    "objective": "Develop a single, adaptive neural architecture capable of enforcing exact invariance to any of the 230 crystallographic space groups.",
+    "material_scope": ["crystalline solids"],
+    "target_properties": ["G-invariance", "zero-shot generalization to unseen space groups"],
+    "constraints": ["must support all 230 space groups in 3D", "must enable weight sharing across groups", "must overcome data sparsity for rare groups"],
+    "input_requirements": ["atomic positions", "space group identifier (1-230)", "lattice vectors"],
+    "output_goal": ["G-invariant representation of crystal structure", "material property predictions (e.g., total energy, band gap)"],
+    "evidence": [
+      {
+        "text": "In this work we present a new approach to crystallographic symmetries by developing a single machine learning architecture that is capable of adapting its weights automatically to enforce invariance to any input space group.",
+        "page": 1,
+        "section": "ABSTRACT",
+        "inferred": false
+      },
+      {
+        "text": "We introduce the Crystal Fourier Transformer (CFT), a model designed to process crystallographic data by explicitly building in invariance to its space group symmetry.",
+        "page": 6,
+        "section": "3.3 CRYSTAL FOURIER TRANSFORMER",
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "acquiring crystal structure data with space group labels",
+      "stage_order": 1,
+      "stage_goal": "Obtain crystal structures annotated with their corresponding space group identifiers.",
+      "stage_input": ["Materials Project database"],
+      "stage_output": ["dataset of crystals with atomic positions, lattice vectors, and space group IDs"],
+      "evidence": [
+        {
+          "text": "For our primary benchmark experiments, we use data from the Materials Project, one of the largest databases of computational material properties (Jain et al., 2013).",
+          "page": 7,
+          "section": "5.1 EXPERIMENTAL SETUP",
+          "inferred": false
+        },
+        {
+          "text": "For each material, the model receives the atomic numbers and fractional coordinates of atoms within the unit cell, the 3×3 lattice vectors, and the corresponding space group identifier (1-230).",
+          "page": 7,
+          "section": "5.1 EXPERIMENTAL SETUP",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_preparation",
+      "stage_name_raw": "constructing reciprocal lattice and constraint graphs",
+      "stage_order": 2,
+      "stage_goal": "Compute the reciprocal lattice L* and build the dual constraint graph for a given space group G.",
+      "stage_input": ["space group G", "reciprocal lattice L*"],
+      "stage_output": ["constraint graph G with nodes L* and weighted edges"],
+      "evidence": [
+        {
+          "text": "Algorithm 1 Symmetry-Adapted Fourier Basis Construction\nRequire: Space group G, reciprocal lattice L∗\n1: Construct constraint graph G with nodes L∗and edges ω →Aω weighted by ei2πω⊤A⊤t for each ϕ(x) = Ax + t ∈G",
+          "page": 5,
+          "section": "3.2 DUAL GRAPHS OF CRYSTALLOGRAPHIC FOURIER SERIES",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "label_generation",
+      "stage_name_raw": "computing orbit distances for self-supervised pretraining",
+      "stage_order": 3,
+      "stage_goal": "Calculate ground-truth orbit distances dG(x1, x2) between atomic positions as supervision signal.",
+      "stage_input": ["atomic positions x1, x2", "space group G"],
+      "stage_output": ["orbit distance dG(x1, x2)"],
+      "evidence": [
+        {
+          "text": "The orbit distance is defined as\ndG(x1, x2) := minϕ1,ϕ2∈G ||ϕ1(x1) −ϕ2(x2)||2.\n(8)\nIt measures the shortest Euclidean distance between any two points in the respective orbits of the atoms, which stays invariant to applications of group actions to either atom.",
+          "page": 8,
+          "section": "5.2 SYMMETRY-ADAPTED ENCODINGS CAPTURE ORBIT DISTANCE",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "pretraining the G-invariant positional encoding module",
+      "stage_order": 4,
+      "stage_goal": "Train the symmetry-adapted encoding module to produce embeddings whose Euclidean distance matches the orbit distance.",
+      "stage_input": ["atomic positions", "space group G", "lattice vectors", "orbit distances"],
+      "stage_output": ["pretrained G-invariant positional encoding module"],
+      "evidence": [
+        {
+          "text": "We first validate this capability in a controlled, self-supervised setting before applying the model to downstream tasks. The goal is to train the encoder to produce positional encodings where the Euclidean distance between embeddings directly corresponds to the true orbit distance dG(x1, x2) between atoms.",
+          "page": 8,
+          "section": "5.2 SYMMETRY-ADAPTED ENCODINGS CAPTURE ORBIT DISTANCE",
+          "inferred": false
+        },
+        {
+          "text": "The model is trained to minimize the Mean Squared Error (MSE) between the L2 distance of the output embeddings and the ground-truth orbit distance.",
+          "page": 8,
+          "section": "5.2 SYMMETRY-ADAPTED ENCODINGS CAPTURE ORBIT DISTANCE",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "training the full Crystal Fourier Transformer (CFT)",
+      "stage_order": 5,
+      "stage_goal": "Train the complete CFT architecture on material property prediction tasks using pretrained positional encodings.",
+      "stage_input": ["pretrained positional encodings", "atomic element embeddings", "material property labels"],
+      "stage_output": ["fully trained CFT model"],
+      "evidence": [
+        {
+          "text": "Having validated our encoding module, we now evaluate the full CFT architecture on the task of predicting material properties from the Materials Project dataset.",
+          "page": 8,
+          "section": "5.3 MATERIAL PROPERTY PREDICTION",
+          "inferred": false
+        },
+        {
+          "text": "We use the pre-trained positional encoding model from Section 5.2 to initialize the positional encodings in CFT.",
+          "page": 8,
+          "section": "5.3 MATERIAL PROPERTY PREDICTION",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "evaluating CFT on material property prediction benchmarks",
+      "stage_order": 6,
+      "stage_goal": "Assess CFT's performance against state-of-the-art baselines on predicting total energy, band gap, bulk modulus, and shear modulus.",
+      "stage_input": ["test set of crystals", "CFT model", "baseline models"],
+      "stage_output": ["test MAE scores for each property"],
+      "evidence": [
+        {
+          "text": "The task is to predict four key material properties from the crystal structure: total energy (eV/atom), band gap (eV), bulk modulus (log GPa), and shear modulus (log GPa).",
+          "page": 7,
+          "section": "5.1 EXPERIMENTAL SETUP",
+          "inferred": false
+        },
+        {
+          "text": "Table 1 shows the test MAE for CFT and baseline models.",
+          "page": 9,
+          "section": "5.3 MATERIAL PROPERTY PREDICTION",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_screening",
+      "stage_name_raw": "selecting space groups for zero-shot evaluation",
+      "stage_order": 7,
+      "stage_goal": "Identify a subset of space groups (those with inversion symmetry) to hold out for zero-shot generalization testing.",
+      "stage_input": ["list of 230 space groups"],
+      "stage_output": ["held-out set Ginv of centrosymmetric space groups"],
+      "evidence": [
+        {
+          "text": "We test this hypothesis in a zero-shot setting by holding out all space groups containing inversion symmetry from the training set.",
+          "page": 9,
+          "section": "5.4 ZERO-SHOT GENERALIZATION TO UNSEEN SPACE GROUPS",
+          "inferred": false
+        },
+        {
+          "text": "Let Ginv denote the set of space groups with inversion symmetry (centrosymmetric groups).",
+          "page": 9,
+          "section": "5.4 ZERO-SHOT GENERALIZATION TO UNSEEN SPACE GROUPS",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "computational_validation",
+      "stage_name_raw": "performing zero-shot inference on unseen space groups",
+      "stage_order": 8,
+      "stage_goal": "Validate that CFT generalizes to held-out space groups without retraining by providing the precomputed routing matrix MG at inference time.",
+      "stage_input": ["crystals from held-out space groups", "precomputed routing matrices MG"],
+      "stage_output": ["predictions for held-out groups", "performance gaps ΔMAEG"],
+      "evidence": [
+        {
+          "text": "For CFT in the zero-shot regime, we simply provide at inference time the precomputed routing matrix MG corresponding to the unseen group G; no parameter updates or fine-tuning are performed.",
+          "page": 9,
+          "section": "5.4 ZERO-SHOT GENERALIZATION TO UNSEEN SPACE GROUPS",
+          "inferred": false
+        },
+        {
+          "text": "Figure 3 plots these signed gaps ∆MAEG for all held-out groups with at least 20 data points for both shear modulus and total energy;",
+          "page": 10,
+          "section": "5.4 ZERO-SHOT GENERALIZATION TO UNSEEN SPACE GROUPS",
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

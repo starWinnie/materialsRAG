@@ -1,0 +1,1672 @@
+{
+  "paper": {
+    "paper_id": "P024",
+    "title": "Structure-aware graph neural network based deep transfer learning framework for enhanced predictive analytics on diverse materials datasets",
+    "year": 2024,
+    "doi": "10.1038/s41524-023-01185-3",
+    "file_name": "24_Structure_Aware_Transfer_Learning.pdf",
+    "research_summary": "This paper presents a structure-aware graph neural network (GNN) based deep transfer learning framework to improve predictive performance for materials properties using sparse data. It leverages the ALIGNN architecture trained on large source datasets (e.g., Materials Project formation energy) and applies transfer learning—via fine-tuning or feature extraction—to small target datasets across diverse materials classes (3D/2D, inorganic/organic, computational/experimental) and properties. Evaluation across 115 dataset-property combinations shows transfer learning models outperform scratch-trained models in ≈90% of cases, with particular gains for small datasets and extrapolation tasks.",
+    "extraction_status": "completed"
+  },
+  "tasks": [
+    {
+      "task_id": "T_P024_01",
+      "paper_id": "P024",
+      "task_name_raw": "materials property prediction",
+      "task_name_canonical": "materials_property_prediction",
+      "objective": "To accurately predict materials properties using crystal structure information, especially when training data is sparse.",
+      "material_scope": [
+        "3D materials",
+        "2D materials",
+        "inorganic materials",
+        "organic materials",
+        "computational materials",
+        "experimental materials"
+      ],
+      "target_properties": [
+        "formation energy",
+        "band gap",
+        "elastic tensor components",
+        "dielectric constant",
+        "piezoelectric tensor",
+        "exfoliation energy",
+        "SLME",
+        "Meps",
+        "PMDi",
+        "MaxM",
+        "MinM",
+        "MaxIrM",
+        "MinIrM",
+        "PMEij",
+        "Poisson ratio",
+        "ShearGV",
+        "BulkKV",
+        "ETC",
+        "NSB",
+        "PSB",
+        "PPF",
+        "NPF",
+        "Deltae",
+        "Ehull",
+        "Encut",
+        "Magoszi",
+        "Magout",
+        "Epsx",
+        "Epsy",
+        "Epsz",
+        "KLU",
+        "BgOptb",
+        "BgMbj",
+        "AvgME",
+        "AvgMH",
+        "Spillage",
+        "Exfoli",
+        "b3lyp gap",
+        "b3lyp homo",
+        "b3lyp lumo",
+        "b3lyp scharber jsc",
+        "b3lyp scharber pce",
+        "b3lyp scharber voc",
+        "bp86 gap",
+        "bp86 homo",
+        "bp86 lumo",
+        "bp86 scharber jsc",
+        "bp86 scharber pce",
+        "bp86 scharber voc",
+        "m06 gap",
+        "m06 homo",
+        "m06 lumo",
+        "m06 scharber jsc",
+        "m06 scharber pce",
+        "m06 scharber voc",
+        "pbe0 gap",
+        "pbe0 homo",
+        "pbe0 lumo",
+        "pbe0 scharber jsc",
+        "pbe0 scharber pce",
+        "pbe0 scharber voc"
+      ],
+      "constraints": [
+        "small dataset size",
+        "diverse materials classes",
+        "cross-property transfer",
+        "cross-materials class transfer",
+        "need for structure-aware input"
+      ],
+      "input_requirements": [
+        "crystal structure files (e.g., POSCAR)",
+        "atomic positions",
+        "lattice geometry",
+        "atom, bond, and angle information"
+      ],
+      "output_goal": [
+        "predicted numerical value of a target materials property"
+      ],
+      "parent_task_id": null,
+      "task_level": "main_task",
+      "evidence": [
+        {
+          "text": "Here we present a framework for materials property prediction tasks using structure information that leverages graph neural network-based architecture along with deep-transfer-learning techniques to drastically improve the model’s predictive ability on diverse materials (3D/2D, inorganic/organic, computational/experimental) data.",
+          "page": 1,
+          "section": "INTRODUCTION",
+          "inferred": false
+        }
+      ]
+    }
+  ],
+  "stages": [
+    {
+      "stage_id": "S_P024_01",
+      "paper_id": "P024",
+      "task_id": "T_P024_01",
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "acquisition of diverse materials datasets",
+      "stage_order": 1,
+      "stage_goal": "To collect a broad set of publicly available materials datasets covering diverse structures, classes, and properties.",
+      "stage_input": [],
+      "stage_output": [
+        "Materials Project (MP)",
+        "JARVIS-3D",
+        "JARVIS-2D",
+        "Flla",
+        "Dielectric Constant (DC)",
+        "Piezoelectric Tensor (PT)",
+        "Experimental Formation Energy (EFE)",
+        "Kingsbury Experimental Formation Energy (KEFE)",
+        "Kingsbury Experimental Bandgap (KEB)",
+        "Harvard Organic Photovoltaic Dataset (HOPV)"
+      ],
+      "evidence": [
+        {
+          "text": "We use nine datasets of DFT-computed and experimental properties in this work: Materials Project (MP)4, Joint Automated Repository for Various Integrated Simulations (JARVIS) 3D with 46 properties and 2D with 32 properties5, Flla44 with three properties, Dielectric Constant (DC)45 with five properties, Piezoelectric Tensor (PT)46 with two properties, Experimental Formation Energy (EFE)47 with one property, Kingsbury Experimental Formation Energy (KEFE)48 with one property, Kingsbury Experimental Bandgap (KEB)49 with one property, and Harvard Organic Photovoltaic Dataset (HOPV)50 with 24 properties.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P024_02",
+      "paper_id": "P024",
+      "task_id": "T_P024_01",
+      "stage_type": "data_preparation",
+      "stage_name_raw": "preprocessing of structure files into atom/bond/angle features",
+      "stage_order": 2,
+      "stage_goal": "To convert raw crystal structure files (e.g., POSCAR) into structured graph representations suitable for ALIGNN input.",
+      "stage_input": [
+        "structure file containing information on lattice geometry and the ionic positions of a compound"
+      ],
+      "stage_output": [
+        "atom-based features",
+        "bond-based features",
+        "angle-based features"
+      ],
+      "evidence": [
+        {
+          "text": "The structure file containing information on lattice geometry and the ionic positions of a compound is divided into atom, bond, and angle-based features before feeding into the ALIGNN-based Feature Extractor where we perform feature extraction.",
+          "page": 3,
+          "section": "ALIGNN-based Feature Extractor",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P024_03",
+      "paper_id": "P024",
+      "task_id": "T_P024_01",
+      "stage_type": "model_training",
+      "stage_name_raw": "training of source model (ALIGNN on MP formation energy)",
+      "stage_order": 3,
+      "stage_goal": "To train a robust, structure-aware source model on a large dataset (MP formation energy) to capture generalizable chemical and structural knowledge.",
+      "stage_input": [
+        "Materials Project dataset",
+        "formation energy labels",
+        "structure files (POSCAR)"
+      ],
+      "stage_output": [
+        "pre-trained ALIGNN source model"
+      ],
+      "evidence": [
+        {
+          "text": "A model trained on the formation energy of the MP dataset39 is used as the source model to perform fine-tuning and feature extraction-based transfer learning as formation energy has shown to lead to meaningful representations from large source datasets36, which can then be applied during the model training on the smaller target datasets to improve their predictive performance.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        },
+        {
+          "text": "We build source models using a structure-aware GNN-based architecture called ALIGNN on the MP dataset by using only formation energy as the source materials property.",
+          "page": 5,
+          "section": "DISCUSSION",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P024_04",
+      "paper_id": "P024",
+      "task_id": "T_P024_01",
+      "stage_type": "model_training",
+      "stage_name_raw": "transfer learning via fine-tuning on target datasets",
+      "stage_order": 4,
+      "stage_goal": "To adapt the pre-trained ALIGNN source model to each target dataset by initializing weights from the source model and refining them on target data.",
+      "stage_input": [
+        "pre-trained ALIGNN source model",
+        "target dataset (e.g., JARVIS-3D property)",
+        "target structure files",
+        "target property labels"
+      ],
+      "stage_output": [
+        "fine-tuned target model"
+      ],
+      "evidence": [
+        {
+          "text": "Fine-tuning uses the weights from the pre-trained model as the preliminary weight initialization for the network, which are further refined using the target dataset.",
+          "page": 2,
+          "section": "INTRODUCTION",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P024_05",
+      "paper_id": "P024",
+      "task_id": "T_P024_01",
+      "stage_type": "candidate_generation",
+      "stage_name_raw": "feature extraction from pre-trained ALIGNN for target compounds",
+      "stage_order": 5,
+      "stage_goal": "To generate fixed-dimensional, structure-aware feature vectors (atom-bond-angle features) from the pre-trained ALIGNN model for each compound in the target dataset.",
+      "stage_input": [
+        "pre-trained ALIGNN source model",
+        "target structure files"
+      ],
+      "stage_output": [
+        "256-dimensional atom-based feature vector per compound",
+        "256-dimensional bond-based feature vector per compound",
+        "256-dimensional angle-based feature vector per compound",
+        "768-dimensional concatenated atom-bond-angle feature vector per compound"
+      ],
+      "evidence": [
+        {
+          "text": "In the feature extraction method, we treat the pre-trained model as a feature extractor to extract robust features for the target dataset and use them to build the target model using representation learning.",
+          "page": 2,
+          "section": "INTRODUCTION",
+          "inferred": false
+        },
+        {
+          "text": "In the feature extraction method, we treat the pre-trained model as the feature extractor and extract atom, bond, and angle-based features from a given layer, each containing a variable number of rows depending on the number of the atom, bond, and angle information present in the input file and 256 columns as features for each row.",
+          "page": 9,
+          "section": "METHODS",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P024_06",
+      "paper_id": "P024",
+      "task_id": "T_P024_01",
+      "stage_type": "model_training",
+      "stage_name_raw": "training of target model on extracted features",
+      "stage_order": 6,
+      "stage_goal": "To train a simple deep neural network (NN-17) on the extracted ALIGNN features to predict the target property.",
+      "stage_input": [
+        "extracted atom-bond-angle features (last)",
+        "target property labels"
+      ],
+      "stage_output": [
+        "NN-17 target model"
+      ],
+      "evidence": [
+        {
+          "text": "Next, we perform model training using the above-defined set of features as input for the deep neural network where we use a 17-layered neural network comprising of stacks of fully connected layers and ReLU as the activation function inspired from21,22,55 as the base architecture and formation energy of JARVIS-3D dataset as the materials property for property prediction task, the results of which are shown in Table 1.",
+          "page": 3,
+          "section": "ALIGNN-based Feature Extractor",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P024_07",
+      "paper_id": "P024",
+      "task_id": "T_P024_01",
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "evaluation of predictive performance using MAE",
+      "stage_order": 7,
+      "stage_goal": "To quantitatively assess and compare the accuracy of scratch-trained, fine-tuned, and feature-extraction-based models using mean absolute error (MAE) on holdout test sets.",
+      "stage_input": [
+        "holdout test set predictions",
+        "ground truth property values"
+      ],
+      "stage_output": [
+        "test MAE for each model",
+        "percent error change"
+      ],
+      "evidence": [
+        {
+          "text": "We use mean absolute error (MAE) as the primary evaluation metric for all models.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        },
+        {
+          "text": "Table 2 presents the prediction accuracy of the best SC and best TL model on the test set for each of the 48 target properties.",
+          "page": 4,
+          "section": "JARVIS-3D database",
+          "inferred": false
+        }
+      ]
+    }
+  ],
+  "datasets": [
+    {
+      "dataset_id": "D_materials_project",
+      "canonical_name": "Materials Project",
+      "raw_names": [
+        "Materials Project",
+        "Materials Project (MP)",
+        "MP dataset"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "3D materials",
+        "inorganic materials",
+        "computational materials"
+      ],
+      "available_properties": [
+        "formation energy"
+      ],
+      "available_fields": [
+        "structure files (POSCAR)",
+        "formation energy labels"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We use nine datasets of DFT-computed and experimental properties in this work: Materials Project (MP)4, Joint Automated Repository for Various Integrated Simulations (JARVIS) 3D with 46 properties and 2D with 32 properties5, Flla44 with three properties, Dielectric Constant (DC)45 with five properties, Piezoelectric Tensor (PT)46 with two properties, Experimental Formation Energy (EFE)47 with one property, Kingsbury Experimental Formation Energy (KEFE)48 with one property, Kingsbury Experimental Bandgap (KEB)49 with one property, and Harvard Organic Photovoltaic Dataset (HOPV)50 with 24 properties.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false,
+          "paper_id": "P024"
+        },
+        {
+          "text": "A model trained on the formation energy of the MP dataset39 is used as the source model to perform fine-tuning and feature extraction-based transfer learning as formation energy has shown to lead to meaningful representations from large source datasets36, which can then be applied during the model training on the smaller target datasets to improve their predictive performance.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false,
+          "paper_id": "P024"
+        },
+        {
+          "text": "We build source models using a structure-aware GNN-based architecture called ALIGNN on the MP dataset by using only formation energy as the source materials property.",
+          "page": 5,
+          "section": "DISCUSSION",
+          "inferred": false,
+          "paper_id": "P024"
+        },
+        {
+          "text": "The datasets used in this paper are publicly available from the corresponding websites- MP4 from https://materialsproject.org/",
+          "page": 9,
+          "section": "DATA AVAILABILITY",
+          "inferred": false,
+          "paper_id": "P024"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:materials_project"
+    },
+    {
+      "dataset_id": "D_jarvis_3d",
+      "canonical_name": "JARVIS-3D",
+      "raw_names": [
+        "JARVIS-3D",
+        "JARVIS 3D",
+        "Joint Automated Repository for Various Integrated Simulations (JARVIS) 3D"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "3D materials",
+        "inorganic materials",
+        "computational materials"
+      ],
+      "available_properties": [
+        "formation energy",
+        "band gap",
+        "elastic tensor components",
+        "dielectric constant",
+        "piezoelectric tensor",
+        "SLME",
+        "Meps",
+        "PMDi",
+        "MaxM",
+        "MinM",
+        "MaxIrM",
+        "MinIrM",
+        "PMEij",
+        "Poisson ratio",
+        "ShearGV",
+        "BulkKV",
+        "ETC",
+        "NSB",
+        "PSB",
+        "PPF",
+        "NPF",
+        "Deltae",
+        "Ehull",
+        "Encut",
+        "Magoszi",
+        "Magout",
+        "Epsx",
+        "Epsy",
+        "Epsz",
+        "KLU",
+        "BgOptb",
+        "BgMbj",
+        "AvgME",
+        "AvgMH",
+        "Spillage",
+        "Exfoli"
+      ],
+      "available_fields": [
+        "structure files (POSCAR)",
+        "property labels"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We use nine datasets of DFT-computed and experimental properties in this work: Materials Project (MP)4, Joint Automated Repository for Various Integrated Simulations (JARVIS) 3D with 46 properties and 2D with 32 properties5, Flla44 with three properties, Dielectric Constant (DC)45 with five properties, Piezoelectric Tensor (PT)46 with two properties, Experimental Formation Energy (EFE)47 with one property, Kingsbury Experimental Formation Energy (KEFE)48 with one property, Kingsbury Experimental Bandgap (KEB)49 with one property, and Harvard Organic Photovoltaic Dataset (HOPV)50 with 24 properties.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false,
+          "paper_id": "P024"
+        },
+        {
+          "text": "Table 2 presents the prediction accuracy of the best SC and best TL model on the test set for each of the 48 target properties.",
+          "page": 4,
+          "section": "JARVIS-3D database",
+          "inferred": false,
+          "paper_id": "P024"
+        },
+        {
+          "text": "The datasets used in this paper are publicly available from the corresponding websites- ... JARVIS5 from https://jarvis.nist.gov",
+          "page": 9,
+          "section": "DATA AVAILABILITY",
+          "inferred": false,
+          "paper_id": "P024"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:jarvis_3d"
+    },
+    {
+      "dataset_id": "D_jarvis_2d",
+      "canonical_name": "JARVIS-2D",
+      "raw_names": [
+        "JARVIS-2D",
+        "JARVIS 2D",
+        "Joint Automated Repository for Various Integrated Simulations (JARVIS) 2D"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "2D materials",
+        "inorganic materials",
+        "computational materials"
+      ],
+      "available_properties": [
+        "formation energy",
+        "band gap",
+        "dielectric constant",
+        "exfoliation energy",
+        "SLME",
+        "Meps",
+        "PMDi",
+        "MaxM",
+        "MinM",
+        "MaxIrM",
+        "MinIrM",
+        "PMEij",
+        "Poisson ratio",
+        "ShearGV",
+        "BulkKV",
+        "ETC",
+        "NSB",
+        "PSB",
+        "PPF",
+        "NPF",
+        "Deltae",
+        "Ehull",
+        "Encut",
+        "Magoszi",
+        "Magout",
+        "Epsx",
+        "Epsy",
+        "Epsz",
+        "KLU",
+        "BgOptb",
+        "BgMbj",
+        "Spillage"
+      ],
+      "available_fields": [
+        "structure files (POSCAR)",
+        "property labels"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We use nine datasets of DFT-computed and experimental properties in this work: Materials Project (MP)4, Joint Automated Repository for Various Integrated Simulations (JARVIS) 3D with 46 properties and 2D with 32 properties5, Flla44 with three properties, Dielectric Constant (DC)45 with five properties, Piezoelectric Tensor (PT)46 with two properties, Experimental Formation Energy (EFE)47 with one property, Kingsbury Experimental Formation Energy (KEFE)48 with one property, Kingsbury Experimental Bandgap (KEB)49 with one property, and Harvard Organic Photovoltaic Dataset (HOPV)50 with 24 properties.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false,
+          "paper_id": "P024"
+        },
+        {
+          "text": "Table 4 presents the prediction accuracy of the best SC and best TL model on the test set for each of the 34 target properties in JARVIS-2D database.",
+          "page": 5,
+          "section": "JARVIS-2D database",
+          "inferred": false,
+          "paper_id": "P024"
+        },
+        {
+          "text": "The datasets used in this paper are publicly available from the corresponding websites- ... JARVIS5 from https://jarvis.nist.gov",
+          "page": 9,
+          "section": "DATA AVAILABILITY",
+          "inferred": false,
+          "paper_id": "P024"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:jarvis_2d"
+    },
+    {
+      "dataset_id": "D_flla",
+      "canonical_name": "Flla",
+      "raw_names": [
+        "Flla",
+        "Flla44"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "3D materials",
+        "inorganic materials",
+        "computational materials"
+      ],
+      "available_properties": [
+        "Deltae",
+        "Deltae pa",
+        "Ehull"
+      ],
+      "available_fields": [
+        "structure files (POSCAR)",
+        "property labels"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We use nine datasets of DFT-computed and experimental properties in this work: Materials Project (MP)4, Joint Automated Repository for Various Integrated Simulations (JARVIS) 3D with 46 properties and 2D with 32 properties5, Flla44 with three properties, Dielectric Constant (DC)45 with five properties, Piezoelectric Tensor (PT)46 with two properties, Experimental Formation Energy (EFE)47 with one property, Kingsbury Experimental Formation Energy (KEFE)48 with one property, Kingsbury Experimental Bandgap (KEB)49 with one property, and Harvard Organic Photovoltaic Dataset (HOPV)50 with 24 properties.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false,
+          "paper_id": "P024"
+        },
+        {
+          "text": "Table 3 indicates that TL models outperform the SC models in 10/10 cases, i.e., in 100% of the cases.",
+          "page": 5,
+          "section": "Other DFT-based databases",
+          "inferred": false,
+          "paper_id": "P024"
+        },
+        {
+          "text": "The datasets used in this paper are publicly available from the corresponding websites- ... Flla44 ... from AutoMatminer63 (https://github.com/hackingmaterials/automatminer)",
+          "page": 9,
+          "section": "DATA AVAILABILITY",
+          "inferred": false,
+          "paper_id": "P024"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:flla"
+    },
+    {
+      "dataset_id": "D_dielectric_constant",
+      "canonical_name": "Dielectric Constant",
+      "raw_names": [
+        "Dielectric Constant",
+        "Dielectric Constant (DC)",
+        "DC"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "3D materials",
+        "inorganic materials",
+        "computational materials"
+      ],
+      "available_properties": [
+        "Vol",
+        "Bg",
+        "N",
+        "Poly Elec",
+        "PolyTotal"
+      ],
+      "available_fields": [
+        "structure files (POSCAR)",
+        "property labels"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We use nine datasets of DFT-computed and experimental properties in this work: Materials Project (MP)4, Joint Automated Repository for Various Integrated Simulations (JARVIS) 3D with 46 properties and 2D with 32 properties5, Flla44 with three properties, Dielectric Constant (DC)45 with five properties, Piezoelectric Tensor (PT)46 with two properties, Experimental Formation Energy (EFE)47 with one property, Kingsbury Experimental Formation Energy (KEFE)48 with one property, Kingsbury Experimental Bandgap (KEB)49 with one property, and Harvard Organic Photovoltaic Dataset (HOPV)50 with 24 properties.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false,
+          "paper_id": "P024"
+        },
+        {
+          "text": "Table 3 indicates that TL models outperform the SC models in 10/10 cases, i.e., in 100% of the cases.",
+          "page": 5,
+          "section": "Other DFT-based databases",
+          "inferred": false,
+          "paper_id": "P024"
+        },
+        {
+          "text": "The datasets used in this paper are publicly available from the corresponding websites- ... Dielectric Constant45 ... from AutoMatminer63 (https://github.com/hackingmaterials/automatminer)",
+          "page": 9,
+          "section": "DATA AVAILABILITY",
+          "inferred": false,
+          "paper_id": "P024"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:dielectric_constant"
+    },
+    {
+      "dataset_id": "D_piezoelectric_tensor",
+      "canonical_name": "Piezoelectric Tensor",
+      "raw_names": [
+        "Piezoelectric Tensor",
+        "Piezoelectric Tensor (PT)",
+        "PT"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "3D materials",
+        "inorganic materials",
+        "computational materials"
+      ],
+      "available_properties": [
+        "Vol",
+        "Eij"
+      ],
+      "available_fields": [
+        "structure files (POSCAR)",
+        "property labels"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We use nine datasets of DFT-computed and experimental properties in this work: Materials Project (MP)4, Joint Automated Repository for Various Integrated Simulations (JARVIS) 3D with 46 properties and 2D with 32 properties5, Flla44 with three properties, Dielectric Constant (DC)45 with five properties, Piezoelectric Tensor (PT)46 with two properties, Experimental Formation Energy (EFE)47 with one property, Kingsbury Experimental Formation Energy (KEFE)48 with one property, Kingsbury Experimental Bandgap (KEB)49 with one property, and Harvard Organic Photovoltaic Dataset (HOPV)50 with 24 properties.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false,
+          "paper_id": "P024"
+        },
+        {
+          "text": "Table 3 indicates that TL models outperform the SC models in 10/10 cases, i.e., in 100% of the cases.",
+          "page": 5,
+          "section": "Other DFT-based databases",
+          "inferred": false,
+          "paper_id": "P024"
+        },
+        {
+          "text": "The datasets used in this paper are publicly available from the corresponding websites- ... Piezoelectric Tensor46 ... from AutoMatminer63 (https://github.com/hackingmaterials/automatminer)",
+          "page": 9,
+          "section": "DATA AVAILABILITY",
+          "inferred": false,
+          "paper_id": "P024"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:piezoelectric_tensor"
+    },
+    {
+      "dataset_id": "D_experimental_formation_energy",
+      "canonical_name": "Experimental Formation Energy",
+      "raw_names": [
+        "Experimental Formation Energy",
+        "Experimental Formation Energy (EFE)",
+        "EFE"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "3D materials",
+        "inorganic materials",
+        "experimental materials"
+      ],
+      "available_properties": [
+        "Deltae"
+      ],
+      "available_fields": [
+        "structure files (POSCAR)",
+        "property labels"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We use nine datasets of DFT-computed and experimental properties in this work: Materials Project (MP)4, Joint Automated Repository for Various Integrated Simulations (JARVIS) 3D with 46 properties and 2D with 32 properties5, Flla44 with three properties, Dielectric Constant (DC)45 with five properties, Piezoelectric Tensor (PT)46 with two properties, Experimental Formation Energy (EFE)47 with one property, Kingsbury Experimental Formation Energy (KEFE)48 with one property, Kingsbury Experimental Bandgap (KEB)49 with one property, and Harvard Organic Photovoltaic Dataset (HOPV)50 with 24 properties.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false,
+          "paper_id": "P024"
+        },
+        {
+          "text": "The datasets used in this paper are publicly available from the corresponding websites- ... Experimental Formation Energy47 ... from AutoMatminer63 (https://github.com/hackingmaterials/automatminer)",
+          "page": 9,
+          "section": "DATA AVAILABILITY",
+          "inferred": false,
+          "paper_id": "P024"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:experimental_formation_energy"
+    },
+    {
+      "dataset_id": "D_kingsbury_experimental_formation_energy",
+      "canonical_name": "Kingsbury Experimental Formation Energy",
+      "raw_names": [
+        "Kingsbury Experimental Formation Energy",
+        "Kingsbury Experimental Formation Energy (KEFE)",
+        "KEFE"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "3D materials",
+        "inorganic materials",
+        "experimental materials"
+      ],
+      "available_properties": [
+        "Deltae"
+      ],
+      "available_fields": [
+        "structure files (POSCAR)",
+        "property labels"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We use nine datasets of DFT-computed and experimental properties in this work: Materials Project (MP)4, Joint Automated Repository for Various Integrated Simulations (JARVIS) 3D with 46 properties and 2D with 32 properties5, Flla44 with three properties, Dielectric Constant (DC)45 with five properties, Piezoelectric Tensor (PT)46 with two properties, Experimental Formation Energy (EFE)47 with one property, Kingsbury Experimental Formation Energy (KEFE)48 with one property, Kingsbury Experimental Bandgap (KEB)49 with one property, and Harvard Organic Photovoltaic Dataset (HOPV)50 with 24 properties.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false,
+          "paper_id": "P024"
+        },
+        {
+          "text": "The datasets used in this paper are publicly available from the corresponding websites- ... Kingsbury Experimental Formation Energy48 ... from AutoMatminer63 (https://github.com/hackingmaterials/automatminer)",
+          "page": 9,
+          "section": "DATA AVAILABILITY",
+          "inferred": false,
+          "paper_id": "P024"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:kingsbury_experimental_formation_energy"
+    },
+    {
+      "dataset_id": "D_kingsbury_experimental_bandgap",
+      "canonical_name": "Kingsbury Experimental Bandgap",
+      "raw_names": [
+        "Kingsbury Experimental Bandgap",
+        "Kingsbury Experimental Bandgap (KEB)",
+        "KEB"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "3D materials",
+        "inorganic materials",
+        "experimental materials"
+      ],
+      "available_properties": [
+        "Bg"
+      ],
+      "available_fields": [
+        "structure files (POSCAR)",
+        "property labels"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We use nine datasets of DFT-computed and experimental properties in this work: Materials Project (MP)4, Joint Automated Repository for Various Integrated Simulations (JARVIS) 3D with 46 properties and 2D with 32 properties5, Flla44 with three properties, Dielectric Constant (DC)45 with five properties, Piezoelectric Tensor (PT)46 with two properties, Experimental Formation Energy (EFE)47 with one property, Kingsbury Experimental Formation Energy (KEFE)48 with one property, Kingsbury Experimental Bandgap (KEB)49 with one property, and Harvard Organic Photovoltaic Dataset (HOPV)50 with 24 properties.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false,
+          "paper_id": "P024"
+        },
+        {
+          "text": "The datasets used in this paper are publicly available from the corresponding websites- ... Kingsbury Experimental Bandgap49 ... from AutoMatminer63 (https://github.com/hackingmaterials/automatminer)",
+          "page": 9,
+          "section": "DATA AVAILABILITY",
+          "inferred": false,
+          "paper_id": "P024"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:kingsbury_experimental_bandgap"
+    },
+    {
+      "dataset_id": "D_harvard_organic_photovoltaic_dataset",
+      "canonical_name": "Harvard Organic Photovoltaic Dataset",
+      "raw_names": [
+        "Harvard Organic Photovoltaic Dataset",
+        "Harvard Organic Photovoltaic Dataset (HOPV)",
+        "HOPV"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "organic materials",
+        "computational materials"
+      ],
+      "available_properties": [
+        "b3lyp gap",
+        "b3lyp homo",
+        "b3lyp lumo",
+        "b3lyp scharber jsc",
+        "b3lyp scharber pce",
+        "b3lyp scharber voc",
+        "bp86 gap",
+        "bp86 homo",
+        "bp86 lumo",
+        "bp86 scharber jsc",
+        "bp86 scharber pce",
+        "bp86 scharber voc",
+        "m06 gap",
+        "m06 homo",
+        "m06 lumo",
+        "m06 scharber jsc",
+        "m06 scharber pce",
+        "m06 scharber voc",
+        "pbe0 gap",
+        "pbe0 homo",
+        "pbe0 lumo",
+        "pbe0 scharber jsc",
+        "pbe0 scharber pce",
+        "pbe0 scharber voc"
+      ],
+      "available_fields": [
+        "structure files (POSCAR)",
+        "property labels"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We use nine datasets of DFT-computed and experimental properties in this work: Materials Project (MP)4, Joint Automated Repository for Various Integrated Simulations (JARVIS) 3D with 46 properties and 2D with 32 properties5, Flla44 with three properties, Dielectric Constant (DC)45 with five properties, Piezoelectric Tensor (PT)46 with two properties, Experimental Formation Energy (EFE)47 with one property, Kingsbury Experimental Formation Energy (KEFE)48 with one property, Kingsbury Experimental Bandgap (KEB)49 with one property, and Harvard Organic Photovoltaic Dataset (HOPV)50 with 24 properties.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false,
+          "paper_id": "P024"
+        },
+        {
+          "text": "The datasets used in this paper are publicly available from the corresponding websites- ... HOPV from https://ndownloader.figshare.com/files/28814184.",
+          "page": 9,
+          "section": "DATA AVAILABILITY",
+          "inferred": false,
+          "paper_id": "P024"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:harvard_organic_photovoltaic_dataset"
+    }
+  ],
+  "dataset_uses": [
+    {
+      "dataset_use_id": "DU_P024_001",
+      "paper_id": "P024",
+      "task_id": "T_P024_01",
+      "stage_id": "S_P024_01",
+      "dataset_id": "D_materials_project",
+      "usage_role": "source",
+      "purpose": "acquisition of diverse materials datasets for use as source dataset in transfer learning",
+      "used_fields": [
+        "structure files (POSCAR)",
+        "formation energy labels"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We use nine datasets of DFT-computed and experimental properties in this work: Materials Project (MP)4, Joint Automated Repository for Various Integrated Simulations (JARVIS) 3D with 46 properties and 2D with 32 properties5, Flla44 with three properties, Dielectric Constant (DC)45 with five properties, Piezoelectric Tensor (PT)46 with two properties, Experimental Formation Energy (EFE)47 with one property, Kingsbury Experimental Formation Energy (KEFE)48 with one property, Kingsbury Experimental Bandgap (KEB)49 with one property, and Harvard Organic Photovoltaic Dataset (HOPV)50 with 24 properties.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P024_002",
+      "paper_id": "P024",
+      "task_id": "T_P024_01",
+      "stage_id": "S_P024_01",
+      "dataset_id": "D_jarvis_3d",
+      "usage_role": "candidate_pool",
+      "purpose": "acquisition of diverse materials datasets for use as target dataset in transfer learning",
+      "used_fields": [
+        "structure files (POSCAR)",
+        "property labels"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We use nine datasets of DFT-computed and experimental properties in this work: Materials Project (MP)4, Joint Automated Repository for Various Integrated Simulations (JARVIS) 3D with 46 properties and 2D with 32 properties5, Flla44 with three properties, Dielectric Constant (DC)45 with five properties, Piezoelectric Tensor (PT)46 with two properties, Experimental Formation Energy (EFE)47 with one property, Kingsbury Experimental Formation Energy (KEFE)48 with one property, Kingsbury Experimental Bandgap (KEB)49 with one property, and Harvard Organic Photovoltaic Dataset (HOPV)50 with 24 properties.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P024_003",
+      "paper_id": "P024",
+      "task_id": "T_P024_01",
+      "stage_id": "S_P024_01",
+      "dataset_id": "D_jarvis_2d",
+      "usage_role": "candidate_pool",
+      "purpose": "acquisition of diverse materials datasets for use as target dataset in transfer learning",
+      "used_fields": [
+        "structure files (POSCAR)",
+        "property labels"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We use nine datasets of DFT-computed and experimental properties in this work: Materials Project (MP)4, Joint Automated Repository for Various Integrated Simulations (JARVIS) 3D with 46 properties and 2D with 32 properties5, Flla44 with three properties, Dielectric Constant (DC)45 with five properties, Piezoelectric Tensor (PT)46 with two properties, Experimental Formation Energy (EFE)47 with one property, Kingsbury Experimental Formation Energy (KEFE)48 with one property, Kingsbury Experimental Bandgap (KEB)49 with one property, and Harvard Organic Photovoltaic Dataset (HOPV)50 with 24 properties.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P024_004",
+      "paper_id": "P024",
+      "task_id": "T_P024_01",
+      "stage_id": "S_P024_01",
+      "dataset_id": "D_flla",
+      "usage_role": "candidate_pool",
+      "purpose": "acquisition of diverse materials datasets for use as target dataset in transfer learning",
+      "used_fields": [
+        "structure files (POSCAR)",
+        "property labels"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We use nine datasets of DFT-computed and experimental properties in this work: Materials Project (MP)4, Joint Automated Repository for Various Integrated Simulations (JARVIS) 3D with 46 properties and 2D with 32 properties5, Flla44 with three properties, Dielectric Constant (DC)45 with five properties, Piezoelectric Tensor (PT)46 with two properties, Experimental Formation Energy (EFE)47 with one property, Kingsbury Experimental Formation Energy (KEFE)48 with one property, Kingsbury Experimental Bandgap (KEB)49 with one property, and Harvard Organic Photovoltaic Dataset (HOPV)50 with 24 properties.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P024_005",
+      "paper_id": "P024",
+      "task_id": "T_P024_01",
+      "stage_id": "S_P024_01",
+      "dataset_id": "D_dielectric_constant",
+      "usage_role": "candidate_pool",
+      "purpose": "acquisition of diverse materials datasets for use as target dataset in transfer learning",
+      "used_fields": [
+        "structure files (POSCAR)",
+        "property labels"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We use nine datasets of DFT-computed and experimental properties in this work: Materials Project (MP)4, Joint Automated Repository for Various Integrated Simulations (JARVIS) 3D with 46 properties and 2D with 32 properties5, Flla44 with three properties, Dielectric Constant (DC)45 with five properties, Piezoelectric Tensor (PT)46 with two properties, Experimental Formation Energy (EFE)47 with one property, Kingsbury Experimental Formation Energy (KEFE)48 with one property, Kingsbury Experimental Bandgap (KEB)49 with one property, and Harvard Organic Photovoltaic Dataset (HOPV)50 with 24 properties.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P024_006",
+      "paper_id": "P024",
+      "task_id": "T_P024_01",
+      "stage_id": "S_P024_01",
+      "dataset_id": "D_piezoelectric_tensor",
+      "usage_role": "candidate_pool",
+      "purpose": "acquisition of diverse materials datasets for use as target dataset in transfer learning",
+      "used_fields": [
+        "structure files (POSCAR)",
+        "property labels"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We use nine datasets of DFT-computed and experimental properties in this work: Materials Project (MP)4, Joint Automated Repository for Various Integrated Simulations (JARVIS) 3D with 46 properties and 2D with 32 properties5, Flla44 with three properties, Dielectric Constant (DC)45 with five properties, Piezoelectric Tensor (PT)46 with two properties, Experimental Formation Energy (EFE)47 with one property, Kingsbury Experimental Formation Energy (KEFE)48 with one property, Kingsbury Experimental Bandgap (KEB)49 with one property, and Harvard Organic Photovoltaic Dataset (HOPV)50 with 24 properties.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P024_007",
+      "paper_id": "P024",
+      "task_id": "T_P024_01",
+      "stage_id": "S_P024_01",
+      "dataset_id": "D_experimental_formation_energy",
+      "usage_role": "candidate_pool",
+      "purpose": "acquisition of diverse materials datasets for use as target dataset in transfer learning",
+      "used_fields": [
+        "structure files (POSCAR)",
+        "property labels"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We use nine datasets of DFT-computed and experimental properties in this work: Materials Project (MP)4, Joint Automated Repository for Various Integrated Simulations (JARVIS) 3D with 46 properties and 2D with 32 properties5, Flla44 with three properties, Dielectric Constant (DC)45 with five properties, Piezoelectric Tensor (PT)46 with two properties, Experimental Formation Energy (EFE)47 with one property, Kingsbury Experimental Formation Energy (KEFE)48 with one property, Kingsbury Experimental Bandgap (KEB)49 with one property, and Harvard Organic Photovoltaic Dataset (HOPV)50 with 24 properties.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P024_008",
+      "paper_id": "P024",
+      "task_id": "T_P024_01",
+      "stage_id": "S_P024_01",
+      "dataset_id": "D_kingsbury_experimental_formation_energy",
+      "usage_role": "candidate_pool",
+      "purpose": "acquisition of diverse materials datasets for use as target dataset in transfer learning",
+      "used_fields": [
+        "structure files (POSCAR)",
+        "property labels"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We use nine datasets of DFT-computed and experimental properties in this work: Materials Project (MP)4, Joint Automated Repository for Various Integrated Simulations (JARVIS) 3D with 46 properties and 2D with 32 properties5, Flla44 with three properties, Dielectric Constant (DC)45 with five properties, Piezoelectric Tensor (PT)46 with two properties, Experimental Formation Energy (EFE)47 with one property, Kingsbury Experimental Formation Energy (KEFE)48 with one property, Kingsbury Experimental Bandgap (KEB)49 with one property, and Harvard Organic Photovoltaic Dataset (HOPV)50 with 24 properties.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P024_009",
+      "paper_id": "P024",
+      "task_id": "T_P024_01",
+      "stage_id": "S_P024_01",
+      "dataset_id": "D_kingsbury_experimental_bandgap",
+      "usage_role": "candidate_pool",
+      "purpose": "acquisition of diverse materials datasets for use as target dataset in transfer learning",
+      "used_fields": [
+        "structure files (POSCAR)",
+        "property labels"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We use nine datasets of DFT-computed and experimental properties in this work: Materials Project (MP)4, Joint Automated Repository for Various Integrated Simulations (JARVIS) 3D with 46 properties and 2D with 32 properties5, Flla44 with three properties, Dielectric Constant (DC)45 with five properties, Piezoelectric Tensor (PT)46 with two properties, Experimental Formation Energy (EFE)47 with one property, Kingsbury Experimental Formation Energy (KEFE)48 with one property, Kingsbury Experimental Bandgap (KEB)49 with one property, and Harvard Organic Photovoltaic Dataset (HOPV)50 with 24 properties.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P024_010",
+      "paper_id": "P024",
+      "task_id": "T_P024_01",
+      "stage_id": "S_P024_01",
+      "dataset_id": "D_harvard_organic_photovoltaic_dataset",
+      "usage_role": "candidate_pool",
+      "purpose": "acquisition of diverse materials datasets for use as target dataset in transfer learning",
+      "used_fields": [
+        "structure files (POSCAR)",
+        "property labels"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We use nine datasets of DFT-computed and experimental properties in this work: Materials Project (MP)4, Joint Automated Repository for Various Integrated Simulations (JARVIS) 3D with 46 properties and 2D with 32 properties5, Flla44 with three properties, Dielectric Constant (DC)45 with five properties, Piezoelectric Tensor (PT)46 with two properties, Experimental Formation Energy (EFE)47 with one property, Kingsbury Experimental Formation Energy (KEFE)48 with one property, Kingsbury Experimental Bandgap (KEB)49 with one property, and Harvard Organic Photovoltaic Dataset (HOPV)50 with 24 properties.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P024_011",
+      "paper_id": "P024",
+      "task_id": "T_P024_01",
+      "stage_id": "S_P024_03",
+      "dataset_id": "D_materials_project",
+      "usage_role": "training",
+      "purpose": "training of source model (ALIGNN on MP formation energy)",
+      "used_fields": [
+        "structure files (POSCAR)",
+        "formation energy labels"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "A model trained on the formation energy of the MP dataset39 is used as the source model to perform fine-tuning and feature extraction-based transfer learning as formation energy has shown to lead to meaningful representations from large source datasets36, which can then be applied during the model training on the smaller target datasets to improve their predictive performance.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        },
+        {
+          "text": "We build source models using a structure-aware GNN-based architecture called ALIGNN on the MP dataset by using only formation energy as the source materials property.",
+          "page": 5,
+          "section": "DISCUSSION",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P024_012",
+      "paper_id": "P024",
+      "task_id": "T_P024_01",
+      "stage_id": "S_P024_04",
+      "dataset_id": "D_jarvis_3d",
+      "usage_role": "training",
+      "purpose": "transfer learning via fine-tuning on target datasets",
+      "used_fields": [
+        "structure files (POSCAR)",
+        "property labels"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Fine-tuning uses the weights from the pre-trained model as the preliminary weight initialization for the network, which are further refined using the target dataset.",
+          "page": 2,
+          "section": "INTRODUCTION",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P024_013",
+      "paper_id": "P024",
+      "task_id": "T_P024_01",
+      "stage_id": "S_P024_04",
+      "dataset_id": "D_jarvis_2d",
+      "usage_role": "training",
+      "purpose": "transfer learning via fine-tuning on target datasets",
+      "used_fields": [
+        "structure files (POSCAR)",
+        "property labels"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Fine-tuning uses the weights from the pre-trained model as the preliminary weight initialization for the network, which are further refined using the target dataset.",
+          "page": 2,
+          "section": "INTRODUCTION",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P024_014",
+      "paper_id": "P024",
+      "task_id": "T_P024_01",
+      "stage_id": "S_P024_04",
+      "dataset_id": "D_flla",
+      "usage_role": "training",
+      "purpose": "transfer learning via fine-tuning on target datasets",
+      "used_fields": [
+        "structure files (POSCAR)",
+        "property labels"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Fine-tuning uses the weights from the pre-trained model as the preliminary weight initialization for the network, which are further refined using the target dataset.",
+          "page": 2,
+          "section": "INTRODUCTION",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P024_015",
+      "paper_id": "P024",
+      "task_id": "T_P024_01",
+      "stage_id": "S_P024_04",
+      "dataset_id": "D_dielectric_constant",
+      "usage_role": "training",
+      "purpose": "transfer learning via fine-tuning on target datasets",
+      "used_fields": [
+        "structure files (POSCAR)",
+        "property labels"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Fine-tuning uses the weights from the pre-trained model as the preliminary weight initialization for the network, which are further refined using the target dataset.",
+          "page": 2,
+          "section": "INTRODUCTION",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P024_016",
+      "paper_id": "P024",
+      "task_id": "T_P024_01",
+      "stage_id": "S_P024_04",
+      "dataset_id": "D_piezoelectric_tensor",
+      "usage_role": "training",
+      "purpose": "transfer learning via fine-tuning on target datasets",
+      "used_fields": [
+        "structure files (POSCAR)",
+        "property labels"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Fine-tuning uses the weights from the pre-trained model as the preliminary weight initialization for the network, which are further refined using the target dataset.",
+          "page": 2,
+          "section": "INTRODUCTION",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P024_017",
+      "paper_id": "P024",
+      "task_id": "T_P024_01",
+      "stage_id": "S_P024_04",
+      "dataset_id": "D_experimental_formation_energy",
+      "usage_role": "training",
+      "purpose": "transfer learning via fine-tuning on target datasets",
+      "used_fields": [
+        "structure files (POSCAR)",
+        "property labels"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Fine-tuning uses the weights from the pre-trained model as the preliminary weight initialization for the network, which are further refined using the target dataset.",
+          "page": 2,
+          "section": "INTRODUCTION",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P024_018",
+      "paper_id": "P024",
+      "task_id": "T_P024_01",
+      "stage_id": "S_P024_04",
+      "dataset_id": "D_kingsbury_experimental_formation_energy",
+      "usage_role": "training",
+      "purpose": "transfer learning via fine-tuning on target datasets",
+      "used_fields": [
+        "structure files (POSCAR)",
+        "property labels"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Fine-tuning uses the weights from the pre-trained model as the preliminary weight initialization for the network, which are further refined using the target dataset.",
+          "page": 2,
+          "section": "INTRODUCTION",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P024_019",
+      "paper_id": "P024",
+      "task_id": "T_P024_01",
+      "stage_id": "S_P024_04",
+      "dataset_id": "D_kingsbury_experimental_bandgap",
+      "usage_role": "training",
+      "purpose": "transfer learning via fine-tuning on target datasets",
+      "used_fields": [
+        "structure files (POSCAR)",
+        "property labels"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Fine-tuning uses the weights from the pre-trained model as the preliminary weight initialization for the network, which are further refined using the target dataset.",
+          "page": 2,
+          "section": "INTRODUCTION",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P024_020",
+      "paper_id": "P024",
+      "task_id": "T_P024_01",
+      "stage_id": "S_P024_04",
+      "dataset_id": "D_harvard_organic_photovoltaic_dataset",
+      "usage_role": "training",
+      "purpose": "transfer learning via fine-tuning on target datasets",
+      "used_fields": [
+        "structure files (POSCAR)",
+        "property labels"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Fine-tuning uses the weights from the pre-trained model as the preliminary weight initialization for the network, which are further refined using the target dataset.",
+          "page": 2,
+          "section": "INTRODUCTION",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P024_021",
+      "paper_id": "P024",
+      "task_id": "T_P024_01",
+      "stage_id": "S_P024_05",
+      "dataset_id": "D_jarvis_3d",
+      "usage_role": "candidate_pool",
+      "purpose": "feature extraction from pre-trained ALIGNN for target compounds",
+      "used_fields": [
+        "structure files (POSCAR)"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "In the feature extraction method, we treat the pre-trained model as a feature extractor to extract robust features for the target dataset and use them to build the target model using representation learning.",
+          "page": 2,
+          "section": "INTRODUCTION",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P024_022",
+      "paper_id": "P024",
+      "task_id": "T_P024_01",
+      "stage_id": "S_P024_05",
+      "dataset_id": "D_jarvis_2d",
+      "usage_role": "candidate_pool",
+      "purpose": "feature extraction from pre-trained ALIGNN for target compounds",
+      "used_fields": [
+        "structure files (POSCAR)"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "In the feature extraction method, we treat the pre-trained model as a feature extractor to extract robust features for the target dataset and use them to build the target model using representation learning.",
+          "page": 2,
+          "section": "INTRODUCTION",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P024_023",
+      "paper_id": "P024",
+      "task_id": "T_P024_01",
+      "stage_id": "S_P024_05",
+      "dataset_id": "D_flla",
+      "usage_role": "candidate_pool",
+      "purpose": "feature extraction from pre-trained ALIGNN for target compounds",
+      "used_fields": [
+        "structure files (POSCAR)"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "In the feature extraction method, we treat the pre-trained model as a feature extractor to extract robust features for the target dataset and use them to build the target model using representation learning.",
+          "page": 2,
+          "section": "INTRODUCTION",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P024_024",
+      "paper_id": "P024",
+      "task_id": "T_P024_01",
+      "stage_id": "S_P024_05",
+      "dataset_id": "D_dielectric_constant",
+      "usage_role": "candidate_pool",
+      "purpose": "feature extraction from pre-trained ALIGNN for target compounds",
+      "used_fields": [
+        "structure files (POSCAR)"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "In the feature extraction method, we treat the pre-trained model as a feature extractor to extract robust features for the target dataset and use them to build the target model using representation learning.",
+          "page": 2,
+          "section": "INTRODUCTION",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P024_025",
+      "paper_id": "P024",
+      "task_id": "T_P024_01",
+      "stage_id": "S_P024_05",
+      "dataset_id": "D_piezoelectric_tensor",
+      "usage_role": "candidate_pool",
+      "purpose": "feature extraction from pre-trained ALIGNN for target compounds",
+      "used_fields": [
+        "structure files (POSCAR)"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "In the feature extraction method, we treat the pre-trained model as a feature extractor to extract robust features for the target dataset and use them to build the target model using representation learning.",
+          "page": 2,
+          "section": "INTRODUCTION",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P024_026",
+      "paper_id": "P024",
+      "task_id": "T_P024_01",
+      "stage_id": "S_P024_05",
+      "dataset_id": "D_experimental_formation_energy",
+      "usage_role": "candidate_pool",
+      "purpose": "feature extraction from pre-trained ALIGNN for target compounds",
+      "used_fields": [
+        "structure files (POSCAR)"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "In the feature extraction method, we treat the pre-trained model as a feature extractor to extract robust features for the target dataset and use them to build the target model using representation learning.",
+          "page": 2,
+          "section": "INTRODUCTION",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P024_027",
+      "paper_id": "P024",
+      "task_id": "T_P024_01",
+      "stage_id": "S_P024_05",
+      "dataset_id": "D_kingsbury_experimental_formation_energy",
+      "usage_role": "candidate_pool",
+      "purpose": "feature extraction from pre-trained ALIGNN for target compounds",
+      "used_fields": [
+        "structure files (POSCAR)"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "In the feature extraction method, we treat the pre-trained model as a feature extractor to extract robust features for the target dataset and use them to build the target model using representation learning.",
+          "page": 2,
+          "section": "INTRODUCTION",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P024_028",
+      "paper_id": "P024",
+      "task_id": "T_P024_01",
+      "stage_id": "S_P024_05",
+      "dataset_id": "D_kingsbury_experimental_bandgap",
+      "usage_role": "candidate_pool",
+      "purpose": "feature extraction from pre-trained ALIGNN for target compounds",
+      "used_fields": [
+        "structure files (POSCAR)"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "In the feature extraction method, we treat the pre-trained model as a feature extractor to extract robust features for the target dataset and use them to build the target model using representation learning.",
+          "page": 2,
+          "section": "INTRODUCTION",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P024_029",
+      "paper_id": "P024",
+      "task_id": "T_P024_01",
+      "stage_id": "S_P024_05",
+      "dataset_id": "D_harvard_organic_photovoltaic_dataset",
+      "usage_role": "candidate_pool",
+      "purpose": "feature extraction from pre-trained ALIGNN for target compounds",
+      "used_fields": [
+        "structure files (POSCAR)"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "In the feature extraction method, we treat the pre-trained model as a feature extractor to extract robust features for the target dataset and use them to build the target model using representation learning.",
+          "page": 2,
+          "section": "INTRODUCTION",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P024_030",
+      "paper_id": "P024",
+      "task_id": "T_P024_01",
+      "stage_id": "S_P024_06",
+      "dataset_id": "D_jarvis_3d",
+      "usage_role": "training",
+      "purpose": "training of target model on extracted features",
+      "used_fields": [
+        "property labels"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Next, we perform model training using the above-defined set of features as input for the deep neural network where we use a 17-layered neural network comprising of stacks of fully connected layers and ReLU as the activation function inspired from21,22,55 as the base architecture and formation energy of JARVIS-3D dataset as the materials property for property prediction task, the results of which are shown in Table 1.",
+          "page": 3,
+          "section": "ALIGNN-based Feature Extractor",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

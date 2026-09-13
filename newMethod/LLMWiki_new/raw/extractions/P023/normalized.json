@@ -1,0 +1,384 @@
+{
+  "paper": {
+    "paper_id": "P023",
+    "title": "A Diffusion-Based Pre-training Framework for Crystal Property Prediction",
+    "year": 2024,
+    "doi": null,
+    "file_name": "23_CrysDiff.pdf",
+    "research_summary": "The paper proposes CrysDiff, a diffusion-based pretrain-finetune framework to address the challenge of crystal property prediction under sparse labeled data. It first pre-trains a model via self-supervised crystal structure reconstruction (learning p(F, L | A) from unlabeled 3D crystal structures), then fine-tunes it on limited labeled data to predict target properties (modeling p(y | A', F', L')). The method enforces crystal symmetries (O(3) invariance and periodic translation invariance) using an EGNN-based denoising model in both phases.",
+    "extraction_status": "completed"
+  },
+  "tasks": [
+    {
+      "task_id": "T_P023_01",
+      "paper_id": "P023",
+      "task_name_raw": "crystal property prediction",
+      "task_name_canonical": "crystal_property_prediction",
+      "objective": "Predict a target property value y ∈ R based on its 3D crystal structure (A, F, L)",
+      "material_scope": [
+        "crystalline materials"
+      ],
+      "target_properties": [
+        "formation energy",
+        "bandgap (OPT)",
+        "total energy",
+        "Ehull",
+        "bandgap (MBJ)",
+        "bulk modulus (Kv)",
+        "shear modulus (Gv)",
+        "SLME (%)",
+        "spillage"
+      ],
+      "constraints": [
+        "limited labeled data due to expensive physical simulations or lab experiments",
+        "must satisfy O(3) invariance and periodic translation invariance"
+      ],
+      "input_requirements": [
+        "atom features A",
+        "fractional coordinates F",
+        "lattice matrix L"
+      ],
+      "output_goal": [
+        "predicted target property value y"
+      ],
+      "parent_task_id": null,
+      "task_level": "main_task",
+      "evidence": [
+        {
+          "text": "The crystal property prediction aims to predict a target property value y ∈R based on its structure (A, F, L).",
+          "page": 3,
+          "section": "Methodology",
+          "inferred": false
+        }
+      ]
+    }
+  ],
+  "stages": [
+    {
+      "stage_id": "S_P023_01",
+      "paper_id": "P023",
+      "task_id": "T_P023_01",
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "collecting unlabeled crystal structure data",
+      "stage_order": 1,
+      "stage_goal": "Acquire large-scale unlabeled 3D crystal structure data for pre-training",
+      "stage_input": [],
+      "stage_output": [
+        "800K untagged crystal graph data from Materials Project (MP) and OQMD"
+      ],
+      "evidence": [
+        {
+          "text": "We collect 800K untagged crystal graph data from two popular materials databases, Materials Project (MP) (Jain et al. 2013) and OQMD (Saal et al. 2013), to pre-train the CrysDiff model.",
+          "page": 6,
+          "section": "Experimental Settings",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P023_02",
+      "paper_id": "P023",
+      "task_id": "T_P023_01",
+      "stage_type": "data_preparation",
+      "stage_name_raw": "representing crystal structures in fractional coordinate system",
+      "stage_order": 2,
+      "stage_goal": "Encode crystal structures using atom features A, fractional coordinates F, and lattice matrix L to reflect periodicity and enable symmetry-aware modeling",
+      "stage_input": [
+        "raw crystal structure data"
+      ],
+      "stage_output": [
+        "C = (A, F, L) representation"
+      ],
+      "evidence": [
+        {
+          "text": "We resort to the fractional coordinate system in this work since it can easily reflect the periodic nature of crystal structures. The crystal is now denoted by a tuple C = (A, F, L) with F = [f 1, · · · , f N] ∈[0, 1)3×N containing the fractional coordinates of all atoms in the unit cell.",
+          "page": 2,
+          "section": "Preliminaries",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P023_03",
+      "paper_id": "P023",
+      "task_id": "T_P023_01",
+      "stage_type": "model_training",
+      "stage_name_raw": "pre-training via crystal structure reconstruction",
+      "stage_order": 3,
+      "stage_goal": "Learn the latent marginal distribution of crystal structures p(F, L | A) using a joint denoising diffusion model on lattice L and fractional coordinates F given atom composition A",
+      "stage_input": [
+        "unlabeled crystal structures (A, F0, L0)"
+      ],
+      "stage_output": [
+        "pre-trained diffusion model ϕθ"
+      ],
+      "evidence": [
+        {
+          "text": "In the pre-training phase, we perform the task of crystal structure reconstruction to model the distribution p(F, L | A) based on the diffusion model from a large amount of unlabeled data.",
+          "page": 3,
+          "section": "Methodology",
+          "inferred": false
+        },
+        {
+          "text": "In the pre-training phase, CrysDiff tries to reconstruct the original crystal structures via a joint denoising diffusion model given the atom compositions only, and thus is self-supervised without annotations of target properties.",
+          "page": 2,
+          "section": "Introduction",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P023_04",
+      "paper_id": "P023",
+      "task_id": "T_P023_01",
+      "stage_type": "model_training",
+      "stage_name_raw": "fine-tuning for crystal property prediction",
+      "stage_order": 4,
+      "stage_goal": "Adapt the pre-trained diffusion model to learn the conditional distribution p(y | A′, F′, L′) using sparse labeled data",
+      "stage_input": [
+        "pre-trained model ϕθ",
+        "labeled data (A′, F′, L′, y)"
+      ],
+      "stage_output": [
+        "fine-tuned diffusion model ϕθ"
+      ],
+      "evidence": [
+        {
+          "text": "In the fine-tuning phase, motivated by classification and regression diffusion (CARD) models (Han, Zheng, and Zhou 2022), CrysDiff retains the backbone diffusion model but diffuses on top of the new target property value with the associated crystal structure fixed. Hence, we can model the conditional distribution of the target property value after observing the corresponding crystal structure, effectively transferring the knowledge of crystal structure distribution gained from the pre-trained task.",
+          "page": 2,
+          "section": "Introduction",
+          "inferred": false
+        },
+        {
+          "text": "To fully leverage the knowledge about the crystal structure during the pre-training phase, we stick to the backbone diffusion model when fine-tuning. However, the downstream task becomes a deterministic task. Hence, we aim to model p(y | A′, F′, L′) with the newly observed labeled data, following the previous work (Han, Zheng, and Zhou 2022).",
+          "page": 4,
+          "section": "Methodology",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P023_05",
+      "paper_id": "P023",
+      "task_id": "T_P023_01",
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "evaluating downstream property prediction performance",
+      "stage_order": 5,
+      "stage_goal": "Assess fine-tuned model's accuracy on crystal property prediction using MAE on JARVIS-DFT and OQMD-EXP datasets",
+      "stage_input": [
+        "fine-tuned model",
+        "test data from JARVIS-DFT and OQMD-EXP"
+      ],
+      "stage_output": [
+        "MAE scores for nine properties"
+      ],
+      "evidence": [
+        {
+          "text": "We evaluate how CrysDiff performs on diverse crystal properties from two popular benchmark materials datasets... We report mean absolute error (MAE) of the predicted and actual value of a particular property to compare the performance of different participating methods.",
+          "page": 6,
+          "section": "Experiments",
+          "inferred": false
+        },
+        {
+          "text": "Table 1: The prediction performance (MAE) of nine properties on the JARVIS-DFT dataset for the proposed CrysDiff model against existing train-from-scratch and pretrain-finetune models.",
+          "page": 6,
+          "section": "Total Energy",
+          "inferred": false
+        }
+      ]
+    }
+  ],
+  "datasets": [
+    {
+      "dataset_id": "D_materials_project_and_oqmd",
+      "canonical_name": "Materials Project and OQMD",
+      "raw_names": [
+        "Materials Project and OQMD",
+        "Materials Project (MP)",
+        "OQMD"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "crystalline materials"
+      ],
+      "available_properties": [],
+      "available_fields": [
+        "crystal graph data"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We collect 800K untagged crystal graph data from two popular materials databases, Materials Project (MP) (Jain et al. 2013) and OQMD (Saal et al. 2013), to pre-train the CrysDiff model.",
+          "page": 6,
+          "section": "Experimental Settings",
+          "inferred": false,
+          "paper_id": "P023"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:materials_project_and_oqmd"
+    },
+    {
+      "dataset_id": "D_jarvis_dft",
+      "canonical_name": "JARVIS-DFT",
+      "raw_names": [
+        "JARVIS-DFT"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "crystalline materials"
+      ],
+      "available_properties": [
+        "formation energy",
+        "bandgap",
+        "total energy",
+        "bulk modulus",
+        "Ehull",
+        "bandgap (MBJ)",
+        "bandgap (OPT)",
+        "shear modulus (Gv)",
+        "bulk modulus (Kv)",
+        "SLME (%)",
+        "spillage"
+      ],
+      "available_fields": [
+        "atom features",
+        "fractional coordinates",
+        "lattice matrix",
+        "target property values"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "we select the 2021.8.18 version of JARVIS-DFT (Choudhary et al. 2020), another popular materials database, for the downstream property prediction task. JARVIS-DFT consists of 55,722 materials with 19 properties, like formation energy, bandgap, total energy, bulk modulus, etc., which depend significantly on crystal structures and atom features.",
+          "page": 6,
+          "section": "Experimental Settings",
+          "inferred": false,
+          "paper_id": "P023"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:jarvis_dft"
+    },
+    {
+      "dataset_id": "D_oqmd_exp",
+      "canonical_name": "OQMD-EXP",
+      "raw_names": [
+        "OQMD-EXP"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "crystalline materials"
+      ],
+      "available_properties": [
+        "formation energy"
+      ],
+      "available_fields": [
+        "experimental formation energy"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "to investigate how our model helps to mitigate the DFT error, we also take a small dataset OQMD-EXP (Kirklin et al. 2015), containing 1,500 available experimental data of formation energy.",
+          "page": 6,
+          "section": "Experimental Settings",
+          "inferred": false,
+          "paper_id": "P023"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:oqmd_exp"
+    }
+  ],
+  "dataset_uses": [
+    {
+      "dataset_use_id": "DU_P023_001",
+      "paper_id": "P023",
+      "task_id": "T_P023_01",
+      "stage_id": "S_P023_01",
+      "dataset_id": "D_materials_project_and_oqmd",
+      "usage_role": "pretraining",
+      "purpose": "acquire large-scale unlabeled 3D crystal structure data for pre-training",
+      "used_fields": [
+        "crystal graph data"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We collect 800K untagged crystal graph data from two popular materials databases, Materials Project (MP) (Jain et al. 2013) and OQMD (Saal et al. 2013), to pre-train the CrysDiff model.",
+          "page": 6,
+          "section": "Experimental Settings",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P023_002",
+      "paper_id": "P023",
+      "task_id": "T_P023_01",
+      "stage_id": "S_P023_05",
+      "dataset_id": "D_jarvis_dft",
+      "usage_role": "test",
+      "purpose": "evaluating downstream property prediction performance",
+      "used_fields": [
+        "formation energy",
+        "bandgap (OPT)",
+        "total energy",
+        "Ehull",
+        "bandgap (MBJ)",
+        "bulk modulus (Kv)",
+        "shear modulus (Gv)",
+        "SLME (%)",
+        "spillage"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 55722,
+      "evidence": [
+        {
+          "text": "we select the 2021.8.18 version of JARVIS-DFT (Choudhary et al. 2020), another popular materials database, for the downstream property prediction task. JARVIS-DFT consists of 55,722 materials with 19 properties, like formation energy, bandgap, total energy, bulk modulus, etc., which depend significantly on crystal structures and atom features.",
+          "page": 6,
+          "section": "Experimental Settings",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P023_003",
+      "paper_id": "P023",
+      "task_id": "T_P023_01",
+      "stage_id": "S_P023_05",
+      "dataset_id": "D_oqmd_exp",
+      "usage_role": "test",
+      "purpose": "evaluating downstream property prediction performance using experimental data",
+      "used_fields": [
+        "formation energy"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 1500,
+      "evidence": [
+        {
+          "text": "to investigate how our model helps to mitigate the DFT error, we also take a small dataset OQMD-EXP (Kirklin et al. 2015), containing 1,500 available experimental data of formation energy.",
+          "page": 6,
+          "section": "Experimental Settings",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

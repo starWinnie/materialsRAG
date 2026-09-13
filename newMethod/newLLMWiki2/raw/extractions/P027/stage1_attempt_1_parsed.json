@@ -1,0 +1,221 @@
+{
+  "paper": {
+    "title": "Virtual Node Graph Neural Network for Full Phonon Prediction",
+    "year": 2023,
+    "doi": null,
+    "research_summary": "The paper introduces the Virtual Node Graph Neural Network (VGNN) to predict phonon spectra and bandstructures directly from atomic coordinates, addressing challenges of variable-length output and complex unit cells. It presents three VGNN variants—vector (VVN), matrix (MVN), and momentum-dependent matrix (k-MVN) virtual nodes—to predict Γ-point phonons and full phonon dispersion. The method is validated on alloy systems and used to build a Γ-phonon database of over 146,000 materials from the Materials Project."
+  },
+  "task": {
+    "task_name_raw": "phonon spectra and bandstructure prediction",
+    "task_name_canonical": "phonon_spectra_and_bandstructure_prediction",
+    "objective": "Direct prediction of Γ-phonon spectra and full phonon bandstructures from atomic coordinates",
+    "material_scope": [
+      "crystalline materials",
+      "alloy systems",
+      "high-entropy alloys",
+      "topological Weyl semimetals"
+    ],
+    "target_properties": [
+      "Γ-phonon spectra",
+      "full phonon bandstructures",
+      "phonon dispersion relations",
+      "zone-center phonon energies"
+    ],
+    "constraints": [
+      "input limited to atomic coordinates without prior knowledge of interatomic forces",
+      "must handle material-dependent, variable-length output",
+      "must scale to complex materials with large unit cells (up to 400+ atoms)"
+    ],
+    "input_requirements": [
+      "atomic coordinates",
+      "unit cell vectors",
+      "atomic numbers",
+      "atomic masses"
+    ],
+    "output_goal": [
+      "3m Γ-phonon energies for m-atom unit cell",
+      "full phonon band structure at arbitrary k points in Brillouin zone"
+    ],
+    "evidence": [
+      {
+        "text": "By developing three types of virtual node approaches - the vector, matrix, and momentum-dependent matrix virtual nodes, we achieve direct prediction of Γ-phonon spectra and full dispersion only using atomic coordinates as input.",
+        "page": 1,
+        "section": "ABSTRACT",
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "acquisition of ab initio phonon data",
+      "stage_order": 1,
+      "stage_goal": "Obtain high-quality phonon dispersion data from first-principles calculations for training and validation",
+      "stage_input": [],
+      "stage_output": [
+        "phonon dispersion data from DFPT",
+        "Γ-phonon energies",
+        "phonon bandstructures at high-symmetry k-points"
+      ],
+      "evidence": [
+        {
+          "text": "We trained all of our models against an ab initio DFPT computational database for phonon dispersion in harmonic model25.",
+          "page": 9,
+          "section": "Methods",
+          "inferred": false
+        },
+        {
+          "text": "The data set contains material structures (the same as the primitive structure obtained from the Material Project12), second-order derivatives of energies with respect to atomic perturbations for regular points inside the irreducible zone, and phonon dispersion along highly symmetric paths of 1,521 crystalline inorganic materials.",
+          "page": 9,
+          "section": "Methods",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_preparation",
+      "stage_name_raw": "phonon data preparation and filtering",
+      "stage_order": 2,
+      "stage_goal": "Prepare and quality-control phonon datasets for training and testing, including complex materials with large unit cells",
+      "stage_input": [
+        "DFPT phonon database",
+        "Togo phonon database"
+      ],
+      "stage_output": [
+        "training set (90% of 1,521 materials)",
+        "test set (10% of 1,521 materials)",
+        "complex-material test set (156 materials with >40 atoms/unit cell)"
+      ],
+      "evidence": [
+        {
+          "text": "The data set contains material structures [...] and phonon dispersion along highly symmetric paths of 1,521 crystalline inorganic materials. These materials have 2 to 40 atoms per unit cell, with an average of 7.38. For this work, we only used the highly symmetric path phonon dispersion as our training data. All models randomly split the data into 90% training (1,365 materials), and 10% testing (156 materials) sets.",
+          "page": 9,
+          "section": "Methods",
+          "inferred": false
+        },
+        {
+          "text": "We also got phonon dispersion of complex (more number of atoms per unit cell) materials from Atsushi Togo’s phonon database31. [...] Finally, we randomly selected 156 (the same as the number of data in the testing set for ease of comparison) out of 505 ﬁltered materials. We used them as our complex material data set.",
+          "page": 9,
+          "section": "Methods",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "training of VGNN models (VVN, MVN, k-MVN)",
+      "stage_order": 3,
+      "stage_goal": "Optimize neural network parameters to minimize prediction error on phonon spectra",
+      "stage_input": [
+        "prepared phonon datasets",
+        "atomic coordinates",
+        "atomic numbers",
+        "atomic masses"
+      ],
+      "stage_output": [
+        "trained VVN model",
+        "trained MVN model",
+        "trained k-MVN model"
+      ],
+      "evidence": [
+        {
+          "text": "The model is optimized by minimizing the mean squared error (MSE) loss function between the phonon of the training data set and the one predicted by the model after normalizing them by the maximum phonon frequency of each material.",
+          "page": 10,
+          "section": "Methods",
+          "inferred": false
+        },
+        {
+          "text": "We optimize the values of the training parameters. The set of parameters that gives the best results for VVN, MVN, k-MVN are shown in Table S1.",
+          "page": 17,
+          "section": "III NEURAL NETWORK TRAINING AND OPTIMIZATION",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "evaluation of phonon prediction accuracy",
+      "stage_order": 4,
+      "stage_goal": "Assess model performance on test sets using loss distribution, correlation plots, and spectral comparisons",
+      "stage_input": [
+        "trained models",
+        "test datasets (DFPT and Togo)"
+      ],
+      "stage_output": [
+        "prediction loss distributions",
+        "correlation plots (predicted vs ground-truth phonon frequencies)",
+        "spectral comparison plots"
+      ],
+      "evidence": [
+        {
+          "text": "The main results using the VVN for Γ-phonon prediction are shown in Figure 2b. The three-row spectral comparison plots are randomly selected samples from the test set within each error tertile [...] c-d. Evaluation of the test accuracy through the distribution of loss function and correlation plot between ground-truth and predicted average phonon frequencies, respectively.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "The predicted phonons using MVN are summarized in Figure 3b, which shares the same structure with Figure 2b as error tertile plots [...] MVN shows comparable performance with VVN for simple materials [...] but shows signiﬁcant performance improvement for complex materials.",
+          "page": 4,
+          "section": "Results",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "computational_validation",
+      "stage_name_raw": "validation on alloy systems and complex materials",
+      "stage_order": 5,
+      "stage_goal": "Validate model generalizability on diverse material classes including alloys, high-entropy systems, and topological semimetals",
+      "stage_input": [
+        "trained k-MVN model",
+        "alloy structures",
+        "topological Weyl semimetal structure"
+      ],
+      "stage_output": [
+        "predicted phonon bands for SiGe, NiCo, NiFe, NiFeCo alloys",
+        "predicted phonon spectra for LaAlGe"
+      ],
+      "evidence": [
+        {
+          "text": "Additional tests on SiGe alloys, FeCoNi alloys, and other high-energy alloys are performed, which agree well with existing literature (Supplementary Information VI).",
+          "page": 6,
+          "section": "Discussion",
+          "inferred": false
+        },
+        {
+          "text": "Phonon Prediction on a Topological Weyl Semimetal. The prediction of LaAlGe Γ-phonon obtained from k-MVN model compared to the experimental results?.",
+          "page": 24,
+          "section": "VI.1 Phonon Prediction on a Topological Weyl Semimetal",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_generation",
+      "stage_name_raw": "generation of Γ-phonon database for Materials Project",
+      "stage_order": 6,
+      "stage_goal": "Apply trained MVN model to predict Γ-phonon spectra for all materials in Materials Project",
+      "stage_input": [
+        "trained MVN model",
+        "Materials Project database"
+      ],
+      "stage_output": [
+        "Γ-phonon database containing over 146,000 materials"
+      ],
+      "evidence": [
+        {
+          "text": "Finally, by using MVN, we build a database containing the Γ-phonon spectra for over 140,000 materials listed in Materials Project (Supplementary Data and Supplementary Information VII). It took an eight-GPU system less than ﬁve hours to obtain all results, even though some materials contain over 400 atoms per unit cell.",
+          "page": 6,
+          "section": "Discussion",
+          "inferred": false
+        },
+        {
+          "text": "here we present a new phonon database containing the phonon spectra for the entire 146,323 Materials in Materials Project (MP) as of 2022 computed by the MVN approach.",
+          "page": 26,
+          "section": "VII Γ-PHONON DATABASE",
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

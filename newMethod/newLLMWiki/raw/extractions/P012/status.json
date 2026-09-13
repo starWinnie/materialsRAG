@@ -1,0 +1,27 @@
+{
+  "paper_id": "P012",
+  "file_name": "12_PDDFormer.pdf",
+  "status": "completed",
+  "completed_at": "2026-07-27T03:57:43.847572+00:00",
+  "model": "qwen-plus",
+  "stage1_attempts": [
+    {
+      "attempt": "cached",
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "stage2_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "counts": {
+    "tasks": 1,
+    "stages": 5,
+    "datasets": 2,
+    "dataset_uses": 8
+  }
+}

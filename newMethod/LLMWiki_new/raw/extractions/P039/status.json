@@ -1,0 +1,34 @@
+{
+  "paper_id": "P039",
+  "file_name": "39_A foundation machine learning potential with polarizable long-range interactions for materials modelling.pdf",
+  "status": "completed",
+  "completed_at": "2026-08-06T02:03:10.289004+00:00",
+  "model": "qwen-plus",
+  "stage1_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "stage2_attempts": [
+    {
+      "attempt": 1,
+      "errors": [
+        "dataset_uses[4].usage_role is not allowed"
+      ],
+      "exception": null
+    },
+    {
+      "attempt": 2,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "counts": {
+    "tasks": 1,
+    "stages": 6,
+    "datasets": 3,
+    "dataset_uses": 5
+  }
+}

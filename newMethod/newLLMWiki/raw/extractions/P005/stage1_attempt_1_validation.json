@@ -1,0 +1,7 @@
+{
+  "attempt": 1,
+  "errors": [
+    "JSONDecodeError: Invalid control character at: line 126 column 225 (char 8073)"
+  ],
+  "exception": "JSONDecodeError('Invalid control character at: line 126 column 225 (char 8073)')"
+}

@@ -1,0 +1,622 @@
+{
+  "paper": {
+    "paper_id": "P010",
+    "title": "RETHINKING THE ROLE OF FRAMES FOR SE(3)-INVARIANT CRYSTAL STRUCTURE MODELING",
+    "year": 2025,
+    "doi": null,
+    "file_name": "10_CrystalFramer.pdf",
+    "research_summary": "This paper proposes 'dynamic frames' for SE(3)-invariant crystal structure modeling, challenging the conventional use of static, structure-aligned frames. Dynamic frames are constructed per atom and per message-passing layer using learned attention weights to reflect local interatomic interactions, rather than global structural symmetry. The concept is implemented in CrystalFramer, a transformer-based architecture extending Crystalformer, and evaluated on crystal property prediction tasks across JARVIS, Materials Project, and OQMD datasets.",
+    "extraction_status": "completed"
+  },
+  "tasks": [
+    {
+      "task_id": "T_P010_01",
+      "paper_id": "P010",
+      "task_name_raw": "crystal structure modeling for SE(3)-invariant property prediction",
+      "task_name_canonical": "crystal_structure_modeling_for_se3_invariant_property_prediction",
+      "objective": "To develop a method for crystal structure modeling that achieves SE(3) invariance by rethinking the role of coordinate frames, moving from static, globally aligned frames to dynamic, interaction-aware frames.",
+      "material_scope": [
+        "crystals"
+      ],
+      "target_properties": [
+        "formation energy",
+        "total energy",
+        "bandgap",
+        "energy above hull (E hull)",
+        "bulk modulus",
+        "shear modulus"
+      ],
+      "constraints": [
+        "SE(3) invariance",
+        "periodic SE(3) invariance",
+        "invariance to unit-cell variations"
+      ],
+      "input_requirements": [
+        "crystal structure represented as unit cell (A, P, L)",
+        "atomic species and 3D Cartesian coordinates",
+        "lattice vectors"
+      ],
+      "output_goal": [
+        "prediction of material properties invariant under rigid transformations"
+      ],
+      "parent_task_id": null,
+      "task_level": "main_task",
+      "evidence": [
+        {
+          "text": "Crystal structure modeling with graph neural networks is essential for various applications in materials informatics, and capturing SE(3)-invariant geometric features is a fundamental requirement for these networks.",
+          "page": 1,
+          "section": "ABSTRACT",
+          "inferred": false
+        },
+        {
+          "text": "A key requirement for these networks is the ability to capture essential features of materials embedded in their crystal structures. Crystal structures are periodic, infinitely repeating arrangements of atoms in 3D space... Material properties, such as formation energy and bandgap, are invariant under rigid transformations (i.e., rotations and translations) in crystal structures... This fact leads to the so-called periodic SE(3) invariance...",
+          "page": 1,
+          "section": "INTRODUCTION",
+          "inferred": false
+        },
+        {
+          "text": "We demonstrate this concept by utilizing the attention mechanism in a recent transformer-based crystal encoder, resulting in a new architecture called CrystalFramer. Extensive experiments show that CrystalFramer outperforms conventional frames and existing crystal encoders in various crystal property prediction tasks.",
+          "page": 1,
+          "section": "ABSTRACT",
+          "inferred": false
+        }
+      ]
+    }
+  ],
+  "stages": [
+    {
+      "stage_id": "S_P010_01",
+      "paper_id": "P010",
+      "task_id": "T_P010_01",
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "acquisition of crystal structure datasets",
+      "stage_order": 1,
+      "stage_goal": "To obtain large-scale, publicly available datasets of crystal structures with DFT-simulated material properties.",
+      "stage_input": [],
+      "stage_output": [
+        "JARVIS dataset",
+        "Materials Project (MP) dataset",
+        "Open Quantum Materials Database (OQMD) dataset"
+      ],
+      "evidence": [
+        {
+          "text": "We use three datasets: JARVIS (55,723 materials), MP (69,239 materials), and OQMD (817,636 materials), using snapshots available through a Python package (jarvis-tools). These datasets provide several material properties, such as formation energy and bandgap, simulated by DFT calculations.",
+          "page": 8,
+          "section": "Datasets.",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P010_02",
+      "paper_id": "P010",
+      "task_id": "T_P010_01",
+      "stage_type": "model_training",
+      "stage_name_raw": "training of CrystalFramer architecture",
+      "stage_order": 2,
+      "stage_goal": "To train the CrystalFramer model using Adam optimizer and mean absolute error loss on crystal property prediction tasks.",
+      "stage_input": [
+        "crystal structures from JARVIS, MP, and OQMD datasets",
+        "DFT-simulated property labels"
+      ],
+      "stage_output": [
+        "trained CrystalFramer model with dynamic frames"
+      ],
+      "evidence": [
+        {
+          "text": "To assess the pure effects of introducing the frames, we precisely follow the training settings of the baseline method, Crystalformer (Taniai et al., 2024), with only one modification. We have increased the number of training epochs to account for the increased complexity of our edge feature design...",
+          "page": 8,
+          "section": "Training settings.",
+          "inferred": false
+        },
+        {
+          "text": "Specifically, for the JARVIS dataset, we train our model from scratch by optimizing the mean absolute loss function using Adam (Kingma & Ba, 2015) for a total of 2000 epochs, while enabling the frames from the beginning.",
+          "page": 8,
+          "section": "Training settings.",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P010_03",
+      "paper_id": "P010",
+      "task_id": "T_P010_01",
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "evaluation on crystal property prediction tasks",
+      "stage_order": 3,
+      "stage_goal": "To benchmark the performance of CrystalFramer against conventional frame methods and state-of-the-art crystal encoders on multiple property prediction tasks.",
+      "stage_input": [
+        "trained CrystalFramer model",
+        "test splits of JARVIS, MP, and OQMD datasets"
+      ],
+      "stage_output": [
+        "mean absolute errors for formation energy, bandgap, E hull, bulk modulus, shear modulus"
+      ],
+      "evidence": [
+        {
+          "text": "Tables 1 and 2 extensively compare the mean absolute errors of the proposed and existing methods for the JARVIS (5 tasks) and MP (4 tasks) datasets.",
+          "page": 8,
+          "section": "5.1 CRYSTAL PROPERTY PREDICTION",
+          "inferred": false
+        },
+        {
+          "text": "It is important to note that the current state-of-the-art, ComFormer, uses finely-tuned hyperparameters (e.g., learning rate, loss function, number of layers, graph structure) for each individual task, whereas we simply adjust the number of epochs and batch size for each dataset.",
+          "page": 8,
+          "section": "5.1 CRYSTAL PROPERTY PREDICTION",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P010_04",
+      "paper_id": "P010",
+      "task_id": "T_P010_01",
+      "stage_type": "ablation_study",
+      "stage_name_raw": "comparison of dynamic frame variants",
+      "stage_order": 4,
+      "stage_goal": "To validate the effectiveness of dynamic frames by comparing different frame construction methods (max frames, weighted PCA frames, static local frames) against conventional static frames.",
+      "stage_input": [
+        "CrystalFramer models with different frame types"
+      ],
+      "stage_output": [
+        "performance comparison showing superiority of max frames"
+      ],
+      "evidence": [
+        {
+          "text": "Our method with max frames outperforms others in most tasks, significantly enhancing the performance of the baseline Crystalformer model.",
+          "page": 8,
+          "section": "5.1 CRYSTAL PROPERTY PREDICTION",
+          "inferred": false
+        },
+        {
+          "text": "Additionally, we evaluated a variant using static local frames. These frames are similar to max frames but constructed with static weights, wij(n) = exp −r2 ij(n) . As a result, these static local frames rely only on the distances to neighbors and do not account for dynamic self-attention weights. The max frame method outperforms this static counterpart in most tasks.",
+          "page": 8,
+          "section": "5.1 CRYSTAL PROPERTY PREDICTION",
+          "inferred": false
+        }
+      ]
+    }
+  ],
+  "datasets": [
+    {
+      "dataset_id": "D_jarvis_dft_3d",
+      "canonical_name": "JARVIS-DFT 3D 2021",
+      "raw_names": [
+        "JARVIS-DFT 3D 2021",
+        "JARVIS",
+        "dft_3d_2021"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "crystals"
+      ],
+      "available_properties": [
+        "formation energy",
+        "total energy",
+        "bandgap (OPT)",
+        "bandgap (MBJ)",
+        "energy above hull (E hull)"
+      ],
+      "available_fields": [
+        "formation_energy_peratom",
+        "optb88vdw_total_energy",
+        "optb88vdw_bandgap",
+        "mbj_bandgap",
+        "ehull"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We use three datasets: JARVIS (55,723 materials), MP (69,239 materials), and OQMD (817,636 materials), using snapshots available through a Python package (jarvis-tools). These datasets provide several material properties, such as formation energy and bandgap, simulated by DFT calculations.",
+          "page": 8,
+          "section": "Datasets.",
+          "inferred": false,
+          "paper_id": "P010"
+        },
+        {
+          "text": "The JARVIS-DFT 3D 2021 is a collection of 55,723 materials provided by Choudhary et al. (2020) and is accessible as dft_3d_2021 via jarvis-tools (or as dft_3d in older versions). These materials are annotated with various simulated properties using two DFT calculation methods, OptB88vdW (OPT) and TBmBJ (MBJ). Following recent studies (Yan et al., 2022; 2024; Lin et al., 2023; Taniai et al., 2024), we use formation energy (formation_energy_peratom), total energy (optb88vdw_total_energy), bandgap (optb88vdw_bandgap and mbj_bandgap), and energy above hull or E hull (ehull) as regression targets.",
+          "page": 17,
+          "section": "C DATASET SPECIFICATIONS",
+          "inferred": false,
+          "paper_id": "P010"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:jarvis_dft_3d"
+    },
+    {
+      "dataset_id": "D_materials_project",
+      "canonical_name": "Materials Project",
+      "raw_names": [
+        "Materials Project",
+        "MP",
+        "megnet"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "crystals"
+      ],
+      "available_properties": [
+        "formation energy",
+        "bandgap",
+        "bulk modulus",
+        "shear modulus"
+      ],
+      "available_fields": [
+        "e_form",
+        "gap_pbe",
+        "bulk_modulus",
+        "shear_modulus"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We use three datasets: JARVIS (55,723 materials), MP (69,239 materials), and OQMD (817,636 materials), using snapshots available through a Python package (jarvis-tools). These datasets provide several material properties, such as formation energy and bandgap, simulated by DFT calculations.",
+          "page": 8,
+          "section": "Datasets.",
+          "inferred": false,
+          "paper_id": "P010"
+        },
+        {
+          "text": "The Materials Project (MP) database (Jain et al., 2013) is an online public materials database providing various synthetic materials and their DFT-calculated properties. We specifically use its snapshot collected by Chen et al. (2019), which contains 69,239 materials and is accessible as megnet via jarvis-tools. Following recent studies (Yan et al., 2022; 2024; Lin et al., 2023; Taniai et al., 2024), we use formation energy (e_form), bandgap (gap pbe), bulk modulus (bulk modulus), and shear modulus (shear modulus) as regression targets. For bulk and shear modulus, we use the data splits provided by Yan et al. (2022).",
+          "page": 17,
+          "section": "C DATASET SPECIFICATIONS",
+          "inferred": false,
+          "paper_id": "P010"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:materials_project"
+    },
+    {
+      "dataset_id": "D_oqmd",
+      "canonical_name": "Open Quantum Materials Database",
+      "raw_names": [
+        "Open Quantum Materials Database",
+        "OQMD",
+        "oqmd_3d_no_cfid"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "crystals"
+      ],
+      "available_properties": [
+        "formation energy",
+        "bandgap",
+        "energy above hull"
+      ],
+      "available_fields": [
+        "_oqmd_delta_e",
+        "_oqmd_band_gap",
+        "_oqmd_stability"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We use three datasets: JARVIS (55,723 materials), MP (69,239 materials), and OQMD (817,636 materials), using snapshots available through a Python package (jarvis-tools). These datasets provide several material properties, such as formation energy and bandgap, simulated by DFT calculations.",
+          "page": 8,
+          "section": "Datasets.",
+          "inferred": false,
+          "paper_id": "P010"
+        },
+        {
+          "text": "The Open Quantum Materials Database (OQMD) is another online public materials database by Kirklin et al. (2015). We specifically use its snapshot provided as oqmd_3d_no_cfid in jarvis-tools, which contains 817,636 materials with three DFT-calculated properties: formation energy (_oqmd_delta_e), bandgap (_oqmd_band_gap), and energy above hull (_oqmd_stability). We use these properties as regression targets. We release our data splits along with our code.",
+          "page": 17,
+          "section": "C DATASET SPECIFICATIONS",
+          "inferred": false,
+          "paper_id": "P010"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:oqmd"
+    }
+  ],
+  "dataset_uses": [
+    {
+      "dataset_use_id": "DU_P010_001",
+      "paper_id": "P010",
+      "task_id": "T_P010_01",
+      "stage_id": "S_P010_01",
+      "dataset_id": "D_jarvis_dft_3d",
+      "usage_role": "source",
+      "purpose": "acquisition of crystal structure datasets with DFT-simulated material properties",
+      "used_fields": [
+        "formation_energy_peratom",
+        "optb88vdw_total_energy",
+        "optb88vdw_bandgap",
+        "mbj_bandgap",
+        "ehull"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 55723,
+      "evidence": [
+        {
+          "text": "We use three datasets: JARVIS (55,723 materials), MP (69,239 materials), and OQMD (817,636 materials), using snapshots available through a Python package (jarvis-tools). These datasets provide several material properties, such as formation energy and bandgap, simulated by DFT calculations.",
+          "page": 8,
+          "section": "Datasets.",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P010_002",
+      "paper_id": "P010",
+      "task_id": "T_P010_01",
+      "stage_id": "S_P010_01",
+      "dataset_id": "D_materials_project",
+      "usage_role": "source",
+      "purpose": "acquisition of crystal structure datasets with DFT-simulated material properties",
+      "used_fields": [
+        "e_form",
+        "gap_pbe",
+        "bulk_modulus",
+        "shear_modulus"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 69239,
+      "evidence": [
+        {
+          "text": "We use three datasets: JARVIS (55,723 materials), MP (69,239 materials), and OQMD (817,636 materials), using snapshots available through a Python package (jarvis-tools). These datasets provide several material properties, such as formation energy and bandgap, simulated by DFT calculations.",
+          "page": 8,
+          "section": "Datasets.",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P010_003",
+      "paper_id": "P010",
+      "task_id": "T_P010_01",
+      "stage_id": "S_P010_01",
+      "dataset_id": "D_oqmd",
+      "usage_role": "source",
+      "purpose": "acquisition of crystal structure datasets with DFT-simulated material properties",
+      "used_fields": [
+        "_oqmd_delta_e",
+        "_oqmd_band_gap",
+        "_oqmd_stability"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 817636,
+      "evidence": [
+        {
+          "text": "We use three datasets: JARVIS (55,723 materials), MP (69,239 materials), and OQMD (817,636 materials), using snapshots available through a Python package (jarvis-tools). These datasets provide several material properties, such as formation energy and bandgap, simulated by DFT calculations.",
+          "page": 8,
+          "section": "Datasets.",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P010_004",
+      "paper_id": "P010",
+      "task_id": "T_P010_01",
+      "stage_id": "S_P010_02",
+      "dataset_id": "D_jarvis_dft_3d",
+      "usage_role": "training",
+      "purpose": "training the CrystalFramer model from scratch using mean absolute loss function with Adam optimizer for 2000 epochs",
+      "used_fields": [
+        "formation_energy_peratom",
+        "optb88vdw_total_energy",
+        "optb88vdw_bandgap",
+        "mbj_bandgap",
+        "ehull"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 44578,
+      "evidence": [
+        {
+          "text": "Specifically, for the JARVIS dataset, we train our model from scratch by optimizing the mean absolute loss function using Adam (Kingma & Ba, 2015) for a total of 2000 epochs, while enabling the frames from the beginning.",
+          "page": 8,
+          "section": "Training settings.",
+          "inferred": false
+        },
+        {
+          "text": "The JARVIS-DFT 3D 2021 is a collection of 55,723 materials provided by Choudhary et al. (2020) and is accessible as dft_3d_2021 via jarvis-tools (or as dft_3d in older versions). These materials are annotated with various simulated properties using two DFT calculation methods, OptB88vdW (OPT) and TBmBJ (MBJ). Following recent studies (Yan et al., 2022; 2024; Lin et al., 2023; Taniai et al., 2024), we use formation energy (formation_energy_peratom), total energy (optb88vdw_total_energy), bandgap (optb88vdw_bandgap and mbj_bandgap), and energy above hull or E hull (ehull) as regression targets.",
+          "page": 17,
+          "section": "C DATASET SPECIFICATIONS",
+          "inferred": false
+        },
+        {
+          "text": "Form. energy\nTotal energy\nBandgap (OPT)\nBandgap (MBJ)\nE hull\n44578 / 5572 / 5572\n44578 / 5572 / 5572\n44578 / 5572 / 5572\n14537 / 1817 / 1817\n44296 / 5537 / 5537",
+          "page": 9,
+          "section": "Table 1: Property prediction results on the JARVIS dataset.",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P010_005",
+      "paper_id": "P010",
+      "task_id": "T_P010_01",
+      "stage_id": "S_P010_02",
+      "dataset_id": "D_materials_project",
+      "usage_role": "training",
+      "purpose": "training the CrystalFramer model using mean absolute loss function with Adam optimizer",
+      "used_fields": [
+        "e_form",
+        "gap_pbe",
+        "bulk_modulus",
+        "shear_modulus"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 60000,
+      "evidence": [
+        {
+          "text": "Tables 1 and 2 extensively compare the mean absolute errors of the proposed and existing methods for the JARVIS (5 tasks) and MP (4 tasks) datasets.",
+          "page": 8,
+          "section": "5.1 CRYSTAL PROPERTY PREDICTION",
+          "inferred": false
+        },
+        {
+          "text": "Formation energy\nBandgap\nBulk modulus\nShear modulus\n60000 / 5000 / 4239\n60000 / 5000 / 4239\n4664 / 393 / 393\n4664 / 392 / 393",
+          "page": 9,
+          "section": "Table 2: Property prediction results on the MP dataset.",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P010_006",
+      "paper_id": "P010",
+      "task_id": "T_P010_01",
+      "stage_id": "S_P010_02",
+      "dataset_id": "D_oqmd",
+      "usage_role": "training",
+      "purpose": "training the CrystalFramer model using mean absolute loss function with Adam optimizer for 200 epochs with larger batch size",
+      "used_fields": [
+        "_oqmd_delta_e",
+        "_oqmd_band_gap",
+        "_oqmd_stability"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 654108,
+      "evidence": [
+        {
+          "text": "Unlike these studies, we also use the much larger-scale OQMD dataset to assess scalability.",
+          "page": 8,
+          "section": "Datasets.",
+          "inferred": false
+        },
+        {
+          "text": "For the OQMD dataset, which was not used by the baseline method, we use similar settings with a larger batch size of 1024 materials and fewer epochs of 200.",
+          "page": 17,
+          "section": "D TRAINING SETTINGS",
+          "inferred": false
+        },
+        {
+          "text": "Form. energy (eV/atom)\nBandgap (eV)\nE hull (eV/atom)\nMethod\n654108 / 81763 / 81763\n653388 / 81673 / 81673\n654108 / 81763 / 81763",
+          "page": 9,
+          "section": "Table 3: Property prediction results on the OQMD dataset.",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P010_007",
+      "paper_id": "P010",
+      "task_id": "T_P010_01",
+      "stage_id": "S_P010_03",
+      "dataset_id": "D_jarvis_dft_3d",
+      "usage_role": "test",
+      "purpose": "evaluation of CrystalFramer performance on crystal property prediction tasks",
+      "used_fields": [
+        "formation_energy_peratom",
+        "optb88vdw_total_energy",
+        "optb88vdw_bandgap",
+        "mbj_bandgap",
+        "ehull"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 5572,
+      "evidence": [
+        {
+          "text": "Tables 1 and 2 extensively compare the mean absolute errors of the proposed and existing methods for the JARVIS (5 tasks) and MP (4 tasks) datasets.",
+          "page": 8,
+          "section": "5.1 CRYSTAL PROPERTY PREDICTION",
+          "inferred": false
+        },
+        {
+          "text": "Form. energy\nTotal energy\nBandgap (OPT)\nBandgap (MBJ)\nE hull\n44578 / 5572 / 5572\n44578 / 5572 / 5572\n44578 / 5572 / 5572\n14537 / 1817 / 1817\n44296 / 5537 / 5537",
+          "page": 9,
+          "section": "Table 1: Property prediction results on the JARVIS dataset.",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P010_008",
+      "paper_id": "P010",
+      "task_id": "T_P010_01",
+      "stage_id": "S_P010_03",
+      "dataset_id": "D_materials_project",
+      "usage_role": "test",
+      "purpose": "evaluation of CrystalFramer performance on crystal property prediction tasks",
+      "used_fields": [
+        "e_form",
+        "gap_pbe",
+        "bulk_modulus",
+        "shear_modulus"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 4239,
+      "evidence": [
+        {
+          "text": "Tables 1 and 2 extensively compare the mean absolute errors of the proposed and existing methods for the JARVIS (5 tasks) and MP (4 tasks) datasets.",
+          "page": 8,
+          "section": "5.1 CRYSTAL PROPERTY PREDICTION",
+          "inferred": false
+        },
+        {
+          "text": "Formation energy\nBandgap\nBulk modulus\nShear modulus\n60000 / 5000 / 4239\n60000 / 5000 / 4239\n4664 / 393 / 393\n4664 / 392 / 393",
+          "page": 9,
+          "section": "Table 2: Property prediction results on the MP dataset.",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P010_009",
+      "paper_id": "P010",
+      "task_id": "T_P010_01",
+      "stage_id": "S_P010_03",
+      "dataset_id": "D_oqmd",
+      "usage_role": "test",
+      "purpose": "evaluation of CrystalFramer performance on crystal property prediction tasks",
+      "used_fields": [
+        "_oqmd_delta_e",
+        "_oqmd_band_gap",
+        "_oqmd_stability"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 81763,
+      "evidence": [
+        {
+          "text": "It is important to note that the current state-of-the-art, ComFormer, uses finely-tuned hyperparameters (e.g., learning rate, loss function, number of layers, graph structure) for each individual task, whereas we simply adjust the number of epochs and batch size for each dataset.",
+          "page": 8,
+          "section": "5.1 CRYSTAL PROPERTY PREDICTION",
+          "inferred": false
+        },
+        {
+          "text": "Form. energy (eV/atom)\nBandgap (eV)\nE hull (eV/atom)\nMethod\n654108 / 81763 / 81763\n653388 / 81673 / 81673\n654108 / 81763 / 81763",
+          "page": 9,
+          "section": "Table 3: Property prediction results on the OQMD dataset.",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

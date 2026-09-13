@@ -1,0 +1,98 @@
+{
+  "paper": {
+    "title": "Physics-Informed Weakly Supervised Learning for Interatomic Potentials",
+    "year": 2025,
+    "doi": null,
+    "research_summary": "We address this challenge by introducing a physics-informed, weakly supervised approach for training machine-learned interatomic potentials (MLIPs). We introduce two novel loss functions, extrapolating the potential energy via a Taylor expansion and using the concept of conservative forces. Our approach improves the accuracy of MLIPs applied to training tasks with sparse training data sets and reduces the need for pre-training computationally demanding models with large data sets."
+  },
+  "task": {
+    "task_name_raw": "training machine-learned interatomic potentials (MLIPs)",
+    "task_name_canonical": "train_machine_learned_interatomic_potentials",
+    "objective": "to learn an MLIP, which can accurately predict the potential energy and atomistic forces for an atomic system exposed to local perturbations",
+    "material_scope": ["molecular and material systems", "organic molecules", "inorganic materials", "bulk materials", "transition-metal oxide", "Li-Mo-Ni-Ti oxide (LMNTO)", "aspirin", "buckyball catcher"],
+    "target_properties": ["potential energy", "atomistic forces", "conservative forces", "total energies", "atomic forces"],
+    "constraints": ["sparse training data sets", "limited sizes of available data sets", "high computational cost of ab initio or first-principles approaches", "force calculations infeasible for some high-accuracy ab initio methods"],
+    "input_requirements": ["atomic configurations S = {ri, Zi}Nat i=1", "reference energies Eref S", "reference atomic forces {Fref i,S}Nat i=1", "ab initio or first-principles data"],
+    "output_goal": ["accurate prediction of potential energy and atomistic forces", "improved robustness during MD simulations", "reduced energy and force errors", "improved fine-tuning of foundation models on sparse, highly accurate ab initio data"],
+    "evidence": [
+      {
+        "text": "We address this challenge by introducing a physics-informed, weakly supervised approach for training machine-learned interatomic potentials (MLIPs).",
+        "page": 1,
+        "section": "Abstract",
+        "inferred": false
+      },
+      {
+        "text": "Our method is designed to learn an MLIP, which can accurately predict the potential energy and atomistic forces for an atomic system exposed to local perturbations.",
+        "page": 2,
+        "section": "Introduction",
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "training MLIPs with PIWSL loss",
+      "stage_order": 1,
+      "stage_goal": "optimize trainable parameters θ by minimizing the combined physics-informed weakly supervised loss",
+      "stage_input": ["atomic configurations", "reference energies", "reference atomic forces", "perturbation vectors δr"],
+      "stage_output": ["trained MLIP model"],
+      "evidence": [
+        {
+          "text": "Together with the usual MLIP loss function defined in Eq. (1), the overall objective, which we refer to as the PIWSL loss, can be written as arg min θ ˜L (D; θ) = arg min θ X S∈D (L (S; θ) +CPITCLPITC (S; θ) + CPISCLPISC (S; θ)) ,",
+          "page": 4,
+          "section": "4.3. Combined Physics-Informed Weakly Supervised Loss",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "benchmarking models trained with PIWSL",
+      "stage_order": 2,
+      "stage_goal": "compare models trained using the PIWSL loss with baseline models trained using the standard supervised loss only",
+      "stage_input": ["test data set", "trained MLIP models", "baseline models"],
+      "stage_output": ["energy (E) and force (F) root-mean-square errors (RMSEs)", "performance gains"],
+      "evidence": [
+        {
+          "text": "We compare models trained using the PIWSL loss (see Eq. (5)) with baseline models trained using the standard supervised loss only (see Eq. (1)).",
+          "page": 5,
+          "section": "5.2. Benchmark Results",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "experimental_validation",
+      "stage_name_raw": "evaluating robustness during MD simulations",
+      "stage_order": 3,
+      "stage_goal": "assess the robustness and stability of MLIP models trained with and without PIWSL during molecular dynamics simulations",
+      "stage_input": ["aspirin molecule", "MD simulation setup", "trained MLIP models"],
+      "stage_output": ["stability analysis", "robustness metrics"],
+      "evidence": [
+        {
+          "text": "To further assess PIWSL’s impact, we evaluate the robustness during MD simulations of the MLIP models trained with and without PIWSL. We consider MD simulations of the aspirin molecule, with corresponding results presented in figure 3.",
+          "page": 7,
+          "section": "5.3. Qualitative Impact of PIWSL",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_screening",
+      "stage_name_raw": "fine-tuning foundation models with PIWSL",
+      "stage_order": 4,
+      "stage_goal": "demonstrate the application of PIWSL to the fine-tuning of foundation models using a sparse data set",
+      "stage_input": ["foundation models (MACE-OFF, MACE-MP)", "sparse data set (aspirin, buckyball catcher)", "PIWSL loss"],
+      "stage_output": ["fine-tuned foundation models", "improved accuracy metrics"],
+      "evidence": [
+        {
+          "text": "In this section, we present a case study demonstrating the application of PIWSL to the fine-tuning of foundation models using a sparse data set.",
+          "page": 7,
+          "section": "5.4. Fine-Tuning of Foundation Models",
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

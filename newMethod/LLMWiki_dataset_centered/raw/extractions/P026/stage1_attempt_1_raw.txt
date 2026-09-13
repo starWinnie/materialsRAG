@@ -1,0 +1,126 @@
+{
+  "paper": {
+    "title": "MD-HIT: Machine learning for material property prediction with dataset redundancy control",
+    "year": 2024,
+    "doi": "10.1038/s41524-024-01426-z",
+    "research_summary": "This paper addresses the problem of overestimated machine learning model performance in materials science due to dataset redundancy—i.e., highly similar materials in training and test sets causing information leakage. It proposes MD-HIT, a redundancy reduction algorithm inspired by bioinformatics' CD-HIT, with two variants: MD-HIT-composition (using composition-based distance metrics like Mendeleev and MatScholar) and MD-HIT-structure (using structure-based metrics like XRD and OFM features). The authors apply MD-HIT to Materials Project datasets for formation energy and band gap prediction, demonstrating that redundancy-controlled splits yield lower but more realistic and generalizable (especially out-of-distribution) ML performance compared to standard random splits."
+  },
+  "task": {
+    "task_name_raw": "dataset redundancy control for material property prediction",
+    "task_name_canonical": "dataset_redundancy_control",
+    "objective": "Reduce sample redundancy in material datasets to enable objective, realistic evaluation of ML models’ true predictive capability—particularly extrapolation and out-of-distribution performance—by preventing information leakage between training and test sets.",
+    "material_scope": ["inorganic crystalline materials", "perovskites (e.g., SrTiO3)", "Materials Project database entries", "Open Quantum Materials Database (OQMD) entries"],
+    "target_properties": ["formation energy", "band gap"],
+    "constraints": ["avoid overestimation of ML model performance", "preserve coverage of composition/structure space", "enable fair comparison across models and properties", "support both composition-based and structure-based inputs"],
+    "input_requirements": ["material compositions (e.g., chemical formulas)", "crystal structures (e.g., CIF files)", "distance metrics (e.g., Mendeleev, MatScholar, XRD, OFM)"],
+    "output_goal": ["non-redundant training/validation/test splits", "datasets where no pair of samples exceeds a user-defined similarity threshold"],
+    "evidence": [
+      {
+        "text": "In this paper, we survey the overestimated ML performance in materials science for material property prediction and propose MD-HIT, a redundancy reduction algorithm for material datasets.",
+        "page": 1,
+        "section": null,
+        "inferred": false
+      },
+      {
+        "text": "We propose and develop two material dataset redundancy-reducing algorithms based on a greedy algorithm inspired by the peer bioinformatics CD-HIT algorithm.",
+        "page": 10,
+        "section": "Discussion",
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_preparation",
+      "stage_name_raw": "MD-HIT-composition redundancy reduction",
+      "stage_order": 1,
+      "stage_goal": "Generate non-redundant composition datasets by iteratively selecting representative materials based on composition similarity thresholds.",
+      "stage_input": ["material compositions", "composition distance metrics (Mendeleev, MatScholar)"],
+      "stage_output": ["non-redundant composition datasets (e.g., Mendeleev-nr, Matscholar-nr)"],
+      "evidence": [
+        {
+          "text": "Our MD-HIT-composition and MD-HIT-structure redundancy reduction algorithms are designed based on this idea, utilizing greedy incremental algorithms. In our case, MD-HIT starts the selection process with a seed material (default to H2O) and then sorts the remaining materials by the number of atoms instead of the formula lengths. Subsequently, it classifies each material as redundant or representative, depending on its similarity to the existing representatives already selected into the cluster.",
+          "page": 3,
+          "section": "Results",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_preparation",
+      "stage_name_raw": "MD-HIT-structure redundancy reduction",
+      "stage_order": 2,
+      "stage_goal": "Generate non-redundant structure datasets by iteratively selecting representative crystal structures based on structure similarity thresholds.",
+      "stage_input": ["crystal structures (CIF files)", "structure distance metrics (XRD, OFM)"],
+      "stage_output": ["non-redundant structure datasets (e.g., XRD-nr, OFM-nr)"],
+      "evidence": [
+        {
+          "text": "MD-HIT-structure algorithm uses the same greedy adding approach as the MD-HIT-composition, except that it uses a structure-based distance metric.",
+          "page": 3,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "MD-HIT-structure algorithm also starts the selection process with a seed material (default to H2O) which is put in the non-redundant set. It then sorts the remaining materials in the candidate set by the number of atoms instead of the formula lengths, and classifies them one-by-one as redundant or representative materials based on their similarities (we use Euclidean distance of XRD features or OFM features) to the existing representatives already selected into the non-redundant set.",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "download and curate Materials Project datasets",
+      "stage_order": 3,
+      "stage_goal": "Acquire raw material data from Materials Project and perform initial filtering to ensure compatibility with downstream redundancy control.",
+      "stage_input": [],
+      "stage_output": ["125,619 CIF files with structures", "86,741 unique compositions after filtering"],
+      "evidence": [
+        {
+          "text": "We downloaded 125,619 cif files with material structures from the Materials Project database, which includes 89,354 materials with unique compositions. In cases where compositions corresponded to multiple polymorphs, we adopted average material property values by default, with the exception of formation energy property, for which we used the minimum value. Additionally, we excluded mp-101974 (HeSiO2) due to issues with calculating Matscholar features. After eliminating formulas with over 50 atoms, we obtained a non-duplicate composition dataset with 86,741 samples...",
+          "page": 4,
+          "section": "Datasets generation",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "evaluate ML model performance on redundancy-controlled splits",
+      "stage_order": 4,
+      "stage_goal": "Assess how redundancy control affects prediction accuracy (MAE, R²) of ML models on both in-distribution and out-of-distribution test sets.",
+      "stage_input": ["non-redundant datasets", "ML models (Roost, CrabNet, ALIGNN, DeeperGATGNN)"],
+      "stage_output": ["R² and MAE scores for formation energy and band gap prediction", "parity plots", "OOD performance comparisons"],
+      "evidence": [
+        {
+          "text": "To investigate the impact of redundancy control on the performance of ML models for predicting material properties, we conducted experiments using datasets filtered by Mendeleev and Matscholar distances.",
+          "page": 5,
+          "section": "Composition based material property prediction with redundancy control",
+          "inferred": false
+        },
+        {
+          "text": "We further evaluated the impact of OFM-controlled data redundancy on the algorithms’ performance (Fig. 6).",
+          "page": 7,
+          "section": "Structure based material property prediction with redundancy control",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "computational_validation",
+      "stage_name_raw": "validate OOD generalization improvement",
+      "stage_order": 5,
+      "stage_goal": "Demonstrate that models trained on non-redundant data achieve better out-of-distribution prediction performance than those trained on redundant data.",
+      "stage_input": ["EmbeddingOOD test set", "Roostnr and Roostred models"],
+      "stage_output": ["MAE and R² improvements on OOD test set (10.03% MAE, 31.6% R² gain)"],
+      "evidence": [
+        {
+          "text": "We found that the Roostnr significantly outperforms Roostred model, with 10.03% improvement in MAE and a 31.6% improvement in R2 for the OOD test set. This result demonstrates that removing redundant data can steer an ML model away from focusing on crowded samples, ensuring equitable attention to all other samples, and consequently improving OOD prediction performance.",
+          "page": 8,
+          "section": null,
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

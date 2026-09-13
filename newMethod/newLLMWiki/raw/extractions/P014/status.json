@@ -1,0 +1,27 @@
+{
+  "paper_id": "P014",
+  "file_name": "14_Cross_Scale_Covariance.pdf",
+  "status": "completed",
+  "completed_at": "2026-07-27T05:06:05.099648+00:00",
+  "model": "qwen-plus",
+  "stage1_attempts": [
+    {
+      "attempt": "cached",
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "stage2_attempts": [
+    {
+      "attempt": "cached",
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "counts": {
+    "tasks": 1,
+    "stages": 8,
+    "datasets": 5,
+    "dataset_uses": 9
+  }
+}

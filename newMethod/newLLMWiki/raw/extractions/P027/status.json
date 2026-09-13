@@ -1,0 +1,27 @@
+{
+  "paper_id": "P027",
+  "file_name": "27_Virtual_Node_Phonon_Preprint.pdf",
+  "status": "completed",
+  "completed_at": "2026-07-27T05:11:58.463918+00:00",
+  "model": "qwen-plus",
+  "stage1_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "stage2_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "counts": {
+    "tasks": 1,
+    "stages": 5,
+    "datasets": 3,
+    "dataset_uses": 7
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "paper": {
+    "title": "RETHINKING THE ROLE OF FRAMES FOR SE(3)-INVARIANT CRYSTAL STRUCTURE MODELING",
+    "year": 2025,
+    "doi": null,
+    "research_summary": "This paper proposes dynamic frames for SE(3)-invariant crystal structure modeling, challenging the conventional use of static frames. Dynamic frames are constructed per atom and per message-passing layer using learned attention weights to capture local interatomic interactions, rather than aligning with the global static structure. The concept is implemented in CrystalFramer, a transformer-based architecture extending Crystalformer, and evaluated on crystal property prediction tasks across JARVIS, Materials Project, and OQMD datasets."
+  },
+  "task": {
+    "task_name_raw": "crystal property prediction",
+    "task_name_canonical": "crystal_property_prediction",
+    "objective": "Predict material properties (e.g., formation energy, bandgap) from crystal structures while maintaining SE(3) invariance.",
+    "material_scope": ["crystals"],
+    "target_properties": ["formation energy", "bandgap", "total energy", "energy above hull", "bulk modulus", "shear modulus"],
+    "constraints": ["SE(3) invariance", "periodic SE(3) invariance", "invariance to unit-cell variations"],
+    "input_requirements": ["crystal structure represented as unit cell (A, P, L)"],
+    "output_goal": ["predicted scalar material property values"],
+    "evidence": [
+      {
+        "text": "To validate the effectiveness of the proposed dynamic frames, we conducted extensive experiments on crystal property prediction.",
+        "page": 7,
+        "section": "EXPERIMENTS",
+        "inferred": false
+      },
+      {
+        "text": "We use three datasets: JARVIS (55,723 materials), MP (69,239 materials), and OQMD (817,636 materials), using snapshots available through a Python package (jarvis-tools). These datasets provide several material properties, such as formation energy and bandgap, simulated by DFT calculations.",
+        "page": 8,
+        "section": "Datasets.",
+        "inferred": false
+      },
+      {
+        "text": "Tables 1 and 2 extensively compare the mean absolute errors of the proposed and existing methods for the JARVIS (5 tasks) and MP (4 tasks) datasets.",
+        "page": 8,
+        "section": "5.1 CRYSTAL PROPERTY PREDICTION",
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "using datasets (JARVIS, MP, OQMD)",
+      "stage_order": 1,
+      "stage_goal": "Acquire crystal structure and property data from public materials databases.",
+      "stage_input": [],
+      "stage_output": ["crystal structure data with DFT-simulated properties"],
+      "evidence": [
+        {
+          "text": "We use three datasets: JARVIS (55,723 materials), MP (69,239 materials), and OQMD (817,636 materials), using snapshots available through a Python package (jarvis-tools). These datasets provide several material properties, such as formation energy and bandgap, simulated by DFT calculations.",
+          "page": 8,
+          "section": "Datasets.",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_preparation",
+      "stage_name_raw": "using consistent data splits",
+      "stage_order": 2,
+      "stage_goal": "Prepare data using standardized train/validation/test splits to ensure fair comparison.",
+      "stage_input": ["raw dataset files"],
+      "stage_output": ["partitioned datasets (train/validation/test)"],
+      "evidence": [
+        {
+          "text": "Following these and later studies (Lin et al., 2023; Yan et al., 2024; Taniai et al., 2024), we use the same data splits and cite their reported scores to reduce computational burden.",
+          "page": 8,
+          "section": "Training settings.",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "training CrystalFramer with dynamic frames",
+      "stage_order": 3,
+      "stage_goal": "Train the CrystalFramer model using Adam optimizer and inverse square root learning rate scheduling.",
+      "stage_input": ["prepared datasets", "CrystalFramer architecture"],
+      "stage_output": ["trained CrystalFramer model"],
+      "evidence": [
+        {
+          "text": "For the JARVIS dataset, we train our model from scratch by optimizing the mean absolute loss function using Adam (Kingma & Ba, 2015) for a total of 2000 epochs, while enabling the frames from the beginning.",
+          "page": 8,
+          "section": "Training settings.",
+          "inferred": false
+        },
+        {
+          "text": "We employ the warm-up-free inverse square root scheduling (Huang et al., 2020) for the learning rate, with the initial learning rate of 5.0 × 10−4 and decay factor of √4000/(4000 + t) according to the total train steps t.",
+          "page": 17,
+          "section": "D TRAINING SETTINGS",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "comparing mean absolute errors on property prediction tasks",
+      "stage_order": 4,
+      "stage_goal": "Evaluate model performance by computing mean absolute error (MAE) on test sets for multiple crystal properties.",
+      "stage_input": ["trained CrystalFramer model", "test set"],
+      "stage_output": ["MAE scores per property"],
+      "evidence": [
+        {
+          "text": "Tables 1 and 2 extensively compare the mean absolute errors of the proposed and existing methods for the JARVIS (5 tasks) and MP (4 tasks) datasets.",
+          "page": 8,
+          "section": "5.1 CRYSTAL PROPERTY PREDICTION",
+          "inferred": false
+        },
+        {
+          "text": "Table 1: Property prediction results on the JARVIS dataset. Accuracies are in mean absolute error.",
+          "page": 9,
+          "section": "Table 1",
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

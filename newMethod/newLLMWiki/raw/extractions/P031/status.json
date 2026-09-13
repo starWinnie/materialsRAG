@@ -1,0 +1,34 @@
+{
+  "paper_id": "P031",
+  "file_name": "31_Superconductivity_Ordered_Disordered.pdf",
+  "status": "completed",
+  "completed_at": "2026-07-27T05:16:23.883604+00:00",
+  "model": "qwen-plus",
+  "stage1_attempts": [
+    {
+      "attempt": 1,
+      "errors": [
+        "APIConnectionError: Connection error."
+      ],
+      "exception": "APIConnectionError('Connection error.')"
+    },
+    {
+      "attempt": 2,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "stage2_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "counts": {
+    "tasks": 1,
+    "stages": 8,
+    "datasets": 4,
+    "dataset_uses": 7
+  }
+}

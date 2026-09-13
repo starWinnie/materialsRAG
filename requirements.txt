@@ -1,0 +1,6 @@
+neo4j
+numpy
+openai
+python-dotenv
+pymupdf
+tqdm

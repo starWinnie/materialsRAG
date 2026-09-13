@@ -1,0 +1,295 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "materials_project",
+      "canonical_name": "Materials Project",
+      "raw_names": [
+        "Materials Project"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "bulk semiconductors"
+      ],
+      "available_properties": [
+        "crystal structures",
+        "bandgaps",
+        "energy-above-hull"
+      ],
+      "available_fields": [
+        "bandgap",
+        "energy-above-hull",
+        "chemical composition",
+        "space group",
+        "unit cell"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "With our focus on small bandgap semiconductors in mind, we selected materials from the Materials Project41 with bandgaps ranging from 0.3 to 3 eV (photon wavelengths of 4100 nm (infrared) to 413 nm (violet)) that are appropriate for optoelectronic applications42,43.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "tse_nn_dataset_1432",
+      "canonical_name": "TSENN 1432-material dataset",
+      "raw_names": [
+        "dataset of 1432 materials",
+        "1432 frequency-dependent dielectric tensors",
+        "aforementioned dataset",
+        "1432 bulk semiconductors"
+      ],
+      "dataset_type": "derived_subset",
+      "source_dataset_key": "materials_project",
+      "material_scope": [
+        "bulk semiconductors"
+      ],
+      "available_properties": [
+        "frequency-dependent dielectric tensor",
+        "crystal structure",
+        "bandgap",
+        "energy-above-hull"
+      ],
+      "available_fields": [
+        "dielectric_tensor",
+        "crystal_structure",
+        "bandgap",
+        "energy_above_hull",
+        "symmetry"
+      ],
+      "availability": "public",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "These constraints yielded a dataset of 1432 materials, whose composition is summarized in Fig. 1.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "We demonstrate the capabilities of TSENN by considering the frequency-dependent dielectric tensors of a dataset of 1432 nonmagnetic semiconductors calculated via first-principles methods using OpenMX37–40.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "By training TSENN on the aforementioned dataset, we achieve a mean absolute error (MAE) of 0.127 in the predicted imaginary part of the dielectric tensor.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "materials_project",
+      "usage_role": "source",
+      "purpose": "source database for selecting candidate materials",
+      "used_fields": [
+        "bandgap",
+        "energy-above-hull",
+        "chemical composition",
+        "unit cell",
+        "magnetic properties",
+        "f-electron presence"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [
+        "bandgaps ranging from 0.3 to 3 eV",
+        "energy-above-hull threshold of 0.02 eV/atom",
+        "fewer than three elements",
+        "fewer than ten atoms per unit cell",
+        "exclusion of magnetic materials",
+        "exclusion of materials containing elements with f electrons"
+      ],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "With our focus on small bandgap semiconductors in mind, we selected materials from the Materials Project41 with bandgaps ranging from 0.3 to 3 eV (photon wavelengths of 4100 nm (infrared) to 413 nm (violet)) that are appropriate for optoelectronic applications42,43. To maintain structural stability, we imposed an energy-above-hull threshold of 0.02 eV/atom. For computational efficiency, we limited our selection to materials with fewer than three elements and fewer than ten atoms per unit cell. Additionally, we excluded magnetic materials as well as materials containing elements with f electrons due to the lack of availability of accurate, predefined pseudo-potential sets.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "tse_nn_dataset_1432",
+      "usage_role": "training",
+      "purpose": "training data for TSENN model consisting of frequency-dependent dielectric tensors computed via first-principles methods",
+      "used_fields": [
+        "dielectric_tensor",
+        "crystal_structure"
+      ],
+      "is_derived": true,
+      "construction_method": "ab initio DFT calculations using OpenMX; dielectric tensor computed within IPA using Kubo formula for photon energies 0–30 eV at 0.01 eV increments; structures symmetrized prior to calculation",
+      "filter_conditions": [
+        "nonmagnetic",
+        "semiconductors",
+        "bandgap 0.3–3 eV",
+        "energy-above-hull ≤ 0.02 eV/atom",
+        "≤3 elements",
+        "≤10 atoms per unit cell",
+        "no f-electron elements"
+      ],
+      "sample_count": 1432,
+      "evidence": [
+        {
+          "text": "These constraints yielded a dataset of 1432 materials, whose composition is summarized in Fig. 1.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "We demonstrate the capabilities of TSENN by considering the frequency-dependent dielectric tensors of a dataset of 1432 nonmagnetic semiconductors calculated via first-principles methods using OpenMX37–40.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "tse_nn_dataset_1432",
+      "usage_role": "label_source",
+      "purpose": "source of ground-truth Cartesian dielectric tensors for spherical-harmonics decomposition",
+      "used_fields": [
+        "dielectric_tensor"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "To predict the dielectric tensor using an equivariant neural network, we express it in the spherical-harmonics basis, which naturally encodes rotational symmetry. The dielectric tensor is symmetric under the permutation of Cartesian indices, εij = εji, and therefore admits the decomposition εij = Tαβ Y α 1 Y β 1 = ε(0) \u0002 ε(2) = Σ‘∈{0, 2} Σ‘ m = −‘ εm (‘) Y m ‘ , (1) which separates the scalar trace component (ℓ= 0) from the traceless symmetric tensor component (ℓ= 2).",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "In this work, the complex dielectric tensor refers to the frequency-dependent relative dielectric tensor, expressed as εαβðωÞ = εαβ 1 ðωÞ + iεαβ 2 ðωÞ, where εαβ 1 and εαβ 2 denote the real and imaginary parts, respectively.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "tse_nn_dataset_1432",
+      "usage_role": "training",
+      "purpose": "training input for TSENN model after spherical-harmonics decomposition",
+      "used_fields": [
+        "spherical_harmonic_coefficients_ell0",
+        "spherical_harmonic_coefficients_ell2"
+      ],
+      "is_derived": true,
+      "construction_method": "spherical-harmonics decomposition of Cartesian dielectric tensor into ℓ=0 and ℓ=2 channels using e3nn package",
+      "filter_conditions": [],
+      "sample_count": 1432,
+      "evidence": [
+        {
+          "text": "After the final pointwise convolution layer, we apply mean pooling over all nodes to obtain a global representation of the material. The network output is then partitioned into two parts: a scalar component corresponding to ℓ= 0 and a tensor component corresponding to ℓ= 2.",
+          "page": 3,
+          "section": "unknown",
+          "inferred": false
+        },
+        {
+          "text": "To train the model, we define a composite loss function L, which separately evaluates the scalar and tensor components of the predicted optical spectra.",
+          "page": 3,
+          "section": "unknown",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "tse_nn_dataset_1432",
+      "usage_role": "validation",
+      "purpose": "validation set for model evaluation using MAE and symmetry-preserving metrics",
+      "used_fields": [
+        "spherical_harmonic_coefficients_ell0",
+        "spherical_harmonic_coefficients_ell2"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "To evaluate the model’s performance, the most direct measure is the MAE of the dielectric tensor, MAE = 1/(6nω) Σω Σα≤β |bεαβ(ω) − εαβ(ω)|.",
+          "page": 4,
+          "section": "unknown",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "tse_nn_dataset_1432",
+      "usage_role": "test",
+      "purpose": "test set for final model evaluation and error metric reporting",
+      "used_fields": [
+        "spherical_harmonic_coefficients_ell0",
+        "spherical_harmonic_coefficients_ell2"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The overall tensor MAE is 0.127 (0.097 median), establishing TSENN’s robust baseline accuracy.",
+          "page": 5,
+          "section": "unknown",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "tse_nn_dataset_1432",
+      "usage_role": "computational_validation",
+      "purpose": "computational validation via Kramers–Kronig reconstruction and strain-based symmetry breaking tests",
+      "used_fields": [
+        "dielectric_tensor_imaginary_part",
+        "crystal_structure"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "With the accurately predicted imaginary parts, we used K–K relations to obtain the real parts of the dielectric tensors. Since K–K relations are model-independent, they provide a rigorous test of the internal consistency of the predicted spectra.",
+          "page": 6,
+          "section": "unknown",
+          "inferred": false
+        },
+        {
+          "text": "We also evaluated the model’s response to shear strain perturbations by modifying the lattice angles... As the angular deviation increases, a finite bεxz(ω) progressively emerges, producing a nonzero |bεxz|. We quantified this emergent behavior as a function of the shear angle and observed an almost perfect linear relationship in the small-strain regime (R² = 0.995).",
+          "page": 8,
+          "section": "unknown",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

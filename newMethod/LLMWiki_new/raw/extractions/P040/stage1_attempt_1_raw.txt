@@ -1,0 +1,156 @@
+{
+  "paper": {
+    "title": "Atomic-scale revelation of in situ reverse regulation from particles to clusters in the Ni/La-CeOx catalyst",
+    "year": 2026,
+    "doi": "10.1038/s41467-026-73757-y",
+    "research_summary": "This work proposes and demonstrates a reverse regulation strategy—from metal particles to stable subnanometer clusters—enabled by rational design of catalytic environment and metal-support interaction, overcoming classical sintering limitations at high temperature. Using in situ characterization and theoretical calculations, it reveals atomic migration pathways and thermodynamic steady-state reconstruction underlying Ni cluster formation on La-doped CeO2 support during ammonia decomposition."
+  },
+  "task": {
+    "task_name_raw": "reverse regulation from particles to clusters",
+    "task_name_canonical": "reverse_regulation_from_particles_to_clusters",
+    "objective": "Achieve thermodynamically stable subnanometer Ni clusters via in situ dispersion of pre-formed Ni particles under high-temperature reducing conditions",
+    "material_scope": ["Ni", "La-doped CeO2", "CeO2"],
+    "target_properties": ["thermal stability", "high H2 production rate", "atomic utilization efficiency"],
+    "constraints": ["high-temperature operation (>500 °C)", "resistance to sintering", "structural integrity of support"],
+    "input_requirements": ["Ni particles on La-doped CeO2 support", "high-temperature reducing atmosphere (NH3 or H2)"],
+    "output_goal": ["stable Ni clusters (1–2 nm)", "thermodynamic steady state", "enhanced catalytic performance in ammonia decomposition"],
+    "evidence": [
+      {
+        "text": "This study transcends conventional paradigms by proposing a reverse regulation strategy from particles to clusters.",
+        "page": 1,
+        "section": null,
+        "inferred": false
+      },
+      {
+        "text": "The successful construction of a stable Ni cluster catalyst has enabled a H2 production rate (500 °C, 279.2 mmolH2·gNi−1·min−1) and exceptional thermal stability.",
+        "page": 2,
+        "section": null,
+        "inferred": false
+      },
+      {
+        "text": "The formation process and underlying mechanism of stable Ni clusters are elucidated.",
+        "page": 1,
+        "section": null,
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "synthesis of catalysts",
+      "stage_order": 1,
+      "stage_goal": "Prepare Ni-based catalysts on doped and undoped CeO2 supports for comparative study",
+      "stage_input": ["La(NO3)3·9H2O", "Ce(NO3)3·3H2O", "Ni(NO3)2·6H2O", "NaOH", "deionized water"],
+      "stage_output": ["10Ni/30La-CeO2 catalyst", "10Ni/CeO2 catalyst", "30La-CeO2 nanorods", "CeO2 nanorods"],
+      "evidence": [
+        {
+          "text": "The 30La-CeO2 nanorods were synthesized by the hydrothermal method.",
+          "page": 9,
+          "section": "Methods",
+          "inferred": false
+        },
+        {
+          "text": "The x wt.% Ni/30La-CeO2 catalysts were prepared via the deposition-precipitation method.",
+          "page": 9,
+          "section": "Methods",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_generation",
+      "stage_name_raw": "pretreatment to induce structural evolution",
+      "stage_order": 2,
+      "stage_goal": "Generate distinct Ni species states (particles → clusters) through controlled thermal treatment under NH3 or H2",
+      "stage_input": ["as-prepared 10Ni/30La-CeO2 catalyst", "NH3 or H2 atmosphere", "temperature gradient"],
+      "stage_output": ["Ni particles (5–10 nm)", "mixed particles/clusters", "fully dispersed Ni clusters (1–2 nm)"],
+      "evidence": [
+        {
+          "text": "The catalyst, subjected to 12 h of gradient heating treatment with NH3 (for the specific treatment procedure, see Supplementary Fig. 1), was designated as the used catalyst.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "HAADF-STEM analysis revealed a large number of particles with sizes of 5−10 nm on the surface of the 10Ni/30La-CeO2 catalyst (Fig. 1a), which was treated with NH3 at 500 °C for 0.5 h. Further, only a limited number of Ni particles along with a substantial amount of Ni clusters were observed after being treated at 600 °C for 1 h (Fig. 1b, Supplementary Fig. 4). On this basis, the dispersion of Ni species was markedly improved when the treatment time was extended to 120 h. The metallic Ni particles were no longer detectable on the surface of the 10Ni/30La-CeO2 catalyst. A significant number of stable Ni clusters were observed, with an average size of 1−2 nm (Fig. 1c, Supplementary Fig. 5).",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "computational_validation",
+      "stage_name_raw": "DFT and ML-MD simulations of adsorption and dispersion energetics",
+      "stage_order": 3,
+      "stage_goal": "Validate thermodynamic and kinetic feasibility of Ni particle dispersion via Ni–O–La/Ce bonding and quantify interfacial energy evolution",
+      "stage_input": ["NiOy/CeO2−x and NiOy/LaCeO2−x surface models", "DFT + U method", "GemNet-OC ML-MD model"],
+      "stage_output": ["adsorption energies (Eads)", "migration pathways", "stable Ni-O-La configuration (−0.75 eV)", "covalent bonding strength exceeding Ni lattice cohesion"],
+      "evidence": [
+        {
+          "text": "DFT calculations revealed that the reactive Oads coordinated with either Ce or La atoms on the catalyst surface could establish strong MSI with Ni species, consequently promoting the redispersion of Ni nanoparticles (Fig. 4f).",
+          "page": 5,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "DFT calculations revealed distinct adsorption behaviors depending on the coordination environment of Ni. When Ni atoms formed direct bonds with Ce (Eads = 1.97 eV) or La (Eads = 1.71 eV) atoms in the support, the positive adsorption energies indicated thermodynamic instability. In contrast, Ni coordination with O atoms adjacent to Ce sites exhibited a lower adsorption energy (Eads = −0.26 eV), favoring stable configurations.",
+          "page": 5,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "Molecular dynamics simulations confirmed that these effects led to a multi-layer Ni distribution on 10Ni/CeO2. On the contrary, 10Ni/30La-CeO2 promoted Ni dispersion.",
+          "page": 7,
+          "section": null,
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "experimental_validation",
+      "stage_name_raw": "in situ ETEM and HAADF-STEM observation of dynamic dispersion",
+      "stage_order": 4,
+      "stage_goal": "Directly observe and confirm real-time structural evolution from Ni particles to clusters under operando conditions",
+      "stage_input": ["10Ni/30La-CeO2 catalyst", "H2 atmosphere (50 Pa, 99.99%)", "heating to 600 °C"],
+      "stage_output": ["time-resolved images showing particle contraction → complete dispersion → retained highly dispersed state"],
+      "evidence": [
+        {
+          "text": "In order to directly observe the formation process of these Ni clusters, in situ aberration-corrected ETEM was employed to characterize the 10Ni/30La-CeO2 catalyst. The nanoparticles gradually contracted when the temperature increased from room temperature to 450 °C under a H2 atmosphere (Fig. 2a, b). Then, the particles completely dispersed upon further increasing the temperature to 600 °C, and the highly dispersed state was retained even after returning to ambient temperature (Fig. 2c, d).",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "correlative analysis of structural, electronic, and catalytic properties",
+      "stage_order": 5,
+      "stage_goal": "Establish causal links between La-induced support stabilization, enhanced MSI, oxygen vacancy concentration, Niδ+ speciation, and catalytic performance",
+      "stage_input": ["XRD, XPS, FTIR, EXAFS, Raman, TPR, TPD data", "H2 production rates", "NH3 conversion", "stability tests"],
+      "stage_output": ["quantified Niδ+ proportion (51.1% vs. 30.6%)", "Ce3+ content (43% vs. 31%)", "ID/IF2g ratio decrease", "Ea = 120.3 kJ·mol−1", "279.2 mmolH2·gNi−1·min−1"],
+      "evidence": [
+        {
+          "text": "Quantitative analysis revealed that the 10Ni/30La-CeO2 catalyst exhibited a significantly higher proportion of Niδ+ species (51.1%) compared to the 10Ni/CeO2 reference (30.6%), demonstrating the promotional effect of La doping on the stabilization of oxidized Ni sites.",
+          "page": 3,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "The content of Ce3+ in 10Ni/30La-CeO2 (43%) was notably higher than that in 10Ni/CeO2 (31%), indicating a significantly greater concentration of OVs.",
+          "page": 7,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "The optimized 10Ni/30La-CeO2 catalyst exhibits a remarkably high H2 production rate (500 °C, 279.2 mmolH2·gNi−1·min−1) and exceptional thermal stability.",
+          "page": 1,
+          "section": null,
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

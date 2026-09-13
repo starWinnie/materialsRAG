@@ -1,0 +1,226 @@
+{
+  "paper": {
+    "title": "Structure-based out-of-distribution (OOD) materials property prediction: a benchmark study",
+    "year": 2024,
+    "doi": "10.1038/s41524-024-01316-4",
+    "research_summary": "This paper presents a comprehensive benchmark study evaluating graph neural networks (GNNs) for predicting materials properties on out-of-distribution (OOD) test sets—materials whose structures or properties deviate significantly from the training distribution. It introduces five OOD test set generation methods (LOCO, SparseXsingle, SparseYsingle, SparseXcluster, SparseYcluster) applied to three MatBench datasets (dielectric, elasticity, perovskites), and systematically compares eight SOTA GNN models across 250 folds. The study reveals a critical generalization gap: current top-performing GNNs underperform substantially on OOD tasks compared to their i.i.d. MatBench baselines, identifies CGCNN, ALIGNN, and DeeperGATGNN as comparatively robust, and analyzes latent physical spaces to explain performance differences."
+  },
+  "task": {
+    "task_name_raw": "Structure-based out-of-distribution (OOD) materials property prediction",
+    "task_name_canonical": "structure_based_ood_materials_property_prediction",
+    "objective": "To evaluate and benchmark graph neural network models for predicting materials properties on test samples that are out-of-distribution—i.e., whose crystal structures or property values deviate significantly from the training set distribution.",
+    "material_scope": [
+      "inorganic materials",
+      "crystalline solids",
+      "perovskites",
+      "dielectric materials",
+      "elastic materials"
+    ],
+    "target_properties": [
+      "refractive index",
+      "shear modulus",
+      "formation energy"
+    ],
+    "constraints": [
+      "test sets must be out-of-distribution relative to training set",
+      "no labeled samples in target set",
+      "evaluation must reflect real-world discovery of outlier/novel materials"
+    ],
+    "input_requirements": [
+      "crystal structure representations (e.g., crystal graphs, OFM features)",
+      "property labels for training/validation sets"
+    ],
+    "output_goal": [
+      "predicted property value (scalar regression output) for each OOD test material"
+    ],
+    "evidence": [
+      {
+        "text": "Here we present a comprehensive benchmark study of structure-based graph neural networks (GNNs) for extrapolative OOD materials property prediction.",
+        "page": 1,
+        "section": "unknown",
+        "inferred": false
+      },
+      {
+        "text": "We formulated ﬁve different categories of OOD ML problems for three benchmark datasets from the MatBench study.",
+        "page": 1,
+        "section": "unknown",
+        "inferred": false
+      },
+      {
+        "text": "In realistic scenarios, the test set often deviates signiﬁcantly from the training and validation set in terms of distribution.",
+        "page": 3,
+        "section": "Results",
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "Selection and acquisition of three MatBench datasets",
+      "stage_order": 1,
+      "stage_goal": "Obtain raw structure-property datasets for benchmarking.",
+      "stage_input": [],
+      "stage_output": [
+        "matbench_dielectric dataset",
+        "matbench_log_gvrh dataset",
+        "matbench_perovskites dataset"
+      ],
+      "evidence": [
+        {
+          "text": "We analyze eight GNN models for material property regression tasks using three datasets sourced from MatBench26 and mentioned in Table 1.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "All three datasets are chosen from the MatBench study26.",
+          "page": 13,
+          "section": "Data availability",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_preparation",
+      "stage_name_raw": "Preprocessing and representation of crystal structures",
+      "stage_order": 2,
+      "stage_goal": "Convert crystal structures into machine-readable graph-based representations suitable for GNN input.",
+      "stage_input": [
+        "crystal structures"
+      ],
+      "stage_output": [
+        "crystal graphs",
+        "orbital-field matrix (OFM) features",
+        "t-SNE reduced features"
+      ],
+      "evidence": [
+        {
+          "text": "Initially, we apply the k-means algorithm61 based on the orbital-ﬁeld matrix (OFM) features62 to cluster the whole dataset into 50 clusters. OFM captures the electronic structure of materials by considering the orbitals’ interactions...",
+          "page": 4,
+          "section": "OOD test set generation",
+          "inferred": false
+        },
+        {
+          "text": "In this method, we begin by converting material structures into the 1024-dimension OFM feature space. Subsequently, we apply the t-distributed stochastic neighbor embedding (t-SNE)64 for dimension reduction...",
+          "page": 4,
+          "section": "OOD test set generation",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_generation",
+      "stage_name_raw": "Generation of OOD test sets using five methods",
+      "stage_order": 3,
+      "stage_goal": "Systematically construct test sets that are out-of-distribution with respect to the training set, simulating real-world discovery of novel/exceptional materials.",
+      "stage_input": [
+        "preprocessed structural and property data"
+      ],
+      "stage_output": [
+        "LOCO test sets",
+        "SparseXsingle test sets",
+        "SparseYsingle test sets",
+        "SparseXcluster test sets",
+        "SparseYcluster test sets"
+      ],
+      "evidence": [
+        {
+          "text": "We proposed ﬁve practical scenarios for predicting material properties. These scenarios are designed to focus on properties of less common or underrepresented materials in the dataset...",
+          "page": 3,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "We propose the following target set generation methods to simulate real-world conditions for materials property prediction. Leave-one-cluster-out (LOCO)... Single-point targets with the lowest structure density (SparseXsingle)... Single-point targets with the lowest property density (SparseYsingle)... Cluster targets with the lowest structure density (SparseXcluster)... Cluster targets with the lowest property density (SparseYcluster).",
+          "page": 4,
+          "section": "OOD test set generation",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "Training of eight GNN models on each train/validation split",
+      "stage_order": 4,
+      "stage_goal": "Train each GNN model on the training set of each fold while validating on the validation set.",
+      "stage_input": [
+        "training set",
+        "validation set",
+        "GNN architecture"
+      ],
+      "stage_output": [
+        "trained GNN model instance per fold"
+      ],
+      "evidence": [
+        {
+          "text": "For each fold, we selected a cluster as the test set, and the rest as training and validation sets, and averaged the results over 50 folds to get the ﬁnal result.",
+          "page": 3,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "In total, we trained a total of 6000 deep learning GNN models, analyzed the results and drew important conclusions from them.",
+          "page": 10,
+          "section": "Discussion",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "Evaluation of model performance on OOD test sets using MAE",
+      "stage_order": 5,
+      "stage_goal": "Quantify prediction accuracy of each trained model on its corresponding OOD test set using mean absolute error (MAE).",
+      "stage_input": [
+        "trained GNN model",
+        "OOD test set"
+      ],
+      "stage_output": [
+        "MAE score per fold",
+        "aggregated MAE across 50 folds"
+      ],
+      "evidence": [
+        {
+          "text": "We use the mean absolute error (MAE) metric, which is a standard evaluation criterion for regression-based materials property prediction problems.",
+          "page": 12,
+          "section": "Evaluation criterion",
+          "inferred": false
+        },
+        {
+          "text": "The results of the dielectric dataset for ﬁve different OOD target generation methods are summarized in Table 3.",
+          "page": 4,
+          "section": "Performance comparison on OOD test sets",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "computational_validation",
+      "stage_name_raw": "Analysis of latent physical spaces via t-SNE",
+      "stage_order": 6,
+      "stage_goal": "Investigate the learned representations of GNNs to identify physical reasons for differential OOD performance.",
+      "stage_input": [
+        "latent representations from trained GNNs"
+      ],
+      "stage_output": [
+        "t-SNE visualizations of latent spaces",
+        "interpretation of clustering patterns correlated with formation energy"
+      ],
+      "evidence": [
+        {
+          "text": "We utilized t-distributed stochastic neighbor embedding (t-SNE)64, a commonly utilized non-linear method for visualizing and interpreting complex, high-dimensional data, to investigate speciﬁc insights into the materials’ physics.",
+          "page": 10,
+          "section": "Physical insights",
+          "inferred": false
+        },
+        {
+          "text": "For each trained model, we retrieved the output of the ﬁrst layer after the ﬁnal graph convolution layer and plotted the t-SNE diagrams in Fig. 7.",
+          "page": 10,
+          "section": "Physical insights",
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

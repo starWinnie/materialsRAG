@@ -1,0 +1,420 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "materials_project",
+      "canonical_name": "Materials Project",
+      "raw_names": ["Materials Project", "MP"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["inorganic crystalline materials", "perovskites (e.g., SrTiO3)"],
+      "available_properties": ["formation energy", "band gap"],
+      "available_fields": ["composition", "crystal structure", "formation energy per atom", "band gaps"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Materials databases such as Materials Project and OpenQuantumMaterials Database (OQMD)11,12 are characterized by the existence of many redundant (highly similar) materials due to the tinkering approach historically used in material design13–15.",
+          "page": 1,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "We downloaded 125,619 cif files with material structures from the Materials Project database, which includes 89,354 materials with unique compositions.",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "oqmd",
+      "canonical_name": "Open Quantum Materials Database",
+      "raw_names": ["OpenQuantumMaterials Database (OQMD)", "OQMD"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["inorganic crystalline materials"],
+      "available_properties": [],
+      "available_fields": [],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Materials databases such as Materials Project and OpenQuantumMaterials Database (OQMD)11,12 are characterized by the existence of many redundant (highly similar) materials due to the tinkering approach historically used in material design13–15.",
+          "page": 1,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "mendeleev_nr",
+      "canonical_name": "Mendeleev-nr",
+      "raw_names": ["Mendeleev-nr", "Mendeleev non-redundant datasets"],
+      "dataset_type": "derived_subset",
+      "source_dataset_key": "materials_project",
+      "material_scope": ["inorganic crystalline materials"],
+      "available_properties": ["formation energy", "band gap"],
+      "available_fields": ["composition", "Mendeleev similarity distance"],
+      "availability": "public",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "For Mendeleev similarity, we used distance thresholds of 0.5, 0.8, 1, 1.5, 2, 2.5, and 3 to generate seven non-redundant datasets (Mendeleev-nr). The dataset sizes range from 86,740 to 3177.",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "matscholar_nr",
+      "canonical_name": "Matscholar-nr",
+      "raw_names": ["Matscholar-nr", "Matscholar non-redundant datasets"],
+      "dataset_type": "derived_subset",
+      "source_dataset_key": "materials_project",
+      "material_scope": ["inorganic crystalline materials"],
+      "available_properties": ["formation energy", "band gap"],
+      "available_fields": ["composition", "MatScholar feature vector", "MatScholar distance"],
+      "availability": "public",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "Similarly, we generated eight Matscholar non-redundant datasets (Matscholar-nr) with percentages of the total range from 50.82% to 2.33%.",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "xrd_nr",
+      "canonical_name": "XRD-nr",
+      "raw_names": ["XRD-nr", "XRD non-redundant datasets"],
+      "dataset_type": "derived_subset",
+      "source_dataset_key": "materials_project",
+      "material_scope": ["inorganic crystalline materials"],
+      "available_properties": ["formation energy", "band gap"],
+      "available_fields": ["crystal structure", "XRD features", "XRD distance"],
+      "availability": "public",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "We also applied the MD-HIT-structure algorithm to all 125,619 structures and used different thresholds to generate seven XRD non-redundant datasets and eight OFM non-redundant datasets.",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "ofm_nr",
+      "canonical_name": "OFM-nr",
+      "raw_names": ["OFM-nr", "OFM non-redundant datasets"],
+      "dataset_type": "derived_subset",
+      "source_dataset_key": "materials_project",
+      "material_scope": ["inorganic crystalline materials"],
+      "available_properties": ["formation energy", "band gap"],
+      "available_fields": ["crystal structure", "OFM features", "OFM distance"],
+      "availability": "public",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "We also applied the MD-HIT-structure algorithm to all 125,619 structures and used different thresholds to generate seven XRD non-redundant datasets and eight OFM non-redundant datasets.",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "embeddingood",
+      "canonical_name": "EmbeddingOOD test set",
+      "raw_names": ["EmbeddingOOD", "EmbeddingOOD test set"],
+      "dataset_type": "paper_specific",
+      "source_dataset_key": "materials_project",
+      "material_scope": ["inorganic crystalline materials"],
+      "available_properties": ["formation energy"],
+      "available_fields": ["latent representation", "nearest neighbor distances"],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "To compare the true OOD performance of models trained on non-redundant and redundant dataset, we prepared another OOD test set named EmbeddingOOD. First, we used a pretrained Roost model as an encoder to obtain the latent representations for all samples in the entire dataset (86,740 samples). We then calculated the pairwise distances of all samples using their latent representations and selected 1000 OOD samples that are furthest away on average from their three nearest neighbors, forming our EmbeddingOOD test set.",
+          "page": 8,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "matscholarood",
+      "canonical_name": "MatscholarOOD test set",
+      "raw_names": ["MatscholarOOD", "MatscholarOOD test set"],
+      "dataset_type": "paper_specific",
+      "source_dataset_key": "materials_project",
+      "material_scope": ["inorganic crystalline materials"],
+      "available_properties": ["formation energy"],
+      "available_fields": ["Matscholar features", "density"],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "We first selected 1000 OOD test samples to create the MatscholarOOD test set, based on the densities calculated using Matscholar features of compositions from the entire MP dataset (86,740 samples) for formation energy prediction.",
+          "page": 8,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "materials_project",
+      "usage_role": "source",
+      "purpose": "Source dataset for composition-based redundancy reduction using MD-HIT-composition algorithm",
+      "used_fields": ["composition"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 86740,
+      "evidence": [
+        {
+          "text": "We downloaded 125,619 cif files with material structures from the Materials Project database, which includes 89,354 materials with unique compositions. In cases where compositions corresponded to multiple polymorphs, we adopted average material property values by default, with the exception of formation energy property, for which we used the minimum value. Additionally, we excluded mp-101974 (HeSiO2) due to issues with calculating Matscholar features. After eliminating formulas with over 50 atoms, we obtained a non-duplicate composition dataset with 86,741 samples and then used different similarity (distance) thresholds to generate non-redundant datasets.",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "materials_project",
+      "usage_role": "source",
+      "purpose": "Source dataset for structure-based redundancy reduction using MD-HIT-structure algorithm",
+      "used_fields": ["crystal structure"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 125619,
+      "evidence": [
+        {
+          "text": "We downloaded 125,619 cif files with material structures from the Materials Project database, which includes 89,354 materials with unique compositions.",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "mendeleev_nr",
+      "usage_role": "candidate_pool",
+      "purpose": "Non-redundant composition dataset generated at varying thresholds for benchmarking",
+      "used_fields": ["composition", "Mendeleev similarity distance"],
+      "is_derived": true,
+      "construction_method": "MD-HIT-composition algorithm with Mendeleev similarity distance thresholds (0.5, 0.8, 1, 1.5, 2, 2.5, 3)",
+      "filter_conditions": [],
+      "sample_count": 3177,
+      "evidence": [
+        {
+          "text": "For Mendeleev similarity, we used distance thresholds of 0.5, 0.8, 1, 1.5, 2, 2.5, and 3 to generate seven non-redundant datasets (Mendeleev-nr). The dataset sizes range from 86,740 to 3177.",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "matscholar_nr",
+      "usage_role": "candidate_pool",
+      "purpose": "Non-redundant composition dataset generated at varying thresholds for benchmarking",
+      "used_fields": ["composition", "MatScholar distance"],
+      "is_derived": true,
+      "construction_method": "MD-HIT-composition algorithm with Matscholar distance thresholds (0.05–0.4)",
+      "filter_conditions": [],
+      "sample_count": 2020,
+      "evidence": [
+        {
+          "text": "Similarly, we generated eight Matscholar non-redundant datasets (Matscholar-nr) with percentages of the total range from 50.82% to 2.33%.",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "xrd_nr",
+      "usage_role": "candidate_pool",
+      "purpose": "Non-redundant structure dataset generated at varying thresholds for benchmarking",
+      "used_fields": ["crystal structure", "XRD features"],
+      "is_derived": true,
+      "construction_method": "MD-HIT-structure algorithm with XRD distance thresholds (0.5, 0.6, 0.8, 0.9)",
+      "filter_conditions": [],
+      "sample_count": 13729,
+      "evidence": [
+        {
+          "text": "We also applied the MD-HIT-structure algorithm to all 125,619 structures and used different thresholds to generate seven XRD non-redundant datasets and eight OFM non-redundant datasets.",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "ofm_nr",
+      "usage_role": "candidate_pool",
+      "purpose": "Non-redundant structure dataset generated at varying thresholds for benchmarking",
+      "used_fields": ["crystal structure", "OFM features"],
+      "is_derived": true,
+      "construction_method": "MD-HIT-structure algorithm with OFM distance thresholds (0.15, 0.2, 0.45, 0.7)",
+      "filter_conditions": [],
+      "sample_count": 13120,
+      "evidence": [
+        {
+          "text": "We also applied the MD-HIT-structure algorithm to all 125,619 structures and used different thresholds to generate seven XRD non-redundant datasets and eight OFM non-redundant datasets.",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "mendeleev_nr",
+      "usage_role": "training",
+      "purpose": "Training set for composition-based ML models (Roost, CrabNet) to evaluate impact of redundancy control on formation energy and band gap prediction",
+      "used_fields": ["composition", "formation energy", "band gap"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We evaluated two state-of-the-art composition-based property prediction algorithms, Roost and CrabNet (See Methods section), on non-redundant datasets derived from the MP composition dataset with 86,740 samples using different distance thresholds. The datasets were randomly divided into training, validation, and test sets with an 8:1:1 ratio.",
+          "page": 5,
+          "section": "Composition based material property prediction with redundancy control",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "matscholar_nr",
+      "usage_role": "training",
+      "purpose": "Training set for composition-based ML models (Roost, CrabNet) to evaluate impact of redundancy control on formation energy and band gap prediction",
+      "used_fields": ["composition", "formation energy", "band gap"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We evaluated two state-of-the-art composition-based property prediction algorithms, Roost and CrabNet (See Methods section), on non-redundant datasets derived from the MP composition dataset with 86,740 samples using different distance thresholds. The datasets were randomly divided into training, validation, and test sets with an 8:1:1 ratio.",
+          "page": 5,
+          "section": "Composition based material property prediction with redundancy control",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "xrd_nr",
+      "usage_role": "training",
+      "purpose": "Training set for structure-based ML models (ALIGNN, DeeperGATGNN) to evaluate impact of redundancy control on formation energy and band gap prediction",
+      "used_fields": ["crystal structure", "formation energy", "band gap"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We evaluated the material property prediction performances of two state-of-the-art graph neural network algorithms, ALIGNN30 and DeeperGATGNN31 (See Methods section), on these datasets.",
+          "page": 6,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "ofm_nr",
+      "usage_role": "training",
+      "purpose": "Training set for structure-based ML models (ALIGNN, DeeperGATGNN) to evaluate impact of redundancy control on formation energy and band gap prediction",
+      "used_fields": ["crystal structure", "formation energy", "band gap"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We further evaluated the impact of OFM-controlled data redundancy on the algorithms’ performance (Fig. 6).",
+          "page": 7,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "embeddingood",
+      "usage_role": "computational_validation",
+      "purpose": "OOD test set constructed from latent representations of entire MP dataset to assess out-of-distribution generalization",
+      "used_fields": ["latent representation", "formation energy"],
+      "is_derived": true,
+      "construction_method": "Pretrained Roost encoder + nearest neighbor distance selection (1000 samples furthest from three nearest neighbors)",
+      "filter_conditions": [],
+      "sample_count": 1000,
+      "evidence": [
+        {
+          "text": "To compare the true OOD performance of models trained on non-redundant and redundant dataset, we prepared another OOD test set named EmbeddingOOD. First, we used a pretrained Roost model as an encoder to obtain the latent representations for all samples in the entire dataset (86,740 samples). We then calculated the pairwise distances of all samples using their latent representations and selected 1000 OOD samples that are furthest away on average from their three nearest neighbors, forming our EmbeddingOOD test set.",
+          "page": 8,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 6,
+      "dataset_key": "embeddingood",
+      "usage_role": "test",
+      "purpose": "Final evaluation of ID vs. OOD performance degradation for Roost models trained on redundant vs. non-redundant data",
+      "used_fields": ["formation energy"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 1000,
+      "evidence": [
+        {
+          "text": "Figure 8 shows the performance of two Roost models on two test sets (ID and OOD sets). The MAE of the Roostred increases from 0.1278 eV on the random-split test set to 0.4089 eV for the EmbeddingOOD test set... In contrast, for Roostnr, its MAE increased from 0.1994 eV to 0.3679 eV... However, we find that the Roostnr significantly outperforms Roostred model, with 10.03% improvement in MAE and a 31.6% improvement in R2 for the OOD test set.",
+          "page": 8,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

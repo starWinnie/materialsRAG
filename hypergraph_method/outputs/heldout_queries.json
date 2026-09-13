@@ -1,0 +1,588 @@
+[
+  {
+    "query_id": "32_Perovskite_Bandgap_Database__task1__dataset1",
+    "paper_file": "32_Perovskite_Bandgap_Database.pdf",
+    "task_description": "Predicting the bandgaps of mixed ABX3 perovskites (where A = Cs, FA, or MA; B = Pb or Sn; X = Br, Cl, or I) with continuously varying compositions to enable thermodynamic modeling and prediction of light-induced halide segregation behavior under illumination.",
+    "task_tags": [
+      "bandgap prediction",
+      "halide segregation prediction",
+      "perovskite property modeling"
+    ],
+    "heldout_dataset": "Perovskite Solar Cell (PSC) Database",
+    "heldout_original_dataset": "Perovskite Solar Cell (PSC) Database",
+    "heldout_dataset_description": "A publicly available experimental database established by Jacobsson et al., containing experimentally measured bandgap values for various perovskite solar cell materials. In this paper, it contributed to the experimental bandgap dataset (645 total entries after curation), used to fine-tune machine learning models and validate predictions of mixed-halide perovskite bandgaps.",
+    "query": "Find datasets for this materials research task: Predicting the bandgaps of mixed ABX3 perovskites (where A = Cs, FA, or MA; B = Pb or Sn; X = Br, Cl, or I) with continuously varying compositions to enable thermodynamic modeling and prediction of light-induced halide segregation behavior under illumination. Task tags: bandgap prediction, halide segregation prediction, perovskite property modeling. Needed dataset role: A publicly available experimental database established by Jacobsson et al., containing experimentally measured bandgap values for various perovskite solar cell materials. In this paper, it contributed to the experimental bandgap dataset (645 total entries after curation), used to fine-tune machine learning models and validate predictions of mixed-halide perovskite bandgaps."
+  },
+  {
+    "query_id": "32_Perovskite_Bandgap_Database__task1__dataset2",
+    "paper_file": "32_Perovskite_Bandgap_Database.pdf",
+    "task_description": "Predicting the bandgaps of mixed ABX3 perovskites (where A = Cs, FA, or MA; B = Pb or Sn; X = Br, Cl, or I) with continuously varying compositions to enable thermodynamic modeling and prediction of light-induced halide segregation behavior under illumination.",
+    "task_tags": [
+      "bandgap prediction",
+      "halide segregation prediction",
+      "perovskite property modeling"
+    ],
+    "heldout_dataset": "Liu et al. experimental bandgap dataset",
+    "heldout_original_dataset": "Liu et al. experimental bandgap dataset",
+    "heldout_dataset_description": "A curated collection of 227 experimentally reported bandgap values for ABX3 perovskites, sourced from literature and used in this work to augment the experimental training set. After deduplication and averaging of repeated compositions, it formed part of the 645-entry experimental bandgap dataset used to train and evaluate the Atomsets-MLP model for accurate bandgap prediction.",
+    "query": "Find datasets for this materials research task: Predicting the bandgaps of mixed ABX3 perovskites (where A = Cs, FA, or MA; B = Pb or Sn; X = Br, Cl, or I) with continuously varying compositions to enable thermodynamic modeling and prediction of light-induced halide segregation behavior under illumination. Task tags: bandgap prediction, halide segregation prediction, perovskite property modeling. Needed dataset role: A curated collection of 227 experimentally reported bandgap values for ABX3 perovskites, sourced from literature and used in this work to augment the experimental training set. After deduplication and averaging of repeated compositions, it formed part of the 645-entry experimental bandgap dataset used to train and evaluate the Atomsets-MLP model for accurate bandgap prediction."
+  },
+  {
+    "query_id": "32_Perovskite_Bandgap_Database__task1__dataset3",
+    "paper_file": "32_Perovskite_Bandgap_Database.pdf",
+    "task_description": "Predicting the bandgaps of mixed ABX3 perovskites (where A = Cs, FA, or MA; B = Pb or Sn; X = Br, Cl, or I) with continuously varying compositions to enable thermodynamic modeling and prediction of light-induced halide segregation behavior under illumination.",
+    "task_tags": [
+      "bandgap prediction",
+      "halide segregation prediction",
+      "perovskite property modeling"
+    ],
+    "heldout_dataset": "Yang et al. experimental bandgap dataset",
+    "heldout_original_dataset": "Yang et al. experimental bandgap dataset",
+    "heldout_dataset_description": "A set of 610 experimentally measured bandgaps for hybrid perovskites, collected from published studies and integrated into the authors’ unified experimental bandgap dataset (645 entries after filtering). It provided compositional diversity and experimental ground truth for transfer learning and model validation targeting bandgap prediction of mixed-cation/mixed-anion perovskites.",
+    "query": "Find datasets for this materials research task: Predicting the bandgaps of mixed ABX3 perovskites (where A = Cs, FA, or MA; B = Pb or Sn; X = Br, Cl, or I) with continuously varying compositions to enable thermodynamic modeling and prediction of light-induced halide segregation behavior under illumination. Task tags: bandgap prediction, halide segregation prediction, perovskite property modeling. Needed dataset role: A set of 610 experimentally measured bandgaps for hybrid perovskites, collected from published studies and integrated into the authors’ unified experimental bandgap dataset (645 entries after filtering). It provided compositional diversity and experimental ground truth for transfer learning and model validation targeting bandgap prediction of mixed-cation/mixed-anion perovskites."
+  },
+  {
+    "query_id": "32_Perovskite_Bandgap_Database__task1__dataset4",
+    "paper_file": "32_Perovskite_Bandgap_Database.pdf",
+    "task_description": "Predicting the bandgaps of mixed ABX3 perovskites (where A = Cs, FA, or MA; B = Pb or Sn; X = Br, Cl, or I) with continuously varying compositions to enable thermodynamic modeling and prediction of light-induced halide segregation behavior under illumination.",
+    "task_tags": [
+      "bandgap prediction",
+      "halide segregation prediction",
+      "perovskite property modeling"
+    ],
+    "heldout_dataset": "DFT-calculated bandgap dataset (PBE functional)",
+    "heldout_original_dataset": "DFT-calculated bandgap dataset (PBE functional)",
+    "heldout_dataset_description": "A custom computational dataset comprising 108 DFT-calculated bandgaps for mixed halide perovskites (e.g., FAPb(I1-xBrx)3, MAPb(I1-xBrx)3, CsPb(I1-xBrx)3, and multi-cation variants), generated using VASP with the PBE functional and structural models built via Pymatgen. This dataset was combined with experimental data to train transfer-learned models (e.g., Fine-Tuned MEGNet, Atomsets-MLP) to bridge accuracy gaps between DFT and experiment.",
+    "query": "Find datasets for this materials research task: Predicting the bandgaps of mixed ABX3 perovskites (where A = Cs, FA, or MA; B = Pb or Sn; X = Br, Cl, or I) with continuously varying compositions to enable thermodynamic modeling and prediction of light-induced halide segregation behavior under illumination. Task tags: bandgap prediction, halide segregation prediction, perovskite property modeling. Needed dataset role: A custom computational dataset comprising 108 DFT-calculated bandgaps for mixed halide perovskites (e.g., FAPb(I1-xBrx)3, MAPb(I1-xBrx)3, CsPb(I1-xBrx)3, and multi-cation variants), generated using VASP with the PBE functional and structural models built via Pymatgen. This dataset was combined with experimental data to train transfer-learned models (e.g., Fine-Tuned MEGNet, Atomsets-MLP) to bridge accuracy gaps between DFT and experiment."
+  },
+  {
+    "query_id": "32_Perovskite_Bandgap_Database__task1__dataset5",
+    "paper_file": "32_Perovskite_Bandgap_Database.pdf",
+    "task_description": "Predicting the bandgaps of mixed ABX3 perovskites (where A = Cs, FA, or MA; B = Pb or Sn; X = Br, Cl, or I) with continuously varying compositions to enable thermodynamic modeling and prediction of light-induced halide segregation behavior under illumination.",
+    "task_tags": [
+      "bandgap prediction",
+      "halide segregation prediction",
+      "perovskite property modeling"
+    ],
+    "heldout_dataset": "Materials Project",
+    "heldout_original_dataset": "Materials Project database",
+    "heldout_dataset_description": "A public repository of computed materials properties, including ~69,640 DFT (PBE)-calculated bandgaps for crystals, used to pre-train foundational models (MEGNet, MatGL) before fine-tuning on perovskite-specific data. In this paper, it served as the source of pre-trained weights for transfer learning, enabling improved generalization for perovskite bandgap prediction despite domain shift.",
+    "query": "Find datasets for this materials research task: Predicting the bandgaps of mixed ABX3 perovskites (where A = Cs, FA, or MA; B = Pb or Sn; X = Br, Cl, or I) with continuously varying compositions to enable thermodynamic modeling and prediction of light-induced halide segregation behavior under illumination. Task tags: bandgap prediction, halide segregation prediction, perovskite property modeling. Needed dataset role: A public repository of computed materials properties, including ~69,640 DFT (PBE)-calculated bandgaps for crystals, used to pre-train foundational models (MEGNet, MatGL) before fine-tuning on perovskite-specific data. In this paper, it served as the source of pre-trained weights for transfer learning, enabling improved generalization for perovskite bandgap prediction despite domain shift."
+  },
+  {
+    "query_id": "33_DenseGNN__task1__dataset1",
+    "paper_file": "33_DenseGNN.pdf",
+    "task_description": "Predicting material properties—including formation energy, band gap, bulk modulus, phonon frequencies, dielectric constant, and perovskite formation energy—for crystals, molecules, and catalytic materials using graph neural networks, with emphasis on achieving high accuracy on both large-scale computational datasets and small experimental datasets while maintaining scalability and training efficiency.",
+    "task_tags": [
+      "property prediction",
+      "materials informatics",
+      "graph neural network"
+    ],
+    "heldout_dataset": "JARVIS-DFT",
+    "heldout_original_dataset": "JARVIS-DFT",
+    "heldout_dataset_description": "A dataset of ~67,000 inorganic crystal structures with DFT-calculated properties (e.g., formation energy, band gap, dielectric, piezoelectric, exfoliation energy) computed using OptB88vdW and TBmBJ functionals; used to train and evaluate DenseGNN for crystal property prediction, particularly on formation energy and bandgap tasks, with an 80:10:10 train/validation/test split.",
+    "query": "Find datasets for this materials research task: Predicting material properties—including formation energy, band gap, bulk modulus, phonon frequencies, dielectric constant, and perovskite formation energy—for crystals, molecules, and catalytic materials using graph neural networks, with emphasis on achieving high accuracy on both large-scale computational datasets and small experimental datasets while maintaining scalability and training efficiency. Task tags: property prediction, materials informatics, graph neural network. Needed dataset role: A dataset of ~67,000 inorganic crystal structures with DFT-calculated properties (e.g., formation energy, band gap, dielectric, piezoelectric, exfoliation energy) computed using OptB88vdW and TBmBJ functionals; used to train and evaluate DenseGNN for crystal property prediction, particularly on formation energy and bandgap tasks, with an 80:10:10 train/validation/test split."
+  },
+  {
+    "query_id": "33_DenseGNN__task1__dataset2",
+    "paper_file": "33_DenseGNN.pdf",
+    "task_description": "Predicting material properties—including formation energy, band gap, bulk modulus, phonon frequencies, dielectric constant, and perovskite formation energy—for crystals, molecules, and catalytic materials using graph neural networks, with emphasis on achieving high accuracy on both large-scale computational datasets and small experimental datasets while maintaining scalability and training efficiency.",
+    "task_tags": [
+      "property prediction",
+      "materials informatics",
+      "graph neural network"
+    ],
+    "heldout_dataset": "Materials Project",
+    "heldout_original_dataset": "Materials Project",
+    "heldout_dataset_description": "A database of over 132,000 computationally derived inorganic crystal structures and their DFT-predicted properties; specifically used in this paper to extract ~8,970 silicon-containing compounds for structural distinction evaluation via pre-trained embeddings, benchmarking DenseGNN’s ability to discriminate crystal structures against XRD standards.",
+    "query": "Find datasets for this materials research task: Predicting material properties—including formation energy, band gap, bulk modulus, phonon frequencies, dielectric constant, and perovskite formation energy—for crystals, molecules, and catalytic materials using graph neural networks, with emphasis on achieving high accuracy on both large-scale computational datasets and small experimental datasets while maintaining scalability and training efficiency. Task tags: property prediction, materials informatics, graph neural network. Needed dataset role: A database of over 132,000 computationally derived inorganic crystal structures and their DFT-predicted properties; specifically used in this paper to extract ~8,970 silicon-containing compounds for structural distinction evaluation via pre-trained embeddings, benchmarking DenseGNN’s ability to discriminate crystal structures against XRD standards."
+  },
+  {
+    "query_id": "33_DenseGNN__task1__dataset3",
+    "paper_file": "33_DenseGNN.pdf",
+    "task_description": "Predicting material properties—including formation energy, band gap, bulk modulus, phonon frequencies, dielectric constant, and perovskite formation energy—for crystals, molecules, and catalytic materials using graph neural networks, with emphasis on achieving high accuracy on both large-scale computational datasets and small experimental datasets while maintaining scalability and training efficiency.",
+    "task_tags": [
+      "property prediction",
+      "materials informatics",
+      "graph neural network"
+    ],
+    "heldout_dataset": "QM9",
+    "heldout_original_dataset": "QM9",
+    "heldout_dataset_description": "A molecular dataset containing 130,829 stable small organic molecules with 19 DFT-computed quantum chemical properties (e.g., HOMO, LUMO, energy gap, dipole moment, zero-point energy); used to evaluate DenseGNN’s performance on molecular property regression tasks, especially for electronic properties sensitive to local geometry.",
+    "query": "Find datasets for this materials research task: Predicting material properties—including formation energy, band gap, bulk modulus, phonon frequencies, dielectric constant, and perovskite formation energy—for crystals, molecules, and catalytic materials using graph neural networks, with emphasis on achieving high accuracy on both large-scale computational datasets and small experimental datasets while maintaining scalability and training efficiency. Task tags: property prediction, materials informatics, graph neural network. Needed dataset role: A molecular dataset containing 130,829 stable small organic molecules with 19 DFT-computed quantum chemical properties (e.g., HOMO, LUMO, energy gap, dipole moment, zero-point energy); used to evaluate DenseGNN’s performance on molecular property regression tasks, especially for electronic properties sensitive to local geometry."
+  },
+  {
+    "query_id": "33_DenseGNN__task1__dataset4",
+    "paper_file": "33_DenseGNN.pdf",
+    "task_description": "Predicting material properties—including formation energy, band gap, bulk modulus, phonon frequencies, dielectric constant, and perovskite formation energy—for crystals, molecules, and catalytic materials using graph neural networks, with emphasis on achieving high accuracy on both large-scale computational datasets and small experimental datasets while maintaining scalability and training efficiency.",
+    "task_tags": [
+      "property prediction",
+      "materials informatics",
+      "graph neural network"
+    ],
+    "heldout_dataset": "LipopDataset",
+    "heldout_original_dataset": "LipopDataset",
+    "heldout_dataset_description": "A curated experimental dataset of 4,200 compounds with measured octanol/water partition coefficients (logD at pH 7.4), sourced from ChEMBL; used to assess DenseGNN’s ability to predict lipophilicity—a key pharmaceutical property—demonstrating its generalization to small-molecule solubility-related tasks.",
+    "query": "Find datasets for this materials research task: Predicting material properties—including formation energy, band gap, bulk modulus, phonon frequencies, dielectric constant, and perovskite formation energy—for crystals, molecules, and catalytic materials using graph neural networks, with emphasis on achieving high accuracy on both large-scale computational datasets and small experimental datasets while maintaining scalability and training efficiency. Task tags: property prediction, materials informatics, graph neural network. Needed dataset role: A curated experimental dataset of 4,200 compounds with measured octanol/water partition coefficients (logD at pH 7.4), sourced from ChEMBL; used to assess DenseGNN’s ability to predict lipophilicity—a key pharmaceutical property—demonstrating its generalization to small-molecule solubility-related tasks."
+  },
+  {
+    "query_id": "33_DenseGNN__task1__dataset5",
+    "paper_file": "33_DenseGNN.pdf",
+    "task_description": "Predicting material properties—including formation energy, band gap, bulk modulus, phonon frequencies, dielectric constant, and perovskite formation energy—for crystals, molecules, and catalytic materials using graph neural networks, with emphasis on achieving high accuracy on both large-scale computational datasets and small experimental datasets while maintaining scalability and training efficiency.",
+    "task_tags": [
+      "property prediction",
+      "materials informatics",
+      "graph neural network"
+    ],
+    "heldout_dataset": "FreeSolvDataset",
+    "heldout_original_dataset": "FreeSolvDataset",
+    "heldout_dataset_description": "A dataset of experimental and computed solvation free energies in water for ~600 small molecules, extended here with SMILES strings and experimental values; used to benchmark DenseGNN’s predictive accuracy for aqueous solvation thermodynamics, supporting drug discovery–relevant property screening.",
+    "query": "Find datasets for this materials research task: Predicting material properties—including formation energy, band gap, bulk modulus, phonon frequencies, dielectric constant, and perovskite formation energy—for crystals, molecules, and catalytic materials using graph neural networks, with emphasis on achieving high accuracy on both large-scale computational datasets and small experimental datasets while maintaining scalability and training efficiency. Task tags: property prediction, materials informatics, graph neural network. Needed dataset role: A dataset of experimental and computed solvation free energies in water for ~600 small molecules, extended here with SMILES strings and experimental values; used to benchmark DenseGNN’s predictive accuracy for aqueous solvation thermodynamics, supporting drug discovery–relevant property screening."
+  },
+  {
+    "query_id": "33_DenseGNN__task1__dataset6",
+    "paper_file": "33_DenseGNN.pdf",
+    "task_description": "Predicting material properties—including formation energy, band gap, bulk modulus, phonon frequencies, dielectric constant, and perovskite formation energy—for crystals, molecules, and catalytic materials using graph neural networks, with emphasis on achieving high accuracy on both large-scale computational datasets and small experimental datasets while maintaining scalability and training efficiency.",
+    "task_tags": [
+      "property prediction",
+      "materials informatics",
+      "graph neural network"
+    ],
+    "heldout_dataset": "ESOLDataset",
+    "heldout_original_dataset": "ESOLDataset",
+    "heldout_dataset_description": "The Delaney (ESOL) dataset containing water solubility measurements (log S) for 1,128 compounds, encoded as SMILES strings; used to evaluate DenseGNN’s capacity to directly regress solubility from molecular structure, serving as a standard test for generalizability on sparse, experimentally derived small-molecule property data.",
+    "query": "Find datasets for this materials research task: Predicting material properties—including formation energy, band gap, bulk modulus, phonon frequencies, dielectric constant, and perovskite formation energy—for crystals, molecules, and catalytic materials using graph neural networks, with emphasis on achieving high accuracy on both large-scale computational datasets and small experimental datasets while maintaining scalability and training efficiency. Task tags: property prediction, materials informatics, graph neural network. Needed dataset role: The Delaney (ESOL) dataset containing water solubility measurements (log S) for 1,128 compounds, encoded as SMILES strings; used to evaluate DenseGNN’s capacity to directly regress solubility from molecular structure, serving as a standard test for generalizability on sparse, experimentally derived small-molecule property data."
+  },
+  {
+    "query_id": "33_DenseGNN__task1__dataset7",
+    "paper_file": "33_DenseGNN.pdf",
+    "task_description": "Predicting material properties—including formation energy, band gap, bulk modulus, phonon frequencies, dielectric constant, and perovskite formation energy—for crystals, molecules, and catalytic materials using graph neural networks, with emphasis on achieving high accuracy on both large-scale computational datasets and small experimental datasets while maintaining scalability and training efficiency.",
+    "task_tags": [
+      "property prediction",
+      "materials informatics",
+      "graph neural network"
+    ],
+    "heldout_dataset": "OC22",
+    "heldout_original_dataset": "OC22",
+    "heldout_dataset_description": "The Open Catalyst 2022 dataset comprising ~1.2 million DFT total energy calculations for oxide electrocatalyst surfaces and adsorbates; used to validate DenseGNN on catalysis-relevant property prediction (e.g., S2EF-Total, IS2RE-Total), demonstrating its applicability to heterogeneous catalysis and surface chemistry beyond bulk materials.",
+    "query": "Find datasets for this materials research task: Predicting material properties—including formation energy, band gap, bulk modulus, phonon frequencies, dielectric constant, and perovskite formation energy—for crystals, molecules, and catalytic materials using graph neural networks, with emphasis on achieving high accuracy on both large-scale computational datasets and small experimental datasets while maintaining scalability and training efficiency. Task tags: property prediction, materials informatics, graph neural network. Needed dataset role: The Open Catalyst 2022 dataset comprising ~1.2 million DFT total energy calculations for oxide electrocatalyst surfaces and adsorbates; used to validate DenseGNN on catalysis-relevant property prediction (e.g., S2EF-Total, IS2RE-Total), demonstrating its applicability to heterogeneous catalysis and surface chemistry beyond bulk materials."
+  },
+  {
+    "query_id": "33_DenseGNN__task1__dataset8",
+    "paper_file": "33_DenseGNN.pdf",
+    "task_description": "Predicting material properties—including formation energy, band gap, bulk modulus, phonon frequencies, dielectric constant, and perovskite formation energy—for crystals, molecules, and catalytic materials using graph neural networks, with emphasis on achieving high accuracy on both large-scale computational datasets and small experimental datasets while maintaining scalability and training efficiency.",
+    "task_tags": [
+      "property prediction",
+      "materials informatics",
+      "graph neural network"
+    ],
+    "heldout_dataset": "Matbench",
+    "heldout_original_dataset": "Matbench",
+    "heldout_dataset_description": "An automated benchmark platform with 13 rigorously curated, domain-diverse solid-state materials property prediction tasks (e.g., phonons, dielectric, perovskites, jdft2d), covering sample sizes from 312 to 132,000 and spanning DFT and experimental sources; used as the primary benchmark to evaluate DenseGNN’s universality, scalability, and performance across materials science domains, including ablation and cross-model fusion studies.",
+    "query": "Find datasets for this materials research task: Predicting material properties—including formation energy, band gap, bulk modulus, phonon frequencies, dielectric constant, and perovskite formation energy—for crystals, molecules, and catalytic materials using graph neural networks, with emphasis on achieving high accuracy on both large-scale computational datasets and small experimental datasets while maintaining scalability and training efficiency. Task tags: property prediction, materials informatics, graph neural network. Needed dataset role: An automated benchmark platform with 13 rigorously curated, domain-diverse solid-state materials property prediction tasks (e.g., phonons, dielectric, perovskites, jdft2d), covering sample sizes from 312 to 132,000 and spanning DFT and experimental sources; used as the primary benchmark to evaluate DenseGNN’s universality, scalability, and performance across materials science domains, including ablation and cross-model fusion studies."
+  },
+  {
+    "query_id": "34_GNoME__task1__dataset1",
+    "paper_file": "34_GNoME.pdf",
+    "task_description": "Predicting the thermodynamic stability of inorganic crystal structures by estimating their decomposition energy relative to the convex hull of competing phases, enabling high-throughput screening and discovery of previously unknown stable materials.",
+    "task_tags": [
+      "stability prediction",
+      "convex hull analysis",
+      "materials discovery",
+      "decomposition energy estimation"
+    ],
+    "heldout_dataset": "Materials Project",
+    "heldout_original_dataset": "Materials Project (2021 snapshot)",
+    "heldout_dataset_description": "A curated database of ~69,000 computationally stable inorganic crystals as of March 2021, containing DFT-calculated total energies, structures (lattice, atomic positions, space groups), and formation energies. This dataset served as the initial training set for GNoME structural models and as the foundational reference for computing decomposition energies during active learning and convex hull updates.",
+    "query": "Find datasets for this materials research task: Predicting the thermodynamic stability of inorganic crystal structures by estimating their decomposition energy relative to the convex hull of competing phases, enabling high-throughput screening and discovery of previously unknown stable materials. Task tags: stability prediction, convex hull analysis, materials discovery, decomposition energy estimation. Needed dataset role: A curated database of ~69,000 computationally stable inorganic crystals as of March 2021, containing DFT-calculated total energies, structures (lattice, atomic positions, space groups), and formation energies. This dataset served as the initial training set for GNoME structural models and as the foundational reference for computing decomposition energies during active learning and convex hull updates."
+  },
+  {
+    "query_id": "34_GNoME__task1__dataset2",
+    "paper_file": "34_GNoME.pdf",
+    "task_description": "Predicting the thermodynamic stability of inorganic crystal structures by estimating their decomposition energy relative to the convex hull of competing phases, enabling high-throughput screening and discovery of previously unknown stable materials.",
+    "task_tags": [
+      "stability prediction",
+      "convex hull analysis",
+      "materials discovery",
+      "decomposition energy estimation"
+    ],
+    "heldout_dataset": "Open Quantum Materials Database",
+    "heldout_original_dataset": "Open Quantum Materials Database (OQMD, 2021 snapshot)",
+    "heldout_dataset_description": "A high-throughput DFT database containing ~250,000+ computed inorganic compounds as of June 2021, including energies, structures, and phase diagrams. Used alongside the Materials Project snapshot as a source of known stable and metastable structures for candidate generation (e.g., SAPS), convex hull benchmarking, and filtering out already-known compositions during discovery.",
+    "query": "Find datasets for this materials research task: Predicting the thermodynamic stability of inorganic crystal structures by estimating their decomposition energy relative to the convex hull of competing phases, enabling high-throughput screening and discovery of previously unknown stable materials. Task tags: stability prediction, convex hull analysis, materials discovery, decomposition energy estimation. Needed dataset role: A high-throughput DFT database containing ~250,000+ computed inorganic compounds as of June 2021, including energies, structures, and phase diagrams. Used alongside the Materials Project snapshot as a source of known stable and metastable structures for candidate generation (e.g., SAPS), convex hull benchmarking, and filtering out already-known compositions during discovery."
+  },
+  {
+    "query_id": "34_GNoME__task1__dataset3",
+    "paper_file": "34_GNoME.pdf",
+    "task_description": "Predicting the thermodynamic stability of inorganic crystal structures by estimating their decomposition energy relative to the convex hull of competing phases, enabling high-throughput screening and discovery of previously unknown stable materials.",
+    "task_tags": [
+      "stability prediction",
+      "convex hull analysis",
+      "materials discovery",
+      "decomposition energy estimation"
+    ],
+    "heldout_dataset": "Inorganic Crystal Structure Database",
+    "heldout_original_dataset": "Inorganic Crystal Structure Database (ICSD)",
+    "heldout_dataset_description": "An experimental database of >200,000 published inorganic crystal structures, with ~20,000 computationally stable entries. Used exclusively for *validation*: 736 experimentally realized ICSD structures were matched to GNoME predictions to confirm real-world synthesizability and validate model accuracy, serving as ground-truth experimental evidence for discovered stability.",
+    "query": "Find datasets for this materials research task: Predicting the thermodynamic stability of inorganic crystal structures by estimating their decomposition energy relative to the convex hull of competing phases, enabling high-throughput screening and discovery of previously unknown stable materials. Task tags: stability prediction, convex hull analysis, materials discovery, decomposition energy estimation. Needed dataset role: An experimental database of >200,000 published inorganic crystal structures, with ~20,000 computationally stable entries. Used exclusively for *validation*: 736 experimentally realized ICSD structures were matched to GNoME predictions to confirm real-world synthesizability and validate model accuracy, serving as ground-truth experimental evidence for discovered stability."
+  },
+  {
+    "query_id": "34_GNoME__task1__dataset4",
+    "paper_file": "34_GNoME.pdf",
+    "task_description": "Predicting the thermodynamic stability of inorganic crystal structures by estimating their decomposition energy relative to the convex hull of competing phases, enabling high-throughput screening and discovery of previously unknown stable materials.",
+    "task_tags": [
+      "stability prediction",
+      "convex hull analysis",
+      "materials discovery",
+      "decomposition energy estimation"
+    ],
+    "heldout_dataset": "Wang-Botti-Marques (WBM) dataset",
+    "heldout_original_dataset": "Wang–Botti–Marques (WBM) dataset",
+    "heldout_dataset_description": "A DFT-computed dataset of ~200,000+ inorganic crystals, used as an additional reference source for known stable structures in convex hull construction and comparative analysis. It was included in the agglomerated 'previous work' baseline (with MP and OQMD) against which GNoME’s 2.2 million new stable structures were evaluated for stability.",
+    "query": "Find datasets for this materials research task: Predicting the thermodynamic stability of inorganic crystal structures by estimating their decomposition energy relative to the convex hull of competing phases, enabling high-throughput screening and discovery of previously unknown stable materials. Task tags: stability prediction, convex hull analysis, materials discovery, decomposition energy estimation. Needed dataset role: A DFT-computed dataset of ~200,000+ inorganic crystals, used as an additional reference source for known stable structures in convex hull construction and comparative analysis. It was included in the agglomerated 'previous work' baseline (with MP and OQMD) against which GNoME’s 2.2 million new stable structures were evaluated for stability."
+  },
+  {
+    "query_id": "35_CHGNet__task1__dataset1",
+    "paper_file": "35_CHGNet.pdf",
+    "task_description": "Predicting the potential energy surface of inorganic crystalline materials—including energy, forces, stresses, and magnetic moments—from atomic structure inputs, to enable charge-informed atomistic simulations that capture coupled ionic and electronic degrees of freedom for large-scale, long-time molecular dynamics and thermodynamic modeling.",
+    "task_tags": [
+      "potential energy surface prediction",
+      "charge-informed simulation",
+      "magnetic moment prediction"
+    ],
+    "heldout_dataset": "Materials Project Trajectory Dataset (MPtrj)",
+    "heldout_original_dataset": "Materials Project Trajectory Dataset (MPtrj)",
+    "heldout_dataset_description": "A dataset comprising 1,580,395 atom configurations sampled from DFT-based structure relaxations and static calculations across ~146,000 inorganic materials, containing corresponding energies, forces (49,295,660), stresses (14,223,555), and magnetic moments (7,944,833). It covers 60 elements with >100,000 occurrences each and includes magmom labels for 76 elements, enabling training of CHGNet to jointly predict energy, forces, stress, and magmoms—thereby supporting the task of learning a universal, charge-aware interatomic potential.",
+    "query": "Find datasets for this materials research task: Predicting the potential energy surface of inorganic crystalline materials—including energy, forces, stresses, and magnetic moments—from atomic structure inputs, to enable charge-informed atomistic simulations that capture coupled ionic and electronic degrees of freedom for large-scale, long-time molecular dynamics and thermodynamic modeling. Task tags: potential energy surface prediction, charge-informed simulation, magnetic moment prediction. Needed dataset role: A dataset comprising 1,580,395 atom configurations sampled from DFT-based structure relaxations and static calculations across ~146,000 inorganic materials, containing corresponding energies, forces (49,295,660), stresses (14,223,555), and magnetic moments (7,944,833). It covers 60 elements with >100,000 occurrences each and includes magmom labels for 76 elements, enabling training of CHGNet to jointly predict energy, forces, stress, and magmoms—thereby supporting the task of learning a universal, charge-aware interatomic potential."
+  },
+  {
+    "query_id": "36_PotNet__task1__dataset1",
+    "paper_file": "36_PotNet.pdf",
+    "task_description": "Predicting crystal material properties—specifically total energy, formation energy, band gap, bulk moduli, shear moduli, and Ehull—from atomic-scale crystal structures, with a focus on accurately modeling infinite-range interatomic interactions arising from periodic lattice repetitions.",
+    "task_tags": [
+      "crystal property prediction",
+      "interatomic potential modeling",
+      "infinite-range interaction prediction"
+    ],
+    "heldout_dataset": "Materials Project",
+    "heldout_original_dataset": "Materials Project",
+    "heldout_dataset_description": "A large-scale computational materials database containing 69,239 crystal structures with DFT-calculated properties including formation energy, band gap, bulk moduli, and shear moduli. In this paper, it is used to train and evaluate PotNet for crystal property prediction, specifically to benchmark performance improvements from using physics-principled interatomic potentials and complete (infinite) potential summations.",
+    "query": "Find datasets for this materials research task: Predicting crystal material properties—specifically total energy, formation energy, band gap, bulk moduli, shear moduli, and Ehull—from atomic-scale crystal structures, with a focus on accurately modeling infinite-range interatomic interactions arising from periodic lattice repetitions. Task tags: crystal property prediction, interatomic potential modeling, infinite-range interaction prediction. Needed dataset role: A large-scale computational materials database containing 69,239 crystal structures with DFT-calculated properties including formation energy, band gap, bulk moduli, and shear moduli. In this paper, it is used to train and evaluate PotNet for crystal property prediction, specifically to benchmark performance improvements from using physics-principled interatomic potentials and complete (infinite) potential summations."
+  },
+  {
+    "query_id": "36_PotNet__task1__dataset2",
+    "paper_file": "36_PotNet.pdf",
+    "task_description": "Predicting crystal material properties—specifically total energy, formation energy, band gap, bulk moduli, shear moduli, and Ehull—from atomic-scale crystal structures, with a focus on accurately modeling infinite-range interatomic interactions arising from periodic lattice repetitions.",
+    "task_tags": [
+      "crystal property prediction",
+      "interatomic potential modeling",
+      "infinite-range interaction prediction"
+    ],
+    "heldout_dataset": "JARVIS-DFT",
+    "heldout_original_dataset": "JARVIS-DFT",
+    "heldout_dataset_description": "The Joint Automated Repository for Various Integrated Simulations (JARVIS) DFT-2021.8.18 3D dataset, comprising 55,722 crystal structures with DFT-computed properties including formation energy, bandgap (OPT and MBJ), total energy, and Ehull. It is used alongside Materials Project for comprehensive evaluation, ablation studies, and efficiency analysis—serving as the primary testbed for validating PotNet’s ability to capture long-range interactions via complete interatomic potentials.",
+    "query": "Find datasets for this materials research task: Predicting crystal material properties—specifically total energy, formation energy, band gap, bulk moduli, shear moduli, and Ehull—from atomic-scale crystal structures, with a focus on accurately modeling infinite-range interatomic interactions arising from periodic lattice repetitions. Task tags: crystal property prediction, interatomic potential modeling, infinite-range interaction prediction. Needed dataset role: The Joint Automated Repository for Various Integrated Simulations (JARVIS) DFT-2021.8.18 3D dataset, comprising 55,722 crystal structures with DFT-computed properties including formation energy, bandgap (OPT and MBJ), total energy, and Ehull. It is used alongside Materials Project for comprehensive evaluation, ablation studies, and efficiency analysis—serving as the primary testbed for validating PotNet’s ability to capture long-range interactions via complete interatomic potentials."
+  },
+  {
+    "query_id": "37_CrysGNN__task1__dataset1",
+    "paper_file": "37_CrysGNN.pdf",
+    "task_description": "Predicting multiple physical and electronic properties of crystalline materials—including formation energy, bandgap, total energy, bulk modulus, shear modulus, Ehull, spillage, SLME, and dielectric-related properties—using graph neural network models enhanced by distilled knowledge from a pre-trained GNN on unlabeled crystal structures.",
+    "task_tags": [
+      "property prediction",
+      "crystal structure modeling",
+      "knowledge distillation"
+    ],
+    "heldout_dataset": "Materials Project",
+    "heldout_original_dataset": "Materials Project (MP) 2018.6.1",
+    "heldout_dataset_description": "A DFT-calculated dataset containing 69,239 crystalline materials with two key properties: formation energy and optical bandgap. It is used as a property-tagged downstream dataset for training and evaluating distilled SOTA property predictors (e.g., CGCNN, ALIGNN). The paper explicitly states this version is a subset of the pre-training data and serves as a benchmark for measuring MAE improvements from knowledge distillation.",
+    "query": "Find datasets for this materials research task: Predicting multiple physical and electronic properties of crystalline materials—including formation energy, bandgap, total energy, bulk modulus, shear modulus, Ehull, spillage, SLME, and dielectric-related properties—using graph neural network models enhanced by distilled knowledge from a pre-trained GNN on unlabeled crystal structures. Task tags: property prediction, crystal structure modeling, knowledge distillation. Needed dataset role: A DFT-calculated dataset containing 69,239 crystalline materials with two key properties: formation energy and optical bandgap. It is used as a property-tagged downstream dataset for training and evaluating distilled SOTA property predictors (e.g., CGCNN, ALIGNN). The paper explicitly states this version is a subset of the pre-training data and serves as a benchmark for measuring MAE improvements from knowledge distillation."
+  },
+  {
+    "query_id": "37_CrysGNN__task1__dataset2",
+    "paper_file": "37_CrysGNN.pdf",
+    "task_description": "Predicting multiple physical and electronic properties of crystalline materials—including formation energy, bandgap, total energy, bulk modulus, shear modulus, Ehull, spillage, SLME, and dielectric-related properties—using graph neural network models enhanced by distilled knowledge from a pre-trained GNN on unlabeled crystal structures.",
+    "task_tags": [
+      "property prediction",
+      "crystal structure modeling",
+      "knowledge distillation"
+    ],
+    "heldout_dataset": "JARVIS-DFT",
+    "heldout_original_dataset": "JARVIS-DFT (2021.8.18)",
+    "heldout_dataset_description": "A DFT-based materials database comprising 55,722 crystalline materials with 19 computed properties—including formation energy, bandgap (MBJ and OPT), total energy, bulk modulus, shear modulus, Ehull, spillage, SLME, and electronic properties like epsilon_x/y/z and n-Seebeck. Used as an independent downstream evaluation dataset (not seen during pre-training) to assess generalization of distilled models across diverse structural and electronic properties.",
+    "query": "Find datasets for this materials research task: Predicting multiple physical and electronic properties of crystalline materials—including formation energy, bandgap, total energy, bulk modulus, shear modulus, Ehull, spillage, SLME, and dielectric-related properties—using graph neural network models enhanced by distilled knowledge from a pre-trained GNN on unlabeled crystal structures. Task tags: property prediction, crystal structure modeling, knowledge distillation. Needed dataset role: A DFT-based materials database comprising 55,722 crystalline materials with 19 computed properties—including formation energy, bandgap (MBJ and OPT), total energy, bulk modulus, shear modulus, Ehull, spillage, SLME, and electronic properties like epsilon_x/y/z and n-Seebeck. Used as an independent downstream evaluation dataset (not seen during pre-training) to assess generalization of distilled models across diverse structural and electronic properties."
+  },
+  {
+    "query_id": "37_CrysGNN__task1__dataset3",
+    "paper_file": "37_CrysGNN.pdf",
+    "task_description": "Predicting multiple physical and electronic properties of crystalline materials—including formation energy, bandgap, total energy, bulk modulus, shear modulus, Ehull, spillage, SLME, and dielectric-related properties—using graph neural network models enhanced by distilled knowledge from a pre-trained GNN on unlabeled crystal structures.",
+    "task_tags": [
+      "property prediction",
+      "crystal structure modeling",
+      "knowledge distillation"
+    ],
+    "heldout_dataset": "Open Quantum Materials Database",
+    "heldout_original_dataset": "OQMD-EXP",
+    "heldout_dataset_description": "A small experimental dataset of 1,500 materials with measured formation energy values, derived from the Open Quantum Materials Database. It is used specifically to evaluate how distilled knowledge from CrysGNN helps mitigate DFT-induced bias—by training models on mixed DFT + experimental data and testing on held-out experimental data—to quantify reduction in MAE against ground-truth experimental measurements.",
+    "query": "Find datasets for this materials research task: Predicting multiple physical and electronic properties of crystalline materials—including formation energy, bandgap, total energy, bulk modulus, shear modulus, Ehull, spillage, SLME, and dielectric-related properties—using graph neural network models enhanced by distilled knowledge from a pre-trained GNN on unlabeled crystal structures. Task tags: property prediction, crystal structure modeling, knowledge distillation. Needed dataset role: A small experimental dataset of 1,500 materials with measured formation energy values, derived from the Open Quantum Materials Database. It is used specifically to evaluate how distilled knowledge from CrysGNN helps mitigate DFT-induced bias—by training models on mixed DFT + experimental data and testing on held-out experimental data—to quantify reduction in MAE against ground-truth experimental measurements."
+  },
+  {
+    "query_id": "37_CrysGNN__task1__dataset4",
+    "paper_file": "37_CrysGNN.pdf",
+    "task_description": "Predicting multiple physical and electronic properties of crystalline materials—including formation energy, bandgap, total energy, bulk modulus, shear modulus, Ehull, spillage, SLME, and dielectric-related properties—using graph neural network models enhanced by distilled knowledge from a pre-trained GNN on unlabeled crystal structures.",
+    "task_tags": [
+      "property prediction",
+      "crystal structure modeling",
+      "knowledge distillation"
+    ],
+    "heldout_dataset": "CrysGNN Curated Dataset (800K crystal graphs)",
+    "heldout_original_dataset": "CrysGNN Curated Dataset (800K crystal graphs)",
+    "heldout_dataset_description": "An author-curated, unlabeled dataset of 800,000 crystal graphs assembled from OQMD (661K) and Materials Project (139K), represented as multi-graphs with node features (electronegativity, valence electrons, covalent radius), edge features (bond lengths), space group numbers, and crystal system labels. Used exclusively for self-supervised pre-training of CrysGNN via node-level reconstruction (features & connectivity) and graph-level objectives (space group classification and contrastive learning over crystal systems).",
+    "query": "Find datasets for this materials research task: Predicting multiple physical and electronic properties of crystalline materials—including formation energy, bandgap, total energy, bulk modulus, shear modulus, Ehull, spillage, SLME, and dielectric-related properties—using graph neural network models enhanced by distilled knowledge from a pre-trained GNN on unlabeled crystal structures. Task tags: property prediction, crystal structure modeling, knowledge distillation. Needed dataset role: An author-curated, unlabeled dataset of 800,000 crystal graphs assembled from OQMD (661K) and Materials Project (139K), represented as multi-graphs with node features (electronegativity, valence electrons, covalent radius), edge features (bond lengths), space group numbers, and crystal system labels. Used exclusively for self-supervised pre-training of CrysGNN via node-level reconstruction (features & connectivity) and graph-level objectives (space group classification and contrastive learning over crystal systems)."
+  },
+  {
+    "query_id": "38_Matformer__task1__dataset1",
+    "paper_file": "38_Matformer.pdf",
+    "task_description": "Predicting multiple physical and electronic properties of crystalline materials from their atomic structure, including formation energy, band gap, bulk modulus, and shear modulus, using periodic graph representations that respect crystal symmetry and repeating lattice patterns.",
+    "task_tags": [
+      "crystal property prediction",
+      "materials property prediction",
+      "periodic graph learning"
+    ],
+    "heldout_dataset": "Materials Project",
+    "heldout_original_dataset": "The Materials Project",
+    "heldout_dataset_description": "A large-scale computational database containing over 130,000+ calculated material structures and properties, derived from density functional theory (DFT) simulations. In this paper, the Materials Project-2018.6.1 subset with 69,239 crystals is used specifically for training and evaluating property predictors on formation energy, band gap, bulk modulus, and shear modulus. The dataset provides unit cell geometry (atomic positions, lattice vectors), composition, and computed scalar properties — and is used to train and benchmark the Matformer model's ability to predict these target properties from periodic crystal graphs.",
+    "query": "Find datasets for this materials research task: Predicting multiple physical and electronic properties of crystalline materials from their atomic structure, including formation energy, band gap, bulk modulus, and shear modulus, using periodic graph representations that respect crystal symmetry and repeating lattice patterns. Task tags: crystal property prediction, materials property prediction, periodic graph learning. Needed dataset role: A large-scale computational database containing over 130,000+ calculated material structures and properties, derived from density functional theory (DFT) simulations. In this paper, the Materials Project-2018.6.1 subset with 69,239 crystals is used specifically for training and evaluating property predictors on formation energy, band gap, bulk modulus, and shear modulus. The dataset provides unit cell geometry (atomic positions, lattice vectors), composition, and computed scalar properties — and is used to train and benchmark the Matformer model's ability to predict these target properties from periodic crystal graphs."
+  },
+  {
+    "query_id": "38_Matformer__task1__dataset2",
+    "paper_file": "38_Matformer.pdf",
+    "task_description": "Predicting multiple physical and electronic properties of crystalline materials from their atomic structure, including formation energy, band gap, bulk modulus, and shear modulus, using periodic graph representations that respect crystal symmetry and repeating lattice patterns.",
+    "task_tags": [
+      "crystal property prediction",
+      "materials property prediction",
+      "periodic graph learning"
+    ],
+    "heldout_dataset": "JARVIS Database",
+    "heldout_original_dataset": "JARVIS (Joint Automated Repository for Various Integrated Simulations)",
+    "heldout_dataset_description": "A curated, DFT-computed materials database containing structural and property data for ~100,000 materials, designed for data-driven materials discovery. In this paper, the JARVIS dataset is used to evaluate Matformer on five tasks: formation energy, optical band gap (OPT), total energy, energy above hull (Ehull), and modified Becke–Johnson (MBJ) band gap. It provides standardized crystal structures (including lattice matrices and atomic coordinates) and associated property labels, supporting validation of periodic invariance and pattern encoding in crystal representation learning.",
+    "query": "Find datasets for this materials research task: Predicting multiple physical and electronic properties of crystalline materials from their atomic structure, including formation energy, band gap, bulk modulus, and shear modulus, using periodic graph representations that respect crystal symmetry and repeating lattice patterns. Task tags: crystal property prediction, materials property prediction, periodic graph learning. Needed dataset role: A curated, DFT-computed materials database containing structural and property data for ~100,000 materials, designed for data-driven materials discovery. In this paper, the JARVIS dataset is used to evaluate Matformer on five tasks: formation energy, optical band gap (OPT), total energy, energy above hull (Ehull), and modified Becke–Johnson (MBJ) band gap. It provides standardized crystal structures (including lattice matrices and atomic coordinates) and associated property labels, supporting validation of periodic invariance and pattern encoding in crystal representation learning."
+  },
+  {
+    "query_id": "39_M3GNet_Preprint__task1__dataset1",
+    "paper_file": "39_M3GNet_Preprint.pdf",
+    "task_description": "Predicting the potential energy surface (PES) of atomic systems—including energies, forces, and stresses—for arbitrary crystalline materials across the entire periodic table, enabling accurate, efficient, and transferable interatomic potentials usable for structural relaxation, molecular dynamics, phonon calculations, and materials discovery without retraining per chemistry.",
+    "task_tags": [
+      "interatomic potential",
+      "energy prediction",
+      "force prediction"
+    ],
+    "heldout_dataset": "MPF.2021.2.8",
+    "heldout_original_dataset": "MPF.2021.2.8",
+    "heldout_dataset_description": "A curated dataset derived from structural relaxation trajectories in the Materials Project database, containing 187,687 ionic steps from 62,783 compounds, with corresponding DFT-computed energies (187,687 entries), forces (16,875,138 components), and stresses (1,689,183 components). It spans 89 elements, covers formation energies from −28.7 to 49.6 eV/atom, forces up to ±2570 eV/Å, and stresses up to ±5474 GPa, and includes short interatomic distances (<0.6 Å) critical for learning repulsive interactions. This dataset is used to train the M3GNet interatomic potential to jointly predict energy, force, and stress — essential for physically consistent PES modeling and downstream tasks like structural relaxation and stability screening.",
+    "query": "Find datasets for this materials research task: Predicting the potential energy surface (PES) of atomic systems—including energies, forces, and stresses—for arbitrary crystalline materials across the entire periodic table, enabling accurate, efficient, and transferable interatomic potentials usable for structural relaxation, molecular dynamics, phonon calculations, and materials discovery without retraining per chemistry. Task tags: interatomic potential, energy prediction, force prediction. Needed dataset role: A curated dataset derived from structural relaxation trajectories in the Materials Project database, containing 187,687 ionic steps from 62,783 compounds, with corresponding DFT-computed energies (187,687 entries), forces (16,875,138 components), and stresses (1,689,183 components). It spans 89 elements, covers formation energies from −28.7 to 49.6 eV/atom, forces up to ±2570 eV/Å, and stresses up to ±5474 GPa, and includes short interatomic distances (<0.6 Å) critical for learning repulsive interactions. This dataset is used to train the M3GNet interatomic potential to jointly predict energy, force, and stress — essential for physically consistent PES modeling and downstream tasks like structural relaxation and stability screening."
+  },
+  {
+    "query_id": "39_M3GNet_Preprint__task1__dataset2",
+    "paper_file": "39_M3GNet_Preprint.pdf",
+    "task_description": "Predicting the potential energy surface (PES) of atomic systems—including energies, forces, and stresses—for arbitrary crystalline materials across the entire periodic table, enabling accurate, efficient, and transferable interatomic potentials usable for structural relaxation, molecular dynamics, phonon calculations, and materials discovery without retraining per chemistry.",
+    "task_tags": [
+      "interatomic potential",
+      "energy prediction",
+      "force prediction"
+    ],
+    "heldout_dataset": "Zuo et al. DFT dataset",
+    "heldout_original_dataset": "Zuo et al. DFT dataset",
+    "heldout_dataset_description": "A benchmark DFT dataset comprising structural relaxations and corresponding energies and forces for six elemental crystals: fcc Ni, fcc Cu, bcc Li, bcc Mo, diamond Si, and diamond Ge. It contains high-fidelity single-point DFT calculations used exclusively for evaluating and comparing the accuracy of the M3GNet interatomic potential against classical (EAM, MEAM) and ML-based (NNP, MTP) potentials — specifically to assess generalization performance on unseen elemental systems not part of the main MPF.2021.2.8 training set.",
+    "query": "Find datasets for this materials research task: Predicting the potential energy surface (PES) of atomic systems—including energies, forces, and stresses—for arbitrary crystalline materials across the entire periodic table, enabling accurate, efficient, and transferable interatomic potentials usable for structural relaxation, molecular dynamics, phonon calculations, and materials discovery without retraining per chemistry. Task tags: interatomic potential, energy prediction, force prediction. Needed dataset role: A benchmark DFT dataset comprising structural relaxations and corresponding energies and forces for six elemental crystals: fcc Ni, fcc Cu, bcc Li, bcc Mo, diamond Si, and diamond Ge. It contains high-fidelity single-point DFT calculations used exclusively for evaluating and comparing the accuracy of the M3GNet interatomic potential against classical (EAM, MEAM) and ML-based (NNP, MTP) potentials — specifically to assess generalization performance on unseen elemental systems not part of the main MPF.2021.2.8 training set."
+  },
+  {
+    "query_id": "39_M3GNet_Preprint__task1__dataset3",
+    "paper_file": "39_M3GNet_Preprint.pdf",
+    "task_description": "Predicting the potential energy surface (PES) of atomic systems—including energies, forces, and stresses—for arbitrary crystalline materials across the entire periodic table, enabling accurate, efficient, and transferable interatomic potentials usable for structural relaxation, molecular dynamics, phonon calculations, and materials discovery without retraining per chemistry.",
+    "task_tags": [
+      "interatomic potential",
+      "energy prediction",
+      "force prediction"
+    ],
+    "heldout_dataset": "MD17 and MD17-CCSD(T)",
+    "heldout_original_dataset": "MD17 and MD17-CCSD(T)",
+    "heldout_dataset_description": "Two molecular dynamics benchmark datasets containing DFT- and quantum-chemical (CCSD/CCSD(T))-level energies and forces for small organic molecules (e.g., aspirin, benzene, ethanol) along their MD trajectories. These datasets contain thousands of conformational snapshots and are used to evaluate M3GNet’s transferability as a molecular force field — specifically to test whether the same architecture, trained on bulk crystals, can accurately predict molecular PES without retraining, supporting its use beyond solids into molecular simulation.",
+    "query": "Find datasets for this materials research task: Predicting the potential energy surface (PES) of atomic systems—including energies, forces, and stresses—for arbitrary crystalline materials across the entire periodic table, enabling accurate, efficient, and transferable interatomic potentials usable for structural relaxation, molecular dynamics, phonon calculations, and materials discovery without retraining per chemistry. Task tags: interatomic potential, energy prediction, force prediction. Needed dataset role: Two molecular dynamics benchmark datasets containing DFT- and quantum-chemical (CCSD/CCSD(T))-level energies and forces for small organic molecules (e.g., aspirin, benzene, ethanol) along their MD trajectories. These datasets contain thousands of conformational snapshots and are used to evaluate M3GNet’s transferability as a molecular force field — specifically to test whether the same architecture, trained on bulk crystals, can accurately predict molecular PES without retraining, supporting its use beyond solids into molecular simulation."
+  },
+  {
+    "query_id": "40_ALIGNN__task1__dataset1",
+    "paper_file": "40_ALIGNN.pdf",
+    "task_description": "Predicting 52 solid-state and molecular properties—including formation energies, band gaps, dielectric constants, piezoelectric coefficients, Seebeck coefficients, exfoliation energies, HOMO/LUMO levels, dipole moments, and thermodynamic energies—using atomistic graph neural networks that explicitly incorporate bond angle information via line graph message passing.",
+    "task_tags": [
+      "property prediction",
+      "regression",
+      "classification",
+      "bond angle modeling",
+      "atomistic representation"
+    ],
+    "heldout_dataset": "JARVIS-DFT",
+    "heldout_original_dataset": "JARVIS-DFT",
+    "heldout_dataset_description": "A curated DFT-computed dataset of 55,722 crystalline materials containing 29+ properties including OptB88vdW and TBmBJ band gaps, formation energies, dielectric constants (with/without ionic contributions), bulk/shear moduli, magnetic moments, exfoliation energies for 2D materials, piezoelectric stress/strain coefficients, Seebeck coefficients, power factors, spin-orbit spillage, electric field gradients, and spectroscopic limited maximum efficiency (SLME). Used in this paper to train and evaluate ALIGNN regression and classification models for solid-state property prediction.",
+    "query": "Find datasets for this materials research task: Predicting 52 solid-state and molecular properties—including formation energies, band gaps, dielectric constants, piezoelectric coefficients, Seebeck coefficients, exfoliation energies, HOMO/LUMO levels, dipole moments, and thermodynamic energies—using atomistic graph neural networks that explicitly incorporate bond angle information via line graph message passing. Task tags: property prediction, regression, classification, bond angle modeling, atomistic representation. Needed dataset role: A curated DFT-computed dataset of 55,722 crystalline materials containing 29+ properties including OptB88vdW and TBmBJ band gaps, formation energies, dielectric constants (with/without ionic contributions), bulk/shear moduli, magnetic moments, exfoliation energies for 2D materials, piezoelectric stress/strain coefficients, Seebeck coefficients, power factors, spin-orbit spillage, electric field gradients, and spectroscopic limited maximum efficiency (SLME). Used in this paper to train and evaluate ALIGNN regression and classification models for solid-state property prediction."
+  },
+  {
+    "query_id": "40_ALIGNN__task1__dataset2",
+    "paper_file": "40_ALIGNN.pdf",
+    "task_description": "Predicting 52 solid-state and molecular properties—including formation energies, band gaps, dielectric constants, piezoelectric coefficients, Seebeck coefficients, exfoliation energies, HOMO/LUMO levels, dipole moments, and thermodynamic energies—using atomistic graph neural networks that explicitly incorporate bond angle information via line graph message passing.",
+    "task_tags": [
+      "property prediction",
+      "regression",
+      "classification",
+      "bond angle modeling",
+      "atomistic representation"
+    ],
+    "heldout_dataset": "Materials Project",
+    "heldout_original_dataset": "Materials Project",
+    "heldout_dataset_description": "A high-throughput DFT database containing 69,239 inorganic crystalline materials with computed properties including PBE band gaps and formation energies. The paper uses the time-versioned MP 2018.6.1 snapshot to train and benchmark ALIGNN regression models on solid-state property prediction tasks, enabling direct comparison with prior GNNs (e.g., SchNet, MEGNet, CGCNN).",
+    "query": "Find datasets for this materials research task: Predicting 52 solid-state and molecular properties—including formation energies, band gaps, dielectric constants, piezoelectric coefficients, Seebeck coefficients, exfoliation energies, HOMO/LUMO levels, dipole moments, and thermodynamic energies—using atomistic graph neural networks that explicitly incorporate bond angle information via line graph message passing. Task tags: property prediction, regression, classification, bond angle modeling, atomistic representation. Needed dataset role: A high-throughput DFT database containing 69,239 inorganic crystalline materials with computed properties including PBE band gaps and formation energies. The paper uses the time-versioned MP 2018.6.1 snapshot to train and benchmark ALIGNN regression models on solid-state property prediction tasks, enabling direct comparison with prior GNNs (e.g., SchNet, MEGNet, CGCNN)."
+  },
+  {
+    "query_id": "40_ALIGNN__task1__dataset3",
+    "paper_file": "40_ALIGNN.pdf",
+    "task_description": "Predicting 52 solid-state and molecular properties—including formation energies, band gaps, dielectric constants, piezoelectric coefficients, Seebeck coefficients, exfoliation energies, HOMO/LUMO levels, dipole moments, and thermodynamic energies—using atomistic graph neural networks that explicitly incorporate bond angle information via line graph message passing.",
+    "task_tags": [
+      "property prediction",
+      "regression",
+      "classification",
+      "bond angle modeling",
+      "atomistic representation"
+    ],
+    "heldout_dataset": "QM9",
+    "heldout_original_dataset": "QM9",
+    "heldout_dataset_description": "A quantum-chemical dataset of 130,829 small organic molecules with DFT-calculated properties including HOMO/LUMO energies, energy gap, zero-point vibrational energy (ZPVE), dipole moment, isotropic polarizability, electronic spatial extent, and thermodynamic energies (U0, U, H, G) at 0 K and 298 K. Used in this paper to train and evaluate ALIGNN regression models for molecular property prediction, demonstrating generalization across material classes.",
+    "query": "Find datasets for this materials research task: Predicting 52 solid-state and molecular properties—including formation energies, band gaps, dielectric constants, piezoelectric coefficients, Seebeck coefficients, exfoliation energies, HOMO/LUMO levels, dipole moments, and thermodynamic energies—using atomistic graph neural networks that explicitly incorporate bond angle information via line graph message passing. Task tags: property prediction, regression, classification, bond angle modeling, atomistic representation. Needed dataset role: A quantum-chemical dataset of 130,829 small organic molecules with DFT-calculated properties including HOMO/LUMO energies, energy gap, zero-point vibrational energy (ZPVE), dipole moment, isotropic polarizability, electronic spatial extent, and thermodynamic energies (U0, U, H, G) at 0 K and 298 K. Used in this paper to train and evaluate ALIGNN regression models for molecular property prediction, demonstrating generalization across material classes."
+  },
+  {
+    "query_id": "41_Cross_Property_Transfer_Learning__task1__dataset1",
+    "paper_file": "41_Cross_Property_Transfer_Learning.pdf",
+    "task_description": "Predicting diverse materials properties (e.g., band gap, exfoliation energy, dielectric constants, thermoelectric coefficients) for compositions in small target datasets by leveraging knowledge transferred from deep learning models pre-trained on large source datasets of *different* — often unrelated — materials properties, using only elemental fractions as input.",
+    "task_tags": [
+      "materials property prediction",
+      "cross-property transfer learning",
+      "small-data modeling"
+    ],
+    "heldout_dataset": "Open Quantum Materials Database",
+    "heldout_original_dataset": "Open Quantum Materials Database (OQMD)",
+    "heldout_dataset_description": "A computational materials database containing 341,443 unique compositions with DFT-calculated properties including formation energy, bandgap, stability, energy per atom, volume, and magnetic moment (as of May 2018). It is used to construct the source dataset (OQMD-JARVIS, size 321,140 after deduplication and overlap removal) for pre-training ElemNet-based source models; these models serve as the foundation for cross-property transfer learning to predict target properties on smaller datasets.",
+    "query": "Find datasets for this materials research task: Predicting diverse materials properties (e.g., band gap, exfoliation energy, dielectric constants, thermoelectric coefficients) for compositions in small target datasets by leveraging knowledge transferred from deep learning models pre-trained on large source datasets of *different* — often unrelated — materials properties, using only elemental fractions as input. Task tags: materials property prediction, cross-property transfer learning, small-data modeling. Needed dataset role: A computational materials database containing 341,443 unique compositions with DFT-calculated properties including formation energy, bandgap, stability, energy per atom, volume, and magnetic moment (as of May 2018). It is used to construct the source dataset (OQMD-JARVIS, size 321,140 after deduplication and overlap removal) for pre-training ElemNet-based source models; these models serve as the foundation for cross-property transfer learning to predict target properties on smaller datasets."
+  },
+  {
+    "query_id": "41_Cross_Property_Transfer_Learning__task1__dataset2",
+    "paper_file": "41_Cross_Property_Transfer_Learning.pdf",
+    "task_description": "Predicting diverse materials properties (e.g., band gap, exfoliation energy, dielectric constants, thermoelectric coefficients) for compositions in small target datasets by leveraging knowledge transferred from deep learning models pre-trained on large source datasets of *different* — often unrelated — materials properties, using only elemental fractions as input.",
+    "task_tags": [
+      "materials property prediction",
+      "cross-property transfer learning",
+      "small-data modeling"
+    ],
+    "heldout_dataset": "JARVIS Database",
+    "heldout_original_dataset": "Joint Automated Repository for Various Integrated Simulations (JARVIS)",
+    "heldout_dataset_description": "A computational materials database comprising 28,171 unique compounds with up to 36 DFT-computed properties (as of July 2020), including band gap, exfoliation energy, dielectric constants, thermoelectric coefficients, elastic moduli, and Seebeck coefficients. After preprocessing (removing duplicates by retaining only the most stable structure per composition and excluding overlaps with OQMD), it serves as the target dataset for 39 distinct materials property prediction tasks, enabling evaluation of cross-property transfer learning performance.",
+    "query": "Find datasets for this materials research task: Predicting diverse materials properties (e.g., band gap, exfoliation energy, dielectric constants, thermoelectric coefficients) for compositions in small target datasets by leveraging knowledge transferred from deep learning models pre-trained on large source datasets of *different* — often unrelated — materials properties, using only elemental fractions as input. Task tags: materials property prediction, cross-property transfer learning, small-data modeling. Needed dataset role: A computational materials database comprising 28,171 unique compounds with up to 36 DFT-computed properties (as of July 2020), including band gap, exfoliation energy, dielectric constants, thermoelectric coefficients, elastic moduli, and Seebeck coefficients. After preprocessing (removing duplicates by retaining only the most stable structure per composition and excluding overlaps with OQMD), it serves as the target dataset for 39 distinct materials property prediction tasks, enabling evaluation of cross-property transfer learning performance."
+  },
+  {
+    "query_id": "41_Cross_Property_Transfer_Learning__task1__dataset3",
+    "paper_file": "41_Cross_Property_Transfer_Learning.pdf",
+    "task_description": "Predicting diverse materials properties (e.g., band gap, exfoliation energy, dielectric constants, thermoelectric coefficients) for compositions in small target datasets by leveraging knowledge transferred from deep learning models pre-trained on large source datasets of *different* — often unrelated — materials properties, using only elemental fractions as input.",
+    "task_tags": [
+      "materials property prediction",
+      "cross-property transfer learning",
+      "small-data modeling"
+    ],
+    "heldout_dataset": "Experimental formation energy dataset",
+    "heldout_original_dataset": "Experimental formation energy dataset",
+    "heldout_dataset_description": "An experimental dataset of 1,643 material entries containing measured formation energies (in eV/atom), sourced from the qmpy thermodata repository. It is used as a real-world small-target dataset to evaluate cross-property transfer learning performance, specifically testing whether models pre-trained on computational formation energy (OQMD) can improve prediction accuracy on experimental formation energy data — a key demonstration of generalizability beyond computational domains.",
+    "query": "Find datasets for this materials research task: Predicting diverse materials properties (e.g., band gap, exfoliation energy, dielectric constants, thermoelectric coefficients) for compositions in small target datasets by leveraging knowledge transferred from deep learning models pre-trained on large source datasets of *different* — often unrelated — materials properties, using only elemental fractions as input. Task tags: materials property prediction, cross-property transfer learning, small-data modeling. Needed dataset role: An experimental dataset of 1,643 material entries containing measured formation energies (in eV/atom), sourced from the qmpy thermodata repository. It is used as a real-world small-target dataset to evaluate cross-property transfer learning performance, specifically testing whether models pre-trained on computational formation energy (OQMD) can improve prediction accuracy on experimental formation energy data — a key demonstration of generalizability beyond computational domains."
+  },
+  {
+    "query_id": "41_Cross_Property_Transfer_Learning__task1__dataset4",
+    "paper_file": "41_Cross_Property_Transfer_Learning.pdf",
+    "task_description": "Predicting diverse materials properties (e.g., band gap, exfoliation energy, dielectric constants, thermoelectric coefficients) for compositions in small target datasets by leveraging knowledge transferred from deep learning models pre-trained on large source datasets of *different* — often unrelated — materials properties, using only elemental fractions as input.",
+    "task_tags": [
+      "materials property prediction",
+      "cross-property transfer learning",
+      "small-data modeling"
+    ],
+    "heldout_dataset": "Experimental band gap dataset",
+    "heldout_original_dataset": "Experimental band gap dataset",
+    "heldout_dataset_description": "An experimental dataset of 4,920 material entries containing measured band gap values (in eV), sourced from the AutoMatminer repository. It serves as a second experimental small-target dataset to validate the cross-property transfer learning framework, assessing whether source models trained on computational formation energy or band gap can enhance prediction of experimentally measured band gaps — particularly challenging due to known DFT band gap underestimation.",
+    "query": "Find datasets for this materials research task: Predicting diverse materials properties (e.g., band gap, exfoliation energy, dielectric constants, thermoelectric coefficients) for compositions in small target datasets by leveraging knowledge transferred from deep learning models pre-trained on large source datasets of *different* — often unrelated — materials properties, using only elemental fractions as input. Task tags: materials property prediction, cross-property transfer learning, small-data modeling. Needed dataset role: An experimental dataset of 4,920 material entries containing measured band gap values (in eV), sourced from the AutoMatminer repository. It serves as a second experimental small-target dataset to validate the cross-property transfer learning framework, assessing whether source models trained on computational formation energy or band gap can enhance prediction of experimentally measured band gaps — particularly challenging due to known DFT band gap underestimation."
+  },
+  {
+    "query_id": "42_Matbench__task1__dataset1",
+    "paper_file": "42_Matbench.pdf",
+    "task_description": "Predicting diverse physical and chemical properties of inorganic bulk materials—including optical, thermal, electronic, thermodynamic, tensile, and elastic properties—using only input materials primitives (chemical composition and/or crystal structure) as features, under standardized, bias-mitigated evaluation to enable fair, reproducible comparison of supervised machine learning algorithms.",
+    "task_tags": [
+      "property prediction",
+      "materials informatics",
+      "supervised learning"
+    ],
+    "heldout_dataset": "Matbench",
+    "heldout_original_dataset": "Matbench v0.1",
+    "heldout_dataset_description": "Matbench v0.1 is a curated benchmark suite comprising 13 distinct supervised machine learning tasks, sourced from 10 independent datasets totaling 312 to 132,752 samples. Each task contains input materials primitives (composition-only or composition + crystal structure) and a single target property (e.g., band gap, formation energy, bulk modulus, metallicity, exfoliation energy), derived from both experimental measurements and density functional theory (DFT) computations. The datasets are precleaned to remove unphysical or task-irrelevant entries (e.g., negative elastic moduli, noble-gas compounds, misconverged DFT structures) and standardized for consistent ML pipeline ingestion. Matbench is used to train, validate, and rigorously evaluate property prediction models—including Automatminer, CGCNN, MEGNet, and Random Forest—via nested cross-validation, enabling unbiased algorithm comparison across property types, data scales, and input modalities.",
+    "query": "Find datasets for this materials research task: Predicting diverse physical and chemical properties of inorganic bulk materials—including optical, thermal, electronic, thermodynamic, tensile, and elastic properties—using only input materials primitives (chemical composition and/or crystal structure) as features, under standardized, bias-mitigated evaluation to enable fair, reproducible comparison of supervised machine learning algorithms. Task tags: property prediction, materials informatics, supervised learning. Needed dataset role: Matbench v0.1 is a curated benchmark suite comprising 13 distinct supervised machine learning tasks, sourced from 10 independent datasets totaling 312 to 132,752 samples. Each task contains input materials primitives (composition-only or composition + crystal structure) and a single target property (e.g., band gap, formation energy, bulk modulus, metallicity, exfoliation energy), derived from both experimental measurements and density functional theory (DFT) computations. The datasets are precleaned to remove unphysical or task-irrelevant entries (e.g., negative elastic moduli, noble-gas compounds, misconverged DFT structures) and standardized for consistent ML pipeline ingestion. Matbench is used to train, validate, and rigorously evaluate property prediction models—including Automatminer, CGCNN, MEGNet, and Random Forest—via nested cross-validation, enabling unbiased algorithm comparison across property types, data scales, and input modalities."
+  },
+  {
+    "query_id": "43_Formation_Energy_Stability_Critical__task1__dataset1",
+    "paper_file": "43_Formation_Energy_Stability_Critical.pdf",
+    "task_description": "Predicting the thermodynamic stability of inorganic crystalline solids by estimating their decomposition enthalpy (ΔHd), i.e., determining whether a given compound lies on the convex hull of formation enthalpies in its chemical space — a necessary condition for synthesizability — using machine-learned formation energies as input to convex hull construction.",
+    "task_tags": [
+      "stability prediction",
+      "decomposition enthalpy",
+      "convex hull analysis",
+      "materials screening"
+    ],
+    "heldout_dataset": "Materials Project",
+    "heldout_original_dataset": "Materials Project (MP) database",
+    "heldout_dataset_description": "A publicly available database of DFT-calculated thermodynamic properties for 85,014 unique inorganic crystalline solids, including formation enthalpy per atom (ΔHf) and ground-state crystal structures. In this paper, it is used to compute reference decomposition enthalpies (ΔHd) via convex hull construction in composition space, serving as the ground truth for evaluating ML models’ ability to predict stability; all analyses — including cross-validation, sparse-space testing (e.g., Li–Mn–TM–O), and error cancellation quantification — rely exclusively on MP’s ΔHf and structural data.",
+    "query": "Find datasets for this materials research task: Predicting the thermodynamic stability of inorganic crystalline solids by estimating their decomposition enthalpy (ΔHd), i.e., determining whether a given compound lies on the convex hull of formation enthalpies in its chemical space — a necessary condition for synthesizability — using machine-learned formation energies as input to convex hull construction. Task tags: stability prediction, decomposition enthalpy, convex hull analysis, materials screening. Needed dataset role: A publicly available database of DFT-calculated thermodynamic properties for 85,014 unique inorganic crystalline solids, including formation enthalpy per atom (ΔHf) and ground-state crystal structures. In this paper, it is used to compute reference decomposition enthalpies (ΔHd) via convex hull construction in composition space, serving as the ground truth for evaluating ML models’ ability to predict stability; all analyses — including cross-validation, sparse-space testing (e.g., Li–Mn–TM–O), and error cancellation quantification — rely exclusively on MP’s ΔHf and structural data."
+  },
+  {
+    "query_id": "43_Formation_Energy_Stability_Critical__task1__dataset2",
+    "paper_file": "43_Formation_Energy_Stability_Critical.pdf",
+    "task_description": "Predicting the thermodynamic stability of inorganic crystalline solids by estimating their decomposition enthalpy (ΔHd), i.e., determining whether a given compound lies on the convex hull of formation enthalpies in its chemical space — a necessary condition for synthesizability — using machine-learned formation energies as input to convex hull construction.",
+    "task_tags": [
+      "stability prediction",
+      "decomposition enthalpy",
+      "convex hull analysis",
+      "materials screening"
+    ],
+    "heldout_dataset": "Inorganic Crystal Structure Database",
+    "heldout_original_dataset": "Inorganic Crystal Structure Database (ICSD)",
+    "heldout_dataset_description": "A curated repository of experimentally determined crystal structures for ~10^5 known solid-state materials. In this paper, it is cited as the primary source of experimental structural data underlying many entries in the Materials Project; MP entries are stated to be 'the majority of which are in the ICSD', and ICSD-derived stability bias is explicitly analyzed when interpreting false positive rates in materials discovery contexts.",
+    "query": "Find datasets for this materials research task: Predicting the thermodynamic stability of inorganic crystalline solids by estimating their decomposition enthalpy (ΔHd), i.e., determining whether a given compound lies on the convex hull of formation enthalpies in its chemical space — a necessary condition for synthesizability — using machine-learned formation energies as input to convex hull construction. Task tags: stability prediction, decomposition enthalpy, convex hull analysis, materials screening. Needed dataset role: A curated repository of experimentally determined crystal structures for ~10^5 known solid-state materials. In this paper, it is cited as the primary source of experimental structural data underlying many entries in the Materials Project; MP entries are stated to be 'the majority of which are in the ICSD', and ICSD-derived stability bias is explicitly analyzed when interpreting false positive rates in materials discovery contexts."
+  },
+  {
+    "query_id": "44_Synthesizability_Crystalline_Inorganic__task1__dataset1",
+    "paper_file": "44_Synthesizability_Crystalline_Inorganic.pdf",
+    "task_description": "Predicting the synthesizability of crystalline inorganic materials solely from their chemical composition (i.e., elemental identity and stoichiometric ratios), without requiring crystal structure information, to identify which hypothetical compositions are likely to be experimentally realizable using current synthetic capabilities.",
+    "task_tags": [
+      "synthesizability prediction",
+      "composition-based classification",
+      "materials discovery"
+    ],
+    "heldout_dataset": "Inorganic Crystal Structure Database",
+    "heldout_original_dataset": "Inorganic Crystal Structure Database (ICSD)",
+    "heldout_dataset_description": "A curated repository of experimentally synthesized and structurally characterized inorganic crystalline materials. The paper uses 53,594 unique binary, ternary, and quaternary compositions (8,194 binaries, 26,218 ternaries, 19,182 quaternaries) with integer stoichiometric coefficients, extracted from ICSD in October 2020. These serve as positive labeled examples (‘synthesized’) for training and evaluating the SynthNN model’s ability to predict synthesizability.",
+    "query": "Find datasets for this materials research task: Predicting the synthesizability of crystalline inorganic materials solely from their chemical composition (i.e., elemental identity and stoichiometric ratios), without requiring crystal structure information, to identify which hypothetical compositions are likely to be experimentally realizable using current synthetic capabilities. Task tags: synthesizability prediction, composition-based classification, materials discovery. Needed dataset role: A curated repository of experimentally synthesized and structurally characterized inorganic crystalline materials. The paper uses 53,594 unique binary, ternary, and quaternary compositions (8,194 binaries, 26,218 ternaries, 19,182 quaternaries) with integer stoichiometric coefficients, extracted from ICSD in October 2020. These serve as positive labeled examples (‘synthesized’) for training and evaluating the SynthNN model’s ability to predict synthesizability."
+  },
+  {
+    "query_id": "44_Synthesizability_Crystalline_Inorganic__task1__dataset2",
+    "paper_file": "44_Synthesizability_Crystalline_Inorganic.pdf",
+    "task_description": "Predicting the synthesizability of crystalline inorganic materials solely from their chemical composition (i.e., elemental identity and stoichiometric ratios), without requiring crystal structure information, to identify which hypothetical compositions are likely to be experimentally realizable using current synthetic capabilities.",
+    "task_tags": [
+      "synthesizability prediction",
+      "composition-based classification",
+      "materials discovery"
+    ],
+    "heldout_dataset": "Synthesizability Dataset (author-curated)",
+    "heldout_original_dataset": "Synthesizability Dataset (author-curated)",
+    "heldout_dataset_description": "A custom dataset constructed by augmenting the ICSD-derived positive examples with artificially generated unsynthesized chemical formulas. Unsynthesized formulas are sampled to match the elemental abundance and distribution of compound types (binary/ternary/quaternary) in the ICSD subset; atomic coefficients are uniformly drawn from 1–20, and duplicates or multiples of known formulas are excluded. This dataset supports semi-supervised positive-unlabeled (PU) learning to train SynthNN as a synthesizability classifier, enabling robust generalization beyond known materials.",
+    "query": "Find datasets for this materials research task: Predicting the synthesizability of crystalline inorganic materials solely from their chemical composition (i.e., elemental identity and stoichiometric ratios), without requiring crystal structure information, to identify which hypothetical compositions are likely to be experimentally realizable using current synthetic capabilities. Task tags: synthesizability prediction, composition-based classification, materials discovery. Needed dataset role: A custom dataset constructed by augmenting the ICSD-derived positive examples with artificially generated unsynthesized chemical formulas. Unsynthesized formulas are sampled to match the elemental abundance and distribution of compound types (binary/ternary/quaternary) in the ICSD subset; atomic coefficients are uniformly drawn from 1–20, and duplicates or multiples of known formulas are excluded. This dataset supports semi-supervised positive-unlabeled (PU) learning to train SynthNN as a synthesizability classifier, enabling robust generalization beyond known materials."
+  }
+]

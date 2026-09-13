@@ -1,0 +1,10 @@
+{
+  "attempt": 2,
+  "errors": [
+    "task.evidence[0].text does not match PDF page 1 (score=0.7919)",
+    "stages[1].evidence[0].text does not match PDF page 10 (score=0.7485)",
+    "stages[2].evidence[0].text does not match PDF page 10 (score=0.3188)",
+    "stages[3].evidence[0].text does not match PDF page 12 (score=0.5363)"
+  ],
+  "exception": null
+}

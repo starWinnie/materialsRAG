@@ -1,0 +1,21 @@
+{
+  "valid": true,
+  "counts": {
+    "papers": 30,
+    "tasks": 30,
+    "stages": 178,
+    "datasets": 85,
+    "dataset_uses": 277,
+    "edges": 1502
+  },
+  "page_counts": {
+    "papers": 30,
+    "tasks": 30,
+    "stages": 178,
+    "datasets": 85,
+    "dataset_uses": 277
+  },
+  "evidence_records_checked": 690,
+  "duplicate_dataset_use_pairs": 0,
+  "errors": []
+}

@@ -1,0 +1,27 @@
+{
+  "paper_id": "P013",
+  "file_name": "13_CrysCo.pdf",
+  "status": "completed",
+  "completed_at": "2026-08-05T10:16:13.489667+00:00",
+  "model": "qwen-plus",
+  "stage1_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "stage2_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "counts": {
+    "tasks": 1,
+    "stages": 6,
+    "datasets": 11,
+    "dataset_uses": 11
+  }
+}

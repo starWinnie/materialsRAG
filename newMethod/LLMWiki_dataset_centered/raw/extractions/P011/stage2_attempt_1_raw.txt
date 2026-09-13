@@ -1,0 +1,201 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "dpf_unlabeled_380k",
+      "canonical_name": "DPF Unlabeled Crystal Structures",
+      "raw_names": ["380,743 unlabeled crystal structures", "380,743 structures"],
+      "dataset_type": "paper_specific",
+      "source_dataset_key": null,
+      "material_scope": ["crystal structures"],
+      "available_properties": [],
+      "available_fields": ["atom types", "atom positions", "lattice constants"],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "After filtering the repetitive and physically or chemically irrational structures, we utilize 380,743 structures to pre-train our model.",
+          "page": 3,
+          "section": "Crystal Datasets",
+          "inferred": false
+        },
+        {
+          "text": "We pre-train our model on 380,743 crystal structure data filtered from the recent work (Merchant et al. 2023), excluding structures that are duplicates of downstream datasets or do not have physical or chemical significance.",
+          "page": 4,
+          "section": "Experimental Setup",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "jarvis",
+      "canonical_name": "JARVIS",
+      "raw_names": ["JARVIS", "JARVIS dataset"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["crystal structures"],
+      "available_properties": [
+        "bandgaps",
+        "formation energies",
+        "energy above hull",
+        "total energy"
+      ],
+      "available_fields": ["crystal structure", "properties"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "The benchmark for crystal property prediction is well established. There are two standard benchmark datasets, JARVIS and Materials Project (Choudhary et al. 2020; Chen et al. 2019), to evaluate the performance of our model.",
+          "page": 3,
+          "section": "Crystal Datasets",
+          "inferred": false
+        },
+        {
+          "text": "The JARVIS dataset contains 55,722 materials with critical crystal properties for functional material design, including bandgaps, formation energies, energy above hull, total energy and so on.",
+          "page": 4,
+          "section": "Experimental Setup",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "materials_project",
+      "canonical_name": "Materials Project",
+      "raw_names": ["Materials Project", "Materials Project dataset"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["crystal structures"],
+      "available_properties": [
+        "formation energy",
+        "band gap",
+        "bulk moduli",
+        "shear moduli"
+      ],
+      "available_fields": ["crystal structure", "properties"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "The benchmark for crystal property prediction is well established. There are two standard benchmark datasets, JARVIS and Materials Project (Choudhary et al. 2020; Chen et al. 2019), to evaluate the performance of our model.",
+          "page": 3,
+          "section": "Crystal Datasets",
+          "inferred": false
+        },
+        {
+          "text": "The Materials Project dataset aggregates several key crystal property datasets, including formation energy, band gap, bulk moduli, and shear moduli. Among them, 69,239 crystals are labeled with properties of formation energy and band gap, while only 5,451 crystal structures are labeled with the properties of bulk moduli and shear moduli.",
+          "page": 4,
+          "section": "Experimental Setup",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "dpf_unlabeled_380k",
+      "usage_role": "pretraining",
+      "purpose": "Pre-training the denoising model on unlabeled crystal structures.",
+      "used_fields": ["atom types", "atom positions", "lattice constants"],
+      "is_derived": false,
+      "construction_method": "Filtered from Merchant et al. (2023) crystal discovery output, excluding duplicates of downstream datasets and physically or chemically irrational structures.",
+      "filter_conditions": [
+        "exclusion of repetitive structures",
+        "exclusion of physically or chemically irrational structures",
+        "exclusion of duplicates of downstream datasets"
+      ],
+      "sample_count": 380743,
+      "evidence": [
+        {
+          "text": "After filtering the repetitive and physically or chemically irrational structures, we utilize 380,743 structures to pre-train our model.",
+          "page": 3,
+          "section": "Crystal Datasets",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "jarvis",
+      "usage_role": "training",
+      "purpose": "Fine-tuning the pre-trained model on labeled crystal property prediction tasks.",
+      "used_fields": ["crystal structure", "formation energy", "bandgap", "energy above hull", "total energy", "bandgap(MBJ)"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 55722,
+      "evidence": [
+        {
+          "text": "The JARVIS dataset contains 55,722 materials with critical crystal properties for functional material design, including bandgaps, formation energies, energy above hull, total energy and so on.",
+          "page": 4,
+          "section": "Experimental Setup",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "materials_project",
+      "usage_role": "training",
+      "purpose": "Fine-tuning the pre-trained model on labeled crystal property prediction tasks.",
+      "used_fields": ["crystal structure", "formation energy", "band gap", "bulk moduli", "shear moduli"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 69239,
+      "evidence": [
+        {
+          "text": "The Materials Project dataset aggregates several key crystal property datasets, including formation energy, band gap, bulk moduli, and shear moduli. Among them, 69,239 crystals are labeled with properties of formation energy and band gap, while only 5,451 crystal structures are labeled with the properties of bulk moduli and shear moduli.",
+          "page": 4,
+          "section": "Experimental Setup",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "jarvis",
+      "usage_role": "test",
+      "purpose": "Evaluating model performance on crystal property prediction using MAE.",
+      "used_fields": ["crystal structure", "formation energy", "bandgap(OPT)", "total energy", "energy above hull", "bandgap(MBJ)"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 55722,
+      "evidence": [
+        {
+          "text": "Table 1: The experimental results in terms of MAE on JARVIS dataset.",
+          "page": 3,
+          "section": "Method",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "materials_project",
+      "usage_role": "test",
+      "purpose": "Evaluating model performance on crystal property prediction using MAE.",
+      "used_fields": ["crystal structure", "formation energy", "band gap", "bulk moduli", "shear moduli"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 69239,
+      "evidence": [
+        {
+          "text": "The experimental results on the Materials Project benchmark dataset are shown in Table. 4.",
+          "page": 5,
+          "section": "Experimental Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

@@ -1,0 +1,430 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "openkim_ip_repository",
+      "canonical_name": "OpenKIM Interatomic Potential Repository",
+      "raw_names": [
+        "OpenKIM repository",
+        "OpenKIM IP repository"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "FCC metals"
+      ],
+      "available_properties": [
+        "plastic flow strength",
+        "elastic constants",
+        "surface energies",
+        "vacancy formation energy",
+        "vacancy migration barrier",
+        "vacancy formation volume",
+        "stacking fault energies",
+        "cohesive energy",
+        "lattice constant",
+        "thermal expansion coefficient"
+      ],
+      "available_fields": [
+        "interatomic_potential",
+        "material",
+        "property_value",
+        "property_type",
+        "computational_method"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "The IPs used are available in the OpenKIM repository at https://openkim.org4 along with their predictions for a range of material properties computed using robust and vetted computational protocols.",
+          "page": 2,
+          "section": "Results and discussion",
+          "inferred": false
+        },
+        {
+          "text": "OpenKIM4,17 (Open Knowledgebase of Interatomic Models) is a multi-faceted cyberinfrastructure project founded in 2009. All content on OpenKIM is publicly available at https://openkim.org.",
+          "page": 6,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "openkim_178_ip_pool",
+      "canonical_name": "OpenKIM 178-IP Statistical Pool for FCC Metals",
+      "raw_names": [
+        "pool of 178 IPs",
+        "statistical pool of 178 IPs",
+        "178 IP models"
+      ],
+      "dataset_type": "public_subset",
+      "source_dataset_key": "openkim_ip_repository",
+      "material_scope": [
+        "FCC metals"
+      ],
+      "available_properties": [
+        "plastic flow strength",
+        "small-scale indicator properties"
+      ],
+      "available_fields": [
+        "interatomic_potential",
+        "metal_species",
+        "MD_strength_MPa",
+        "indicator_property",
+        "indicator_value"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Here we explore covariance between predictions of metal plasticity, from 178 large-scale (~108 atoms) molecular dynamics (MD) simulations, and a variety of indicator properties computed at small-scales (≤102 atoms). All simulations use the same 178 IPs.",
+          "page": 1,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "We performed 178 MD simulations of crystal strength... Out of the many IPs available and documented in the OpenKIM repository, 178 IPs previously developed for nine FCC metals were selected.",
+          "page": 7,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "openkim_163_ip_cleaned",
+      "canonical_name": "OpenKIM 163-IP Cleaned Indicator Dataset",
+      "raw_names": [
+        "remaining 163 IPs",
+        "163 × 35 table of small-scale properties"
+      ],
+      "dataset_type": "derived_subset",
+      "source_dataset_key": "openkim_178_ip_pool",
+      "material_scope": [
+        "FCC metals"
+      ],
+      "available_properties": [
+        "elastic constants",
+        "surface energies",
+        "vacancy formation energy",
+        "vacancy migration barrier",
+        "vacancy formation volume",
+        "stacking fault energies",
+        "cohesive energy",
+        "lattice constant"
+      ],
+      "available_fields": [
+        "interatomic_potential",
+        "metal_species",
+        "indicator_property",
+        "indicator_value"
+      ],
+      "availability": "public",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "Inspection of small-scale indicator properties of the remaining 163 IPs, precomputed in the OpenKIM repository, revealed some missing or out-of-bounds values deemed unreliable. Out of 62 initially considered indicators, 27 properties contained numerous missing or unreliable values and were excluded from our study altogether. To fill the gaps in the 163 × 35 table of the remaining small-scale properties...",
+          "page": 2,
+          "section": "Results and discussion",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "openkim_153_ip_final",
+      "canonical_name": "OpenKIM 153-IP Final Statistical Pool",
+      "raw_names": [
+        "153 IP models",
+        "153 samples remaining in the statistical pool"
+      ],
+      "dataset_type": "derived_subset",
+      "source_dataset_key": "openkim_163_ip_cleaned",
+      "material_scope": [
+        "FCC metals"
+      ],
+      "available_properties": [
+        "plastic flow strength",
+        "small-scale indicator properties"
+      ],
+      "available_fields": [
+        "interatomic_potential",
+        "metal_species",
+        "MD_strength_MPa",
+        "indicator_property",
+        "indicator_value"
+      ],
+      "availability": "public",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "Of the 16 models that were identified as SF jammed, six had been previously excluded... we excluded all SF jammed IPs... thus paring our statistical pool down to 153 IP models",
+          "page": 4,
+          "section": "Results and discussion",
+          "inferred": false
+        },
+        {
+          "text": "Figure 4b presents one of the best 3-variable regression model (see the figure caption for details), fit the 153 samples remaining in the statistical pool with the adjusted goodness of fit parameter r2 = 0.88.",
+          "page": 5,
+          "section": "Results and discussion",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "dft_fcc_predictors",
+      "canonical_name": "DFT-Computed Small-Scale Predictors for Seven FCC Metals",
+      "raw_names": [
+        "DFT-computed {111} surface energy, lattice constant, and vacancy migration energy",
+        "FP DFT calculations",
+        "DFT predictor values"
+      ],
+      "dataset_type": "paper_specific",
+      "source_dataset_key": null,
+      "material_scope": [
+        "Ag",
+        "Al",
+        "Au",
+        "Cu",
+        "Ni",
+        "Pd",
+        "Pt"
+      ],
+      "available_properties": [
+        "{111} surface energy",
+        "lattice constant",
+        "vacancy migration energy"
+      ],
+      "available_fields": [
+        "element",
+        "property",
+        "value",
+        "computational_method"
+      ],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "We used FP DFT calculations to compute the predictor properties used in the 3-variable regression model shown in Fig. 4b, i.e., the {111} surface energy, the lattice constant, and the VME.",
+          "page": 5,
+          "section": "Results and discussion",
+          "inferred": false
+        },
+        {
+          "text": "Figure 5 shows the flow strength of seven FCC metals Ag, Al, Au, Cu, Ni, Pd, and Pt, predicted by substituting into the regression model the three predictors computed for each metal using DFT.",
+          "page": 5,
+          "section": "Results and discussion",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "openkim_178_ip_pool",
+      "usage_role": "source",
+      "purpose": "Acquire plastic flow strength values from large-scale MD simulations and small-scale indicator properties for statistical analysis.",
+      "used_fields": [
+        "interatomic_potential",
+        "MD_strength_MPa",
+        "indicator_property",
+        "indicator_value"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 178,
+      "evidence": [
+        {
+          "text": "Here we explore covariance between predictions of metal plasticity, from 178 large-scale (~108 atoms) molecular dynamics (MD) simulations, and a variety of indicator properties computed at small-scales (≤102 atoms). All simulations use the same 178 IPs.",
+          "page": 1,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "openkim_178_ip_pool",
+      "usage_role": "screening",
+      "purpose": "Exclude IPs with numerical instabilities or anomalous crystal response to ensure statistical pool homogeneity.",
+      "used_fields": [
+        "interatomic_potential",
+        "MD_strength_MPa",
+        "crystal_response"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [
+        "numerical instabilities",
+        "crystal rotation",
+        "phase transformations",
+        "formation of amorphous phases or voids"
+      ],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "MD simulations using one particular IP could not be completed due to numerical instabilities encountered irrespective of the integration time step. Another 14 IPs were excluded after subsequent analyzes revealed anomalies or irregularities in crystal response to straining, such as crystal rotation, phase transformations, and formation of amorphous phases, or voids...",
+          "page": 2,
+          "section": "Results and discussion",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "openkim_163_ip_cleaned",
+      "usage_role": "source",
+      "purpose": "Provide cleaned small-scale indicator data for regression modeling after imputation and validation.",
+      "used_fields": [
+        "interatomic_potential",
+        "indicator_property",
+        "indicator_value"
+      ],
+      "is_derived": true,
+      "construction_method": "Exclusion of 15 IPs from 178-IP pool; removal of 27 unreliable indicators; imputation of missing values via k-nearest neighbors; re-computation of out-of-bounds values.",
+      "filter_conditions": [],
+      "sample_count": 163,
+      "evidence": [
+        {
+          "text": "Inspection of small-scale indicator properties of the remaining 163 IPs, precomputed in the OpenKIM repository, revealed some missing or out-of-bounds values deemed unreliable. Out of 62 initially considered indicators, 27 properties contained numerous missing or unreliable values and were excluded from our study altogether. To fill the gaps in the 163 × 35 table of the remaining small-scale properties, wherever possible we (1) computed the missing property values, and (2) re-computed property values falling outside of their physically reasonable range.",
+          "page": 2,
+          "section": "Results and discussion",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "openkim_163_ip_cleaned",
+      "usage_role": "screening",
+      "purpose": "Exclude IPs exhibiting stacking fault jamming to preserve statistical homogeneity of the QoI.",
+      "used_fields": [
+        "interatomic_potential",
+        "defect_microstructure",
+        "plastic_response"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [
+        "stacking fault jamming"
+      ],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Of the 16 models that were identified as SF jammed, six had been previously excluded from the statistical pool based on other considerations. Outliers or not, we excluded all SF jammed IPs from further statistical analyses on the grounds that they exhibit a plastic response qualitatively different from the rest of the remaining IP models, thus paring our statistical pool down to 153 IP models",
+          "page": 4,
+          "section": "Results and discussion",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "openkim_153_ip_final",
+      "usage_role": "candidate_pool",
+      "purpose": "Serve as the basis for developing new vacancy-related indicator properties informed by MD defect microstructure analysis.",
+      "used_fields": [
+        "interatomic_potential",
+        "defect_microstructure"
+      ],
+      "is_derived": true,
+      "construction_method": "Exclusion of SF-jammed IPs from 163-IP pool.",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Analysis of the defect microstructures observed in MD simulations suggested additional indicator properties not previously included as possible predictors... Following this logic, we developed new Open-KIM property calculations (KIM test drivers) for computing the vacancy formation energy (both relaxed and unrelaxed), the vacancy migration barrier, and the vacancy formation volume... Thus, they were added as candidate independent variables in subsequent statistical analyses, bringing the number of available indicator properties to 39.",
+          "page": 4,
+          "section": "Results and discussion",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 7,
+      "dataset_key": "openkim_153_ip_final",
+      "usage_role": "training",
+      "purpose": "Train multi-linear regression model on selected predictors ({111} surface energy, lattice constant, vacancy migration energy).",
+      "used_fields": [
+        "interatomic_potential",
+        "MD_strength_MPa",
+        "{111} surface energy",
+        "lattice constant",
+        "vacancy migration energy"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 153,
+      "evidence": [
+        {
+          "text": "Figure 4b presents one of the best 3-variable regression model (see the figure caption for details), fit the 153 samples remaining in the statistical pool with the adjusted goodness of fit parameter r2 = 0.88.",
+          "page": 5,
+          "section": "Results and discussion",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 8,
+      "dataset_key": "openkim_153_ip_final",
+      "usage_role": "validation",
+      "purpose": "Estimate prediction error using leave-one-out cross-validation on the 153-IP pool.",
+      "used_fields": [
+        "interatomic_potential",
+        "MD_strength_MPa",
+        "{111} surface energy",
+        "lattice constant",
+        "vacancy migration energy"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 153,
+      "evidence": [
+        {
+          "text": "As an estimate of the prediction error by regression on DFT predictors, the average relative prediction error among 153 leave-one-out models is 15%.",
+          "page": 5,
+          "section": "Results and discussion",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 9,
+      "dataset_key": "dft_fcc_predictors",
+      "usage_role": "computational_validation",
+      "purpose": "Apply trained regression model to DFT-computed predictors for seven FCC metals to obtain flow strength predictions with error bounds.",
+      "used_fields": [
+        "element",
+        "{111} surface energy",
+        "lattice constant",
+        "vacancy migration energy"
+      ],
+      "is_derived": false,
+      "construction_method": "Density functional theory (DFT) calculations using PBEsol exchange-correlation functional and PAW pseudopotentials in VASP.",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We used FP DFT calculations to compute the predictor properties used in the 3-variable regression model shown in Fig. 4b, i.e., the {111} surface energy, the lattice constant, and the VME. Figure 5 shows the flow strength of seven FCC metals Ag, Al, Au, Cu, Ni, Pd, and Pt, predicted by substituting into the regression model the three predictors computed for each metal using DFT.",
+          "page": 5,
+          "section": "Results and discussion",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

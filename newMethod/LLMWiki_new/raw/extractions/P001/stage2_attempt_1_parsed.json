@@ -1,0 +1,361 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "mp",
+      "canonical_name": "Materials Project Database",
+      "raw_names": [
+        "Materials Project (MP) Database",
+        "MP",
+        "Materials Project"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "crystals"
+      ],
+      "available_properties": [
+        "formation energy",
+        "band gap",
+        "metal/non-metal classification",
+        "bulk modulus",
+        "shear modulus",
+        "Young's modulus"
+      ],
+      "available_fields": [
+        "formation energy",
+        "band gap",
+        "metal/non-metal classification labels",
+        "bulk modulus",
+        "shear modulus",
+        "Young's modulus"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "• Materials Project (MP) Database: We use stable structures retrieved from the Materials Project\n(Jain et al., 2020), comprising 122,959 entries with annotated formation energy, band gap, and\nmetal/non-metal classification labels. Additionally, 9,473 of these entries include mechanical\nproperties such as bulk modulus, shear modulus and Young’s modulus. The dataset is managed\nusing the Atomic Simulation Environment (ASE), and is available at https://huggingface.\nco/datasets/caobin/CPPbenchmark.",
+          "page": 8,
+          "section": "Datasets",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "jarvis_dft",
+      "canonical_name": "JARVIS-DFT (dft_3d)",
+      "raw_names": [
+        "JARVIS-DFT (dft_3d)",
+        "JARVIS-DFT",
+        "JARVIS-DFT-3D-2021"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "crystals"
+      ],
+      "available_properties": [
+        "formation energy",
+        "band gap",
+        "bulk modulus",
+        "shear modulus",
+        "total energy",
+        "energy above the hull"
+      ],
+      "available_fields": [
+        "formation energy",
+        "band gap (calculated using either the OptB88vDW functional, denoted as OPT, or the TBMBJ functional, denoted as MBJ)",
+        "bulk modulus",
+        "shear modulus",
+        "total energy (calculated using the OptB88vDW functional)",
+        "energy above the hull (Ehull)"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "• JARVIS-DFT (dft_3d): This dataset contains 75,993 entries, each annotated with formation\nenergy, band gap (calculated using either the OptB88vDW functional, denoted as OPT, or the\nTBMBJ functional, denoted as MBJ), bulk modulus, shear modulus, total energy (calculated us-\ning the OptB88vDW functional), and energy above the hull (Ehull ) (Choudhary et al., 2020).\nWe also evaluate the baselines on the JARVIS-DFT-3D-2021 dataset (55,723 entries), which\nserves as an important supplementary benchmark.",
+          "page": 8,
+          "section": "Datasets",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "matbench",
+      "canonical_name": "Matbench Suite",
+      "raw_names": [
+        "Matbench (MB) Suite",
+        "Matbench",
+        "MB"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "crystals"
+      ],
+      "available_properties": [
+        "exfoliation energy",
+        "formation energy",
+        "shear modulus",
+        "refractive index"
+      ],
+      "available_fields": [
+        "matbench_jdft2d (636 entries; exfoliation energy)",
+        "matbench_mp_e_form (132,752 entries; formation energy)",
+        "matbench_log_gvrh (10,987 entries; shear modulus)",
+        "matbench_dielectric (4,764 entries; refractive index)"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "• Matbench (MB) Suite: We evaluate the models on several tasks from the Matbench suite (Dunn\net al., 2020): matbench_jdft2d (636 entries; exfoliation energy), matbench_mp_e_form\n(132,752 entries; formation energy), matbench_log_gvrh (10,987 entries; shear modulus),\nand matbench_dielectric (4,764 entries; refractive index).",
+          "page": 8,
+          "section": "Datasets",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "mp",
+      "usage_role": "benchmark",
+      "purpose": "benchmarking model performance on crystal property prediction tasks",
+      "used_fields": [
+        "formation energy",
+        "band gap",
+        "metal/non-metal classification labels",
+        "bulk modulus",
+        "shear modulus",
+        "Young's modulus"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 122959,
+      "evidence": [
+        {
+          "text": "• Materials Project (MP) Database: We use stable structures retrieved from the Materials Project\n(Jain et al., 2020), comprising 122,959 entries with annotated formation energy, band gap, and\nmetal/non-metal classification labels. Additionally, 9,473 of these entries include mechanical\nproperties such as bulk modulus, shear modulus and Young’s modulus. The dataset is managed\nusing the Atomic Simulation Environment (ASE), and is available at https://huggingface.\nco/datasets/caobin/CPPbenchmark.",
+          "page": 8,
+          "section": "Datasets",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "jarvis_dft",
+      "usage_role": "benchmark",
+      "purpose": "benchmarking model performance on crystal property prediction tasks",
+      "used_fields": [
+        "formation energy",
+        "band gap (calculated using either the OptB88vDW functional, denoted as OPT, or the TBMBJ functional, denoted as MBJ)",
+        "bulk modulus",
+        "shear modulus",
+        "total energy (calculated using the OptB88vDW functional)",
+        "energy above the hull (Ehull)"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 75993,
+      "evidence": [
+        {
+          "text": "• JARVIS-DFT (dft_3d): This dataset contains 75,993 entries, each annotated with formation\nenergy, band gap (calculated using either the OptB88vDW functional, denoted as OPT, or the\nTBMBJ functional, denoted as MBJ), bulk modulus, shear modulus, total energy (calculated us-\ning the OptB88vDW functional), and energy above the hull (Ehull ) (Choudhary et al., 2020).\nWe also evaluate the baselines on the JARVIS-DFT-3D-2021 dataset (55,723 entries), which\nserves as an important supplementary benchmark.",
+          "page": 8,
+          "section": "Datasets",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "matbench",
+      "usage_role": "benchmark",
+      "purpose": "benchmarking model performance on crystal property prediction tasks",
+      "used_fields": [
+        "matbench_jdft2d (636 entries; exfoliation energy)",
+        "matbench_mp_e_form (132,752 entries; formation energy)",
+        "matbench_log_gvrh (10,987 entries; shear modulus)",
+        "matbench_dielectric (4,764 entries; refractive index)"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 636,
+      "evidence": [
+        {
+          "text": "• Matbench (MB) Suite: We evaluate the models on several tasks from the Matbench suite (Dunn\net al., 2020): matbench_jdft2d (636 entries; exfoliation energy), matbench_mp_e_form\n(132,752 entries; formation energy), matbench_log_gvrh (10,987 entries; shear modulus),\nand matbench_dielectric (4,764 entries; refractive index).",
+          "page": 8,
+          "section": "Datasets",
+          "inferred": false
+        }
+      ],
+      "confidence": 0.9
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "mp",
+      "usage_role": "test",
+      "purpose": "quantitative evaluation of PRDNet performance against baselines",
+      "used_fields": [
+        "formation energy",
+        "band gap",
+        "bulk modulus",
+        "shear modulus",
+        "Young's modulus",
+        "metal/non-metal classification"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 122959,
+      "evidence": [
+        {
+          "text": "5.1\nRESULTS\nBenchmarks Performance\nAcross the MP, JARVIS-DFT, and Matbench benchmarks, PRDNet\nconsistently delivers superior or competitive performance compared with existing models. On the\nMP dataset (Table 1), PRDNet surpasses all baselines, achieving the lowest errors in formation en-\nergy (0.028 eV/atom), band gap (0.151 eV), bulk modulus (0.035 log(GPa)), shear modulus (0.108\nlog(GPa)), and Young’s modulus (0.104 log(GPa)), while also reaching the highest metal/non-metal\nclassification accuracy (93.3%).",
+          "page": 9,
+          "section": "5.1 RESULTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "jarvis_dft",
+      "usage_role": "test",
+      "purpose": "quantitative evaluation of PRDNet performance against baselines",
+      "used_fields": [
+        "formation energy",
+        "band gap (OPT)",
+        "band gap (MBJ)",
+        "bulk modulus",
+        "shear modulus",
+        "total energy",
+        "energy above the hull"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 75993,
+      "evidence": [
+        {
+          "text": "On JARVIS-DFT (Table 2), PRDNet again outperforms the baselines, achieving the best results on most tasks, including formation energy (0.032 eV/atom), band gap (OPT, 0.140 eV), bulk modulus (0.064 log(GPa)), shear modulus (0.122 log(GPa)), total energy (0.032 eV/atom) and band gap (MBJ, 0.267 eV) while also achieving competitive performance in Ehull (0.041 eV).",
+          "page": 9,
+          "section": "5.1 RESULTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "matbench",
+      "usage_role": "test",
+      "purpose": "quantitative evaluation of PRDNet performance against baselines",
+      "used_fields": [
+        "exfoliation energy",
+        "formation energy",
+        "shear modulus",
+        "refractive index"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 636,
+      "evidence": [
+        {
+          "text": "On the Matbench benchmark (Table 2), PRDNet achieves the lowest errors in formation energy (0.019 eV/atom), shear modulus (0.058 log(GPa)) and refractive index (0.242 (unitless)), while maintaining competitive performance in exfoliation energy prediction.",
+          "page": 9,
+          "section": "5.1 RESULTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 0.9
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "mp",
+      "usage_role": "benchmark",
+      "purpose": "ablation study to validate architectural components",
+      "used_fields": [
+        "formation energy",
+        "band gap",
+        "bulk modulus",
+        "shear modulus",
+        "Young's modulus",
+        "metal/non-metal classification"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 122959,
+      "evidence": [
+        {
+          "text": "Ablation Study\nTo validate the effectiveness of each component in the PRDNet architecture, we\nperform systematic ablation studies that isolate the contributions of individual modules and design\nchoices. We evaluate PRDNet across diverse property prediction tasks using the Materials Project,\nJARVIS-DFT and Matbench databases, ensuring a comprehensive assessment. Table 3 presents the\nablation results on the MP dataset, while Appendix B, Table 5, and Table 6 report the results on\nJARVIS-DFT and Matbench, respectively.",
+          "page": 9,
+          "section": "Ablation Study",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "jarvis_dft",
+      "usage_role": "benchmark",
+      "purpose": "ablation study to validate architectural components",
+      "used_fields": [
+        "formation energy",
+        "band gap",
+        "bulk modulus",
+        "shear modulus"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 75993,
+      "evidence": [
+        {
+          "text": "Ablation Study\nTo validate the effectiveness of each component in the PRDNet architecture, we\nperform systematic ablation studies that isolate the contributions of individual modules and design\nchoices. We evaluate PRDNet across diverse property prediction tasks using the Materials Project,\nJARVIS-DFT and Matbench databases, ensuring a comprehensive assessment. Table 3 presents the\nablation results on the MP dataset, while Appendix B, Table 5, and Table 6 report the results on\nJARVIS-DFT and Matbench, respectively.",
+          "page": 9,
+          "section": "Ablation Study",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "matbench",
+      "usage_role": "benchmark",
+      "purpose": "ablation study to validate architectural components",
+      "used_fields": [
+        "exfoliation energy",
+        "formation energy",
+        "shear modulus",
+        "refractive index"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 636,
+      "evidence": [
+        {
+          "text": "Ablation Study\nTo validate the effectiveness of each component in the PRDNet architecture, we\nperform systematic ablation studies that isolate the contributions of individual modules and design\nchoices. We evaluate PRDNet across diverse property prediction tasks using the Materials Project,\nJARVIS-DFT and Matbench databases, ensuring a comprehensive assessment. Table 3 presents the\nablation results on the MP dataset, while Appendix B, Table 5, and Table 6 report the results on\nJARVIS-DFT and Matbench, respectively.",
+          "page": 9,
+          "section": "Ablation Study",
+          "inferred": false
+        }
+      ],
+      "confidence": 0.9
+    }
+  ]
+}

@@ -1,0 +1,225 @@
+{
+  "paper": {
+    "title": "Accurate piezoelectric tensor prediction with equivariant attention tensor graph neural network",
+    "year": 2025,
+    "doi": "10.1038/s41524-025-01546-0",
+    "research_summary": "The paper proposes an equivariant attention tensor graph neural network (EATGNN) to predict the full third-rank piezoelectric tensor for both bulk and 2D materials, leveraging irreducible representation decomposition to respect crystal symmetry and rotational equivariance. It validates predictions against DFT-calculated tensors, achieves state-of-the-art accuracy, and uses the model to screen and discover new high-performance piezoelectric candidates, subsequently confirmed by DFPT calculations."
+  },
+  "task": {
+    "task_name_raw": "Accurate piezoelectric tensor prediction",
+    "task_name_canonical": "piezoelectric_tensor_prediction",
+    "objective": "To accurately predict the complete third-rank piezoelectric tensor for crystalline materials while respecting crystal symmetry and rotational equivariance.",
+    "material_scope": [
+      "bulk crystals",
+      "two-dimensional materials"
+    ],
+    "target_properties": [
+      "piezoelectric tensor (eijk)"
+    ],
+    "constraints": [
+      "absence of inversion symmetry",
+      "non-conductor"
+    ],
+    "input_requirements": [
+      "crystal structure"
+    ],
+    "output_goal": [
+      "full third-rank piezoelectric tensor in Voigt notation (3×6 matrix for bulk, 3×3 for 2D)"
+    ],
+    "evidence": [
+      {
+        "text": "Accurate piezoelectric tensor prediction with equivariant attention tensor graph neural network",
+        "page": 1,
+        "section": "unknown",
+        "inferred": false
+      },
+      {
+        "text": "Here, we propose an equivariant attention tensor graph neural network (EATGNN) that can identify crystal symmetry and remain independent of the reference frame, ultimately enabling the accurate prediction of the complete third-rank piezoelectric tensor.",
+        "page": 1,
+        "section": "unknown",
+        "inferred": false
+      },
+      {
+        "text": "EATGNN can establish the relationship between crystal structures and their properties... Ultimately, the model outputs the piezoelectric tensor in its irreducible representation, which is then post-processed to obtain the target piezoelectric tensor.",
+        "page": 2,
+        "section": "Results",
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "Data acquisition from computational databases",
+      "stage_order": 1,
+      "stage_goal": "To collect piezoelectric tensor data for bulk and 2D materials from high-throughput computational sources.",
+      "stage_input": [],
+      "stage_output": [
+        "piezoelectric tensor dataset for bulk crystals",
+        "piezoelectric tensor dataset for 2D crystals"
+      ],
+      "evidence": [
+        {
+          "text": "The piezoelectric tensor data of bulk crystals in this work was obtained from the Materials Project21 and a recent high-throughput computational study on piezoelectric tensors24,30.",
+          "page": 3,
+          "section": "unknown",
+          "inferred": false
+        },
+        {
+          "text": "The piezoelectric tensor data of 2D materials was obtained from the C2DB database33,34, comprising a total of 1382 data points...",
+          "page": 5,
+          "section": "unknown",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_preparation",
+      "stage_name_raw": "Data resampling and symmetry correction",
+      "stage_order": 2,
+      "stage_goal": "To remove outliers and enforce consistency between predicted tensors and material crystallographic symmetry.",
+      "stage_input": [
+        "raw piezoelectric tensor dataset"
+      ],
+      "stage_output": [
+        "cleaned, symmetry-compliant dataset"
+      ],
+      "evidence": [
+        {
+          "text": "Due to the presence of a significant number of outliers in the piezoelectric tensors, we performed data resampling before applying machine learning techniques to prevent overfitting.",
+          "page": 3,
+          "section": "unknown",
+          "inferred": false
+        },
+        {
+          "text": "We examined all materials dataset to ensure that the target piezoelectric tensors are consistent with the material’s symmetry. Furthermore, we mathematically adjusted those piezoelectric tensors that did not conform to the material’s symmetry to be invariant under crystallographic symmetry operations.",
+          "page": 3,
+          "section": "unknown",
+          "inferred": false
+        },
+        {
+          "text": "We first checked whether the piezoelectric tensors in the dataset satisfy the symmetry of their corresponding crystal structures. This was achieved by applying the crystal structure’s symmetry operations to the tensor and checking if it remains invariant under these operations. If a change occurred, we transformed the tensor into a symmetry-compliant form that respects the lattice symmetry22.",
+          "page": 5,
+          "section": "unknown",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "Training EATGNN with mean-squared-error loss",
+      "stage_order": 3,
+      "stage_goal": "To train the equivariant attention tensor graph neural network to predict piezoelectric tensors using symmetry-respecting irreducible representations as targets.",
+      "stage_input": [
+        "crystal graph representation",
+        "irreducible representation of piezoelectric tensor"
+      ],
+      "stage_output": [
+        "trained EATGNN model"
+      ],
+      "evidence": [
+        {
+          "text": "Networks are trained using a mean-squared-error loss function based on complete piezoelectric tensor: loss = 1/N Σ_N n=0 Σ_i,j,k (e′_nijk − e_nijk)² / 27",
+          "page": 7,
+          "section": "Methods",
+          "inferred": false
+        },
+        {
+          "text": "EATGNN can establish the relationship between crystal structures and their properties. The architecture and speciﬁc details of EATGNN are shown in Fig. 1. It takes the crystal structure as input22, represents it as a crystal graph G(V; E), and utilizes message passing and multi-head attention mechanism to update the graph across multiple graph attention layers. Ultimately, the model outputs the piezoelectric tensor in its irreducible representation...",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "Evaluation using MAE and RMSE on test sets",
+      "stage_order": 4,
+      "stage_goal": "To quantify prediction accuracy of the trained EATGNN on held-out test data using standard error metrics.",
+      "stage_input": [
+        "trained EATGNN model",
+        "test set piezoelectric tensors"
+      ],
+      "stage_output": [
+        "MAE",
+        "RMSE",
+        "performance comparison tables"
+      ],
+      "evidence": [
+        {
+          "text": "The RMSE and MAE of EATGNN on the test set are 0.154 C/m2 and 0.141 C/m2, respectively.",
+          "page": 4,
+          "section": "unknown",
+          "inferred": false
+        },
+        {
+          "text": "the RMSE and MAE of our model are 50.6 pC/m and 16.8 pC/m, respectively.",
+          "page": 5,
+          "section": "unknown",
+          "inferred": false
+        },
+        {
+          "text": "Table 1 compares the performance of EATGNN with the equivariant model MatTen18, the invariant model ALIGNN, and the invariant model based on CFID descriptors combined with XGBoost (XGB)31.",
+          "page": 4,
+          "section": "unknown",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_generation",
+      "stage_name_raw": "High-throughput screening of candidate materials",
+      "stage_order": 5,
+      "stage_goal": "To apply the trained EATGNN model to large-scale materials databases to generate candidate materials with large predicted piezoelectric response.",
+      "stage_input": [
+        "trained EATGNN model",
+        "Materials Project database",
+        "2DMatPedia database"
+      ],
+      "stage_output": [
+        "list of candidate piezoelectric materials"
+      ],
+      "evidence": [
+        {
+          "text": "In order to discover new potential high-performance piezoelectric materials, we use our model on both 3D and 2D materials in the Materials Project and 2DMatPedia database36, respectively.",
+          "page": 6,
+          "section": "unknown",
+          "inferred": false
+        },
+        {
+          "text": "Our selection criteria are 1) out of the training datasets, 2) inversion asymmetry, 3) Egap > 0.1 eV, and 4) Nuc < 30 atoms.",
+          "page": 6,
+          "section": "unknown",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "computational_validation",
+      "stage_name_raw": "DFPT validation of candidate materials",
+      "stage_order": 6,
+      "stage_goal": "To computationally validate top candidate materials using density functional perturbation theory (DFPT) calculations.",
+      "stage_input": [
+        "candidate materials list"
+      ],
+      "stage_output": [
+        "DFT-calculated piezoelectric tensors for candidates"
+      ],
+      "evidence": [
+        {
+          "text": "Using our model, we identify several good candidates (See in Tables 3 and 4 and Supplementary Material), which are further validated using density functional perturbation theory (DFPT) calculations.",
+          "page": 6,
+          "section": "unknown",
+          "inferred": false
+        },
+        {
+          "text": "DFT ab initio calculations for piezoelectric tensor Using the Vienna Ab Initio Simulation Package (VASP)38 for ab initio calculations, and combining it with the Atomic Simulation Environment (ASE)39 code to run an automated computational workflow, allows us to automatically compute a majority of the properties... Density functional perturbation theory (DFPT)41 is employed to calculate the piezoelectric stress tensor eijk.",
+          "page": 7,
+          "section": "Methods",
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

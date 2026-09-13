@@ -1,0 +1,406 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "dfpt_main_database",
+      "canonical_name": "DFPT phonon database for semiconducting inorganic materials",
+      "raw_names": [
+        "ab initio DFPT computational database for phonon dispersion in harmonic model",
+        "Main Database",
+        "DFPT database",
+        "density functional perturbation theory (DFPT) phonon database"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "semiconducting inorganic materials",
+        "crystalline materials"
+      ],
+      "available_properties": [
+        "phonon dispersion along highly symmetric paths",
+        "second-order derivatives of energies with respect to atomic perturbations",
+        "Γ-phonon spectra"
+      ],
+      "available_fields": [
+        "material structures (primitive structure from Materials Project)",
+        "phonon dispersion (cm⁻¹)",
+        "wave vectors (fractional reciprocal unit)"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We trained all of our models against an ab initio DFPT computational database for phonon dispersion in harmonic model25.",
+          "page": 9,
+          "section": "Methods",
+          "inferred": false
+        },
+        {
+          "text": "The data set contains material structures (the same as the primitive structure obtained from the Material Project12), second-order derivatives of energies with respect to atomic perturbations for regular points inside the irreducible zone, and phonon dispersion along highly symmetric paths of 1,521 crystalline inorganic materials.",
+          "page": 9,
+          "section": "Methods",
+          "inferred": false
+        },
+        {
+          "text": "The data set containing full phonon bands of 1521 semiconducting inorganic materials are calculated from density functional perturbation theory (DFPT)?, which is the main dataset for training (“Main Database” for short).",
+          "page": 12,
+          "section": "I DATA PREPARATION",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "togo_database",
+      "canonical_name": "Togo phonon database",
+      "raw_names": [
+        "Atsushi Togo’s phonon database",
+        "Phonon database by Dr. Atsuhi Togo at Kyoto University",
+        "Togo Database"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "complex crystalline materials",
+        "materials with >40 atoms per unit cell"
+      ],
+      "available_properties": [
+        "phonon dispersion along highly symmetric paths",
+        "Γ-phonon spectra"
+      ],
+      "available_fields": [
+        "POSCAR",
+        "FORCE_SET",
+        "phonopy.config files",
+        "phonon dispersion (cm⁻¹)"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We also got phonon dispersion of complex (more number of atoms per unit cell) materials from Atsushi Togo’s phonon database31.",
+          "page": 9,
+          "section": "Methods",
+          "inferred": false
+        },
+        {
+          "text": "Another set of data for testing the model was taken from the Phonon database by Dr. Atsuhi Togo at Kyoto University (“Togo Database” for short)?, which contains the phonons of more complex materials, but meanwhile contain more phonons with imaginary phonon energies.",
+          "page": 13,
+          "section": "unknown",
+          "inferred": false
+        },
+        {
+          "text": "http://phonondb.mtl.kyoto-u.ac.jp/",
+          "page": 8,
+          "section": "unknown",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "mp_146k",
+      "canonical_name": "Materials Project database (146,323 materials)",
+      "raw_names": [
+        "Materials Project database",
+        "entire 146,323 Materials in Materials Project (MP)",
+        "Materials Project (MP)"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "crystalline materials",
+        "inorganic materials"
+      ],
+      "available_properties": [
+        "atomic coordinates",
+        "unit cell vectors",
+        "atomic numbers",
+        "space group",
+        "chemical formula"
+      ],
+      "available_fields": [
+        "CIF format structures",
+        "MP ID number",
+        "nsites (number of atoms per unit cell)",
+        "formula",
+        "space group index"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Finally, by using MVN, we build a database containing the Γ-phonon spectra for over 140,000 materials listed in Materials Project (Supplementary Information VII).",
+          "page": 6,
+          "section": "Discussion",
+          "inferred": false
+        },
+        {
+          "text": "here we present a new phonon database containing the phonon spectra for the entire 146,323 Materials in Materials Project (MP) as of 2022 computed by the MVN approach.",
+          "page": 37,
+          "section": "VII Γ-PHONON DATABASE",
+          "inferred": false
+        },
+        {
+          "text": "The data set contains material structures (the same as the primitive structure obtained from the Material Project12)",
+          "page": 9,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "dfpt_main_database",
+      "usage_role": "source",
+      "purpose": "Source of high-quality ab initio phonon dispersion data for training and validation",
+      "used_fields": [
+        "phonon dispersion along highly symmetric paths",
+        "material structures (primitive structure from Materials Project)"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 1521,
+      "evidence": [
+        {
+          "text": "The data set contains material structures (the same as the primitive structure obtained from the Material Project12), second-order derivatives of energies with respect to atomic perturbations for regular points inside the irreducible zone, and phonon dispersion along highly symmetric paths of 1,521 crystalline inorganic materials.",
+          "page": 9,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "togo_database",
+      "usage_role": "source",
+      "purpose": "Source of phonon dispersion data for complex materials with large unit cells",
+      "used_fields": [
+        "phonon dispersion along highly symmetric paths",
+        "POSCAR",
+        "FORCE_SET",
+        "phonopy.config files"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [
+        "lowest Γ-phonon band > −0.07 cm⁻¹",
+        "more than 40 atoms per unit cell"
+      ],
+      "sample_count": 156,
+      "evidence": [
+        {
+          "text": "We also got phonon dispersion of complex (more number of atoms per unit cell) materials from Atsushi Togo’s phonon database31.",
+          "page": 9,
+          "section": "Methods",
+          "inferred": false
+        },
+        {
+          "text": "To quality control the data, we selected materials whose lowest Γ-phonon band is higher than −0.07 cm−1. We also ﬁltered the material to get only the ones with more than 40 atoms per unit cell. Finally, we randomly selected 156 (the same as the number of data in the testing set for ease of comparison) out of 505 ﬁltered materials. We used them as our complex material data set.",
+          "page": 9,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "dfpt_main_database",
+      "usage_role": "training",
+      "purpose": "Training set for VGNN models (VVN, MVN, k-MVN)",
+      "used_fields": [
+        "phonon dispersion along highly symmetric paths",
+        "Γ-phonon spectra"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 1365,
+      "evidence": [
+        {
+          "text": "All models randomly split the data into 90% training (1,365 materials), and 10% testing (156 materials) sets.",
+          "page": 9,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "dfpt_main_database",
+      "usage_role": "test",
+      "purpose": "Test set for VGNN models (VVN, MVN, k-MVN)",
+      "used_fields": [
+        "phonon dispersion along highly symmetric paths",
+        "Γ-phonon spectra"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 156,
+      "evidence": [
+        {
+          "text": "All models randomly split the data into 90% training (1,365 materials), and 10% testing (156 materials) sets.",
+          "page": 9,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "togo_database",
+      "usage_role": "screening",
+      "purpose": "Complex-material test set for evaluating generalizability on large-unit-cell systems",
+      "used_fields": [
+        "phonon dispersion along highly symmetric paths",
+        "Γ-phonon spectra"
+      ],
+      "is_derived": true,
+      "construction_method": "random selection with quality filtering (lowest Γ-phonon > −0.07 cm⁻¹, >40 atoms/unit cell)",
+      "filter_conditions": [
+        "lowest Γ-phonon band > −0.07 cm⁻¹",
+        "more than 40 atoms per unit cell",
+        "random selection of 156 materials"
+      ],
+      "sample_count": 156,
+      "evidence": [
+        {
+          "text": "To quality control the data, we selected materials whose lowest Γ-phonon band is higher than −0.07 cm−1. We also ﬁltered the material to get only the ones with more than 40 atoms per unit cell. Finally, we randomly selected 156 (the same as the number of data in the testing set for ease of comparison) out of 505 ﬁltered materials. We used them as our complex material data set.",
+          "page": 9,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "dfpt_main_database",
+      "usage_role": "training",
+      "purpose": "Training data for optimizing neural network parameters via MSE loss minimization",
+      "used_fields": [
+        "Γ-phonon spectra",
+        "phonon dispersion at high-symmetry points"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 1365,
+      "evidence": [
+        {
+          "text": "The model is optimized by minimizing the mean squared error (MSE) loss function between the phonon of the training data set and the one predicted by the model after normalizing them by the maximum phonon frequency of each material.",
+          "page": 10,
+          "section": "unknown",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "dfpt_main_database",
+      "usage_role": "test",
+      "purpose": "Test set for evaluating prediction accuracy via loss distribution and correlation plots",
+      "used_fields": [
+        "Γ-phonon spectra",
+        "phonon dispersion at high-symmetry points"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 156,
+      "evidence": [
+        {
+          "text": "Evaluation of the test accuracy through the distribution of loss function and correlation plot between ground-truth and predicted average phonon frequencies, respectively.",
+          "page": 4,
+          "section": "unknown",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "togo_database",
+      "usage_role": "computational_validation",
+      "purpose": "Validation set for assessing performance on complex materials beyond training domain",
+      "used_fields": [
+        "Γ-phonon spectra",
+        "phonon dispersion at high-symmetry points"
+      ],
+      "is_derived": true,
+      "construction_method": "filtered and randomly selected subset (156 materials)",
+      "filter_conditions": [
+        "lowest Γ-phonon band > −0.07 cm⁻¹",
+        "more than 40 atoms per unit cell"
+      ],
+      "sample_count": 156,
+      "evidence": [
+        {
+          "text": "We used them as our complex material data set.",
+          "page": 9,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "togo_database",
+      "usage_role": "computational_validation",
+      "purpose": "Validation on alloy systems and high-entropy alloys using phonon data derived from Togo database or analogous DFPT/VCA methods",
+      "used_fields": [
+        "phonon dispersion",
+        "Γ-phonon spectra"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Additional tests on SiGe alloys, FeCoNi alloys, and other high-energy alloys are performed, which agree well with existing literature (Supplementary Information VI).",
+          "page": 6,
+          "section": "Discussion",
+          "inferred": false
+        }
+      ],
+      "confidence": 0.95
+    },
+    {
+      "stage_order": 6,
+      "dataset_key": "mp_146k",
+      "usage_role": "candidate_pool",
+      "purpose": "Input material pool for generating Γ-phonon predictions using the trained MVN model",
+      "used_fields": [
+        "atomic coordinates",
+        "unit cell vectors",
+        "atomic numbers",
+        "chemical formula",
+        "space group"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 146323,
+      "evidence": [
+        {
+          "text": "here we present a new phonon database containing the phonon spectra for the entire 146,323 Materials in Materials Project (MP) as of 2022 computed by the MVN approach.",
+          "page": 37,
+          "section": "VII Γ-PHONON DATABASE",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

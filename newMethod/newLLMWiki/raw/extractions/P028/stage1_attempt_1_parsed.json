@@ -1,0 +1,166 @@
+{
+  "paper": {
+    "title": "JARVIS-Leaderboard: a large scale benchmark of materials design methods",
+    "year": 2024,
+    "doi": "10.1038/s41524-024-01259-w",
+    "research_summary": "Lack of rigorous reproducibility and validation are signiﬁcant hurdles for scientiﬁc development across many ﬁelds. Materials science, in particular, encompasses a variety of experimental and theoretical approaches that require careful benchmarking. Leaderboard efforts have been developed previously to mitigate these issues. However, a comprehensive comparison and benchmarking on an integrated platform with multiple data modalities with perfect and defect materials data is still lacking. This work introduces JARVIS-Leaderboard, an open-source and community-driven platform that facilitates benchmarking and enhances reproducibility."
+  },
+  "task": {
+    "task_name_raw": "benchmarking of materials design methods",
+    "task_name_canonical": "materials_design_method_benchmarking",
+    "objective": "facilitates benchmarking and enhances reproducibility",
+    "material_scope": [
+      "perfect and defect materials"
+    ],
+    "target_properties": [
+      "formation energy",
+      "bandgap",
+      "bulk modulus",
+      "forces",
+      "Voigt bulk modulus",
+      "exfoliation energy",
+      "CO2 adsorption",
+      "electron bandstructures",
+      "dielectric functions",
+      "solar cell efficiencies",
+      "superconducting transition temperatures",
+      "heat capacity",
+      "hMOF data"
+    ],
+    "constraints": [
+      "systematic, reproducible, transparent, and unbiased scientific development"
+    ],
+    "input_requirements": [
+      "atomic structures, atomistic images, spectra, text, experimental data, density functional theory, numerical solutions"
+    ],
+    "output_goal": [
+      "performance rankings of methods across categories (AI, ES, FF, QC, EXP) using metrics such as MAE, accuracy, ROUGE"
+    ],
+    "evidence": [
+      {
+        "text": "This work introduces JARVIS-Leaderboard, an open-source and community-driven platform that facilitates benchmarking and enhances reproducibility.",
+        "page": 1,
+        "section": null,
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "populate dataset from json.zip",
+      "stage_order": 1,
+      "stage_goal": "generate a benchmark dataset with well-defined data splits",
+      "stage_input": [
+        "json.zip file containing reference dataset"
+      ],
+      "stage_output": [
+        "benchmark dataset"
+      ],
+      "evidence": [
+        {
+          "text": "The jarvis_populate_data.py scripts generate a benchmark dataset.",
+          "page": 3,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "A user can populate the reference dataset (with well-deﬁned data splits) used for a speciﬁc benchmark (e.g., for 2D exfoliation energies in JARVIS-DFT dataset using an AI method: “AI-SinglePropertyPrediction-exfoliation_energy-dft_3d-test”).",
+          "page": 4,
+          "section": "Results and discussion",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_generation",
+      "stage_name_raw": "apply method, train models, or run experiments",
+      "stage_order": 2,
+      "stage_goal": "apply user's method to the benchmark dataset",
+      "stage_input": [
+        "benchmark dataset"
+      ],
+      "stage_output": [
+        "predictions from model/experiment"
+      ],
+      "evidence": [
+        {
+          "text": "A user can apply their method, train models, or run experiments on that dataset and prepare a csv.zip, a metadata.json ﬁle, and other ﬁles in a new folder in the contributions directory.",
+          "page": 3,
+          "section": null,
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "compute performance metrics",
+      "stage_order": 3,
+      "stage_goal": "calculate performance metrics (e.g., MAE, accuracy) by comparing predictions to reference benchmark data",
+      "stage_input": [
+        "csv.zip file containing predictions",
+        "json.zip file containing reference benchmark data"
+      ],
+      "stage_output": [
+        "performance metrics (MAE, accuracy, etc.)"
+      ],
+      "evidence": [
+        {
+          "text": "The csv.zip ﬁle contains entries of identiﬁer (id) and corresponding prediction values as obtained by the corresponding model/method. These test identiﬁers (such as JVASP-1408) must match the test set ids in the json.zip ﬁle in the benchmarks folder for the metric measurements to work.",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "We use several metrics in the leaderboard depending on the “sub-cate-gories” mentioned above. We use mean absolute error (MAE), accuracy (acc), multi-mae (L1 norm of multi-dimensional data), recall-oriented understudy for gisting evaluation (ROUGE) for the single property prediction, single property classiﬁcation, spectra/eigensolver/atomic forcesand textGen/text summary subcategories respectively.",
+          "page": 11,
+          "section": "Metrics used",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_screening",
+      "stage_name_raw": "local server check and GitHub upload",
+      "stage_order": 4,
+      "stage_goal": "verify contribution locally and upload to GitHub",
+      "stage_input": [
+        "csv.zip",
+        "metadata.json",
+        "run.sh",
+        "Dockerfile"
+      ],
+      "stage_output": [
+        "uploaded contribution folder in GitHub repository"
+      ],
+      "evidence": [
+        {
+          "text": "The contributions can be locally checked by the user using jarvis_serve.py script. Then the folder can be uploaded to a user’s GitHub account by the automated jarvis_upload.py script involving several GitHub uploading steps.",
+          "page": 3,
+          "section": null,
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "computational_validation",
+      "stage_name_raw": "admin verification and integration",
+      "stage_order": 5,
+      "stage_goal": "verify contributions and integrate them into the leaderboard website",
+      "stage_input": [
+        "uploaded contribution folder"
+      ],
+      "stage_output": [
+        "contribution added to leaderboard website"
+      ],
+      "evidence": [
+        {
+          "text": "The administrators of the JARVIS-Leaderboard at NIST will verify the contributions and then ﬁnally, it will become part of the leaderboard website.",
+          "page": 3,
+          "section": null,
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

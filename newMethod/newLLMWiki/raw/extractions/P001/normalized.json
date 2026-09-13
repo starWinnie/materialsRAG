@@ -1,0 +1,510 @@
+{
+  "paper": {
+    "paper_id": "P001",
+    "title": "BEYOND STRUCTURE: INVARIANT CRYSTAL PROPERTY PREDICTION WITH PSEUDO-PARTICLE RAY DIFFRACTION",
+    "year": 2026,
+    "doi": null,
+    "file_name": "01_PRDNet.pdf",
+    "research_summary": "Crystal property prediction, governed by quantum mechanical principles, is computationally prohibitive to solve exactly for large many-body systems using traditional density functional theory. While machine learning models have emerged as efficient approximations for large-scale applications, their performance is strongly influenced by the choice of atomic representation. Although modern graph-based approaches have progressively incorporated more structural information, they often fail to capture long-range atomic interactions due to finite receptive fields and local encoding schemes. This limitation leads to distinct crystals being mapped to identical representations, hindering accurate property prediction. To address this, we introduce PRDNet that leverages unique reciprocal-space diffraction besides graph representations. To enhance sensitivity to elemental and environmental variations, we employ a data-driven pseudo-particle to generate a synthetic diffraction pattern. PRDNet ensures full invariance to crystallographic symmetries. Extensive experiments are conducted on Materials Project, JARVIS-DFT, and MatBench, demonstrating that the proposed model achieves state-of-the-art performance.",
+    "extraction_status": "completed"
+  },
+  "tasks": [
+    {
+      "task_id": "T_P001_01",
+      "paper_id": "P001",
+      "task_name_raw": "Crystal Property Prediction",
+      "task_name_canonical": "crystal_property_prediction",
+      "objective": "estimate a physical property y from the crystal structure, represented as a tuple (A, P, L)",
+      "material_scope": [
+        "crystals"
+      ],
+      "target_properties": [
+        "formation energy",
+        "band gap",
+        "bulk modulus",
+        "shear modulus",
+        "Young's modulus",
+        "metal/non-metal classification",
+        "exfoliation energy",
+        "refractive index",
+        "total energy",
+        "energy above the hull"
+      ],
+      "constraints": [
+        "full invariance to crystallographic symmetries",
+        "E(3)-invariant",
+        "permutation invariance",
+        "translation invariance",
+        "rotation invariance",
+        "periodic invariance",
+        "symmetry invariance"
+      ],
+      "input_requirements": [
+        "crystal structure represented as M = (A, P, L) where A denotes atomic types, P contains coordinates, and L defines the periodic lattice"
+      ],
+      "output_goal": [
+        "physical property y which may be continuous (y ∈ R) in regression tasks or categorical (y ∈ {1, 2, ..., C}) in classification tasks"
+      ],
+      "parent_task_id": null,
+      "task_level": "main_task",
+      "evidence": [
+        {
+          "text": "Crystal property prediction thus aims to estimate a physical property y from the crystal structure, represented as a tuple (A, P, L). The target property y may be continuous (y ∈R) in regression tasks or categorical (y ∈{1, 2, . . . , C}) in classification tasks with C classes.",
+          "page": 5,
+          "section": "Problem definition",
+          "inferred": false
+        },
+        {
+          "text": "PRDNet outperforms previous approaches by capturing long-range atomic correlations through a physically invariant reciprocal-space representation embedded within the neural network.",
+          "page": 10,
+          "section": "CONCLUSION",
+          "inferred": false
+        }
+      ]
+    }
+  ],
+  "stages": [
+    {
+      "stage_id": "S_P001_01",
+      "paper_id": "P001",
+      "task_id": "T_P001_01",
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "Retrieving crystal datasets",
+      "stage_order": 1,
+      "stage_goal": "obtain crystal structure and property data from standard evaluation suites",
+      "stage_input": [],
+      "stage_output": [
+        "Materials Project dataset",
+        "JARVIS-DFT dataset",
+        "Matbench dataset"
+      ],
+      "evidence": [
+        {
+          "text": "We benchmark the models on three standard evaluation suites, all independently retrieved from the official websites.",
+          "page": 8,
+          "section": "Datasets",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P001_02",
+      "paper_id": "P001",
+      "task_id": "T_P001_01",
+      "stage_type": "data_preparation",
+      "stage_name_raw": "Crystal structure representation",
+      "stage_order": 2,
+      "stage_goal": "represent crystal structures as graphs and unit cells for input to the model",
+      "stage_input": [
+        "crystal structure"
+      ],
+      "stage_output": [
+        "graph G = (V, E)",
+        "unit cell representation M = (A, P, L)"
+      ],
+      "evidence": [
+        {
+          "text": "Crystal structures can be described using a fundamental unit, such as a primitive cell, conventional unit cell, Bravais lattice, or asymmetric unit, together with its associated atoms. The unit is defined by a 3 × 3 lattice matrix that specifies its geometry in real space. Formally, a crystal structure is represented as M = (A, P, L), where A denotes atomic types, P = [p1, . . . , pN] ∈R3×N contains the fractional or Cartesian coordinates of the N atoms, and L = [ℓ1, ℓ2, ℓ3] ∈R3×3 defines the periodic lattice in real space.",
+          "page": 4,
+          "section": "PRELIMINARIES",
+          "inferred": false
+        },
+        {
+          "text": "A crystal structure is represented as a graph G = (V, E), where vertices V = {v1, v2, . . . , vN} correspond to atoms one-hot encoded attributes (Xie & Grossman, 2018) and edges E ⊆V × V encode atomic interactions within a cutoff radius.",
+          "page": 5,
+          "section": "Graph embedding",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P001_03",
+      "paper_id": "P001",
+      "task_id": "T_P001_01",
+      "stage_type": "model_training",
+      "stage_name_raw": "Training PRDNet with Huber loss and AdamW optimizer",
+      "stage_order": 3,
+      "stage_goal": "train the PRDNet model to predict crystal properties using robust loss and optimized parameters",
+      "stage_input": [
+        "graph representations",
+        "diffraction features",
+        "property labels"
+      ],
+      "stage_output": [
+        "trained PRDNet model"
+      ],
+      "evidence": [
+        {
+          "text": "To accommodate the diverse nature of crystal property prediction tasks and improve training stability, PRDNet employs Huber loss (Meyer, 2021) for training.",
+          "page": 16,
+          "section": "A.4.1 HUBER LOSS FOR OUTLIER ROBUSTNESS",
+          "inferred": false
+        },
+        {
+          "text": "PRDNet employs the AdamW optimizer, which decouples weight decay from gradient-based updates:",
+          "page": 17,
+          "section": "A.4.2 ADAMW WITH DECOUPLED WEIGHT DECAY",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P001_04",
+      "paper_id": "P001",
+      "task_id": "T_P001_01",
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "Evaluating model performance on benchmark datasets",
+      "stage_order": 4,
+      "stage_goal": "assess PRDNet's predictive accuracy across multiple crystal property tasks using standard metrics",
+      "stage_input": [
+        "trained PRDNet model",
+        "test sets from MP, JARVIS-DFT, Matbench"
+      ],
+      "stage_output": [
+        "MAE scores",
+        "accuracy scores",
+        "SOTA comparisons"
+      ],
+      "evidence": [
+        {
+          "text": "Extensive experiments are conducted on Materials Project, JARVIS-DFT, and MatBench, demonstrating that the proposed model achieves state-of-the-art performance.",
+          "page": 1,
+          "section": "ABSTRACT",
+          "inferred": false
+        },
+        {
+          "text": "Model performance is evaluated using the Mean Absolute Error (MAE) and accuracy.",
+          "page": 8,
+          "section": "Implementation details",
+          "inferred": false
+        }
+      ]
+    }
+  ],
+  "datasets": [
+    {
+      "dataset_id": "D_materials_project",
+      "canonical_name": "Materials Project",
+      "raw_names": [
+        "Materials Project",
+        "MP"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "crystals"
+      ],
+      "available_properties": [
+        "formation energy",
+        "band gap",
+        "metal/non-metal classification",
+        "bulk modulus",
+        "shear modulus",
+        "Young's modulus"
+      ],
+      "available_fields": [
+        "structure",
+        "formation energy",
+        "band gap",
+        "metal/non-metal classification",
+        "bulk modulus",
+        "shear modulus",
+        "Young's modulus"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "• Materials Project (MP) Database: We use stable structures retrieved from the Materials Project (Jain et al., 2020), comprising 122,959 entries with annotated formation energy, band gap, and metal/non-metal classification labels. Additionally, 9,473 of these entries include mechanical properties such as bulk modulus, shear modulus and Young’s modulus.",
+          "page": 8,
+          "section": "Datasets",
+          "inferred": false,
+          "paper_id": "P001"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:materials_project"
+    },
+    {
+      "dataset_id": "D_jarvis_dft",
+      "canonical_name": "JARVIS-DFT",
+      "raw_names": [
+        "JARVIS-DFT",
+        "dft_3d"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "crystals"
+      ],
+      "available_properties": [
+        "formation energy",
+        "band gap",
+        "bulk modulus",
+        "shear modulus",
+        "total energy",
+        "energy above the hull"
+      ],
+      "available_fields": [
+        "structure",
+        "formation energy",
+        "band gap",
+        "bulk modulus",
+        "shear modulus",
+        "total energy",
+        "energy above the hull"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "• JARVIS-DFT (dft_3d): This dataset contains 75,993 entries, each annotated with formation energy, band gap (calculated using either the OptB88vDW functional, denoted as OPT, or the TBMBJ functional, denoted as MBJ), bulk modulus, shear modulus, total energy (calculated using the OptB88vDW functional), and energy above the hull (Ehull ) (Choudhary et al., 2020). We also evaluate the baselines on the JARVIS-DFT-3D-2021 dataset (55,723 entries), which serves as an important supplementary benchmark.",
+          "page": 8,
+          "section": "Datasets",
+          "inferred": false,
+          "paper_id": "P001"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:jarvis_dft"
+    },
+    {
+      "dataset_id": "D_matbench",
+      "canonical_name": "Matbench",
+      "raw_names": [
+        "Matbench",
+        "MB"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "crystals"
+      ],
+      "available_properties": [
+        "exfoliation energy",
+        "formation energy",
+        "shear modulus",
+        "refractive index"
+      ],
+      "available_fields": [
+        "structure",
+        "exfoliation energy",
+        "formation energy",
+        "shear modulus",
+        "refractive index"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "• Matbench (MB) Suite: We evaluate the models on several tasks from the Matbench suite (Dunn et al., 2020): matbench_jdft2d (636 entries; exfoliation energy), matbench_mp_e_form (132,752 entries; formation energy), matbench_log_gvrh (10,987 entries; shear modulus), and matbench_dielectric (4,764 entries; refractive index).",
+          "page": 8,
+          "section": "Datasets",
+          "inferred": false,
+          "paper_id": "P001"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:matbench"
+    }
+  ],
+  "dataset_uses": [
+    {
+      "dataset_use_id": "DU_P001_001",
+      "paper_id": "P001",
+      "task_id": "T_P001_01",
+      "stage_id": "S_P001_01",
+      "dataset_id": "D_materials_project",
+      "usage_role": "source",
+      "purpose": "retrieve crystal structure and property data for benchmarking",
+      "used_fields": [
+        "structure",
+        "formation energy",
+        "band gap",
+        "metal/non-metal classification",
+        "bulk modulus",
+        "shear modulus",
+        "Young's modulus"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 122959,
+      "evidence": [
+        {
+          "text": "• Materials Project (MP) Database: We use stable structures retrieved from the Materials Project (Jain et al., 2020), comprising 122,959 entries with annotated formation energy, band gap, and metal/non-metal classification labels. Additionally, 9,473 of these entries include mechanical properties such as bulk modulus, shear modulus and Young’s modulus.",
+          "page": 8,
+          "section": "Datasets",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P001_002",
+      "paper_id": "P001",
+      "task_id": "T_P001_01",
+      "stage_id": "S_P001_01",
+      "dataset_id": "D_jarvis_dft",
+      "usage_role": "source",
+      "purpose": "retrieve crystal structure and property data for benchmarking",
+      "used_fields": [
+        "structure",
+        "formation energy",
+        "band gap",
+        "bulk modulus",
+        "shear modulus",
+        "total energy",
+        "energy above the hull"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 75993,
+      "evidence": [
+        {
+          "text": "• JARVIS-DFT (dft_3d): This dataset contains 75,993 entries, each annotated with formation energy, band gap (calculated using either the OptB88vDW functional, denoted as OPT, or the TBMBJ functional, denoted as MBJ), bulk modulus, shear modulus, total energy (calculated using the OptB88vDW functional), and energy above the hull (Ehull ) (Choudhary et al., 2020). We also evaluate the baselines on the JARVIS-DFT-3D-2021 dataset (55,723 entries), which serves as an important supplementary benchmark.",
+          "page": 8,
+          "section": "Datasets",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P001_003",
+      "paper_id": "P001",
+      "task_id": "T_P001_01",
+      "stage_id": "S_P001_01",
+      "dataset_id": "D_matbench",
+      "usage_role": "source",
+      "purpose": "retrieve crystal structure and property data for benchmarking",
+      "used_fields": [
+        "structure",
+        "exfoliation energy",
+        "formation energy",
+        "shear modulus",
+        "refractive index"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 132752,
+      "evidence": [
+        {
+          "text": "• Matbench (MB) Suite: We evaluate the models on several tasks from the Matbench suite (Dunn et al., 2020): matbench_jdft2d (636 entries; exfoliation energy), matbench_mp_e_form (132,752 entries; formation energy), matbench_log_gvrh (10,987 entries; shear modulus), and matbench_dielectric (4,764 entries; refractive index).",
+          "page": 8,
+          "section": "Datasets",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P001_004",
+      "paper_id": "P001",
+      "task_id": "T_P001_01",
+      "stage_id": "S_P001_04",
+      "dataset_id": "D_materials_project",
+      "usage_role": "test",
+      "purpose": "evaluate model performance on crystal property prediction tasks",
+      "used_fields": [
+        "formation energy",
+        "band gap",
+        "metal/non-metal classification",
+        "bulk modulus",
+        "shear modulus",
+        "Young's modulus"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Extensive experiments are conducted on Materials Project, JARVIS-DFT, and MatBench, demonstrating that the proposed model achieves state-of-the-art performance.",
+          "page": 1,
+          "section": "ABSTRACT",
+          "inferred": false
+        },
+        {
+          "text": "Model performance is evaluated using the Mean Absolute Error (MAE) and accuracy.",
+          "page": 8,
+          "section": "Implementation details",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P001_005",
+      "paper_id": "P001",
+      "task_id": "T_P001_01",
+      "stage_id": "S_P001_04",
+      "dataset_id": "D_jarvis_dft",
+      "usage_role": "test",
+      "purpose": "evaluate model performance on crystal property prediction tasks",
+      "used_fields": [
+        "formation energy",
+        "band gap",
+        "bulk modulus",
+        "shear modulus",
+        "total energy",
+        "energy above the hull"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Extensive experiments are conducted on Materials Project, JARVIS-DFT, and MatBench, demonstrating that the proposed model achieves state-of-the-art performance.",
+          "page": 1,
+          "section": "ABSTRACT",
+          "inferred": false
+        },
+        {
+          "text": "Model performance is evaluated using the Mean Absolute Error (MAE) and accuracy.",
+          "page": 8,
+          "section": "Implementation details",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P001_006",
+      "paper_id": "P001",
+      "task_id": "T_P001_01",
+      "stage_id": "S_P001_04",
+      "dataset_id": "D_matbench",
+      "usage_role": "test",
+      "purpose": "evaluate model performance on crystal property prediction tasks",
+      "used_fields": [
+        "exfoliation energy",
+        "formation energy",
+        "shear modulus",
+        "refractive index"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Extensive experiments are conducted on Materials Project, JARVIS-DFT, and MatBench, demonstrating that the proposed model achieves state-of-the-art performance.",
+          "page": 1,
+          "section": "ABSTRACT",
+          "inferred": false
+        },
+        {
+          "text": "Model performance is evaluated using the Mean Absolute Error (MAE) and accuracy.",
+          "page": 8,
+          "section": "Implementation details",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

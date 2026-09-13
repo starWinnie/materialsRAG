@@ -1,0 +1,176 @@
+{
+  "paper": {
+    "title": "A foundation machine learning potential with polarizable long-range interactions for materials modelling",
+    "year": 2025,
+    "doi": "10.1038/s41467-025-65496-3",
+    "research_summary": "We present a foundation framework that integrates explicit polarizable long-range physics with an equivariant graph neural network potential. It employs a physically motivated polarizable charge equilibration scheme that directly optimizes electrostatic interaction energies rather than partial charges. The foundation model, trained across the periodic table up to Pu, demonstrates strong performance across key materials modeling challenges. It effectively captures long-range interactions that are challenging for traditional message-passing mechanisms and accurately reproduces polarization effects under external electric fields. We have applied the model to mechanical properties, ionic diffusivity in solid-state electrolytes, ferroelectric phase transitions, and reactive dynamics at electrode-electrolyte interfaces, highlighting the model’s capacity to balance accuracy and computational efficiency. Furthermore, we show that as a foundation model, it can be efficiently finetuned to achieve high-level accuracy for specific challenging systems."
+  },
+  "task": {
+    "task_name_raw": "Develop a foundation machine learning interatomic potential with explicit polarizable long-range interactions",
+    "task_name_canonical": "develop_foundation_ml_interatomic_potential_with_polarizable_long_range_interactions",
+    "objective": "Construct a mapping from atomic coordinates ri and atomic types Zi to the total potential energy Epot that integrates equivariant message-passing neural network potentials with explicit polarizable long-range physical interactions",
+    "material_scope": ["elements across the periodic table up to Pu", "charged clusters (e.g., Ag3+/−, Na8/9Cl8+)", "hydrogenated carbon chains (C10H2/C10H3+)", "Au clusters on MgO surfaces", "benzotriazole on Cu surfaces", "Li7La3Zr2O12 (c-LLZO)", "BaTiO3", "β-Li3PS4", "Li6PS5Cl"],
+    "target_properties": ["total potential energy", "forces", "stress", "electrostatic interaction energies", "molecular polarizability", "bulk modulus", "ionic diffusivity", "phase transition temperatures", "solid electrolyte interphase (SEI) formation"],
+    "constraints": ["maintain computational efficiency", "capture long-range phenomena beyond typical 5 Å cutoff", "accurately reproduce polarization effects under external electric fields", "balance accuracy and computational efficiency"],
+    "input_requirements": ["atomic coordinates ri", "atomic types Zi", "boundary conditions"],
+    "output_goal": ["total potential energy Epot = E0 + EPQEq + ED3", "forces", "stress", "partial charges", "potential energy surfaces", "diffusion coefficients", "phase transition behavior", "SEI structure and composition"],
+    "evidence": [
+      {
+        "text": "We present a foundation framework that integrates explicit polarizable long-range physics with an equivariant graph neural network potential.",
+        "page": 1,
+        "section": null,
+        "inferred": false
+      },
+      {
+        "text": "For a given chemical system and boundary conditions, our goal is to construct a mapping from atomic coordinates ri and atomic types Zi to the total potential energy Epot.",
+        "page": 2,
+        "section": "Theoretical framework",
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "Acquire training datasets including diverse charge-state systems and periodic table elements",
+      "stage_order": 1,
+      "stage_goal": "Obtain datasets containing systems with various charge states and configurations spanning the periodic table up to Pu",
+      "stage_input": [],
+      "stage_output": ["C10H2/C10H3+ dataset", "Na8/9Cl8+ dataset", "Ag3+/− dataset", "Au2-MgO dataset", "BTA-Cu dataset", "BTA (H2O)-Cu dataset", "MPtrj dataset"],
+      "evidence": [
+        {
+          "text": "To evaluate the capability of our framework in capturing different charge states and long-range interactions, we validated our framework against the dataset developed by Ko et al.28 and Maruf et al.38, which encompass various charge states and charge transfer systems.",
+          "page": 3,
+          "section": "Validation on diverse charge-state datasets",
+          "inferred": false
+        },
+        {
+          "text": "We trained a foundation model for all the periodic table elements up to Pu using the MPtrj dataset16 following our framework (our model), as described in the Methods section.",
+          "page": 4,
+          "section": "Foundation model benchmark",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_preparation",
+      "stage_name_raw": "Prepare dataset configurations with DFT-calculated energies, forces, and stresses",
+      "stage_order": 2,
+      "stage_goal": "Process raw DFT data to generate consistent training labels for energies, forces, and stresses",
+      "stage_input": ["MPtrj dataset", "DFT calculations with PBE/PBE + U functionals"],
+      "stage_output": ["training set", "validation set", "test set"],
+      "evidence": [
+        {
+          "text": "To train the foundation equivariance neural network potential, we used the MPtrj dataset16 sourced from Materials Projects48 as the training dataset. All configurations were calculated using DFT with the PBE82/PBE + U83 exchange-correlation functional and pseudopotential basis.",
+          "page": 9,
+          "section": "Methods",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "Train the foundation equivariant neural network potential with polarizable long-range interactions",
+      "stage_order": 3,
+      "stage_goal": "Optimize model parameters to minimize error in predicted energies, forces, and stresses while incorporating explicit polarizable long-range electrostatic and dispersion terms",
+      "stage_input": ["prepared MPtrj dataset", "PQEq parameters", "DFT-D3 dispersion correction"],
+      "stage_output": ["trained foundation model"],
+      "evidence": [
+        {
+          "text": "To train the foundation equivariance neural network potential, we used the MPtrj dataset16 sourced from Materials Projects48 as the training dataset.",
+          "page": 9,
+          "section": "Methods",
+          "inferred": false
+        },
+        {
+          "text": "The total loss function (L) of prediction values xpred and reference first principle values xref can be expressed as, L xref, xpred = ΣN i 1/N (xref i − xpred i )2",
+          "page": 9,
+          "section": "Methods",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "Benchmark model performance on diverse charge-state datasets and physical properties",
+      "stage_order": 4,
+      "stage_goal": "Quantitatively assess accuracy of predicted energies, forces, stresses, and physical behaviors across multiple test systems",
+      "stage_input": ["trained foundation model", "diverse charge-state datasets", "DFT reference calculations"],
+      "stage_output": ["RMSE errors for energies and forces", "R² values for bulk modulus", "Arrhenius plots for ionic diffusivity", "phase transition temperatures", "SEI structural analysis"],
+      "evidence": [
+        {
+          "text": "To evaluate the capability of our framework in capturing different charge states and long-range interactions, we validated our framework against the dataset developed by Ko et al.28 and Maruf et al.38, which encompass various charge states and charge transfer systems.",
+          "page": 3,
+          "section": "Validation on diverse charge-state datasets",
+          "inferred": false
+        },
+        {
+          "text": "We conducted benchmarking using properties that were not labeled during the training process. We applied our foundation model to predict the mechanical properties of 10,154 materials from the Materials Project48.",
+          "page": 5,
+          "section": "unknown",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "computational_validation",
+      "stage_name_raw": "Validate long-range interaction capture through dimer energy curves and polarization response",
+      "stage_order": 5,
+      "stage_goal": "Demonstrate model's ability to reproduce DFT potential energy surfaces beyond cutoff distance and respond correctly to external electric fields",
+      "stage_input": ["Na-Na and Na-Cl dimer systems", "water molecule system", "external electric field simulations"],
+      "stage_output": ["interaction energy curves", "energy response curves under external field", "partial charge response"],
+      "evidence": [
+        {
+          "text": "We analysed interaction energies for Na-Na and Na-Cl dimers across interatomic distances ranging from 1.8 Å to 12.0 Å.",
+          "page": 4,
+          "section": "unknown",
+          "inferred": false
+        },
+        {
+          "text": "We validated this capability through a benchmark study examining a water molecule’s response to external electrostatic fields46.",
+          "page": 5,
+          "section": "unknown",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "experimental_validation",
+      "stage_name_raw": "Apply model to simulate real materials phenomena and compare with experimental observations",
+      "stage_order": 6,
+      "stage_goal": "Validate model predictions against experimental measurements for phase transitions, SEI formation, and material stability",
+      "stage_input": ["BaTiO3 supercell", "β-Li3PS4/Li interface", "experimental phase transition temperatures", "cryo-TEM SEI observations"],
+      "stage_output": ["phase transition temperatures matching experiments", "SEI structure matching cryo-TEM", "lithium diffusivity matching AIMD"],
+      "evidence": [
+        {
+          "text": "The obtained phase transition temperatures align closely with those predicted by various models and experiments, as listed in Table 2.",
+          "page": 6,
+          "section": "unknown",
+          "inferred": false
+        },
+        {
+          "text": "This observation agrees with the measurements where Li2S crystals were detected but Li3P crystals were absent in cryogenic transmission electron microscopy (cryo-TEM) experiments, as noted in the reference66.",
+          "page": 7,
+          "section": "unknown",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_screening",
+      "stage_name_raw": "Screen candidate systems for finetuning to achieve ab initio accuracy",
+      "stage_order": 7,
+      "stage_goal": "Identify specific challenging systems requiring targeted finetuning to reach quantum-accuracy",
+      "stage_input": ["Na8/9Cl8+ clusters", "Au2 dimers on MgO surfaces"],
+      "stage_output": ["finetuned models for specific systems"],
+      "evidence": [
+        {
+          "text": "Using Na8/9Cl8+ clusters and Au2 dimers on MgO surfaces from Ko et al.28 as test cases, we performed targeted finetuning using 20% subsets of configurations and mean squared force error as the sole loss function.",
+          "page": 7,
+          "section": "Finetuning for enhanced accuracy",
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

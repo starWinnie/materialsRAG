@@ -1,0 +1,27 @@
+[
+  {
+    "task_description": "Designing novel alloy electrocatalyst surface structures with high activity and selectivity for the electrochemical CO2 reduction reaction (CO2RR), specifically by optimizing for near-optimal CO adsorption energy (ΔECO ≈ −0.67 eV) while simultaneously satisfying constraints on hydrogen evolution reaction (HER) suppression (ΔEH + 0.27 ≥ 0.6 eV) and thermodynamic stability (formation energy < −0.1 eV/atom).",
+    "task_tags": [
+      "inverse design",
+      "electrocatalyst discovery",
+      "CO2 reduction"
+    ],
+    "datasets": [
+      {
+        "db_title": "GASpy database",
+        "db_description": "A database of catalyst surfaces created by Tran et al., containing diverse surface structures used to pretrain both the CDVAE generative model and the supervised DimeNet++ property prediction models in this work; it provides the structural foundation for generating new alloy surfaces and serves as the training data for predicting CO adsorption energy (ΔECO), H adsorption energy (ΔEH), and formation energy (Ef) — all critical for guiding inverse design toward CO2RR-active, HER-suppressing, and stable alloys.",
+        "db_link": "None"
+      },
+      {
+        "db_title": "OQMD dataset",
+        "db_description": "The Open Quantum Materials Database, used to train the MEGNet model for predicting formation energy (Ef); this enables rapid, high-accuracy thermodynamic stability assessment of generated alloy surfaces without costly DFT calculations, supporting the third selection criterion (Ef < −0.1 eV/atom) during screening of CO2RR candidates.",
+        "db_link": "https://oqmd.org/"
+      },
+      {
+        "db_title": "Generated_surfaces (Figshare dataset)",
+        "db_description": "A curated dataset of 110 DFT-validated alloy surface structures selected from the 250,000 MAGECS-generated candidates, containing DFT-calculated |ΔECO + 0.67| and ΔEH values; it is used to benchmark and validate the performance of the ML property predictors (DimeNet++ and MEGNet) and to support experimental prioritization — directly enabling the final step of identifying synthesizable, high-performing CO2RR electrocatalysts.",
+        "db_link": "https://figshare.com/articles/dataset/Generated_surfaces/2798653161"
+      }
+    ]
+  }
+]

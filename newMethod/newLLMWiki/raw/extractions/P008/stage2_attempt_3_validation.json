@@ -1,0 +1,13 @@
+{
+  "attempt": 3,
+  "errors": [
+    "dataset_uses[2].sample_count is not explicitly printed in its evidence",
+    "dataset_uses[4].sample_count is not explicitly printed in its evidence",
+    "dataset_uses[5].evidence has no excerpt matching its stated PDF page",
+    "dataset_uses[6].sample_count is not explicitly printed in its evidence",
+    "dataset_uses[7].sample_count is not explicitly printed in its evidence",
+    "dataset_uses[8].sample_count is not explicitly printed in its evidence",
+    "dataset_uses[9].sample_count is not explicitly printed in its evidence"
+  ],
+  "exception": null
+}

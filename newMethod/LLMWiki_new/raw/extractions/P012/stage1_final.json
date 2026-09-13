@@ -1,0 +1,218 @@
+{
+  "paper": {
+    "title": "PDDFormer: Pairwise Distance Distribution Graph Transformer for Crystal Material Property Prediction",
+    "year": 2025,
+    "doi": null,
+    "research_summary": "The paper introduces WPDD (Atom-Weighted Pairwise Distance Distribution) and UPDD (Unit-cell Pairwise Distance Distribution) to construct continuous and geometrically complete multi-edge crystal graphs, integrating them into a transformer-based architecture (PDDFormer) for crystal material property prediction. It addresses discontinuity and incompleteness in prior crystal graph representations by modeling PDD as global information in matrix-based message passing, and validates continuity via Earth Mover’s Distance (EMD) and general geometric completeness via categorical induction. Experiments on Materials Project and JARVIS-DFT show state-of-the-art MAE across multiple properties including formation energy, band gap, bulk moduli, and shear moduli."
+  },
+  "task": {
+    "task_name_raw": "Crystal material property prediction",
+    "task_name_canonical": "crystal_material_property_prediction",
+    "objective": "Predict scalar physical properties of crystalline materials from their 3D atomic structure",
+    "material_scope": [
+      "crystalline materials"
+    ],
+    "target_properties": [
+      "Formation Energy",
+      "Bandgap(OPT)",
+      "Total Energy",
+      "Ehull",
+      "Bandgap(MBJ)",
+      "Bulk Moduli(Kv)",
+      "Shear Moduli(Gv)"
+    ],
+    "constraints": [
+      "continuity under atomic position perturbations",
+      "geometric completeness",
+      "computational efficiency"
+    ],
+    "input_requirements": [
+      "3D crystal structure (unit cell with atomic positions and types)",
+      "lattice vectors"
+    ],
+    "output_goal": [
+      "scalar predictions of material properties"
+    ],
+    "evidence": [
+      {
+        "text": "Crystal structures can be simplified as a periodic point set that repeats across three-dimensional space along an underlying lattice.",
+        "page": 1,
+        "section": "Abstract",
+        "inferred": false
+      },
+      {
+        "text": "Comprehensive evaluation results show that WPDDFormer achieves state-of-the-art predictive accuracy across tasks on benchmark datasets such as the Materials Project and JARVIS-DFT.",
+        "page": 1,
+        "section": "Abstract",
+        "inferred": false
+      },
+      {
+        "text": "Method\nFormation Energy\nBandgap(OPT)\nTotal Energy\nEhull\nBandgap(MBJ)\nBulk Moduli(Kv)\nShear Moduli(Gv)\neV/atom\neV\neV/atom\neV\neV\nGPa\nGPa",
+        "page": 6,
+        "section": "Method",
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "Use of benchmark crystal datasets",
+      "stage_order": 1,
+      "stage_goal": "Acquire crystal structure and property data for training and evaluation",
+      "stage_input": [],
+      "stage_output": [
+        "Materials Project dataset",
+        "JARVIS dataset"
+      ],
+      "evidence": [
+        {
+          "text": "We conducted experiments on two material benchmark datasets, namely the Materials Project [Chen et al., 2019] and Jarvis [Choudhary et al., 2020] datasets.",
+          "page": 7,
+          "section": "5 Experiments",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_preparation",
+      "stage_name_raw": "Crystal graph construction with WPDD/UPDD",
+      "stage_order": 2,
+      "stage_goal": "Construct continuous and geometrically complete multi-edge crystal graphs using atom-weighted or unit-cell PDD variants",
+      "stage_input": [
+        "3D crystal structure (U = (X, P), L)",
+        "atomic types",
+        "lattice vectors"
+      ],
+      "stage_output": [
+        "multi-edge crystal graph G = (X, XI, E, PDD)",
+        "WPDD ∈ Rn×(k+1)",
+        "UPDD"
+      ],
+      "evidence": [
+        {
+          "text": "By introducing PDD, we constructed a general complete and continuous multi-edge crystal graph. In the graph, node features are xi. An edge is established from node j to node i when the Euclidean distance |ej′i|2 between a duplicate of j and i satisfies |ej′i|2 = |pj + k′1l1 + k′2l2 + k′3l3 −pi|2 ≤r, where r ∈R is the cutoff radius. Next, we construct a PDD row for each atom.",
+          "page": 4,
+          "section": "4.3 Crystal Graph Construction",
+          "inferred": false
+        },
+        {
+          "text": "Since the PDD representation is designed for stable crystal structures and does not consider atomic types, it is not suitable for predicting crystal material properties. To account for the influence of atomic types, for a given crystal structure S = U + L, where each atom xi ∈U is labeled with the atomic mass t(xi) corresponding to it, the final weight for each row is W = [w1, . . . , wn]T , where wi = t(xi) / Σn u=1 t(xu). By concatenating W with PDD ∈Rn×k, an atomic-mass-weighted WPDD (S; k) ∈Rn×(k+1) is formed",
+          "page": 3,
+          "section": "4.1 Atom-Weighted PDD (WPDD)",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "Training PDDFormer architecture",
+      "stage_order": 3,
+      "stage_goal": "Train the PDDFormer neural network (including Node Transformer and PDD Message Passing blocks) to map crystal graphs to property values",
+      "stage_input": [
+        "multi-edge crystal graphs G = (X, XI, E, PDD)",
+        "ground-truth property labels"
+      ],
+      "stage_output": [
+        "trained WPDDFormer/UPDDFormer models"
+      ],
+      "evidence": [
+        {
+          "text": "Based on the graph in Section 4.3, we propose the information propagation scheme of PDDFormer. Figure 3 illustrates the overall framework architecture of PDDFormer.",
+          "page": 6,
+          "section": "4.6 Network Architecture",
+          "inferred": false
+        },
+        {
+          "text": "Feature Embedding Block\nFirst, we introduce the construction of the graph embedding Block.\nWe use atomic encoding from CGCNN for embedding.\nFor the edge information eh ij, we employ radial basis functions to encode the distance between two adjacent nodes in the graph...",
+          "page": 6,
+          "section": "4.6 Network Architecture",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "Quantitative evaluation on benchmark tasks",
+      "stage_order": 4,
+      "stage_goal": "Assess predictive accuracy of trained models using mean absolute error (MAE) on held-out test sets",
+      "stage_input": [
+        "trained models",
+        "test crystal graphs",
+        "test property labels"
+      ],
+      "stage_output": [
+        "MAE scores per property task"
+      ],
+      "evidence": [
+        {
+          "text": "The quantitative results for JARVIS [Choudhary et al., 2020] are shown in Table 1. WPDDformer achieves the best performance across all tasks.",
+          "page": 7,
+          "section": "5.1 Experimental Results",
+          "inferred": false
+        },
+        {
+          "text": "Method\nFormation Energy\nBandgap(OPT)\nTotal Energy\nEhull\nBandgap(MBJ)\nBulk Moduli(Kv)\nShear Moduli(Gv)\neV/atom\neV\neV/atom\neV\neV\nGPa\nGPa",
+          "page": 6,
+          "section": "Method",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_screening",
+      "stage_name_raw": "Ablation studies on (W/U)PDD contribution",
+      "stage_order": 5,
+      "stage_goal": "Isolate and quantify the impact of WPDD/UPDD integration on model performance",
+      "stage_input": [
+        "models with/without PDD message passing blocks",
+        "models with/without (W/U)PDD information"
+      ],
+      "stage_output": [
+        "performance deltas (e.g., 17.4% improvement in Bulk Moduli)"
+      ],
+      "evidence": [
+        {
+          "text": "In this section, we demonstrate the impact of introducing (W/U)PDD on the representation learning of crystal materials through ablation studies. Specifically, we conducted experiments on the MP and JARVIS datasets, using testing mean absolute error (MAE) as the quantitative evaluation metric, comparing the results for Band Gap and Ehull tasks, as shown in Table 4.",
+          "page": 7,
+          "section": "5.2 Ablation Studies",
+          "inferred": false
+        },
+        {
+          "text": "By comparing (W/U)PDDFormer models without PDD message passing blocks to models that retain the PDD message passing blocks but lack (W/U)PDD information, we validated the importance of (W/U)PDD.",
+          "page": 7,
+          "section": "5.2 Ablation Studies",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "computational_validation",
+      "stage_name_raw": "Continuity and completeness validation via EMD and proof",
+      "stage_order": 6,
+      "stage_goal": "Theoretically and computationally verify continuity (via EMD) and general geometric completeness of WPDD/UPDD crystal graphs",
+      "stage_input": [
+        "perturbed crystal structures S and Q",
+        "constructed crystal graphs G(S), G(Q)"
+      ],
+      "stage_output": [
+        "EMD(G(S), G(Q)) ≤ Cϵ (continuity)",
+        "proof of geometric completeness (Propositions 1 & 2)"
+      ],
+      "evidence": [
+        {
+          "text": "Finally, we employ the Earth Mover’s Distance (EMD) [Rubner et al., 2000] to assess the continuity of crystal graphs, demonstrating that WPDD crystal graphs constructed using only Euclidean distances maintain continuity and general completeness under slight atomic position perturbations...",
+          "page": 2,
+          "section": "Abstract",
+          "inferred": false
+        },
+        {
+          "text": "Proposition 1. The WPDD and UPDD multi-edge crystal graph is continuous.\nProof. For any neighbor count k ≥1, if the periodic crystal S, Q ∈Rn satisfy dB (S, Q) < r (S), then we have: EMD (G (S) , G (Q)) = EMD ((SX , SXI, SE, SPDD) , (QX , QXI, QE, QPDD)) = EMD ((SX , QX )) + EMD ((SXI, QXI))+ EMD ((SE, QE)) + EMD ((SPDD, QPDD)) .",
+          "page": 5,
+          "section": "4.4 The Continuity of Proposed Crystal Graphs",
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

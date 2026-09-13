@@ -1,0 +1,17 @@
+[
+  {
+    "task_description": "Predicting the oxygen evolution reaction (OER) overpotential at 10 mA cm⁻² for undiscovered perovskite oxide compositions to accelerate the discovery of high-performance alkaline OER electrocatalysts, specifically targeting low-overpotential materials among quaternary, quinary, and hexanary perovskite systems with A-site (e.g., Pr/Sr) and B-site (e.g., Co/Fe/Mn) cation combinations.",
+    "task_tags": [
+      "OER prediction",
+      "perovskite oxide screening",
+      "overpotential estimation"
+    ],
+    "datasets": [
+      {
+        "db_title": "Supplementary Data 1",
+        "db_description": "A manually curated dataset comprising 140 perovskite oxide entries (94 OER-specific and 46 non-OER), including material compositions (A- and B-site cations), oxygen vacancy concentrations, chemical valence state distributions, synthesis methods (predominantly sol-gel), and experimentally measured OER overpotentials at 10 mA cm⁻² in alkaline electrolytes (1 M KOH). This dataset supports training and transfer learning of the ensemble regression model to predict OER activity for novel compositions.",
+        "db_link": "None"
+      }
+    ]
+  }
+]

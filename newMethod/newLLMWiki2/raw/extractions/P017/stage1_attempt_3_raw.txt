@@ -1,0 +1,108 @@
+{
+  "paper": {
+    "title": "Known Unknowns: Out-of-Distribution Property Prediction in Materials and Molecules",
+    "year": 2025,
+    "doi": "10.1038/s41524-025-01808-x",
+    "research_summary": "Our objective is to train predictor models that extrapolate zero-shot to higher ranges than in the training data, given the chemical compositions of solids or molecular graphs and their property values. We propose using a transductive approach to OOD property prediction, achieving improvements in prediction accuracy. In particular, our method improves extrapolative precision by 1.8× for materials and 1.5× for molecules, and boosts recall of high-performing candidates by up to 3×."
+  },
+  "task": {
+    "task_name_raw": "Out-of-Distribution Property Prediction",
+    "task_name_canonical": "out_of_distribution_property_prediction",
+    "objective": "train predictor models that extrapolate zero-shot to higher ranges than in the training data, given the chemical compositions of solids or molecular graphs and their property values",
+    "material_scope": ["solid-state materials", "molecules"],
+    "target_properties": ["band gap", "bulk modulus", "Debye temperature", "shear modulus", "thermal conductivity", "thermal expansion", "refractive index", "yield strength", "formation energy", "elastic anisotropy", "aqueous solubility", "hydration free energy", "lipophilicity", "binding affinity"],
+    "constraints": ["extrapolation to property value ranges outside training distribution", "zero-shot prediction", "focus on top 5% highest property values as OOD"],
+    "input_requirements": ["chemical compositions of solids", "molecular graphs (SMILES)"],
+    "output_goal": ["predicted property values for out-of-distribution candidates"],
+    "evidence": [
+      {
+        "text": "Our objective is to train predictor models that extrapolate zero-shot to higher ranges than in the training data, given the chemical compositions of solids or molecular graphs and their property values.",
+        "page": 1,
+        "section": null,
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "Dataset collection from AFLOW, Matbench, Materials Project, and MoleculeNet",
+      "stage_order": 1,
+      "stage_goal": "acquire solid-state and molecular datasets containing compositions/graphs and property values",
+      "stage_input": [],
+      "stage_output": ["AFLOW dataset", "Matbench dataset", "Materials Project dataset", "MoleculeNet dataset"],
+      "evidence": [
+        {
+          "text": "We evaluate the extrapolation capability of Bilinear Transduction on three widely used benchmarks for solid materials property prediction, AFLOW, Matbench, and the Materials Project (MP), covering 12 distinct prediction tasks... MoleculeNet includes molecular graphs encoded as SMILES representations and their property values derived from high-throughput calculations and experimental trials.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_preparation",
+      "stage_name_raw": "Data splitting into training, ID validation, and OOD test sets",
+      "stage_order": 2,
+      "stage_goal": "partition data so that OOD test samples are the top 5% highest property values",
+      "stage_input": ["raw datasets"],
+      "stage_output": ["training set", "ID validation set", "OOD test set"],
+      "evidence": [
+        {
+          "text": "We split the data into training, validation and test sets such that OOD test samples Dte Y ⊂ Y are 5% of the data with the highest property values, an ID validation set is a random sample of 5% of the remaining data, and the training set Dtr = {(x, y)}n ⊂ X × Y is the rest.",
+          "page": 6,
+          "section": "Methods",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "Training Bilinear Transduction model on compositional/descriptor differences",
+      "stage_order": 3,
+      "stage_goal": "learn a bilinear predictor hθ(Δx, x) = fθ(Δx)gθ(x) that maps material/molecular differences and anchors to property shifts",
+      "stage_input": ["training set", "descriptor-based representations (Oliynyk for solids, RDKit for molecules)"],
+      "stage_output": ["trained Bilinear Transduction model"],
+      "evidence": [
+        {
+          "text": "During training, rather than predicting hθ : X → Y, predictor hθ : ΔX × X → Y predicts value y2 ∈ Dtr Y for data point x2 ∈ Dtr X given anchor point x1 ∈ Dtr X and the difference between them Δx21 = x2 − x1 ∈ Dtr ΔX. The predictor hθ(Δx, x) = fθ(Δx)gθ(x) is implemented as a bilinear function in non-linear embeddings of Δx and x.",
+          "page": 6,
+          "section": "Methods",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_screening",
+      "stage_name_raw": "Selecting high-performing OOD candidates via top-k thresholding",
+      "stage_order": 4,
+      "stage_goal": "identify the top 30% of test samples with highest property values as high-performing OOD candidates",
+      "stage_input": ["model predictions on OOD test set"],
+      "stage_output": ["top OOD candidates"],
+      "evidence": [
+        {
+          "text": "In addition, we report model performance on a purely extrapolative task of discovering high-performance extremes: identifying the 30% of test samples with the highest property values, which we refer to as the top OOD candidates.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "Evaluating OOD prediction accuracy via MAE, extrapolative precision, and recall",
+      "stage_order": 5,
+      "stage_goal": "quantify model performance on OOD regime using mean absolute error, extrapolative precision, and recall metrics",
+      "stage_input": ["ground truth OOD property values", "model predictions"],
+      "stage_output": ["MAE scores", "extrapolative precision scores", "recall scores"],
+      "evidence": [
+        {
+          "text": "Table 1 presents the mean absolute error (MAE) for OOD predictions on solids... Table 2 presents the fraction of true top OOD candidates correctly identified among the top predicted candidates... Bilinear Transduction boosts recall of OOD materials by 3 ×",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

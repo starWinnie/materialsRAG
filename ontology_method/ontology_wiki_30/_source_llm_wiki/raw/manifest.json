@@ -1,0 +1,13 @@
+{
+  "source_json": "C:\\Users\\li\\Desktop\\材料大数据\\知识库构建_模拟PVLDB\\outputs\\30results.json",
+  "copied_source_json": "raw/source_records.json",
+  "paper_count": 30,
+  "task_count": 30,
+  "dataset_count": 54,
+  "dataset_use_count": 99,
+  "layers": {
+    "raw": "raw/",
+    "pages": "pages/",
+    "schema": "schema/"
+  }
+}

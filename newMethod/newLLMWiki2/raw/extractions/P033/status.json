@@ -1,0 +1,27 @@
+{
+  "paper_id": "P033",
+  "file_name": "33_Study on bandgap predications of ABX3-type perovskites by machine learning.pdf",
+  "status": "completed",
+  "completed_at": "2026-08-05T08:10:37.996171+00:00",
+  "model": "qwen-plus",
+  "stage1_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "stage2_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "counts": {
+    "tasks": 1,
+    "stages": 8,
+    "datasets": 9,
+    "dataset_uses": 12
+  }
+}

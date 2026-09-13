@@ -1,0 +1,956 @@
+[
+  {
+    "paper_file": "01_PRDNet.pdf",
+    "result": [
+      {
+        "task_description": "Predicting multiple physical properties of crystalline materials—including formation energy, band gap, bulk modulus, shear modulus, Young's modulus, exfoliation energy, dielectric constant (refractive index), and metal/non-metal classification—from their atomic structure (i.e., crystal graph defined by atomic types, fractional coordinates, and lattice vectors).",
+        "task_tags": [
+          "crystal property prediction",
+          "materials property regression",
+          "materials property classification"
+        ],
+        "datasets": [
+          {
+            "db_title": "Materials Project",
+            "db_description": "A large-scale DFT-computed database of inorganic crystalline materials containing 122,959 stable structures, each annotated with formation energy, band gap, metal/non-metal classification, and—on a subset of 9,473 entries—mechanical properties including bulk modulus, shear modulus, and Young’s modulus. The dataset is used in this paper to train and evaluate PRDNet for multi-task crystal property prediction, serving as the primary benchmark for regression and classification tasks.",
+            "db_link": "https://huggingface.co/datasets/caobin/CPPbenchmark"
+          },
+          {
+            "db_title": "JARVIS-DFT",
+            "db_description": "A DFT-based dataset comprising 75,993 3D crystal structures (dft_3d), each annotated with formation energy, band gap (computed using both OPT and MBJ functionals), bulk modulus, shear modulus, total energy, and energy above hull (Ehull). It also includes the JARVIS-DFT-3D-2021 subset (55,723 entries). This dataset supports comprehensive evaluation of PRDNet across diverse electronic and mechanical property prediction tasks, with emphasis on robustness across computational functionals and stability metrics.",
+            "db_link": "None"
+          },
+          {
+            "db_title": "MatBench",
+            "db_description": "A standardized benchmark suite for materials property prediction containing several task-specific datasets: matbench_jdft2d (636 layered materials, exfoliation energy), matbench_mp_e_form (132,752 structures, formation energy), matbench_log_gvrh (10,987 structures, shear modulus), and matbench_dielectric (4,764 structures, refractive index). These are used to assess PRDNet’s generalization across heterogeneous property types, low-data regimes, and distinct material families (e.g., 2D vs. 3D), enabling fair comparison against state-of-the-art baselines.",
+            "db_link": "None"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "paper_file": "02_CFT_Space_Group_Invariance.pdf",
+    "result": [
+      {
+        "task_description": "Predicting key material properties—including total energy, band gap, bulk modulus, and shear modulus—from crystal structures represented by atomic positions, lattice vectors, and space group identifiers, while enforcing exact invariance to the input crystallographic space group without requiring group-specific model architectures.",
+        "task_tags": [
+          "material property prediction",
+          "crystal structure modeling",
+          "group-invariant regression"
+        ],
+        "datasets": [
+          {
+            "db_title": "Materials Project",
+            "db_description": "A large-scale computational database of crystalline materials containing over 150,000 entries with calculated properties including total energy (eV/atom), band gap (eV), bulk modulus (log GPa), and shear modulus (log GPa). Each entry includes atomic numbers, fractional atomic coordinates within the unit cell, 3×3 lattice vectors, and space group identifier (1–230). The dataset is used in this paper to train and evaluate the Crystal Fourier Transformer for material property prediction and zero-shot generalization across space groups.",
+            "db_link": "https://materialsproject.org"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "paper_file": "03_Tensorial_Spectra.pdf",
+    "result": [
+      {
+        "task_description": "Predicting the full frequency-dependent dielectric tensor (a rank-2, complex-valued, symmetric 3×3 tensor at each photon energy) directly from crystal structure, while strictly respecting crystalline symmetry constraints—including rotational equivariance and correct isotropic/anisotropic decomposition—to enable accurate modeling of anisotropic optical responses for optoelectronic materials design.",
+        "task_tags": [
+          "tensor prediction",
+          "optical property prediction",
+          "symmetry-aware modeling"
+        ],
+        "datasets": [
+          {
+            "db_title": "TSENN Dielectric Tensor Dataset",
+            "db_description": "A custom-curated dataset of 1,432 nonmagnetic bulk semiconductors, selected from the Materials Project based on bandgap (0.3–3 eV), structural stability (energy-above-hull < 0.02 eV/atom), compositional simplicity (<3 elements, <10 atoms/unit cell), and absence of f-electron elements. For each material, first-principles dielectric tensors εαβ(ω) = εαβ₁(ω) + iεαβ₂ were computed using OpenMX within the independent-particle approximation (IPA) via the Kubo formula across 3,001 photon energies (0–30 eV, step 0.01 eV), yielding 1,432 full frequency-dependent complex dielectric tensors satisfying crystal symmetry constraints. This dataset is used to train and evaluate the TSENN model for predicting the complete tensorial optical spectra.",
+            "db_link": "https://github.com/qmatyanlab/TSENN"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "paper_file": "04_Matbench_Discovery.pdf",
+    "result": [
+      {
+        "task_description": "Predicting the thermodynamic stability of hypothetical inorganic crystal structures by estimating their distance above the convex hull (hull distance) from only unrelaxed input structures, to enable efficient pre-screening before costly DFT relaxation and stability validation.",
+        "task_tags": [
+          "crystal stability prediction",
+          "convex hull distance estimation",
+          "pre-screening for DFT validation"
+        ],
+        "datasets": [
+          {
+            "db_title": "Materials Project (MP) v.2022.10.28",
+            "db_description": "A high-throughput DFT-computed database of ~154,719 inorganic crystals, providing relaxed and initial structures, full relaxation trajectories (energies, forces, stresses, magnetic moments at each ionic step), and formation energies. Used as the training set for all models in Matbench Discovery to learn mappings from atomic structure to energy-related properties, supporting the core task of predicting hull distance for stability classification.",
+            "db_link": "https://materialsproject.org"
+          },
+          {
+            "db_title": "Wang-Botti-Marques (WBM) dataset",
+            "db_description": "A prospectively generated test set of 215,488 unique protostructures derived via chemical similarity-based elemental substitution on MP source structures, followed by DFT relaxation and hull distance calculation against the MP convex hull. Contains unrelaxed input structures and their corresponding DFT-relaxed hull distances (target labels). Used exclusively for evaluating model performance on the stability prediction task under realistic discovery conditions — i.e., predicting stability from unrelaxed inputs without access to relaxation information.",
+            "db_link": "https://figshare.com/articles/dataset/22715158"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "paper_file": "05_Thermodynamic_Stability_Ensemble.pdf",
+    "result": [
+      {
+        "task_description": "Predicting the thermodynamic stability of inorganic compounds by classifying them as stable or unstable based on decomposition energy (ΔHd), where compounds with ΔHd ≤ 0 meV/atom (or relaxed thresholds of 25/40 meV/atom) are labeled stable — enabling high-throughput screening of viable candidates in unexplored compositional spaces.",
+        "task_tags": [
+          "thermodynamic stability prediction",
+          "compound stability classification",
+          "decomposition energy estimation"
+        ],
+        "datasets": [
+          {
+            "db_title": "Materials Project (MP)",
+            "db_description": "A large-scale DFT-computed database containing thermodynamic properties (e.g., formation energy, decomposition energy) for 85,014 inorganic crystalline compounds, including experimentally observed and hypothetical materials. Used as the primary training and benchmarking dataset to train and evaluate the ECSG ensemble model for binary classification of compound stability; also used to construct convex hulls for ΔHd labeling and to extract composition-only samples for sample efficiency analysis.",
+            "db_link": "https://materialsproject.org"
+          },
+          {
+            "db_title": "Open Quantum Materials Database (OQMD)",
+            "db_description": "A DFT-generated database of predicted inorganic materials, providing formation energies and structural data for over 400,000 compounds. Used alongside MP and JARVIS for cross-database performance validation of ECSG, particularly to assess robustness under class imbalance (11.3% stable samples) and to serve as a reference convex hull for DFT validation of predicted perovskite oxides.",
+            "db_link": "None"
+          },
+          {
+            "db_title": "JARVIS (Joint Automated Repository for Various Integrated Simulations)",
+            "db_description": "A DFT-based materials database offering structural, electronic, and thermodynamic properties for ~100,000+ materials, curated for data-driven design. Used to benchmark ECSG’s classification performance (achieving AUC = 0.988) and as an independent convex hull reference for validating DFT-predicted stability of double perovskite oxides selected by ECSG.",
+            "db_link": "None"
+          },
+          {
+            "db_title": "C2DB (Computational 2D Materials Database)",
+            "db_description": "A high-throughput DFT database containing structural, electronic, and thermodynamic data for over 4,000 atomically thin 2D materials. Used to train a specialized ECSG variant for predicting thermodynamic stability of 2D materials, supporting the case study on wide-bandgap semiconductor screening.",
+            "db_link": "None"
+          },
+          {
+            "db_title": "2DMatPedia",
+            "db_description": "A computational database of 4,743 2D materials with precomputed bandgaps and stability labels derived from DFT. Used as an independent test set to evaluate ECSG’s stability predictions for 2D materials and to validate the joint screening pipeline (ECSG + DARWIN-7B LLM) for wide-bandgap semiconductors, yielding 313 experimentally stable candidates out of 393 predicted.",
+            "db_link": "None"
+          },
+          {
+            "db_title": "Perovskite Halides Dataset (literature-curated)",
+            "db_description": "A manually compiled dataset of thermodynamic stability labels for 496 perovskite halides (ABX₃, X = Cl/Br/I) extracted from prior literature; duplicates present in MP were removed to ensure independence. Used to evaluate ECSG’s generalization to unknown chemical space — specifically, its ability to predict stability for perovskite halides not represented in the MP training set.",
+            "db_link": "None"
+          },
+          {
+            "db_title": "Li-containing Oxides Dataset (MP-derived)",
+            "db_description": "A subset of 6,168 lithium-containing oxides (750 stable) extracted from the MP database, fully excluded from the MP training set to create a zero-shot evaluation scenario. Used to test ECSG’s predictive capability in a completely unfamiliar compositional space (Li–O systems), demonstrating its utility for cathode material discovery in Li-ion batteries.",
+            "db_link": "None"
+          },
+          {
+            "db_title": "Transition Metal Oxides Dataset (MP-derived)",
+            "db_description": "A subset of 7,137 transition metal oxides (1,211 stable) extracted from MP, with all samples withheld from training to form an out-of-distribution test set. Used to assess ECSG’s generalization to Fe- and Mn-containing oxides — representing another unknown space — and to confirm robust stability prediction under moderate class imbalance (17.0% stable).",
+            "db_link": "None"
+          },
+          {
+            "db_title": "Double Perovskite Oxides Database (Talapatra et al.)",
+            "db_description": "A custom-curated database of 1,333 single and double perovskite oxides with DFT-calculated stability labels, used to train a specialized ECSG variant incorporating site-specific features for perovskite A/B-site discrimination. Served as the foundation for high-throughput prediction across a candidate space of >4.5 million compositions and subsequent DFT validation of top-ranked predictions.",
+            "db_link": "None"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "paper_file": "06_Transformer_Atomic_Embeddings.pdf",
+    "result": [
+      {
+        "task_description": "Generating universal atomic embeddings that serve as transferable, task-agnostic atomic fingerprints to improve the accuracy of machine learning models predicting crystal properties—including formation energy, bandgap, total energy, and total magnetization—across diverse material systems and data-scarce domains such as hybrid organic-inorganic perovskites.",
+        "task_tags": [
+          "atomic embedding",
+          "crystal property prediction",
+          "transfer learning"
+        ],
+        "datasets": [
+          {
+            "db_title": "Materials Project (MP) database",
+            "db_description": "The 2018.6.1 version contains 69,239 crystalline materials with computed formation energies (Ef) and PBE bandgaps (Eg); used for training and evaluating back-end models (e.g., CGCNN, ALIGNN, MEGNET) and benchmarking ct-UAE performance on formation energy and bandgap prediction. The dataset is split into 60,000 training, 5,000 validation, and 4,239 test samples. It supports the core task by providing ground-truth labels for supervised pretraining of front-end embeddings and downstream property prediction evaluation.",
+            "db_link": "https://materialsproject.org"
+          },
+          {
+            "db_title": "Materials Project (MP*) database",
+            "db_description": "The 2023.6.23 version contains 134,243 materials with formation energy and PBE bandgap; used as the primary large-scale dataset to pretrain the CrystalTransformer front-end model for generating universal atomic embeddings (ct-UAEs). Split into 80% training, 10% validation, and 10% testing sets, it enables multi-task pretraining (e.g., Ef + Eg, Ef + Eg + total energy + magnetization) and supports the task of learning transferable, physics-informed atomic representations independent of predefined features.",
+            "db_link": "https://materialsproject.org"
+          },
+          {
+            "db_title": "JARVIS dataset",
+            "db_description": "A curated collection of ~50,000 materials with formation energies and bandgaps, derived from high-throughput DFT calculations; used to evaluate the transferability of ct-UAEs across independent databases. Specifically employed to test ct-UAE-enhanced CGCNN and MEGNET models on formation energy and bandgap prediction, demonstrating consistent accuracy improvements (e.g., 17.5% MAE reduction for Ef), thereby supporting the task of validating cross-database generalizability of universal atomic embeddings.",
+            "db_link": "https://jarvis.nist.gov"
+          },
+          {
+            "db_title": "MC3D dataset",
+            "db_description": "A dataset containing 3D crystal structures and associated total energies (E); used to assess ct-UAE performance on a distinct property (total energy) and in a different materials domain. Applied to enhance CGCNN, MEGNET, and ALIGNN models, yielding MAE reductions (e.g., 3.9% for CGCNN), confirming the task-supporting role of ct-UAEs in broadening applicability beyond formation energy and bandgap to other fundamental crystal properties.",
+            "db_link": "https://github.com/usnistgov/jarvis/tree/master/jarvis/core"
+          },
+          {
+            "db_title": "Hybrid Organic-Inorganic Perovskite (HOIP) dataset",
+            "db_description": "A merged dataset of 2,103 HOIP crystals compiled from two prior sources (Kim et al., 2017 and Nakajima & Sawada, 2017); used to evaluate ct-UAEs in data-scarce regimes where traditional ML models underperform. Supports the task by serving as a low-data target domain for transfer learning—ct-UAEs pretrained on MP* significantly improve formation energy prediction accuracy (e.g., 34% MAE reduction for MEGNET), directly addressing the challenge of data scarcity in complex functional materials.",
+            "db_link": "https://doi.org/10.1038/sdata.2017.152"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "paper_file": "07_EATGNN_Piezoelectric_Tensor.pdf",
+    "result": [
+      {
+        "task_description": "Predicting the complete third-rank piezoelectric stress tensor (eᵢⱼₖ) for crystalline materials — including all 18 independent Voigt components — while respecting crystal symmetry, rotational equivariance, and coordinate-frame independence, to enable accurate characterization of longitudinal, transverse, and shear piezoelectric effects across arbitrary crystallographic orientations.",
+        "task_tags": [
+          "piezoelectric tensor prediction",
+          "equivariant learning",
+          "crystal symmetry-aware modeling"
+        ],
+        "datasets": [
+          {
+            "db_title": "Materials Project",
+            "db_description": "A publicly accessible database of computed materials properties, containing DFT-calculated piezoelectric tensors for bulk inorganic crystals. In this paper, it provides bulk piezoelectric tensor data (in Voigt notation) used to train and evaluate the EATGNN model; after outlier removal and symmetry validation, 3444 entries were curated for training/test splits (9:1). The dataset supports the core task of learning symmetry-constrained, frame-independent tensor mappings from crystal structures.",
+            "db_link": "https://materialsproject.org"
+          },
+          {
+            "db_title": "Computational 2D Materials Database (C2DB)",
+            "db_description": "A high-throughput computational database containing DFT-derived properties—including piezoelectric tensors—for over 4,000 two-dimensional materials. This paper uses 1350 validated 2D piezoelectric tensor entries (after outlier filtering and symmetry enforcement) to train and test EATGNN on low-dimensional systems. It enables the task of predicting the reduced 3×3 piezoelectric stress tensor for 2D crystals while preserving in-plane rotational equivariance and lattice-symmetry compliance.",
+            "db_link": "https://c2db.fysik.dtu.dk/"
+          },
+          {
+            "db_title": "JARVIS Database",
+            "db_description": "The Joint Automated Repository for Various Integrated Simulations (JARVIS) is a DFT-based materials database that includes piezoelectric tensor data derived from high-throughput calculations. The paper explicitly states bulk material data was sourced from both the Materials Project and JARVIS; JARVIS contributes additional piezoelectric tensor entries—particularly from the referenced high-throughput study (Choudhary et al., npj Comput. Mater. 6, 64, 2020)—to expand coverage and improve model generalization for bulk crystal tensor prediction.",
+            "db_link": "https://jarvis.nist.gov/"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "paper_file": "08_HiBoFL_Thermal_Conductivity.pdf",
+    "result": [
+      {
+        "task_description": "Identifying semiconductors with ultralow lattice thermal conductivity (κL) — specifically, screening and classifying candidate materials from a vast chemical space to discover those with κL ≤ 2 W/mK at 300 K for thermoelectric applications, while uncovering interpretable structural and compositional descriptors governing ultralow κL.",
+        "task_tags": [
+          "screening",
+          "classifying",
+          "discovering",
+          "interpreting"
+        ],
+        "datasets": [
+          {
+            "db_title": "Materials Project (MP) database",
+            "db_description": "A publicly available DFT-based high-throughput computational materials database containing over 154,718 entries with thermodynamic, electronic, and structural properties (e.g., formation energy above hull, band gap, crystal structure, unit cell parameters). In this paper, it serves as the primary source for the initial material pool; the authors query it via API and apply thermodynamic stability (Ehull ≤ 0.05 eV/atom), semiconductor band gap (0.1–2 eV), unit cell size (Natoms < 20, Nelements < 4), and elemental constraints (excluding H, lanthanides, actinides) to construct the 2675-material first-level dataset used for unsupervised clustering and feature engineering.",
+            "db_link": "https://next-gen.materialsproject.org/"
+          },
+          {
+            "db_title": "HiBoFL Local Database (PET-derived)",
+            "db_description": "A custom-built, MongoDB-stored local database containing 661 semiconductors from clusters C1 and C2 (selected via unsupervised learning on the Materials Project data), each annotated with lattice thermal conductivity values (κPET) at 300 K computed using the phonon-elasticity-thermal (PET) empirical model. It includes derived elastic properties (bulk/shear moduli), crystal system, formula type, and elemental composition. This dataset is used to train and validate the supervised CatBoost classifier for ultralow κL prediction (κPET ≤ 2 W/mK), enable statistical analysis of low-κL trends, and prioritize candidates (e.g., Cs2SnSe3, Cs2GeSe3) for first-principles validation.",
+            "db_link": "None"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "paper_file": "09_LLM_Prop.pdf",
+    "result": [
+      {
+        "task_description": "Predicting six key physical and electronic properties of crystalline materials—including band gap (eV), formation energy per atom (eV/atom), energy above hull (eV/atom), unit cell volume (Å³/cell), energy per atom (eV/atom), and binary classification of whether the band gap is direct or indirect—from natural language text descriptions of crystal structures.",
+        "task_tags": [
+          "property prediction",
+          "crystal property prediction",
+          "regression",
+          "classification",
+          "materials informatics"
+        ],
+        "datasets": [
+          {
+            "db_title": "TextEdge",
+            "db_description": "TextEdge is a benchmark dataset curated by the authors, containing ~144,931 crystal structure-description pairs derived from the Materials Project database. Each entry includes a human-readable, Robocrystallographer-generated text description (e.g., space group, bonding geometry, Wyckoff sites, stoichiometry) and six labeled properties: band gap, formation energy per atom, energy above hull, unit cell volume, energy per atom, and direct/indirect band gap indicator. It is used to train and evaluate LLM-Prop for property prediction from text input, enabling fair comparison against GNN baselines on identical splits (125,098 train / 9,945 val / 9,888 test samples).",
+            "db_link": "https://drive.google.com/drive/folders/1YCDBzwjwNRIc1FRkB662G3Y5AOWaokUG"
+          },
+          {
+            "db_title": "Materials Project",
+            "db_description": "A publicly available computational materials database providing DFT-calculated structural and energetic properties for over 145,000 inorganic crystalline compounds. The authors collected crystal structures (CIF files), IDs, and six target properties (band gap, formation energy per atom, energy above hull, unit cell volume, energy per atom, and direct/indirect band gap label) from Materials Project via its free API as of November 1, 2022. This raw data served as the source for generating TextEdge and was used to ensure ground-truth labels for all prediction tasks.",
+            "db_link": "https://materialsproject.org/"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "paper_file": "10_CrystalFramer.pdf",
+    "result": [
+      {
+        "task_description": "Predicting multiple physical properties of crystalline materials from their 3D crystal structures, including formation energy, total energy, bandgap (under two DFT functionals), energy above hull, bulk modulus, and shear modulus — all requiring SE(3)-invariant representations that respect periodicity, rotational/translation symmetry, and unit-cell ambiguity.",
+        "task_tags": [
+          "crystal property prediction",
+          "SE(3)-invariant modeling",
+          "materials property regression"
+        ],
+        "datasets": [
+          {
+            "db_title": "JARVIS-DFT 3D 2021",
+            "db_description": "A publicly available dataset of 55,723 crystalline materials, each represented by its 3D unit cell (atomic species, Cartesian coordinates, lattice vectors) and annotated with DFT-simulated properties: formation energy per atom, total energy (OptB88vdW), bandgap (OptB88vdW and TBmBJ), and energy above hull. Used in this paper to train and evaluate CrystalFramer on five regression tasks with fixed train/validation/test splits (44,578 / 5,572 / 5,572 for most targets; 14,537 / 1,817 / 1,817 for MBJ bandgap), serving as a benchmark for SE(3)-invariant crystal encoders.",
+            "db_link": "https://jarvis.nist.gov/"
+          },
+          {
+            "db_title": "Materials Project (MP)",
+            "db_description": "A large-scale database of ~69,239 synthetically feasible crystalline materials, providing DFT-calculated properties including formation energy, PBE bandgap, bulk modulus, and shear modulus. In this paper, it is used for crystal property prediction across four regression tasks using standardized data splits (60,000 / 5,000 / 4,239 for formation energy and bandgap; ~4,664 / ~393 / ~393 for moduli), enabling comparison against state-of-the-art models and validation of generalization beyond JARVIS.",
+            "db_link": "https://materialsproject.org/"
+          },
+          {
+            "db_title": "Open Quantum Materials Database (OQMD)",
+            "db_description": "A high-throughput computational database containing 817,636 materials with DFT-derived properties: formation energy (_oqmd_delta_e), bandgap (_oqmd_band_gap), and energy above hull (_oqmd_stability). Used in this work to assess scalability and robustness of CrystalFramer on a much larger scale than prior benchmarks — specifically for three regression tasks with splits of ~654k / ~81.8k / ~81.8k — confirming performance gains hold under massive data regime and validating practical applicability.",
+            "db_link": "https://oqmd.org/"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "paper_file": "11_DPF.pdf",
+    "result": [
+      {
+        "task_description": "Predicting key physical and electronic properties of crystalline materials—including formation energy, band gap (both OPT and MBJ variants), total energy, energy above hull (Ehull), bulk modulus, and shear modulus—using deep learning models trained on limited labeled data by first pre-training on large-scale unlabeled crystal structures via denoising reconstruction tasks.",
+        "task_tags": [
+          "crystal property prediction",
+          "pre-training",
+          "denoising reconstruction"
+        ],
+        "datasets": [
+          {
+            "db_title": "380,743 Unlabeled Crystal Structures (Merchant et al. 2023-derived)",
+            "db_description": "A curated set of 380,743 crystal structures generated by a deep generative tool (Merchant et al. 2023), filtered to remove duplicates with downstream benchmarks and physically or chemically irrational structures. Contains full crystal structure representations: atom types (from the 95-element periodic table), fractional atomic positions in the unit cell, and six lattice constants (a, b, c, α, β, γ). Used exclusively for unsupervised denoising pre-training—specifically to train models to reconstruct masked atom types, perturbed atom positions, and perturbed lattice constants—thereby learning generalizable structural representations before fine-tuning on property prediction tasks.",
+            "db_link": "None"
+          },
+          {
+            "db_title": "JARVIS Dataset",
+            "db_description": "A publicly available benchmark dataset containing 55,722 experimentally and computationally derived crystal structures, each annotated with multiple material properties including formation energy, band gap (OPT and MBJ), total energy, energy above hull (Ehull), bulk modulus, and shear modulus. Used as a primary downstream evaluation benchmark to fine-tune and validate the pre-trained models’ performance on crystal property prediction tasks, with MAE as the evaluation metric.",
+            "db_link": "https://jarvis.nist.gov/"
+          },
+          {
+            "db_title": "Materials Project Dataset",
+            "db_description": "A large-scale computational materials database aggregating DFT-calculated properties for over 100,000 inorganic crystals. The subset used in this paper includes 69,239 structures labeled with formation energy and band gap, and 5,451 structures labeled with bulk modulus and shear modulus. Serves as the second major downstream benchmark for fine-tuning and evaluating the denoising-pre-trained models across diverse crystal property prediction tasks under consistent experimental protocols.",
+            "db_link": "https://materialsproject.org/"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "paper_file": "12_PDDFormer.pdf",
+    "result": [
+      {
+        "task_description": "Predicting multiple physical and electronic properties of crystalline materials—including formation energy, band gap (both OPT and MBJ), total energy, energy above hull (Ehull), bulk modulus, and shear modulus—using machine learning models that operate on crystal structure representations robust to atomic position perturbations and measurement noise.",
+        "task_tags": [
+          "property prediction",
+          "crystal structure representation",
+          "robust modeling"
+        ],
+        "datasets": [
+          {
+            "db_title": "Materials Project",
+            "db_description": "A large-scale computational database containing DFT-calculated structural and property data for over 100,000 inorganic crystalline materials. It includes atomic positions, lattice parameters, space groups, and computed properties such as formation energy, band gap, bulk modulus, and shear modulus. In this paper, it is used to train and evaluate WPDDFormer and UPDDFormer for multi-task crystal property prediction, with reported results on formation energy, band gap, bulk modulus, and shear modulus using log-scaled and linear metrics.",
+            "db_link": "https://materialsproject.org"
+          },
+          {
+            "db_title": "JARVIS-DFT",
+            "db_description": "The Joint Automated Repository for Various Integrated Simulations (JARVIS) dataset, which provides DFT-computed properties for ~67,000 experimentally synthesized and hypothetical crystals, including formation energy, band gap (OPT and MBJ), total energy, energy above hull (Ehull), bulk modulus, and shear modulus. The dataset includes Cartesian atomic coordinates, lattice vectors, and symmetry information. In this paper, JARVIS-DFT serves as a benchmark for evaluating predictive accuracy across seven property prediction tasks under identical experimental protocols.",
+            "db_link": "https://jarvis.nist.gov"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "paper_file": "13_CrysCo.pdf",
+    "result": [
+      {
+        "task_description": "Predicting multiple inorganic materials properties—including energy-related properties (formation energy, energy above convex hull, band gap) and data-scarce mechanical properties (bulk modulus, shear modulus)—using a hybrid graph-transformer model that explicitly incorporates four-body atomic interactions to improve accuracy, generalization, and interpretability, especially under limited data conditions.",
+        "task_tags": [
+          "property prediction",
+          "mechanical property prediction",
+          "thermodynamic stability prediction"
+        ],
+        "datasets": [
+          {
+            "db_title": "Materials Project 2021 (MP21)",
+            "db_description": "A publicly available DFT-computed database of inorganic materials containing 133,785 entries with crystal structures, compositions, and computed physical properties. It provides primary properties (e.g., formation energy per atom, band gap, energy above convex hull, Fermi energy) and secondary properties (e.g., bulk/shear moduli via Voigt-Reuss-Hill approximation, dielectric refractive index, phonon frequencies). In this paper, MP21 is used to train and benchmark the CrysCo model across eight regression tasks—serving as the source for both abundant primary-property data (e.g., ~126k formation energy samples) and scarce secondary-property data (e.g., only ~12k elasticity entries)—and enabling transfer learning from formation energy to mechanical properties.",
+            "db_link": "https://materialsproject.org"
+          },
+          {
+            "db_title": "In-house DFT-relaxed novel structures dataset",
+            "db_description": "A custom dataset of 751 novel crystalline structures generated and DFT-relaxed internally by the authors. It contains ground-truth formation energies and energies above the convex hull computed via first-principles methods. This dataset is used exclusively for out-of-distribution evaluation—testing the model’s generalization capability on materials not present in the Materials Project—by predicting Ef and EHull and reporting parity plots, Pearson correlations (0.894 and 0.931), and MAEs (0.0318 and 0.0294 eV/atom), thereby validating real-world applicability for new material discovery.",
+            "db_link": "None"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "paper_file": "14_Cross_Scale_Covariance.pdf",
+    "result": [
+      {
+        "task_description": "Predicting plastic flow strength of face-centered cubic (FCC) metals from small-scale quantum-mechanically computable indicator properties, using statistical cross-scale covariance to establish regression models that quantify prediction uncertainty and provide error bounds for first-principles (DFT)-based strength estimates.",
+        "task_tags": [
+          "property prediction",
+          "cross-scale modeling",
+          "uncertainty quantification"
+        ],
+        "datasets": [
+          {
+            "db_title": "OpenKIM Interatomic Potential Repository",
+            "db_description": "A curated collection of 178 interatomic potentials (IPs) for nine FCC metals (Ag, Al, Au, Cu, Ni, Pb, Pd, Pt, Rh), each accompanied by precomputed small-scale material properties—including elastic constants (C11, C12, C44), surface energies ({100}, {110}, {111}), stacking fault energies (uSFE, iSFE), vacancy formation/migration energies, lattice constants, cohesive energies, and thermal expansion coefficients—calculated via standardized KIM Test Drivers. These IPs and their associated properties constitute the statistical pool used to identify covariant small-scale predictors and train regression models linking them to large-scale MD-predicted plastic flow strength.",
+            "db_link": "https://openkim.org"
+          },
+          {
+            "db_title": "Custom DFT dataset for FCC metals",
+            "db_description": "Density functional theory (DFT) calculations performed for seven FCC metals (Ag, Al, Au, Cu, Ni, Pd, Pt) to compute three key predictor properties: {111} surface energy, lattice constant, and vacancy migration energy—all in FCC structure. This dataset provides the quantum-accurate input values used to apply the trained cross-scale regression model and predict plastic flow strength; it supports the core task of transferring statistical covariance learned from IPs to DFT-based predictions with quantified uncertainty.",
+            "db_link": "None"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "paper_file": "15_Extrapolative_Episodic_Training.pdf",
+    "result": [
+      {
+        "task_description": "Predicting physical properties of materials in extrapolative regimes—i.e., for material classes or compositions lying outside the distribution of training data—by learning a generalizable mapping y = f(x, S) that conditions predictions on a support set S of previously seen examples, enabling rapid adaptation to unseen domains with minimal target-domain data.",
+        "task_tags": [
+          "property prediction",
+          "extrapolation",
+          "meta-learning"
+        ],
+        "datasets": [
+          {
+            "db_title": "RadonPy Polymer Dataset",
+            "db_description": "A computationally generated dataset of 69,480 amorphous homopolymers (with 68,700 refractive index entries), classified into 20 polymer classes (e.g., polyimide, polystyrene, polyesters), where properties—including specific heat at constant pressure (Cp) and refractive index—are calculated via all-atom molecular dynamics simulations using RadonPy. The dataset is used to construct extrapolative episodic training tasks: for each test class (e.g., p13 polyimide), models are trained on the other 19 classes and evaluated on held-out samples from the excluded class, enabling evaluation of cross-class extrapolative property prediction.",
+            "db_link": "None"
+          },
+          {
+            "db_title": "HOIP Dataset (Hybrid Organic–Inorganic Perovskite Dataset)",
+            "db_description": "A density functional theory (DFT)-calculated dataset containing 1345 perovskite compounds, each composed of organic/inorganic cations (Ge, Sn, Pb) and anions (F, Cl, Br, I), along with computed bandgaps and other properties. It is partitioned into 12 domains based on cation–anion combinations; two extrapolative tasks—HOIP-GeF (excluding Ge+F compounds) and HOIP-PbI (excluding Pb+I compounds)—are defined by withholding entire chemical combinations from training. The dataset supports evaluating extrapolative bandgap prediction when the model must generalize to unseen elemental pairings not present in the support set.",
+            "db_link": "https://doi.org/10.5061/dryad.gq3rg"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "paper_file": "16_OOD_Generalization_Materials.pdf",
+    "result": [
+      {
+        "task_description": "Probing and characterizing out-of-distribution (OOD) generalization capabilities of machine learning models for materials property prediction—specifically, identifying which OOD tasks (defined by unseen chemistry or structural symmetries) genuinely challenge models versus those that merely reflect interpolation within the representational training domain, and evaluating how model performance scales with training set size and training time on these tasks.",
+        "task_tags": [
+          "OOD generalization",
+          "distributional robustness",
+          "materials property prediction",
+          "scaling law analysis",
+          "domain identification"
+        ],
+        "datasets": [
+          {
+            "db_title": "Materials Project (MP)",
+            "db_description": "A database of ~146k ab initio–computed inorganic crystalline materials, containing formation energies, band gaps, bulk moduli, crystal structures (space groups, point groups, crystal systems), and chemical compositions. In this paper, it is used to construct over 700 OOD tasks—including leave-one-element-out, leave-one-period-out, leave-one-group-out, leave-one-space-group-out, and leave-one-crystal-system-out splits—to evaluate ML model generalization on formation energy prediction and assess representational domain coverage via UMAP embedding analysis.",
+            "db_link": "https://materialsproject.org"
+          },
+          {
+            "db_title": "JARVIS (Joint Automated Repository for Various Integrated Simulations)",
+            "db_description": "A database of ~76k DFT-computed materials properties, including formation energies and crystal structures, curated from multiple sources and standardized for materials informatics. It is used alongside MP and OQMD to ensure robust conclusions across data distributions; specifically, it supports chemistry- and structure-based OOD evaluations (e.g., leave-Mg-out, leave-O-out) and UMAP-based representational domain analysis for formation energy prediction.",
+            "db_link": "https://jarvis.nist.gov"
+          },
+          {
+            "db_title": "OQMD (Open Quantum Materials Database)",
+            "db_description": "A large-scale ab initio database of ~1M predicted stable and metastable inorganic compounds, with formation energies, crystal structures, and elemental compositions. Its scale (~10× larger than MP) enables rigorous scaling analysis: the paper uses it to validate learning curves (training set size and time effects) on representationally OOD tasks (e.g., leave-H-out), confirm domain misidentification biases, and demonstrate adverse scaling behavior where increased data degrades OOD performance.",
+            "db_link": "https://oqmd.org"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "paper_file": "17_Known_Unknowns_OOD.pdf",
+    "result": [
+      {
+        "task_description": "Predicting out-of-distribution (OOD) property values for solid-state materials and molecules — specifically, extrapolating zero-shot to higher property value ranges not present in the training data — using only chemical composition (for solids) or molecular graph-derived descriptors (for molecules), to enable high-precision virtual screening of extreme-value candidates.",
+        "task_tags": [
+          "property prediction",
+          "out-of-distribution extrapolation",
+          "virtual screening"
+        ],
+        "datasets": [
+          {
+            "db_title": "AFLOW",
+            "db_description": "AFLOW is a high-throughput computational database containing ~14,000 solid materials with stoichiometric compositions and associated property values derived from density functional theory calculations. It includes six curated properties: band gap, bulk modulus, Debye temperature, shear modulus, thermal conductivity, and thermal expansion (the latter four log-scaled). In this paper, AFLOW is used to train and evaluate OOD property predictors on composition-based regression tasks, specifically to assess zero-shot extrapolation performance beyond the upper range of training property values during virtual screening of high-performing solids.",
+            "db_link": "https://aflowlib.org"
+          },
+          {
+            "db_title": "Matbench",
+            "db_description": "Matbench is an automated benchmark suite for materials property prediction, containing three composition-based experimental and computational regression tasks: experimentally measured band gap (2,154 samples), experimentally measured yield strength of steels (312 samples), calculated formation energy (37,217 samples), and calculated refractive index (4,764 samples). In this paper, Matbench is used to evaluate OOD extrapolation capability across diverse property types and data sources (experimental vs. computational), supporting the task of identifying top-performing candidates whose property values exceed the training distribution.",
+            "db_link": "https://matbench.materialsproject.org"
+          },
+          {
+            "db_title": "Materials Project (MP)",
+            "db_description": "The Materials Project is a high-throughput computational database providing thermodynamic and mechanical properties for over 100,000 inorganic compounds, derived from DFT calculations. The paper uses a subset of 6,184–6,331 entries focused on bulk modulus, shear modulus, and elastic anisotropy — retaining the lowest-formation-enthalpy entry for duplicate compositions. This dataset supports the OOD property prediction task by enabling evaluation on large-scale, composition-driven mechanical property extrapolation under realistic database screening conditions.",
+            "db_link": "https://materialsproject.org"
+          },
+          {
+            "db_title": "MoleculeNet",
+            "db_description": "MoleculeNet is a collection of molecular datasets for machine learning, used here for four graph-to-property regression tasks: ESOL (1,128 small molecules with aqueous solubility), FreeSolv (643 molecules with experimental and calculated hydration free energies), Lipophilicity (4,200 molecules with octanol/water distribution coefficients), and BACE (1,513 molecules with binding affinities to human β-secretase 1). These datasets provide SMILES strings and experimentally or computationally derived property values, and are used to train and evaluate the transductive OOD predictor for molecular property extrapolation — specifically to screen for molecules with extreme (top 30%) property values beyond the training support.",
+            "db_link": "https://moleculenet.org"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "paper_file": "19_DTNet_Dielectric_Tensor.pdf",
+    "result": [
+      {
+        "task_description": "Predicting the full 3×3 dielectric tensor—including electronic (ε∞), ionic (ε⁰), and total (ε) components—for inorganic crystalline materials, while preserving O(3) rotational equivariance to ensure physically consistent predictions under arbitrary 3D rotations of the input crystal structure.",
+        "task_tags": [
+          "dielectric tensor prediction",
+          "equivariant modeling",
+          "materials property prediction"
+        ],
+        "datasets": [
+          {
+            "db_title": "Materials Project (v2023.11.1) Dielectric Dataset",
+            "db_description": "A DFT-calculated dataset of 7,277 inorganic crystal structures with computed dielectric tensors, sourced from the Materials Project database. It contains three components per material: electronic dielectric tensor (ε∞), ionic dielectric tensor (ε⁰), and their sum (total ε), each as symmetric 3×3 tensors. After cleaning—removing entries with any tensor element outside [−10, 100] and structures containing elements unsupported by PFP—6,648 structures remained. This dataset is used to train and evaluate the DTNet model for equivariant dielectric tensor prediction across 72 elements and all crystal systems.",
+            "db_link": "https://next-gen.materialsproject.org/api"
+          },
+          {
+            "db_title": "Matbench Dielectric Task",
+            "db_description": "A benchmark subset of Materials Project structures curated for dielectric property prediction, where the target property is the refractive index η (related to the electronic dielectric constant via η = √ε∞). The dataset includes ~1,000–2,000 structures (exact size not specified but drawn from MP) and is used exclusively for out-of-distribution benchmarking—evaluating DTNet’s generalization by predicting ε∞ and computing η from predicted tensors. It supports model validation and leaderboard comparison against state-of-the-art methods like MODNet.",
+            "db_link": "https://matbench.materialsvirtuallab.org/"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "paper_file": "20_GMTNet.pdf",
+    "result": [
+      {
+        "task_description": "Predicting crystal tensor properties—including dielectric tensors (order-2), piezoelectric tensors (order-3), and elastic tensors (order-4)—in matrix form while ensuring predictions are equivariant under O(3) transformations (rotations/reflections) and invariant under the crystal’s space group symmetries, so that predicted tensors respect zero-element patterns, mutual element dependencies, and physical transformation rules dictated by intrinsic crystal symmetry.",
+        "task_tags": [
+          "tensor prediction",
+          "crystal symmetry enforcement",
+          "O(3) equivariance"
+        ],
+        "datasets": [
+          {
+            "db_title": "JARVIS-DFT dataset",
+            "db_description": "A curated collection of DFT-computed crystal tensor properties sourced from the JARVIS-DFT database, containing 4,713 dielectric tensors (unitless relative dielectric constants), 4,998 piezoelectric tensors (in C/m²), and 14,220 elastic tensors (in GPa), each paired with its corresponding crystal structure (atomic positions, lattice vectors, and elemental features). The dataset is constructed by extracting both tensor values and structures directly from consistent DFT calculation files to guarantee alignment between structural symmetry and tensor symmetry constraints, and is used to train and evaluate GMTNet’s ability to predict symmetry-respecting tensors.",
+            "db_link": "https://jarvis.nist.gov/"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "paper_file": "21_ComFormer.pdf",
+    "result": [
+      {
+        "task_description": "Predicting physical and chemical properties of crystalline materials from their atomic structure, specifically by learning geometrically complete graph representations that distinguish any minor structural differences between crystals while remaining invariant or equivariant under crystal passive symmetries (unit cell SE(3) invariance, unit cell SO(3) equivariance, and periodic invariance).",
+        "task_tags": [
+          "crystal property prediction",
+          "geometric completeness",
+          "graph representation learning"
+        ],
+        "datasets": [
+          {
+            "db_title": "JARVIS",
+            "db_description": "JARVIS is a curated dataset of crystalline materials containing over 69,000 structures with computed properties such as formation energy, total energy, bandgap (OPT and MBJ), and energy above hull. It includes both experimentally observed and computationally predicted structures. In this paper, JARVIS is used to train and evaluate the ComFormer models on five regression tasks, with specific train/validation/test splits (e.g., 44,578/5,572/5,572 for formation energy), and serves to validate the model's ability to predict diverse material properties using geometrically complete crystal graphs.",
+            "db_link": "https://jarvis.nist.gov/"
+          },
+          {
+            "db_title": "The Materials Project",
+            "db_description": "The Materials Project is a large-scale database of computationally derived materials properties, containing over 100,000 crystalline structures with DFT-calculated properties including formation energy, band gap, bulk modulus, and shear modulus. The paper uses a specific version (MP-2018.6.1) with standardized data splits (e.g., 60,000/5,000/4,239 for formation energy) to benchmark ComFormer against prior methods, demonstrating its effectiveness on medium-scale tasks and robustness with limited training samples (e.g., only 4,664 samples for bulk/shear moduli).",
+            "db_link": "https://materialsproject.org/"
+          },
+          {
+            "db_title": "MatBench",
+            "db_description": "MatBench is a standardized benchmark for materials property prediction, featuring tasks across vastly different scales and complexities. In this work, two MatBench tasks are used: 'e_form' (132,752 crystals) for large-scale evaluation and 'jdft2d' (636 2D crystals) for small-scale, challenging evaluation. These datasets test the scalability and generalizability of ComFormer, particularly its ability to handle extremely large datasets and sparse, low-data regimes, with performance reported using MAE and RMSE metrics.",
+            "db_link": "https://matbench.materialsproject.org/"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "paper_file": "22_Crystalformer.pdf",
+    "result": [
+      {
+        "task_description": "Predicting multiple physical properties of crystalline materials—including formation energy, bandgap, bulk modulus, shear modulus, total energy, and energy above hull—from their periodic crystal structures represented as unit cells with atomic positions, species, and lattice vectors.",
+        "task_tags": [
+          "property prediction",
+          "crystal structure encoding",
+          "regression"
+        ],
+        "datasets": [
+          {
+            "db_title": "Materials Project (MEGNet)",
+            "db_description": "A collection of 69,239 DFT-calculated crystalline materials from the Materials Project database, curated by Chen et al. (2019). It contains crystal structures (unit cell coordinates, species, lattice vectors) and associated quantum-mechanically computed properties: formation energy, bandgap, bulk modulus, and shear modulus. In this paper, it is used to train and evaluate Crystalformer for regression on these four properties using consistent train/validation/test splits.",
+            "db_link": "https://materialsproject.org/"
+          },
+          {
+            "db_title": "JARVIS-DFT (3D 2021)",
+            "db_description": "A dataset of 55,723 DFT-computed crystalline materials compiled by Choudhary et al. (2020), available via the JARVIS platform. It includes unit-cell structural data (atomic positions, species, lattice vectors) and properties: formation energy, total energy, bandgap (computed with two functionals: OPT and MBJ), and energy above hull (E_hull). The paper uses it for regression benchmarking across five property prediction tasks, following standardized splits established in prior work (e.g., Yan et al., 2022).",
+            "db_link": "https://jarvis.nist.gov/"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "paper_file": "23_CrysDiff.pdf",
+    "result": [
+      {
+        "task_description": "Predicting crystal properties (e.g., formation energy, bandgap, bulk modulus) from 3D crystal structures represented as atom types, fractional atomic coordinates, and lattice vectors — specifically by leveraging self-supervised pre-training on unlabeled crystal structures to improve data efficiency and accuracy in downstream regression tasks with sparse labeled data.",
+        "task_tags": [
+          "crystal property prediction",
+          "3D structure-based regression",
+          "self-supervised pre-training"
+        ],
+        "datasets": [
+          {
+            "db_title": "JARVIS-DFT",
+            "db_description": "A publicly available materials database containing 55,722 DFT-calculated crystalline materials, each with 19 computed properties including formation energy, bandgap (OPT and MBJ), total energy, Ehull, bulk modulus (Kv), shear modulus (Gv), SLME (%), and spillage. It provides full 3D structural information: atom types (A), fractional coordinates (F), and lattice vectors (L). In this paper, JARVIS-DFT is used exclusively for the downstream fine-tuning and evaluation phase — i.e., to train and test the crystal property prediction models on nine target properties under standard train/val/test splits (80%/10%/10%).",
+            "db_link": "https://jarvis.nist.gov/"
+          },
+          {
+            "db_title": "Materials Project (MP)",
+            "db_description": "A large-scale computational materials database containing over 100,000+ DFT-optimized crystal structures, each annotated with structural metadata (space group, lattice parameters, atomic positions) and computed properties. In this paper, MP contributes ~800K untagged crystal graph data (i.e., structures without property labels) used solely for self-supervised pre-training of CrysDiff via crystal structure reconstruction — enabling learning of latent marginal distributions p(F, L | A) without supervision.",
+            "db_link": "https://materialsproject.org/"
+          },
+          {
+            "db_title": "OQMD (Open Quantum Materials Database)",
+            "db_description": "A high-throughput DFT database containing ~400,000+ predicted crystal structures and their computed thermodynamic properties (e.g., formation energy). Like MP, it provides full 3D structural representations (A, F, L) but no experimental property labels. In this paper, OQMD contributes the remaining portion (~800K total) of unlabelled crystal structures used for pre-training CrysDiff, alongside MP. It serves the same role as MP: enabling unsupervised learning of crystal geometry distributions via diffusion-based reconstruction.",
+            "db_link": "https://oqmd.org/"
+          },
+          {
+            "db_title": "OQMD-EXP",
+            "db_description": "A small experimental subset of OQMD containing 1,500 experimentally measured formation energies for crystalline materials — curated from literature and validated against synthesis outcomes. This dataset is used only in the experimental validation phase to assess how well CrysDiff mitigates DFT calculation bias: models are fine-tuned on combinations of DFT data (from JARVIS-DFT or OQMD) plus varying percentages (20% or 80%) of OQMD-EXP, then evaluated on held-out experimental formation energy values.",
+            "db_link": "https://oqmd.org/"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "paper_file": "24_Structure_Aware_Transfer_Learning.pdf",
+    "result": [
+      {
+        "task_description": "Predicting diverse materials properties (e.g., formation energy, bandgap, dielectric constant, piezoelectric tensor, exfoliation energy) from crystal or molecular structure inputs, especially when target datasets are small (<10,000 samples), by leveraging knowledge transferred from a large source dataset via structure-aware graph neural networks.",
+        "task_tags": [
+          "materials property prediction",
+          "transfer learning",
+          "structure-aware modeling"
+        ],
+        "datasets": [
+          {
+            "db_title": "Materials Project (MP)",
+            "db_description": "A large-scale DFT-computed database containing ~140,000 inorganic crystalline materials with relaxed crystal structures (POSCAR files) and computed properties including formation energy, bandgap, elastic tensors, and more. In this paper, it serves as the *source dataset*: its formation energy labels and 3D crystal structures are used to pre-train the ALIGNN source model for transfer learning across diverse target properties and material classes.",
+            "db_link": "https://materialsproject.org/"
+          },
+          {
+            "db_title": "JARVIS-3D",
+            "db_description": "A DFT-computed database of ~55,000 3D crystalline materials with atomic structures and 46 distinct properties (e.g., bulk modulus, dielectric tensor, piezoelectric coefficients, bandgap). It is used as a *target dataset* for evaluating transfer learning performance — specifically, its formation energy, bandgap, and other solid-state properties are predicted using models fine-tuned or feature-extracted from the MP-pretrained ALIGNN model.",
+            "db_link": "https://jarvis.nist.gov"
+          },
+          {
+            "db_title": "JARVIS-2D",
+            "db_description": "A DFT-computed database of ~1,000–2,000 2D layered materials (e.g., graphene, TMDs) with atomic structures and 32 properties including exfoliation energy, dielectric response, and electronic band structure metrics. It serves as a *target dataset* to test cross-dimensionality transfer learning: the MP-pretrained ALIGNN model is applied to predict properties of 2D materials, enabling evaluation of structural generalization beyond the 3D training domain.",
+            "db_link": "https://jarvis.nist.gov"
+          },
+          {
+            "db_title": "Harvard Organic Photovoltaic Dataset (HOPV)",
+            "db_description": "A quantum-chemical dataset of 1,000+ organic molecules with SMILES strings and DFT-computed properties (24 total), including HOMO/LUMO energies, bandgaps, and photovoltaic metrics (e.g., scharber PCE, Jsc, Voc) under multiple functionals (B3LYP, PBE0, etc.). It functions as a *target dataset* for cross-material-class transfer learning — testing whether structure-aware features learned from inorganic crystals (MP) generalize to molecular systems for predicting organic electronic properties.",
+            "db_link": "https://ndownloader.figshare.com/files/28814184"
+          },
+          {
+            "db_title": "Flla",
+            "db_description": "A DFT-computed dataset of ~3,900 inorganic compounds with formation energy, hull energy, and atomic relaxation data. Used as a *target dataset* to assess transfer learning robustness across independently computed DFT databases with different computational settings; its properties (e.g., DeltaE, Ehull) are predicted using the MP-pretrained ALIGNN model.",
+            "db_link": "https://github.com/hackingmaterials/automatminer"
+          },
+          {
+            "db_title": "Dielectric Constant (DC) Database",
+            "db_description": "A DFT-computed dataset of ~1,000 inorganic materials with dielectric properties (static/dynamic dielectric tensors, refractive index, polarizability) and structural information. Serves as a *target dataset* for predicting low-data-count dielectric properties (e.g., volume, bandgap, N, poly-electric susceptibility) using transfer learning from MP, enabling validation on physically distinct property types.",
+            "db_link": "https://github.com/hackingmaterials/automatminer"
+          },
+          {
+            "db_title": "Piezoelectric Tensor (PT) Database",
+            "db_description": "A DFT-computed dataset of ~940 non-centrosymmetric crystals with piezoelectric tensors, volumes, and related structural descriptors. Used as a *target dataset* to evaluate transfer learning on highly anisotropic, symmetry-sensitive properties (e.g., Eij piezoelectric coefficients, volume) where data scarcity limits conventional modeling — predictions rely on features transferred from the MP source model.",
+            "db_link": "https://github.com/hackingmaterials/automatminer"
+          },
+          {
+            "db_title": "Experimental Formation Energy (EFE)",
+            "db_description": "An experimental dataset of 605 intermetallic compounds with measured formation enthalpies (DeltaE) derived from calorimetry. Functions as a *target dataset* to validate transfer learning on real-world experimental data — the MP-pretrained ALIGNN model is adapted to predict experimental formation energies, bridging computation-to-experiment gaps.",
+            "db_link": "https://github.com/hackingmaterials/automatminer"
+          },
+          {
+            "db_title": "Kingsbury Experimental Formation Energy (KEFE)",
+            "db_description": "An experimental dataset of 1,557 inorganic compounds with measured formation enthalpies, curated from literature sources. Used as a *target dataset* to further test transfer learning on experimental thermodynamics data — its DeltaE values are predicted using fine-tuning or feature extraction from the MP source model, demonstrating generalization beyond DFT artifacts.",
+            "db_link": "https://github.com/hackingmaterials/automatminer"
+          },
+          {
+            "db_title": "Kingsbury Experimental Bandgap (KEB)",
+            "db_description": "An experimental dataset of 2,432 inorganic semiconductors and insulators with measured optical bandgaps. Serves as a *target dataset* for experimental electronic property prediction — the MP-pretrained ALIGNN model is transferred to predict experimental bandgaps, assessing robustness against measurement noise and methodology differences.",
+            "db_link": "https://github.com/hackingmaterials/automatminer"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "paper_file": "25_ChargE3Net.pdf",
+    "result": [
+      {
+        "task_description": "Predicting the 3D electron charge density distribution of atomic systems (molecules and crystalline materials) from atomic species identities and Cartesian coordinates, to serve as an accurate initialization for self-consistent density functional theory (DFT) calculations and enable non-self-consistent property prediction.",
+        "task_tags": [
+          "charge density prediction",
+          "DFT initialization",
+          "electron density modeling"
+        ],
+        "datasets": [
+          {
+            "db_title": "Materials Project (MP) charge density dataset",
+            "db_description": "A large-scale, publicly available dataset containing DFT-computed electron charge densities on 3D grids for 108,683 inorganic crystalline materials, covering diverse compositions, crystal systems, and space groups across the periodic table. It was used to train and evaluate ChargE3Net for generalizable, high-fidelity charge density prediction — specifically to support the task of initializing DFT calculations and reducing self-consistent field (SCF) iterations on unseen bulk materials.",
+            "db_link": "https://api.materialsproject.org"
+          },
+          {
+            "db_title": "QM9 charge density dataset",
+            "db_description": "A dataset of VASP-calculated electron charge densities for 133,845 small organic molecules (with training/validation/test splits of 123,835/50/10,000), derived from the original QM9 molecular database. It contains grid-based charge density values computed at consistent resolution and boundary conditions, and was used to benchmark ChargE3Net’s accuracy on small, isolated molecules — supporting the core task of learning equivariant representations for charge density prediction under molecular symmetry constraints.",
+            "db_link": "https://doi.org/10.11583/DTU.16794500.v1"
+          },
+          {
+            "db_title": "NMC (Nickel Manganese Cobalt) battery cathode dataset",
+            "db_description": "A dataset of VASP-computed charge densities for 2,000 nickel-manganese-cobalt oxide structures with varying lithium content, sampled from battery cathode material space. It includes training/validation/test splits of 1,450/50/500 and provides charge density grids for crystalline solids with periodic boundary conditions. This dataset was used to evaluate ChargE3Net’s performance on a chemically focused, technologically relevant class of materials — supporting the task of predicting charge densities for transition-metal oxide systems where angular electron correlations are critical.",
+            "db_link": "https://doi.org/10.11583/DTU.16837721.v1"
+          },
+          {
+            "db_title": "GNoME materials dataset (subset)",
+            "db_description": "A curated subset of 1,924 novel inorganic materials published by Google’s GNoME project, selected to include structures with ≥5 unique elemental species — intentionally out-of-distribution relative to the Materials Project training set. It contains DFT-computed charge densities generated using consistent VASP settings (k-point density, energy cutoff, PAW potentials). This dataset was used to test ChargE3Net’s generalization capability for charge density prediction on previously unseen chemical spaces — directly supporting the task of robust cross-dataset transfer for DFT acceleration beyond the training domain.",
+            "db_link": "https://doi.org/10.1038/s41586-023-06735-9"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "paper_file": "26_MD_HIT.pdf",
+    "result": [
+      {
+        "task_description": "Designing and applying a dataset redundancy control method to enable objective, realistic evaluation of machine learning models for material property prediction—specifically by preventing overestimated interpolation performance and improving out-of-distribution (OOD) generalization capability on formation energy and band gap prediction tasks.",
+        "task_tags": [
+          "redundancy reduction",
+          "model evaluation",
+          "OOD generalization",
+          "material property prediction"
+        ],
+        "datasets": [
+          {
+            "db_title": "Materials Project (MP)",
+            "db_description": "A large-scale computational materials database containing 125,619 crystal structures (with 89,354 unique compositions), each annotated with DFT-computed properties including formation energy per atom and band gap. The paper uses the full MP dataset to generate composition-based (86,740 unique compositions) and structure-based (123,108–125,619 CIFs) non-redundant subsets via MD-HIT algorithms; these subsets serve as benchmark datasets for training and evaluating ML models (Roost, CrabNet, ALIGNN, DeeperGATGNN) under controlled redundancy conditions for formation energy and band gap prediction.",
+            "db_link": "https://materialsproject.org"
+          },
+          {
+            "db_title": "MatScholar embeddings",
+            "db_description": "A literature-derived word embedding for materials, generated from text mining of materials science publications, producing fixed-dimensional (e.g., 200D) feature vectors that encode periodic table structure and structure–property relationships. In this paper, MatScholar features are used to compute composition similarity (via Euclidean distance) for redundancy control in MD-HIT-composition, to define the MatscholarOOD test set (1000 most distant samples), and to analyze sample density–MAE correlations—supporting the task of identifying and mitigating redundancy-induced overfitting in composition-based property prediction.",
+            "db_link": "https://doi.org/10.1038/s41586-019-1312-1"
+          },
+          {
+            "db_title": "Mendeleev similarity metrics",
+            "db_description": "A chemically derived composition similarity measure based on elemental properties (e.g., atomic radius, electronegativity) aligned with Mendeleev’s periodic table principles; implemented in the ElMD package. The paper uses Mendeleev distance to filter the Materials Project composition dataset into seven non-redundant subsets (Mendeleev-nr) with thresholds from 0.5 to 3.0, enabling systematic analysis of how chemical similarity–based redundancy control affects Roost and CrabNet performance on formation energy and band gap prediction.",
+            "db_link": "https://doi.org/10.1021/acs.chemmater.0c02922"
+          },
+          {
+            "db_title": "XRD features (from Pymatgen)",
+            "db_description": "X-ray diffraction (XRD) patterns computed from crystal structures using Pymatgen’s XRDCalculator, smoothed with Gaussian kernel and sampled at 900 evenly spaced 2θ angles (0–90°), yielding fixed-length 900D feature vectors. These features are used in MD-HIT-structure to define structural similarity and generate seven XRD-based non-redundant structure datasets (XRD-nr) for evaluating ALIGNN and DeeperGATGNN on formation energy and band gap prediction under controlled structural redundancy.",
+            "db_link": "https://pymatgen.org"
+          },
+          {
+            "db_title": "OFM (Orbital Field Matrix) features",
+            "db_description": "Fixed-dimension (1024D) descriptors encoding electronic structure information—including electron distribution across atomic orbitals—derived from crystal structures. Used in MD-HIT-structure to compute structural distances and generate eight OFM-based non-redundant datasets (OFM-nr); supports the task of assessing how electronic-structure–driven redundancy control impacts OOD generalization in structure-based band gap and formation energy prediction.",
+            "db_link": "https://doi.org/10.1038/s41524-022-00822-2"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "paper_file": "27_Virtual_Node_Phonon_Preprint.pdf",
+    "result": [
+      {
+        "task_description": "Predicting full phonon band structures—including Γ-point phonon spectra and momentum-dependent dispersion relations—directly from atomic coordinates of crystalline materials, enabling rapid, high-accuracy phonon property estimation without ab initio dynamical matrix calculations.",
+        "task_tags": [
+          "phonon prediction",
+          "band structure prediction",
+          "lattice dynamics",
+          "structure-to-property mapping"
+        ],
+        "datasets": [
+          {
+            "db_title": "Materials Project Phonon Database (DFPT-based)",
+            "db_description": "A high-quality computational dataset containing phonon dispersion along high-symmetry paths for 1,521 semiconducting inorganic crystalline materials, generated using density-functional perturbation theory (DFPT). It includes atomic structures (primitive unit cells), second-order energy derivatives, and phonon frequencies (in cm⁻¹) at Γ and other high-symmetry k-points. This dataset was used as the primary training and validation source for all three VGNN models (VVN, MVN, k-MVN) to train phonon predictors—specifically for learning Γ-phonon spectra (VVN/MVN) and full band structures (k-MVN).",
+            "db_link": "None"
+          },
+          {
+            "db_title": "PhononDB (Kyoto University)",
+            "db_description": "A publicly available phonon database curated by Atsushi Togo, containing frozen-phonon–calculated phonon dispersions for complex inorganic materials, many with large unit cells (>40 atoms). The authors selected 156 high-quality entries where the lowest Γ-phonon frequency exceeds −0.07 cm⁻¹ and unit cell size is ≥40 atoms. This dataset served exclusively as an out-of-distribution test set to evaluate generalization to structurally complex materials beyond the DFPT training domain, supporting robustness validation for all three VGNN models.",
+            "db_link": "http://phonondb.mtl.kyoto-u.ac.jp/"
+          },
+          {
+            "db_title": "Materials Project (MP) Γ-Phonon Database (VGNN-predicted)",
+            "db_description": "A large-scale, author-curated phonon database containing predicted Γ-point phonon spectra for 146,323 materials from the Materials Project (as of 2022), generated using the MVN model. Each entry includes MP ID, chemical formula, space group, CIF-formatted structure, number of atoms per unit cell, and a list of 3m predicted Γ-phonon frequencies (in cm⁻¹). This database was constructed post-training to enable high-throughput screening and materials design with engineered phonon properties, and is explicitly used to demonstrate scalability and real-world applicability of the method.",
+            "db_link": "https://osf.io/k5utb/"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "paper_file": "28_JARVIS_Leaderboard.pdf",
+    "result": [
+      {
+        "task_description": "Benchmarking and systematically comparing the performance of diverse materials design methods—including artificial intelligence models, electronic structure calculations, force-field approaches, quantum computation algorithms, and experimental protocols—across multiple data modalities (atomic structures, spectra, images, text) and material properties (e.g., formation energy, bandgap, bulk modulus, CO₂ adsorption), to enable reproducible, transparent, and unbiased evaluation of method accuracy, robustness, and generalizability.",
+        "task_tags": [
+          "benchmarking",
+          "method validation",
+          "reproducibility",
+          "performance comparison",
+          "materials design evaluation"
+        ],
+        "datasets": [
+          {
+            "db_title": "JARVIS-DFT",
+            "db_description": "A high-throughput density functional theory (DFT) database containing computed properties for over 80,000 inorganic materials, including formation energies, bandgaps, elastic moduli, phonon spectra, and more. In this paper, JARVIS-DFT serves as the primary reference dataset for AI-based property prediction benchmarks (e.g., formation energy per atom, exfoliation energy) and as a source of ground-truth computational data for force-field and quantum computation benchmarking; its pre-split train/validation/test sets enable standardized model training and evaluation in the AI category.",
+            "db_link": "https://jarvis.nist.gov/jarvisdft/"
+          },
+          {
+            "db_title": "JARVIS-Tools datasets",
+            "db_description": "A collection of integrated, versioned datasets hosted via JARVIS-Tools and backed up on Figshare, encompassing atomic structures (3D, 2D, amorphous), spectra (XRD, DOS, Eliashberg), STEM/STM images, text (arXiv corpus), and interatomic potentials. These datasets support multi-modal benchmarking across all leaderboard categories: e.g., STEM images for AI image classification, XRD spectra for spectral prediction, and arXiv text for text classification/generation tasks — each linked to specific json.zip benchmark files with DOIs and metadata.",
+            "db_link": "https://pages.nist.gov/jarvis/databases/"
+          },
+          {
+            "db_title": "Materials Project",
+            "db_description": "A publicly available DFT-derived database of thermodynamic and structural properties for over 140,000 inorganic compounds, used in this paper as one of several external atomic-structure datasets for AI benchmarking (e.g., formation energy prediction). It provides complementary coverage to JARVIS-DFT and supports cross-dataset analysis to assess model generalizability and avoid bias from single-source data distributions.",
+            "db_link": "https://materialsproject.org"
+          },
+          {
+            "db_title": "QM9",
+            "db_description": "A quantum chemistry dataset containing DFT-computed properties (e.g., energies, dipole moments, vibrational frequencies) for 134,000 small organic molecules. In this paper, it is explicitly listed as an input dataset for AI models targeting molecular-level property prediction, supporting benchmarks in the AI category—particularly for spectroscopic or energetic property tasks where molecular structure is the primary input.",
+            "db_link": "https://doi.org/10.6084/m9.figshare.978961"
+          },
+          {
+            "db_title": "Experimental round-robin CO₂ adsorption data for ZSM-5 zeolite",
+            "db_description": "Inter-laboratory experimental measurements of high-pressure CO₂ adsorption isotherms on ammonium ZSM-5 zeolite, generated via a coordinated round-robin study across multiple labs. This dataset serves as the experimental reference benchmark for the EXP category, enabling direct comparison of computational predictions (e.g., from RASPA simulations) and validating reproducibility across experimental setups — fulfilling the paper’s goal of integrating experimental benchmarking into the leaderboard framework.",
+            "db_link": "https://doi.org/10.1007/s10450-018-9952-0"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "paper_file": "29_Structure_OOD_Benchmark.pdf",
+    "result": [
+      {
+        "task_description": "Predicting materials properties for out-of-distribution (OOD) crystal structures that deviate significantly from the training distribution — specifically, predicting refractive index, shear modulus, and formation energy for sparse, outlier, or structurally/property-remote materials not well-represented in standard datasets. The task focuses on evaluating and benchmarking graph neural networks' ability to generalize beyond i.i.d. assumptions to realistic discovery scenarios where target materials are novel, underrepresented, or lie in low-density regions of structural or property space.",
+        "task_tags": [
+          "OOD prediction",
+          "materials property prediction",
+          "generalization benchmark"
+        ],
+        "datasets": [
+          {
+            "db_title": "matbench_dielectric",
+            "db_description": "A dataset of 4,764 inorganic crystals from the Materials Project, each with computed refractive index as the target property. It is used in this paper to construct five OOD test sets (LOCO, SparseXsingle, SparseXcluster, SparseYsingle, SparseYcluster) via structure- and property-based clustering in orbital-field matrix (OFM) feature space; these test sets support evaluating GNNs' ability to predict refractive index for outlier materials located in sparsely populated regions of structural or property space.",
+            "db_link": "https://matbench.materialsproject.org/"
+          },
+          {
+            "db_title": "matbench_log_gvrh",
+            "db_description": "A dataset of 10,987 inorganic crystals from the Materials Project, with log10-transformed shear modulus (log10(GPa)) as the target property. In this paper, it is split into five OOD test configurations using OFM-based t-SNE density estimation and k-means clustering to isolate samples with lowest structural or property density; these splits enable benchmarking of GNNs’ extrapolative capability for elastic property prediction on materials dissimilar to the training set.",
+            "db_link": "https://matbench.materialsproject.org/"
+          },
+          {
+            "db_title": "matbench_perovskites",
+            "db_description": "A dataset of 18,928 perovskite crystal structures from Castelli et al., with formation energy (eV/unit cell) as the target property. The paper uses it to generate five OOD test sets—based on OFM features and property density—to rigorously assess GNNs’ ability to predict formation energies for structurally rare or energetically extreme perovskites outside the training distribution, simulating real-world discovery of novel perovskite materials.",
+            "db_link": "https://matbench.materialsproject.org/"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "paper_file": "30_Charge_Density_Recipe.pdf",
+    "result": [
+      {
+        "task_description": "Predicting the three-dimensional real-space charge density of molecular systems from atomic coordinates and element types, enabling fast and accurate estimation of electronic structure properties without solving the Kohn–Sham equations iteratively.",
+        "task_tags": [
+          "charge density prediction",
+          "electronic structure modeling",
+          "DFT acceleration"
+        ],
+        "datasets": [
+          {
+            "db_title": "QM9 charge density dataset",
+            "db_description": "Contains DFT-calculated charge density voxel data (666,462 grid points per molecule on average) for 133,845 small organic molecules, computed using VASP. The dataset includes atomic coordinates, element types, and ground-truth charge density values on a uniform 3D grid. It is used in this paper to train and evaluate the proposed SCDP models for predicting charge density, with standard train/validation/test splits of 123,835 / 50 / 10,000 samples.",
+            "db_link": "https://doi.org/10.1038/sdata.2014.22"
+          },
+          {
+            "db_title": "MD charge density dataset",
+            "db_description": "Contains charge density calculations for six small molecules (ethanol, benzene, phenol, resorcinol, ethane, malonaldehyde) generated via ab initio molecular dynamics simulations. Used in this paper to benchmark SCDP models on dynamic, non-equilibrium molecular structures — specifically to validate generalization beyond static QM9 geometries and assess performance on time-averaged or snapshot charge densities.",
+            "db_link": "https://doi.org/10.1038/ncomms1572"
+          },
+          {
+            "db_title": "Cubic charge density dataset",
+            "db_description": "A large-scale dataset of real-space electronic charge density for 1,000 cubic inorganic materials, computed using DFT. Includes crystalline unit cells, atomic positions, and corresponding 3D charge density grids. In this paper, it is used to evaluate the transferability of the SCDP framework to periodic solids, with virtual nodes placed via Voronoi-based void-filling to adapt the molecular recipe to materials.",
+            "db_link": "https://doi.org/10.1038/s41597-022-00059-9"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "paper_file": "31_Superconductivity_Ordered_Disordered.pdf",
+    "result": [
+      {
+        "task_description": "Predicting the superconducting transition temperature (Tc) of materials given their 3D crystal structures — including both ordered and disordered configurations — to enable high-Tc superconductor screening from known structural databases such as ICSD. The task supports identifying promising candidate superconductors for experimental validation by ranking structures based on predicted Tc values.",
+        "task_tags": [
+          "Tc prediction",
+          "superconductor screening",
+          "disordered structure modeling"
+        ],
+        "datasets": [
+          {
+            "db_title": "SuperCon3D",
+            "db_description": "SuperCon3D is a newly constructed dataset containing 1,578 experimentally verified superconductors, each with both a 3D crystal structure (ordered or disordered, including substitutional, positional, and combined disorder types) and its experimentally measured superconducting transition temperature (Tc). It was built by matching 11,949 superconductors from the SuperCon database (with chemical formulas and Tc) against 208,425 entries from the ICSD database using chemical composition, space group, and lattice parameters; hydrogen-enriched superconductors were supplemented from literature. This dataset directly supports the Tc prediction task for training and evaluating SODNet and benchmarking other property predictors.",
+            "db_link": "https://github.com/pincher-chen/SODNet"
+          },
+          {
+            "db_title": "ICSD (Inorganic Crystal Structure Database)",
+            "db_description": "The ICSD contains over 200,000 experimentally determined ordered and disordered inorganic crystal structures. In this paper, it serves two roles: (1) as the source of structural data used to construct SuperCon3D via matching with SuperCon entries; and (2) as the external candidate pool for high-Tc screening — SODNet is applied to predict Tc for ~200k ICSD entries (including disordered ones), yielding 27 prioritized candidates (e.g., Ba1.1432Co0.1429O3.0009Rh0.8574, ErH3) for experimental follow-up. Thus, ICSD supports both dataset construction and real-world superconductor screening.",
+            "db_link": "https://icsd.products.fiz-karlsruhe.de/"
+          },
+          {
+            "db_title": "Materials Project",
+            "db_description": "A computational materials database containing ~1.14 million stable 3D crystal structures (preprocessed and deduplicated), sourced alongside OQMD, Matgen, and ICSD for pre-training DiffCSP-SC. It provides diverse atomic species, lattice geometries, and coordination environments not fully covered in the small SuperCon3D dataset. This large-scale pre-training data enables robust representation learning for crystal generation and improves the model’s ability to generalize to novel high-Tc structures — supporting the inverse design task by expanding the valid search space before fine-tuning on SuperCon3D.",
+            "db_link": "https://next-gen.materialsproject.org"
+          },
+          {
+            "db_title": "OQMD (Open Quantum Materials Database)",
+            "db_description": "A database of computationally predicted stable and metastable inorganic crystal structures (~300k+ entries at time of publication), used jointly with Materials Project, Matgen, and ICSD to assemble the ~1.14 million-structure pre-training corpus for DiffCSP-SC. Its inclusion ensures broad coverage of elemental combinations and structural motifs beyond experimentally synthesized superconductors, thereby improving the generative model’s capacity to sample chemically plausible and structurally valid crystals during high-Tc-targeted inverse design.",
+            "db_link": "https://www.oqmd.org"
+          },
+          {
+            "db_title": "Matgen",
+            "db_description": "A Chinese materials database hosting computationally generated 3D crystal structures, integrated with Materials Project, OQMD, and ICSD to form the 1.14 million-structure pre-training set for DiffCSP-SC. It contributes additional structural diversity — particularly for underrepresented elements and stoichiometries — enabling the diffusion model to learn generalizable periodic lattice and atomic coordinate distributions, which is critical for generating novel, physically realistic superconductor candidates not present in SuperCon3D.",
+            "db_link": "https://matgen.nscc-gz.cn"
+          }
+        ]
+      }
+    ]
+  }
+]

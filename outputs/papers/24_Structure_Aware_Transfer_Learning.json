@@ -1,0 +1,62 @@
+[
+  {
+    "task_description": "Predicting diverse materials properties (e.g., formation energy, bandgap, dielectric constant, piezoelectric tensor, exfoliation energy) from crystal or molecular structure inputs, especially when target datasets are small (<10,000 samples), by leveraging knowledge transferred from a large source dataset via structure-aware graph neural networks.",
+    "task_tags": [
+      "materials property prediction",
+      "transfer learning",
+      "structure-aware modeling"
+    ],
+    "datasets": [
+      {
+        "db_title": "Materials Project (MP)",
+        "db_description": "A large-scale DFT-computed database containing ~140,000 inorganic crystalline materials with relaxed crystal structures (POSCAR files) and computed properties including formation energy, bandgap, elastic tensors, and more. In this paper, it serves as the *source dataset*: its formation energy labels and 3D crystal structures are used to pre-train the ALIGNN source model for transfer learning across diverse target properties and material classes.",
+        "db_link": "https://materialsproject.org/"
+      },
+      {
+        "db_title": "JARVIS-3D",
+        "db_description": "A DFT-computed database of ~55,000 3D crystalline materials with atomic structures and 46 distinct properties (e.g., bulk modulus, dielectric tensor, piezoelectric coefficients, bandgap). It is used as a *target dataset* for evaluating transfer learning performance — specifically, its formation energy, bandgap, and other solid-state properties are predicted using models fine-tuned or feature-extracted from the MP-pretrained ALIGNN model.",
+        "db_link": "https://jarvis.nist.gov"
+      },
+      {
+        "db_title": "JARVIS-2D",
+        "db_description": "A DFT-computed database of ~1,000–2,000 2D layered materials (e.g., graphene, TMDs) with atomic structures and 32 properties including exfoliation energy, dielectric response, and electronic band structure metrics. It serves as a *target dataset* to test cross-dimensionality transfer learning: the MP-pretrained ALIGNN model is applied to predict properties of 2D materials, enabling evaluation of structural generalization beyond the 3D training domain.",
+        "db_link": "https://jarvis.nist.gov"
+      },
+      {
+        "db_title": "Harvard Organic Photovoltaic Dataset (HOPV)",
+        "db_description": "A quantum-chemical dataset of 1,000+ organic molecules with SMILES strings and DFT-computed properties (24 total), including HOMO/LUMO energies, bandgaps, and photovoltaic metrics (e.g., scharber PCE, Jsc, Voc) under multiple functionals (B3LYP, PBE0, etc.). It functions as a *target dataset* for cross-material-class transfer learning — testing whether structure-aware features learned from inorganic crystals (MP) generalize to molecular systems for predicting organic electronic properties.",
+        "db_link": "https://ndownloader.figshare.com/files/28814184"
+      },
+      {
+        "db_title": "Flla",
+        "db_description": "A DFT-computed dataset of ~3,900 inorganic compounds with formation energy, hull energy, and atomic relaxation data. Used as a *target dataset* to assess transfer learning robustness across independently computed DFT databases with different computational settings; its properties (e.g., DeltaE, Ehull) are predicted using the MP-pretrained ALIGNN model.",
+        "db_link": "https://github.com/hackingmaterials/automatminer"
+      },
+      {
+        "db_title": "Dielectric Constant (DC) Database",
+        "db_description": "A DFT-computed dataset of ~1,000 inorganic materials with dielectric properties (static/dynamic dielectric tensors, refractive index, polarizability) and structural information. Serves as a *target dataset* for predicting low-data-count dielectric properties (e.g., volume, bandgap, N, poly-electric susceptibility) using transfer learning from MP, enabling validation on physically distinct property types.",
+        "db_link": "https://github.com/hackingmaterials/automatminer"
+      },
+      {
+        "db_title": "Piezoelectric Tensor (PT) Database",
+        "db_description": "A DFT-computed dataset of ~940 non-centrosymmetric crystals with piezoelectric tensors, volumes, and related structural descriptors. Used as a *target dataset* to evaluate transfer learning on highly anisotropic, symmetry-sensitive properties (e.g., Eij piezoelectric coefficients, volume) where data scarcity limits conventional modeling — predictions rely on features transferred from the MP source model.",
+        "db_link": "https://github.com/hackingmaterials/automatminer"
+      },
+      {
+        "db_title": "Experimental Formation Energy (EFE)",
+        "db_description": "An experimental dataset of 605 intermetallic compounds with measured formation enthalpies (DeltaE) derived from calorimetry. Functions as a *target dataset* to validate transfer learning on real-world experimental data — the MP-pretrained ALIGNN model is adapted to predict experimental formation energies, bridging computation-to-experiment gaps.",
+        "db_link": "https://github.com/hackingmaterials/automatminer"
+      },
+      {
+        "db_title": "Kingsbury Experimental Formation Energy (KEFE)",
+        "db_description": "An experimental dataset of 1,557 inorganic compounds with measured formation enthalpies, curated from literature sources. Used as a *target dataset* to further test transfer learning on experimental thermodynamics data — its DeltaE values are predicted using fine-tuning or feature extraction from the MP source model, demonstrating generalization beyond DFT artifacts.",
+        "db_link": "https://github.com/hackingmaterials/automatminer"
+      },
+      {
+        "db_title": "Kingsbury Experimental Bandgap (KEB)",
+        "db_description": "An experimental dataset of 2,432 inorganic semiconductors and insulators with measured optical bandgaps. Serves as a *target dataset* for experimental electronic property prediction — the MP-pretrained ALIGNN model is transferred to predict experimental bandgaps, assessing robustness against measurement noise and methodology differences.",
+        "db_link": "https://github.com/hackingmaterials/automatminer"
+      }
+    ]
+  }
+]

@@ -1,0 +1,346 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "materials_project",
+      "canonical_name": "Materials Project",
+      "raw_names": [
+        "Materials Project"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "oxide materials"
+      ],
+      "available_properties": [
+        "bulk crystal structure",
+        "formation energy",
+        "energy above hull",
+        "band gap"
+      ],
+      "available_fields": [
+        "structure",
+        "formula",
+        "space_group",
+        "energy_above_hull",
+        "band_gap"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "The bulk materials used for slab construction in this study were obtained from the Materials Project.",
+          "page": 2,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "oc20",
+      "canonical_name": "Open Catalyst 2020",
+      "raw_names": [
+        "OC20",
+        "Open Catalyst 2020 (OC20) dataset"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "non-oxide slabs and surface intermediates"
+      ],
+      "available_properties": [
+        "relaxed structure",
+        "total energy",
+        "forces"
+      ],
+      "available_fields": [
+        "structure",
+        "energy",
+        "forces",
+        "trajectory"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "The entirety of the Open Catalyst 2020 (OC20) dataset (1281040 DFT relaxations) was used to train an S2EF-Total model",
+          "page": 2,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "oc22",
+      "canonical_name": "Open Catalyst 2022",
+      "raw_names": [
+        "OC22",
+        "Open Catalyst 2022 (OC22) framework",
+        "OC22 dataset"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "oxide materials",
+        "slabs",
+        "OER surface intermediates"
+      ],
+      "available_properties": [
+        "relaxed structure",
+        "total energy",
+        "forces",
+        "surface intermediates"
+      ],
+      "available_fields": [
+        "structure",
+        "energy",
+        "forces",
+        "trajectory",
+        "intermediates"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "More recently, the Open Catalyst 2022 (OC22) framework has provided a large dataset of density functional theory (DFT) calculations for OER intermediates on the surfaces of oxides.",
+          "page": 1,
+          "section": "Introduction",
+          "inferred": false
+        },
+        {
+          "text": "More recently, the Open Catalyst 2022 (OC22) framework has expanded upon this dataset by incorporating random combinations of 4732 oxide materials, Miller indices up to 3, and surface intermediates involved in OER.",
+          "page": 2,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "interpolated_oc22_oxide_db",
+      "canonical_name": "Interpolated OC22 oxide database",
+      "raw_names": [
+        "interpolated database",
+        "database of the total energy predictions for all slabs and OER surface intermediates for 4119 oxide materials",
+        "extrapolated database"
+      ],
+      "dataset_type": "derived_subset",
+      "source_dataset_key": "oc22",
+      "material_scope": [
+        "oxide materials"
+      ],
+      "available_properties": [
+        "total energy",
+        "Gibbs adsorption energy",
+        "overpotential",
+        "Pourbaix decomposition energy",
+        "Wulff shape",
+        "nanoparticle formation energy"
+      ],
+      "available_fields": [
+        "material_id",
+        "slab",
+        "intermediate",
+        "energy",
+        "gamma",
+        "eta",
+        "EPBX",
+        "GNP_f"
+      ],
+      "availability": "public",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "In this work, we interpolated a database of the total energy predictions for all slabs and OER surface intermediates for 4119 oxide materials in the original OC22 dataset using pre-trained models from the OC22 framework.",
+          "page": 1,
+          "section": "Introduction",
+          "inferred": false
+        },
+        {
+          "text": "Using the previously developed ML models, we systematically extrapolated the total DFT energy of all terminations for all facets up to a MMI = 1 for all 4119 materials considered in this study.",
+          "page": 5,
+          "section": "Results and discussion",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "materials_project",
+      "usage_role": "source",
+      "purpose": "Obtain bulk oxide materials for slab construction.",
+      "used_fields": [
+        "structure",
+        "formula"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [
+        "unit cell < 100 atoms"
+      ],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The bulk materials used for slab construction in this study were obtained from the Materials Project.",
+          "page": 2,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "oc20",
+      "usage_role": "pretraining",
+      "purpose": "Train the S2EF-Total model before fine-tuning on OC22.",
+      "used_fields": [
+        "structure",
+        "energy",
+        "forces"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 1281040,
+      "evidence": [
+        {
+          "text": "The entirety of the Open Catalyst 2020 (OC20) dataset (1281040 DFT relaxations) was used to train an S2EF-Total model",
+          "page": 2,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "oc22",
+      "usage_role": "training",
+      "purpose": "Fine-tune the pre-trained S2EF-Total model to better predict total energies of oxide surfaces and surface intermediates.",
+      "used_fields": [
+        "structure",
+        "energy",
+        "forces",
+        "intermediates"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 62331,
+      "evidence": [
+        {
+          "text": "The entirety of the Open Catalyst 2020 (OC20) dataset (1281040 DFT relaxations) was used to train an S2EF-Total model which was subsequently fine-tuned with the OC22 dataset (62331 DFT relaxations) to better predict the total energies of oxide surfaces and surface intermediates.",
+          "page": 2,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "interpolated_oc22_oxide_db",
+      "usage_role": "candidate_pool",
+      "purpose": "Provide total energy predictions for all slabs and OER surface intermediates for 4119 oxide materials to enable high-throughput screening.",
+      "used_fields": [
+        "energy",
+        "eta",
+        "EPBX",
+        "GNP_f",
+        "gamma"
+      ],
+      "is_derived": true,
+      "construction_method": "ML interpolation using fine-tuned OC22 S2EF-Total model",
+      "filter_conditions": [
+        "4119 oxide materials observed in OC22 training set",
+        "facets up to maximum Miller index of 1",
+        "all terminations",
+        "O*, OH*, OOH* surface intermediates"
+      ],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "In this work, we interpolated a database of the total energy predictions for all slabs and OER surface intermediates for 4119 oxide materials in the original OC22 dataset using pre-trained models from the OC22 framework.",
+          "page": 1,
+          "section": "Introduction",
+          "inferred": false
+        },
+        {
+          "text": "Using the previously developed ML models, we systematically extrapolated the total DFT energy of all terminations for all facets up to a MMI = 1 for all 4119 materials considered in this study.",
+          "page": 5,
+          "section": "Results and discussion",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "interpolated_oc22_oxide_db",
+      "usage_role": "screening",
+      "purpose": "Screen candidates using progressive criteria including Pourbaix stability, Wulff shape analysis, overpotential assessment, energy above hull, and material cost.",
+      "used_fields": [
+        "eta",
+        "EPBX",
+        "gamma",
+        "Ehull",
+        "material_cost"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [
+        "η < 0.75 V",
+        "EPBX ≤ 0.5 eV per atom",
+        "Ehull ≤ 0.1 eV per atom",
+        "material cost < $8346 per kg"
+      ],
+      "sample_count": 190,
+      "evidence": [
+        {
+          "text": "Fig. 5 summarizes the selection criteria that we employed to screen for candidate electrocatalysts for OER. The first criteria in our high-throughput screening framework was to determine if a material exists in the original training dataset of OC22. ... The second criterion describes the Pourbaix stability, i.e., the electrochemical stability of a material in aqueous environment. ... The third selection criterion ... assesses the surface energy ... to construct the Wulff shape ... The fourth criterion assesses the overpotential ... The fifth criterion assesses the thermodynamic stability ... The final criterion assesses the material cost ...",
+          "page": 6,
+          "section": "Results and discussion",
+          "inferred": false
+        },
+        {
+          "text": "In total we have identified 190 candidates (122 bulk – and 68 nanostable) with 145 distinct chemical systems when considering all the different screening frameworks listed in Table 2.",
+          "page": 8,
+          "section": "Results and discussion",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 6,
+      "dataset_key": "interpolated_oc22_oxide_db",
+      "usage_role": "computational_validation",
+      "purpose": "Validate ML-predicted Gibbs adsorption energies and overpotentials using DFT calculations.",
+      "used_fields": [
+        "eta",
+        "ΔGads"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [
+        "33 Pourbaix stable compounds",
+        "85 values for Gibbs adsorption energy"
+      ],
+      "sample_count": 85,
+      "evidence": [
+        {
+          "text": "We used DFT to validate 85 values for Gibbs adsorption energy corresponding to eqn (6)–(8) for 33 Pourbaix stable compounds in our database.",
+          "page": 8,
+          "section": "Results and discussion",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

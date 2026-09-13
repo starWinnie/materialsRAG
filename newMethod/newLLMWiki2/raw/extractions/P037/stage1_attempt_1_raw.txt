@@ -1,0 +1,160 @@
+{
+  "paper": {
+    "title": "Assessing data-driven predictions of band gap and electrical conductivity for transparent conducting materials",
+    "year": 2025,
+    "doi": "10.1039/d5dd00010f",
+    "research_summary": "This paper proposes a data-driven framework to accelerate the discovery of new transparent conducting materials (TCMs) by predicting band gap and electrical conductivity from stoichiometry alone. To address data scarcity, the authors create and validate two experimental datasets: one for room-temperature electrical conductivity and another for band gap. They evaluate state-of-the-art ML models (Random Forest and CrabNet) using bespoke evaluation schemes—including K-fold, Leave-One-Cluster-Out Cross-Validation (LOCO-CV), and a novel 'leave-one-TCM-family-out' method—to assess extrapolation capability for identifying previously unseen TCM families. Finally, they apply the best-performing model to screen a list of 55 compositions sourced from MPDS, Pearson, and ICSD databases to identify promising new TCM candidates."
+  },
+  "task": {
+    "task_name_raw": "accelerating the discovery of new transparent conducting materials (TCMs)",
+    "task_name_canonical": "accelerate_discovery_of_transparent_conducting_materials",
+    "objective": "accelerate the discovery of new transparent conducting materials (TCMs)",
+    "material_scope": ["transparent conducting materials (TCMs)", "semiconductors", "oxides", "doped metal oxides"],
+    "target_properties": ["electrical conductivity", "band gap"],
+    "constraints": ["high electrical conductivity", "low absorption in visible light", "band gap > 3 eV", "conductivity > 10^2 S cm^-1"],
+    "input_requirements": ["stoichiometry alone", "chemical formulas"],
+    "output_goal": ["identify new TCM candidates compositionally similar to known TCMs but previously overlooked"],
+    "evidence": [
+      {
+        "text": "Here, we propose a data-driven framework aimed at accelerating the discovery of new transparent conducting materials (TCMs), an important category of semiconductors with a wide range of applications.",
+        "page": 1,
+        "section": "Introduction",
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "creating and validating experimental databases",
+      "stage_order": 1,
+      "stage_goal": "create and validate unique experimental databases comprising several examples of existing TCMs to mitigate data shortage",
+      "stage_input": [],
+      "stage_output": ["electrical conductivity dataset", "band gap dataset"],
+      "evidence": [
+        {
+          "text": "To mitigate the shortage of available data, we create and validate unique experimental databases, comprising several examples of existing TCMs.",
+          "page": 1,
+          "section": "Introduction",
+          "inferred": false
+        },
+        {
+          "text": "To address the shortage of available data, we create and validate databases of chemical formulas reporting experimental room-temperature conductivity and band gap measurements.",
+          "page": 2,
+          "section": "Related work",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_preparation",
+      "stage_name_raw": "preprocessing raw conductivity and band gap data",
+      "stage_order": 2,
+      "stage_goal": "process raw data to remove unphysical entries, ensure wide chemistry coverage, and balance metals/non-metals",
+      "stage_input": ["raw conductivity data from MPDS and UCSB", "raw band gap data from ref. 22"],
+      "stage_output": ["processed conductivity dataset (8034 entries)", "processed band gap dataset (4732 entries)"],
+      "evidence": [
+        {
+          "text": "Several preprocessing steps were conducted on the raw data. Initially, we excluded all pure elements and noble gases and selected all chemical formulas reported within a window of room temperature (298 ± 5 K), reducing the dataset to 14 307 entries.",
+          "page": 3,
+          "section": "Electrical conductivity dataset",
+          "inferred": false
+        },
+        {
+          "text": "Preprocessing steps were applied to the raw data. Specifically, we excluded groups of duplicated formulas with band gap measurements having a standard deviation greater than 0.1 eV.",
+          "page": 4,
+          "section": "Band gap dataset",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "label_generation",
+      "stage_name_raw": "validating conductivity and band gap measurements via expert review and nonsense-detection",
+      "stage_order": 3,
+      "stage_goal": "ensure accuracy of reported conductivity and band gap measurements alongside correctness of chemical formulas",
+      "stage_input": ["processed conductivity and band gap datasets"],
+      "stage_output": ["validated conductivity dataset (8231 entries)", "validated band gap dataset (4767 entries)"],
+      "evidence": [
+        {
+          "text": "At this stage, we performed a meticulous validation, which involved a line-by-line review of the obtained data by domain experts, referring back to the original literature on suspicious entries, to ensure the accuracy of the reported conductivity measurements, alongside the correctness of the corresponding chemical formulas.",
+          "page": 3,
+          "section": "Electrical conductivity dataset",
+          "inferred": false
+        },
+        {
+          "text": "To facilitate the validation process, automated nonsense-detection strategies were implemented to systematically identify anomalous conductivity measurements associated to the reported material entries.",
+          "page": 3,
+          "section": "Electrical conductivity dataset",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "training state-of-the-art ML models on validated datasets",
+      "stage_order": 4,
+      "stage_goal": "train Random Forest and CrabNet models on stoichiometry to predict conductivity and band gap",
+      "stage_input": ["validated conductivity dataset", "validated band gap dataset", "Magpie descriptors", "Mat2vec embeddings"],
+      "stage_output": ["trained RF model", "trained CrabNet model"],
+      "evidence": [
+        {
+          "text": "We utilize the obtained data to train state-of-the-art (SOTA) ML models that leverage the stoichiometry of input materials...",
+          "page": 2,
+          "section": "Related work",
+          "inferred": false
+        },
+        {
+          "text": "Specifically, in our experiments we adopt Random Forest (RF) with CBFVs obtained from Magpie descriptors, and CrabNet paired with Mat2vec embeddings.",
+          "page": 5,
+          "section": "Models",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "assessing model performance using bespoke evaluation schemes",
+      "stage_order": 5,
+      "stage_goal": "empirically measure the ability of ML to uncover new, previously unseen TCM families",
+      "stage_input": ["trained models", "validated datasets"],
+      "stage_output": ["K-fold results", "LOCO-CV results", "leave-one-TCM-family-out results", "family-discovery-rate (FDR)"],
+      "evidence": [
+        {
+          "text": "We propose a bespoke evaluation scheme to provide empirical evidence on the ability of ML to uncover new, previously unseen materials of interest.",
+          "page": 1,
+          "section": "Introduction",
+          "inferred": false
+        },
+        {
+          "text": "We empirically measure the ability of ML models to identify new classes of TCMs through a bespoke evaluation method.",
+          "page": 2,
+          "section": "Related work",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_screening",
+      "stage_name_raw": "screening 55 compositions from MPDS, Pearson, and ICSD databases",
+      "stage_order": 6,
+      "stage_goal": "test the framework on a list of 55 experimentally-reported chemical compositions to identify materials likely to display TCM characteristics",
+      "stage_input": ["list of 55 compositions", "trained CrabNet model"],
+      "stage_output": ["ranked candidate materials", "figure of merit (FM) scores", "risk-adjusted figure of merit (Fstd-adj_M)"],
+      "evidence": [
+        {
+          "text": "We test our approach on a list of 55 compositions containing typical elements of known TCMs.",
+          "page": 1,
+          "section": "Introduction",
+          "inferred": false
+        },
+        {
+          "text": "To assess ML models' effectiveness in identifying TCMs, a search was conducted in the Pearson's Crystallographic Database, MPDS and ICSD... We end up with a final list comprising 55 compositions shown in Table 4.",
+          "page": 11,
+          "section": "Testing the search for new TCMs",
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

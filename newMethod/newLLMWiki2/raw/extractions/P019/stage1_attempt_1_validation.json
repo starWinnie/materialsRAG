@@ -1,0 +1,7 @@
+{
+  "attempt": 1,
+  "errors": [
+    "task.output_goal must be a list of strings"
+  ],
+  "exception": null
+}

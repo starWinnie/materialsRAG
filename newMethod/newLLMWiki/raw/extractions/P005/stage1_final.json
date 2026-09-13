@@ -1,0 +1,254 @@
+{
+  "paper": {
+    "title": "Predicting thermodynamic stability of inorganic compounds using ensemble machine learning based on electron configuration",
+    "year": 2025,
+    "doi": "10.1038/s41467-024-55525-y",
+    "research_summary": "This paper proposes an ensemble machine learning framework—Electron Configuration models with Stacked Generalization (ECSG)—to predict the thermodynamic stability of inorganic compounds. ECSG integrates three base-level models grounded in distinct domain knowledge: Magpie (atomic properties), Roost (interatomic interactions), and ECCNN (electron configuration). The framework uses stacked generalization to combine their outputs into a meta-level model, achieving high predictive accuracy (AUC = 0.988 on JARVIS) and exceptional sample efficiency (requiring only 1/7 the data of existing models). It is validated across multiple databases (MP, OQMD, JARVIS), applied to unknown composition spaces (perovskite halides, Li-containing oxides, transition metal oxides), and deployed in two case studies: discovery of 2D wide bandgap semiconductors and double perovskite oxides—both confirmed via first-principles DFT calculations."
+  },
+  "task": {
+    "task_name_raw": "Predicting thermodynamic stability of inorganic compounds",
+    "task_name_canonical": "predict_thermodynamic_stability_of_inorganic_compounds",
+    "objective": "Accurately predict whether an inorganic compound is thermodynamically stable or unstable",
+    "material_scope": [
+      "inorganic compounds",
+      "perovskite halides",
+      "Li-containing oxides",
+      "transition metal oxides",
+      "two-dimensional materials",
+      "double perovskite oxides"
+    ],
+    "target_properties": [
+      "thermodynamic stability"
+    ],
+    "constraints": [
+      "compounds must be inorganic crystalline",
+      "stability defined by decomposition energy ΔHd < 0 meV/atom"
+    ],
+    "input_requirements": [
+      "chemical formula (composition)",
+      "electron configuration of constituent elements",
+      "atomic properties",
+      "interatomic interaction features"
+    ],
+    "output_goal": [
+      "binary classification: stable vs. unstable",
+      "probability score of stability"
+    ],
+    "evidence": [
+      {
+        "text": "Machine learning offers a promising avenue for expediting the discovery of new compounds by accurately predicting their thermodynamic stability.",
+        "page": 1,
+        "section": null,
+        "inferred": false
+      },
+      {
+        "text": "The thermodynamic stability of materials is typically represented by the decomposition energy (ΔHd)6, which is defined as the total energy difference between a given compound and competing compounds in a specific chemical space.",
+        "page": 2,
+        "section": null,
+        "inferred": false
+      },
+      {
+        "text": "Compounds with a ΔHd below 0 meV/atom were considered stable and are labeled accordingly.",
+        "page": 11,
+        "section": "Methods",
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "Collecting thermodynamic stability data from DFT-computed databases",
+      "stage_order": 1,
+      "stage_goal": "Acquire labeled stability data for training and evaluation",
+      "stage_input": [
+        "DFT-computed datasets (MP, OQMD, JARVIS)"
+      ],
+      "stage_output": [
+        "dataset of inorganic compounds with stability labels"
+      ],
+      "evidence": [
+        {
+          "text": "In this work, we compared the performance of various models in predicting the stability of inorganic compounds on three large DFT-computed datasets, MP, OQMD, and JARVIS.",
+          "page": 11,
+          "section": "Methods",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_preparation",
+      "stage_name_raw": "Preprocessing composition and encoding electron configuration",
+      "stage_order": 2,
+      "stage_goal": "Transform raw chemical formulas into structured inputs suitable for ML models",
+      "stage_input": [
+        "chemical formulas",
+        "elemental identities",
+        "atomic counts"
+      ],
+      "stage_output": [
+        "encoded input matrices for ECCNN (118 × 168 × 8)",
+        "statistical atomic features for Magpie",
+        "graph representations for Roost"
+      ],
+      "evidence": [
+        {
+          "text": "The input of ECCNN is a matrix with shape of 118 × 168 × 8, which is encoded by the EC of materials.",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "The construction of the features for ECCNN is illustrated in Fig. 8. The first step involves identifying the categories of elements in the compound. As shown in Fig. 8a, elements oxygen and aluminum are identified from the compound Al2O3. To represent the number of electrons in each subshell, one-hot encoding is employed, as displayed in Fig. 8b.",
+          "page": 12,
+          "section": "Base-level models",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "label_generation",
+      "stage_name_raw": "Assigning stability labels based on decomposition energy thresholds",
+      "stage_order": 3,
+      "stage_goal": "Generate binary stability labels from DFT-derived ΔHd values",
+      "stage_input": [
+        "decomposition energy (ΔHd) values from MP/OQMD/JARVIS"
+      ],
+      "stage_output": [
+        "binary labels: stable (ΔHd < 0 meV/atom) or unstable"
+      ],
+      "evidence": [
+        {
+          "text": "Compounds with a ΔHd below 0 meV/atom were considered stable and are labeled accordingly.",
+          "page": 11,
+          "section": "Methods",
+          "inferred": false
+        },
+        {
+          "text": "we slightly relax the threshold restriction when classifying materials stability. Consequently, we utilize thresholds of 25 meV/atom and 40 meV/atom to assign stability labels in the data set.",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "Training base-level models (Magpie, Roost, ECCNN) and meta-level model (MLR)",
+      "stage_order": 4,
+      "stage_goal": "Train individual base models and then train a meta-level model to combine their predictions",
+      "stage_input": [
+        "preprocessed input features",
+        "binary stability labels"
+      ],
+      "stage_output": [
+        "trained Magpie, Roost, ECCNN models",
+        "trained multi-response linear regression (MLR) meta-model"
+      ],
+      "evidence": [
+        {
+          "text": "We utilized a highly effective ensemble technique called SG to combine the predictions from these individual models for forecasting the thermodynamic stability of materials.",
+          "page": 12,
+          "section": "Model training",
+          "inferred": false
+        },
+        {
+          "text": "The base-level models include ECCNN, Roost, and Magpie, denoted as f 1, f 2, and f 3. The meta-level model is a multi-response linear regression (MLR), denoted as F.",
+          "page": 12,
+          "section": "Model training",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "Benchmarking model performance using multiple metrics",
+      "stage_order": 5,
+      "stage_goal": "Quantitatively assess predictive performance across datasets and metrics",
+      "stage_input": [
+        "test sets from MP, OQMD, JARVIS",
+        "predictions from ECSG and baselines"
+      ],
+      "stage_output": [
+        "AUC, ACC, Precision, Recall, F1, NPV, AUPR scores"
+      ],
+      "evidence": [
+        {
+          "text": "All models were trained using data sourced from the MP dataset, as detailed in the Methods section. We include several metrics, Area Under the receiver operating characteristic Curve (AUC), accuracy (ACC), Precision, Recall, F1-score (F1), negative predictive values (NPV), and Area Under the Precision-Recall curve (AUPR), to provide a more comprehensive evaluation.",
+          "page": 4,
+          "section": "Performance benchmarking against existing models",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_generation",
+      "stage_name_raw": "Enumerating candidate compounds in unexplored composition space",
+      "stage_order": 6,
+      "stage_goal": "Systematically generate candidate materials for stability prediction",
+      "stage_input": [
+        "element lists (e.g., metals up to Bi)",
+        "perovskite stoichiometric templates (ABO3, A2BB′O6, etc.)"
+      ],
+      "stage_output": [
+        "4,524,608 unique perovskite oxide candidates"
+      ],
+      "evidence": [
+        {
+          "text": "We constructed the candidate space of perovskites by enumerating all possible ABO3, A2BB′O6, AA′B2O6, and AA′BB′O6 compounds. In this process, we considered all metal elements up to Bi, resulting in a total of 67 different types of cations that could occupy A-sites or B-sites. This lead to P(67, 2) = 4422 possible ABO3 type perovskites. For A2BB′O6, AA′B2O6, and AA′BB′O6 type perovskites, there were 143,715, 143,715, and 4,598,880 potential combinations, respectively. After filtering for charge neutrality, 4,524,608 unique compounds remained, forming the candidate composition space.",
+          "page": 10,
+          "section": null,
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_screening",
+      "stage_name_raw": "Applying ECSG to rank and filter candidate compounds by predicted stability probability",
+      "stage_order": 7,
+      "stage_goal": "Prioritize candidates most likely to be thermodynamically stable",
+      "stage_input": [
+        "candidate composition list",
+        "trained ECSG model"
+      ],
+      "stage_output": [
+        "1,877,443 compounds predicted stable (probability > 0.5)"
+      ],
+      "evidence": [
+        {
+          "text": "By setting the cutoff probability to 0.5, we identified 1,877,443 perovskite oxides predicted to be stable, substantially narrowing down our search range.",
+          "page": 10,
+          "section": null,
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "computational_validation",
+      "stage_name_raw": "Validating predictions via first-principles DFT calculations",
+      "stage_order": 8,
+      "stage_goal": "Confirm stability predictions using ab initio energy computations",
+      "stage_input": [
+        "top-ranked candidate compounds",
+        "VASP DFT framework"
+      ],
+      "stage_output": [
+        "DFT-calculated decomposition energies and convex hull stability assessments"
+      ],
+      "evidence": [
+        {
+          "text": "We randomly selected 35 compounds with stability probabilities greater than 90% (63 in total) for first-principles calculations to validate the accuracy of our machine-learning method.",
+          "page": 10,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "The total energy calculations in this study were performed using the DFT framework as implemented in the Vienna ab initio simulation package (VASP)... To construct the convex hull for each set of elements comprising A-A′-B-B′-O, the total energy data of all compounds in the MP database was considered and extracted using the database API.",
+          "page": 13,
+          "section": "First principles calculation",
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

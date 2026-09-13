@@ -1,0 +1,37 @@
+[
+  {
+    "task_description": "Predicting equilibrium crystal structures directly from unrelaxed initial configurations in milliseconds per structure, without iterative optimization, to enable scalable and trustworthy pre-relaxation for downstream property calculations and large-scale virtual screening.",
+    "task_tags": [
+      "crystal structure relaxation",
+      "geometric prediction",
+      "pre-relaxation"
+    ],
+    "datasets": [
+      {
+        "db_title": "X-Mn-O dataset",
+        "db_description": "A hypothetical elemental substitution database derived from the Materials Project, containing 28,579 pairs of unrelaxed and DFT-relaxed crystal structures of ternary oxides (e.g., Sr4Mn2O6, Ba1Mn4O8) formed by substituting X elements (Mg, Ca, Ba, Sr) into Mn-O prototypes. Each pair includes full atomic coordinates, lattice parameters, and cell volumes for both states. It is used to train and benchmark DeepRelax’s ability to predict relaxed geometries with high accuracy, especially for structures exhibiting large deviations from equilibrium.",
+        "db_link": "https://zenodo.org/records/8081655"
+      },
+      {
+        "db_title": "Materials Project (MP) dataset",
+        "db_description": "A large-scale computational materials database containing 62,724 DFT-validated structure pairs (initial and fully relaxed), spanning 89 elements and 62,783 compounds, with structural snapshots captured during relaxation. The dataset provides comprehensive ground-truth atomic coordinates, lattice matrices, and cell volumes. It is used to train DeepRelax for universal applicability across diverse chemistries and crystal symmetries, and to evaluate robustness on structures where initial configurations are often close to relaxed states.",
+        "db_link": "https://figshare.com/articles/dataset/MPF_2021_2_8/19470599"
+      },
+      {
+        "db_title": "Computational 2D Materials Database (C2DB)",
+        "db_description": "A database of 11,581 pairs of initial and DFT-relaxed 2D crystal structures covering 62 elements, including monolayers and bilayers. Each entry contains full Cartesian coordinates, lattice vectors, and cell metrics for both unrelaxed and relaxed states. It is used to evaluate DeepRelax’s transfer learning capability—where a model pre-trained on 3D MP data is fine-tuned—to assess generalization to low-dimensional materials without requiring energy/force labels.",
+        "db_link": "https://cmr.fysik.dtu.dk/c2db/c2db.html"
+      },
+      {
+        "db_title": "MoS2 defect dataset",
+        "db_description": "A collection of 5,933 MoS2 supercell configurations (8×8) with neutral point defects, curated by Huang et al., providing unrelaxed and DFT-relaxed structures. It includes atomic positions and lattice parameters for each defect configuration. This dataset is used to test DeepRelax’s robustness to structural imperfections and validate its performance on defective crystals—critical for realistic materials modeling—via MAE analysis and DFT residual-step reduction.",
+        "db_link": "https://research.constructor.tech/p/2d-defects-prediction"
+      },
+      {
+        "db_title": "Layered van der Waals (vdW) crystals dataset",
+        "db_description": "An in-house dataset of 58 layered vdW crystals (e.g., graphite, h-BN analogs) covering 29 elements, each with unrelaxed, DFT-D3-relaxed, and DeepRelax-predicted structures. It includes interlayer distances, intra-layer bond lengths, and lattice parameters. Used to demonstrate DeepRelax’s transferability to weakly bonded systems where interlayer relaxation dominates, validating predictions via interlayer distance MAE and bond-length error analysis.",
+        "db_link": "None"
+      }
+    ]
+  }
+]

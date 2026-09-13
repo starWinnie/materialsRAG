@@ -1,0 +1,136 @@
+{
+  "paper": {
+    "title": "Probing out-of-distribution generalization in machine learning for materials",
+    "year": 2025,
+    "doi": "10.1038/s43246-024-00731-w",
+    "research_summary": "This paper systematically evaluates the out-of-distribution (OOD) generalization capabilities of various machine learning models across over 700 OOD tasks derived from three large ab initio materials databases (JARVIS, Materials Project, OQMD). It challenges the validity of heuristic-based OOD task definitions (e.g., leave-one-element-out, leave-one-space-group-out) by showing that most such tasks are not truly challenging—test data often reside within the representational domain of the training data (i.e., interpolation), not outside it (i.e., extrapolation). The study reveals that robust OOD performance is common even for simple models like XGBoost, and that neural scaling laws (improvement with larger training sets or longer training) fail for representationally OOD tasks, sometimes worsening performance. It introduces a representation-space-based method (using UMAP and kernel density estimation) to distinguish statistically OOD from representationally OOD test data, arguing that only the latter constitute genuinely challenging benchmarks."
+  },
+  "task": {
+    "task_name_raw": "Probing out-of-distribution generalization in machine learning for materials",
+    "task_name_canonical": "probing_ood_generalization",
+    "objective": "To systematically examine the performance of various ML methods across over 700 OOD tasks within large materials datasets and identify what constitutes a truly challenging OOD task.",
+    "material_scope": ["inorganic crystalline solids"],
+    "target_properties": ["formation energy", "band gap", "bulk modulus"],
+    "constraints": ["tasks must have at least 200 test samples", "exclusion criteria based on chemistry (element, period, group) or structural symmetry (space group, point group, crystal system)"],
+    "input_requirements": ["ab initio-derived materials databases (JARVIS, Materials Project, OQMD)", "materials representations (embeddings or descriptors)"],
+    "output_goal": ["quantitative assessment of OOD generalization performance (MAE, R2)", "identification of representationally OOD vs. ID test data", "characterization of scaling behavior (training time, training set size) for OOD tasks"],
+    "evidence": [
+      {
+        "text": "In this work, we conduct a systematic examination of the performance of various ML methods across over 700 OOD tasks within large materials datasets. These tasks are speciﬁcally designed to challenge common heuristics based on chemistry or structural symmetry.",
+        "page": 2,
+        "section": "Results",
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "Selection of ab initio-derived materials databases",
+      "stage_order": 1,
+      "stage_goal": "To obtain large, diverse, and physically consistent materials datasets for robust OOD evaluation.",
+      "stage_input": [],
+      "stage_output": ["JARVIS dataset", "Materials Project (MP) dataset", "Open Quantum Materials Database (OQMD) dataset"],
+      "evidence": [
+        {
+          "text": "Three ab initio-derived materials databases have been selected for this evaluation: Joint Automated Repository for Various Integrated Simulations (JARVIS)29,30, Materials Project (MP)31, and the Open Quantum Materials Database (OQMD)32.",
+          "page": 2,
+          "section": "Evaluation setup",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_preparation",
+      "stage_name_raw": "Preprocessing and splitting for OOD tasks",
+      "stage_order": 2,
+      "stage_goal": "To construct statistically OOD train-test splits based on predefined chemical or structural criteria.",
+      "stage_input": ["JARVIS, MP, OQMD datasets"],
+      "stage_output": ["Over 700 OOD tasks (e.g., leave-one-element-out, leave-one-period-out, leave-one-space-group-out)"],
+      "evidence": [
+        {
+          "text": "We primarily consider six criteria for deﬁning OOD test data: (1) materials containing element X, (2) materials containing any element in the period X, (3) materials containing any element in the group X, (4) materials of space group X, (5) materials of point group X, (6) materials of crystal system X. We consider these leave-one-X-out tasks for all possible values of X but exclude those with fewer than 200 test samples.",
+          "page": 2,
+          "section": "Evaluation setup",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "Training representative ML models on each OOD task",
+      "stage_order": 3,
+      "stage_goal": "To fit multiple ML architectures (tree ensembles, neural networks, GNNs, LLMs) on the training split of each OOD task using consistent hyperparameters.",
+      "stage_input": ["OOD training splits", "Matminer descriptors", "GMP features", "crystal graphs", "crystal text descriptions"],
+      "stage_output": ["Trained RF, XGB, ALIGNN, GMP, LLM-Prop models per task"],
+      "evidence": [
+        {
+          "text": "OOD performance is evaluated by training a representative set of ML models, including (1) random forest (RF)33 and XGBoost (XGB)34 models with Matminer descriptors35. (2) single neural network with Gaussian multipole (GMP) expansion on electron density36 (3) atomistic line graph neural network(ALIGNN)37,and (4) the large language model (LLM) based LLM-Prop with crystal text descriptions38.",
+          "page": 2,
+          "section": "Evaluation setup",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "Evaluating OOD performance with MAE and R2",
+      "stage_order": 4,
+      "stage_goal": "To quantify generalization performance on the OOD test set using complementary metrics.",
+      "stage_input": ["Trained models", "OOD test splits"],
+      "stage_output": ["MAE scores", "R2 scores", "parity plots", "performance rankings per task"],
+      "evidence": [
+        {
+          "text": "We utilize two complementary performance metrics: mean absolute error (MAE) and coefﬁcient of determination (R2). While MAE measures the expected error on the original physical scale, its interpretation can be scale-dependent and less intuitive for assessing the goodness of predictions. In contrast, R2 is a dimensionless accuracy measure...",
+          "page": 2,
+          "section": "Chemistry-based OOD generalization",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "computational_validation",
+      "stage_name_raw": "Inspecting materials representations via UMAP and kernel density estimation",
+      "stage_order": 5,
+      "stage_goal": "To distinguish statistically OOD from representationally OOD test data by projecting materials into learned or hand-crafted representation spaces and estimating training data density.",
+      "stage_input": ["Model embeddings (ALIGNN, GMP)", "Tree ensemble descriptors (XGB)", "UMAP parameters", "kernel density estimation"],
+      "stage_output": ["UMAP projections", "density estimates for test points", "classification of test data as representationally ID or OOD"],
+      "evidence": [
+        {
+          "text": "To reconcile this apparent contradiction, we propose to inspect materials not from the perspective of a single human-deﬁned attribute (e.g., element identity), but from the high-dimensional representation space of materials. Furthermore, we propose to deﬁne and distinguish two types of OOD. A test set is considered statistically OOD if the statistical distribution of one or more attributes differs from the training set, whereas a test set is considered representationally OOD if the test data are outside the region of the training set when viewed from the high-dimensional representation space.",
+          "page": 5,
+          "section": "Inspecting materials representations",
+          "inferred": false
+        },
+        {
+          "text": "Uniform Manifold Approximation and Projection (UMAP)48 is used to project the high-dimensional materials representations to a two-dimensional plane. For deep learning models, materials representations (embeddings) are automatically learned during the training; embeddings of new materials can then be derived by using the trained models.",
+          "page": 5,
+          "section": "Inspecting materials representations",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "computational_validation",
+      "stage_name_raw": "Analyzing learning curves for training time and training set size",
+      "stage_order": 6,
+      "stage_goal": "To empirically test neural scaling laws on representationally ID vs. OOD tasks by varying training effort.",
+      "stage_input": ["Trained models", "OOD tasks", "varying training epochs", "varying training set sizes"],
+      "stage_output": ["Learning curves (MAE vs. training time/size)", "identification of beneficial, marginal, or adverse scaling effects"],
+      "evidence": [
+        {
+          "text": "Learning curves for out-of-distribution generalization Domain identiﬁcation in the materials representation space is important in correctly interpreting the beneﬁts of the neural scaling strategy for materials discovery applications. This strategy is based on the so-called neural scaling laws, where test errors can be consistently reduced by increasing model size, dataset size, and the amount of compute used for training deep learning models.",
+          "page": 5,
+          "section": "Learning curves for out-of-distribution generalization",
+          "inferred": false
+        },
+        {
+          "text": "Figure 5a–c shows the learning curves of MAE versus training time in the leave-one-element-out tasks for F, O,and H.",
+          "page": 5,
+          "section": "Learning curves for out-of-distribution generalization",
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,196 @@
+{
+  "paper": {
+    "title": "Hierarchy-boosted funnel learning for identifying semiconductors with ultralow lattice thermal conductivity",
+    "year": 2025,
+    "doi": "10.1038/s41524-025-01583-9",
+    "research_summary": "The paper proposes a hierarchy-boosted funnel learning (HiBoFL) framework integrating unsupervised and supervised learning to efficiently identify semiconductors with ultralow lattice thermal conductivity (κL), circumventing large-scale brute-force ab initio calculations. It uses unsupervised clustering to narrow the search space from ~2675 materials to 704, performs low-cost high-throughput calculations (HTC) using the PET model on the reduced set to label κL, builds a local database, and trains an interpretable CatBoost classifier to predict ultralow κL. The work yields candidate materials (e.g., Cs2SnSe3, Cs2GeSe3) and discovers a new structural descriptor (Lmin) governing anharmonicity and phonon lifetime."
+  },
+  "task": {
+    "task_name_raw": "identifying semiconductors with ultralow lattice thermal conductivity",
+    "task_name_canonical": "identify_semiconductors_with_ultralow_lattice_thermal_conductivity",
+    "objective": "Identify semiconductors with ultralow lattice thermal conductivity (κL) for potential thermoelectric applications.",
+    "material_scope": ["semiconductors"],
+    "target_properties": ["ultralow lattice thermal conductivity (κL)"],
+    "constraints": ["thermodynamic stability (Ehull ≤ 0.05 eV/atom)", "band gap 0.1–2 eV", "unit cell atoms < 20", "elements per compound < 4", "exclude H, lanthanides, actinides"],
+    "input_requirements": ["chemical composition", "crystal structure"],
+    "output_goal": ["list of candidate semiconductors with ultralow κL", "interpretable descriptors governing κL"],
+    "evidence": [
+      {
+        "text": "Here, we propose a novel hierarchy-boosted funnel learning (HiBoFL) framework, which is successfully applied to identify semiconductors with ultralow lattice thermal conductivity (κL).",
+        "page": 1,
+        "section": null,
+        "inferred": false
+      },
+      {
+        "text": "We then apply this HiBoFL framework to efﬁciently identify semiconductors with ultralow κL as shown in Fig. 1b.",
+        "page": 2,
+        "section": "Results",
+        "inferred": false
+      },
+      {
+        "text": "As a compelling demonstration, this framework has been successfully applied to identify semiconductors with ultralow κL, which circumvents large-scale brute-force ab initio calculations without clear objectives.",
+        "page": 9,
+        "section": "Discussion",
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "obtaining material dataset from Materials Project database",
+      "stage_order": 1,
+      "stage_goal": "Acquire initial theoretical material dataset for screening.",
+      "stage_input": ["Materials Project database API"],
+      "stage_output": ["154,718 material entries"],
+      "evidence": [
+        {
+          "text": "Initially, we start by acquiring all the materials from the MP database based on its API, resulting in a total of 1,54,718 entries saved in a JSON ﬁle as the Python dictionary object.",
+          "page": 3,
+          "section": "Preliminary high-throughput screening",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_preparation",
+      "stage_name_raw": "preliminary high-throughput screening",
+      "stage_order": 2,
+      "stage_goal": "Filter raw dataset to generate first-level dataset of stable, semiconductor candidates.",
+      "stage_input": ["154,718 material entries"],
+      "stage_output": ["2675 three-dimensional crystal structures"],
+      "evidence": [
+        {
+          "text": "Ultimately, through excluding the materials containing hydrogen, lanthanides, and actinides, and conducting structural analysis, we further obtain 2675 three-dimensional (3D) crystal structures without calculation errors. These materials constitute the ﬁrst-level dataset for our in-depth investigations.",
+          "page": 3,
+          "section": "Preliminary high-throughput screening",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_generation",
+      "stage_name_raw": "unsupervised learning for clustering materials with similar κL",
+      "stage_order": 3,
+      "stage_goal": "Group first-level dataset into clusters based on compositional and structural similarity to identify problem-specific clusters likely to contain low-κL materials.",
+      "stage_input": ["2675 materials", "composition-based features ({E})", "structure-based features ({S})"],
+      "stage_output": ["seven clusters (C1–C7)", "problem-specific clusters C1 and C2 (704 materials)"],
+      "evidence": [
+        {
+          "text": "K-means clustering41,42 is then employed to identify materials with similar κL, which is visualized in a low-dimensional space using t-distributed stochastic neighbor embedding (t-SNE)43, and problem-speciﬁc clusters are selected based on similarity design rules to form the second-level dataset.",
+          "page": 3,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "Since the materials with a high likelihood of possessing relatively low κL tend to group into the two clusters of C1 and C2, the exploration scope for ﬁnding materials with low κL is reduced from 2675 materials to 704 materials, narrowing by approximately three-quarters. As a result, these two problem-speciﬁc clusters (C1 and C2) further constitute our second-level dataset.",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "computational_validation",
+      "stage_name_raw": "high-throughput calculation (HTC) of κL using PET model",
+      "stage_order": 4,
+      "stage_goal": "Assign property labels (κPET values at 300 K) to materials in C1 and C2 via low-cost computational estimation to establish labeled local database.",
+      "stage_input": ["704 materials from C1 and C2", "PET empirical equation"],
+      "stage_output": ["661 labeled materials with κPET values", "local MongoDB database"],
+      "evidence": [
+        {
+          "text": "Based on the PET empirical equation within the high-throughput framework, we derive the κPET values at 300 K ignoring the anisotropy for materials in the second-level dataset, while excluding structures that do not satisfy the mechanical stability criteria. The basic information and corresponding κPET values of the resulting 661 materials are then stored in a local database using MongoDB64, serving as a valuable repository to retrieve data and prioritize detailed theoretical and experimental investigations.",
+          "page": 4,
+          "section": "HTC of problem-speciﬁc clusters for statistical analysis and material discovery",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "label_generation",
+      "stage_name_raw": "labeling materials as ultralow/non-ultralow κL",
+      "stage_order": 5,
+      "stage_goal": "Generate binary labels for supervised learning by thresholding κPET values.",
+      "stage_input": ["661 κPET values"],
+      "stage_output": ["binary labels: 1 if κPET ≤ 2 W/mK (ultralow), 0 otherwise"],
+      "evidence": [
+        {
+          "text": "Here, materials with κPET not exceeding 2 W/mK are labeled as 1, which are considered to possess ultralow κL; otherwise, they are labeled as 0, signifying non-ultralow κL.",
+          "page": 7,
+          "section": "Interpretable supervised learning for predicting ultralow κL",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "training CatBoost classifier on labeled local database",
+      "stage_order": 6,
+      "stage_goal": "Train an interpretable supervised classification model to predict ultralow κL.",
+      "stage_input": ["661 labeled materials", "273 descriptors", "top 9 selected features"],
+      "stage_output": ["robust CatBoost classification model"],
+      "evidence": [
+        {
+          "text": "To avoid the curse of dimensionality, we perform feature selection using the model-based wrapper method and Pearson correlation method... As a result, the performances of the optimal CatBoost classification model are characterized by the ROC curve and the confusion matrix (Fig. 6b), showing its great ability in classifying semiconductors with ultralow κL due to the high ROC AUC (0.94), accuracy (0.90), precision (0.89), recall (0.90) and F1-score (0.89).",
+          "page": 7,
+          "section": "Interpretable supervised learning for predicting ultralow κL",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "evaluating CatBoost model performance",
+      "stage_order": 7,
+      "stage_goal": "Assess predictive accuracy and robustness of the trained classifier.",
+      "stage_input": ["CatBoost model", "test set"],
+      "stage_output": ["ROC AUC = 0.94", "accuracy = 0.90", "precision = 0.89", "recall = 0.90", "F1-score = 0.89"],
+      "evidence": [
+        {
+          "text": "As a result, the performances of the optimal CatBoost classification model are characterized by the ROC curve and the confusion matrix (Fig. 6b), showing its great ability in classifying semiconductors with ultralow κL due to the high ROC AUC (0.94), accuracy (0.90), precision (0.89), recall (0.90) and F1-score (0.89).",
+          "page": 7,
+          "section": "Interpretable supervised learning for predicting ultralow κL",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_screening",
+      "stage_name_raw": "screening candidate materials with ultralow κL",
+      "stage_order": 8,
+      "stage_goal": "Use trained model and statistical analysis to recommend candidate materials for thermoelectric applications.",
+      "stage_input": ["CatBoost model", "statistical analysis of κPET ≤ 2 W/mK materials"],
+      "stage_output": ["list of candidate materials (e.g., Cs2SnSe3, Cs2GeSe3)", "Table S2"],
+      "evidence": [
+        {
+          "text": "These materials also constitute a list of candidate materials with potential applications in the TE ﬁeld (Table S2), which undoubtedly prove that the problem-speciﬁc clusters we identiﬁed through unsupervised learning indeed contain a signiﬁcant number of materials with low thermal conductivity.",
+          "page": 5,
+          "section": "HTC of problem-speciﬁc clusters for statistical analysis and material discovery",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "experimental_validation",
+      "stage_name_raw": "verifying ultralow κL via first-principles BTE calculations",
+      "stage_order": 9,
+      "stage_goal": "Validate predicted ultralow κL values for top candidates using accurate ab initio methods.",
+      "stage_input": ["Cs2SnSe3", "Cs2GeSe3"],
+      "stage_output": ["precise κL values (< 0.25 W/mK at 300 K)", "phonon dispersion", "spectral κL(ω)", "phonon lifetime τ"],
+      "evidence": [
+        {
+          "text": "To further validate the results and conduct in-depth analysis of the phonon thermal transport mechanisms, we calculate more precise κL values according to ﬁrst-principles derived force constants and Boltzmann transport theory for the unreported materials Cs2SnSe3 and Cs2GeSe3, which are screened out based on the formula type ranking among the materials with the lowest κPET values.",
+          "page": 5,
+          "section": "HTC of problem-speciﬁc clusters for statistical analysis and material discovery",
+          "inferred": false
+        },
+        {
+          "text": "Moreover, these materials all exhibit intrinsically ultralow κL, with values all below 0.25 W/mK in any direction at 300 K, signiﬁcantly lower than the κL (~2.3 W/mK) of the traditional TE material PbTe71.",
+          "page": 5,
+          "section": "HTC of problem-speciﬁc clusters for statistical analysis and material discovery",
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

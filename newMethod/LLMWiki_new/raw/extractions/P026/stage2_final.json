@@ -1,0 +1,546 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "materials_project",
+      "canonical_name": "Materials Project",
+      "raw_names": [
+        "Materials Project",
+        "MP"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "inorganic crystalline materials",
+        "perovskites (e.g., SrTiO3)"
+      ],
+      "available_properties": [
+        "formation energy",
+        "band gap"
+      ],
+      "available_fields": [
+        "composition",
+        "crystal structure (CIF)",
+        "formation energy per atom",
+        "band gap"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We downloaded 125,619 cif files with material structures from the Materials Project database, which includes 89,354 materials with unique compositions.",
+          "page": 4,
+          "section": "Datasets generation",
+          "inferred": false
+        },
+        {
+          "text": "Materials databases such as Materials Project and OpenQuantumMaterials Database (OQMD)11,12 are characterized by the existence of many redundant (highly similar) materials...",
+          "page": 1,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "oqmd",
+      "canonical_name": "Open Quantum Materials Database",
+      "raw_names": [
+        "OpenQuantumMaterials Database",
+        "OQMD"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "inorganic crystalline materials"
+      ],
+      "available_properties": [],
+      "available_fields": [],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Materials databases such as Materials Project and OpenQuantumMaterials Database (OQMD)11,12 are characterized by the existence of many redundant (highly similar) materials...",
+          "page": 1,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 0.95
+    },
+    {
+      "dataset_key": "mp_composition_subset",
+      "canonical_name": "Materials Project composition subset",
+      "raw_names": [
+        "MP composition dataset",
+        "86,740 samples",
+        "86,741 samples"
+      ],
+      "dataset_type": "derived_subset",
+      "source_dataset_key": "materials_project",
+      "material_scope": [
+        "inorganic crystalline materials"
+      ],
+      "available_properties": [
+        "formation energy",
+        "band gap"
+      ],
+      "available_fields": [
+        "composition",
+        "formation energy",
+        "band gap"
+      ],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "We downloaded 125,619 cif files with material structures from the Materials Project database, which includes 89,354 materials with unique compositions. In cases where compositions corresponded to multiple polymorphs, we adopted average material property values by default, with the exception of formation energy property, for which we used the minimum value. Additionally, we excluded mp-101974 (HeSiO2) due to issues with calculating Matscholar features. After eliminating formulas with over 50 atoms, we obtained a non-duplicate composition dataset with 86,741 samples...",
+          "page": 4,
+          "section": "Datasets generation",
+          "inferred": false
+        },
+        {
+          "text": "We conducted experiments using datasets filtered by Mendeleev and Matscholar distances. We evaluated two state-of-the-art composition-based property prediction algorithms, Roost and CrabNet... on non-redundant datasets derived from the MP composition dataset with 86,740 samples...",
+          "page": 5,
+          "section": "Composition based material property prediction with redundancy control",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "mp_structure_subset",
+      "canonical_name": "Materials Project structure subset",
+      "raw_names": [
+        "123,108 crystal structures",
+        "125,619 crystal structures"
+      ],
+      "dataset_type": "derived_subset",
+      "source_dataset_key": "materials_project",
+      "material_scope": [
+        "inorganic crystalline materials"
+      ],
+      "available_properties": [
+        "formation energy",
+        "band gap"
+      ],
+      "available_fields": [
+        "crystal structure (CIF)",
+        "formation energy per atom",
+        "band gap"
+      ],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "To investigate the impact of redundancy control on structure-based material datasets, we utilized the Materials Project database of 123,108 crystal structures with their formation energy per atom and band gaps.",
+          "page": 5,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "mendeleev_nr",
+      "canonical_name": "Mendeleev-nr",
+      "raw_names": [
+        "Mendeleev-nr",
+        "Mendeleev non-redundant datasets"
+      ],
+      "dataset_type": "derived_subset",
+      "source_dataset_key": "mp_composition_subset",
+      "material_scope": [
+        "inorganic crystalline materials"
+      ],
+      "available_properties": [
+        "formation energy",
+        "band gap"
+      ],
+      "available_fields": [
+        "composition",
+        "formation energy",
+        "band gap"
+      ],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "For Mendeleev similarity, we used distance thresholds of 0.5, 0.8, 1, 1.5, 2, 2.5, and 3 to generate seven non-redundant datasets (Mendeleev-nr). The dataset sizes range from 86,740 to 3177.",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "matscholar_nr",
+      "canonical_name": "Matscholar-nr",
+      "raw_names": [
+        "Matscholar-nr",
+        "Matscholar non-redundant datasets"
+      ],
+      "dataset_type": "derived_subset",
+      "source_dataset_key": "mp_composition_subset",
+      "material_scope": [
+        "inorganic crystalline materials"
+      ],
+      "available_properties": [
+        "formation energy",
+        "band gap"
+      ],
+      "available_fields": [
+        "composition",
+        "formation energy",
+        "band gap"
+      ],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "Similarly, we generated eight Matscholar non-redundant datasets (Matscholar-nr) with percentages of the total range from 50.82% to 2.33%.",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "xrd_nr",
+      "canonical_name": "XRD-nr",
+      "raw_names": [
+        "XRD-nr",
+        "XRD non-redundant datasets"
+      ],
+      "dataset_type": "derived_subset",
+      "source_dataset_key": "mp_structure_subset",
+      "material_scope": [
+        "inorganic crystalline materials"
+      ],
+      "available_properties": [
+        "formation energy",
+        "band gap"
+      ],
+      "available_fields": [
+        "crystal structure (CIF)",
+        "formation energy per atom",
+        "band gap"
+      ],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "We also applied the MD-HIT-structure algorithm to all 125,619 structures and used different thresholds to generate seven XRD non-redundant datasets...",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "ofm_nr",
+      "canonical_name": "OFM-nr",
+      "raw_names": [
+        "OFM-nr",
+        "OFM non-redundant datasets"
+      ],
+      "dataset_type": "derived_subset",
+      "source_dataset_key": "mp_structure_subset",
+      "material_scope": [
+        "inorganic crystalline materials"
+      ],
+      "available_properties": [
+        "formation energy",
+        "band gap"
+      ],
+      "available_fields": [
+        "crystal structure (CIF)",
+        "formation energy per atom",
+        "band gap"
+      ],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "We also applied the MD-HIT-structure algorithm to all 125,619 structures and used different thresholds to generate eight OFM non-redundant datasets.",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "matscholar_ood",
+      "canonical_name": "MatscholarOOD test set",
+      "raw_names": [
+        "MatscholarOOD test set",
+        "MatscholarOOD"
+      ],
+      "dataset_type": "paper_specific",
+      "source_dataset_key": null,
+      "material_scope": [
+        "inorganic crystalline materials"
+      ],
+      "available_properties": [
+        "formation energy"
+      ],
+      "available_fields": [
+        "composition",
+        "formation energy"
+      ],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "We first selected 1000 OOD test samples to create the MatscholarOOD test set, based on the densities calculated using Matscholar features of compositions from the entire MP dataset...",
+          "page": 8,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "embedding_ood",
+      "canonical_name": "EmbeddingOOD test set",
+      "raw_names": [
+        "EmbeddingOOD test set",
+        "EmbeddingOOD"
+      ],
+      "dataset_type": "paper_specific",
+      "source_dataset_key": null,
+      "material_scope": [
+        "inorganic crystalline materials"
+      ],
+      "available_properties": [
+        "formation energy"
+      ],
+      "available_fields": [
+        "composition",
+        "formation energy",
+        "latent representation"
+      ],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "First, we used a pretrained Roost model as an encoder to obtain the latent representations for all samples in the entire dataset (86,740 samples). We then calculated the pairwise distances of all samples using their latent representations and selected 1000 OOD samples that are furthest away on average from their three nearest neighbors, forming our EmbeddingOOD test set.",
+          "page": 8,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "mp_composition_subset",
+      "usage_role": "source",
+      "purpose": "Input for MD-HIT-composition redundancy reduction algorithm",
+      "used_fields": [
+        "composition"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [
+        "excluded mp-101974 (HeSiO2)",
+        "eliminated formulas with over 50 atoms"
+      ],
+      "sample_count": 86741,
+      "evidence": [
+        {
+          "text": "We downloaded 125,619 cif files with material structures from the Materials Project database, which includes 89,354 materials with unique compositions. In cases where compositions corresponded to multiple polymorphs, we adopted average material property values by default, with the exception of formation energy property, for which we used the minimum value. Additionally, we excluded mp-101974 (HeSiO2) due to issues with calculating Matscholar features. After eliminating formulas with over 50 atoms, we obtained a non-duplicate composition dataset with 86,741 samples...",
+          "page": 4,
+          "section": "Datasets generation",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "materials_project",
+      "usage_role": "source",
+      "purpose": "Source database for acquiring raw materials data",
+      "used_fields": [
+        "crystal structure (CIF)",
+        "composition",
+        "formation energy",
+        "band gap"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We downloaded 125,619 cif files with material structures from the Materials Project database, which includes 89,354 materials with unique compositions.",
+          "page": 4,
+          "section": "Datasets generation",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "mendeleev_nr",
+      "usage_role": "training",
+      "purpose": "Training set for composition-based ML models (Roost, CrabNet) with redundancy control",
+      "used_fields": [
+        "composition",
+        "formation energy",
+        "band gap"
+      ],
+      "is_derived": true,
+      "construction_method": "MD-HIT-composition algorithm with Mendeleev similarity",
+      "filter_conditions": [
+        "distance thresholds: 0.5, 0.8, 1, 1.5, 2, 2.5, 3"
+      ],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We conducted experiments using datasets filtered by Mendeleev and Matscholar distances. We evaluated two state-of-the-art composition-based property prediction algorithms, Roost and CrabNet... on non-redundant datasets derived from the MP composition dataset with 86,740 samples using different distance thresholds.",
+          "page": 5,
+          "section": "Composition based material property prediction with redundancy control",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "matscholar_nr",
+      "usage_role": "training",
+      "purpose": "Training set for composition-based ML models (Roost, CrabNet) with redundancy control",
+      "used_fields": [
+        "composition",
+        "formation energy",
+        "band gap"
+      ],
+      "is_derived": true,
+      "construction_method": "MD-HIT-composition algorithm with Matscholar similarity",
+      "filter_conditions": [
+        "distance thresholds: 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4"
+      ],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We conducted experiments using datasets filtered by Mendeleev and Matscholar distances. We evaluated two state-of-the-art composition-based property prediction algorithms, Roost and CrabNet... on non-redundant datasets derived from the MP composition dataset with 86,740 samples using different distance thresholds.",
+          "page": 5,
+          "section": "Composition based material property prediction with redundancy control",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "xrd_nr",
+      "usage_role": "training",
+      "purpose": "Training set for structure-based ML models (ALIGNN, DeeperGATGNN) with redundancy control",
+      "used_fields": [
+        "crystal structure (CIF)",
+        "formation energy per atom",
+        "band gap"
+      ],
+      "is_derived": true,
+      "construction_method": "MD-HIT-structure algorithm with XRD features",
+      "filter_conditions": [
+        "distance thresholds: 0.5, 0.6, 0.8, 0.9"
+      ],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "For XRD-based non-redundant datasets (XRD-nr), we used thresholds of 0.5, 0.6, 0.8, and 0.9. We evaluated the material property prediction performances of two state-of-the-art graph neural network algorithms, ALIGNN30 and DeeperGATGNN31...",
+          "page": 6,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "ofm_nr",
+      "usage_role": "training",
+      "purpose": "Training set for structure-based ML models (ALIGNN, DeeperGATGNN) with redundancy control",
+      "used_fields": [
+        "crystal structure (CIF)",
+        "formation energy per atom",
+        "band gap"
+      ],
+      "is_derived": true,
+      "construction_method": "MD-HIT-structure algorithm with OFM features",
+      "filter_conditions": [
+        "distance thresholds: 0.15, 0.2, 0.45, 0.7"
+      ],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We further evaluated the impact of OFM-controlled data redundancy on the algorithms’ performance...",
+          "page": 7,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "matscholar_ood",
+      "usage_role": "test",
+      "purpose": "Out-of-distribution test set for evaluating extrapolative capability",
+      "used_fields": [
+        "composition",
+        "formation energy"
+      ],
+      "is_derived": true,
+      "construction_method": "density-based sampling using Matscholar features",
+      "filter_conditions": [
+        "1000 OOD samples selected from entire MP dataset (86,740 samples)"
+      ],
+      "sample_count": 1000,
+      "evidence": [
+        {
+          "text": "We first selected 1000 OOD test samples to create the MatscholarOOD test set, based on the densities calculated using Matscholar features of compositions from the entire MP dataset (86,740 samples) for formation energy prediction.",
+          "page": 8,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "embedding_ood",
+      "usage_role": "test",
+      "purpose": "Out-of-distribution test set for evaluating extrapolative capability in latent space",
+      "used_fields": [
+        "composition",
+        "formation energy",
+        "latent representation"
+      ],
+      "is_derived": true,
+      "construction_method": "density-based sampling using Roost latent representations",
+      "filter_conditions": [
+        "1000 OOD samples selected from entire dataset (86,740 samples) based on average distance to three nearest neighbors"
+      ],
+      "sample_count": 1000,
+      "evidence": [
+        {
+          "text": "First, we used a pretrained Roost model as an encoder to obtain the latent representations for all samples in the entire dataset (86,740 samples). We then calculated the pairwise distances of all samples using their latent representations and selected 1000 OOD samples that are furthest away on average from their three nearest neighbors, forming our EmbeddingOOD test set.",
+          "page": 8,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "paper_id": "P020",
+  "file_name": "20_GMTNet.pdf",
+  "status": "completed",
+  "completed_at": "2026-07-27T05:06:58.874561+00:00",
+  "model": "qwen-plus",
+  "stage1_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "stage2_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "counts": {
+    "tasks": 1,
+    "stages": 6,
+    "datasets": 2,
+    "dataset_uses": 3
+  }
+}

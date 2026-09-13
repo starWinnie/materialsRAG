@@ -1,0 +1,33 @@
+[
+  {
+    "task_description": "Predicting the thermodynamic stability of inorganic crystal structures by estimating their decomposition energy relative to the convex hull of competing phases, enabling high-throughput screening and discovery of previously unknown stable materials.",
+    "task_tags": [
+      "stability prediction",
+      "convex hull analysis",
+      "materials discovery",
+      "decomposition energy estimation"
+    ],
+    "datasets": [
+      {
+        "db_title": "Materials Project (2021 snapshot)",
+        "db_description": "A curated database of ~69,000 computationally stable inorganic crystals as of March 2021, containing DFT-calculated total energies, structures (lattice, atomic positions, space groups), and formation energies. This dataset served as the initial training set for GNoME structural models and as the foundational reference for computing decomposition energies during active learning and convex hull updates.",
+        "db_link": "https://materialsproject.org"
+      },
+      {
+        "db_title": "Open Quantum Materials Database (OQMD, 2021 snapshot)",
+        "db_description": "A high-throughput DFT database containing ~250,000+ computed inorganic compounds as of June 2021, including energies, structures, and phase diagrams. Used alongside the Materials Project snapshot as a source of known stable and metastable structures for candidate generation (e.g., SAPS), convex hull benchmarking, and filtering out already-known compositions during discovery.",
+        "db_link": "http://oqmd.org"
+      },
+      {
+        "db_title": "Inorganic Crystal Structure Database (ICSD)",
+        "db_description": "An experimental database of >200,000 published inorganic crystal structures, with ~20,000 computationally stable entries. Used exclusively for *validation*: 736 experimentally realized ICSD structures were matched to GNoME predictions to confirm real-world synthesizability and validate model accuracy, serving as ground-truth experimental evidence for discovered stability.",
+        "db_link": "https://icsd.fiz-karlsruhe.de"
+      },
+      {
+        "db_title": "Wang–Botti–Marques (WBM) dataset",
+        "db_description": "A DFT-computed dataset of ~200,000+ inorganic crystals, used as an additional reference source for known stable structures in convex hull construction and comparative analysis. It was included in the agglomerated 'previous work' baseline (with MP and OQMD) against which GNoME’s 2.2 million new stable structures were evaluated for stability.",
+        "db_link": "https://doi.org/10.1038/s41524-020-00472-z"
+      }
+    ]
+  }
+]

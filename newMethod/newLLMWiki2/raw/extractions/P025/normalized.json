@@ -1,0 +1,564 @@
+{
+  "paper": {
+    "paper_id": "P025",
+    "title": "Higher-order equivariant neural networks for charge density prediction in materials",
+    "year": 2024,
+    "doi": "10.1038/s41524-024-01343-1",
+    "file_name": "25_ChargE3Net.pdf",
+    "research_summary": "We introduce ChargE3Net, an E(3)-equivariant graph neural network for predicting electron density in atomic systems. ChargE3Net enables the learning of higher-order equivariant features to achieve high predictive accuracy and model expressivity. We show that ChargE3Net exceeds the performance of prior work on diverse sets of molecules and materials. When trained on the massive dataset of over 100K materials in the Materials Project database, our model is able to capture the complexity and variability in the data, leading to a significant 26.7% reduction in self-consistent iterations when used to initialize DFT calculations on unseen materials. Furthermore, we show that non-self-consistent DFT calculations using our predicted charge densities yield near-DFT performance on electronic and thermodynamic property prediction at a fraction of the computational cost.",
+    "extraction_status": "completed"
+  },
+  "tasks": [
+    {
+      "task_id": "T_P025_01",
+      "paper_id": "P025",
+      "task_name_raw": "electron density prediction",
+      "task_name_canonical": "electron_density_prediction",
+      "objective": "predict electron charge density in atomic systems",
+      "material_scope": [
+        "molecules",
+        "materials",
+        "inorganic materials",
+        "battery cathode materials",
+        "zeolites",
+        "Si(111)-2×1 surface"
+      ],
+      "target_properties": [
+        "electron charge density"
+      ],
+      "constraints": [
+        "must be E(3)-equivariant",
+        "must use only atomic species and positions as input",
+        "must scale linearly with system size"
+      ],
+      "input_requirements": [
+        "atomic species",
+        "atomic positions",
+        "probe point locations",
+        "optional periodic boundary cell"
+      ],
+      "output_goal": [
+        "predicted charge density at probe locations"
+      ],
+      "parent_task_id": null,
+      "task_level": "main_task",
+      "evidence": [
+        {
+          "text": "We introduce ChargE3Net, an E(3)-equivariant graph neural network for predicting electron density in atomic systems.",
+          "page": 1,
+          "section": null,
+          "inferred": false
+        }
+      ]
+    }
+  ],
+  "stages": [
+    {
+      "stage_id": "S_P025_01",
+      "paper_id": "P025",
+      "task_id": "T_P025_01",
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "collecting DFT-computed charge density data",
+      "stage_order": 1,
+      "stage_goal": "acquire diverse DFT-computed charge density datasets",
+      "stage_input": [],
+      "stage_output": [
+        "QM9 dataset",
+        "NMC dataset",
+        "Materials Project (MP) dataset",
+        "GNoME dataset"
+      ],
+      "evidence": [
+        {
+          "text": "We train and validate ChargE3Net on a diverse set of DFT-computed charge density data, including organic molecules (QM9), nickel manganese cobalt battery cathode materials (NMC), and inorganic materials collected from Materials Project (MP).",
+          "page": 2,
+          "section": "Performance evaluation",
+          "inferred": false
+        },
+        {
+          "text": "In addition to a held-out test set randomly sampled from the Materials Project, we obtain a random set of 2000 published structures from GNoME as a second test set.",
+          "page": 8,
+          "section": "Datasets",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P025_02",
+      "paper_id": "P025",
+      "task_id": "T_P025_01",
+      "stage_type": "data_preparation",
+      "stage_name_raw": "constructing atom-probe graphs",
+      "stage_order": 2,
+      "stage_goal": "build efficient graphs connecting atoms and probe points",
+      "stage_input": [
+        "atomic coordinates",
+        "probe point coordinates",
+        "periodic boundary conditions"
+      ],
+      "stage_output": [
+        "atom-probe graphs"
+      ],
+      "evidence": [
+        {
+          "text": "To predict charge density of a given atomic system, a set of M probe points {g̃₁; :::; g̃ₘ} ∈ ℝ³ are introduced to locations where charge densities are to be predicted.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "A graph is first constructed with atoms and probe points as vertices, with edges formed via proximity with a cutoff of 4 Å.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "We develop an algorithm to achieve more efficient atom-probe graph construction, enabling faster training and inference times.",
+          "page": 7,
+          "section": "Methods",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P025_03",
+      "paper_id": "P025",
+      "task_id": "T_P025_01",
+      "stage_type": "model_training",
+      "stage_name_raw": "training ChargE3Net",
+      "stage_order": 3,
+      "stage_goal": "train the E(3)-equivariant graph neural network on charge density data",
+      "stage_input": [
+        "atom-probe graphs",
+        "DFT-computed charge densities"
+      ],
+      "stage_output": [
+        "trained ChargE3Net model"
+      ],
+      "evidence": [
+        {
+          "text": "To train the ChargE3Net model, Supplementary Table 1 outlines the experimental setup on each of the datasets (e.g., learning rate, batch size, number of probe points and number of training steps).",
+          "page": 7,
+          "section": "Training ChargE3Net models",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P025_04",
+      "paper_id": "P025",
+      "task_id": "T_P025_01",
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "evaluating charge density prediction performance",
+      "stage_order": 4,
+      "stage_goal": "assess model accuracy using mean absolute error normalized by total electrons",
+      "stage_input": [
+        "trained ChargE3Net model",
+        "test set charge densities"
+      ],
+      "stage_output": [
+        "εₘₐₑ scores",
+        "performance comparisons"
+      ],
+      "evidence": [
+        {
+          "text": "We assess the performance our models using mean absolute error normalized by the total number of electrons within a volume of the atomic system, εₘₐₑ, which is computed via numerical integration on the charge density grid points G:",
+          "page": 3,
+          "section": "Performance evaluation",
+          "inferred": false
+        },
+        {
+          "text": "Table 1 compares the performance of ChargE3Net to models introduced in OrbNet-Equi and DeepDFT.",
+          "page": 3,
+          "section": "Performance evaluation",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P025_05",
+      "paper_id": "P025",
+      "task_id": "T_P025_01",
+      "stage_type": "computational_validation",
+      "stage_name_raw": "using predicted charge densities to accelerate DFT",
+      "stage_order": 5,
+      "stage_goal": "validate utility of predictions by initializing DFT calculations and measuring SCF step reduction",
+      "stage_input": [
+        "ChargE3Net-predicted charge densities",
+        "DFT calculation framework"
+      ],
+      "stage_output": [
+        "reduced SCF iterations",
+        "non-self-consistent property predictions"
+      ],
+      "evidence": [
+        {
+          "text": "We demonstrate the application of MP-trained ChargE3Net to initialize DFT calculations, resulting in a median of 26.7% reduction in SCF steps on unseen MP data and 28.6% on novel GNoME materials.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "To evaluate how well ChargE3Net’s predicted charge densities reproduce physical properties, we compute the energy, forces, band energies, and band gaps of the test set non-self-consistently.",
+          "page": 4,
+          "section": "experimental",
+          "inferred": false
+        }
+      ]
+    }
+  ],
+  "datasets": [
+    {
+      "dataset_id": "D_qm9",
+      "canonical_name": "QM9",
+      "raw_names": [
+        "QM9"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "molecules",
+        "organic molecules"
+      ],
+      "available_properties": [
+        "electron charge density",
+        "energies"
+      ],
+      "available_fields": [
+        "atomic species",
+        "atomic positions",
+        "charge density grid points",
+        "VASP calculations"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We train and validate ChargE3Net on a diverse set of DFT-computed charge density data, including organic molecules (QM9)54–56, nickel manganese cobalt battery cathode materials (NMC)57, and inorganic materials collected from Materials Project (MP)49,58.",
+          "page": 2,
+          "section": "Performance evaluation",
+          "inferred": false,
+          "paper_id": "P025"
+        },
+        {
+          "text": "The QM9 dataset56 contains VASP calculations of the 133,845 small organic molecules introduced by Ramakrishnan et al.55, with training, validation, and test splits of size 123,835, 50, and 10,000 respectively.",
+          "page": 7,
+          "section": "Datasets",
+          "inferred": false,
+          "paper_id": "P025"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:qm9"
+    },
+    {
+      "dataset_id": "D_nmc",
+      "canonical_name": "NMC",
+      "raw_names": [
+        "NMC",
+        "nickel manganese cobalt battery cathode materials"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "battery cathode materials",
+        "inorganic materials"
+      ],
+      "available_properties": [
+        "electron charge density",
+        "energies"
+      ],
+      "available_fields": [
+        "atomic species",
+        "atomic positions",
+        "charge density grid points",
+        "VASP calculations"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We train and validate ChargE3Net on a diverse set of DFT-computed charge density data, including organic molecules (QM9)54–56, nickel manganese cobalt battery cathode materials (NMC)57, and inorganic materials collected from Materials Project (MP)49,58.",
+          "page": 2,
+          "section": "Performance evaluation",
+          "inferred": false,
+          "paper_id": "P025"
+        },
+        {
+          "text": "The NMC dataset57 consists of VASP calculations of 2000 randomly sampled nickel manganese cobalt oxides containing varying levels of lithium content, with training, validation, and test splits of size 1450, 50, and 500 respectively.",
+          "page": 7,
+          "section": "Datasets",
+          "inferred": false,
+          "paper_id": "P025"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:nmc"
+    },
+    {
+      "dataset_id": "D_materials_project",
+      "canonical_name": "Materials Project",
+      "raw_names": [
+        "Materials Project",
+        "MP"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "inorganic materials",
+        "materials"
+      ],
+      "available_properties": [
+        "electron charge density",
+        "crystal structures",
+        "thermodynamic stability"
+      ],
+      "available_fields": [
+        "atomic species",
+        "atomic positions",
+        "space group",
+        "crystal system",
+        "charge density grid points",
+        "VASP calculations"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We train and validate ChargE3Net on a diverse set of DFT-computed charge density data, including organic molecules (QM9)54–56, nickel manganese cobalt battery cathode materials (NMC)57, and inorganic materials collected from Materials Project (MP)49,58.",
+          "page": 2,
+          "section": "Performance evaluation",
+          "inferred": false,
+          "paper_id": "P025"
+        },
+        {
+          "text": "To develop a charge density model for the entire periodic table, we investigate one of the largest open databases of DFT, the Materials Project (MP) database. It includes charge densities for over 100K bulk materials with diverse compositions and structures (Supplementary Figs. 1–3 and “Methods” section).",
+          "page": 3,
+          "section": "Performance evaluation",
+          "inferred": false,
+          "paper_id": "P025"
+        },
+        {
+          "text": "For theMPdata,wecollected122,689structuresandassociatedchargedensitiesfromapi.materialsproject.org49. Structures in the dataset that shared composition and space group were identiﬁed as duplicates and only the highest material_idstructurewasincluded,leaving108,683materials.Thedatawas split randomly into training, validation, and test splits with sizes 106,171,512,and2000respectively.",
+          "page": 7,
+          "section": "Datasets",
+          "inferred": false,
+          "paper_id": "P025"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:materials_project"
+    },
+    {
+      "dataset_id": "D_gnome",
+      "canonical_name": "GNoME",
+      "raw_names": [
+        "GNoME"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "materials",
+        "inorganic materials"
+      ],
+      "available_properties": [
+        "electron charge density",
+        "crystal structures"
+      ],
+      "available_fields": [
+        "atomic species",
+        "atomic positions",
+        "charge density grid points"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "In addition to a held-out test set randomly sampled from the Materials Project, we obtain a random set of 2000 published structures from GNoME as a second test set.",
+          "page": 8,
+          "section": "Datasets",
+          "inferred": false,
+          "paper_id": "P025"
+        },
+        {
+          "text": "To examine the generalization capabilities of ChargE3Net on out-of-distribution data, we analyze a random subset of 1924 materials published by GNoME50 with 5 or more unique species to differentiate it from the MP distribution.",
+          "page": 4,
+          "section": "experimental",
+          "inferred": false,
+          "paper_id": "P025"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:gnome"
+    }
+  ],
+  "dataset_uses": [
+    {
+      "dataset_use_id": "DU_P025_001",
+      "paper_id": "P025",
+      "task_id": "T_P025_01",
+      "stage_id": "S_P025_01",
+      "dataset_id": "D_qm9",
+      "usage_role": "training",
+      "purpose": "train and validate ChargE3Net on organic molecules",
+      "used_fields": [
+        "atomic species",
+        "atomic positions",
+        "charge density grid points"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 123835,
+      "evidence": [
+        {
+          "text": "We train and validate ChargE3Net on a diverse set of DFT-computed charge density data, including organic molecules (QM9)54–56, nickel manganese cobalt battery cathode materials (NMC)57, and inorganic materials collected from Materials Project (MP)49,58.",
+          "page": 2,
+          "section": "Performance evaluation",
+          "inferred": false
+        },
+        {
+          "text": "The QM9 dataset56 contains VASP calculations of the 133,845 small organic molecules introduced by Ramakrishnan et al.55, with training, validation, and test splits of size 123,835, 50, and 10,000 respectively.",
+          "page": 7,
+          "section": "Datasets",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P025_002",
+      "paper_id": "P025",
+      "task_id": "T_P025_01",
+      "stage_id": "S_P025_01",
+      "dataset_id": "D_nmc",
+      "usage_role": "training",
+      "purpose": "train and validate ChargE3Net on nickel manganese cobalt battery cathode materials",
+      "used_fields": [
+        "atomic species",
+        "atomic positions",
+        "charge density grid points"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 1450,
+      "evidence": [
+        {
+          "text": "We train and validate ChargE3Net on a diverse set of DFT-computed charge density data, including organic molecules (QM9)54–56, nickel manganese cobalt battery cathode materials (NMC)57, and inorganic materials collected from Materials Project (MP)49,58.",
+          "page": 2,
+          "section": "Performance evaluation",
+          "inferred": false
+        },
+        {
+          "text": "The NMC dataset57 consists of VASP calculations of 2000 randomly sampled nickel manganese cobalt oxides containing varying levels of lithium content, with training, validation, and test splits of size 1450, 50, and 500 respectively.",
+          "page": 7,
+          "section": "Datasets",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P025_003",
+      "paper_id": "P025",
+      "task_id": "T_P025_01",
+      "stage_id": "S_P025_01",
+      "dataset_id": "D_materials_project",
+      "usage_role": "training",
+      "purpose": "train ChargE3Net on inorganic materials across the periodic table",
+      "used_fields": [
+        "atomic species",
+        "atomic positions",
+        "charge density grid points"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 106171,
+      "evidence": [
+        {
+          "text": "We train and validate ChargE3Net on a diverse set of DFT-computed charge density data, including organic molecules (QM9)54–56, nickel manganese cobalt battery cathode materials (NMC)57, and inorganic materials collected from Materials Project (MP)49,58.",
+          "page": 2,
+          "section": "Performance evaluation",
+          "inferred": false
+        },
+        {
+          "text": "For theMPdata,wecollected122,689structuresandassociatedchargedensitiesfromapi.materialsproject.org49. Structures in the dataset that shared composition and space group were identiﬁed as duplicates and only the highest material_idstructurewasincluded,leaving108,683materials.Thedatawas split randomly into training, validation, and test splits with sizes 106,171,512,and2000respectively.",
+          "page": 7,
+          "section": "Datasets",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P025_004",
+      "paper_id": "P025",
+      "task_id": "T_P025_01",
+      "stage_id": "S_P025_01",
+      "dataset_id": "D_gnome",
+      "usage_role": "test",
+      "purpose": "evaluate generalization on out-of-distribution materials",
+      "used_fields": [
+        "atomic species",
+        "atomic positions",
+        "charge density grid points"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [
+        "5 or more unique species"
+      ],
+      "sample_count": 1924,
+      "evidence": [
+        {
+          "text": "In addition to a held-out test set randomly sampled from the Materials Project, we obtain a random set of 2000 published structures from GNoME as a second test set.",
+          "page": 8,
+          "section": "Datasets",
+          "inferred": false
+        },
+        {
+          "text": "To examine the generalization capabilities of ChargE3Net on out-of-distribution data, we analyze a random subset of 1924 materials published by GNoME50 with 5 or more unique species to differentiate it from the MP distribution.",
+          "page": 4,
+          "section": "experimental",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P025_005",
+      "paper_id": "P025",
+      "task_id": "T_P025_01",
+      "stage_id": "S_P025_04",
+      "dataset_id": "D_materials_project",
+      "usage_role": "test",
+      "purpose": "evaluate performance on unseen MP materials",
+      "used_fields": [
+        "atomic species",
+        "atomic positions",
+        "charge density grid points"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 2000,
+      "evidence": [
+        {
+          "text": "In addition to a held-out test set randomly sampled from the Materials Project, we obtain a random set of 2000 published structures from GNoME as a second test set.",
+          "page": 8,
+          "section": "Datasets",
+          "inferred": false
+        },
+        {
+          "text": "For theMPdata,wecollected122,689structuresandassociatedchargedensitiesfromapi.materialsproject.org49. Structures in the dataset that shared composition and space group were identiﬁed as duplicates and only the highest material_idstructurewasincluded,leaving108,683materials.Thedatawas split randomly into training, validation, and test splits with sizes 106,171,512,and2000respectively.",
+          "page": 7,
+          "section": "Datasets",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

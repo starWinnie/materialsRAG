@@ -1,0 +1,332 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "mp_v2023_11_1_dielectric",
+      "canonical_name": "Materials Project v2023.11.1 dielectric dataset",
+      "raw_names": [
+        "Materials Project",
+        "MP",
+        "MP v2023.11.1",
+        "Materials Project (v2023.11.1)"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "inorganic materials"
+      ],
+      "available_properties": [
+        "dielectric tensor",
+        "electronic dielectric tensor",
+        "ionic dielectric tensor",
+        "total dielectric tensor",
+        "band gap"
+      ],
+      "available_fields": [
+        "structure",
+        "atomic numbers and positions",
+        "ε∞ij",
+        "ε0ij",
+        "εij",
+        "Ehull",
+        "Eg"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Data preparation. We leverage on one of the largest open databases of DFT-calculated crystal structure properties, Materials Project38, to obtain a wide range of training structures. The dataset (MP v2023.11.1) contains 7277 relaxed materials along with calculated dielectric constants.",
+          "page": 3,
+          "section": "unknown",
+          "inferred": false
+        },
+        {
+          "text": "The Materials Project (v2023.11.1) contains a dataset of 7277 dielectric tensors. The dielectric properties are calculated using the Vienna Ab-Initio Simulation Package (VASP version 5.3.4), employing the generalized gradient approximation GGA/PBE exchange-correlation functional57 with the +U correction58,59 to account for electron-electron interactions within the transition metal orbitals.",
+          "page": 11,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "mp_refined_training_set",
+      "canonical_name": "Refined MP training set (6648 structures)",
+      "raw_names": [
+        "6648 structures",
+        "cleaned dataset",
+        "refined MP dataset"
+      ],
+      "dataset_type": "derived_subset",
+      "source_dataset_key": "mp_v2023_11_1_dielectric",
+      "material_scope": [
+        "inorganic materials"
+      ],
+      "available_properties": [
+        "dielectric tensor",
+        "electronic dielectric tensor",
+        "ionic dielectric tensor",
+        "total dielectric tensor"
+      ],
+      "available_fields": [
+        "structure",
+        "ε∞ij",
+        "ε0ij",
+        "εij"
+      ],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "We clean up the dataset by restricting the element in total dielectric constants εij ∈[−10, 100] for ∀i, j∈{1,2,3} and ﬁltering out structures that contain elements not supported by PFP. Finally there are 6648 structures retained for model training.",
+          "page": 3,
+          "section": "unknown",
+          "inferred": false
+        },
+        {
+          "text": "We clean up the dataset by ﬁltering out dielectric constants that contain any element out of the range of [−10, 100]. Structures that contain elements not supported by PFP (shown in Fig. 4c) are cleaned up, and ﬁnally there are 6,648 structures retained for model training.",
+          "page": 11,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "matbench_dielectric",
+      "canonical_name": "Matbench dielectric dataset",
+      "raw_names": [
+        "Matbench dataset",
+        "Matbench",
+        "dielectric task in Matbench"
+      ],
+      "dataset_type": "public_subset",
+      "source_dataset_key": "mp_v2023_11_1_dielectric",
+      "material_scope": [
+        "inorganic materials"
+      ],
+      "available_properties": [
+        "refractive index",
+        "electronic dielectric tensor"
+      ],
+      "available_fields": [
+        "structure",
+        "η"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "The Matbench dataset22 include the dielectric task for benchmarking various material property models. The property in this task is the refractive index (η) which is related to the electronic dielectric constant, as given by η = √ε∞.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "To further validate the accuracy of our method, we evaluated its performance on the dielectric task using the Matbench dataset22, which is a subset of structures from the Materials Project.",
+          "page": 5,
+          "section": "unknown",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "mp_candidate_set",
+      "canonical_name": "MP candidate set for virtual screening (14,375 non-metal materials)",
+      "raw_names": [
+        "14,375 non-metal materials",
+        "candidate set",
+        "candidate structures"
+      ],
+      "dataset_type": "paper_specific",
+      "source_dataset_key": null,
+      "material_scope": [
+        "non-metal inorganic materials"
+      ],
+      "available_properties": [
+        "energy above convex hull",
+        "band gap"
+      ],
+      "available_fields": [
+        "structure",
+        "Ehull",
+        "Eg"
+      ],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "To prepare the candidate set for screening, we downloaded 14,375 non-metal materials from the MP database. These materials are speciﬁcally selected based on the energy above convex hull Ehull = 0 to estimate their thermodynamic stability, so that only stable materials are included in the candidate set.",
+          "page": 8,
+          "section": "unknown",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "mp_v2023_11_1_dielectric",
+      "usage_role": "source",
+      "purpose": "Source for acquiring training structures with dielectric constants.",
+      "used_fields": [
+        "structure",
+        "ε∞ij",
+        "ε0ij",
+        "εij"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 7277,
+      "evidence": [
+        {
+          "text": "Data preparation. We leverage on one of the largest open databases of DFT-calculated crystal structure properties, Materials Project38, to obtain a wide range of training structures. The dataset (MP v2023.11.1) contains 7277 relaxed materials along with calculated dielectric constants.",
+          "page": 3,
+          "section": "unknown",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "mp_refined_training_set",
+      "usage_role": "training",
+      "purpose": "Training set after cleaning and filtering for model training. / Validation subset for model development. / Test subset for final model evaluation.",
+      "used_fields": [
+        "structure",
+        "ε∞ij",
+        "ε0ij",
+        "εij"
+      ],
+      "is_derived": true,
+      "construction_method": "Filtering εij ∈ [−10, 100] for all i,j and removing structures with elements unsupported by PFP. / Partitioning of refined MP dataset in 0.8:0.1:0.1 ratio. / Partitioning of refined MP dataset in 0.8:0.1:0.1 ratio.",
+      "filter_conditions": [
+        "εij ∈ [−10, 100]",
+        "elements supported by PFP"
+      ],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We clean up the dataset by restricting the element in total dielectric constants εij ∈[−10, 100] for ∀i, j∈{1,2,3} and ﬁltering out structures that contain elements not supported by PFP. Finally there are 6648 structures retained for model training.",
+          "page": 3,
+          "section": "unknown",
+          "inferred": false
+        },
+        {
+          "text": "The above dataset was partitioned into training, validation, and test subsets in a 0.8:0.1:0.1 ratio for the experimental analysis.",
+          "page": 3,
+          "section": "unknown",
+          "inferred": false
+        },
+        {
+          "text": "The above dataset was partitioned into training, validation, and test subsets in a 0.8:0.1:0.1 ratio for the experimental analysis.",
+          "page": 3,
+          "section": "unknown",
+          "inferred": false
+        }
+      ],
+      "confidence": 0.95
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "mp_v2023_11_1_dielectric",
+      "usage_role": "benchmark",
+      "purpose": "Benchmarking DTNet against state-of-the-art algorithms.",
+      "used_fields": [
+        "structure",
+        "ε∞ij",
+        "ε0ij",
+        "εij"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "To evaluate the performance of DTNet, we compared it against existing methods, PaiNN31, M3GNet36 and MatTen37, on the dataset obtained from Materials Project (MP)38.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "matbench_dielectric",
+      "usage_role": "benchmark",
+      "purpose": "Benchmarking DTNet on the official Matbench dielectric task.",
+      "used_fields": [
+        "structure",
+        "η"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "To further validate the accuracy of our method, we evaluated its performance on the dielectric task using the Matbench dataset22, which is a subset of structures from the Materials Project.",
+          "page": 5,
+          "section": "unknown",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "mp_candidate_set",
+      "usage_role": "candidate_pool",
+      "purpose": "Candidate pool for virtual screening of thermodynamically stable non-metal materials.",
+      "used_fields": [
+        "structure",
+        "Ehull",
+        "Eg"
+      ],
+      "is_derived": false,
+      "construction_method": "Download of non-metal materials from MP with Ehull = 0.",
+      "filter_conditions": [
+        "Ehull = 0",
+        "non-metal"
+      ],
+      "sample_count": 14375,
+      "evidence": [
+        {
+          "text": "To prepare the candidate set for screening, we downloaded 14,375 non-metal materials from the MP database. These materials are speciﬁcally selected based on the energy above convex hull Ehull = 0 to estimate their thermodynamic stability, so that only stable materials are included in the candidate set.",
+          "page": 8,
+          "section": "unknown",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 7,
+      "dataset_key": "mp_candidate_set",
+      "usage_role": "computational_validation",
+      "purpose": "Computational validation of top candidates via DFPT.",
+      "used_fields": [
+        "structure"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 35,
+      "evidence": [
+        {
+          "text": "Finally, totally 35 out of the 60 structures across 3 iterations are successfully converged through ﬁrst-principle calculations.",
+          "page": 9,
+          "section": "unknown",
+          "inferred": false
+        }
+      ],
+      "confidence": 0.95
+    }
+  ]
+}

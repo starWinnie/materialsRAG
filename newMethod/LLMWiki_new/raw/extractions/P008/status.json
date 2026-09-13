@@ -1,0 +1,27 @@
+{
+  "paper_id": "P008",
+  "file_name": "08_HiBoFL_Thermal_Conductivity.pdf",
+  "status": "completed",
+  "completed_at": "2026-08-06T02:33:35.298782+00:00",
+  "model": "qwen-plus",
+  "stage1_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "stage2_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "counts": {
+    "tasks": 1,
+    "stages": 10,
+    "datasets": 4,
+    "dataset_uses": 8
+  }
+}

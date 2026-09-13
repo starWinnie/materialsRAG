@@ -1,0 +1,13 @@
+{
+  "source_json": "outputs\\80results.json",
+  "copied_source_json": "raw/source_records.json",
+  "paper_count": 79,
+  "task_count": 80,
+  "dataset_count": 121,
+  "dataset_use_count": 256,
+  "layers": {
+    "raw": "raw/",
+    "pages": "pages/",
+    "schema": "schema/"
+  }
+}

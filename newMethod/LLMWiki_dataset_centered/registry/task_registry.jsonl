@@ -1,0 +1,34 @@
+{"canonical_name":"bandgap_prediction_of_abx3_perovskites","raw_names":["bandgap prediction of ABX3-type perovskites"],"task_ids":["T_P033_01"],"paper_ids":["P033"]}
+{"canonical_name":"charge_density_prediction","raw_names":["charge density prediction"],"task_ids":["T_P025_01","T_P030_01"],"paper_ids":["P025","P030"]}
+{"canonical_name":"correct_dft_formation_energies_towards_experimental_accuracy","raw_names":["Correcting DFT formation energies towards experimental accuracy"],"task_ids":["T_P035_01"],"paper_ids":["P035"]}
+{"canonical_name":"correct_dft_formation_enthalpy_errors","raw_names":["correcting DFT-calculated formation enthalpy errors"],"task_ids":["T_P043_01"],"paper_ids":["P043"]}
+{"canonical_name":"create_fair_perovskite_solar_cell_database","raw_names":["Creation of an open-access, FAIR-compliant database and analysis tool for perovskite solar cell device data"],"task_ids":["T_P042_01"],"paper_ids":["P042"]}
+{"canonical_name":"crystal_material_property_prediction","raw_names":["Crystal material property prediction"],"task_ids":["T_P012_01","T_P021_01"],"paper_ids":["P012","P021"]}
+{"canonical_name":"crystal_property_prediction","raw_names":["Crystal Property Prediction","predicting the properties of crystalline materials"],"task_ids":["T_P001_01","T_P009_01","T_P011_01","T_P023_01"],"paper_ids":["P001","P009","P011","P023"]}
+{"canonical_name":"crystal_structure_modeling_for_se3_invariant_property_prediction","raw_names":["crystal structure modeling for SE(3)-invariant property prediction"],"task_ids":["T_P010_01"],"paper_ids":["P010"]}
+{"canonical_name":"crystal_structure_to_physical_property_prediction","raw_names":["Predicting physical properties of materials from their crystal structures"],"task_ids":["T_P022_01"],"paper_ids":["P022"]}
+{"canonical_name":"crystal_tensor_property_prediction","raw_names":["crystal tensor property prediction"],"task_ids":["T_P020_01"],"paper_ids":["P020"]}
+{"canonical_name":"dataset_redundancy_control","raw_names":["dataset redundancy control for material property prediction"],"task_ids":["T_P026_01"],"paper_ids":["P026"]}
+{"canonical_name":"designing_high_tc_superconductors","raw_names":["designing high Tc superconductors"],"task_ids":["T_P031_01"],"paper_ids":["P031"]}
+{"canonical_name":"develop_foundation_ml_interatomic_potential_with_polarizable_long_range_interactions","raw_names":["Develop a foundation machine learning interatomic potential with explicit polarizable long-range interactions"],"task_ids":["T_P039_01"],"paper_ids":["P039"]}
+{"canonical_name":"dielectric_tensor_prediction","raw_names":["Dielectric tensor prediction for inorganic materials"],"task_ids":["T_P019_01"],"paper_ids":["P019"]}
+{"canonical_name":"discovery_of_transparent_conducting_materials","raw_names":["accelerating the discovery of new transparent conducting materials (TCMs)"],"task_ids":["T_P037_01"],"paper_ids":["P037"]}
+{"canonical_name":"extrapolative_material_property_prediction","raw_names":["extrapolative prediction of material properties"],"task_ids":["T_P015_01"],"paper_ids":["P015"]}
+{"canonical_name":"generate_universal_atomic_embeddings","raw_names":["universal atomic embeddings (UAEs)"],"task_ids":["T_P006_01"],"paper_ids":["P006"]}
+{"canonical_name":"identify_semiconductors_with_ultralow_lattice_thermal_conductivity","raw_names":["identifying semiconductors with ultralow lattice thermal conductivity"],"task_ids":["T_P008_01"],"paper_ids":["P008"]}
+{"canonical_name":"materials_design_method_benchmarking","raw_names":["benchmarking of materials design methods"],"task_ids":["T_P028_01"],"paper_ids":["P028"]}
+{"canonical_name":"materials_property_prediction","raw_names":["materials property prediction"],"task_ids":["T_P013_01","T_P024_01"],"paper_ids":["P013","P024"]}
+{"canonical_name":"ml_guided_materials_discovery","raw_names":["ML-guided materials discovery"],"task_ids":["T_P004_01"],"paper_ids":["P004"]}
+{"canonical_name":"molecular_dynamics_simulation","raw_names":["molecular dynamics simulation using machine learning force fields"],"task_ids":["T_P032_01"],"paper_ids":["P032"]}
+{"canonical_name":"out_of_distribution_property_prediction","raw_names":["Out-of-Distribution Property Prediction"],"task_ids":["T_P017_01"],"paper_ids":["P017"]}
+{"canonical_name":"phonon_spectra_and_bandstructure_prediction","raw_names":["phonon spectra and bandstructure prediction"],"task_ids":["T_P027_01"],"paper_ids":["P027"]}
+{"canonical_name":"predict_band_gap_of_hybrid_perovskites","raw_names":["predicting the experimental band gap values of HOIPs"],"task_ids":["T_P036_01"],"paper_ids":["P036"]}
+{"canonical_name":"predict_plastic_flow_strength_from_small_scale_indicators","raw_names":["predicting plastic flow strength from small-scale indicator properties"],"task_ids":["T_P014_01"],"paper_ids":["P014"]}
+{"canonical_name":"predict_tensorial_spectra","raw_names":["prediction of tensorial spectra"],"task_ids":["T_P003_01"],"paper_ids":["P003"]}
+{"canonical_name":"predict_thermodynamic_stability_of_inorganic_compounds","raw_names":["Predicting thermodynamic stability of inorganic compounds"],"task_ids":["T_P005_01"],"paper_ids":["P005"]}
+{"canonical_name":"probing_out_of_distribution_generalization","raw_names":["probing out-of-distribution generalization in machine learning for materials"],"task_ids":["T_P016_01"],"paper_ids":["P016"]}
+{"canonical_name":"rational_design_of_nanoscale_stabilized_oxide_catalysts_for_oer","raw_names":["Rational design of nanoscale stabilized oxide catalysts for OER"],"task_ids":["T_P038_01"],"paper_ids":["P038"]}
+{"canonical_name":"reverse_regulation_from_particles_to_clusters","raw_names":["reverse regulation from particles to clusters"],"task_ids":["T_P040_01"],"paper_ids":["P040"]}
+{"canonical_name":"space_group_invariant_architecture_development","raw_names":["developing a single machine learning architecture that is capable of adapting its weights automatically to enforce invariance to any input space group"],"task_ids":["T_P002_01"],"paper_ids":["P002"]}
+{"canonical_name":"structure_based_ood_materials_property_prediction","raw_names":["structure-based out-of-distribution (OOD) materials property prediction"],"task_ids":["T_P029_01"],"paper_ids":["P029"]}
+{"canonical_name":"train_machine_learned_interatomic_potentials","raw_names":["training machine-learned interatomic potentials (MLIPs)"],"task_ids":["T_P034_01"],"paper_ids":["P034"]}

@@ -1,0 +1,248 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "materials_project",
+      "canonical_name": "Materials Project",
+      "raw_names": ["Materials Project", "MP"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["crystalline materials"],
+      "available_properties": [
+        "Formation Energy",
+        "Bandgap(OPT)",
+        "Total Energy",
+        "Ehull",
+        "Bandgap(MBJ)",
+        "Bulk Moduli(Kv)",
+        "Shear Moduli(Gv)"
+      ],
+      "available_fields": ["crystal structure", "property labels"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Comprehensive evaluation results show that WPDDFormer achieves state-of-the-art predictive accuracy across tasks on benchmark datasets such as the Materials Project and JARVIS-DFT.",
+          "page": 1,
+          "section": "Abstract",
+          "inferred": false
+        },
+        {
+          "text": "We conducted experiments on two material benchmark datasets, namely the Materials Project [Chen et al., 2019] and Jarvis [Choudhary et al., 2020] datasets.",
+          "page": 7,
+          "section": "5 Experiments",
+          "inferred": false
+        },
+        {
+          "text": "The Materials Project (MP)\nThe experimental results on MP [Chen et al., 2019] are shown in Table 2.",
+          "page": 7,
+          "section": "5.1 Experimental Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "jarvis",
+      "canonical_name": "JARVIS",
+      "raw_names": ["JARVIS", "Jarvis", "JARVIS-DFT"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["crystalline materials"],
+      "available_properties": [
+        "Formation Energy",
+        "Bandgap(OPT)",
+        "Total Energy",
+        "Ehull",
+        "Bandgap(MBJ)",
+        "Bulk Moduli(Kv)",
+        "Shear Moduli(Gv)"
+      ],
+      "available_fields": ["crystal structure", "property labels"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Comprehensive evaluation results show that WPDDFormer achieves state-of-the-art predictive accuracy across tasks on benchmark datasets such as the Materials Project and JARVIS-DFT.",
+          "page": 1,
+          "section": "Abstract",
+          "inferred": false
+        },
+        {
+          "text": "We conducted experiments on two material benchmark datasets, namely the Materials Project [Chen et al., 2019] and Jarvis [Choudhary et al., 2020] datasets.",
+          "page": 7,
+          "section": "5 Experiments",
+          "inferred": false
+        },
+        {
+          "text": "The quantitative results for JARVIS [Choudhary et al., 2020] are shown in Table 1.",
+          "page": 7,
+          "section": "5.1 Experimental Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "materials_project",
+      "usage_role": "source",
+      "purpose": "Acquire crystal structure and property data for training and evaluation",
+      "used_fields": ["crystal structure", "property labels"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We conducted experiments on two material benchmark datasets, namely the Materials Project [Chen et al., 2019] and Jarvis [Choudhary et al., 2020] datasets.",
+          "page": 7,
+          "section": "5 Experiments",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "jarvis",
+      "usage_role": "source",
+      "purpose": "Acquire crystal structure and property data for training and evaluation",
+      "used_fields": ["crystal structure", "property labels"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We conducted experiments on two material benchmark datasets, namely the Materials Project [Chen et al., 2019] and Jarvis [Choudhary et al., 2020] datasets.",
+          "page": 7,
+          "section": "5 Experiments",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "materials_project",
+      "usage_role": "training",
+      "purpose": "Train the PDDFormer neural network to map crystal graphs to property values",
+      "used_fields": ["crystal structure", "property labels"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "In this section, we demonstrate the impact of introducing (W/U)PDD on the representation learning of crystal materials through ablation studies. Specifically, we conducted experiments on the MP and JARVIS datasets, using testing mean absolute error (MAE) as the quantitative evaluation metric, comparing the results for Band Gap and Ehull tasks, as shown in Table 4.",
+          "page": 7,
+          "section": "5.2 Ablation Studies",
+          "inferred": false
+        }
+      ],
+      "confidence": 0.95
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "jarvis",
+      "usage_role": "training",
+      "purpose": "Train the PDDFormer neural network to map crystal graphs to property values",
+      "used_fields": ["crystal structure", "property labels"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "In this section, we demonstrate the impact of introducing (W/U)PDD on the representation learning of crystal materials through ablation studies. Specifically, we conducted experiments on the MP and JARVIS datasets, using testing mean absolute error (MAE) as the quantitative evaluation metric, comparing the results for Band Gap and Ehull tasks, as shown in Table 4.",
+          "page": 7,
+          "section": "5.2 Ablation Studies",
+          "inferred": false
+        }
+      ],
+      "confidence": 0.95
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "materials_project",
+      "usage_role": "test",
+      "purpose": "Assess predictive accuracy of trained models using mean absolute error (MAE) on held-out test sets",
+      "used_fields": ["crystal structure", "property labels"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The Materials Project (MP)\nThe experimental results on MP [Chen et al., 2019] are shown in Table 2.",
+          "page": 7,
+          "section": "5.1 Experimental Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "jarvis",
+      "usage_role": "test",
+      "purpose": "Assess predictive accuracy of trained models using mean absolute error (MAE) on held-out test sets",
+      "used_fields": ["crystal structure", "property labels"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The quantitative results for JARVIS [Choudhary et al., 2020] are shown in Table 1.",
+          "page": 7,
+          "section": "5.1 Experimental Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "materials_project",
+      "usage_role": "benchmark",
+      "purpose": "Isolate and quantify the impact of WPDD/UPDD integration on model performance via ablation studies",
+      "used_fields": ["crystal structure", "property labels"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "In this section, we demonstrate the impact of introducing (W/U)PDD on the representation learning of crystal materials through ablation studies. Specifically, we conducted experiments on the MP and JARVIS datasets, using testing mean absolute error (MAE) as the quantitative evaluation metric, comparing the results for Band Gap and Ehull tasks, as shown in Table 4.",
+          "page": 7,
+          "section": "5.2 Ablation Studies",
+          "inferred": false
+        }
+      ],
+      "confidence": 0.95
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "jarvis",
+      "usage_role": "benchmark",
+      "purpose": "Isolate and quantify the impact of WPDD/UPDD integration on model performance via ablation studies",
+      "used_fields": ["crystal structure", "property labels"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "In this section, we demonstrate the impact of introducing (W/U)PDD on the representation learning of crystal materials through ablation studies. Specifically, we conducted experiments on the MP and JARVIS datasets, using testing mean absolute error (MAE) as the quantitative evaluation metric, comparing the results for Band Gap and Ehull tasks, as shown in Table 4.",
+          "page": 7,
+          "section": "5.2 Ablation Studies",
+          "inferred": false
+        }
+      ],
+      "confidence": 0.95
+    }
+  ]
+}

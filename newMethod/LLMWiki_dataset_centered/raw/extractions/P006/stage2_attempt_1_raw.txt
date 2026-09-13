@@ -1,0 +1,305 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "mp_star",
+      "canonical_name": "MP* dataset",
+      "raw_names": ["MP*", "expanded MP* dataset", "2023.6.23 version"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["crystals"],
+      "available_properties": ["formation energy", "bandgap", "PBE bandgap"],
+      "available_fields": ["formation energy (Ef)", "PBE bandgap (Eg)"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Front-end models as CrystalTransformer, CGCNN, ALIGNN, and MEGNET are ﬁrst pre-trained on the expanded MP* dataset, focusing on the bandgap energy Eg and formation energy Ef predictive tasks.",
+          "page": 3,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "MP* denotes the 2023.6.23 version, which contains 134,243 materials.",
+          "page": 2,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "mp",
+      "canonical_name": "Materials Project dataset",
+      "raw_names": ["MP", "MP dataset", "Materials Project", "2018.6.1 version for MP44 dataset"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["crystals"],
+      "available_properties": ["formation energy", "bandgap", "PBE bandgap"],
+      "available_fields": ["formation energy (Ef)", "PBE bandgap (Eg)"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "To examine the atomic embeddings tensors obtained from different models, we used MP and MP* dataset for formation energy (Ef) and PBE bandgap (Eg), which are key properties for evaluating their chemical stabilities and electronic performances. MP stands for the 2018.6.1 version for MP44 dataset, which contains 69,239 materials with properties.",
+          "page": 2,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "jarvis",
+      "canonical_name": "JARVIS dataset",
+      "raw_names": ["JARVIS dataset", "Jarvis dataset"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["crystals"],
+      "available_properties": ["formation energy", "bandgap"],
+      "available_fields": ["formation energy (Ef)", "bandgap (Eg)"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "As for the Jarvis dataset49, the result is shown in Table 1. The CT-CGCNN model demonstrates an improvement in predicting both formation energy Ef and bandgap energy Eg.",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "mc3d",
+      "canonical_name": "MC3D dataset",
+      "raw_names": ["MC3D dataset"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["crystals"],
+      "available_properties": ["total energy"],
+      "available_fields": ["total energy (E)"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "The embedding is further evaluated on the MC3D dataset. Properties such as total energy (E) are chosen as the task, and the result is shown in Table 1.",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "mptrj",
+      "canonical_name": "MPtrj dataset",
+      "raw_names": ["MPtrj dataset"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["crystals"],
+      "available_properties": ["force", "stress", "energy"],
+      "available_fields": ["force", "stress", "energy"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Additionally, we also investigated the suitability of ct-UAE on energy-conserving interatomic potential (IAP) models, which are trained based on the MPtrj dataset50.",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "hybrid_perovskite",
+      "canonical_name": "hybrid organic-inorganic perovskite dataset",
+      "raw_names": ["hybrid organic-inorganic perovskite (HOIP) materials", "HOIP materials", "HOIP crystals", "two distinct datasets of HOIP materials"],
+      "dataset_type": "paper_specific",
+      "source_dataset_key": null,
+      "material_scope": ["hybrid organic-inorganic perovskites"],
+      "available_properties": ["formation energy"],
+      "available_fields": ["formation energy (Ef)"],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "After merging two distinct datasets of HOIP materials69,70, we created a more diverse dataset containing 2103 HOIP crystals, which is still small compared to other material databases such as the MP dataset44.",
+          "page": 7,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "oxide_compounds_mp",
+      "canonical_name": "oxide compounds subset from Materials Project",
+      "raw_names": ["oxide compounds from the Materials Project"],
+      "dataset_type": "derived_subset",
+      "source_dataset_key": "mp",
+      "material_scope": ["oxide compounds"],
+      "available_properties": ["formation energy", "bandgap", "total magnetization"],
+      "available_fields": ["formation energy", "bandgap", "total magnetization"],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "To further interpret the element classiﬁcation and without loss of generality, we chose oxide compounds from the Materials Project, which yielded a total of 62,068 retrieved materials. From these, we ﬁltered for those that contain data on formation energy, bandgap, and total magnetization.",
+          "page": 5,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "mp_star",
+      "usage_role": "pretraining",
+      "purpose": "to pre-train the CrystalTransformer model on the expanded MP* dataset focusing on bandgap energy Eg and formation energy Ef predictive tasks",
+      "used_fields": ["formation energy (Ef)", "PBE bandgap (Eg)"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 134243,
+      "evidence": [
+        {
+          "text": "Front-end models as CrystalTransformer, CGCNN, ALIGNN, and MEGNET are ﬁrst pre-trained on the expanded MP* dataset, focusing on the bandgap energy Eg and formation energy Ef predictive tasks.",
+          "page": 3,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "MP* denotes the 2023.6.23 version, which contains 134,243 materials.",
+          "page": 2,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "mp",
+      "usage_role": "benchmark",
+      "purpose": "to evaluate and compare the performance of atomic embeddings generated by CrystalTransformer (Method I), GNN models (Method II), and artificially constructed features (Method III)",
+      "used_fields": ["formation energy (Ef)", "PBE bandgap (Eg)"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 69239,
+      "evidence": [
+        {
+          "text": "To examine the atomic embeddings tensors obtained from different models, we used MP and MP* dataset for formation energy (Ef) and PBE bandgap (Eg), which are key properties for evaluating their chemical stabilities and electronic performances. MP stands for the 2018.6.1 version for MP44 dataset, which contains 69,239 materials with properties.",
+          "page": 2,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "jarvis",
+      "usage_role": "computational_validation",
+      "purpose": "to test the ability and transferability of ct-UAEs on different databases and tasks",
+      "used_fields": ["formation energy (Ef)", "bandgap (Eg)"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The ability and transferability of the universal atomic embedding are further tested on different databases and tasks. Each is cut into 8:1:1 for training, validation, and testing. Details on the dataset can be found in Supplementary 2A. As for the Jarvis dataset49, the result is shown in Table 1. The CT-CGCNN model demonstrates an improvement in predicting both formation energy Ef and bandgap energy Eg.",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "mc3d",
+      "usage_role": "computational_validation",
+      "purpose": "to test the ability and transferability of ct-UAEs on different databases and tasks",
+      "used_fields": ["total energy (E)"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The embedding is further evaluated on the MC3D dataset. Properties such as total energy (E) are chosen as the task, and the result is shown in Table 1.",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "mptrj",
+      "usage_role": "computational_validation",
+      "purpose": "to investigate the suitability of ct-UAE on energy-conserving interatomic potential (IAP) models",
+      "used_fields": ["force", "stress", "energy"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Additionally, we also investigated the suitability of ct-UAE on energy-conserving interatomic potential (IAP) models, which are trained based on the MPtrj dataset50.",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "hybrid_perovskite",
+      "usage_role": "computational_validation",
+      "purpose": "to apply ct-UAEs to predict formation energy in hybrid perovskites database",
+      "used_fields": ["formation energy (Ef)"],
+      "is_derived": false,
+      "construction_method": "merging two distinct datasets of HOIP materials",
+      "filter_conditions": [],
+      "sample_count": 2103,
+      "evidence": [
+        {
+          "text": "After merging two distinct datasets of HOIP materials69,70, we created a more diverse dataset containing 2103 HOIP crystals, which is still small compared to other material databases such as the MP dataset44.",
+          "page": 7,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "oxide_compounds_mp",
+      "usage_role": "computational_validation",
+      "purpose": "to statistically validate the clustering results of ct-UAEs by analyzing oxide compounds",
+      "used_fields": ["formation energy", "bandgap", "total magnetization"],
+      "is_derived": true,
+      "construction_method": "filtered from Materials Project for oxide compounds containing data on formation energy, bandgap, and total magnetization",
+      "filter_conditions": ["oxide compounds", "contain data on formation energy, bandgap, and total magnetization"],
+      "sample_count": 62068,
+      "evidence": [
+        {
+          "text": "To further interpret the element classiﬁcation and without loss of generality, we chose oxide compounds from the Materials Project, which yielded a total of 62,068 retrieved materials. From these, we ﬁltered for those that contain data on formation energy, bandgap, and total magnetization.",
+          "page": 5,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

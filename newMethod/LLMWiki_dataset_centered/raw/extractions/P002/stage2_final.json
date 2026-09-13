@@ -1,0 +1,256 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "materials_project",
+      "canonical_name": "Materials Project",
+      "raw_names": [
+        "Materials Project"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "crystalline solids",
+        "crystals"
+      ],
+      "available_properties": [
+        "total energy",
+        "band gap",
+        "bulk modulus",
+        "shear modulus"
+      ],
+      "available_fields": [
+        "atomic numbers",
+        "fractional coordinates",
+        "lattice vectors",
+        "space group identifier"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "For our primary benchmark experiments, we use data from the Materials Project, one of the largest databases of computational material properties (Jain et al., 2013).",
+          "page": 7,
+          "section": "EXPERIMENTAL SETUP",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "synthetic_orbit_distance",
+      "canonical_name": "synthetic orbit distance dataset",
+      "raw_names": [
+        "synthetic dataset"
+      ],
+      "dataset_type": "paper_specific",
+      "source_dataset_key": null,
+      "material_scope": [
+        "crystalline solids",
+        "crystals"
+      ],
+      "available_properties": [
+        "orbit distance"
+      ],
+      "available_fields": [
+        "atomic position pair",
+        "space group",
+        "lattice vectors"
+      ],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "We construct a synthetic dataset containing 100,000 samples for each of the 230 space groups. Each sample consists of a pair of random atomic positions as fractional coordinates in [0, 1)3, a space group, and randomly generated lattice vectors that satisfy the constraints of the Bravais lattice for the group.",
+          "page": 8,
+          "section": "SYMMETRY-ADAPTED ENCODINGS CAPTURE ORBIT DISTANCE",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "materials_project",
+      "usage_role": "source",
+      "purpose": "To acquire crystal structure data and associated material properties for training and evaluation.",
+      "used_fields": [
+        "atomic numbers",
+        "fractional coordinates",
+        "lattice vectors",
+        "space group identifier"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "For our primary benchmark experiments, we use data from the Materials Project, one of the largest databases of computational material properties (Jain et al., 2013).",
+          "page": 7,
+          "section": "EXPERIMENTAL SETUP",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "synthetic_orbit_distance",
+      "usage_role": "candidate_pool",
+      "purpose": "To generate a controlled synthetic dataset for validating the geometric fidelity of the G-invariant encoding module.",
+      "used_fields": [
+        "atomic position pair",
+        "space group",
+        "lattice vectors"
+      ],
+      "is_derived": false,
+      "construction_method": "constructing synthetic dataset containing 100,000 samples for each of the 230 space groups",
+      "filter_conditions": [],
+      "sample_count": 100000,
+      "evidence": [
+        {
+          "text": "We construct a synthetic dataset containing 100,000 samples for each of the 230 space groups. Each sample consists of a pair of random atomic positions as fractional coordinates in [0, 1)3, a space group, and randomly generated lattice vectors that satisfy the constraints of the Bravais lattice for the group.",
+          "page": 8,
+          "section": "SYMMETRY-ADAPTED ENCODINGS CAPTURE ORBIT DISTANCE",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "synthetic_orbit_distance",
+      "usage_role": "training",
+      "purpose": "To train the symmetry-adapted encoding module to produce embeddings where the Euclidean distance corresponds to the true orbit distance.",
+      "used_fields": [
+        "atomic position pair",
+        "space group",
+        "lattice vectors",
+        "ground-truth orbit distances"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We first validate this capability in a controlled, self-supervised setting before applying the model to downstream tasks. The goal is to train the encoder to produce positional encodings where the Euclidean distance between embeddings directly corresponds to the true orbit distance dG(x1, x2) between atoms.",
+          "page": 8,
+          "section": "SYMMETRY-ADAPTED ENCODINGS CAPTURE ORBIT DISTANCE",
+          "inferred": false
+        },
+        {
+          "text": "The model is trained to minimize the Mean Squared Error (MSE) between the L2 distance of the output embeddings and the ground-truth orbit distance.",
+          "page": 8,
+          "section": "SYMMETRY-ADAPTED ENCODINGS CAPTURE ORBIT DISTANCE",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 6,
+      "dataset_key": "materials_project",
+      "usage_role": "training",
+      "purpose": "To train the complete Crystal Fourier Transformer (CFT) architecture on the Materials Project dataset to predict material properties.",
+      "used_fields": [
+        "atomic numbers",
+        "fractional coordinates",
+        "lattice vectors",
+        "space group identifier"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Having validated our encoding module, we now evaluate the full CFT architecture on the task of predicting material properties from the Materials Project dataset.",
+          "page": 8,
+          "section": "MATERIAL PROPERTY PREDICTION",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 7,
+      "dataset_key": "materials_project",
+      "usage_role": "test",
+      "purpose": "To assess CFT's competitive performance against state-of-the-art graph neural networks on standard material property prediction tasks.",
+      "used_fields": [
+        "atomic numbers",
+        "fractional coordinates",
+        "lattice vectors",
+        "space group identifier"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Table 1 shows the test MAE for CFT and baseline models. Our CFT model achieves competitive performance across all four properties and outperforms all baselines on Total Energy and Shear Moduli prediction.",
+          "page": 8,
+          "section": "MATERIAL PROPERTY PREDICTION",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 8,
+      "dataset_key": "materials_project",
+      "usage_role": "validation",
+      "purpose": "To isolate and quantify the contribution of the pretraining step to the final model performance.",
+      "used_fields": [
+        "atomic numbers",
+        "fractional coordinates",
+        "lattice vectors",
+        "space group identifier"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Table 3 shows that pretraining the positional encodings improves property prediction performance across the board, in comparison to end-to-end training with random initialization of the positional encodings.",
+          "page": 19,
+          "section": "WHY PRETRAIN?",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 9,
+      "dataset_key": "materials_project",
+      "usage_role": "experimental_validation",
+      "purpose": "To empirically validate the core hypothesis that the adaptive architecture can generalize to materials from space groups it has never seen during training.",
+      "used_fields": [
+        "atomic numbers",
+        "fractional coordinates",
+        "lattice vectors",
+        "space group identifier"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [
+        "space groups containing inversion symmetry"
+      ],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The core hypothesis behind our adaptive architecture is that, by explicitly parameterizing the group constraints, CFT can generalize to materials from previously unseen space groups. We test this hypothesis in a zero-shot setting by holding out all space groups containing inversion symmetry from the training set.",
+          "page": 9,
+          "section": "ZERO-SHOT GENERALIZATION TO UNSEEN SPACE GROUPS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

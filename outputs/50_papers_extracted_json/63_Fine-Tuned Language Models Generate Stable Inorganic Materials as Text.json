@@ -1,0 +1,23 @@
+[
+  {
+    "task_description": "Generating stable inorganic crystalline materials as text-encoded 3D atomic structures, where stability is defined by low energy above hull (Ehull < 0.1 eV/atom), and the generated structures must satisfy physical constraints including non-overlapping atomic radii and net neutral charge.",
+    "task_tags": [
+      "materials generation",
+      "crystal structure prediction",
+      "stability prediction",
+      "text-to-structure generation"
+    ],
+    "datasets": [
+      {
+        "db_title": "Materials Project MP-20",
+        "db_description": "A curated dataset of 45,231 experimentally and computationally validated stable inorganic crystalline materials from the Materials Project database, each containing full crystallographic information (lattice parameters, fractional atomic coordinates, space group, composition) and computed DFT-derived properties including energy above hull (Ehull), band gap, and formation energy. It is used in this paper to train fine-tuned LLaMA-2 models for unconditional generation and to construct the ground-truth convex energy hull for evaluating the predicted stability (Ehull) of generated samples.",
+        "db_link": "https://materialsproject.org/"
+      },
+      {
+        "db_title": "Extended Materials Project Dataset",
+        "db_description": "An expanded collection of ~120,000–127,609 inorganic crystal structures drawn from the Materials Project (as of April 2023), filtered to exclude crystals with more than 30 atoms per unit cell. This dataset includes additional property annotations beyond MP-20 — such as space group number, band gap, Ehull, and chemical formula — and is used specifically to train the fine-tuned LLaMA-2 models for text-conditional generation (e.g., conditioning on composition or space group) and structural infilling tasks.",
+        "db_link": "https://materialsproject.org/"
+      }
+    ]
+  }
+]

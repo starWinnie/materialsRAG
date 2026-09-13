@@ -1,0 +1,27 @@
+{
+  "paper_id": "P016",
+  "file_name": "16_OOD_Generalization_Materials.pdf",
+  "status": "completed",
+  "completed_at": "2026-07-27T05:02:36.627322+00:00",
+  "model": "qwen-plus",
+  "stage1_attempts": [
+    {
+      "attempt": "cached",
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "stage2_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "counts": {
+    "tasks": 1,
+    "stages": 7,
+    "datasets": 3,
+    "dataset_uses": 3
+  }
+}

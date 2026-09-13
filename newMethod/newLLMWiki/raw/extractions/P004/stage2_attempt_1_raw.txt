@@ -1,0 +1,209 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "mp_v20221028",
+      "canonical_name": "Materials Project v.2022.10.28",
+      "raw_names": ["MP v.2022.10.28", "v.2022.10.28 MP release", "MP3 v.2022.10.28 database release"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["inorganic crystals"],
+      "available_properties": ["energies", "forces", "stresses", "magnetic moments", "relaxed and initial structures", "relaxation trajectory", "formation energies"],
+      "available_fields": ["energies", "forces", "stresses", "magnetic moments", "relaxed structures", "initial structures", "relaxation trajectories", "formation energies"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Our benchmark defines the training set as all data available from the v.2022.10.28 MP release. We recorded a snapshot of energies, forces, stresses and magnetic moments for all MP ionic steps on 15 March 2023 as the canonical training set for Matbench Discovery...",
+          "page": 7,
+          "section": "Article",
+          "inferred": false
+        },
+        {
+          "text": "We define the MP3 v.2022.10.28 database release as the maximum allowed training set for any compliant model submission.",
+          "page": 7,
+          "section": "Article",
+          "inferred": false
+        },
+        {
+          "text": "The MP is a widely used database of inorganic materials properties that have been calculated using high-throughput ab initio methods. At the time of writing, the MP database3 has grown to ~154,000 crystals, covering diverse chemistries and providing relaxed and initial structures as well as the relaxation trajectory for every entry.",
+          "page": 7,
+          "section": "Article",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "wbm_dataset",
+      "canonical_name": "Wang-Botti-Marques (WBM) dataset",
+      "raw_names": ["WBM dataset", "Wang-Botti-Marques (WBM) dataset"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["inorganic crystals"],
+      "available_properties": ["unrelaxed structures", "DFT-relaxed hull distances", "PBE formation energies", "convex hull distance"],
+      "available_fields": ["unrelaxed structures", "DFT-relaxed hull distances", "PBE formation energies", "convex hull distance"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Our test set consists of the unrelaxed structures in the WBM dataset50. Their target values are the PBE formation energies of the corresponding DFT-relaxed structures.",
+          "page": 7,
+          "section": "Article",
+          "inferred": false
+        },
+        {
+          "text": "The WBM dataset50 consists of 257,487 structures generated via chemical similarity-based elemental substitution of MP source structures followed by DFT relaxation and calculating each crystal’s convex hull distance.",
+          "page": 8,
+          "section": "Article",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "wbm_unique_proto",
+      "canonical_name": "WBM unique protostructure test set",
+      "raw_names": ["unique prototype test set", "WBM unique protostructure test set"],
+      "dataset_type": "derived_subset",
+      "source_dataset_key": "wbm_dataset",
+      "material_scope": ["inorganic crystals"],
+      "available_properties": ["unrelaxed structures", "DFT-relaxed hull distances", "convex hull distance", "stability labels (EMP hull dist ≤ 0)"],
+      "available_fields": ["unrelaxed structures", "DFT-relaxed hull distances", "convex hull distance", "stability labels"],
+      "availability": "public",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "We cleaned the WBM test set based on protostructure matching... leaving 215,488 structures in the unique prototype test set.",
+          "page": 8,
+          "section": "Article",
+          "inferred": false
+        },
+        {
+          "text": "Throughout this work, we define stability as being on or below the convex hull of the MP training set (EMP hull dist ≤ 0). In total, 32,942 of 215,488 materials in the WBM unique prototype test set satisfy this criterion.",
+          "page": 8,
+          "section": "Article",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "mp_v20221028",
+      "usage_role": "training",
+      "purpose": "Training ML models on large-scale DFT-computed data including energies, forces, stresses, and magnetic moments",
+      "used_fields": ["energies", "forces", "stresses", "magnetic moments"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Our benchmark defines the training set as all data available from the v.2022.10.28 MP release. We recorded a snapshot of energies, forces, stresses and magnetic moments for all MP ionic steps on 15 March 2023 as the canonical training set for Matbench Discovery...",
+          "page": 7,
+          "section": "Article",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "wbm_dataset",
+      "usage_role": "test",
+      "purpose": "Obtaining prospectively generated, out-of-distribution unrelaxed crystal structures for realistic evaluation",
+      "used_fields": ["unrelaxed structures"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 257487,
+      "evidence": [
+        {
+          "text": "Our test set consists of the unrelaxed structures in the WBM dataset50. Their target values are the PBE formation energies of the corresponding DFT-relaxed structures.",
+          "page": 7,
+          "section": "Article",
+          "inferred": false
+        },
+        {
+          "text": "The WBM dataset50 consists of 257,487 structures generated via chemical similarity-based elemental substitution of MP source structures followed by DFT relaxation and calculating each crystal’s convex hull distance.",
+          "page": 8,
+          "section": "Article",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "wbm_unique_proto",
+      "usage_role": "test",
+      "purpose": "Using cleaned, non-duplicated, non-leaking unrelaxed structures with DFT-relaxed hull distances for final evaluation",
+      "used_fields": ["unrelaxed structures", "DFT-relaxed hull distances"],
+      "is_derived": true,
+      "construction_method": "cleaning and filtering based on protostructure matching, removal of pathological structures (formation energy >5 eV/atom or <−5 eV/atom), removal of structures matching MP protostructures, and deduplication within WBM keeping lowest-energy structure per protostructure",
+      "filter_conditions": [
+        "formation energies being larger than 5 eV per atom or smaller than −5 eV per atom",
+        "final protostructure of a WBM material matched the final protostructure of an MP material",
+        "duplicated protostructures within WBM"
+      ],
+      "sample_count": 215488,
+      "evidence": [
+        {
+          "text": "We cleaned the WBM test set based on protostructure matching... leaving 215,488 structures in the unique prototype test set.",
+          "page": 8,
+          "section": "Article",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "wbm_unique_proto",
+      "usage_role": "label_source",
+      "purpose": "Computing ground-truth thermodynamic stability labels (on/below vs. above convex hull) using MP training set convex hull",
+      "used_fields": ["DFT-relaxed hull distances"],
+      "is_derived": true,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 215488,
+      "evidence": [
+        {
+          "text": "Throughout this work, we define stability as being on or below the convex hull of the MP training set (EMP hull dist ≤ 0). In total, 32,942 of 215,488 materials in the WBM unique prototype test set satisfy this criterion.",
+          "page": 8,
+          "section": "Article",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 6,
+      "dataset_key": "wbm_unique_proto",
+      "usage_role": "candidate_pool",
+      "purpose": "Ranking all WBM test structures by model-predicted convex hull distance to simulate prioritization in discovery campaign",
+      "used_fields": ["unrelaxed structures"],
+      "is_derived": true,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 215488,
+      "evidence": [
+        {
+          "text": "A typical discovery campaign will rank hypothetical materials by model-predicted hull distance from most to least stable and validate the most stable predictions first.",
+          "page": 5,
+          "section": "Article",
+          "inferred": false
+        },
+        {
+          "text": "For each model, we iterate through that list and calculate at each step the precision and recall of correctly identified stable materials. This simulates exactly how these models would be used in a prospective materials discovery campaign...",
+          "page": 5,
+          "section": "Article",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

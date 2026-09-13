@@ -1,0 +1,206 @@
+{
+  "paper": {
+    "title": "Transformer-generated atomic embeddings to enhance prediction accuracy of crystal properties with machine learning",
+    "year": 2025,
+    "doi": "10.1038/s41467-025-56481-x",
+    "research_summary": "This paper proposes a novel atomic embedding strategy called universal atomic embeddings (UAEs), generated via a custom Transformer-based model named CrystalTransformer (ct-UAEs), to improve the accuracy of machine learning predictions for crystal properties such as formation energy and bandgap. The ct-UAEs are pretrained on large crystal databases (MP*), transferred to various back-end GNN models (e.g., CGCNN, ALIGNN, MEGNET), and shown to yield consistent accuracy improvements (e.g., 14% MAE reduction for formation energy on MP). The embeddings demonstrate transferability across datasets (JARVIS, MC3D, HOIP) and tasks, interpretability via clustering (UMAP/K-means), and multi-task adaptability (MT@2p–MT@4p)."
+  },
+  "task": {
+    "task_name_raw": "Generating universal atomic embeddings (UAEs) for crystal property prediction",
+    "task_name_canonical": "generate_universal_atomic_embeddings",
+    "objective": "To generate atomic embeddings that capture complex atomic features and roles within materials, enabling improved and transferable prediction of crystal properties (e.g., formation energy, bandgap) across diverse deep learning models and datasets.",
+    "material_scope": ["crystals", "hybrid organic-inorganic perovskites", "oxides"],
+    "target_properties": ["formation energy", "bandgap", "total energy", "total magnetization"],
+    "constraints": ["must be transferable across different back-end models and datasets", "must support multi-task learning", "must preserve rotational and translational invariance"],
+    "input_requirements": ["crystal structure data (CIF files)", "atomic species (one-hot encoded)", "atomic coordinates"],
+    "output_goal": ["dense, continuous vector representations (tensors) for each atom — ct-UAEs — that serve as enhanced atomic fingerprints"],
+    "evidence": [
+      {
+        "text": "Here, we proposed an atomic embedding strategy called universal atomic embeddings (UAEs) for their broad applicability as atomic ﬁngerprints, and generated the UAE tensors based on the proposed CrystalTransformer model.",
+        "page": 1,
+        "section": null,
+        "inferred": false
+      },
+      {
+        "text": "We developed the home-made CrystalTransformer model to generate universal atomic embeddings called ct-UAEs based on transformer architecture, which learns a unique “ﬁngerprint” for each atom, capturing the essence of their roles and interactions within the materials.",
+        "page": 2,
+        "section": null,
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "Collecting crystal structure datasets",
+      "stage_order": 1,
+      "stage_goal": "Acquire large-scale, high-quality crystal structure and property datasets for pretraining and evaluation.",
+      "stage_input": ["Materials Project (MP and MP*)", "JARVIS dataset", "MC3D dataset", "hybrid organic-inorganic perovskite (HOIP) datasets"],
+      "stage_output": ["CIF files", "formation energy (Ef)", "PBE bandgap (Eg)", "total energy (E)", "total magnetization"],
+      "evidence": [
+        {
+          "text": "To examine the atomic embeddings tensors obtained from different models, we used MP and MP* dataset for formation energy (Ef) and PBE bandgap (Eg), which are key properties for evaluating their chemical stabilities and electronic performances. MP stands for the 2018.6.1 version for MP44 dataset, which contains 69,239 materials with properties. MP* denotes the 2023.6.23 version, which contains 134,243 materials.",
+          "page": 2,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "The ability and transferability of the universal atomic embedding are further tested on different databases and tasks. Each is cut into 8:1:1 for training, validation, and testing. Details on the dataset can be found in Supplementary 2A. As for the Jarvis dataset49, the result is shown in Table 1.",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "After merging two distinct datasets of HOIP materials69,70, we created a more diverse dataset containing 2103 HOIP crystals, which is still small compared to other material databases such as the MP dataset44.",
+          "page": 7,
+          "section": null,
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "Pretraining CrystalTransformer to generate ct-UAEs",
+      "stage_order": 2,
+      "stage_goal": "Train the CrystalTransformer model on large crystal databases to learn task-specific or multi-task atomic embeddings (ct-UAEs).",
+      "stage_input": ["MP* dataset", "formation energy (Ef)", "PBE bandgap (Eg)", "total energy", "total magnetization"],
+      "stage_output": ["pretrained ct-UAE tensors", "multi-task embeddings (MT@2p, MT@3p, MT@4p)"],
+      "evidence": [
+        {
+          "text": "Front-end models as CrystalTransformer, CGCNN, ALIGNN, and MEGNET are ﬁrst pre-trained on the expanded MP* dataset, focusing on the bandgap energy Eg and formation energy Ef predictive tasks.",
+          "page": 3,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "Multi-task learning method\nMTL72–74 (multi-task learning) is a learning method. The model is trained simultaneously on different tasks, while the parameter is optimized toward the trend that all tasks improve. This training method enhances generalization. In the context of CrystalTransformer, MTL stands for different properties for materials.",
+          "page": 9,
+          "section": "Multi-task learning method",
+          "inferred": false
+        },
+        {
+          "text": "The loss function is a weighted sum of the loss for each task:\nLMTL = ∑i wi · Lossi(ypred, i, ytarget, i),\nwhere Lossi could be MSE or MAE, wi are the task weights, and i indexes the task.",
+          "page": 9,
+          "section": "Multi-task learning method",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_generation",
+      "stage_name_raw": "Generating ct-UAE tensors for downstream models",
+      "stage_order": 3,
+      "stage_goal": "Extract atomic embedding tensors (ct-UAEs) from the pretrained CrystalTransformer and prepare them for integration into various back-end GNN models.",
+      "stage_input": ["pretrained CrystalTransformer model", "crystal inputs (atom types + coordinates)"],
+      "stage_output": ["ct-UAE tensors (89 × 128 dimensional)", "frozen or fine-tuned embeddings"],
+      "evidence": [
+        {
+          "text": "The obtained embeddings are then transferred to different DL models.",
+          "page": 2,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "Subsequently, the extracted atomic embeddings are integrated into a CGCNN back-end model and trained on the original MP dataset, which results in CT-CGCNN, CG-CGCNN, ALI-CGCNN, and so on.",
+          "page": 3,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "CTfreeze-CGCNN, which employs frozen pre-trained embeddings from the CrystalTransformer or ct-UAEs, achieves an MAE of 0.073 eV/atom for formation energy Ef and 0.358 eV for bandgap Eg.",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "Evaluating ct-UAE transfer performance on property prediction",
+      "stage_order": 4,
+      "stage_goal": "Quantify accuracy improvement (MAE, R²) when integrating ct-UAEs into various back-end models (CGCNN, ALIGNN, MEGNET) across multiple datasets and targets.",
+      "stage_input": ["ct-UAE tensors", "back-end models (CGCNN, ALIGNN, MEGNET)", "target property labels (Ef, Eg, E, magnetization)"],
+      "stage_output": ["MAE scores", "R² values", "comparative tables (e.g., Table 1, Table 2, Table 3)"],
+      "evidence": [
+        {
+          "text": "By performing experiments on widely-used materials database, our CrystalTransformer-based UAEs (ct-UAEs) are shown to accurately capture complex atomic features, leading to a 14% improvement in prediction accuracy on CGCNN and 18% on ALIGNN when using formation energies as the target, based on the Materials Project database.",
+          "page": 1,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "Table 1 shows a comparative MAE analysis to evaluate the relative performance enhancements attributable to the front-end atomic embeddings, denoted as N-CGCNN in Table 1 (N means the front-end model described above).",
+          "page": 3,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "After applying ct-UAEs to predict formation energy in hybrid perovskites database, we realized an improvement in accuracy, with a 34% boost in MEGNET and 16% in CGCNN, showcasing their potential as atomic ﬁngerprints to address the data scarcity challenges.",
+          "page": 1,
+          "section": null,
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "computational_validation",
+      "stage_name_raw": "Validating symmetry invariance and embedding stability",
+      "stage_order": 5,
+      "stage_goal": "Verify that ct-UAEs are invariant under rotation/translation and stable across augmentations via cosine similarity and Euclidean distance metrics.",
+      "stage_input": ["augmented crystal samples (rotated/translated)", "MT@3p model"],
+      "stage_output": ["average cosine similarity (0.998)", "average Euclidean distance (0.275)"],
+      "evidence": [
+        {
+          "text": "To validate this assertion, firstly we used a stronger data augmentation method to train the MT@3p model on the MP* dataset. Then a group of crystals are randomly selected, and subjected to random augmentations through rotations and translations. The consistency of the output vectors from these augmented samples was assessed using pairwise cosine similarity and Euclidean distance. The trained MT@3p model achieved an average cosine similarity of 0.998 and an average Euclidean distance of 0.275, indicating that the output vectors were nearly identical across augmentations.",
+          "page": 9,
+          "section": "Crystal-symmetry restrictions and data augmentation",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_screening",
+      "stage_name_raw": "Clustering and interpreting ct-UAEs via UMAP/K-means",
+      "stage_order": 6,
+      "stage_goal": "Use unsupervised clustering to categorize elements based on ct-UAEs and link clusters to physical/chemical properties.",
+      "stage_input": ["ct-UAE tensors (89 × 128)", "UMAP dimensionality reduction", "K-means clustering"],
+      "stage_output": ["three-element classes (A/B/C)", "violin plots of formation energy/bandgap/magnetization per class"],
+      "evidence": [
+        {
+          "text": "This investigation leverages straightforward clustering algorithms to conduct an in-depth analysis of ct-UAEs. Here, the UMAP clustering method42 is employed to project these ct-UAEs into a two-dimensional space, thereby offering a means to intuitively understand atomic characteristics in a reduced dimensional setting.",
+          "page": 4,
+          "section": "Interpretability",
+          "inferred": false
+        },
+        {
+          "text": "Based on the clustering results, most of the elements in the periodic table can be categorized, as shown in Fig. 3a. This example divides all elements into 3 classes, called as Class A (the green cluster), Class B (the yellow cluster), and Class C (the blue cluster).",
+          "page": 5,
+          "section": null,
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "label_generation",
+      "stage_name_raw": "Deriving atomic property labels for reverse training (CatBoost)",
+      "stage_order": 7,
+      "stage_goal": "Use known elemental properties (e.g., boiling temperature, ionization energy) as regression targets to assess how well ct-UAEs encode physical knowledge.",
+      "stage_input": ["ct-UAE tensors", "tabulated atomic properties (radius, boiling temperature, etc.)"],
+      "stage_output": ["R² scores per property (e.g., 0.864 for boiling temperature)", "SHAP importance rankings"],
+      "evidence": [
+        {
+          "text": "To further investigate the intrinsic information of the embeddings, we conduct reverse training experiments, which involves taking a series of important elemental properties, including atomic radius, boiling temperature, melting temperature, electrical conductivity, ﬁrst ionization energy as training targets to train a Catboost model66.",
+          "page": 6,
+          "section": "Boiling Temperature",
+          "inferred": false
+        },
+        {
+          "text": "The R2 for the model in predicting each property is calculated, with the best results listed in Table 4, which reveals that, the Catboost model exhibits high values of R2 larger than 0.78.",
+          "page": 6,
+          "section": "Boiling Temperature",
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,350 @@
+{
+  "paper": {
+    "paper_id": "P020",
+    "title": "A Space Group Symmetry Informed Network for O(3) Equivariant Crystal Tensor Prediction",
+    "year": 2024,
+    "doi": null,
+    "file_name": "20_GMTNet.pdf",
+    "research_summary": "We consider the prediction of general tensor properties of crystalline materials, including dielectric, piezoelectric, and elastic tensors. A key challenge here is how to make the predictions satisfy the unique tensor equivariance to O(3) group and invariance to crystal space groups. To this end, we propose a General Materials Tensor Network (GMTNet), which is carefully designed to satisfy the required symmetries. To evaluate our method, we curate a dataset and establish evaluation metrics that are tailored to the intricacies of crystal tensor predictions. Experimental results show that our GMTNet not only achieves promising performance on crystal tensors of various orders but also generates predictions fully consistent with the intrinsic crystal symmetries.",
+    "extraction_status": "completed"
+  },
+  "tasks": [
+    {
+      "task_id": "T_P020_01",
+      "paper_id": "P020",
+      "task_name_raw": "crystal tensor property prediction",
+      "task_name_canonical": "crystal_tensor_property_prediction",
+      "objective": "predicting the Tensor properties of crystals, such as the dielectric tensor ε ∈R3×3, piezoelectric tensor e ∈R3×3×3, and elastic tensor C ∈R3×3×3×3",
+      "material_scope": [
+        "crystalline materials"
+      ],
+      "target_properties": [
+        "dielectric tensor",
+        "piezoelectric tensor",
+        "elastic tensor"
+      ],
+      "constraints": [
+        "O(3) equivariance",
+        "crystal space group invariance",
+        "tensor matrix forms",
+        "intrinsic crystal symmetries"
+      ],
+      "input_requirements": [
+        "crystal structure M = (A, P, L)"
+      ],
+      "output_goal": [
+        "tensor matrix forms"
+      ],
+      "parent_task_id": null,
+      "task_level": "main_task",
+      "evidence": [
+        {
+          "text": "Definition 3.1 (Crystal Tensor Property Prediction). The task of crystal tensor property prediction involves predicting the Tensor properties of crystals, such as the dielectric tensor ε ∈R3×3, piezoelectric tensor e ∈R3×3×3, and elastic tensor C ∈R3×3×3×3. These properties are predicted in their tensor matrix forms, using the crystal structure M = (A, P, L) as the input.",
+          "page": 3,
+          "section": "Method",
+          "inferred": false
+        }
+      ]
+    }
+  ],
+  "stages": [
+    {
+      "stage_id": "S_P020_01",
+      "paper_id": "P020",
+      "task_id": "T_P020_01",
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "curating a dataset",
+      "stage_order": 1,
+      "stage_goal": "curate a dataset encompassing dielectric, piezoelectric, and elastic tensors",
+      "stage_input": [
+        "JARVIS-DFT database"
+      ],
+      "stage_output": [
+        "curated crystal tensor property dataset"
+      ],
+      "evidence": [
+        {
+          "text": "In our research, a dataset is curated specifically focusing on crystal tensor properties, including dielectric, piezoelectric, and elastic tensors, sourced from the JARVIS-DFT database (Choudhary et al., 2020).",
+          "page": 7,
+          "section": "Dataset",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P020_02",
+      "paper_id": "P020",
+      "task_id": "T_P020_01",
+      "stage_type": "data_preparation",
+      "stage_name_raw": "symmetry-informed crystal graph construction",
+      "stage_order": 2,
+      "stage_goal": "transform a given crystal structure M = (A, P, L) into a corresponding crystal graph representation",
+      "stage_input": [
+        "crystal structure M = (A, P, L)"
+      ],
+      "stage_output": [
+        "crystal graph representation"
+      ],
+      "evidence": [
+        {
+          "text": "To predict crystal tensor properties adhere to intrinsic symmetries, we introduce the symmetry-informed crystal graph construction module. This module is responsible for transforming a given crystal structure M = (A, P, L) into a corresponding crystal graph representation.",
+          "page": 3,
+          "section": "Method",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P020_03",
+      "paper_id": "P020",
+      "task_id": "T_P020_01",
+      "stage_type": "model_training",
+      "stage_name_raw": "crystal-level equivariant feature extraction",
+      "stage_order": 3,
+      "stage_goal": "extract crystal-level equivariant features from crystal graphs",
+      "stage_input": [
+        "crystal graph representation"
+      ],
+      "stage_output": [
+        "crystal-level equivariant features"
+      ],
+      "evidence": [
+        {
+          "text": "Focusing on crystal tensor properties such as dielectric, piezoelectric, and elastic tensors, we introduce the crystal-level equivariant feature extraction module. This module is responsible for extracting crystal-level equivariant features from crystal graphs. These features are pivotal for the subsequent prediction of tensor properties.",
+          "page": 4,
+          "section": "Crystal-level Equivariant Feature Extraction",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P020_04",
+      "paper_id": "P020",
+      "task_id": "T_P020_01",
+      "stage_type": "model_training",
+      "stage_name_raw": "equivariant tensor property prediction",
+      "stage_order": 4,
+      "stage_goal": "construct tensor predictions such as dielectric, piezoelectric, and elastic tensors in matrix forms that satisfy all crystal symmetry constraints and O(3) equivariance",
+      "stage_input": [
+        "crystal-level equivariant features",
+        "external electric field E",
+        "strain ϵ"
+      ],
+      "stage_output": [
+        "predicted tensor properties"
+      ],
+      "evidence": [
+        {
+          "text": "Constructing tensor predictions such as dielectric, piezoelectric, and elastic tensors in matrix forms that satisfy all crystal symmetry constraints and O(3) equivariance is non-trivial. Rather than directly employing crystal-level equivariant features to construct matrices, our approach simulates the physical responses that these properties represent.",
+          "page": 5,
+          "section": "Equivariant Tensor Property Prediction",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P020_05",
+      "paper_id": "P020",
+      "task_id": "T_P020_01",
+      "stage_type": "model_training",
+      "stage_name_raw": "crystal symmetry enforcement module",
+      "stage_order": 5,
+      "stage_goal": "ensure that tensor predictions fully comply with crystal symmetry constraints for realistic crystal inputs and message passing operations with small errors",
+      "stage_input": [
+        "crystal-level equivariant features",
+        "crystal's symmetry group transformations"
+      ],
+      "stage_output": [
+        "symmetry-enforced tensor predictions"
+      ],
+      "evidence": [
+        {
+          "text": "To address the challenge of upholding crystal symmetry in tensor predictions, we introduce a crystal symmetry enforcement module. This module simplifies the complex symmetry constraints of tensor properties into constraints applicable to crystal-level features.",
+          "page": 5,
+          "section": "Crystal Symmetry Enforcement Module",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P020_06",
+      "paper_id": "P020",
+      "task_id": "T_P020_01",
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "evaluation metrics establishment",
+      "stage_order": 6,
+      "stage_goal": "establish evaluation metrics tailored for ML-based predictions of general tensor properties",
+      "stage_input": [
+        "curated dataset",
+        "predicted tensor properties"
+      ],
+      "stage_output": [
+        "evaluation metrics: success rate in capturing zero elements, success rate in identifying mutually dependent elements, Frobenius norm distance, high-quality prediction rate"
+      ],
+      "evidence": [
+        {
+          "text": "To thoroughly assess the quality of tensor predictions, we propose the following metrics, each targeting a specific aspect of the tensor prediction quality. (1) Success rate in capturing zero elements that evaluates the ability of the model to correctly identify tensor elements that should be zero-valued due to symmetry constraints inherent in crystal structures. (2) Success rate in identifying mutually dependent elements that measures the model’s accuracy in capturing the equality between tensor elements that are dependent due to symmetry. (3) Frobenius norm (Fnorm) distance that is an E(3) invariant measure for crystal tensor properties, averaged across different crystal systems. (4) High-quality prediction rate (EwT) that is determined by the ratio of Fnorm(error) to Fnorm(label) being less than 25%.",
+          "page": 7,
+          "section": "Experimental Setup",
+          "inferred": false
+        }
+      ]
+    }
+  ],
+  "datasets": [
+    {
+      "dataset_id": "D_jarvis_dft",
+      "canonical_name": "JARVIS-DFT",
+      "raw_names": [
+        "JARVIS-DFT",
+        "JARVIS-DFT database"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "crystalline materials"
+      ],
+      "available_properties": [
+        "dielectric tensor",
+        "piezoelectric tensor",
+        "elastic tensor"
+      ],
+      "available_fields": [
+        "crystal structure M = (A, P, L)",
+        "tensor property values"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "In our research, a dataset is curated specifically focusing on crystal tensor properties, including dielectric, piezoelectric, and elastic tensors, sourced from the JARVIS-DFT database (Choudhary et al., 2020).",
+          "page": 7,
+          "section": "Dataset",
+          "inferred": false,
+          "paper_id": "P020"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:jarvis_dft"
+    },
+    {
+      "dataset_id": "D_P020_curated_crystal_tensor_property_dataset",
+      "canonical_name": "curated crystal tensor property dataset",
+      "raw_names": [
+        "curated crystal tensor property dataset",
+        "curated dataset"
+      ],
+      "dataset_type": "derived_subset",
+      "source_dataset_id": "D_jarvis_dft",
+      "material_scope": [
+        "crystalline materials"
+      ],
+      "available_properties": [
+        "dielectric tensor",
+        "piezoelectric tensor",
+        "elastic tensor"
+      ],
+      "available_fields": [
+        "crystal structure M = (A, P, L)",
+        "tensor property values"
+      ],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "In our research, a dataset is curated specifically focusing on crystal tensor properties, including dielectric, piezoelectric, and elastic tensors, sourced from the JARVIS-DFT database (Choudhary et al., 2020). This dataset has been constructed with a keen emphasis on ensuring congruence between the properties and structures, achieved by extracting both the tensor property values and corresponding crystal structures directly from the DFT calculation files.",
+          "page": 7,
+          "section": "Dataset",
+          "inferred": false,
+          "paper_id": "P020"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "P020:derived_subset:curated_crystal_tensor_property_dataset"
+    }
+  ],
+  "dataset_uses": [
+    {
+      "dataset_use_id": "DU_P020_001",
+      "paper_id": "P020",
+      "task_id": "T_P020_01",
+      "stage_id": "S_P020_01",
+      "dataset_id": "D_jarvis_dft",
+      "usage_role": "source",
+      "purpose": "source database for curating the crystal tensor property dataset",
+      "used_fields": [
+        "crystal structure M = (A, P, L)",
+        "tensor property values"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "In our research, a dataset is curated specifically focusing on crystal tensor properties, including dielectric, piezoelectric, and elastic tensors, sourced from the JARVIS-DFT database (Choudhary et al., 2020).",
+          "page": 7,
+          "section": "Dataset",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P020_002",
+      "paper_id": "P020",
+      "task_id": "T_P020_01",
+      "stage_id": "S_P020_01",
+      "dataset_id": "D_P020_curated_crystal_tensor_property_dataset",
+      "usage_role": "training",
+      "purpose": "curated dataset used for model training and evaluation",
+      "used_fields": [
+        "crystal structure M = (A, P, L)",
+        "tensor property values"
+      ],
+      "is_derived": true,
+      "construction_method": "extracting both the tensor property values and corresponding crystal structures directly from the DFT calculation files",
+      "filter_conditions": [
+        "dielectric tensor",
+        "piezoelectric tensor",
+        "elastic tensor"
+      ],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Table 1. Dataset statistics. Fnorm denotes Frobenius norm.\nDataset\n# Samples\nFnorm Mean\nFnorm STD\n# Elem.\nUnit\nDielectric\n4713\n14.7\n18.2\n87\nUnitless\nPiezo\n4998\n0.43\n3.09\n87\nC/m2\nElastic\n14220\n327\n249\n87\nGPa",
+          "page": 7,
+          "section": "Dataset",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P020_003",
+      "paper_id": "P020",
+      "task_id": "T_P020_01",
+      "stage_id": "S_P020_06",
+      "dataset_id": "D_P020_curated_crystal_tensor_property_dataset",
+      "usage_role": "test",
+      "purpose": "used for model evaluation with tailored metrics",
+      "used_fields": [
+        "crystal structure M = (A, P, L)",
+        "tensor property values"
+      ],
+      "is_derived": true,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "To thoroughly assess the quality of tensor predictions, we propose the following metrics, each targeting a specific aspect of the tensor prediction quality. (1) Success rate in capturing zero elements that evaluates the ability of the model to correctly identify tensor elements that should be zero-valued due to symmetry constraints inherent in crystal structures. (2) Success rate in identifying mutually dependent elements that measures the model’s accuracy in capturing the equality between tensor elements that are dependent due to symmetry. (3) Frobenius norm (Fnorm) distance that is an E(3) invariant measure for crystal tensor properties, averaged across different crystal systems. (4) High-quality prediction rate (EwT) that is determined by the ratio of Fnorm(error) to Fnorm(label) being less than 25%.",
+          "page": 7,
+          "section": "Experimental Setup",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+[
+  {
+    "task_description": "Screening and identifying high-performance Ni-based intermetallic catalysts for selective alkyne semihydrogenation—specifically, predicting catalysts that achieve >97% selectivity to ethylene (from acetylene) and propylene (from propyne) at full alkyne conversion under mild conditions—by optimizing the microkinetic descriptor: the energy difference between ethylene desorption and ethylene hydrogenation barrier.",
+    "task_tags": [
+      "catalyst screening",
+      "semihydrogenation selectivity",
+      "microkinetic descriptor optimization"
+    ],
+    "datasets": [
+      {
+        "db_title": "Materials Project database",
+        "db_description": "A publicly accessible computational materials database containing thermodynamically stable crystal structures, including formation energies, space groups, and structural data. In this paper, it was used to retrieve over 3000 Ni-based, nonprecious, bimetallic, and thermodynamically stable crystalline compounds as the initial catalyst design space; these structures were then enumerated into low-Miller-index surfaces to generate candidate catalyst surfaces for DFT-based descriptor evaluation and active learning-guided screening.",
+        "db_link": "https://materialsproject.org"
+      }
+    ]
+  }
+]

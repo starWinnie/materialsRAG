@@ -1,0 +1,47 @@
+[
+  {
+    "task_description": "Generating plausible, physically valid crystal structures for inorganic compounds given only their chemical composition (and optionally space group), with the goal of producing candidates suitable for downstream crystal structure prediction (CSP) and materials discovery workflows.",
+    "task_tags": [
+      "crystal structure generation",
+      "inorganic materials design",
+      "CSP candidate generation"
+    ],
+    "datasets": [
+      {
+        "db_title": "Materials Project (MP)",
+        "db_description": "A DFT-optimized database of inorganic crystal structures, containing ~3.6 million total structures obtained from the Materials Project (downloaded April 2022), covering compounds with 1–10 elements, up to atomic number 94 (excluding Po, At, Rn, Fr, Ra). It includes ~800,000 unique formulas and 1.2 million unique cell compositions. This dataset was converted to CIF format using pymatgen and formed the core training corpus (~2.3 million CIF files after deduplication) for CrystaLLM, directly supporting the autoregressive language modeling task of generating syntactically and physically valid CIF files from compositional prompts.",
+        "db_link": "https://materialsproject.org/"
+      },
+      {
+        "db_title": "Open Quantum Materials Database (OQMD)",
+        "db_description": "A high-throughput DFT database of predicted inorganic materials, contributing to the combined ~3.6 million structure dataset. Specifically, version 1.5 (released October 2021) was used. The OQMD structures—particularly many pyrochlores used in validation—provided diverse, computationally generated crystal structures that expanded coverage beyond experimentally reported entries, enabling CrystaLLM to learn broader structural patterns and support generalization to unseen compositions and space groups during training and benchmarking.",
+        "db_link": "https://oqmd.org/"
+      },
+      {
+        "db_title": "NOMAD Repository",
+        "db_description": "A large-scale repository of computational materials science data, including DFT-optimized crystal structures. Structures were downloaded from NOMAD in April 2023 and integrated into the unified ~3.6 million structure dataset. NOMAD contributed additional structural diversity—especially for less common stoichiometries and element combinations—which helped improve CrystaLLM’s ability to generate valid structures for underrepresented classes (e.g., intermetallics, mixed-anion compounds) during both training and challenge-set evaluation.",
+        "db_link": "https://nomad-lab.eu/"
+      },
+      {
+        "db_title": "Perov-5",
+        "db_description": "A benchmark dataset of 18,928 perovskite structures used to evaluate CrystaLLM’s conditional generation performance (i.e., predicting structures given composition). It was split into train/validation/test sets (60-20-20) and used to train and benchmark CrystaLLM variants specifically for perovskite CSP tasks. The dataset supports the task of assessing how well CrystaLLM recovers known ground-state perovskite structures from cell composition alone, measured via match rate and RMSE against ground truth.",
+        "db_link": "https://archive.materialscloud.org/record/2020.0026/v1"
+      },
+      {
+        "db_title": "Carbon-24",
+        "db_description": "A benchmark dataset of 10,153 carbon allotropes used to evaluate CrystaLLM’s conditional and unconditional generation capabilities. It was split using the same 60-20-20 protocol as Perov-5 and employed to assess model performance on complex, low-symmetry carbon frameworks. This dataset supports the task of quantifying CrystaLLM’s validity, coverage (COV-P/COV-R), and structural fidelity for elemental systems far outside typical ionic compound paradigms.",
+        "db_link": "https://archive.materialscloud.org/record/2020.0026/v1"
+      },
+      {
+        "db_title": "MP-20",
+        "db_description": "A benchmark subset of 45,231 stable inorganic materials drawn from the Materials Project, representing diverse structural classes. Used for both conditional (CSP) and unconditional generation evaluation, it supports the task of measuring CrystaLLM’s generalizability across broad chemical space—including validity, compositional validity, and coverage metrics—under standardized train/validation/test splits aligned with prior generative models like CDVAE.",
+        "db_link": "https://materialsproject.org/"
+      },
+      {
+        "db_title": "MPTS-52",
+        "db_description": "A challenging benchmark dataset of 40,476 inorganic materials, notable for containing structures with up to 52 atoms per unit cell—making it the most complex benchmark used. It was split into 27,380/5,000/8,096 train/validation/test sets (matching DiffCSP’s protocol) and used to rigorously test CrystaLLM’s ability to generate large, complex structures under composition-only conditioning. This dataset directly supports the task of evaluating scalability and robustness in high-atom-count CSP scenarios.",
+        "db_link": "https://github.com/sparks-baird/mp-time-split"
+      }
+    ]
+  }
+]

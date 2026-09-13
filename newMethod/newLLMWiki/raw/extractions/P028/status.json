@@ -1,0 +1,27 @@
+{
+  "paper_id": "P028",
+  "file_name": "28_JARVIS_Leaderboard.pdf",
+  "status": "completed",
+  "completed_at": "2026-07-27T05:12:31.604984+00:00",
+  "model": "qwen-plus",
+  "stage1_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "stage2_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "counts": {
+    "tasks": 1,
+    "stages": 5,
+    "datasets": 8,
+    "dataset_uses": 8
+  }
+}

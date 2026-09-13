@@ -1,0 +1,478 @@
+{
+  "paper": {
+    "paper_id": "P009",
+    "title": "LLM-Prop: predicting the properties of crystalline materials using large language models",
+    "year": 2025,
+    "doi": "10.1038/s41524-025-01536-2",
+    "file_name": "09_LLM_Prop.pdf",
+    "research_summary": "The paper introduces LLM-Prop, a method that leverages large language models (LLMs) to predict physical and electronic properties of crystalline materials from their natural language text descriptions—bypassing traditional graph-based representations. It proposes a benchmark dataset (TextEdge), develops a fine-tuned T5 encoder architecture with specialized preprocessing (e.g., [NUM]/[ANG] tokenization, [CLS] prepending, label scaling), and demonstrates superior performance over state-of-the-art GNNs and domain-specific LLMs (e.g., MatBERT) on six crystal properties including band gap, unit cell volume, formation energy, and band gap type classification.",
+    "extraction_status": "completed"
+  },
+  "tasks": [
+    {
+      "task_id": "T_P009_01",
+      "paper_id": "P009",
+      "task_name_raw": "predicting the properties of crystalline materials",
+      "task_name_canonical": "crystal_property_prediction",
+      "objective": "predicting physical and electronic properties of crystalline materials from their text descriptions",
+      "material_scope": [
+        "crystalline materials"
+      ],
+      "target_properties": [
+        "band gap",
+        "formation energy per atom",
+        "energy above hull",
+        "unit cell volume",
+        "energy per atom",
+        "whether the band gap is direct or indirect"
+      ],
+      "constraints": [],
+      "input_requirements": [
+        "crystal text descriptions"
+      ],
+      "output_goal": [
+        "predicted numerical values for regression tasks (e.g., band gap in eV, volume in A³/cell) and class labels for classification tasks (e.g., direct/indirect band gap)"
+      ],
+      "parent_task_id": null,
+      "task_level": "main_task",
+      "evidence": [
+        {
+          "text": "LLM-Prop: predicting the properties of crystalline materials using large language models",
+          "page": 1,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "Our LLM-Prop framework (Fig. 1a) is composed of a carefully fine-tuned encoder part of small version of T5 model (Fig. 1b)31 on text descriptions of crystal structures to learn crystal representations that are used to predict the physical and electronic properties of any crystal material.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "We focus on six crystal properties that include both regression and classification tasks and are diverse enough to evaluate the capabilities of any property predictor. We collect the data of band gap, formation energy per atom (FEPA), energy above hull (Ehull), crystal volume, energy per atom (EPA), and an indicator of whether the band gap is direct or indirect (Is-gap-direct).",
+          "page": 4,
+          "section": "Data collection and analysis",
+          "inferred": false
+        }
+      ]
+    }
+  ],
+  "stages": [
+    {
+      "stage_id": "S_P009_01",
+      "paper_id": "P009",
+      "task_id": "T_P009_01",
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "collecting crystal structure-description pairs from Materials Project",
+      "stage_order": 1,
+      "stage_goal": "acquire raw crystal structural data and associated properties",
+      "stage_input": [],
+      "stage_output": [
+        "145,825 crystal structure-description pairs"
+      ],
+      "evidence": [
+        {
+          "text": "We collected the dataset used in this work from the Materials Project database40 using the Materials Project free API as of November 1, 2022.",
+          "page": 4,
+          "section": "Data collection and analysis",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P009_02",
+      "paper_id": "P009",
+      "task_id": "T_P009_01",
+      "stage_type": "data_preparation",
+      "stage_name_raw": "generating crystal text descriptions using Robocrystallographer",
+      "stage_order": 2,
+      "stage_goal": "convert crystal structures into human-readable natural language text descriptions",
+      "stage_input": [
+        "CIF files"
+      ],
+      "stage_output": [
+        "crystal text descriptions"
+      ],
+      "evidence": [
+        {
+          "text": "We generated the crystal text descriptions using Robocrystallographer41, a tool that generates a deterministic human readable text description of a structure given its CIF file.",
+          "page": 4,
+          "section": "Data collection and analysis",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P009_03",
+      "paper_id": "P009",
+      "task_id": "T_P009_01",
+      "stage_type": "data_preparation",
+      "stage_name_raw": "preprocessing text descriptions (stopword removal, token replacement, [CLS] prepending)",
+      "stage_order": 3,
+      "stage_goal": "prepare text input for LLM fine-tuning by improving token efficiency and contextual representation",
+      "stage_input": [
+        "crystal text descriptions"
+      ],
+      "stage_output": [
+        "preprocessed text sequences with [NUM], [ANG], [CLS] tokens and removed stopwords"
+      ],
+      "evidence": [
+        {
+          "text": "For the input preprocessing step we did the following: (1) We removed stopwords from the text descriptions... (2) We Replaced bond distance with a [NUM] token and bond angle with an [ANG] token... (3) We removed bond distances and bond angles... (4) We prepended a [CLS] token to the input.",
+          "page": 3,
+          "section": null,
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P009_04",
+      "paper_id": "P009",
+      "task_id": "T_P009_01",
+      "stage_type": "label_generation",
+      "stage_name_raw": "obtaining property labels from Materials Project database",
+      "stage_order": 4,
+      "stage_goal": "acquire ground-truth property values for training and evaluation",
+      "stage_input": [
+        "Materials Project database entries"
+      ],
+      "stage_output": [
+        "band gap, formation energy per atom, energy above hull, crystal volume, energy per atom, Is-gap-direct labels"
+      ],
+      "evidence": [
+        {
+          "text": "We collect the data of band gap, formation energy per atom (FEPA), energy above hull (Ehull), crystal volume, energy per atom (EPA), and an indicator of whether the band gap is direct or indirect (Is-gap-direct).",
+          "page": 4,
+          "section": "Data collection and analysis",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P009_05",
+      "paper_id": "P009",
+      "task_id": "T_P009_01",
+      "stage_type": "model_training",
+      "stage_name_raw": "fine-tuning T5 encoder on preprocessed text and property labels",
+      "stage_order": 5,
+      "stage_goal": "train LLM-Prop to map text descriptions to property predictions",
+      "stage_input": [
+        "preprocessed text sequences",
+        "normalized property labels"
+      ],
+      "stage_output": [
+        "fine-tuned LLM-Prop model"
+      ],
+      "evidence": [
+        {
+          "text": "For regression tasks, we fine-tune LLM-Prop on normalized property values and denormalize the predicted values to calculate the error on the original values.",
+          "page": 11,
+          "section": "LLM-Prop",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P009_06",
+      "paper_id": "P009",
+      "task_id": "T_P009_01",
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "evaluating prediction performance on test set using MAE and AUC",
+      "stage_order": 6,
+      "stage_goal": "quantify accuracy of property predictions against ground truth",
+      "stage_input": [
+        "test set text descriptions",
+        "ground-truth property labels"
+      ],
+      "stage_output": [
+        "MAE for regression tasks, AUC for classification task"
+      ],
+      "evidence": [
+        {
+          "text": "For regression tasks, we train both MatBERT and LLM-Prop with the mean absolute error (MAE) loss and evaluate them in terms of MAE error... For classiﬁcation, we train them with binary cross entropy (BCE) loss and evaluate with the area under the ROC curve (AUC).",
+          "page": 11,
+          "section": "LLM-Prop",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P009_07",
+      "paper_id": "P009",
+      "task_id": "T_P009_01",
+      "stage_type": "ablation_study",
+      "stage_name_raw": "assessing contribution of each preprocessing and architectural choice",
+      "stage_order": 7,
+      "stage_goal": "determine how individual design choices affect overall performance",
+      "stage_input": [
+        "LLM-Prop variants with isolated modifications"
+      ],
+      "stage_output": [
+        "performance deltas per strategy (e.g., +[CLS] token, +label scaling)"
+      ],
+      "evidence": [
+        {
+          "text": "Table 5 shows how each technique we use to make LLM-Prop a capable property predictor contributes to its performance. We first naively fine-tune a T5 encoder with its original tokenizer and without preprocessing the input (LLM-Prop-baseline) and then add to it each strategy separately.",
+          "page": 7,
+          "section": "Ablation studies",
+          "inferred": false
+        }
+      ]
+    }
+  ],
+  "datasets": [
+    {
+      "dataset_id": "D_materials_project",
+      "canonical_name": "Materials Project",
+      "raw_names": [
+        "Materials Project",
+        "Materials Project database"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "crystalline materials"
+      ],
+      "available_properties": [
+        "band gap",
+        "formation energy per atom",
+        "energy above hull",
+        "unit cell volume",
+        "energy per atom",
+        "whether the band gap is direct or indirect"
+      ],
+      "available_fields": [
+        "crystal structure (CIF)",
+        "property values",
+        "material ID"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We collected the dataset used in this work from the Materials Project database40 using the Materials Project free API as of November 1, 2022.",
+          "page": 4,
+          "section": "Data collection and analysis",
+          "inferred": false,
+          "paper_id": "P009"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:materials_project"
+    },
+    {
+      "dataset_id": "D_textedge",
+      "canonical_name": "TextEdge",
+      "raw_names": [
+        "TextEdge",
+        "benchmark dataset",
+        "curated dataset",
+        "benchmark text data"
+      ],
+      "dataset_type": "paper_specific",
+      "source_dataset_id": "D_materials_project",
+      "material_scope": [
+        "crystalline materials"
+      ],
+      "available_properties": [
+        "band gap",
+        "formation energy per atom",
+        "energy above hull",
+        "unit cell volume",
+        "energy per atom",
+        "whether the band gap is direct or indirect"
+      ],
+      "available_fields": [
+        "crystal text description",
+        "crystal ID",
+        "structural information",
+        "property values"
+      ],
+      "availability": "public",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "In this paper, we develop and make public a benchmark dataset (TextEdge) that contains crystal text descriptions with their properties.",
+          "page": 1,
+          "section": null,
+          "inferred": false,
+          "paper_id": "P009"
+        },
+        {
+          "text": "Finally, we release to the public the curated dataset we used as a benchmark, called TextEdge, to accelerate natural language processing (NLP) for materials science research.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false,
+          "paper_id": "P009"
+        },
+        {
+          "text": "We focus on six crystal properties that include both regression and classification tasks and are diverse enough to evaluate the capabilities of any property predictor. We collect the data of band gap, formation energy per atom (FEPA), energy above hull (Ehull), crystal volume, energy per atom (EPA), and an indicator of whether the band gap is direct or indirect (Is-gap-direct).",
+          "page": 4,
+          "section": "Data collection and analysis",
+          "inferred": false,
+          "paper_id": "P009"
+        },
+        {
+          "text": "The data originally contained 145,825 crystals structure-description pairs which we randomly split into 125,825 samples for the training set, 10,000 samples for the validation set and 10,000 samples for the test set.",
+          "page": 4,
+          "section": "Data collection and analysis",
+          "inferred": false,
+          "paper_id": "P009"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:textedge"
+    }
+  ],
+  "dataset_uses": [
+    {
+      "dataset_use_id": "DU_P009_001",
+      "paper_id": "P009",
+      "task_id": "T_P009_01",
+      "stage_id": "S_P009_01",
+      "dataset_id": "D_materials_project",
+      "usage_role": "source",
+      "purpose": "acquire raw crystal structural data and associated properties",
+      "used_fields": [
+        "crystal structure (CIF)",
+        "property values"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We collected the dataset used in this work from the Materials Project database40 using the Materials Project free API as of November 1, 2022.",
+          "page": 4,
+          "section": "Data collection and analysis",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P009_002",
+      "paper_id": "P009",
+      "task_id": "T_P009_01",
+      "stage_id": "S_P009_02",
+      "dataset_id": "D_materials_project",
+      "usage_role": "source",
+      "purpose": "generate crystal text descriptions using Robocrystallographer",
+      "used_fields": [
+        "CIF files"
+      ],
+      "is_derived": false,
+      "construction_method": "Robocrystallographer applied to CIF files",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We generated the crystal text descriptions using Robocrystallographer41, a tool that generates a deterministic human readable text description of a structure given its CIF file.",
+          "page": 4,
+          "section": "Data collection and analysis",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P009_003",
+      "paper_id": "P009",
+      "task_id": "T_P009_01",
+      "stage_id": "S_P009_04",
+      "dataset_id": "D_materials_project",
+      "usage_role": "label_source",
+      "purpose": "obtain property labels for training and evaluation",
+      "used_fields": [
+        "band gap",
+        "formation energy per atom",
+        "energy above hull",
+        "crystal volume",
+        "energy per atom",
+        "Is-gap-direct"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We collect the data of band gap, formation energy per atom (FEPA), energy above hull (Ehull), crystal volume, energy per atom (EPA), and an indicator of whether the band gap is direct or indirect (Is-gap-direct).",
+          "page": 4,
+          "section": "Data collection and analysis",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P009_004",
+      "paper_id": "P009",
+      "task_id": "T_P009_01",
+      "stage_id": "S_P009_05",
+      "dataset_id": "D_textedge",
+      "usage_role": "training",
+      "purpose": "fine-tune T5 encoder on preprocessed text and property labels",
+      "used_fields": [
+        "crystal text description",
+        "band gap",
+        "formation energy per atom",
+        "energy above hull",
+        "crystal volume",
+        "energy per atom",
+        "Is-gap-direct"
+      ],
+      "is_derived": true,
+      "construction_method": "derived from Materials Project via Robocrystallographer text generation and preprocessing",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The data originally contained 145,825 crystals structure-description pairs which we randomly split into 125,825 samples for the training set, 10,000 samples for the validation set and 10,000 samples for the test set.",
+          "page": 4,
+          "section": "Data collection and analysis",
+          "inferred": false
+        },
+        {
+          "text": "The data originally contained 145,825 crystals structure-description pairs which we randomly split into 125,825 samples for the training set, 10,000 samples for the validation set and 10,000 samples for the test set.",
+          "page": 4,
+          "section": "Data collection and analysis",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P009_005",
+      "paper_id": "P009",
+      "task_id": "T_P009_01",
+      "stage_id": "S_P009_06",
+      "dataset_id": "D_textedge",
+      "usage_role": "test",
+      "purpose": "evaluate prediction performance on test set using MAE and AUC",
+      "used_fields": [
+        "crystal text description",
+        "band gap",
+        "formation energy per atom",
+        "energy above hull",
+        "crystal volume",
+        "energy per atom",
+        "Is-gap-direct"
+      ],
+      "is_derived": true,
+      "construction_method": "derived from Materials Project via Robocrystallographer text generation and preprocessing",
+      "filter_conditions": [],
+      "sample_count": 10000,
+      "evidence": [
+        {
+          "text": "The data originally contained 145,825 crystals structure-description pairs which we randomly split into 125,825 samples for the training set, 10,000 samples for the validation set and 10,000 samples for the test set.",
+          "page": 4,
+          "section": "Data collection and analysis",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

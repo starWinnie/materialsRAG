@@ -1,0 +1,208 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "materials_project",
+      "canonical_name": "Materials Project",
+      "raw_names": ["Materials Project"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["crystalline solids", "crystals"],
+      "available_properties": ["total energy (eV/atom)", "band gap (eV)", "bulk modulus (log GPa)", "shear modulus (log GPa)"],
+      "available_fields": ["atomic numbers", "fractional coordinates", "3×3 lattice vectors", "space group identifier (1-230)"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "For our primary benchmark experiments, we use data from the Materials Project, one of the largest databases of computational material properties (Jain et al., 2013). The task is to predict four key material properties from the crystal structure: total energy (eV/atom), band gap (eV), bulk modulus (log GPa), and shear modulus (log GPa). For each material, the model receives the atomic numbers and fractional coordinates of atoms within the unit cell, the 3×3 lattice vectors, and the corresponding space group identifier (1-230). At the time of training, there were 152,149 crystals with known total energies and band gaps, and 11,997 crystals with known bulk and shear moduli in the Materials Project database.",
+          "page": 7,
+          "section": "5.1 EXPERIMENTAL SETUP",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "synthetic_orbit_distance",
+      "canonical_name": "synthetic orbit distance dataset",
+      "raw_names": ["synthetic dataset"],
+      "dataset_type": "paper_specific",
+      "source_dataset_key": null,
+      "material_scope": ["crystalline solids", "crystals"],
+      "available_properties": ["orbit distance"],
+      "available_fields": ["atomic positions", "space group", "lattice vectors"],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "We construct a synthetic dataset containing 100,000 samples for each of the 230 space groups. Each sample consists of a pair of random atomic positions as fractional coordinates in [0, 1)3, a space group, and randomly generated lattice vectors that satisfy the constraints of the Bravais lattice for the group.",
+          "page": 8,
+          "section": "5.2 SYMMETRY-ADAPTED ENCODINGS CAPTURE ORBIT DISTANCE",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "materials_project",
+      "usage_role": "source",
+      "purpose": "Acquire crystal structure data and material property labels for training and evaluation.",
+      "used_fields": ["atomic numbers", "fractional coordinates", "3×3 lattice vectors", "space group identifier (1-230)"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 152149,
+      "evidence": [
+        {
+          "text": "For our primary benchmark experiments, we use data from the Materials Project, one of the largest databases of computational material properties (Jain et al., 2013). The task is to predict four key material properties from the crystal structure: total energy (eV/atom), band gap (eV), bulk modulus (log GPa), and shear modulus (log GPa). For each material, the model receives the atomic numbers and fractional coordinates of atoms within the unit cell, the 3×3 lattice vectors, and the corresponding space group identifier (1-230). At the time of training, there were 152,149 crystals with known total energies and band gaps, and 11,997 crystals with known bulk and shear moduli in the Materials Project database.",
+          "page": 7,
+          "section": "5.1 EXPERIMENTAL SETUP",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "synthetic_orbit_distance",
+      "usage_role": "candidate_pool",
+      "purpose": "Generate synthetic crystal pairs with ground-truth orbit distances to pretrain and validate the symmetry-adapted encoding module.",
+      "used_fields": ["atomic positions", "space group", "lattice vectors"],
+      "is_derived": false,
+      "construction_method": "Each sample consists of a pair of random atomic positions as fractional coordinates in [0, 1)3, a space group, and randomly generated lattice vectors that satisfy the constraints of the Bravais lattice for the group.",
+      "filter_conditions": [],
+      "sample_count": 100000,
+      "evidence": [
+        {
+          "text": "We construct a synthetic dataset containing 100,000 samples for each of the 230 space groups. Each sample consists of a pair of random atomic positions as fractional coordinates in [0, 1)3, a space group, and randomly generated lattice vectors that satisfy the constraints of the Bravais lattice for the group.",
+          "page": 8,
+          "section": "5.2 SYMMETRY-ADAPTED ENCODINGS CAPTURE ORBIT DISTANCE",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "synthetic_orbit_distance",
+      "usage_role": "label_source",
+      "purpose": "Calculate the orbit distance dG(x1, x2) = minϕ1,ϕ2∈G ||ϕ1(x1) − ϕ2(x2)||2 for each pair of atomic positions in the synthetic dataset.",
+      "used_fields": ["atomic positions", "space group G"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The orbit distance is defined as\ndG(x1, x2) := minϕ1,ϕ2∈G ||ϕ1(x1) −ϕ2(x2)||2.\n(8)\nIt measures the shortest Euclidean distance between any two points in the respective orbits of the atoms, which stays invariant to applications of group actions to either atom.",
+          "page": 8,
+          "section": "5.2 SYMMETRY-ADAPTED ENCODINGS CAPTURE ORBIT DISTANCE",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "synthetic_orbit_distance",
+      "usage_role": "training",
+      "purpose": "Train the G-invariant encoding module to produce embeddings where Euclidean distance matches the ground-truth orbit distance.",
+      "used_fields": ["atomic positions", "lattice vectors", "space group", "ground-truth orbit distances"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The model is trained to minimize the Mean Squared Error (MSE) between the L2 distance of the output embeddings and the ground-truth orbit distance.",
+          "page": 8,
+          "section": "5.2 SYMMETRY-ADAPTED ENCODINGS CAPTURE ORBIT DISTANCE",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "materials_project",
+      "usage_role": "training",
+      "purpose": "Train the complete CFT architecture using pre-trained positional encodings to predict material properties.",
+      "used_fields": ["atomic numbers", "fractional coordinates", "3×3 lattice vectors", "space group identifier (1-230)"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 152149,
+      "evidence": [
+        {
+          "text": "For our primary benchmark experiments, we use data from the Materials Project, one of the largest databases of computational material properties (Jain et al., 2013). The task is to predict four key material properties from the crystal structure: total energy (eV/atom), band gap (eV), bulk modulus (log GPa), and shear modulus (log GPa). For each material, the model receives the atomic numbers and fractional coordinates of atoms within the unit cell, the 3×3 lattice vectors, and the corresponding space group identifier (1-230). At the time of training, there were 152,149 crystals with known total energies and band gaps, and 11,997 crystals with known bulk and shear moduli in the Materials Project database.",
+          "page": 7,
+          "section": "5.1 EXPERIMENTAL SETUP",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 6,
+      "dataset_key": "materials_project",
+      "usage_role": "test",
+      "purpose": "Assess the performance of the trained CFT against state-of-the-art baselines on standard material property prediction tasks.",
+      "used_fields": ["atomic numbers", "fractional coordinates", "3×3 lattice vectors", "space group identifier (1-230)"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Table 1 shows the test MAE for CFT and baseline models. Our CFT model achieves competitive performance across all four properties and outperforms all baselines on Total Energy and Shear Moduli prediction. Notably, it significantly surpasses the Transformer baseline that uses standard positional encodings, demonstrating the usefulness of the symmetry-adapted encoding.",
+          "page": 8,
+          "section": "5.3 MATERIAL PROPERTY PREDICTION",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 7,
+      "dataset_key": "materials_project",
+      "usage_role": "screening",
+      "purpose": "Select a subset of space groups (those with inversion symmetry) to serve as unseen groups for zero-shot generalization testing.",
+      "used_fields": ["space group identifier (1-230)"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": ["space groups containing inversion symmetry"],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We test this hypothesis in a zero-shot setting by holding out all space groups containing inversion symmetry from the training set.",
+          "page": 9,
+          "section": "5.4 ZERO-SHOT GENERALIZATION TO UNSEEN SPACE GROUPS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 8,
+      "dataset_key": "materials_project",
+      "usage_role": "test",
+      "purpose": "Measure the performance degradation of CFT when predicting properties for materials from space groups it was never trained on.",
+      "used_fields": ["atomic numbers", "fractional coordinates", "3×3 lattice vectors", "space group identifier (1-230)"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": ["space groups containing inversion symmetry"],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "For each held-out inversion group G ∈Ginv, we compute the group-wise MAE under the zero-shot and all-data training regimes, denoted MAEzero-shot_G and MAEall-data_G. We define the performance gap for group G as\n∆MAEG = MAEzero-shot_G −MAEall-data_G.\n(9)",
+          "page": 9,
+          "section": "5.4 ZERO-SHOT GENERALIZATION TO UNSEEN SPACE GROUPS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

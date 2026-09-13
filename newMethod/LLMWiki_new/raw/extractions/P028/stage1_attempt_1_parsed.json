@@ -1,0 +1,232 @@
+{
+  "paper": {
+    "title": "JARVIS-Leaderboard: a large scale benchmark of materials design methods",
+    "year": 2024,
+    "doi": "10.1038/s41524-024-01259-w",
+    "research_summary": "JARVIS-Leaderboard is an open-source, community-driven platform for benchmarking and enhancing reproducibility in materials science. It integrates computational, experimental, and data-analytics methods across five categories—Artificial Intelligence (AI), Electronic Structure (ES), Force-fields (FF), Quantum Computation (QC), and Experiments (EXP)—and supports multiple data modalities (atomic structures, spectra, images, text). The platform hosts 274 benchmarks, 152 methods, 1281 contributions, and over 8 million data points, enabling systematic, transparent, and unbiased validation of materials design approaches."
+  },
+  "task": {
+    "task_name_raw": "benchmarking of materials design methods",
+    "task_name_canonical": "materials_design_method_benchmarking",
+    "objective": "to provide a comprehensive, reproducible, transparent, and unbiased framework for benchmarking materials design methods across multiple categories and data modalities",
+    "material_scope": [
+      "materials of technological interest"
+    ],
+    "target_properties": [
+      "formation energy",
+      "bandgap",
+      "bulk modulus",
+      "forces",
+      "exfoliation energy",
+      "CO2 adsorption",
+      "elastic properties",
+      "thermal properties",
+      "optical properties",
+      "electronic properties",
+      "phonon spectra",
+      "dielectric functions",
+      "solar cell efficiencies",
+      "superconducting transition temperatures",
+      "strain-stress",
+      "magnetometry",
+      "vibroscopy",
+      "XRD",
+      "STEM",
+      "STM"
+    ],
+    "constraints": [
+      "must be based on well-characterized/well-known samples/tasks with digital object identifier/peer-reviewed article links",
+      "must include run script to exactly reproduce results",
+      "must include metadata file with team name, contact information, computational timing and software/hardware used"
+    ],
+    "input_requirements": [
+      "reference benchmark data (e.g., experimental data, DFT data, analytical results)",
+      "user-submitted method outputs (e.g., predictions, measurements, simulations)"
+    ],
+    "output_goal": [
+      "performance rankings across methods for each benchmark",
+      "reproducible, comparable, and interpretable evaluation metrics (e.g., MAE, accuracy, ROUGE)"
+    ],
+    "evidence": [
+      {
+        "text": "This work introduces JARVIS-Leaderboard, an open-source and community-driven platform that facilitates benchmarking and enhances reproducibility.",
+        "page": 1,
+        "section": null,
+        "inferred": false
+      },
+      {
+        "text": "The goal of this project is to provide a more comprehensive framework for materials benchmarking than previous works.",
+        "page": 2,
+        "section": null,
+        "inferred": false
+      },
+      {
+        "text": "JARVIS-Leaderboard is an evolving project, so additions to the project are anticipated, welcome, and easy to make.",
+        "page": 4,
+        "section": "Results and discussion",
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "populate reference dataset",
+      "stage_order": 1,
+      "stage_goal": "to generate a benchmark dataset with well-defined data splits",
+      "stage_input": [
+        "well-known and published experimental data, density functional theory, or numerical solutions"
+      ],
+      "stage_output": [
+        "reference benchmark dataset (json.zip file)"
+      ],
+      "evidence": [
+        {
+          "text": "There is a helper script jarvis_populate_data.py to generate a benchmark dataset.",
+          "page": 4,
+          "section": "Results and discussion",
+          "inferred": false
+        },
+        {
+          "text": "The benchmarks consist of experimental data, density functional theory, or numerical solutions that are well-known and have already been published in peer-reviewed articles or books.",
+          "page": 5,
+          "section": null,
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_generation",
+      "stage_name_raw": "apply method, train models, or run experiments",
+      "stage_order": 2,
+      "stage_goal": "to produce predictions or measurements using a specific method on the benchmark dataset",
+      "stage_input": [
+        "benchmark dataset",
+        "user's method (e.g., AI model, DFT software, experimental setup)"
+      ],
+      "stage_output": [
+        "method-specific outputs (e.g., predicted formation energies, measured CO2 adsorption isotherms)"
+      ],
+      "evidence": [
+        {
+          "text": "A user can apply their method, train models, or run experiments on that dataset and prepare a csv.zip file, a metadata.json file, and also if possible, a conda environment.yaml/Nix/Dockerfile and a run.sh file.",
+          "page": 4,
+          "section": "Results and discussion",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_preparation",
+      "stage_name_raw": "prepare contribution files",
+      "stage_order": 3,
+      "stage_goal": "to package method outputs and metadata into standardized, reproducible submission format",
+      "stage_input": [
+        "method outputs",
+        "metadata (team name, DOI, software version, hardware, timing)",
+        "run script"
+      ],
+      "stage_output": [
+        "csv.zip file (identifier-prediction pairs)",
+        "metadata.json file",
+        "run.sh script",
+        "optional Dockerfile or notebook"
+      ],
+      "evidence": [
+        {
+          "text": "A user can apply their method, train models, or run experiments on that dataset and prepare a csv.zip file, a metadata.json file, and also if possible, a conda environment.yaml/Nix/Dockerfile and a run.sh file.",
+          "page": 4,
+          "section": "Results and discussion",
+          "inferred": false
+        },
+        {
+          "text": "The csv.zip file contains entries of identiﬁer (id) and corresponding prediction values as obtained by the corresponding model/method.",
+          "page": 4,
+          "section": "Results and discussion",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "compute performance metrics",
+      "stage_order": 4,
+      "stage_goal": "to quantitatively evaluate method performance against reference benchmark data",
+      "stage_input": [
+        "csv.zip (predictions)",
+        "json.zip (reference benchmark data)"
+      ],
+      "stage_output": [
+        "performance metrics (e.g., MAE, accuracy, ROUGE)"
+      ],
+      "evidence": [
+        {
+          "text": "These test identiﬁers (such as JVASP-1408) must match the test set ids in the json.zip ﬁle in the benchmarks folder for the metric measurements to work.",
+          "page": 4,
+          "section": "Results and discussion",
+          "inferred": false
+        },
+        {
+          "text": "We use several metrics in the leaderboard depending on the “sub-categories” mentioned above. We use mean absolute error (MAE), accuracy (acc), multi-mae (L1 norm of multi-dimensional data), recall-oriented understudy for gisting evaluation (ROUGE) for the single property prediction, single property classiﬁcation, spectra/eigensolver/atomic forces and textGen/text summary subcategories respectively.",
+          "page": 11,
+          "section": "Metrics used",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "computational_validation",
+      "stage_name_raw": "local verification and automated testing",
+      "stage_order": 5,
+      "stage_goal": "to verify contribution reproducibility and correctness before public release",
+      "stage_input": [
+        "contribution folder (csv.zip, metadata.json, run.sh, etc.)"
+      ],
+      "stage_output": [
+        "verified contribution ready for pull request"
+      ],
+      "evidence": [
+        {
+          "text": "The contributions can be locally checked by the user using jarvis_serve.py script.",
+          "page": 3,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "This script automatically forks the parent usnistgov/jarvis_leaderboard repo for the user, adds the team-name folder with its ﬁles in that forked repo, runs a few minimal sanity checks on the new contribution, and then makes a pull request to the parent repo. The contribution addition and automated testings are carried out using GitHub actions.",
+          "page": 4,
+          "section": "Results and discussion",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "experimental_validation",
+      "stage_name_raw": "administrator verification and benchmark curation",
+      "stage_order": 6,
+      "stage_goal": "to ensure benchmark trustworthiness and methodological rigor through expert review",
+      "stage_input": [
+        "contributions",
+        "reference benchmark data with DOI",
+        "metadata and run scripts"
+      ],
+      "stage_output": [
+        "validated contribution integrated into leaderboard website"
+      ],
+      "evidence": [
+        {
+          "text": "The administrators of the JARVIS-Leaderboard at NIST will verify the contributions and then ﬁnally, it will become part of the leaderboard website.",
+          "page": 4,
+          "section": "Results and discussion",
+          "inferred": false
+        },
+        {
+          "text": "A new benchmark must be associated with a peer-reviewed article and a DOI, in order to have trust in the reference benchmark data. A new benchmark must also be veriﬁed by the JARVIS-Leaderboard administrators.",
+          "page": 5,
+          "section": null,
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

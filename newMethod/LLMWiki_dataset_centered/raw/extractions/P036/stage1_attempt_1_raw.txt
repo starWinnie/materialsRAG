@@ -1,0 +1,248 @@
+{
+  "paper": {
+    "title": "Accelerating the Discovery of Hybrid Perovskites with Targeted Band Gaps via Interpretable Machine Learning",
+    "year": 2023,
+    "doi": "10.1021/acsami.3c06392",
+    "research_summary": "This study developed an interpretable machine learning strategy combining feature engineering, gradient-boosted regression tree (GBRT), and genetic algorithm-based symbolic regression (GASR) to predict the experimental band gaps of hybrid organic–inorganic perovskites (HOIPs) and quantitatively interpret the physical factors affecting band gaps. It identified χB−X as the most important feature and derived the formula Eg = χB−X² + 0.881χB−X. The model screened and experimentally validated three novel HOIP compositions, including MA₀.₂₃FA₀.₀₂Cs₀.₇₅Pb₀.₅₉Sn₀.₄₁Br₀.₂₄I₂.₇₆ with a targeted band gap of 1.39 eV."
+  },
+  "task": {
+    "task_name_raw": "predicting the experimental band gap values of HOIPs",
+    "task_name_canonical": "predict_band_gap_of_hybrid_perovskites",
+    "objective": "To predict the experimental band gap values of hybrid organic−inorganic perovskites (HOIPs) accurately and quantitatively interpret the physical factors affecting the band gap.",
+    "material_scope": ["hybrid organic−inorganic perovskites (HOIPs)", "ABX3 (A = Cs, FA, or MA; B = Pb or Sn; X = Br, Cl, or I)"],
+    "target_properties": ["band gap"],
+    "constraints": ["ideal band gap range (1.3−1.4 eV)", "wide band gap range (1.7−2.1 eV)", "exclude Cl-containing compositions due to difficulty in controlling Cl content in annealing process"],
+    "input_requirements": ["experimental band gap values", "physical features (e.g., electronegativity difference χB−X, octahedral factor μ, electron affinity difference EAB−X)"],
+    "output_goal": ["accurate band gap prediction (RMSE < 0.060 eV)", "interpretable mathematical formula linking physical features to band gap", "novel HOIP compositions with targeted band gaps"],
+    "evidence": [
+      {
+        "text": "the focus of this work is to predict the experimental band gap values of HOIPs using an interpretable ML strategy.",
+        "page": 2,
+        "section": "INTRODUCTION",
+        "inferred": false
+      },
+      {
+        "text": "To address the challenges of a “black box” for perovskite band gap prediction, the focus of this work is to predict the experimental band gap values of HOIPs using an interpretable ML strategy.",
+        "page": 2,
+        "section": "INTRODUCTION",
+        "inferred": false
+      },
+      {
+        "text": "Our proposed interpretable ML strategy provides an effective approach for developing HOIP structures with targeted band gaps, which can also be applied to other material fields.",
+        "page": 1,
+        "section": "ABSTRACT",
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "data collection and cleaning",
+      "stage_order": 1,
+      "stage_goal": "To ensure the quantity and accuracy of the data by selecting ABX3-structured HOIPs and resolving conflicting band gap reports.",
+      "stage_input": ["literature-reported experimental band gap values"],
+      "stage_output": ["610-data-point dataset of HOIPs with known experimental band gaps"],
+      "evidence": [
+        {
+          "text": "To ensure the quantity and accuracy of the data, two principles were used in the data collection and cleaning process. First, we selected compounds with a three-dimensional structure of ABX3 (A-site = Cs, FA, or MA; B-site = Pb or Sn; X-site = Br, Cl, or I). Second, for data with the same composition but different band gaps, we chose the average value when the difference between the maximum value and the minimum value is less than 0.2 eV. When it is greater than 0.2 eV, we chose the model because the experimental error is about 0.1−0.2 eV when using different instruments. All data points were collated from the PSC database built by Jacobsson et al.16 Eventually, the total data set consists of 610 data points with known band gap values.",
+          "page": 3,
+          "section": "METHODS",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_preparation",
+      "stage_name_raw": "data splitting and distribution validation",
+      "stage_order": 2,
+      "stage_goal": "To partition the dataset into training and test sets with statistically similar band gap distributions for reliable model evaluation.",
+      "stage_input": ["610-data-point dataset"],
+      "stage_output": ["training set (85% of data)", "test set (15% of data)"],
+      "evidence": [
+        {
+          "text": "Then, we randomly divided 15% of the data set as the test set to evaluate the generalization capability for all ML models, and the remaining 85% as the training set to train all ML models. ... The probability density distribution plots of band gap in the training set and the test set are shown in Figures S1b,c, indicating that they have similar distributions and that the testing data set was partitioned appropriately.",
+          "page": 3,
+          "section": "METHODS",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "label_generation",
+      "stage_name_raw": "band gap labeling",
+      "stage_order": 3,
+      "stage_goal": "To assign experimental band gap values as labels for supervised learning, resolved from literature reports using domain-informed rules.",
+      "stage_input": ["literature-reported band gap values for same compositions"],
+      "stage_output": ["single band gap label per composition"],
+      "evidence": [
+        {
+          "text": "Second, for data with the same composition but different band gaps, we chose the average value when the difference between the maximum value and the minimum value is less than 0.2 eV. When it is greater than 0.2 eV, we chose the model because the experimental error is about 0.1−0.2 eV when using different instruments.",
+          "page": 3,
+          "section": "METHODS",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_generation",
+      "stage_name_raw": "feature engineering and physical feature pool construction",
+      "stage_order": 4,
+      "stage_goal": "To construct a physically meaningful feature pool by selecting and crossing elemental descriptors (e.g., electronegativity, ionic radius) based on domain knowledge.",
+      "stage_input": ["nine element characteristics (Pauling’s electronegativity, μ, τ, IR, EA, DP, AR, d/f electrons)"],
+      "stage_output": ["27 new features including sums, differences, and ratios (e.g., χB−X, IRA−X, μ)"],
+      "evidence": [
+        {
+          "text": "In this work, we chose nine element characteristics as descriptors in the initial feature pool based on a priori knowledge, including Pauling’s electronegativity (χ), μ, τ, IR, electron affinity (EA), dipole polarizability (DP), atomic radius (AR), and the number of electrons on d and f orbitals. ... In addition to the individual descriptors, we considered their sums, differences, and ratios to create new features, named feature crosses; details are given in the Supporting Information, and Pauling’s electronegativity used for the elements of B-site and X-site is given in Table S5.",
+          "page": 3,
+          "section": "METHODS",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_screening",
+      "stage_name_raw": "feature selection via correlation filtering and importance ranking",
+      "stage_order": 5,
+      "stage_goal": "To reduce dimensionality and redundancy by removing highly correlated features and selecting the top 7 most important physical features using Pearson correlation and GBRT feature importance.",
+      "stage_input": ["27 new features"],
+      "stage_output": ["7 best physical features (e.g., χB−X, μ, EAB−X, IRB, IRA−X, IRA+X, dX)"],
+      "evidence": [
+        {
+          "text": "Those features with a Pearson correlation coefficient greater than 0.95 are considered as highly correlated ones and are thus classified into one group; only one of the features was retained for each group. This is chosen according to the strength of its physical association with the band gap. ... After that, 11 groups of highly correlated features were identified, and 11 features are retained as listed in Table 1. ... To further remove the redundant feature to avoid dimensional disasters, we then used the GBRT algorithm to evaluate the accuracy of the model using different subfeatures, the subfeatures selected each time are in a decreasing order of feature importance, and the RMSEs of training and test sets are used as the evaluation metric ... we chose the top 7 features in ranked feature importance as input variables ... and the final GBRT-P model with an RMSE of 0.059 eV for the test set.",
+          "page": 3,
+          "section": "METHODS",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "GBRT-P model training",
+      "stage_order": 6,
+      "stage_goal": "To train a high-accuracy, interpretable predictive model using the 7 selected physical features as input and experimental band gaps as labels.",
+      "stage_input": ["training set", "7 selected physical features"],
+      "stage_output": ["GBRT-P model with RMSE < 0.060 eV"],
+      "evidence": [
+        {
+          "text": "Figure 3b shows the variation of GBRT-P accuracy with the number of subfeatures; the model accuracy is not significantly improved when the number of subfeatures is greater than 7, so we chose the top 7 features in ranked feature importance as input variables to reduce the complexity of the model without sacrificing the accuracy too much and the final GBRT-P model with an RMSE of 0.059 eV for the test set.",
+          "page": 5,
+          "section": "METHODS",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "GBRT-P model evaluation",
+      "stage_order": 7,
+      "stage_goal": "To assess the generalization performance of the GBRT-P model on unseen data using RMSE and R² metrics.",
+      "stage_input": ["test set", "GBRT-P model"],
+      "stage_output": ["RMSE = 0.059 eV, R² = 0.99 for test set"],
+      "evidence": [
+        {
+          "text": "Among them, the GBRT-P model has the best performance with the RMSE and R² values of the test set equal to 0.059 and 0.99, respectively (Figure 2a).",
+          "page": 6,
+          "section": "RESULTS AND DISCUSSION",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "ablation_study",
+      "stage_name_raw": "subfeature ablation analysis",
+      "stage_order": 8,
+      "stage_goal": "To quantify the impact of feature count on model accuracy by evaluating RMSE across increasing numbers of top-ranked features.",
+      "stage_input": ["GBRT-P model", "subsets of top-k features"],
+      "stage_output": ["RMSE curve showing diminishing returns beyond 7 features"],
+      "evidence": [
+        {
+          "text": "Figure 3b shows the variation of GBRT-P accuracy with the number of subfeatures; the model accuracy is not significantly improved when the number of subfeatures is greater than 7, so we chose the top 7 features in ranked feature importance as input variables to reduce the complexity of the model without sacrificing the accuracy too much",
+          "page": 5,
+          "section": "METHODS",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "GASR model training",
+      "stage_order": 9,
+      "stage_goal": "To train a symbolic regression model to discover interpretable mathematical formulas mapping physical features to band gap.",
+      "stage_input": ["7 physical features", "band gap labels", "GASR hyperparameters"],
+      "stage_output": ["mathematical formulas (e.g., Eg = χB−X² + 0.881χB−X)"],
+      "evidence": [
+        {
+          "text": "To explicitly obtain the mapping between physical features and the band gap, we used the GASR algorithm to develop mathematical formulas between 7 features and band gaps. GASR is a ML method based on a GA to find the hidden mathematical relationships between features and labels in data.",
+          "page": 5,
+          "section": "METHODS",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "GASR formula evaluation",
+      "stage_order": 10,
+      "stage_goal": "To select the optimal formula balancing accuracy (RMSE) and simplicity (complexity score) among 260 generated candidates.",
+      "stage_input": ["260 GASR-generated formulas"],
+      "stage_output": ["best formula: Eg = χB−X² + 0.881χB−X (RMSE = 0.084 eV, complexity = 3)"],
+      "evidence": [
+        {
+          "text": "Table 2 gives the mathematical formulas with the lowest RMSE of test at each complexity among the 260 formulas generated by the GASR algorithm, the best of which is eq 2, with an RMSE of test set for 0.084 eV and complexity of 3 ... = + E 0.881 g B X 2 B X (2)",
+          "page": 7,
+          "section": "RESULTS AND DISCUSSION",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_generation",
+      "stage_name_raw": "virtual composition space generation",
+      "stage_order": 11,
+      "stage_goal": "To construct a large-scale virtual search space of HOIP compositions constrained to target band gap ranges and exclude Cl-containing systems.",
+      "stage_input": ["chemical constraints (MAaFAbCs1−a−bPbxSn1−xBrmI1−m)", "target band gap ranges (1.3−1.4 eV, 1.7−2.1 eV)"],
+      "stage_output": ["~5.2 × 10⁷ compound search space", "100,000-sample subset for prediction"],
+      "evidence": [
+        {
+          "text": "We therefore constructed the prediction set MAaFAbCs1−a−bPbxSn1−xBrmI1−m (a, b, x, m = 0, 0.01, 0.02, 0.03...1), In Total, there are about 5.2 × 107 compounds in the search space as the prediction set. ... a random selection of 100,000 compositions which has the same feature space distribution as the initial prediction set was made for prediction using GBRT-P.",
+          "page": 5,
+          "section": "METHODS",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_screening",
+      "stage_name_raw": "target band gap screening using GBRT-P",
+      "stage_order": 12,
+      "stage_goal": "To identify novel HOIP compositions within the virtual space whose predicted band gaps fall in the ideal (1.3−1.4 eV) or wide (1.7−2.1 eV) ranges.",
+      "stage_input": ["100,000-prediction-set", "GBRT-P model"],
+      "stage_output": ["compositions with predicted band gaps in target ranges"],
+      "evidence": [
+        {
+          "text": "Then, we selected compositions that are not in the original data set and whose band gaps are distributed in the range of 1.3−1.4 and 1.7−2.1 eV.",
+          "page": 5,
+          "section": "METHODS",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "experimental_validation",
+      "stage_name_raw": "experimental synthesis and band gap measurement",
+      "stage_order": 13,
+      "stage_goal": "To validate model predictions by synthesizing three top-ranked candidate compositions and measuring their experimental band gaps via UV−vis spectroscopy.",
+      "stage_input": ["three selected candidate compositions"],
+      "stage_output": ["experimental band gap values (e.g., 1.39 eV for MA₀.₂₃FA₀.₀₂Cs₀.₇₅Pb₀.₅₉Sn₀.₄₁Br₀.₂₄I₂.₇₆)"],
+      "evidence": [
+        {
+          "text": "Finally, we randomly selected three groups among the remaining compositions for the experimental synthesis. ... Three compositions were experimentally synthesized, and the XRD results are presented in Figure 4b, indicating that all three compositions possess pure perovskite structures. The band gap values, measured by UV−vis spectra, are shown in Figure 4c.",
+          "page": 5,
+          "section": "METHODS",
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

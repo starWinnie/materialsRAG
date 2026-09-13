@@ -1,0 +1,32 @@
+[
+  {
+    "task_description": "Discovering novel, stable, and property-targeted crystalline materials across dimensionalities (3D and 2D) by generating valid crystal structures that satisfy user-specified physical property constraints—specifically, bandgap between 0.5–2.5 eV and formation energy below −0.5 eV/atom for 3D semiconductors, and formation energy below −1 eV/atom for 2D materials—via inverse design in a discrete latent space.",
+    "task_tags": [
+      "crystal structure generation",
+      "inverse design",
+      "materials discovery"
+    ],
+    "datasets": [
+      {
+        "db_title": "MP-20",
+        "db_description": "A curated subset of the Materials Project database containing 45,231 stable inorganic crystals with ≤20 atoms per unit cell, selected for training and benchmarking crystal generative models; used in this paper to train VQCrystal for 3D material discovery, evaluate reconstruction accuracy (match rate, RMS), validate generated structures against known entries, and perform property-targeted inverse design (e.g., bandgap and formation energy filtering).",
+        "db_link": "https://github.com/txie-93/cdvae"
+      },
+      {
+        "db_title": "Perov-5",
+        "db_description": "A dataset of 18,928 perovskite crystal structures, each containing exactly five atoms per unit cell, derived from the Materials Project; used in this paper to benchmark VQCrystal’s structural reconstruction fidelity (e.g., 95.60% match rate, 0.0438 Å RMS) and interpretability (e.g., probing local latent encoding of atomic identity and position in ABX₃ frameworks).",
+        "db_link": "https://github.com/txie-93/cdvae"
+      },
+      {
+        "db_title": "Carbon-24",
+        "db_description": "A dataset of 10,153 carbon-based crystal structures with 6–24 atoms per unit cell, compiled from computational sources including ab initio random structure searching; used in this paper to evaluate VQCrystal’s generalization across elemental systems and structural diversity (e.g., 70.03% match rate, superior Fréchet distance of 0.515 vs. baselines), and assess validity metrics like force and composition validity.",
+        "db_link": "https://github.com/txie-93/cdvae"
+      },
+      {
+        "db_title": "C2DB",
+        "db_description": "The Computational 2D Materials Database, containing 3,521 experimentally and computationally validated 2D materials; used in this paper to train a dedicated VQCrystal model for 2D crystal generation, generate ~12,000 candidate structures, and perform stability-driven inverse design (e.g., filtering for formation energy < −1 eV/atom, validated via DFT on 23 relaxed structures with 73.91% success rate).",
+        "db_link": "https://www.c2db.org/"
+      }
+    ]
+  }
+]

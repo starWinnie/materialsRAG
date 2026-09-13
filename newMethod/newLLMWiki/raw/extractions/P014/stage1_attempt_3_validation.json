@@ -1,0 +1,15 @@
+{
+  "attempt": 3,
+  "errors": [
+    "stages[1].evidence[0].text does not match PDF page 2 (score=0.3827)",
+    "stages[1].evidence[1].text does not match PDF page 2 (score=0.4049)",
+    "stages[2].evidence[0].text does not match PDF page 2 (score=0.7323)",
+    "stages[2].evidence[1].text does not match PDF page 3 (score=0.6737)",
+    "stages[4].evidence[0].text does not match PDF page 4 (score=0.8095)",
+    "stages[5].evidence[0].text does not match PDF page 3 (score=0.703)",
+    "stages[5].evidence[1].text does not match PDF page 4 (score=0.3496)",
+    "stages[6].evidence[1].text does not match PDF page 5 (score=0.6749)",
+    "stages[7].evidence[0].text does not match PDF page 5 (score=0.389)"
+  ],
+  "exception": null
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "task_description": "Predicting crystal material properties—specifically total energy, formation energy, band gap, bulk moduli, shear moduli, and Ehull—from atomic-scale crystal structures, with a focus on accurately modeling infinite-range interatomic interactions arising from periodic lattice repetitions.",
+    "task_tags": [
+      "crystal property prediction",
+      "interatomic potential modeling",
+      "infinite-range interaction prediction"
+    ],
+    "datasets": [
+      {
+        "db_title": "Materials Project",
+        "db_description": "A large-scale computational materials database containing 69,239 crystal structures with DFT-calculated properties including formation energy, band gap, bulk moduli, and shear moduli. In this paper, it is used to train and evaluate PotNet for crystal property prediction, specifically to benchmark performance improvements from using physics-principled interatomic potentials and complete (infinite) potential summations.",
+        "db_link": "https://materialsproject.org/"
+      },
+      {
+        "db_title": "JARVIS-DFT",
+        "db_description": "The Joint Automated Repository for Various Integrated Simulations (JARVIS) DFT-2021.8.18 3D dataset, comprising 55,722 crystal structures with DFT-computed properties including formation energy, bandgap (OPT and MBJ), total energy, and Ehull. It is used alongside Materials Project for comprehensive evaluation, ablation studies, and efficiency analysis—serving as the primary testbed for validating PotNet’s ability to capture long-range interactions via complete interatomic potentials.",
+        "db_link": "https://jarvis.nist.gov/"
+      }
+    ]
+  }
+]

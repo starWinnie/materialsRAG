@@ -1,0 +1,8 @@
+{
+  "attempt": 1,
+  "errors": [
+    "stages[4].evidence[0].text does not match PDF page 8 (score=0.5412)",
+    "stages[7].evidence[0].text does not match PDF page 9 (score=0.581)"
+  ],
+  "exception": null
+}

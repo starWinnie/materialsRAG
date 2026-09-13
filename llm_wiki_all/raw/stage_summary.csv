@@ -1,0 +1,10 @@
+﻿stage_name,description,task_count,dataset_use_count
+Problem Definition,"Define the material system, target property, application, or scientific objective.",43,8
+Candidate Space Construction,Construct or select the material/composition/structure search space.,3,7
+Dataset Selection,"Select, curate, merge, clean, or define datasets supporting the task.",43,140
+Representation / Feature Construction,"Build descriptors, embeddings, graphs, text, tensor, symmetry-aware, or physics-aware representations.",18,31
+Model Training,"Train, pretrain, fine-tune, transfer, or calibrate predictive models.",17,103
+Screening / Prediction,"Predict properties, classify candidates, estimate scores, rank materials, or perform screening.",42,140
+Validation,"Validate predictions through experiments, DFT calculations, held-out tests, OOD tests, or reference databases.",9,73
+Optimization / Iteration,"Iteratively optimize candidates, update models, or close active learning/design loops.",0,1
+Benchmarking / Evaluation,"Evaluate or compare models, methods, baselines, metrics, or leaderboards.",4,60

@@ -1,0 +1,34 @@
+{
+  "paper_id": "P028",
+  "file_name": "28_JARVIS_Leaderboard.pdf",
+  "status": "completed",
+  "completed_at": "2026-08-13T06:54:03.143986+00:00",
+  "model": "qwen-plus",
+  "stage1_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "stage2_attempts": [
+    {
+      "attempt": 1,
+      "errors": [
+        "datasets[11].dataset_type is not allowed"
+      ],
+      "exception": null
+    },
+    {
+      "attempt": 2,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "counts": {
+    "tasks": 1,
+    "stages": 6,
+    "datasets": 12,
+    "dataset_uses": 13
+  }
+}

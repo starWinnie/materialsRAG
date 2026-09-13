@@ -1,0 +1,652 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "jarvis",
+      "canonical_name": "JARVIS",
+      "raw_names": [
+        "Joint Automated Repository for Various Integrated Simulations (JARVIS)",
+        "JARVIS"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "inorganic crystalline solids"
+      ],
+      "available_properties": [
+        "formation energy",
+        "band gap",
+        "bulk modulus"
+      ],
+      "available_fields": [
+        "chemical formula",
+        "crystal structure",
+        "formation energy",
+        "band gap",
+        "bulk modulus"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Three ab initio-derived materials databases have been selected for this evaluation: Joint Automated Repository for Various Integrated Simulations (JARVIS)29,30, Materials Project (MP)31, and the Open Quantum Materials Database (OQMD)32.",
+          "page": 2,
+          "section": "Evaluation setup",
+          "inferred": false
+        },
+        {
+          "text": "We use the snapshots of the JARVIS, Materials Project, and OMQD databases used in our previous study47, available on Zenodo at https://zenodo.org/records/8200972. The snapshots correspond the JARVIS 2022.12.12 version, the Materials Project 2021.11.10 version, and the OQMD v1.6 version (published in November 2023), and they have been preprocessed to remove materials with formation energies larger than 5 eV/atom.",
+          "page": 8,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "mp",
+      "canonical_name": "Materials Project",
+      "raw_names": [
+        "Materials Project (MP)",
+        "MP"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "inorganic crystalline solids"
+      ],
+      "available_properties": [
+        "formation energy",
+        "band gap",
+        "bulk modulus"
+      ],
+      "available_fields": [
+        "chemical formula",
+        "crystal structure",
+        "formation energy",
+        "band gap",
+        "bulk modulus"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Three ab initio-derived materials databases have been selected for this evaluation: Joint Automated Repository for Various Integrated Simulations (JARVIS)29,30, Materials Project (MP)31, and the Open Quantum Materials Database (OQMD)32.",
+          "page": 2,
+          "section": "Evaluation setup",
+          "inferred": false
+        },
+        {
+          "text": "We use the snapshots of the JARVIS, Materials Project, and OMQD databases used in our previous study47, available on Zenodo at https://zenodo.org/records/8200972. The snapshots correspond the JARVIS 2022.12.12 version, the Materials Project 2021.11.10 version, and the OQMD v1.6 version (published in November 2023), and they have been preprocessed to remove materials with formation energies larger than 5 eV/atom.",
+          "page": 8,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "oqmd",
+      "canonical_name": "Open Quantum Materials Database",
+      "raw_names": [
+        "Open Quantum Materials Database (OQMD)",
+        "OQMD"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "inorganic crystalline solids"
+      ],
+      "available_properties": [
+        "formation energy",
+        "band gap",
+        "bulk modulus"
+      ],
+      "available_fields": [
+        "chemical formula",
+        "crystal structure",
+        "formation energy",
+        "band gap",
+        "bulk modulus"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Three ab initio-derived materials databases have been selected for this evaluation: Joint Automated Repository for Various Integrated Simulations (JARVIS)29,30, Materials Project (MP)31, and the Open Quantum Materials Database (OQMD)32.",
+          "page": 2,
+          "section": "Evaluation setup",
+          "inferred": false
+        },
+        {
+          "text": "We use the snapshots of the JARVIS, Materials Project, and OMQD databases used in our previous study47, available on Zenodo at https://zenodo.org/records/8200972. The snapshots correspond the JARVIS 2022.12.12 version, the Materials Project 2021.11.10 version, and the OQMD v1.6 version (published in November 2023), and they have been preprocessed to remove materials with formation energies larger than 5 eV/atom.",
+          "page": 8,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "jarvis",
+      "usage_role": "source",
+      "purpose": "Selection of ab initio-derived materials database for OOD evaluation",
+      "used_fields": [
+        "chemical formula",
+        "crystal structure",
+        "formation energy",
+        "band gap",
+        "bulk modulus"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [
+        "formation energies larger than 5 eV/atom removed"
+      ],
+      "sample_count": 76000,
+      "evidence": [
+        {
+          "text": "Three ab initio-derived materials databases have been selected for this evaluation: Joint Automated Repository for Various Integrated Simulations (JARVIS)29,30, Materials Project (MP)31, and the Open Quantum Materials Database (OQMD)32.",
+          "page": 2,
+          "section": "Evaluation setup",
+          "inferred": false
+        },
+        {
+          "text": "Table 1 | In-distribution performance for the formation energy prediction ... JARVIS ... MP, JARVIS, and OQMD datasets contain 146k, 76k, and 1M entries, respectively.",
+          "page": 2,
+          "section": "Chemistry-based OOD generalization",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "mp",
+      "usage_role": "source",
+      "purpose": "Selection of ab initio-derived materials database for OOD evaluation",
+      "used_fields": [
+        "chemical formula",
+        "crystal structure",
+        "formation energy",
+        "band gap",
+        "bulk modulus"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [
+        "formation energies larger than 5 eV/atom removed"
+      ],
+      "sample_count": 146000,
+      "evidence": [
+        {
+          "text": "Three ab initio-derived materials databases have been selected for this evaluation: Joint Automated Repository for Various Integrated Simulations (JARVIS)29,30, Materials Project (MP)31, and the Open Quantum Materials Database (OQMD)32.",
+          "page": 2,
+          "section": "Evaluation setup",
+          "inferred": false
+        },
+        {
+          "text": "Table 1 | In-distribution performance for the formation energy prediction ... JARVIS ... MP, JARVIS, and OQMD datasets contain 146k, 76k, and 1M entries, respectively.",
+          "page": 2,
+          "section": "Chemistry-based OOD generalization",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "oqmd",
+      "usage_role": "source",
+      "purpose": "Selection of ab initio-derived materials database for OOD evaluation",
+      "used_fields": [
+        "chemical formula",
+        "crystal structure",
+        "formation energy",
+        "band gap",
+        "bulk modulus"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [
+        "formation energies larger than 5 eV/atom removed"
+      ],
+      "sample_count": 1000000,
+      "evidence": [
+        {
+          "text": "Three ab initio-derived materials databases have been selected for this evaluation: Joint Automated Repository for Various Integrated Simulations (JARVIS)29,30, Materials Project (MP)31, and the Open Quantum Materials Database (OQMD)32.",
+          "page": 2,
+          "section": "Evaluation setup",
+          "inferred": false
+        },
+        {
+          "text": "Table 1 | In-distribution performance for the formation energy prediction ... JARVIS ... MP, JARVIS, and OQMD datasets contain 146k, 76k, and 1M entries, respectively.",
+          "page": 2,
+          "section": "Chemistry-based OOD generalization",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "jarvis",
+      "usage_role": "training",
+      "purpose": "Constructing OOD tasks via leave-one-X-out splitting based on chemistry or structural symmetry criteria",
+      "used_fields": [
+        "chemical formula",
+        "crystal structure",
+        "formation energy",
+        "band gap",
+        "bulk modulus"
+      ],
+      "is_derived": true,
+      "construction_method": "leave-one-X-out splitting (e.g., element, period, group, space group, point group, crystal system)",
+      "filter_conditions": [
+        "tasks with fewer than 200 test samples excluded"
+      ],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We primarily consider six criteria for deﬁning OOD test data: (1) materials containing element X, (2) materials containing any element in the period X, (3) materials containing any element in the group X, (4) materials of space group X, (5) materials of point group X, (6) materials of crystal system X. We consider these leave-one-X-out tasks for all possible values of X but exclude those with fewer than 200 test samples.",
+          "page": 2,
+          "section": "Evaluation setup",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "mp",
+      "usage_role": "training",
+      "purpose": "Constructing OOD tasks via leave-one-X-out splitting based on chemistry or structural symmetry criteria",
+      "used_fields": [
+        "chemical formula",
+        "crystal structure",
+        "formation energy",
+        "band gap",
+        "bulk modulus"
+      ],
+      "is_derived": true,
+      "construction_method": "leave-one-X-out splitting (e.g., element, period, group, space group, point group, crystal system)",
+      "filter_conditions": [
+        "tasks with fewer than 200 test samples excluded"
+      ],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We primarily consider six criteria for deﬁning OOD test data: (1) materials containing element X, (2) materials containing any element in the period X, (3) materials containing any element in the group X, (4) materials of space group X, (5) materials of point group X, (6) materials of crystal system X. We consider these leave-one-X-out tasks for all possible values of X but exclude those with fewer than 200 test samples.",
+          "page": 2,
+          "section": "Evaluation setup",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "oqmd",
+      "usage_role": "training",
+      "purpose": "Constructing OOD tasks via leave-one-X-out splitting based on chemistry or structural symmetry criteria",
+      "used_fields": [
+        "chemical formula",
+        "crystal structure",
+        "formation energy",
+        "band gap",
+        "bulk modulus"
+      ],
+      "is_derived": true,
+      "construction_method": "leave-one-X-out splitting (e.g., element, period, group, space group, point group, crystal system)",
+      "filter_conditions": [
+        "tasks with fewer than 200 test samples excluded"
+      ],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We primarily consider six criteria for deﬁning OOD test data: (1) materials containing element X, (2) materials containing any element in the period X, (3) materials containing any element in the group X, (4) materials of space group X, (5) materials of point group X, (6) materials of crystal system X. We consider these leave-one-X-out tasks for all possible values of X but exclude those with fewer than 200 test samples.",
+          "page": 2,
+          "section": "Evaluation setup",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "jarvis",
+      "usage_role": "test",
+      "purpose": "Constructing OOD tasks via leave-one-X-out splitting based on chemistry or structural symmetry criteria",
+      "used_fields": [
+        "chemical formula",
+        "crystal structure",
+        "formation energy",
+        "band gap",
+        "bulk modulus"
+      ],
+      "is_derived": true,
+      "construction_method": "leave-one-X-out splitting (e.g., element, period, group, space group, point group, crystal system)",
+      "filter_conditions": [
+        "tasks with fewer than 200 test samples excluded"
+      ],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We primarily consider six criteria for deﬁning OOD test data: (1) materials containing element X, (2) materials containing any element in the period X, (3) materials containing any element in the group X, (4) materials of space group X, (5) materials of point group X, (6) materials of crystal system X. We consider these leave-one-X-out tasks for all possible values of X but exclude those with fewer than 200 test samples.",
+          "page": 2,
+          "section": "Evaluation setup",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "mp",
+      "usage_role": "test",
+      "purpose": "Constructing OOD tasks via leave-one-X-out splitting based on chemistry or structural symmetry criteria",
+      "used_fields": [
+        "chemical formula",
+        "crystal structure",
+        "formation energy",
+        "band gap",
+        "bulk modulus"
+      ],
+      "is_derived": true,
+      "construction_method": "leave-one-X-out splitting (e.g., element, period, group, space group, point group, crystal system)",
+      "filter_conditions": [
+        "tasks with fewer than 200 test samples excluded"
+      ],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We primarily consider six criteria for deﬁning OOD test data: (1) materials containing element X, (2) materials containing any element in the period X, (3) materials containing any element in the group X, (4) materials of space group X, (5) materials of point group X, (6) materials of crystal system X. We consider these leave-one-X-out tasks for all possible values of X but exclude those with fewer than 200 test samples.",
+          "page": 2,
+          "section": "Evaluation setup",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "oqmd",
+      "usage_role": "test",
+      "purpose": "Constructing OOD tasks via leave-one-X-out splitting based on chemistry or structural symmetry criteria",
+      "used_fields": [
+        "chemical formula",
+        "crystal structure",
+        "formation energy",
+        "band gap",
+        "bulk modulus"
+      ],
+      "is_derived": true,
+      "construction_method": "leave-one-X-out splitting (e.g., element, period, group, space group, point group, crystal system)",
+      "filter_conditions": [
+        "tasks with fewer than 200 test samples excluded"
+      ],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We primarily consider six criteria for deﬁning OOD test data: (1) materials containing element X, (2) materials containing any element in the period X, (3) materials containing any element in the group X, (4) materials of space group X, (5) materials of point group X, (6) materials of crystal system X. We consider these leave-one-X-out tasks for all possible values of X but exclude those with fewer than 200 test samples.",
+          "page": 2,
+          "section": "Evaluation setup",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "jarvis",
+      "usage_role": "training",
+      "purpose": "Training ML models (RF, XGB, ALIGNN, GMP, LLM-Prop) on OOD training splits",
+      "used_fields": [
+        "chemical formula",
+        "crystal structure",
+        "formation energy",
+        "band gap",
+        "bulk modulus"
+      ],
+      "is_derived": true,
+      "construction_method": "leave-one-X-out splitting",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "OOD performance is evaluated by training a representative set of ML models, including (1) random forest (RF)33 and XGBoost (XGB)34 models with Matminer descriptors35. (2) single neural network with Gaussian multipole (GMP) expansion on electron density36 (3) atomistic line graph neural network(ALIGNN)37,and (4) the large language model (LLM) based LLM-Prop with crystal text descriptions38.",
+          "page": 2,
+          "section": "Evaluation setup",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "mp",
+      "usage_role": "training",
+      "purpose": "Training ML models (RF, XGB, ALIGNN, GMP, LLM-Prop) on OOD training splits",
+      "used_fields": [
+        "chemical formula",
+        "crystal structure",
+        "formation energy",
+        "band gap",
+        "bulk modulus"
+      ],
+      "is_derived": true,
+      "construction_method": "leave-one-X-out splitting",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "OOD performance is evaluated by training a representative set of ML models, including (1) random forest (RF)33 and XGBoost (XGB)34 models with Matminer descriptors35. (2) single neural network with Gaussian multipole (GMP) expansion on electron density36 (3) atomistic line graph neural network(ALIGNN)37,and (4) the large language model (LLM) based LLM-Prop with crystal text descriptions38.",
+          "page": 2,
+          "section": "Evaluation setup",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "oqmd",
+      "usage_role": "training",
+      "purpose": "Training ML models (RF, XGB, ALIGNN, GMP, LLM-Prop) on OOD training splits",
+      "used_fields": [
+        "chemical formula",
+        "crystal structure",
+        "formation energy",
+        "band gap",
+        "bulk modulus"
+      ],
+      "is_derived": true,
+      "construction_method": "leave-one-X-out splitting",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "OOD performance is evaluated by training a representative set of ML models, including (1) random forest (RF)33 and XGBoost (XGB)34 models with Matminer descriptors35. (2) single neural network with Gaussian multipole (GMP) expansion on electron density36 (3) atomistic line graph neural network(ALIGNN)37,and (4) the large language model (LLM) based LLM-Prop with crystal text descriptions38.",
+          "page": 2,
+          "section": "Evaluation setup",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "jarvis",
+      "usage_role": "test",
+      "purpose": "Evaluating OOD performance of trained models using MAE and R2 metrics",
+      "used_fields": [
+        "formation energy",
+        "band gap",
+        "bulk modulus"
+      ],
+      "is_derived": true,
+      "construction_method": "leave-one-X-out splitting",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We utilize two complementary performance metrics: mean absolute error (MAE) and coefﬁcient of determination (R2). While MAE measures the expected error on the original physical scale, its interpretation can be scale-dependent and less intuitive for assessing the goodness of predictions. In contrast, R2 is a dimensionless accuracy measure...",
+          "page": 2,
+          "section": "Chemistry-based OOD generalization",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "mp",
+      "usage_role": "test",
+      "purpose": "Evaluating OOD performance of trained models using MAE and R2 metrics",
+      "used_fields": [
+        "formation energy",
+        "band gap",
+        "bulk modulus"
+      ],
+      "is_derived": true,
+      "construction_method": "leave-one-X-out splitting",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We utilize two complementary performance metrics: mean absolute error (MAE) and coefﬁcient of determination (R2). While MAE measures the expected error on the original physical scale, its interpretation can be scale-dependent and less intuitive for assessing the goodness of predictions. In contrast, R2 is a dimensionless accuracy measure...",
+          "page": 2,
+          "section": "Chemistry-based OOD generalization",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "oqmd",
+      "usage_role": "test",
+      "purpose": "Evaluating OOD performance of trained models using MAE and R2 metrics",
+      "used_fields": [
+        "formation energy",
+        "band gap",
+        "bulk modulus"
+      ],
+      "is_derived": true,
+      "construction_method": "leave-one-X-out splitting",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We utilize two complementary performance metrics: mean absolute error (MAE) and coefﬁcient of determination (R2). While MAE measures the expected error on the original physical scale, its interpretation can be scale-dependent and less intuitive for assessing the goodness of predictions. In contrast, R2 is a dimensionless accuracy measure...",
+          "page": 2,
+          "section": "Chemistry-based OOD generalization",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "jarvis",
+      "usage_role": "computational_validation",
+      "purpose": "Inspecting materials representations via UMAP and kernel density estimation to distinguish statistically OOD from representationally OOD test data",
+      "used_fields": [
+        "formation energy"
+      ],
+      "is_derived": true,
+      "construction_method": "UMAP projection of ALIGNN embeddings learned from leave-Mg-out and leave-O-out tasks",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Uniform Manifold Approximation and Projection (UMAP)48 is used to project the high-dimensional materials representations to a two-dimensional plane. For deep learning models, materials representations (embeddings) are automatically learned during the training; embeddings of new materials can then be derived by using the trained models.",
+          "page": 5,
+          "section": "Inspecting materials representations",
+          "inferred": false
+        },
+        {
+          "text": "Figure 4a, b show the UMAP plots of ALIGNN embeddings learned from the leave-Mg-out and leave-O-out tasks in the JARVIS dataset.",
+          "page": 5,
+          "section": "Inspecting materials representations",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "oqmd",
+      "usage_role": "computational_validation",
+      "purpose": "Inspecting materials representations via UMAP and kernel density estimation to distinguish statistically OOD from representationally OOD test data",
+      "used_fields": [
+        "formation energy"
+      ],
+      "is_derived": true,
+      "construction_method": "UMAP projection of ALIGNN embeddings learned from leave-H-out task",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Uniform Manifold Approximation and Projection (UMAP)48 is used to project the high-dimensional materials representations to a two-dimensional plane. For deep learning models, materials representations (embeddings) are automatically learned during the training; embeddings of new materials can then be derived by using the trained models.",
+          "page": 5,
+          "section": "Inspecting materials representations",
+          "inferred": false
+        },
+        {
+          "text": "Figure 4c shows another example from the leave-H-out task in the OQMD dataset, where kernel-density estimates provide again good resolution in separating representationally ID and OOD test data: 13% of H-containing structures are identiﬁed as within the training domain with an R2 score of 0.8.",
+          "page": 5,
+          "section": "Inspecting materials representations",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 6,
+      "dataset_key": "mp",
+      "usage_role": "computational_validation",
+      "purpose": "Analyzing learning curves for training time and training set size to test neural scaling laws on representationally ID vs. OOD tasks",
+      "used_fields": [
+        "formation energy"
+      ],
+      "is_derived": true,
+      "construction_method": "learning curves for leave-one-element-out tasks (F, O, H)",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Figure 5a–c shows the learning curves of MAE versus training time in the leave-one-element-out tasks for F, O,and H.",
+          "page": 5,
+          "section": "Learning curves for out-of-distribution generalization",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 6,
+      "dataset_key": "oqmd",
+      "usage_role": "computational_validation",
+      "purpose": "Analyzing learning curves for training time and training set size to test neural scaling laws on representationally ID vs. OOD tasks",
+      "used_fields": [
+        "formation energy"
+      ],
+      "is_derived": true,
+      "construction_method": "learning curves for leave-one-element-out tasks (F, O, H)",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "As shown in Fig.5e,weﬁndthesametrendwhereincreasingtrainingsetsizeonlyleadsto marginal improvement or even degradation for test data that are outside the training domain.",
+          "page": 6,
+          "section": "Learning curves for out-of-distribution generalization",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

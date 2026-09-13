@@ -1,0 +1,371 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "aflow",
+      "canonical_name": "AFLOW",
+      "raw_names": ["AFLOW"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["solid-state materials"],
+      "available_properties": ["band gap", "bulk modulus", "Debye temperature", "shear modulus", "thermal conductivity", "thermal expansion"],
+      "available_fields": ["material composition", "property values"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We evaluate the extrapolation capability of Bilinear Transduction on three widely used benchmarks for solid materials property prediction, AFLOW, Matbench, and the Materials Project (MP), covering 12 distinct prediction tasks of various classes of materials properties: electronic, mechanical, thermal, etc.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "AFLOW contains material property values obtained from high-throughput calculations30.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "matbench",
+      "canonical_name": "Matbench",
+      "raw_names": ["Matbench"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["solid-state materials"],
+      "available_properties": ["band gap", "refractive index", "yield strength", "formation energy"],
+      "available_fields": ["material composition", "property values"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We evaluate the extrapolation capability of Bilinear Transduction on three widely used benchmarks for solid materials property prediction, AFLOW, Matbench, and the Materials Project (MP), covering 12 distinct prediction tasks of various classes of materials properties: electronic, mechanical, thermal, etc.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "Matbench is an automated leaderboard for benchmarking ML algorithms predicting solid material properties12. Matbench contains three composition-based regression tasks: experimentally measured band gap14, experimentally measured yield strength of steels31, calculated formation energy32, and calculated refractive index33.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "materials_project",
+      "canonical_name": "Materials Project",
+      "raw_names": ["Materials Project", "MP"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["solid-state materials"],
+      "available_properties": ["bulk modulus", "elastic anisotropy", "shear modulus"],
+      "available_fields": ["material composition", "property values"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We evaluate the extrapolation capability of Bilinear Transduction on three widely used benchmarks for solid materials property prediction, AFLOW, Matbench, and the Materials Project (MP), covering 12 distinct prediction tasks of various classes of materials properties: electronic, mechanical, thermal, etc.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "MP provides materials and their property values derived from high-throughput calculations32.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "moleculenet_esol",
+      "canonical_name": "ESOL",
+      "raw_names": ["ESOL"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["molecules"],
+      "available_properties": ["aqueous solubility"],
+      "available_fields": ["SMILES", "property values"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "MoleculeNet includes molecular graphs encoded as SMILES representations35 and their property values derived from high-throughput calculations and experimental trials36. We focus on physical chemistry and biophysics properties suitable for regression tasks, using four benchmark datasets from MoleculeNet. The ESOL dataset provides measurements of aqueous solubility for small molecules, FreeSolv contains experimental and calculated hydration free energies for small neutral molecules in water, Lipophilicity reports octanol/water distribution coefﬁcients, and BACE includes binding afﬁnities of small molecules to human β-secretase 1 (BACE-1).",
+          "page": 3,
+          "section": "Molecules",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "moleculenet_freesolv",
+      "canonical_name": "FreeSolv",
+      "raw_names": ["FreeSolv"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["molecules"],
+      "available_properties": ["hydration free energy"],
+      "available_fields": ["SMILES", "property values"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "MoleculeNet includes molecular graphs encoded as SMILES representations35 and their property values derived from high-throughput calculations and experimental trials36. We focus on physical chemistry and biophysics properties suitable for regression tasks, using four benchmark datasets from MoleculeNet. The ESOL dataset provides measurements of aqueous solubility for small molecules, FreeSolv contains experimental and calculated hydration free energies for small neutral molecules in water, Lipophilicity reports octanol/water distribution coefﬁcients, and BACE includes binding afﬁnities of small molecules to human β-secretase 1 (BACE-1).",
+          "page": 3,
+          "section": "Molecules",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "moleculenet_lipophilicity",
+      "canonical_name": "Lipophilicity",
+      "raw_names": ["Lipophilicity"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["molecules"],
+      "available_properties": ["octanol/water distribution coefficients"],
+      "available_fields": ["SMILES", "property values"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "MoleculeNet includes molecular graphs encoded as SMILES representations35 and their property values derived from high-throughput calculations and experimental trials36. We focus on physical chemistry and biophysics properties suitable for regression tasks, using four benchmark datasets from MoleculeNet. The ESOL dataset provides measurements of aqueous solubility for small molecules, FreeSolv contains experimental and calculated hydration free energies for small neutral molecules in water, Lipophilicity reports octanol/water distribution coefﬁcients, and BACE includes binding afﬁnities of small molecules to human β-secretase 1 (BACE-1).",
+          "page": 3,
+          "section": "Molecules",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "moleculenet_bace",
+      "canonical_name": "BACE",
+      "raw_names": ["BACE"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["molecules"],
+      "available_properties": ["binding affinities"],
+      "available_fields": ["SMILES", "property values"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "MoleculeNet includes molecular graphs encoded as SMILES representations35 and their property values derived from high-throughput calculations and experimental trials36. We focus on physical chemistry and biophysics properties suitable for regression tasks, using four benchmark datasets from MoleculeNet. The ESOL dataset provides measurements of aqueous solubility for small molecules, FreeSolv contains experimental and calculated hydration free energies for small neutral molecules in water, Lipophilicity reports octanol/water distribution coefﬁcients, and BACE includes binding afﬁnities of small molecules to human β-secretase 1 (BACE-1).",
+          "page": 3,
+          "section": "Molecules",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "aflow",
+      "usage_role": "source",
+      "purpose": "solid materials property prediction benchmark",
+      "used_fields": ["material composition", "property values"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 14123,
+      "evidence": [
+        {
+          "text": "We evaluate the extrapolation capability of Bilinear Transduction on three widely used benchmarks for solid materials property prediction, AFLOW, Matbench, and the Materials Project (MP), covering 12 distinct prediction tasks of various classes of materials properties: electronic, mechanical, thermal, etc.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "The datasets vary in size, ranging from approximately 300 to 14,000 samples.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "AFLOW30\nBand Gap [eV]\n14123",
+          "page": 3,
+          "section": "Table 1",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "matbench",
+      "usage_role": "source",
+      "purpose": "solid materials property prediction benchmark",
+      "used_fields": ["material composition", "property values"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 37217,
+      "evidence": [
+        {
+          "text": "We evaluate the extrapolation capability of Bilinear Transduction on three widely used benchmarks for solid materials property prediction, AFLOW, Matbench, and the Materials Project (MP), covering 12 distinct prediction tasks of various classes of materials properties: electronic, mechanical, thermal, etc.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "The datasets vary in size, ranging from approximately 300 to 14,000 samples.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "Formation Energy [eV/atom]\n37217",
+          "page": 3,
+          "section": "Table 1",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "materials_project",
+      "usage_role": "source",
+      "purpose": "solid materials property prediction benchmark",
+      "used_fields": ["material composition", "property values"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 6331,
+      "evidence": [
+        {
+          "text": "We evaluate the extrapolation capability of Bilinear Transduction on three widely used benchmarks for solid materials property prediction, AFLOW, Matbench, and the Materials Project (MP), covering 12 distinct prediction tasks of various classes of materials properties: electronic, mechanical, thermal, etc.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "The datasets vary in size, ranging from approximately 300 to 14,000 samples.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "Elastic Anisotropy\n6331",
+          "page": 3,
+          "section": "Table 1",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "moleculenet_esol",
+      "usage_role": "source",
+      "purpose": "molecular graph-to-property prediction task",
+      "used_fields": ["SMILES", "property values"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 1128,
+      "evidence": [
+        {
+          "text": "For molecular systems, we used datasets from MoleculeNet, covering four graph-to-property prediction tasks with dataset sizes ranging from 600 to 4200 samples, and benchmarked our approach against three baseline methods.",
+          "page": 3,
+          "section": "Molecules",
+          "inferred": false
+        },
+        {
+          "text": "MoleculeNet36\nESOL [mol\nL ]\n1128",
+          "page": 4,
+          "section": "Table 3",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "moleculenet_freesolv",
+      "usage_role": "source",
+      "purpose": "molecular graph-to-property prediction task",
+      "used_fields": ["SMILES", "property values"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 643,
+      "evidence": [
+        {
+          "text": "For molecular systems, we used datasets from MoleculeNet, covering four graph-to-property prediction tasks with dataset sizes ranging from 600 to 4200 samples, and benchmarked our approach against three baseline methods.",
+          "page": 3,
+          "section": "Molecules",
+          "inferred": false
+        },
+        {
+          "text": "FreeSolv [ kJ\nmol]\n643",
+          "page": 4,
+          "section": "Table 3",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "moleculenet_lipophilicity",
+      "usage_role": "source",
+      "purpose": "molecular graph-to-property prediction task",
+      "used_fields": ["SMILES", "property values"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 4200,
+      "evidence": [
+        {
+          "text": "For molecular systems, we used datasets from MoleculeNet, covering four graph-to-property prediction tasks with dataset sizes ranging from 600 to 4200 samples, and benchmarked our approach against three baseline methods.",
+          "page": 3,
+          "section": "Molecules",
+          "inferred": false
+        },
+        {
+          "text": "Lipophilicity [log D]\n4200",
+          "page": 4,
+          "section": "Table 3",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "moleculenet_bace",
+      "usage_role": "source",
+      "purpose": "molecular graph-to-property prediction task",
+      "used_fields": ["SMILES", "property values"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 1513,
+      "evidence": [
+        {
+          "text": "For molecular systems, we used datasets from MoleculeNet, covering four graph-to-property prediction tasks with dataset sizes ranging from 600 to 4200 samples, and benchmarked our approach against three baseline methods.",
+          "page": 3,
+          "section": "Molecules",
+          "inferred": false
+        },
+        {
+          "text": "BACE binding [IC50]\n1513",
+          "page": 4,
+          "section": "Table 3",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

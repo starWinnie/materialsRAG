@@ -1,0 +1,34 @@
+{
+  "paper_id": "P009",
+  "file_name": "09_LLM_Prop.pdf",
+  "status": "completed",
+  "completed_at": "2026-08-05T07:31:42.052424+00:00",
+  "model": "qwen-plus",
+  "stage1_attempts": [
+    {
+      "attempt": 1,
+      "errors": [
+        "stages[4].evidence has no excerpt matching its stated PDF page"
+      ],
+      "exception": null
+    },
+    {
+      "attempt": 2,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "stage2_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "counts": {
+    "tasks": 1,
+    "stages": 6,
+    "datasets": 2,
+    "dataset_uses": 5
+  }
+}

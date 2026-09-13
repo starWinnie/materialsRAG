@@ -1,0 +1,1200 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "mp",
+      "canonical_name": "Materials Project",
+      "raw_names": [
+        "Materials Project (MP)",
+        "MP dataset"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "3D",
+        "inorganic",
+        "computational"
+      ],
+      "available_properties": [
+        "formation energy"
+      ],
+      "available_fields": [
+        "crystal structure information",
+        "formation energy"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We use nine datasets of DFT-computed and experimental properties in this work: Materials Project (MP)4, Joint Automated Repository for Various Integrated Simulations (JARVIS) 3D with 46 properties and 2D with 32 properties5, Flla44 with three properties, Dielectric Constant (DC)45 with five properties, Piezoelectric Tensor (PT)46 with two properties, Experimental Formation Energy (EFE)47 with one property, Kingsbury Experimental Formation Energy (KEFE)48 with one property, Kingsbury Experimental Bandgap (KEB)49 with one property, and Harvard Organic Photovoltaic Dataset (HOPV)50 with 24 properties.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        },
+        {
+          "text": "A model trained on the formation energy of the MP dataset39 is used as the source model to perform fine-tuning and feature extraction-based transfer learning as formation energy has shown to lead to meaningful representations from large source datasets36, which can then be applied during the model training on the smaller target datasets to improve their predictive performance.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        },
+        {
+          "text": "DATA AVAILABILITY\nThe datasets used in this paper are publicly available from the corresponding websites- MP4 from https://materialsproject.org/",
+          "page": 9,
+          "section": "DATA AVAILABILITY",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "jarvis_3d",
+      "canonical_name": "JARVIS-3D",
+      "raw_names": [
+        "JARVIS 3D",
+        "JARVIS-3D",
+        "Joint Automated Repository for Various Integrated Simulations (JARVIS) 3D"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "3D",
+        "inorganic/organic",
+        "computational/experimental"
+      ],
+      "available_properties": [
+        "formation energy",
+        "band gap",
+        "dielectric constant",
+        "piezoelectric tensor",
+        "exfoliation energy",
+        "elastic tensor components",
+        "Poisson ratio",
+        "shear modulus",
+        "bulk modulus",
+        "electron effective mass",
+        "static dielectric constant",
+        "SLME",
+        "MaxM",
+        "MinM",
+        "MaxEFG",
+        "spillage",
+        "PMEij",
+        "PMDi",
+        "PMDiEl",
+        "PMDij",
+        "Mepsx",
+        "Mepsy",
+        "Mepsz",
+        "b3lyp gap",
+        "b3lyp homo",
+        "b3lyp lumo",
+        "bp86 gap",
+        "bp86 homo",
+        "bp86 lumo",
+        "m06 gap",
+        "m06 homo",
+        "m06 lumo",
+        "pbe0 gap",
+        "pbe0 homo",
+        "pbe0 lumo"
+      ],
+      "available_fields": [
+        "crystal structure information"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We use nine datasets of DFT-computed and experimental properties in this work: Materials Project (MP)4, Joint Automated Repository for Various Integrated Simulations (JARVIS) 3D with 46 properties and 2D with 32 properties5, Flla44 with three properties, Dielectric Constant (DC)45 with five properties, Piezoelectric Tensor (PT)46 with two properties, Experimental Formation Energy (EFE)47 with one property, Kingsbury Experimental Formation Energy (KEFE)48 with one property, Kingsbury Experimental Bandgap (KEB)49 with one property, and Harvard Organic Photovoltaic Dataset (HOPV)50 with 24 properties.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        },
+        {
+          "text": "MP dataset was downloaded from39, JARVIS-3D (https://figshare.com/collections/ALIGNN_data/5429274), JARVIS-2D (https://ndownloader.figshare.com/files/26808917) and HOPV (https://ndownloader.figshare.com/files/28814184) from their respective figshare links and the rest of the datasets were obtained using Matminer51.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        },
+        {
+          "text": "DATA AVAILABILITY\nThe datasets used in this paper are publicly available from the corresponding websites- ... JARVIS5 from https://jarvis.nist.gov",
+          "page": 9,
+          "section": "DATA AVAILABILITY",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "jarvis_2d",
+      "canonical_name": "JARVIS-2D",
+      "raw_names": [
+        "JARVIS 2D",
+        "JARVIS-2D",
+        "Joint Automated Repository for Various Integrated Simulations (JARVIS) 2D"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "2D",
+        "inorganic/organic",
+        "computational/experimental"
+      ],
+      "available_properties": [
+        "formation energy",
+        "band gap",
+        "dielectric constant",
+        "exfoliation energy",
+        "electron effective mass",
+        "static dielectric constant",
+        "SLME",
+        "MaxM",
+        "MinM",
+        "MaxEFG",
+        "spillage",
+        "Mepsx",
+        "Mepsy",
+        "Mepsz",
+        "elastic tensor components",
+        "Poisson ratio",
+        "shear modulus",
+        "bulk modulus"
+      ],
+      "available_fields": [
+        "crystal structure information"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We use nine datasets of DFT-computed and experimental properties in this work: Materials Project (MP)4, Joint Automated Repository for Various Integrated Simulations (JARVIS) 3D with 46 properties and 2D with 32 properties5, Flla44 with three properties, Dielectric Constant (DC)45 with five properties, Piezoelectric Tensor (PT)46 with two properties, Experimental Formation Energy (EFE)47 with one property, Kingsbury Experimental Formation Energy (KEFE)48 with one property, Kingsbury Experimental Bandgap (KEB)49 with one property, and Harvard Organic Photovoltaic Dataset (HOPV)50 with 24 properties.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        },
+        {
+          "text": "MP dataset was downloaded from39, JARVIS-3D (https://figshare.com/collections/ALIGNN_data/5429274), JARVIS-2D (https://ndownloader.figshare.com/files/26808917) and HOPV (https://ndownloader.figshare.com/files/28814184) from their respective figshare links and the rest of the datasets were obtained using Matminer51.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        },
+        {
+          "text": "DATA AVAILABILITY\nThe datasets used in this paper are publicly available from the corresponding websites- ... JARVIS5 from https://jarvis.nist.gov",
+          "page": 9,
+          "section": "DATA AVAILABILITY",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "flla",
+      "canonical_name": "Flla",
+      "raw_names": [
+        "Flla44",
+        "Flla"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "3D",
+        "inorganic",
+        "computational"
+      ],
+      "available_properties": [
+        "formation energy",
+        "formation energy per atom",
+        "energy above hull"
+      ],
+      "available_fields": [
+        "crystal structure information"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We use nine datasets of DFT-computed and experimental properties in this work: Materials Project (MP)4, Joint Automated Repository for Various Integrated Simulations (JARVIS) 3D with 46 properties and 2D with 32 properties5, Flla44 with three properties, Dielectric Constant (DC)45 with five properties, Piezoelectric Tensor (PT)46 with two properties, Experimental Formation Energy (EFE)47 with one property, Kingsbury Experimental Formation Energy (KEFE)48 with one property, Kingsbury Experimental Bandgap (KEB)49 with one property, and Harvard Organic Photovoltaic Dataset (HOPV)50 with 24 properties.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        },
+        {
+          "text": "DATA AVAILABILITY\nThe datasets used in this paper are publicly available from the corresponding websites- ... Flla44 ... from AutoMatminer63 (https://github.com/hackingmaterials/automatminer)",
+          "page": 9,
+          "section": "DATA AVAILABILITY",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "dc",
+      "canonical_name": "Dielectric Constant",
+      "raw_names": [
+        "Dielectric Constant (DC)",
+        "DC"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "3D",
+        "inorganic",
+        "computational"
+      ],
+      "available_properties": [
+        "volume",
+        "band gap",
+        "refractive index",
+        "electronic polarizability",
+        "total polarizability"
+      ],
+      "available_fields": [
+        "crystal structure information"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We use nine datasets of DFT-computed and experimental properties in this work: Materials Project (MP)4, Joint Automated Repository for Various Integrated Simulations (JARVIS) 3D with 46 properties and 2D with 32 properties5, Flla44 with three properties, Dielectric Constant (DC)45 with five properties, Piezoelectric Tensor (PT)46 with two properties, Experimental Formation Energy (EFE)47 with one property, Kingsbury Experimental Formation Energy (KEFE)48 with one property, Kingsbury Experimental Bandgap (KEB)49 with one property, and Harvard Organic Photovoltaic Dataset (HOPV)50 with 24 properties.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        },
+        {
+          "text": "DATA AVAILABILITY\nThe datasets used in this paper are publicly available from the corresponding websites- ... Dielectric Constant45 ... from AutoMatminer63 (https://github.com/hackingmaterials/automatminer)",
+          "page": 9,
+          "section": "DATA AVAILABILITY",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "pt",
+      "canonical_name": "Piezoelectric Tensor",
+      "raw_names": [
+        "Piezoelectric Tensor (PT)",
+        "PT"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "3D",
+        "inorganic",
+        "computational"
+      ],
+      "available_properties": [
+        "volume",
+        "piezoelectric tensor components"
+      ],
+      "available_fields": [
+        "crystal structure information"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We use nine datasets of DFT-computed and experimental properties in this work: Materials Project (MP)4, Joint Automated Repository for Various Integrated Simulations (JARVIS) 3D with 46 properties and 2D with 32 properties5, Flla44 with three properties, Dielectric Constant (DC)45 with five properties, Piezoelectric Tensor (PT)46 with two properties, Experimental Formation Energy (EFE)47 with one property, Kingsbury Experimental Formation Energy (KEFE)48 with one property, Kingsbury Experimental Bandgap (KEB)49 with one property, and Harvard Organic Photovoltaic Dataset (HOPV)50 with 24 properties.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        },
+        {
+          "text": "DATA AVAILABILITY\nThe datasets used in this paper are publicly available from the corresponding websites- ... Piezoelectric Tensor46 ... from AutoMatminer63 (https://github.com/hackingmaterials/automatminer)",
+          "page": 9,
+          "section": "DATA AVAILABILITY",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "efe",
+      "canonical_name": "Experimental Formation Energy",
+      "raw_names": [
+        "Experimental Formation Energy (EFE)",
+        "EFE"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "3D",
+        "inorganic",
+        "experimental"
+      ],
+      "available_properties": [
+        "formation energy per atom"
+      ],
+      "available_fields": [
+        "crystal structure information"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We use nine datasets of DFT-computed and experimental properties in this work: Materials Project (MP)4, Joint Automated Repository for Various Integrated Simulations (JARVIS) 3D with 46 properties and 2D with 32 properties5, Flla44 with three properties, Dielectric Constant (DC)45 with five properties, Piezoelectric Tensor (PT)46 with two properties, Experimental Formation Energy (EFE)47 with one property, Kingsbury Experimental Formation Energy (KEFE)48 with one property, Kingsbury Experimental Bandgap (KEB)49 with one property, and Harvard Organic Photovoltaic Dataset (HOPV)50 with 24 properties.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        },
+        {
+          "text": "DATA AVAILABILITY\nThe datasets used in this paper are publicly available from the corresponding websites- ... Experimental Formation Energy47 ... from AutoMatminer63 (https://github.com/hackingmaterials/automatminer)",
+          "page": 9,
+          "section": "DATA AVAILABILITY",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "kefe",
+      "canonical_name": "Kingsbury Experimental Formation Energy",
+      "raw_names": [
+        "Kingsbury Experimental Formation Energy (KEFE)",
+        "KEFE"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "3D",
+        "inorganic",
+        "experimental"
+      ],
+      "available_properties": [
+        "formation energy per atom"
+      ],
+      "available_fields": [
+        "crystal structure information"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We use nine datasets of DFT-computed and experimental properties in this work: Materials Project (MP)4, Joint Automated Repository for Various Integrated Simulations (JARVIS) 3D with 46 properties and 2D with 32 properties5, Flla44 with three properties, Dielectric Constant (DC)45 with five properties, Piezoelectric Tensor (PT)46 with two properties, Experimental Formation Energy (EFE)47 with one property, Kingsbury Experimental Formation Energy (KEFE)48 with one property, Kingsbury Experimental Bandgap (KEB)49 with one property, and Harvard Organic Photovoltaic Dataset (HOPV)50 with 24 properties.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        },
+        {
+          "text": "DATA AVAILABILITY\nThe datasets used in this paper are publicly available from the corresponding websites- ... Kingsbury Experimental Formation Energy48 ... from AutoMatminer63 (https://github.com/hackingmaterials/automatminer)",
+          "page": 9,
+          "section": "DATA AVAILABILITY",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "keb",
+      "canonical_name": "Kingsbury Experimental Bandgap",
+      "raw_names": [
+        "Kingsbury Experimental Bandgap (KEB)",
+        "KEB"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "3D",
+        "inorganic",
+        "experimental"
+      ],
+      "available_properties": [
+        "band gap"
+      ],
+      "available_fields": [
+        "crystal structure information"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We use nine datasets of DFT-computed and experimental properties in this work: Materials Project (MP)4, Joint Automated Repository for Various Integrated Simulations (JARVIS) 3D with 46 properties and 2D with 32 properties5, Flla44 with three properties, Dielectric Constant (DC)45 with five properties, Piezoelectric Tensor (PT)46 with two properties, Experimental Formation Energy (EFE)47 with one property, Kingsbury Experimental Formation Energy (KEFE)48 with one property, Kingsbury Experimental Bandgap (KEB)49 with one property, and Harvard Organic Photovoltaic Dataset (HOPV)50 with 24 properties.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        },
+        {
+          "text": "DATA AVAILABILITY\nThe datasets used in this paper are publicly available from the corresponding websites- ... Kingsbury Experimental Bandgap49 ... from AutoMatminer63 (https://github.com/hackingmaterials/automatminer)",
+          "page": 9,
+          "section": "DATA AVAILABILITY",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "hopv",
+      "canonical_name": "Harvard Organic Photovoltaic Dataset",
+      "raw_names": [
+        "Harvard Organic Photovoltaic Dataset (HOPV)",
+        "HOPV"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "3D/2D",
+        "organic",
+        "computational"
+      ],
+      "available_properties": [
+        "b3lyp gap",
+        "b3lyp homo",
+        "b3lyp lumo",
+        "b3lyp scharber jsc",
+        "b3lyp scharber pce",
+        "b3lyp scharber voc",
+        "bp86 gap",
+        "bp86 homo",
+        "bp86 lumo",
+        "bp86 scharber jsc",
+        "bp86 scharber pce",
+        "bp86 scharber voc",
+        "m06 gap",
+        "m06 homo",
+        "m06 lumo",
+        "m06 scharber jsc",
+        "m06 scharber pce",
+        "m06 scharber voc",
+        "pbe0 gap",
+        "pbe0 homo",
+        "pbe0 lumo",
+        "pbe0 scharber jsc",
+        "pbe0 scharber pce",
+        "pbe0 scharber voc"
+      ],
+      "available_fields": [
+        "molecular structure information"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We use nine datasets of DFT-computed and experimental properties in this work: Materials Project (MP)4, Joint Automated Repository for Various Integrated Simulations (JARVIS) 3D with 46 properties and 2D with 32 properties5, Flla44 with three properties, Dielectric Constant (DC)45 with five properties, Piezoelectric Tensor (PT)46 with two properties, Experimental Formation Energy (EFE)47 with one property, Kingsbury Experimental Formation Energy (KEFE)48 with one property, Kingsbury Experimental Bandgap (KEB)49 with one property, and Harvard Organic Photovoltaic Dataset (HOPV)50 with 24 properties.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        },
+        {
+          "text": "MP dataset was downloaded from39, JARVIS-3D (https://figshare.com/collections/ALIGNN_data/5429274), JARVIS-2D (https://ndownloader.figshare.com/files/26808917) and HOPV (https://ndownloader.figshare.com/files/28814184) from their respective figshare links and the rest of the datasets were obtained using Matminer51.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        },
+        {
+          "text": "DATA AVAILABILITY\nThe datasets used in this paper are publicly available from the corresponding websites- ... HOPV from https://ndownloader.figshare.com/files/28814184.",
+          "page": 9,
+          "section": "DATA AVAILABILITY",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "mp",
+      "usage_role": "source",
+      "purpose": "acquisition of large source dataset containing crystal structure information and formation energy for pre-training",
+      "used_fields": [
+        "crystal structure information",
+        "formation energy"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We use nine datasets of DFT-computed and experimental properties in this work: Materials Project (MP)4, Joint Automated Repository for Various Integrated Simulations (JARVIS) 3D with 46 properties and 2D with 32 properties5, Flla44 with three properties, Dielectric Constant (DC)45 with five properties, Piezoelectric Tensor (PT)46 with two properties, Experimental Formation Energy (EFE)47 with one property, Kingsbury Experimental Formation Energy (KEFE)48 with one property, Kingsbury Experimental Bandgap (KEB)49 with one property, and Harvard Organic Photovoltaic Dataset (HOPV)50 with 24 properties.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        },
+        {
+          "text": "A model trained on the formation energy of the MP dataset39 is used as the source model to perform fine-tuning and feature extraction-based transfer learning as formation energy has shown to lead to meaningful representations from large source datasets36, which can then be applied during the model training on the smaller target datasets to improve their predictive performance.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "jarvis_3d",
+      "usage_role": "training",
+      "purpose": "acquisition of diverse 3D materials dataset for target model training and evaluation",
+      "used_fields": [
+        "crystal structure information"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We use nine datasets of DFT-computed and experimental properties in this work: Materials Project (MP)4, Joint Automated Repository for Various Integrated Simulations (JARVIS) 3D with 46 properties and 2D with 32 properties5, Flla44 with three properties, Dielectric Constant (DC)45 with five properties, Piezoelectric Tensor (PT)46 with two properties, Experimental Formation Energy (EFE)47 with one property, Kingsbury Experimental Formation Energy (KEFE)48 with one property, Kingsbury Experimental Bandgap (KEB)49 with one property, and Harvard Organic Photovoltaic Dataset (HOPV)50 with 24 properties.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "jarvis_2d",
+      "usage_role": "training",
+      "purpose": "acquisition of diverse 2D materials dataset for target model training and evaluation",
+      "used_fields": [
+        "crystal structure information"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We use nine datasets of DFT-computed and experimental properties in this work: Materials Project (MP)4, Joint Automated Repository for Various Integrated Simulations (JARVIS) 3D with 46 properties and 2D with 32 properties5, Flla44 with three properties, Dielectric Constant (DC)45 with five properties, Piezoelectric Tensor (PT)46 with two properties, Experimental Formation Energy (EFE)47 with one property, Kingsbury Experimental Formation Energy (KEFE)48 with one property, Kingsbury Experimental Bandgap (KEB)49 with one property, and Harvard Organic Photovoltaic Dataset (HOPV)50 with 24 properties.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "flla",
+      "usage_role": "training",
+      "purpose": "acquisition of small DFT-based dataset for target model training and evaluation",
+      "used_fields": [
+        "crystal structure information"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We use nine datasets of DFT-computed and experimental properties in this work: Materials Project (MP)4, Joint Automated Repository for Various Integrated Simulations (JARVIS) 3D with 46 properties and 2D with 32 properties5, Flla44 with three properties, Dielectric Constant (DC)45 with five properties, Piezoelectric Tensor (PT)46 with two properties, Experimental Formation Energy (EFE)47 with one property, Kingsbury Experimental Formation Energy (KEFE)48 with one property, Kingsbury Experimental Bandgap (KEB)49 with one property, and Harvard Organic Photovoltaic Dataset (HOPV)50 with 24 properties.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "dc",
+      "usage_role": "training",
+      "purpose": "acquisition of small DFT-based dataset for target model training and evaluation",
+      "used_fields": [
+        "crystal structure information"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We use nine datasets of DFT-computed and experimental properties in this work: Materials Project (MP)4, Joint Automated Repository for Various Integrated Simulations (JARVIS) 3D with 46 properties and 2D with 32 properties5, Flla44 with three properties, Dielectric Constant (DC)45 with five properties, Piezoelectric Tensor (PT)46 with two properties, Experimental Formation Energy (EFE)47 with one property, Kingsbury Experimental Formation Energy (KEFE)48 with one property, Kingsbury Experimental Bandgap (KEB)49 with one property, and Harvard Organic Photovoltaic Dataset (HOPV)50 with 24 properties.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "pt",
+      "usage_role": "training",
+      "purpose": "acquisition of small DFT-based dataset for target model training and evaluation",
+      "used_fields": [
+        "crystal structure information"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We use nine datasets of DFT-computed and experimental properties in this work: Materials Project (MP)4, Joint Automated Repository for Various Integrated Simulations (JARVIS) 3D with 46 properties and 2D with 32 properties5, Flla44 with three properties, Dielectric Constant (DC)45 with five properties, Piezoelectric Tensor (PT)46 with two properties, Experimental Formation Energy (EFE)47 with one property, Kingsbury Experimental Formation Energy (KEFE)48 with one property, Kingsbury Experimental Bandgap (KEB)49 with one property, and Harvard Organic Photovoltaic Dataset (HOPV)50 with 24 properties.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "efe",
+      "usage_role": "training",
+      "purpose": "acquisition of experimental dataset for target model training and evaluation",
+      "used_fields": [
+        "crystal structure information"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We use nine datasets of DFT-computed and experimental properties in this work: Materials Project (MP)4, Joint Automated Repository for Various Integrated Simulations (JARVIS) 3D with 46 properties and 2D with 32 properties5, Flla44 with three properties, Dielectric Constant (DC)45 with five properties, Piezoelectric Tensor (PT)46 with two properties, Experimental Formation Energy (EFE)47 with one property, Kingsbury Experimental Formation Energy (KEFE)48 with one property, Kingsbury Experimental Bandgap (KEB)49 with one property, and Harvard Organic Photovoltaic Dataset (HOPV)50 with 24 properties.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "kefe",
+      "usage_role": "training",
+      "purpose": "acquisition of experimental dataset for target model training and evaluation",
+      "used_fields": [
+        "crystal structure information"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We use nine datasets of DFT-computed and experimental properties in this work: Materials Project (MP)4, Joint Automated Repository for Various Integrated Simulations (JARVIS) 3D with 46 properties and 2D with 32 properties5, Flla44 with three properties, Dielectric Constant (DC)45 with five properties, Piezoelectric Tensor (PT)46 with two properties, Experimental Formation Energy (EFE)47 with one property, Kingsbury Experimental Formation Energy (KEFE)48 with one property, Kingsbury Experimental Bandgap (KEB)49 with one property, and Harvard Organic Photovoltaic Dataset (HOPV)50 with 24 properties.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "keb",
+      "usage_role": "training",
+      "purpose": "acquisition of experimental dataset for target model training and evaluation",
+      "used_fields": [
+        "crystal structure information"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We use nine datasets of DFT-computed and experimental properties in this work: Materials Project (MP)4, Joint Automated Repository for Various Integrated Simulations (JARVIS) 3D with 46 properties and 2D with 32 properties5, Flla44 with three properties, Dielectric Constant (DC)45 with five properties, Piezoelectric Tensor (PT)46 with two properties, Experimental Formation Energy (EFE)47 with one property, Kingsbury Experimental Formation Energy (KEFE)48 with one property, Kingsbury Experimental Bandgap (KEB)49 with one property, and Harvard Organic Photovoltaic Dataset (HOPV)50 with 24 properties.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "hopv",
+      "usage_role": "training",
+      "purpose": "acquisition of organic photovoltaic dataset for target model training and evaluation",
+      "used_fields": [
+        "molecular structure information"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We use nine datasets of DFT-computed and experimental properties in this work: Materials Project (MP)4, Joint Automated Repository for Various Integrated Simulations (JARVIS) 3D with 46 properties and 2D with 32 properties5, Flla44 with three properties, Dielectric Constant (DC)45 with five properties, Piezoelectric Tensor (PT)46 with two properties, Experimental Formation Energy (EFE)47 with one property, Kingsbury Experimental Formation Energy (KEFE)48 with one property, Kingsbury Experimental Bandgap (KEB)49 with one property, and Harvard Organic Photovoltaic Dataset (HOPV)50 with 24 properties.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "mp",
+      "usage_role": "pretraining",
+      "purpose": "training of source model (ALIGNN) on formation energy for transfer learning",
+      "used_fields": [
+        "crystal structure information",
+        "formation energy"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "A model trained on the formation energy of the MP dataset39 is used as the source model to perform fine-tuning and feature extraction-based transfer learning as formation energy has shown to lead to meaningful representations from large source datasets36, which can then be applied during the model training on the smaller target datasets to improve their predictive performance.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        },
+        {
+          "text": "For TL models, we use a model pretrained on the MP dataset with formation energy as the materials property using ALIGNN as the model architecture.",
+          "page": 8,
+          "section": "METHODS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "jarvis_3d",
+      "usage_role": "training",
+      "purpose": "training of target models using transfer learning techniques",
+      "used_fields": [
+        "crystal structure information"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The rest of the datasets are used to perform target model training followed by materials property prediction and evaluation.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "jarvis_2d",
+      "usage_role": "training",
+      "purpose": "training of target models using transfer learning techniques",
+      "used_fields": [
+        "crystal structure information"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The rest of the datasets are used to perform target model training followed by materials property prediction and evaluation.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "flla",
+      "usage_role": "training",
+      "purpose": "training of target models using transfer learning techniques",
+      "used_fields": [
+        "crystal structure information"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The rest of the datasets are used to perform target model training followed by materials property prediction and evaluation.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "dc",
+      "usage_role": "training",
+      "purpose": "training of target models using transfer learning techniques",
+      "used_fields": [
+        "crystal structure information"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The rest of the datasets are used to perform target model training followed by materials property prediction and evaluation.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "pt",
+      "usage_role": "training",
+      "purpose": "training of target models using transfer learning techniques",
+      "used_fields": [
+        "crystal structure information"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The rest of the datasets are used to perform target model training followed by materials property prediction and evaluation.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "efe",
+      "usage_role": "training",
+      "purpose": "training of target models using transfer learning techniques",
+      "used_fields": [
+        "crystal structure information"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The rest of the datasets are used to perform target model training followed by materials property prediction and evaluation.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "kefe",
+      "usage_role": "training",
+      "purpose": "training of target models using transfer learning techniques",
+      "used_fields": [
+        "crystal structure information"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The rest of the datasets are used to perform target model training followed by materials property prediction and evaluation.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "keb",
+      "usage_role": "training",
+      "purpose": "training of target models using transfer learning techniques",
+      "used_fields": [
+        "crystal structure information"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The rest of the datasets are used to perform target model training followed by materials property prediction and evaluation.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "hopv",
+      "usage_role": "training",
+      "purpose": "training of target models using transfer learning techniques",
+      "used_fields": [
+        "molecular structure information"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The rest of the datasets are used to perform target model training followed by materials property prediction and evaluation.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "jarvis_3d",
+      "usage_role": "test",
+      "purpose": "evaluation of predictive performance on holdout test set",
+      "used_fields": [
+        "crystal structure information"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The target datasets are randomly split with a fixed random seed into training, validation, and holdout test sets in the ratio of 80:10:10.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        },
+        {
+          "text": "Table 2 presents the prediction accuracy of the best SC and best TL model on the test set for each of the 48 target properties.",
+          "page": 4,
+          "section": "JARVIS-3D database",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "jarvis_2d",
+      "usage_role": "test",
+      "purpose": "evaluation of predictive performance on holdout test set",
+      "used_fields": [
+        "crystal structure information"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The target datasets are randomly split with a fixed random seed into training, validation, and holdout test sets in the ratio of 80:10:10.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        },
+        {
+          "text": "Table 4 presents the prediction accuracy of the best SC and best TL model on the test set for each of the 34 target properties in JARVIS-2D database.",
+          "page": 5,
+          "section": "JARVIS-2D database",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "flla",
+      "usage_role": "test",
+      "purpose": "evaluation of predictive performance on holdout test set",
+      "used_fields": [
+        "crystal structure information"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The target datasets are randomly split with a fixed random seed into training, validation, and holdout test sets in the ratio of 80:10:10.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        },
+        {
+          "text": "Table 3 indicates that TL models outperform the SC models in 10/10 cases, i.e., in 100% of the cases.",
+          "page": 4,
+          "section": "Other DFT-based databases",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "dc",
+      "usage_role": "test",
+      "purpose": "evaluation of predictive performance on holdout test set",
+      "used_fields": [
+        "crystal structure information"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The target datasets are randomly split with a fixed random seed into training, validation, and holdout test sets in the ratio of 80:10:10.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        },
+        {
+          "text": "Table 3 indicates that TL models outperform the SC models in 10/10 cases, i.e., in 100% of the cases.",
+          "page": 4,
+          "section": "Other DFT-based databases",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "pt",
+      "usage_role": "test",
+      "purpose": "evaluation of predictive performance on holdout test set",
+      "used_fields": [
+        "crystal structure information"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The target datasets are randomly split with a fixed random seed into training, validation, and holdout test sets in the ratio of 80:10:10.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        },
+        {
+          "text": "Table 3 indicates that TL models outperform the SC models in 10/10 cases, i.e., in 100% of the cases.",
+          "page": 4,
+          "section": "Other DFT-based databases",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "efe",
+      "usage_role": "test",
+      "purpose": "evaluation of predictive performance on holdout test set",
+      "used_fields": [
+        "crystal structure information"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The target datasets are randomly split with a fixed random seed into training, validation, and holdout test sets in the ratio of 80:10:10.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        },
+        {
+          "text": "Table 6 indicates that TL models outperform the SC models in 3/3 cases, i.e., in 100% of the cases.",
+          "page": 7,
+          "section": "Experimental data",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "kefe",
+      "usage_role": "test",
+      "purpose": "evaluation of predictive performance on holdout test set",
+      "used_fields": [
+        "crystal structure information"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The target datasets are randomly split with a fixed random seed into training, validation, and holdout test sets in the ratio of 80:10:10.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        },
+        {
+          "text": "Table 6 indicates that TL models outperform the SC models in 3/3 cases, i.e., in 100% of the cases.",
+          "page": 7,
+          "section": "Experimental data",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "keb",
+      "usage_role": "test",
+      "purpose": "evaluation of predictive performance on holdout test set",
+      "used_fields": [
+        "crystal structure information"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The target datasets are randomly split with a fixed random seed into training, validation, and holdout test sets in the ratio of 80:10:10.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        },
+        {
+          "text": "Table 6 indicates that TL models outperform the SC models in 3/3 cases, i.e., in 100% of the cases.",
+          "page": 7,
+          "section": "Experimental data",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "hopv",
+      "usage_role": "test",
+      "purpose": "evaluation of predictive performance on holdout test set",
+      "used_fields": [
+        "molecular structure information"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The target datasets are randomly split with a fixed random seed into training, validation, and holdout test sets in the ratio of 80:10:10.",
+          "page": 2,
+          "section": "RESULTS",
+          "inferred": false
+        },
+        {
+          "text": "Table 5 indicates that TL models outperform the SC models in 22/24 cases, i.e., in ≈92% of the cases.",
+          "page": 5,
+          "section": "Other materials class data",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

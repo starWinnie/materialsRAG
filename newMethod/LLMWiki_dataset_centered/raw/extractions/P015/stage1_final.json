@@ -1,0 +1,226 @@
+{
+  "paper": {
+    "title": "Advancing extrapolative predictions of material properties through learning to learn using extrapolative episodic training",
+    "year": 2025,
+    "doi": "10.1038/s43246-025-00754-x",
+    "research_summary": "This study develops a meta-learning methodology—extrapolative episodic training (E2T)—to enhance the ability of machine learning models to predict material properties outside the domain of training data. Using attention-based matching neural networks (MNNs) trained on arbitrarily generated extrapolative episodes, the method demonstrates superior generalization for unseen material domains, particularly in predicting physical properties of polymeric materials and hybrid organic–inorganic perovskites. The approach enables rapid adaptation to new domains with limited data via fine-tuning, outperforming conventional supervised learning and state-of-the-art baselines like ANE in extrapolative settings."
+  },
+  "task": {
+    "task_name_raw": "extrapolative prediction of material properties",
+    "task_name_canonical": "extrapolative_material_property_prediction",
+    "objective": "To develop a machine-learning methodology that predicts material properties beyond the distribution range of training data — i.e., extrapolatively — rather than interpolatively.",
+    "material_scope": [
+      "polymeric materials",
+      "hybrid organic–inorganic perovskites"
+    ],
+    "target_properties": [
+      "specific heat at constant pressure (Cp)",
+      "refractive index",
+      "bandgap"
+    ],
+    "constraints": [
+      "limited availability of data resources",
+      "need to generalize to unexplored material spaces",
+      "requirement for rapid adaptability to unseen domains with few samples"
+    ],
+    "input_requirements": [
+      "chemical structure descriptors (e.g., Morgan fingerprint for polymers, crystal structure graphs for perovskites)"
+    ],
+    "output_goal": [
+      "real-valued physical property predictions (y ∈ ℝ) for materials outside training domain"
+    ],
+    "evidence": [
+      {
+        "text": "The goal of materials science is to predict material properties beyond the data distribution range. This study presented a machine-learning methodology to address this fundamental challenge.",
+        "page": 7,
+        "section": "Discussion",
+        "inferred": false
+      },
+      {
+        "text": "Central to this progress is the development of rapidly computable property predictors, which allow identifying novel materials with the desired properties from vast material spaces.",
+        "page": 1,
+        "section": "unknown",
+        "inferred": false
+      },
+      {
+        "text": "Although machine-learning predictors are inherently interpolative, establishing a general methodology to create an extrapolative predictor remains a fundamental challenge.",
+        "page": 1,
+        "section": "unknown",
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "acquisition of polymer and perovskite datasets",
+      "stage_order": 1,
+      "stage_goal": "To obtain computational datasets of material structures and their physical properties for training and evaluation.",
+      "stage_input": [],
+      "stage_output": [
+        "69,480 amorphous polymers with Cp and refractive index",
+        "1345 hybrid organic–inorganic perovskites with bandgaps"
+      ],
+      "evidence": [
+        {
+          "text": "In the polymer-property prediction experiments, 69,480 samples of Cp and 68,700 samples of the refractive index were used for the amorphous homopolymers. The data were generated using RadonPy36, which is a Python tool to construct a workflow for fully automated calculations of various polymeric properties using all-atom MD simulations.",
+          "page": 8,
+          "section": "Methods",
+          "inferred": false
+        },
+        {
+          "text": "The HOIP dataset40,41 contains 1345 perovskite compounds and their properties, including bandgaps, dielectric constants, and relative energies, calculated using the density functional theory.",
+          "page": 10,
+          "section": "Methods",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_preparation",
+      "stage_name_raw": "descriptor generation and dataset partitioning",
+      "stage_order": 2,
+      "stage_goal": "To encode material structures into numerical descriptors and partition data into training, support, and test sets appropriate for episodic training.",
+      "stage_input": [
+        "polymer repeating units",
+        "perovskite crystal structures"
+      ],
+      "stage_output": [
+        "2048-dimensional Morgan fingerprints",
+        "32-dimensional MPNN embeddings",
+        "episodic partitions (S, Q) with extrapolative relationships"
+      ],
+      "evidence": [
+        {
+          "text": "The count-based Morgan fingerprint38, a type of extended connectivity fingerprint (ECFP)39, was utilized as a descriptor for the repeating unit of a homopolymer. The descriptor was calculated using RDKit55, with a radius of 3 and bit length of 2048.",
+          "page": 9,
+          "section": "Methods",
+          "inferred": false
+        },
+        {
+          "text": "The MPNN44 was employed as the encoder for the crystal structures in all models. The MPNN architecture was designed in a manner similar to that proposed by Na and Park42, with an embedding size of 32.",
+          "page": 10,
+          "section": "Methods",
+          "inferred": false
+        },
+        {
+          "text": "Data of 19 of 20 polymer classes were used for training, whereas the remaining class was used for testing... In each step of E2T, a training instance on (x, y) was sampled from a randomly selected polymer class, whereas the support set S of size m=30 was sampled entirely from the 19 polymer classes, including interpolative and extrapolative episodes.",
+          "page": 9,
+          "section": "Methods",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "training MNNs via extrapolative episodic training (E2T)",
+      "stage_order": 3,
+      "stage_goal": "To train attention-based meta-learners (MNNs) on episodes where (x,y) lie outside the support set S’s domain, thereby learning y = f(x, S) for extrapolative prediction.",
+      "stage_input": [
+        "episodes (xi, yi, Si) with extrapolative relationships",
+        "descriptors/embeddings",
+        "kernel ridge regressor parameters"
+      ],
+      "stage_output": [
+        "trained MNNs with extrapolative capability"
+      ],
+      "evidence": [
+        {
+          "text": "We employed a meta-learning algorithm30–34, commonly known as “learning to learn,” to impart extrapolative prediction capabilities to the MNNs. Numerous episodes were generated from a given dataset D, each comprising a training set S and test set Q containing instances outside the training domain S.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "E2T learning is formulated as ℓ2 loss minimization as follows: Jϕ = Σ(xi,yi,Si)∈T (yi − f(xi, Si))²",
+          "page": 3,
+          "section": "unknown",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "evaluation of extrapolative prediction performance",
+      "stage_order": 4,
+      "stage_goal": "To assess model generalization on unseen material classes or chemical compositions excluded from training.",
+      "stage_input": [
+        "trained MNNs",
+        "test sets from excluded polymer classes (e.g., p13–p14–p18)",
+        "HOIP-GeF and HOIP-PbI test sets"
+      ],
+      "stage_output": [
+        "RMSE and R² scores for Cp, refractive index, and bandgap prediction"
+      ],
+      "evidence": [
+        {
+          "text": "To evaluate the prediction performance for an unseen polymer class, the following process was implemented: (1) a model was trained using randomly selected samples from 19 of the 20 polymer classes and (2) its generalizability was assessed using data from the remaining polymer class.",
+          "page": 3,
+          "section": "Experimental results",
+          "inferred": false
+        },
+        {
+          "text": "We performed numerical experiments using the same setting as that employed by Na et al.42,43. The HOIP dataset was divided into 12 groups... For creating a training episode, we excluded all samples with Ge and F or with Pb and I and randomly selected 50 instances of (x, y) from one group while drawing S of size 50 from the 10 remaining groups.",
+          "page": 5,
+          "section": "unknown",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "ablation_study",
+      "stage_name_raw": "hyperparameter sensitivity analysis for E2T",
+      "stage_order": 5,
+      "stage_goal": "To investigate how training/inference support set sizes (∣Strain∣, ∣Sinfer∣) and smoothing parameter λ affect extrapolative generalization.",
+      "stage_input": [
+        "HOIP dataset",
+        "varied ∣Strain∣, ∣Sinfer∣, λ"
+      ],
+      "stage_output": [
+        "RMSE trends vs. hyperparameters (Fig. 4)"
+      ],
+      "evidence": [
+        {
+          "text": "We conducted an ablation study using the HOIP dataset to investigate the influence of the training and inference support sizes, ∣Strain∣ and ∣Sinfer∣, and the smoothing parameter λ for the ridge regressor head on the E2T performance.",
+          "page": 6,
+          "section": "Methods",
+          "inferred": false
+        },
+        {
+          "text": "As shown in Fig. 4a, the generalization performance tended to improve with an increase in the training support size ∣Strain∣... By contrast, as shown in Fig. 4b, the generalization performance scaled monotonically with an increase in the inference support size ∣Sinfer∣.",
+          "page": 6,
+          "section": "Methods",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_screening",
+      "stage_name_raw": "fine-tuning for downstream extrapolative domains",
+      "stage_order": 6,
+      "stage_goal": "To adapt pretrained E2T models to target domains using limited data, evaluating transferability and sample efficiency.",
+      "stage_input": [
+        "pretrained MNNs",
+        "small target-domain datasets (e.g., 20–500 polymer samples, 10–40 perovskite samples)"
+      ],
+      "stage_output": [
+        "fine-tuned models",
+        "scaling curves of RMSE vs. target sample size (Figs. 5–7)"
+      ],
+      "evidence": [
+        {
+          "text": "Fine-tuning was performed on the RadonPy dataset. In this experiment, a pretrained E2T model with a source data size of 38,000 was fine-tuned on data from the target domain corresponding to a particular polymer class.",
+          "page": 6,
+          "section": "Fine-tuning to extrapolative domains",
+          "inferred": false
+        },
+        {
+          "text": "An MNN pretrained by E2T with a source data size of 1248 (HOIP-GeF) or 1228 (HOIP-PbI) was fine-tuned on data, including data from the target domain. Half of the target dataset was reserved for performance evaluation, whereas 10–40 samples from the remaining data were used for fine-tuning.",
+          "page": 11,
+          "section": "Fine-tuning experiments",
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

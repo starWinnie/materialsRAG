@@ -1,0 +1,357 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "exp_formation_enthalpy_alnipti",
+      "canonical_name": "Experimental formation enthalpy dataset for Al–Ni–Pd and Al–Ni–Ti ternary systems",
+      "raw_names": [
+        "experimental values of the enthalphy of formation",
+        "reliable experimental values of the enthalphy of formation",
+        "experimental values of the heat of formation"
+      ],
+      "dataset_type": "paper_specific",
+      "source_dataset_key": null,
+      "material_scope": [
+        "Al–Ni–Pd",
+        "Al–Ni–Ti",
+        "binary alloys",
+        "ternary alloys",
+        "intermetallic compounds"
+      ],
+      "available_properties": [
+        "formation enthalpy"
+      ],
+      "available_fields": [
+        "chemical formula",
+        "valence electron count",
+        "enthalpy of formation"
+      ],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "A training dataset of reliable experimental values of the enthalphy of formation is initially filtered to exclude missing or unreliable enthalpy values, ensuring that only well-defined data points are used for training of the neural network.",
+          "page": 3,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "We have performed DFT calculations, as described above, for all the known enthalpies of formation of the two ternary phase diagrams, for Al–Ni–Pd and Al–Ni–Ti, at ambient conditions, resulting in a total of 34 systems.",
+          "page": 4,
+          "section": "Results and discussion",
+          "inferred": false
+        },
+        {
+          "text": "For completeness, we list in Table 1 of the Appendix all experimental values of the heat of formation used in this investigation, together with the predicted values using Eqs. 9 and 10.",
+          "page": 6,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "dft_formation_enthalpy_alnipti",
+      "canonical_name": "DFT-calculated formation enthalpy dataset for Al–Ni–Pd and Al–Ni–Ti ternary systems",
+      "raw_names": [
+        "DFT-calculated formation enthalpies",
+        "DFT calculations [...] for all the known enthalpies of formation",
+        "HDFT"
+      ],
+      "dataset_type": "paper_specific",
+      "source_dataset_key": null,
+      "material_scope": [
+        "Al–Ni–Pd",
+        "Al–Ni–Ti",
+        "binary alloys",
+        "ternary alloys",
+        "intermetallic compounds"
+      ],
+      "available_properties": [
+        "formation enthalpy"
+      ],
+      "available_fields": [
+        "chemical formula",
+        "DFT enthalpy of formation",
+        "theoretical equilibrium volume"
+      ],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "We have performed DFT calculations, as described above, for all the known enthalpies of formation of the two ternary phase diagrams, for Al–Ni–Pd and Al–Ni–Ti, at ambient conditions, resulting in a total of 34 systems.",
+          "page": 4,
+          "section": "Results and discussion",
+          "inferred": false
+        },
+        {
+          "text": "The heat of formation is calculated at the theoretical equilibrium volume of all systems used in Eq. 1.",
+          "page": 3,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "exp_formation_enthalpy_alnipti",
+      "usage_role": "label_source",
+      "purpose": "To provide experimental formation enthalpy values (Hexpt) for constructing the training dataset and computing correction labels Hcorr = HDFT − Hexpt.",
+      "used_fields": [
+        "enthalpy of formation"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [
+        "exclude missing or unreliable enthalpy values",
+        "only well-defined data points are used"
+      ],
+      "sample_count": 34,
+      "evidence": [
+        {
+          "text": "A training dataset of reliable experimental values of the enthalphy of formation is initially filtered to exclude missing or unreliable enthalpy values, ensuring that only well-defined data points are used for training of the neural network.",
+          "page": 3,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "We have performed DFT calculations, as described above, for all the known enthalpies of formation of the two ternary phase diagrams, for Al–Ni–Pd and Al–Ni–Ti, at ambient conditions, resulting in a total of 34 systems.",
+          "page": 4,
+          "section": "Results and discussion",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "dft_formation_enthalpy_alnipti",
+      "usage_role": "source",
+      "purpose": "To provide DFT-calculated formation enthalpies (HDFT) for computing correction labels Hcorr = HDFT − Hexpt and for final corrected predictions Hpred = HDFT − Hcorr.",
+      "used_fields": [
+        "DFT enthalpy of formation"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 34,
+      "evidence": [
+        {
+          "text": "We have performed DFT calculations, as described above, for all the known enthalpies of formation of the two ternary phase diagrams, for Al–Ni–Pd and Al–Ni–Ti, at ambient conditions, resulting in a total of 34 systems.",
+          "page": 4,
+          "section": "Results and discussion",
+          "inferred": false
+        },
+        {
+          "text": "The total DFT corrected enthalpy is given by Hpred = HDFT − Hcorr, where HDFT is the enthalpy from DFT calculations.",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "exp_formation_enthalpy_alnipti",
+      "usage_role": "label_source",
+      "purpose": "To compute enthalpy correction labels Hcorr = HDFT − Hexpt as the target for supervised learning.",
+      "used_fields": [
+        "enthalpy of formation"
+      ],
+      "is_derived": true,
+      "construction_method": "Hcorr = HDFT − Hexpt",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The error inherent in DFT calculations (that has its origin from the approximation used for the exchange and correlation functional) can be quantified as the difference between the experimental and theoretical determined enthalpy of formation. Hence, we introduce the term Hcorr as Hcorr = HDFT − Hexpt,",
+          "page": 3,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "dft_formation_enthalpy_alnipti",
+      "usage_role": "source",
+      "purpose": "To compute enthalpy correction labels Hcorr = HDFT − Hexpt as the target for supervised learning.",
+      "used_fields": [
+        "DFT enthalpy of formation"
+      ],
+      "is_derived": true,
+      "construction_method": "Hcorr = HDFT − Hexpt",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The error inherent in DFT calculations (that has its origin from the approximation used for the exchange and correlation functional) can be quantified as the difference between the experimental and theoretical determined enthalpy of formation. Hence, we introduce the term Hcorr as Hcorr = HDFT − Hexpt,",
+          "page": 3,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "exp_formation_enthalpy_alnipti",
+      "usage_role": "training",
+      "purpose": "To provide experimental formation enthalpy values (Hexpt) for computing Hcorr labels used during neural network training.",
+      "used_fields": [
+        "enthalpy of formation"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 25,
+      "evidence": [
+        {
+          "text": "These systems were randomly divided into a ML training set, with approximately 3/4 of the data used for model training, and a test set, consisting of about 1/4 of the data.",
+          "page": 4,
+          "section": "Results and discussion",
+          "inferred": false
+        },
+        {
+          "text": "With approximately 25 structures in the training set, the RMSE on the prediction set falls down to 10 meV/atom, demonstrating a substantial improvement in predictive accuracy.",
+          "page": 5,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "dft_formation_enthalpy_alnipti",
+      "usage_role": "training",
+      "purpose": "To provide DFT-calculated formation enthalpies (HDFT) for computing Hcorr labels used during neural network training.",
+      "used_fields": [
+        "DFT enthalpy of formation"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 25,
+      "evidence": [
+        {
+          "text": "These systems were randomly divided into a ML training set, with approximately 3/4 of the data used for model training, and a test set, consisting of about 1/4 of the data.",
+          "page": 4,
+          "section": "Results and discussion",
+          "inferred": false
+        },
+        {
+          "text": "With approximately 25 structures in the training set, the RMSE on the prediction set falls down to 10 meV/atom, demonstrating a substantial improvement in predictive accuracy.",
+          "page": 5,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 6,
+      "dataset_key": "exp_formation_enthalpy_alnipti",
+      "usage_role": "test",
+      "purpose": "To serve as ground truth for evaluating model performance via LOOCV and k-fold cross-validation (RMSE).",
+      "used_fields": [
+        "enthalpy of formation"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "These systems were randomly divided into a ML training set, with approximately 3/4 of the data used for model training, and a test set, consisting of about 1/4 of the data.",
+          "page": 4,
+          "section": "Results and discussion",
+          "inferred": false
+        },
+        {
+          "text": "The model’s predictive performance has been evaluated using the root-mean-square error (RMSE) across both LOOCV and k-fold cross-validation (in this work we used five folds).",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 6,
+      "dataset_key": "dft_formation_enthalpy_alnipti",
+      "usage_role": "test",
+      "purpose": "To provide HDFT inputs for computing Hpred = HDFT − Hcorr and comparing against experimental Hexpt during evaluation.",
+      "used_fields": [
+        "DFT enthalpy of formation"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "These systems were randomly divided into a ML training set, with approximately 3/4 of the data used for model training, and a test set, consisting of about 1/4 of the data.",
+          "page": 4,
+          "section": "Results and discussion",
+          "inferred": false
+        },
+        {
+          "text": "The total DFT corrected enthalpy is given by Hpred = HDFT − Hcorr, where HDFT is the enthalpy from DFT calculations.",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 7,
+      "dataset_key": "exp_formation_enthalpy_alnipti",
+      "usage_role": "benchmark",
+      "purpose": "To serve as reference for comparing linear vs. neural network correction models based on RMSE and physical interpretability.",
+      "used_fields": [
+        "enthalpy of formation"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "While the linear model offers some level of correction, its predictive power is ultimately constrained by its functional form. Even with interaction terms such as xAxB and xAxBxC, it cannot fully account for the intricate relationships governing enthalpy corrections. The neural network, in contrast, demonstrates a much greater ability to capture these relationships, leading to a substantial improvement in predictive accuracy.",
+          "page": 6,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 8,
+      "dataset_key": "exp_formation_enthalpy_alnipti",
+      "usage_role": "computational_validation",
+      "purpose": "To validate correction efficacy by assessing improvement in phase stability prediction via comparison of Hpred = HDFT − Hcorr against Hexpt.",
+      "used_fields": [
+        "enthalpy of formation"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "As is demonstrated below, a neural network that is trained for certain concentrations of a ternary system where Hexpt is known, can give reliable values for Hpred even for concentrations where Hexpt is missing.",
+          "page": 4,
+          "section": null,
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

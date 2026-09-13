@@ -1,0 +1,22 @@
+[
+  {
+    "task_description": "Designing conductive MXene aerogels with programmable mechanical and electrical properties by predicting their compressive strength (σ30) and initial electrical resistance (R0) from fabrication parameters, and inversely designing optimal parameter sets (MXene/CNF/gelatin/GA ratios and mixture loading) to meet user-specified property targets such as high conductivity, customized compressive strength, and pressure insensitivity.",
+    "task_tags": [
+      "inverse design",
+      "property prediction",
+      "materials optimization"
+    ],
+    "datasets": [
+      {
+        "db_title": "Robotically Fabricated MXene Aerogel Dataset",
+        "db_description": "A custom experimental dataset comprising 162 real, uniquely fabricated conductive aerogels, each characterized by four composition labels (MXene, CNF, gelatin, and glutaraldehyde weight ratios), one loading label (mixture solid content: 2.5–10.0 mg mL⁻¹), one mechanical label (compressive stress at 30% strain, σ30, in kPa), and one electrical label (initial electrical resistance, R0, in Ω). This dataset was generated via 8 active learning cycles using collaborative robotics (OT-2 pipetting robot and UR5e-automated compression tester) and used to train and validate an artificial neural network model for two-way design tasks: forward prediction of properties from parameters and inverse design of parameters for target properties.",
+        "db_link": "https://doi.org/10.5281/zenodo.10779454"
+      },
+      {
+        "db_title": "Feasibility Screening Dataset (SVM Training Set)",
+        "db_description": "A dataset of 264 freeze-dried MXene/CNF/gelatin aerogels prepared robotically (OT-2) across varying ratios and four mixture loadings (2.5–10.0 mg mL⁻¹), manually graded into A-grade (intact, monolithic), B-grade (fragmented), or C-grade (inconsistent) based on structural integrity. This dataset served exclusively to train a support vector machine classifier to define the feasible parameter space—i.e., to filter out compositions unlikely to yield structurally viable aerogels—thereby enabling efficient downstream active learning and property modeling.",
+        "db_link": "https://doi.org/10.5281/zenodo.10779454"
+      }
+    ]
+  }
+]

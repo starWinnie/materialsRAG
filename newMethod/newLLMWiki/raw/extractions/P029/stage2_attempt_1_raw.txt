@@ -1,0 +1,165 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "matbench_dielectric",
+      "canonical_name": "matbench_dielectric",
+      "raw_names": ["matbench_dielectric", "dielectric dataset"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["inorganic materials", "crystalline solids", "dielectric materials"],
+      "available_properties": ["refractive index"],
+      "available_fields": ["crystal structure", "refractive index"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "All three datasets are chosen from the MatBench study26.",
+          "page": 13,
+          "section": "Data availability",
+          "inferred": false
+        },
+        {
+          "text": "matbench_dielectric dataset as the ‘dielectric dataset’",
+          "page": 3,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "Table 2 | Details of the three benchmark datasets used in this work\nDataset\nTarget property\nTotal samples\nOriginal source\nMatBench best algorithm (MAE)\nUnit\nmatbench_dielectric\nRefractive index\n4764\nMaterials Project40,70\nMODNet71 (0.2711)\nUnitless",
+          "page": 4,
+          "section": "Dataset",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "matbench_log_gvrh",
+      "canonical_name": "matbench_log_gvrh",
+      "raw_names": ["matbench_log_gvrh", "elasticity dataset"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["inorganic materials", "crystalline solids", "elastic materials"],
+      "available_properties": ["shear modulus"],
+      "available_fields": ["crystal structure", "shear modulus"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "All three datasets are chosen from the MatBench study26.",
+          "page": 13,
+          "section": "Data availability",
+          "inferred": false
+        },
+        {
+          "text": "the matbench_log_gvrh dataset as the ‘elasticity dataset’",
+          "page": 3,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "Table 2 | Details of the three benchmark datasets used in this work\nDataset\nTarget property\nTotal samples\nOriginal source\nMatBench best algorithm (MAE)\nUnit\nmatbench_log_gvrh\nShear modulus\n10987\nMaterials Project40,70\ncoNGN36 (0.0670)\nlog10(GPa)",
+          "page": 4,
+          "section": "Dataset",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "matbench_perovskites",
+      "canonical_name": "matbench_perovskites",
+      "raw_names": ["matbench_perovskites", "perovskites dataset"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["inorganic materials", "crystalline solids", "perovskites"],
+      "available_properties": ["formation energy"],
+      "available_fields": ["crystal structure", "formation energy"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "All three datasets are chosen from the MatBench study26.",
+          "page": 13,
+          "section": "Data availability",
+          "inferred": false
+        },
+        {
+          "text": "the matbench_perovskites dataset as the ‘perovskites dataset’",
+          "page": 3,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "Table 2 | Details of the three benchmark datasets used in this work\nDataset\nTarget property\nTotal samples\nOriginal source\nMatBench best algorithm (MAE)\nUnit\nmatbench_perovskites\nFormation energy\n18928\nCastelli et al.72\ncoGN36 (0.0269)\neV/unit cell",
+          "page": 4,
+          "section": "Dataset",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "matbench_dielectric",
+      "usage_role": "source",
+      "purpose": "Source dataset for OOD benchmarking",
+      "used_fields": ["crystal structure", "refractive index"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 4764,
+      "evidence": [
+        {
+          "text": "Table 2 | Details of the three benchmark datasets used in this work\nDataset\nTarget property\nTotal samples\nOriginal source\nMatBench best algorithm (MAE)\nUnit\nmatbench_dielectric\nRefractive index\n4764\nMaterials Project40,70\nMODNet71 (0.2711)\nUnitless",
+          "page": 4,
+          "section": "Dataset",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "matbench_log_gvrh",
+      "usage_role": "source",
+      "purpose": "Source dataset for OOD benchmarking",
+      "used_fields": ["crystal structure", "shear modulus"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 10987,
+      "evidence": [
+        {
+          "text": "Table 2 | Details of the three benchmark datasets used in this work\nDataset\nTarget property\nTotal samples\nOriginal source\nMatBench best algorithm (MAE)\nUnit\nmatbench_log_gvrh\nShear modulus\n10987\nMaterials Project40,70\ncoNGN36 (0.0670)\nlog10(GPa)",
+          "page": 4,
+          "section": "Dataset",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "matbench_perovskites",
+      "usage_role": "source",
+      "purpose": "Source dataset for OOD benchmarking",
+      "used_fields": ["crystal structure", "formation energy"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 18928,
+      "evidence": [
+        {
+          "text": "Table 2 | Details of the three benchmark datasets used in this work\nDataset\nTarget property\nTotal samples\nOriginal source\nMatBench best algorithm (MAE)\nUnit\nmatbench_perovskites\nFormation energy\n18928\nCastelli et al.72\ncoGN36 (0.0269)\neV/unit cell",
+          "page": 4,
+          "section": "Dataset",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

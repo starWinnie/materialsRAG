@@ -1,0 +1,222 @@
+{
+  "paper": {
+    "title": "Higher-order equivariant neural networks for charge density prediction in materials",
+    "year": 2024,
+    "doi": "10.1038/s41524-024-01343-1",
+    "research_summary": "We introduce ChargE3Net, an E(3)-equivariant graph neural network for predicting electron density in atomic systems. ChargE3Net enables the learning of higher-order equivariant features to achieve high predictive accuracy and model expressivity. We show that ChargE3Net exceeds the performance of prior work on diverse sets of molecules and materials. When trained on the massive dataset of over 100K materials in the Materials Project database, our model is able to capture the complexity and variability in the data, leading to a significant 26.7% reduction in self-consistent iterations when used to initialize DFT calculations on unseen materials. Furthermore, we show that non-self-consistent DFT calculations using our predicted charge densities yield near-DFT performance on electronic and thermodynamic property prediction at a fraction of the computational cost."
+  },
+  "task": {
+    "task_name_raw": "charge density prediction",
+    "task_name_canonical": "charge_density_prediction",
+    "objective": "Predict electron charge density in atomic systems to accelerate and improve density functional theory (DFT) calculations",
+    "material_scope": [
+      "molecules",
+      "inorganic materials",
+      "battery cathode materials",
+      "crystals",
+      "zeolites",
+      "surfaces"
+    ],
+    "target_properties": [
+      "electron charge density"
+    ],
+    "constraints": [
+      "must be E(3)-equivariant (rotation, translation, reflection invariant)",
+      "must scale linearly with system size",
+      "must generalize across the periodic table"
+    ],
+    "input_requirements": [
+      "atomic species",
+      "atomic positions",
+      "probe point locations",
+      "optional periodic boundary cell"
+    ],
+    "output_goal": [
+      "predicted charge density value at each probe point"
+    ],
+    "evidence": [
+      {
+        "text": "We introduce ChargE3Net, an E(3)-equivariant graph neural network for predicting electron density in atomic systems.",
+        "page": 1,
+        "section": null,
+        "inferred": false
+      },
+      {
+        "text": "To predict charge density of a given atomic system, a set of M probe points f~g1; :::;~gMg 2 R3 are introduced to locations where charge densities are to be predicted.",
+        "page": 2,
+        "section": "Results",
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "collecting DFT-computed charge density data",
+      "stage_order": 1,
+      "stage_goal": "Acquire ground-truth electron charge density data computed via density functional theory",
+      "stage_input": [],
+      "stage_output": [
+        "QM9 dataset",
+        "NMC dataset",
+        "Materials Project (MP) dataset",
+        "GNoME dataset"
+      ],
+      "evidence": [
+        {
+          "text": "We train and validate ChargE3Net on a diverse set of DFT-computed charge density data, including organic molecules (QM9), nickel manganese cobalt battery cathode materials (NMC), and inorganic materials collected from Materials Project (MP).",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "For the MP data, we collected 122,689 structures and associated charge densities from api.materialsproject.org.",
+          "page": 7,
+          "section": "Datasets",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_preparation",
+      "stage_name_raw": "constructing atom-probe graphs",
+      "stage_order": 2,
+      "stage_goal": "Build efficient equivariant graph representations linking atoms and probe points for message passing",
+      "stage_input": [
+        "atomic species",
+        "atomic positions",
+        "probe point locations",
+        "periodic boundary cell"
+      ],
+      "stage_output": [
+        "graph with atoms and probe points as vertices",
+        "edges formed via proximity with cutoff of 4 Å"
+      ],
+      "evidence": [
+        {
+          "text": "As illustrated in Fig. 1b, c, a graph is first constructed with atoms and probe points as vertices, with edges formed via proximity with a cutoff of 4 Å. Edges connecting atoms are unidirectional and edges connecting atoms and probe points are directed pointing from atoms to probe points.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "We develop an algorithm to achieve more efficient atom-probe graph construction, enabling faster training and inference times.",
+          "page": 7,
+          "section": "Methods",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "training ChargE3Net with higher-order equivariant features",
+      "stage_order": 3,
+      "stage_goal": "Train the E(3)-equivariant graph neural network to predict charge density using atomic inputs only",
+      "stage_input": [
+        "atom-probe graphs",
+        "DFT-computed charge density labels"
+      ],
+      "stage_output": [
+        "trained ChargE3Net model"
+      ],
+      "evidence": [
+        {
+          "text": "ChargE3Net uses a graph neural network (GNN) to update these tensor features (Fig. 1d). Within each layer of GNN, the network performs message passing between neighboring atoms and probes, where probe points can only receive messages from neighboring atoms.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "To train the ChargE3Net model, Supplementary Table 1 outlines the experimental setup on each of the datasets (e.g., learning rate, batch size, number of probe points and number of training steps).",
+          "page": 7,
+          "section": "Methods",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "evaluating charge density prediction accuracy",
+      "stage_order": 4,
+      "stage_goal": "Assess model performance using mean absolute error normalized by total electrons (εmae)",
+      "stage_input": [
+        "trained ChargE3Net model",
+        "test set charge density grids"
+      ],
+      "stage_output": [
+        "εmae scores",
+        "comparisons against DeepDFT and OrbNet-Equi"
+      ],
+      "evidence": [
+        {
+          "text": "We assess the performance our models using mean absolute error normalized by the total number of electrons within a volume of the atomic system, εmae, which is computed via numerical integration on the charge density grid points G:",
+          "page": 3,
+          "section": "Dataset",
+          "inferred": false
+        },
+        {
+          "text": "Table 1 compares the performance of ChargE3Net to models introduced in OrbNet-Equi and DeepDFT.",
+          "page": 3,
+          "section": "Dataset",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "computational_validation",
+      "stage_name_raw": "using predicted charge densities to accelerate DFT calculations",
+      "stage_order": 5,
+      "stage_goal": "Validate utility of predictions by initializing DFT calculations and measuring reduction in self-consistent field (SCF) iterations",
+      "stage_input": [
+        "ChargE3Net-predicted charge densities",
+        "DFT code (VASP)"
+      ],
+      "stage_output": [
+        "reduced SCF step counts",
+        "non-self-consistent property predictions (energy, forces, band gaps)"
+      ],
+      "evidence": [
+        {
+          "text": "We demonstrate the application of MP-trained ChargE3Net to initialize DFT calculations, resulting in a median of 26.7% reduction in SCF steps on unseen MP data and 28.6% on novel GNoME materials.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "To evaluate how well ChargE3Net’s predicted charge densities reproduce physical properties, we compute the energy, forces, band energies, and bandgaps of the test set non-self-consistently.",
+          "page": 4,
+          "section": "experimental",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "ablation_study",
+      "stage_name_raw": "analyzing impact of higher-order equivariant representations",
+      "stage_order": 6,
+      "stage_goal": "Quantify performance gains from increasing maximum rotation order L (0 to 4) and correlate with angular variance metric ζ",
+      "stage_input": [
+        "models trained with varying L",
+        "angular variance metric ζ"
+      ],
+      "stage_output": [
+        "performance trends vs. L",
+        "correlation between ζ and Δεmae"
+      ],
+      "evidence": [
+        {
+          "text": "To demonstrate the impact of introducing higher-order equivariant tensor representations in our model, we examine the effect of training models while varying the maximum rotation order L, with ℓ∈{0, . . . , L} up to L = 4 used in the final model.",
+          "page": 5,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "To further quantify angular dependence within the system, we develop a metric ζ to determine to what extent a particular system exhibits more angular variation in its charge density with respect to atom locations.",
+          "page": 6,
+          "section": null,
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

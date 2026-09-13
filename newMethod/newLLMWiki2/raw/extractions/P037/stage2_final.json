@@ -1,0 +1,566 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "mpds_ucsb_conductivity",
+      "canonical_name": "MPDS and UCSB experimental electrical conductivity dataset",
+      "raw_names": [
+        "MPDS",
+        "UCSB dataset",
+        "Materials Platform for Data Science",
+        "University of California Santa Barbara (UCSB) dataset"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "transparent conducting materials (TCMs)",
+        "semiconductors",
+        "oxides",
+        "doped metal oxides"
+      ],
+      "available_properties": [
+        "electrical conductivity"
+      ],
+      "available_fields": [
+        "chemical formula",
+        "conductivity",
+        "temperature"
+      ],
+      "availability": "restricted",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "The electrical conductivity dataset was constructed using two primary data sources. Initially, data on conductivity and resisitivity, along with associated chemical formulas, were gathered from the Materials Platform for Data Science (MPDS),4 with 38 068 entries available as of December 2024. This source was supplemented with the UCSB dataset21 (1794 entries), which provides a range of experimental thermoelectric properties, including electrical conductivity.",
+          "page": 3,
+          "section": "Electrical conductivity dataset",
+          "inferred": false
+        },
+        {
+          "text": "Data availability: The electrical conductivity dataset used in this work was compiled from two primary sources: the UCSB Thermoelectric Database and the Materials Platform for Data Science (MPDS). The original UCSB dataset, consisting of approximately 1100 entries, was expanded as part of ongoing work by the original authors. This updated version, which was used in our study, is available at https://zenodo.org/records/15365345 (DOI: 10.5281/zenodo.15365345). Due to licensing restrictions associated with MPDS data and confidentiality agreements tied to funding, we are unable to publicly release the full experimental conductivity dataset used in this study. Access to raw MPDS data requires a commercial API license, which can be obtained from https://mpds.io/.",
+          "page": 14,
+          "section": "Data availability",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "ref22_bandgap",
+      "canonical_name": "Ref. 22 experimental band gap dataset",
+      "raw_names": [
+        "ref. 22",
+        "a well-known experimental dataset proposed by ref. 22"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "transparent conducting materials (TCMs)",
+        "semiconductors",
+        "oxides",
+        "doped metal oxides"
+      ],
+      "available_properties": [
+        "band gap"
+      ],
+      "available_fields": [
+        "chemical formula",
+        "band gap"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "The initial band gap data was sourced from a well-known experimental dataset proposed by ref. 22. The original dataset comprises 6354 material entries with experimental band gap measurements determined from optical and transport measurements.",
+          "page": 4,
+          "section": "Band gap dataset",
+          "inferred": false
+        },
+        {
+          "text": "Data availability: The original, unmodified band gap dataset, used as the basis for the enriched version proposed in this study, is available through the original publication https://pubs.acs.org/doi/10.1021/acs.jpclett.8b00124 (DOI: 10.1021/acs.jpclett.8b00124).",
+          "page": 14,
+          "section": "Data availability",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "materials_project_bandgap",
+      "canonical_name": "Materials Project DFT-calculated band gap dataset",
+      "raw_names": [
+        "Materials Project",
+        "Materials Project v2023.11.1 database"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "transparent conducting materials (TCMs)",
+        "semiconductors",
+        "oxides",
+        "doped metal oxides"
+      ],
+      "available_properties": [
+        "band gap"
+      ],
+      "available_fields": [
+        "chemical formula",
+        "band gap"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "In terms of regression metrics, the fine-tuned model demonstrates enhancements of roughly z20% in MAE and z10% in terms of R2. To better evaluate the fine-tuned model's effectiveness in reducing false negatives, we investigate the predictions from both the original and fine-tuned models from a classification perspective. For a comprehensive assessment, we also include RF predictions within this evaluation. First, a simple rounding scheme is applied to all the obtained predictions. Specifically, predicted band gaps that are zero when rounded to two decimal places (i.e., values less than 0.005) are assigned a label of 0, indicating metals. Predicted band gaps that round to non-zero values (i.e., 0.005 or greater) are assigned a label of 1, indicating non-metals.",
+          "page": 9,
+          "section": "unknown",
+          "inferred": false
+        },
+        {
+          "text": "In our study, to enhance the accuracy of band gap identification, and thus minimizing the number of false negatives (in our definition, metals that are wrongly predicted as semiconductors or insulators), we have utilized a transfer learning approach. This involved pre-training CrabNet on an extensive dataset sourced from the Materials Project,3 encompassing all entries with chemical formulas and associated band gap information. At the time of data retrieval, 153 224 material entries with their corresponding band gaps were present in the Materials Project v2023.11.1 database.",
+          "page": 9,
+          "section": "unknown",
+          "inferred": false
+        },
+        {
+          "text": "Additional band gap data used for pre-training CrabNet were obtained from the Materials Project (version 2023.11.1), accessible via their API at https://materialsproject.org.",
+          "page": 14,
+          "section": "Data availability",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "validated_conductivity",
+      "canonical_name": "Validated experimental electrical conductivity dataset",
+      "raw_names": [
+        "validated database comprising 8231 material entries",
+        "validated conductivity dataset"
+      ],
+      "dataset_type": "derived_subset",
+      "source_dataset_key": "mpds_ucsb_conductivity",
+      "material_scope": [
+        "transparent conducting materials (TCMs)",
+        "semiconductors",
+        "oxides",
+        "doped metal oxides"
+      ],
+      "available_properties": [
+        "electrical conductivity"
+      ],
+      "available_fields": [
+        "chemical formula",
+        "conductivity",
+        "temperature"
+      ],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "At this stage, we performed a meticulous validation, which involved a line-by-line review of the obtained data by domain experts, referring back to the original literature on suspicious entries, to ensure the accuracy of the reported conductivity measurements, alongside the correctness of the corresponding chemical formulas. To facilitate the validation process, automated nonsense-detection strategies were implemented to systematically identify anomalous conductivity measurements associated to the reported material entries. [...] We end up with a final, validated database comprising 8231 material entries, with a mean x̄ of 1.09 (log10 (S cm−1)), a median x̃ of 2.44 (log10 (S cm−1)) and an interquartile range (50% of data; materials from the 25th to the 75th percentile of log10(s)) spanning from −0.18 to 3.60 (log10 (S cm−1)).",
+          "page": 3,
+          "section": "Electrical conductivity dataset",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "validated_bandgap",
+      "canonical_name": "Validated experimental band gap dataset",
+      "raw_names": [
+        "final dataset comprising 4767 material entries",
+        "validated band gap dataset"
+      ],
+      "dataset_type": "derived_subset",
+      "source_dataset_key": "ref22_bandgap",
+      "material_scope": [
+        "transparent conducting materials (TCMs)",
+        "semiconductors",
+        "oxides",
+        "doped metal oxides"
+      ],
+      "available_properties": [
+        "band gap"
+      ],
+      "available_fields": [
+        "chemical formula",
+        "band gap"
+      ],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "Preprocessing steps were applied to the raw data. Specifically, we excluded groups of duplicated formulas with band gap measurements having a standard deviation greater than 0.1 eV. This preprocessing approach is similar to the one used for creating the matbench_expt_gap dataset, available on the Matbench platform.39 All the entries associated with noble gases and pure elements have been discarded. Additionally, entries with band gap measurements exceeding 4 standard deviations from the mean have been excluded, leading to a processed dataset of 4732 material entries. As in the case of conductivity, the obtained pool of data has been expanded by including experimental band gap measurements of binary and ternary oxides not already in the dataset, along with known TCMs, reported in Table 1. The additional data was taken from the primary literature40–49 after identifying the gaps in the original dataset. These preprocessing steps resulted in a final dataset comprising 4767 material entries, with a mean x̄ of 1.04 (eV), a median x̃ of 0.00 (eV), and an interquartile range spanning from 0.00 to 1.93 eV.",
+          "page": 4,
+          "section": "Band gap dataset",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "candidate_pool_55",
+      "canonical_name": "List of 55 experimentally-reported chemical compositions",
+      "raw_names": [
+        "list of 55 compositions",
+        "list of 55 experimentally-reported chemical compositions"
+      ],
+      "dataset_type": "paper_specific",
+      "source_dataset_key": null,
+      "material_scope": [
+        "transparent conducting materials (TCMs)",
+        "semiconductors",
+        "oxides",
+        "doped metal oxides"
+      ],
+      "available_properties": [],
+      "available_fields": [
+        "chemical formula"
+      ],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "We test our approach on a list of 55 compositions containing typical elements of known TCMs.",
+          "page": 1,
+          "section": "Introduction",
+          "inferred": false
+        },
+        {
+          "text": "To test the proposed framework, we further utilize a list of 55 experimentally-reported chemical compositions sourced from entries across MPDS,4 Pearson,16 and ICSD databases.17",
+          "page": 2,
+          "section": "Related work",
+          "inferred": false
+        },
+        {
+          "text": "We conducted a search for oxide compounds containing combinations of three cations from Zn, Ga, Sn, Al, and In. We also include a small selection of five compositions across MPDS and ICSD of doped binary oxides (ZnO, SnO2 and In2O3), with dopants not present in the training dataset. We end up with a final list comprising 55 compositions shown in Table 4.",
+          "page": 12,
+          "section": "unknown",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "mpds_ucsb_conductivity",
+      "usage_role": "source",
+      "purpose": "source for constructing the electrical conductivity dataset",
+      "used_fields": [
+        "chemical formula",
+        "conductivity",
+        "temperature"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The electrical conductivity dataset was constructed using two primary data sources. Initially, data on conductivity and resisitivity, along with associated chemical formulas, were gathered from the Materials Platform for Data Science (MPDS),4 with 38 068 entries available as of December 2024. This source was supplemented with the UCSB dataset21 (1794 entries), which provides a range of experimental thermoelectric properties, including electrical conductivity.",
+          "page": 3,
+          "section": "Electrical conductivity dataset",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "ref22_bandgap",
+      "usage_role": "source",
+      "purpose": "source for constructing the band gap dataset",
+      "used_fields": [
+        "chemical formula",
+        "band gap"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "The initial band gap data was sourced from a well-known experimental dataset proposed by ref. 22. The original dataset comprises 6354 material entries with experimental band gap measurements determined from optical and transport measurements.",
+          "page": 4,
+          "section": "Band gap dataset",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "mpds_ucsb_conductivity",
+      "usage_role": "source",
+      "purpose": "raw data for preprocessing to create the processed conductivity dataset",
+      "used_fields": [
+        "chemical formula",
+        "conductivity",
+        "temperature"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [
+        "excluded all pure elements and noble gases",
+        "selected chemical formulas reported within room temperature (298 ± 5 K)",
+        "discarded groups with standard deviation exceeding 10 S cm−1",
+        "excluded entries with conductivity measurements falling outside of 4 standard deviations from the mean"
+      ],
+      "sample_count": 8034,
+      "evidence": [
+        {
+          "text": "Several preprocessing steps were conducted on the raw data. Initially, we excluded all pure elements and noble gases and selected all chemical formulas reported within a window of room temperature (298 ± 5 K), reducing the dataset to 14 307 entries. Given the experimental nature of utilized data, it is common to encounter several material entries where different measurements are documented for identical chemical formulas at the same temperatures. This variance is inherently linked to the different experimental conditions under which these measurements were conducted. To process raw data in view of statistical estimation, we initially considered the distributions of measurements corresponding to duplicated chemical formulas, discarding those groups associated to a standard deviation exceeding 10 S cm−1. Furthermore, we excluded entries with conductivity measurements falling outside of 4 standard deviations from the mean, resulting in a processed dataset containing 8034 material entries.",
+          "page": 3,
+          "section": "Electrical conductivity dataset",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "ref22_bandgap",
+      "usage_role": "source",
+      "purpose": "raw data for preprocessing to create the processed band gap dataset",
+      "used_fields": [
+        "chemical formula",
+        "band gap"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [
+        "excluded groups of duplicated formulas with band gap measurements having a standard deviation greater than 0.1 eV",
+        "discarded entries associated with noble gases and pure elements",
+        "excluded entries with band gap measurements exceeding 4 standard deviations from the mean"
+      ],
+      "sample_count": 4732,
+      "evidence": [
+        {
+          "text": "Preprocessing steps were applied to the raw data. Specifically, we excluded groups of duplicated formulas with band gap measurements having a standard deviation greater than 0.1 eV. This preprocessing approach is similar to the one used for creating the matbench_expt_gap dataset, available on the Matbench platform.39 All the entries associated with noble gases and pure elements have been discarded. Additionally, entries with band gap measurements exceeding 4 standard deviations from the mean have been excluded, leading to a processed dataset of 4732 material entries.",
+          "page": 4,
+          "section": "Band gap dataset",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "validated_conductivity",
+      "usage_role": "training",
+      "purpose": "training data for ML models after expert validation",
+      "used_fields": [
+        "chemical formula",
+        "conductivity"
+      ],
+      "is_derived": true,
+      "construction_method": "line-by-line expert review and automated nonsense-detection",
+      "filter_conditions": [],
+      "sample_count": 8231,
+      "evidence": [
+        {
+          "text": "At this stage, we performed a meticulous validation, which involved a line-by-line review of the obtained data by domain experts, referring back to the original literature on suspicious entries, to ensure the accuracy of the reported conductivity measurements, alongside the correctness of the corresponding chemical formulas. To facilitate the validation process, automated nonsense-detection strategies were implemented to systematically identify anomalous conductivity measurements associated to the reported material entries. [...] We end up with a final, validated database comprising 8231 material entries, with a mean x̄ of 1.09 (log10 (S cm−1)), a median x̃ of 2.44 (log10 (S cm−1)) and an interquartile range (50% of data; materials from the 25th to the 75th percentile of log10(s)) spanning from −0.18 to 3.60 (log10 (S cm−1)).",
+          "page": 3,
+          "section": "Electrical conductivity dataset",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "validated_bandgap",
+      "usage_role": "training",
+      "purpose": "training data for ML models after expert validation",
+      "used_fields": [
+        "chemical formula",
+        "band gap"
+      ],
+      "is_derived": true,
+      "construction_method": "expert review and expansion with primary literature",
+      "filter_conditions": [],
+      "sample_count": 4767,
+      "evidence": [
+        {
+          "text": "Preprocessing steps were applied to the raw data. Specifically, we excluded groups of duplicated formulas with band gap measurements having a standard deviation greater than 0.1 eV. This preprocessing approach is similar to the one used for creating the matbench_expt_gap dataset, available on the Matbench platform.39 All the entries associated with noble gases and pure elements have been discarded. Additionally, entries with band gap measurements exceeding 4 standard deviations from the mean have been excluded, leading to a processed dataset of 4732 material entries. As in the case of conductivity, the obtained pool of data has been expanded by including experimental band gap measurements of binary and ternary oxides not already in the dataset, along with known TCMs, reported in Table 1. The additional data was taken from the primary literature40–49 after identifying the gaps in the original dataset. These preprocessing steps resulted in a final dataset comprising 4767 material entries, with a mean x̄ of 1.04 (eV), a median x̃ of 0.00 (eV), and an interquartile range spanning from 0.00 to 1.93 eV.",
+          "page": 4,
+          "section": "Band gap dataset",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "validated_conductivity",
+      "usage_role": "training",
+      "purpose": "training data for Random Forest and CrabNet models to predict conductivity",
+      "used_fields": [
+        "chemical formula",
+        "conductivity"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We utilize the obtained data to train state-of-the-art (SOTA) ML models that leverage the stoichiometry of input materials...",
+          "page": 2,
+          "section": "Related work",
+          "inferred": false
+        },
+        {
+          "text": "Specifically, in our experiments we adopt Random Forest (RF) with CBFVs obtained from Magpie descriptors, and CrabNet paired with Mat2vec embeddings.",
+          "page": 5,
+          "section": "Models",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "validated_bandgap",
+      "usage_role": "training",
+      "purpose": "training data for Random Forest and CrabNet models to predict band gap",
+      "used_fields": [
+        "chemical formula",
+        "band gap"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We utilize the obtained data to train state-of-the-art (SOTA) ML models that leverage the stoichiometry of input materials...",
+          "page": 2,
+          "section": "Related work",
+          "inferred": false
+        },
+        {
+          "text": "Specifically, in our experiments we adopt Random Forest (RF) with CBFVs obtained from Magpie descriptors, and CrabNet paired with Mat2vec embeddings.",
+          "page": 5,
+          "section": "Models",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "materials_project_bandgap",
+      "usage_role": "pretraining",
+      "purpose": "pretraining CrabNet model before fine-tuning on experimental band gap data",
+      "used_fields": [
+        "chemical formula",
+        "band gap"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [
+        "filtered out chemical formulas equivalent to those in experimental band gap dataset",
+        "eliminated duplicated material groups with standard deviation exceeding 0.1 eV in band gaps"
+      ],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "In our study, to enhance the accuracy of band gap identification, and thus minimizing the number of false negatives (in our definition, metals that are wrongly predicted as semiconductors or insulators), we have utilized a transfer learning approach. This involved pre-training CrabNet on an extensive dataset sourced from the Materials Project,3 encompassing all entries with chemical formulas and associated band gap information. At the time of data retrieval, 153 224 material entries with their corresponding band gaps were present in the Materials Project v2023.11.1 database. From this initial dataset, we filtered out chemical formulas that were deemed equivalent in our experimental band gap dataset, encompassing 4767 material entries. We have used the reduced chemical formula as criterion to establish equivalent entries, as atomic proportions are utilized when creating inputs to ML models. To ensure a fair evaluation we have discarded all such entries, ending up with a pretraining dataset consisting of 149 714 data points. Further processing is conducted on the resulting data to handle duplicates. We utilize a similar strategy akin to that employed for the experimental Eg dataset. Once duplicated material groups are identified, we eliminate those with a standard deviation exceeding 0.1 eV in terms of the corresponding band gaps. We have used this pool of data to pretrain CrabNet on DFT-calculated band gaps.",
+          "page": 9,
+          "section": "unknown",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "validated_conductivity",
+      "usage_role": "benchmark",
+      "purpose": "benchmark for evaluating model performance using bespoke evaluation schemes",
+      "used_fields": [
+        "chemical formula",
+        "conductivity"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We propose a bespoke evaluation scheme to provide empirical evidence on the ability of ML to uncover new, previously unseen materials of interest.",
+          "page": 1,
+          "section": "Introduction",
+          "inferred": false
+        },
+        {
+          "text": "We empirically measure the ability of ML models to identify new classes of TCMs through a bespoke evaluation method.",
+          "page": 2,
+          "section": "Related work",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "validated_bandgap",
+      "usage_role": "benchmark",
+      "purpose": "benchmark for evaluating model performance using bespoke evaluation schemes",
+      "used_fields": [
+        "chemical formula",
+        "band gap"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We propose a bespoke evaluation scheme to provide empirical evidence on the ability of ML to uncover new, previously unseen materials of interest.",
+          "page": 1,
+          "section": "Introduction",
+          "inferred": false
+        },
+        {
+          "text": "We empirically measure the ability of ML models to identify new classes of TCMs through a bespoke evaluation method.",
+          "page": 2,
+          "section": "Related work",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 6,
+      "dataset_key": "candidate_pool_55",
+      "usage_role": "candidate_pool",
+      "purpose": "screening candidate materials likely to display TCM characteristics",
+      "used_fields": [
+        "chemical formula"
+      ],
+      "is_derived": false,
+      "construction_method": "search across MPDS, Pearson, and ICSD databases for compositions containing typical elements of known TCMs",
+      "filter_conditions": [],
+      "sample_count": 55,
+      "evidence": [
+        {
+          "text": "We test our approach on a list of 55 compositions containing typical elements of known TCMs.",
+          "page": 1,
+          "section": "Introduction",
+          "inferred": false
+        },
+        {
+          "text": "To test the proposed framework, we further utilize a list of 55 experimentally-reported chemical compositions sourced from entries across MPDS,4 Pearson,16 and ICSD databases.17",
+          "page": 2,
+          "section": "Related work",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

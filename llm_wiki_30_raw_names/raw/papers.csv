@@ -1,0 +1,31 @@
+﻿paper_id,paper_file,title,task_count,dataset_count
+paper_5138be33ab55,01_PRDNet.pdf,01 PRDNet,1,3
+paper_de33568ea5f1,02_CFT_Space_Group_Invariance.pdf,02 CFT Space Group Invariance,1,1
+paper_cd706e251a5b,03_Tensorial_Spectra.pdf,03 Tensorial Spectra,1,1
+paper_a008eb6410ec,04_Matbench_Discovery.pdf,04 Matbench Discovery,1,2
+paper_dfa00819e2d0,05_Thermodynamic_Stability_Ensemble.pdf,05 Thermodynamic Stability Ensemble,1,9
+paper_dd99eeb08a7c,06_Transformer_Atomic_Embeddings.pdf,06 Transformer Atomic Embeddings,1,5
+paper_527363b91d18,07_EATGNN_Piezoelectric_Tensor.pdf,07 EATGNN Piezoelectric Tensor,1,3
+paper_cdf2df178098,08_HiBoFL_Thermal_Conductivity.pdf,08 HiBoFL Thermal Conductivity,1,2
+paper_ff6e0dbcf294,09_LLM_Prop.pdf,09 LLM Prop,1,2
+paper_376c54bdb055,10_CrystalFramer.pdf,10 CrystalFramer,1,3
+paper_7100e5964f9d,11_DPF.pdf,11 DPF,1,3
+paper_9e212a4383a8,12_PDDFormer.pdf,12 PDDFormer,1,2
+paper_f11b018703ad,13_CrysCo.pdf,13 CrysCo,1,2
+paper_471a9187e021,14_Cross_Scale_Covariance.pdf,14 Cross Scale Covariance,1,2
+paper_92747bbddb26,15_Extrapolative_Episodic_Training.pdf,15 Extrapolative Episodic Training,1,2
+paper_cd925085a1df,16_OOD_Generalization_Materials.pdf,16 OOD Generalization Materials,1,3
+paper_0accd46e95fd,17_Known_Unknowns_OOD.pdf,17 Known Unknowns OOD,1,4
+paper_068c396e3b41,19_DTNet_Dielectric_Tensor.pdf,19 DTNet Dielectric Tensor,1,2
+paper_e25217f4266d,20_GMTNet.pdf,20 GMTNet,1,1
+paper_7eb9d3cfd258,21_ComFormer.pdf,21 ComFormer,1,3
+paper_1572685de644,22_Crystalformer.pdf,22 Crystalformer,1,2
+paper_0010b7688bb5,23_CrysDiff.pdf,23 CrysDiff,1,4
+paper_a9ca0fbfd8f7,24_Structure_Aware_Transfer_Learning.pdf,24 Structure Aware Transfer Learning,1,10
+paper_a54c14466f4e,25_ChargE3Net.pdf,25 ChargE3Net,1,4
+paper_364d763e5978,26_MD_HIT.pdf,26 MD HIT,1,5
+paper_1e2428d6caf8,27_Virtual_Node_Phonon_Preprint.pdf,27 Virtual Node Phonon Preprint,1,3
+paper_30ac315b16dd,28_JARVIS_Leaderboard.pdf,28 JARVIS Leaderboard,1,5
+paper_78a37cf3530b,29_Structure_OOD_Benchmark.pdf,29 Structure OOD Benchmark,1,3
+paper_2532122b8c09,30_Charge_Density_Recipe.pdf,30 Charge Density Recipe,1,3
+paper_3d03cb8978f0,31_Superconductivity_Ordered_Disordered.pdf,31 Superconductivity Ordered Disordered,1,5

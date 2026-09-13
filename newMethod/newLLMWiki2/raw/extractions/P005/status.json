@@ -1,0 +1,27 @@
+{
+  "paper_id": "P005",
+  "file_name": "05_Thermodynamic_Stability_Ensemble.pdf",
+  "status": "completed",
+  "completed_at": "2026-08-05T07:21:40.850032+00:00",
+  "model": "qwen-plus",
+  "stage1_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "stage2_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "counts": {
+    "tasks": 1,
+    "stages": 8,
+    "datasets": 9,
+    "dataset_uses": 25
+  }
+}

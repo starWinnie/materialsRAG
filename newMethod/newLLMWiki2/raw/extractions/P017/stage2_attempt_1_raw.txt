@@ -1,0 +1,654 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "aflow",
+      "canonical_name": "AFLOW",
+      "raw_names": ["AFLOW"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["solid-state materials"],
+      "available_properties": ["band gap", "bulk modulus", "Debye temperature", "shear modulus", "thermal conductivity", "thermal expansion"],
+      "available_fields": ["material compositions", "property values"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We evaluate the extrapolation capability of Bilinear Transduction on three widely used benchmarks for solid materials property prediction, AFLOW, Matbench, and the Materials Project (MP), covering 12 distinct prediction tasks of various classes of materials properties: electronic, mechanical, thermal, etc.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "AFLOW contains material property values obtained from high-throughput calculations30.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "Following Kauwe et al.20, who evaluated classical ML algorithms on AFLOW, we curate a subset of six properties: band gap, bulk modulus, Debye temperature, shear modulus, thermal conductivity, and thermal expansion, out of which the last four are scaled by applying a base 10 logarithm.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "matbench",
+      "canonical_name": "Matbench",
+      "raw_names": ["Matbench"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["solid-state materials"],
+      "available_properties": ["band gap", "refractive index", "yield strength", "formation energy"],
+      "available_fields": ["material compositions", "property values"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We evaluate the extrapolation capability of Bilinear Transduction on three widely used benchmarks for solid materials property prediction, AFLOW, Matbench, and the Materials Project (MP), covering 12 distinct prediction tasks of various classes of materials properties: electronic, mechanical, thermal, etc.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "Matbench is an automated leaderboard for benchmarking ML algorithms predicting solid material properties12. Matbench contains three composition-based regression tasks: experimentally measured band gap14, experimentally measured yield strength of steels31, calculated formation energy32, and calculated refractive index33.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "materials_project",
+      "canonical_name": "Materials Project",
+      "raw_names": ["Materials Project", "MP"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["solid-state materials"],
+      "available_properties": ["bulk modulus", "elastic anisotropy", "shear modulus"],
+      "available_fields": ["material compositions", "property values"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We evaluate the extrapolation capability of Bilinear Transduction on three widely used benchmarks for solid materials property prediction, AFLOW, Matbench, and the Materials Project (MP), covering 12 distinct prediction tasks of various classes of materials properties: electronic, mechanical, thermal, etc.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "MP provides materials and their property values derived from high-throughput calculations32.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "Following Wang et al.13, we focus on bulk modulus, shear modulus, and the ratio of elastic anisotropy.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "moleculenet",
+      "canonical_name": "MoleculeNet",
+      "raw_names": ["MoleculeNet"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["molecules"],
+      "available_properties": ["aqueous solubility", "hydration free energy", "lipophilicity", "binding affinity"],
+      "available_fields": ["molecular graphs (SMILES)", "property values"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "For molecular systems, we used datasets from MoleculeNet, covering four graph-to-property prediction tasks with dataset sizes ranging from 600 to 4200 samples, and benchmarked our approach against three baseline methods.",
+          "page": 3,
+          "section": "Molecules",
+          "inferred": false
+        },
+        {
+          "text": "MoleculeNet includes molecular graphs encoded as SMILES representations35 and their property values derived from high-throughput calculations and experimental trials36.",
+          "page": 3,
+          "section": "Molecules",
+          "inferred": false
+        },
+        {
+          "text": "We focus on physical chemistry and biophysics properties suitable for regression tasks, using four benchmark datasets from MoleculeNet. The ESOL dataset provides measurements of aqueous solubility for small molecules, FreeSolv contains experimental and calculated hydration free energies for small neutral molecules in water, Lipophilicity reports octanol/water distribution coefﬁcients, and BACE includes binding afﬁnities of small molecules to human β-secretase 1 (BACE-1).",
+          "page": 3,
+          "section": "Molecules",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "esol",
+      "canonical_name": "ESOL",
+      "raw_names": ["ESOL"],
+      "dataset_type": "public_subset",
+      "source_dataset_key": "moleculenet",
+      "material_scope": ["molecules"],
+      "available_properties": ["aqueous solubility"],
+      "available_fields": ["SMILES", "property values"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "The ESOL dataset provides measurements of aqueous solubility for small molecules, FreeSolv contains experimental and calculated hydration free energies for small neutral molecules in water, Lipophilicity reports octanol/water distribution coefﬁcients, and BACE includes binding afﬁnities of small molecules to human β-secretase 1 (BACE-1).",
+          "page": 3,
+          "section": "Molecules",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "freesolv",
+      "canonical_name": "FreeSolv",
+      "raw_names": ["FreeSolv"],
+      "dataset_type": "public_subset",
+      "source_dataset_key": "moleculenet",
+      "material_scope": ["molecules"],
+      "available_properties": ["hydration free energy"],
+      "available_fields": ["SMILES", "property values"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "The ESOL dataset provides measurements of aqueous solubility for small molecules, FreeSolv contains experimental and calculated hydration free energies for small neutral molecules in water, Lipophilicity reports octanol/water distribution coefﬁcients, and BACE includes binding afﬁnities of small molecules to human β-secretase 1 (BACE-1).",
+          "page": 3,
+          "section": "Molecules",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "lipophilicity",
+      "canonical_name": "Lipophilicity",
+      "raw_names": ["Lipophilicity"],
+      "dataset_type": "public_subset",
+      "source_dataset_key": "moleculenet",
+      "material_scope": ["molecules"],
+      "available_properties": ["lipophilicity"],
+      "available_fields": ["SMILES", "property values"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "The ESOL dataset provides measurements of aqueous solubility for small molecules, FreeSolv contains experimental and calculated hydration free energies for small neutral molecules in water, Lipophilicity reports octanol/water distribution coefﬁcients, and BACE includes binding afﬁnities of small molecules to human β-secretase 1 (BACE-1).",
+          "page": 3,
+          "section": "Molecules",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "bace",
+      "canonical_name": "BACE",
+      "raw_names": ["BACE"],
+      "dataset_type": "public_subset",
+      "source_dataset_key": "moleculenet",
+      "material_scope": ["molecules"],
+      "available_properties": ["binding affinity"],
+      "available_fields": ["SMILES", "property values"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "The ESOL dataset provides measurements of aqueous solubility for small molecules, FreeSolv contains experimental and calculated hydration free energies for small neutral molecules in water, Lipophilicity reports octanol/water distribution coefﬁcients, and BACE includes binding afﬁnities of small molecules to human β-secretase 1 (BACE-1).",
+          "page": 3,
+          "section": "Molecules",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "aflow",
+      "usage_role": "benchmark",
+      "purpose": "Evaluation of extrapolation capability on solid materials property prediction tasks",
+      "used_fields": ["material compositions", "property values"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": ["six properties: band gap, bulk modulus, Debye temperature, shear modulus, thermal conductivity, thermal expansion"],
+      "sample_count": 14123,
+      "evidence": [
+        {
+          "text": "We evaluate the extrapolation capability of Bilinear Transduction on three widely used benchmarks for solid materials property prediction, AFLOW, Matbench, and the Materials Project (MP), covering 12 distinct prediction tasks of various classes of materials properties: electronic, mechanical, thermal, etc.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "Following Kauwe et al.20, who evaluated classical ML algorithms on AFLOW, we curate a subset of six properties: band gap, bulk modulus, Debye temperature, shear modulus, thermal conductivity, and thermal expansion, out of which the last four are scaled by applying a base 10 logarithm.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "Table 1 | Solids OOD mean average prediction error (MAE) and standard error of the mean\nDataset\nProperty\n#Samples\nRidge Reg.20\nMODNet15\nCrabNet13\nTransduction (Ours)\nAFLOW30\nBand Gap [eV]\n14123\n2.59 ± 0.03\n2.65 ± 0.04\n1.47 ± 0.03\n1.51 ± 0.04",
+          "page": 3,
+          "section": "Dataset",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "matbench",
+      "usage_role": "benchmark",
+      "purpose": "Evaluation of extrapolation capability on solid materials property prediction tasks",
+      "used_fields": ["material compositions", "property values"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": ["band gap", "refractive index", "yield strength", "formation energy"],
+      "sample_count": 2154,
+      "evidence": [
+        {
+          "text": "We evaluate the extrapolation capability of Bilinear Transduction on three widely used benchmarks for solid materials property prediction, AFLOW, Matbench, and the Materials Project (MP), covering 12 distinct prediction tasks of various classes of materials properties: electronic, mechanical, thermal, etc.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "Matbench contains three composition-based regression tasks: experimentally measured band gap14, experimentally measured yield strength of steels31, calculated formation energy32, and calculated refractive index33.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "Table 1 | Solids OOD mean average prediction error (MAE) and standard error of the mean\nDataset\nProperty\n#Samples\nRidge Reg.20\nMODNet15\nCrabNet13\nTransduction (Ours)\nMatbench12\nBand Gap [eV]\n2154\n6.37 ± 0.28\n3.26 ± 0.13\n2.70 ± 0.13\n2.54 ± 0.16",
+          "page": 3,
+          "section": "Dataset",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "materials_project",
+      "usage_role": "benchmark",
+      "purpose": "Evaluation of extrapolation capability on solid materials property prediction tasks",
+      "used_fields": ["material compositions", "property values"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": ["bulk modulus", "elastic anisotropy", "shear modulus"],
+      "sample_count": 6307,
+      "evidence": [
+        {
+          "text": "We evaluate the extrapolation capability of Bilinear Transduction on three widely used benchmarks for solid materials property prediction, AFLOW, Matbench, and the Materials Project (MP), covering 12 distinct prediction tasks of various classes of materials properties: electronic, mechanical, thermal, etc.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "Following Wang et al.13, we focus on bulk modulus, shear modulus, and the ratio of elastic anisotropy.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "Table 1 | Solids OOD mean average prediction error (MAE) and standard error of the mean\nDataset\nProperty\n#Samples\nRidge Reg.20\nMODNet15\nCrabNet13\nTransduction (Ours)\nMP32\nBulk Modulus [GPa]\n6307\n151 ± 14\n60.1 ± 3.9\n57.8 ± 4.2\n45.8 ± 3.9",
+          "page": 3,
+          "section": "Dataset",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "moleculenet",
+      "usage_role": "benchmark",
+      "purpose": "Evaluation of extrapolation capability on molecular graph-to-property prediction tasks",
+      "used_fields": ["molecular graphs (SMILES)", "property values"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "For molecular systems, we used datasets from MoleculeNet, covering four graph-to-property prediction tasks with dataset sizes ranging from 600 to 4200 samples, and benchmarked our approach against three baseline methods.",
+          "page": 3,
+          "section": "Molecules",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "aflow",
+      "usage_role": "training",
+      "purpose": "Training set for Bilinear Transduction model after ID/OOD split",
+      "used_fields": ["material compositions", "property values"],
+      "is_derived": true,
+      "construction_method": "split into training, validation and test sets such that OOD test samples are 5% of the data with the highest property values, an ID validation set is a random sample of 5% of the remaining data, and the training set is the rest",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We split the data into training, validation and test sets such that OOD test samples Dte Y \u0001 Y are 5% of the data with the highest property values, an ID validation set is a random sample of 5% of the remaining data, and the training set Dtr ¼ fðx; yÞgn \u0001 X × Y is the rest.",
+          "page": 6,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "matbench",
+      "usage_role": "training",
+      "purpose": "Training set for Bilinear Transduction model after ID/OOD split",
+      "used_fields": ["material compositions", "property values"],
+      "is_derived": true,
+      "construction_method": "split into training, validation and test sets such that OOD test samples are 5% of the data with the highest property values, an ID validation set is a random sample of 5% of the remaining data, and the training set is the rest",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We split the data into training, validation and test sets such that OOD test samples Dte Y \u0001 Y are 5% of the data with the highest property values, an ID validation set is a random sample of 5% of the remaining data, and the training set Dtr ¼ fðx; yÞgn \u0001 X × Y is the rest.",
+          "page": 6,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "materials_project",
+      "usage_role": "training",
+      "purpose": "Training set for Bilinear Transduction model after ID/OOD split",
+      "used_fields": ["material compositions", "property values"],
+      "is_derived": true,
+      "construction_method": "split into training, validation and test sets such that OOD test samples are 5% of the data with the highest property values, an ID validation set is a random sample of 5% of the remaining data, and the training set is the rest",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We split the data into training, validation and test sets such that OOD test samples Dte Y \u0001 Y are 5% of the data with the highest property values, an ID validation set is a random sample of 5% of the remaining data, and the training set Dtr ¼ fðx; yÞgn \u0001 X × Y is the rest.",
+          "page": 6,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "esol",
+      "usage_role": "training",
+      "purpose": "Training set for Bilinear Transduction model after ID/OOD split",
+      "used_fields": ["SMILES", "property values"],
+      "is_derived": true,
+      "construction_method": "split into training, validation and test sets such that OOD test samples are 5% of the data with the highest property values, an ID validation set is a random sample of 5% of the remaining data, and the training set is the rest",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We split the data into training, validation and test sets such that OOD test samples Dte Y \u0001 Y are 5% of the data with the highest property values, an ID validation set is a random sample of 5% of the remaining data, and the training set Dtr ¼ fðx; yÞgn \u0001 X × Y is the rest.",
+          "page": 6,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "freesolv",
+      "usage_role": "training",
+      "purpose": "Training set for Bilinear Transduction model after ID/OOD split",
+      "used_fields": ["SMILES", "property values"],
+      "is_derived": true,
+      "construction_method": "split into training, validation and test sets such that OOD test samples are 5% of the data with the highest property values, an ID validation set is a random sample of 5% of the remaining data, and the training set is the rest",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We split the data into training, validation and test sets such that OOD test samples Dte Y \u0001 Y are 5% of the data with the highest property values, an ID validation set is a random sample of 5% of the remaining data, and the training set Dtr ¼ fðx; yÞgn \u0001 X × Y is the rest.",
+          "page": 6,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "lipophilicity",
+      "usage_role": "training",
+      "purpose": "Training set for Bilinear Transduction model after ID/OOD split",
+      "used_fields": ["SMILES", "property values"],
+      "is_derived": true,
+      "construction_method": "split into training, validation and test sets such that OOD test samples are 5% of the data with the highest property values, an ID validation set is a random sample of 5% of the remaining data, and the training set is the rest",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We split the data into training, validation and test sets such that OOD test samples Dte Y \u0001 Y are 5% of the data with the highest property values, an ID validation set is a random sample of 5% of the remaining data, and the training set Dtr ¼ fðx; yÞgn \u0001 X × Y is the rest.",
+          "page": 6,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "bace",
+      "usage_role": "training",
+      "purpose": "Training set for Bilinear Transduction model after ID/OOD split",
+      "used_fields": ["SMILES", "property values"],
+      "is_derived": true,
+      "construction_method": "split into training, validation and test sets such that OOD test samples are 5% of the data with the highest property values, an ID validation set is a random sample of 5% of the remaining data, and the training set is the rest",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We split the data into training, validation and test sets such that OOD test samples Dte Y \u0001 Y are 5% of the data with the highest property values, an ID validation set is a random sample of 5% of the remaining data, and the training set Dtr ¼ fðx; yÞgn \u0001 X × Y is the rest.",
+          "page": 6,
+          "section": "Methods",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "aflow",
+      "usage_role": "test",
+      "purpose": "OOD test set for evaluating extrapolative precision and recall of top candidates",
+      "used_fields": ["material compositions", "property values"],
+      "is_derived": true,
+      "construction_method": "OOD test samples are 5% of the data with the highest property values",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We split the data into training, validation and test sets such that OOD test samples Dte Y \u0001 Y are 5% of the data with the highest property values, an ID validation set is a random sample of 5% of the remaining data, and the training set Dtr ¼ fðx; yÞgn \u0001 X × Y is the rest.",
+          "page": 6,
+          "section": "Methods",
+          "inferred": false
+        },
+        {
+          "text": "In addition, we report model performance on a purely extrapolative task of discovering high-performance extremes: identifying the 30% of test samples with the highest property values, which we refer to as the top OOD candidates.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "matbench",
+      "usage_role": "test",
+      "purpose": "OOD test set for evaluating extrapolative precision and recall of top candidates",
+      "used_fields": ["material compositions", "property values"],
+      "is_derived": true,
+      "construction_method": "OOD test samples are 5% of the data with the highest property values",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We split the data into training, validation and test sets such that OOD test samples Dte Y \u0001 Y are 5% of the data with the highest property values, an ID validation set is a random sample of 5% of the remaining data, and the training set Dtr ¼ fðx; yÞgn \u0001 X × Y is the rest.",
+          "page": 6,
+          "section": "Methods",
+          "inferred": false
+        },
+        {
+          "text": "In addition, we report model performance on a purely extrapolative task of discovering high-performance extremes: identifying the 30% of test samples with the highest property values, which we refer to as the top OOD candidates.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "materials_project",
+      "usage_role": "test",
+      "purpose": "OOD test set for evaluating extrapolative precision and recall of top candidates",
+      "used_fields": ["material compositions", "property values"],
+      "is_derived": true,
+      "construction_method": "OOD test samples are 5% of the data with the highest property values",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We split the data into training, validation and test sets such that OOD test samples Dte Y \u0001 Y are 5% of the data with the highest property values, an ID validation set is a random sample of 5% of the remaining data, and the training set Dtr ¼ fðx; yÞgn \u0001 X × Y is the rest.",
+          "page": 6,
+          "section": "Methods",
+          "inferred": false
+        },
+        {
+          "text": "In addition, we report model performance on a purely extrapolative task of discovering high-performance extremes: identifying the 30% of test samples with the highest property values, which we refer to as the top OOD candidates.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "esol",
+      "usage_role": "test",
+      "purpose": "OOD test set for evaluating extrapolative precision and recall of top candidates",
+      "used_fields": ["SMILES", "property values"],
+      "is_derived": true,
+      "construction_method": "OOD test samples are 5% of the data with the highest property values",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We split the data into training, validation and test sets such that OOD test samples Dte Y \u0001 Y are 5% of the data with the highest property values, an ID validation set is a random sample of 5% of the remaining data, and the training set Dtr ¼ fðx; yÞgn \u0001 X × Y is the rest.",
+          "page": 6,
+          "section": "Methods",
+          "inferred": false
+        },
+        {
+          "text": "In addition, we report model performance on a purely extrapolative task of discovering high-performance extremes: identifying the 30% of test samples with the highest property values, which we refer to as the top OOD candidates.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "freesolv",
+      "usage_role": "test",
+      "purpose": "OOD test set for evaluating extrapolative precision and recall of top candidates",
+      "used_fields": ["SMILES", "property values"],
+      "is_derived": true,
+      "construction_method": "OOD test samples are 5% of the data with the highest property values",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We split the data into training, validation and test sets such that OOD test samples Dte Y \u0001 Y are 5% of the data with the highest property values, an ID validation set is a random sample of 5% of the remaining data, and the training set Dtr ¼ fðx; yÞgn \u0001 X × Y is the rest.",
+          "page": 6,
+          "section": "Methods",
+          "inferred": false
+        },
+        {
+          "text": "In addition, we report model performance on a purely extrapolative task of discovering high-performance extremes: identifying the 30% of test samples with the highest property values, which we refer to as the top OOD candidates.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "lipophilicity",
+      "usage_role": "test",
+      "purpose": "OOD test set for evaluating extrapolative precision and recall of top candidates",
+      "used_fields": ["SMILES", "property values"],
+      "is_derived": true,
+      "construction_method": "OOD test samples are 5% of the data with the highest property values",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We split the data into training, validation and test sets such that OOD test samples Dte Y \u0001 Y are 5% of the data with the highest property values, an ID validation set is a random sample of 5% of the remaining data, and the training set Dtr ¼ fðx; yÞgn \u0001 X × Y is the rest.",
+          "page": 6,
+          "section": "Methods",
+          "inferred": false
+        },
+        {
+          "text": "In addition, we report model performance on a purely extrapolative task of discovering high-performance extremes: identifying the 30% of test samples with the highest property values, which we refer to as the top OOD candidates.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "bace",
+      "usage_role": "test",
+      "purpose": "OOD test set for evaluating extrapolative precision and recall of top candidates",
+      "used_fields": ["SMILES", "property values"],
+      "is_derived": true,
+      "construction_method": "OOD test samples are 5% of the data with the highest property values",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We split the data into training, validation and test sets such that OOD test samples Dte Y \u0001 Y are 5% of the data with the highest property values, an ID validation set is a random sample of 5% of the remaining data, and the training set Dtr ¼ fðx; yÞgn \u0001 X × Y is the rest.",
+          "page": 6,
+          "section": "Methods",
+          "inferred": false
+        },
+        {
+          "text": "In addition, we report model performance on a purely extrapolative task of discovering high-performance extremes: identifying the 30% of test samples with the highest property values, which we refer to as the top OOD candidates.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

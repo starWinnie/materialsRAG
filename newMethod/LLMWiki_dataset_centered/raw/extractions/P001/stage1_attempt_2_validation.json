@@ -1,0 +1,7 @@
+{
+  "attempt": 2,
+  "errors": [
+    "stages[4].stage_type is not allowed"
+  ],
+  "exception": null
+}

@@ -1,0 +1,27 @@
+{
+  "paper_id": "P002",
+  "file_name": "02_CFT_Space_Group_Invariance.pdf",
+  "status": "completed",
+  "completed_at": "2026-07-27T03:52:14.027523+00:00",
+  "model": "qwen-plus",
+  "stage1_attempts": [
+    {
+      "attempt": "cached",
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "stage2_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "counts": {
+    "tasks": 1,
+    "stages": 8,
+    "datasets": 2,
+    "dataset_uses": 8
+  }
+}

@@ -1,0 +1,263 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "materials_project_2022",
+      "canonical_name": "Materials Project",
+      "raw_names": ["Materials Project database"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["crystalline materials"],
+      "available_properties": [
+        "band gap",
+        "formation energy per atom",
+        "energy above hull",
+        "unit cell volume",
+        "energy per atom",
+        "direct/indirect band gap indicator"
+      ],
+      "available_fields": ["crystal structure", "ID", "structural information"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We collected the dataset used in this work from the Materials Project database40 using the Materials Project free API as of November 1, 2022.",
+          "page": 4,
+          "section": "Data collection and analysis",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "textedge",
+      "canonical_name": "TextEdge",
+      "raw_names": ["TextEdge", "benchmark dataset", "curated dataset"],
+      "dataset_type": "paper_specific",
+      "source_dataset_key": "materials_project_2022",
+      "material_scope": ["crystalline materials"],
+      "available_properties": [
+        "band gap",
+        "formation energy per atom",
+        "energy above hull",
+        "crystal volume",
+        "energy per atom",
+        "Is-gap-direct"
+      ],
+      "available_fields": [
+        "crystal text description",
+        "ID",
+        "structural information",
+        "structure text description"
+      ],
+      "availability": "public",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "In this paper, we develop and make public a benchmark dataset (TextEdge) that contains crystal text descriptions with their properties.",
+          "page": 1,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "We release to the public the curated dataset we used as a benchmark, called TextEdge, to accelerate natural language processing (NLP) for materials science research.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "The benchmark dataset collected in this work and the checkpoints of the LLM-Prop model for the three properties studied can be accessed at https://drive.google.com/drive/folders/1YCDBzwjwNRIc1FRkB662G3Y5AOWaokUG?ths=true.",
+          "page": 11,
+          "section": "Data availability",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "materials_project_2022",
+      "usage_role": "source",
+      "purpose": "Collect crystal structure-description pairs for training and evaluation",
+      "used_fields": ["crystal structure", "ID", "structural information"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 144931,
+      "evidence": [
+        {
+          "text": "We collected the dataset used in this work from the Materials Project database40 using the Materials Project free API as of November 1, 2022.",
+          "page": 4,
+          "section": "Data collection and analysis",
+          "inferred": false
+        },
+        {
+          "text": "The data originally contained 145,825 crystals structure-description pairs which we randomly split into 125,825 samples for the training set, 10,000 samples for the validation set and 10,000 samples for the test set. However, when parsing the CIF files to build the graphs that are used to fine-tune GNN’s baselines, some structure files failed to be incorporated, ending up with 125,098 training samples, 9,945 validation samples, and 9,888 samples for the test set that make up the final dataset to contain 144,931 total samples, so that both LLMs and GNNs are trained on the same amount of data for a fair comparison.",
+          "page": 4,
+          "section": "Data collection and analysis",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "textedge",
+      "usage_role": "source",
+      "purpose": "Generate crystal text descriptions using Robocrystallographer",
+      "used_fields": ["crystal text description", "ID", "structural information"],
+      "is_derived": true,
+      "construction_method": "generated crystal text descriptions using Robocrystallographer from CIF files obtained from Materials Project",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We generated the crystal text descriptions using Robocrystallographer41, a tool that generates a deterministic human readable text description of a structure given its CIF file.",
+          "page": 4,
+          "section": "Data collection and analysis",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "materials_project_2022",
+      "usage_role": "label_source",
+      "purpose": "Extract ground-truth property values for each crystal",
+      "used_fields": [
+        "band gap",
+        "formation energy per atom (FEPA)",
+        "energy above hull (Ehull)",
+        "crystal volume",
+        "energy per atom (EPA)",
+        "Is-gap-direct"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We focus on six crystal properties that include both regression and classification tasks and are diverse enough to evaluate the capabilities of any property predictor. We collect the data of band gap, formation energy per atom (FEPA), energy above hull (Ehull), crystal volume, energy per atom (EPA), and an indicator of whether the band gap is direct or indirect (Is-gap-direct).",
+          "page": 4,
+          "section": "Data collection and analysis",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "textedge",
+      "usage_role": "label_source",
+      "purpose": "Extract ground-truth property values for each crystal",
+      "used_fields": [
+        "band gap",
+        "formation energy per atom",
+        "energy above hull",
+        "crystal volume",
+        "energy per atom",
+        "Is-gap-direct"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "For each crystal, we collect its ID, structural information, structure text description, and the aforementioned six properties.",
+          "page": 4,
+          "section": "Data collection and analysis",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "textedge",
+      "usage_role": "training",
+      "purpose": "Train LLM-Prop model on preprocessed text descriptions to predict crystal properties",
+      "used_fields": [
+        "crystal text description",
+        "band gap",
+        "formation energy per atom",
+        "energy above hull",
+        "crystal volume",
+        "energy per atom",
+        "Is-gap-direct"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 125098,
+      "evidence": [
+        {
+          "text": "The data originally contained 145,825 crystals structure-description pairs which we randomly split into 125,825 samples for the training set, 10,000 samples for the validation set and 10,000 samples for the test set. However, when parsing the CIF files to build the graphs that are used to fine-tune GNN’s baselines, some structure files failed to be incorporated, ending up with 125,098 training samples, 9,945 validation samples, and 9,888 samples for the test set that make up the final dataset to contain 144,931 total samples, so that both LLMs and GNNs are trained on the same amount of data for a fair comparison.",
+          "page": 4,
+          "section": "Data collection and analysis",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "textedge",
+      "usage_role": "validation",
+      "purpose": "Validate LLM-Prop model during training",
+      "used_fields": [
+        "crystal text description",
+        "band gap",
+        "formation energy per atom",
+        "energy above hull",
+        "crystal volume",
+        "energy per atom",
+        "Is-gap-direct"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 9945,
+      "evidence": [
+        {
+          "text": "The data originally contained 145,825 crystals structure-description pairs which we randomly split into 125,825 samples for the training set, 10,000 samples for the validation set and 10,000 samples for the test set. However, when parsing the CIF files to build the graphs that are used to fine-tune GNN’s baselines, some structure files failed to be incorporated, ending up with 125,098 training samples, 9,945 validation samples, and 9,888 samples for the test set that make up the final dataset to contain 144,931 total samples, so that both LLMs and GNNs are trained on the same amount of data for a fair comparison.",
+          "page": 4,
+          "section": "Data collection and analysis",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 6,
+      "dataset_key": "textedge",
+      "usage_role": "test",
+      "purpose": "Evaluate LLM-Prop's performance against baselines on held-out test set",
+      "used_fields": [
+        "crystal text description",
+        "band gap",
+        "formation energy per atom",
+        "energy above hull",
+        "crystal volume",
+        "energy per atom",
+        "Is-gap-direct"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 9888,
+      "evidence": [
+        {
+          "text": "The data originally contained 145,825 crystals structure-description pairs which we randomly split into 125,825 samples for the training set, 10,000 samples for the validation set and 10,000 samples for the test set. However, when parsing the CIF files to build the graphs that are used to fine-tune GNN’s baselines, some structure files failed to be incorporated, ending up with 125,098 training samples, 9,945 validation samples, and 9,888 samples for the test set that make up the final dataset to contain 144,931 total samples, so that both LLMs and GNNs are trained on the same amount of data for a fair comparison.",
+          "page": 4,
+          "section": "Data collection and analysis",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

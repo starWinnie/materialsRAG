@@ -1,0 +1,500 @@
+{
+  "paper": {
+    "paper_id": "P011",
+    "title": "A Denoising Pre-training Framework for Accelerating Novel Material Discovery",
+    "year": 2025,
+    "doi": null,
+    "file_name": "11_DPF.pdf",
+    "research_summary": "The paper introduces an unsupervised Denoising Pre-training Framework (DPF) for crystal structures to overcome the scarcity of labeled data in crystal property prediction. DPF pre-trains models on 380,743 unlabeled crystal structures by reconstructing masked atom types, perturbed atom positions, and perturbed lattice constants. The pre-trained models are then fine-tuned on downstream crystal property prediction tasks (e.g., formation energy, band gap, bulk moduli). Experiments show DPF improves prediction accuracy across multiple benchmarks compared to prior models.",
+    "extraction_status": "completed"
+  },
+  "tasks": [
+    {
+      "task_id": "T_P011_01",
+      "paper_id": "P011",
+      "task_name_raw": "crystal property prediction",
+      "task_name_canonical": "crystal_property_prediction",
+      "objective": "Predict crystal properties (e.g., formation energy, band gap, bulk moduli, shear moduli, energy above hull, total energy) from crystal structure representations.",
+      "material_scope": [
+        "crystal materials"
+      ],
+      "target_properties": [
+        "formation energy",
+        "band gap",
+        "bulk moduli",
+        "shear moduli",
+        "energy above hull",
+        "total energy"
+      ],
+      "constraints": [
+        "labeled data is scarce and varies across properties",
+        "target properties lack comparability",
+        "models must discern distinct patterns for each target property"
+      ],
+      "input_requirements": [
+        "crystal structure C = {B, L} characterized by basis B = {A, P} (atom types A and atom positions P) and Bravais lattice L (lattice constants)"
+      ],
+      "output_goal": [
+        "predicted numerical values for crystal properties"
+      ],
+      "parent_task_id": null,
+      "task_level": "main_task",
+      "evidence": [
+        {
+          "text": "The crystal property prediction problem involves predicting the property of a given crystal structure C = {A, P, L} by learning a function f to predict its corresponding property.",
+          "page": 3,
+          "section": "Preliminary and Notations",
+          "inferred": false
+        }
+      ]
+    }
+  ],
+  "stages": [
+    {
+      "stage_id": "S_P011_01",
+      "paper_id": "P011",
+      "task_id": "T_P011_01",
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "acquisition of unlabeled crystal structures",
+      "stage_order": 1,
+      "stage_goal": "Collect a large-scale dataset of unlabeled crystal structures for pre-training.",
+      "stage_input": [],
+      "stage_output": [
+        "380,743 unlabeled crystal structures"
+      ],
+      "evidence": [
+        {
+          "text": "After filtering the repetitive and physically or chemically irrational structures, we utilize 380,743 structures to pre-train our model.",
+          "page": 3,
+          "section": "Crystal Datasets",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P011_02",
+      "paper_id": "P011",
+      "task_id": "T_P011_01",
+      "stage_type": "data_preparation",
+      "stage_name_raw": "perturbation of crystal structure representations",
+      "stage_order": 2,
+      "stage_goal": "Generate perturbed crystal representations by masking atom types, adding noise to atom positions, and perturbing lattice constants.",
+      "stage_input": [
+        "unlabeled crystal structures"
+      ],
+      "stage_output": [
+        "perturbed crystal representations: masked atom types, perturbed atom positions, perturbed lattice constants"
+      ],
+      "evidence": [
+        {
+          "text": "At the pre-training stage, we mask the types of crystal atoms and add noise on atom positions and lattice constants to acquire perturbed representations.",
+          "page": 2,
+          "section": "unknown",
+          "inferred": false
+        },
+        {
+          "text": "We perturb the crystal structures including lattice, atom types, and atom positions.",
+          "page": 2,
+          "section": "unknown",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P011_03",
+      "paper_id": "P011",
+      "task_id": "T_P011_01",
+      "stage_type": "model_training",
+      "stage_name_raw": "denoising pre-training",
+      "stage_order": 3,
+      "stage_goal": "Train a model to reconstruct the original crystal structure from perturbed representations.",
+      "stage_input": [
+        "perturbed crystal representations"
+      ],
+      "stage_output": [
+        "pre-trained model with learned latent representation of crystal structures"
+      ],
+      "evidence": [
+        {
+          "text": "Then perturbed crystal structures are fed into the crystal model that you want to pre-train, to reconstruct the original structure.",
+          "page": 2,
+          "section": "unknown",
+          "inferred": false
+        },
+        {
+          "text": "DPF trains a model to reconstruct the original crystal structure by recovering the masked atom types, perturbed atom positions, and perturbed crystal lattices.",
+          "page": 1,
+          "section": "Abstract",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P011_04",
+      "paper_id": "P011",
+      "task_id": "T_P011_01",
+      "stage_type": "model_training",
+      "stage_name_raw": "fine-tuning on downstream property prediction tasks",
+      "stage_order": 4,
+      "stage_goal": "Adapt the pre-trained model to specific crystal property prediction tasks using labeled datasets.",
+      "stage_input": [
+        "pre-trained model",
+        "labeled crystal property datasets (JARVIS, Materials Project)"
+      ],
+      "stage_output": [
+        "fine-tuned model for crystal property prediction"
+      ],
+      "evidence": [
+        {
+          "text": "We pre-train models on a dataset of 380,743 unlabeled crystal structures and fine-tune them on downstream property prediction tasks.",
+          "page": 1,
+          "section": "Abstract",
+          "inferred": false
+        },
+        {
+          "text": "Subsequently, we fine-tune the pre-trained model for downstream crystal property prediction tasks.",
+          "page": 2,
+          "section": "unknown",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_id": "S_P011_05",
+      "paper_id": "P011",
+      "task_id": "T_P011_01",
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "evaluation of property prediction performance",
+      "stage_order": 5,
+      "stage_goal": "Assess the accuracy of predicted crystal properties using Mean Absolute Error (MAE).",
+      "stage_input": [
+        "fine-tuned model",
+        "labeled test sets from JARVIS and Materials Project"
+      ],
+      "stage_output": [
+        "MAE scores for each property"
+      ],
+      "evidence": [
+        {
+          "text": "We employ the Mean Absolute Error (MAE) to evaluate the accuracy of crystal property prediction.",
+          "page": 5,
+          "section": "Evaluation metrics",
+          "inferred": false
+        },
+        {
+          "text": "Extensive experiments demonstrate the effectiveness of our framework...",
+          "page": 1,
+          "section": "Abstract",
+          "inferred": false
+        }
+      ]
+    }
+  ],
+  "datasets": [
+    {
+      "dataset_id": "D_P011_380_743_unlabeled_crystal_structures",
+      "canonical_name": "380,743 unlabeled crystal structures",
+      "raw_names": [
+        "380,743 unlabeled crystal structures",
+        "380,743 structures"
+      ],
+      "dataset_type": "paper_specific",
+      "source_dataset_id": null,
+      "material_scope": [
+        "crystal materials"
+      ],
+      "available_properties": [],
+      "available_fields": [
+        "crystal structure C = {A, P, L}"
+      ],
+      "availability": "not_directly_available",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "After filtering the repetitive and physically or chemically irrational structures, we utilize 380,743 structures to pre-train our model.",
+          "page": 3,
+          "section": "Crystal Datasets",
+          "inferred": false,
+          "paper_id": "P011"
+        },
+        {
+          "text": "We pre-train our model on 380,743 crystal structure data filtered from the recent work (Merchant et al. 2023), excluding structures that are duplicates of downstream datasets or do not have physical or chemical significance.",
+          "page": 4,
+          "section": "Experimental Setup",
+          "inferred": false,
+          "paper_id": "P011"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "P011:paper_specific:380_743_unlabeled_crystal_structures"
+    },
+    {
+      "dataset_id": "D_jarvis",
+      "canonical_name": "JARVIS",
+      "raw_names": [
+        "JARVIS"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "crystal materials"
+      ],
+      "available_properties": [
+        "bandgaps",
+        "formation energies",
+        "energy above hull",
+        "total energy",
+        "bulk moduli",
+        "shear moduli"
+      ],
+      "available_fields": [
+        "crystal structure",
+        "formation energy",
+        "band gap",
+        "bulk moduli",
+        "shear moduli",
+        "energy above hull",
+        "total energy"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "The benchmark for crystal property prediction is well established. There are two standard benchmark datasets, JARVIS and Materials Project (Choudhary et al. 2020; Chen et al. 2019), to evaluate the performance of our model.",
+          "page": 3,
+          "section": "Crystal Datasets",
+          "inferred": false,
+          "paper_id": "P011"
+        },
+        {
+          "text": "The JARVIS dataset contains 55,722 materials with critical crystal properties for functional material design, including bandgaps, formation energies, energy above hull, total energy and so on.",
+          "page": 4,
+          "section": "Experimental Setup",
+          "inferred": false,
+          "paper_id": "P011"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:jarvis"
+    },
+    {
+      "dataset_id": "D_materials_project",
+      "canonical_name": "Materials Project",
+      "raw_names": [
+        "Materials Project"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_id": null,
+      "material_scope": [
+        "crystal materials"
+      ],
+      "available_properties": [
+        "formation energy",
+        "band gap",
+        "bulk moduli",
+        "shear moduli"
+      ],
+      "available_fields": [
+        "crystal structure",
+        "formation energy",
+        "band gap",
+        "bulk moduli",
+        "shear moduli"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "The benchmark for crystal property prediction is well established. There are two standard benchmark datasets, JARVIS and Materials Project (Choudhary et al. 2020; Chen et al. 2019), to evaluate the performance of our model.",
+          "page": 3,
+          "section": "Crystal Datasets",
+          "inferred": false,
+          "paper_id": "P011"
+        },
+        {
+          "text": "The Materials Project dataset aggregates several key crystal property datasets, including formation energy, band gap, bulk moduli, and shear moduli. Among them, 69,239 crystals are labeled with properties of formation energy and band gap, while only 5,451 crystal structures are labeled with the properties of bulk moduli and shear moduli.",
+          "page": 4,
+          "section": "Experimental Setup",
+          "inferred": false,
+          "paper_id": "P011"
+        }
+      ],
+      "confidence": 1.0,
+      "_identity": "shared:materials_project"
+    }
+  ],
+  "dataset_uses": [
+    {
+      "dataset_use_id": "DU_P011_001",
+      "paper_id": "P011",
+      "task_id": "T_P011_01",
+      "stage_id": "S_P011_01",
+      "dataset_id": "D_P011_380_743_unlabeled_crystal_structures",
+      "usage_role": "pretraining",
+      "purpose": "Pre-train models on unlabeled crystal structures using denoising tasks.",
+      "used_fields": [
+        "crystal structure C = {A, P, L}"
+      ],
+      "is_derived": false,
+      "construction_method": "Filtered from Merchant et al. (2023) deep generative output, excluding repetitive and physically or chemically irrational structures.",
+      "filter_conditions": [
+        "repetitive structures",
+        "physically or chemically irrational structures"
+      ],
+      "sample_count": 380743,
+      "evidence": [
+        {
+          "text": "After filtering the repetitive and physically or chemically irrational structures, we utilize 380,743 structures to pre-train our model.",
+          "page": 3,
+          "section": "Crystal Datasets",
+          "inferred": false
+        },
+        {
+          "text": "We pre-train our model on 380,743 crystal structure data filtered from the recent work (Merchant et al. 2023), excluding structures that are duplicates of downstream datasets or do not have physical or chemical significance.",
+          "page": 4,
+          "section": "Experimental Setup",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P011_002",
+      "paper_id": "P011",
+      "task_id": "T_P011_01",
+      "stage_id": "S_P011_04",
+      "dataset_id": "D_jarvis",
+      "usage_role": "training",
+      "purpose": "Fine-tune the pre-trained model on labeled crystal property prediction tasks.",
+      "used_fields": [
+        "formation energy",
+        "band gap",
+        "total energy",
+        "energy above hull",
+        "bandgap(MBJ)"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We fine-tune the model on two commonly used benchmarks, i.e., JARVIS and Materials Project.",
+          "page": 4,
+          "section": "Experiments",
+          "inferred": false
+        },
+        {
+          "text": "The experimental results on the JARVIS benchmark dataset are shown in the Table. 1 and Table. 2.",
+          "page": 5,
+          "section": "Experimental Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P011_003",
+      "paper_id": "P011",
+      "task_id": "T_P011_01",
+      "stage_id": "S_P011_04",
+      "dataset_id": "D_materials_project",
+      "usage_role": "training",
+      "purpose": "Fine-tune the pre-trained model on labeled crystal property prediction tasks.",
+      "used_fields": [
+        "formation energy",
+        "band gap",
+        "bulk moduli",
+        "shear moduli"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We fine-tune the model on two commonly used benchmarks, i.e., JARVIS and Materials Project.",
+          "page": 4,
+          "section": "Experiments",
+          "inferred": false
+        },
+        {
+          "text": "The quantitative results on the Materials Project benchmark dataset are shown in Table. 4.",
+          "page": 5,
+          "section": "Experimental Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P011_004",
+      "paper_id": "P011",
+      "task_id": "T_P011_01",
+      "stage_id": "S_P011_05",
+      "dataset_id": "D_jarvis",
+      "usage_role": "test",
+      "purpose": "Evaluate the accuracy of crystal property prediction using MAE.",
+      "used_fields": [
+        "formation energy",
+        "band gap",
+        "total energy",
+        "energy above hull",
+        "bandgap(MBJ)"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We employ the Mean Absolute Error (MAE) to evaluate the accuracy of crystal property prediction.",
+          "page": 5,
+          "section": "Evaluation metrics",
+          "inferred": false
+        },
+        {
+          "text": "The experimental results on the JARVIS benchmark dataset are shown in the Table. 1 and Table. 2.",
+          "page": 5,
+          "section": "Experimental Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_use_id": "DU_P011_005",
+      "paper_id": "P011",
+      "task_id": "T_P011_01",
+      "stage_id": "S_P011_05",
+      "dataset_id": "D_materials_project",
+      "usage_role": "test",
+      "purpose": "Evaluate the accuracy of crystal property prediction using MAE.",
+      "used_fields": [
+        "formation energy",
+        "band gap",
+        "bulk moduli",
+        "shear moduli"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We employ the Mean Absolute Error (MAE) to evaluate the accuracy of crystal property prediction.",
+          "page": 5,
+          "section": "Evaluation metrics",
+          "inferred": false
+        },
+        {
+          "text": "The quantitative results on the Materials Project benchmark dataset are shown in Table. 4.",
+          "page": 5,
+          "section": "Experimental Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

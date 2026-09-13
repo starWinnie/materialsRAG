@@ -1,0 +1,305 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "matbench_dielectric",
+      "canonical_name": "matbench_dielectric",
+      "raw_names": [
+        "matbench_dielectric",
+        "dielectric dataset"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "inorganic crystalline materials"
+      ],
+      "available_properties": [
+        "refractive index"
+      ],
+      "available_fields": [
+        "crystal structure",
+        "refractive index"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Table 2 | Details of the three benchmark datasets used in this work\nDataset\nTarget property\nTotal samples\nOriginal source\nMatBench best algorithm (MAE)\nUnit\nmatbench_dielectric\nRefractive index\n4764\nMaterials Project40,70\nMODNet71 (0.2711)\nUnitless",
+          "page": 4,
+          "section": "Dataset",
+          "inferred": false
+        },
+        {
+          "text": "We analyze eight GNN models for material property regression tasks using three datasets sourced from MatBench26 and mentioned in Table 1.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "matbench_log_gvrh",
+      "canonical_name": "matbench_log_gvrh",
+      "raw_names": [
+        "matbench_log_gvrh",
+        "elasticity dataset"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "inorganic crystalline materials"
+      ],
+      "available_properties": [
+        "shear modulus"
+      ],
+      "available_fields": [
+        "crystal structure",
+        "shear modulus"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Table 2 | Details of the three benchmark datasets used in this work\nDataset\nTarget property\nTotal samples\nOriginal source\nMatBench best algorithm (MAE)\nUnit\nmatbench_log_gvrh\nShear modulus\n10987\nMaterials Project40,70\ncoNGN36 (0.0670)\nlog10(GPa)",
+          "page": 4,
+          "section": "Dataset",
+          "inferred": false
+        },
+        {
+          "text": "We analyze eight GNN models for material property regression tasks using three datasets sourced from MatBench26 and mentioned in Table 1.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "matbench_perovskites",
+      "canonical_name": "matbench_perovskites",
+      "raw_names": [
+        "matbench_perovskites",
+        "perovskites dataset"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "inorganic crystalline materials"
+      ],
+      "available_properties": [
+        "formation energy"
+      ],
+      "available_fields": [
+        "crystal structure",
+        "formation energy"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Table 2 | Details of the three benchmark datasets used in this work\nDataset\nTarget property\nTotal samples\nOriginal source\nMatBench best algorithm (MAE)\nUnit\nmatbench_perovskites\nFormation energy\n18928\nCastelli et al.72\ncoGN36 (0.0269)\neV/unit cell",
+          "page": 4,
+          "section": "Dataset",
+          "inferred": false
+        },
+        {
+          "text": "We analyze eight GNN models for material property regression tasks using three datasets sourced from MatBench26 and mentioned in Table 1.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "matbench_dielectric",
+      "usage_role": "source",
+      "purpose": "Acquire benchmark dataset representative of real-world materials property prediction tasks.",
+      "used_fields": [
+        "crystal structure",
+        "refractive index"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 4764,
+      "evidence": [
+        {
+          "text": "Table 2 | Details of the three benchmark datasets used in this work\nDataset\nTarget property\nTotal samples\nOriginal source\nMatBench best algorithm (MAE)\nUnit\nmatbench_dielectric\nRefractive index\n4764\nMaterials Project40,70\nMODNet71 (0.2711)\nUnitless",
+          "page": 4,
+          "section": "Dataset",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "matbench_log_gvrh",
+      "usage_role": "source",
+      "purpose": "Acquire benchmark dataset representative of real-world materials property prediction tasks.",
+      "used_fields": [
+        "crystal structure",
+        "shear modulus"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 10987,
+      "evidence": [
+        {
+          "text": "Table 2 | Details of the three benchmark datasets used in this work\nDataset\nTarget property\nTotal samples\nOriginal source\nMatBench best algorithm (MAE)\nUnit\nmatbench_log_gvrh\nShear modulus\n10987\nMaterials Project40,70\ncoNGN36 (0.0670)\nlog10(GPa)",
+          "page": 4,
+          "section": "Dataset",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "matbench_perovskites",
+      "usage_role": "source",
+      "purpose": "Acquire benchmark dataset representative of real-world materials property prediction tasks.",
+      "used_fields": [
+        "crystal structure",
+        "formation energy"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 18928,
+      "evidence": [
+        {
+          "text": "Table 2 | Details of the three benchmark datasets used in this work\nDataset\nTarget property\nTotal samples\nOriginal source\nMatBench best algorithm (MAE)\nUnit\nmatbench_perovskites\nFormation energy\n18928\nCastelli et al.72\ncoGN36 (0.0269)\neV/unit cell",
+          "page": 4,
+          "section": "Dataset",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "matbench_dielectric",
+      "usage_role": "candidate_pool",
+      "purpose": "Generate OOD test sets via five methods including LOCO, SparseXsingle, SparseYsingle, SparseXcluster, and SparseYcluster.",
+      "used_fields": [
+        "crystal structure",
+        "refractive index"
+      ],
+      "is_derived": true,
+      "construction_method": "k-means clustering on OFM features; t-SNE dimensionality reduction; kernel density estimation",
+      "filter_conditions": [
+        "lowest structure density",
+        "lowest property density"
+      ],
+      "sample_count": 50,
+      "evidence": [
+        {
+          "text": "Leave-one-cluster-out (LOCO). Meredig et al.45 proposed this approach in their assessment of the generalization performance of ML models for predicting material properties. Initially, we apply the k-means algorithm61 based on the orbital-ﬁeld matrix (OFM) features62 to cluster the whole dataset into 50 clusters.",
+          "page": 4,
+          "section": "OOD test set generation",
+          "inferred": false
+        },
+        {
+          "text": "Single-point targets with the lowest structure density (SparseXsingle). In this method, we begin by converting material structures into the 1024-dimension OFM feature space. Subsequently, we apply the t-distributed stochastic neighbor embedding (t-SNE)64 for dimension reduction converting the OFM feature space to a 2D space (x-value). Following this, we calculate the density for each data point in the 2D space and select 500 samples with the lowest density. The density was calculated using Gaussian Kernel Density function of the t-SNE. We apply k-means clustering on these chosen samples to convert them into 50 clusters. Finally, we extract one sample from each cluster, yielding a test set with 50 target samples.",
+          "page": 4,
+          "section": "OOD test set generation",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "matbench_log_gvrh",
+      "usage_role": "candidate_pool",
+      "purpose": "Generate OOD test sets via five methods including LOCO, SparseXsingle, SparseYsingle, SparseXcluster, and SparseYcluster.",
+      "used_fields": [
+        "crystal structure",
+        "shear modulus"
+      ],
+      "is_derived": true,
+      "construction_method": "k-means clustering on OFM features; t-SNE dimensionality reduction; kernel density estimation",
+      "filter_conditions": [
+        "lowest structure density",
+        "lowest property density"
+      ],
+      "sample_count": 50,
+      "evidence": [
+        {
+          "text": "Leave-one-cluster-out (LOCO). Meredig et al.45 proposed this approach in their assessment of the generalization performance of ML models for predicting material properties. Initially, we apply the k-means algorithm61 based on the orbital-ﬁeld matrix (OFM) features62 to cluster the whole dataset into 50 clusters.",
+          "page": 4,
+          "section": "OOD test set generation",
+          "inferred": false
+        },
+        {
+          "text": "Single-point targets with the lowest structure density (SparseXsingle). In this method, we begin by converting material structures into the 1024-dimension OFM feature space. Subsequently, we apply the t-distributed stochastic neighbor embedding (t-SNE)64 for dimension reduction converting the OFM feature space to a 2D space (x-value). Following this, we calculate the density for each data point in the 2D space and select 500 samples with the lowest density. The density was calculated using Gaussian Kernel Density function of the t-SNE. We apply k-means clustering on these chosen samples to convert them into 50 clusters. Finally, we extract one sample from each cluster, yielding a test set with 50 target samples.",
+          "page": 4,
+          "section": "OOD test set generation",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "matbench_perovskites",
+      "usage_role": "candidate_pool",
+      "purpose": "Generate OOD test sets via five methods including LOCO, SparseXsingle, SparseYsingle, SparseXcluster, and SparseYcluster.",
+      "used_fields": [
+        "crystal structure",
+        "formation energy"
+      ],
+      "is_derived": true,
+      "construction_method": "k-means clustering on OFM features; t-SNE dimensionality reduction; kernel density estimation",
+      "filter_conditions": [
+        "lowest structure density",
+        "lowest property density"
+      ],
+      "sample_count": 50,
+      "evidence": [
+        {
+          "text": "Leave-one-cluster-out (LOCO). Meredig et al.45 proposed this approach in their assessment of the generalization performance of ML models for predicting material properties. Initially, we apply the k-means algorithm61 based on the orbital-ﬁeld matrix (OFM) features62 to cluster the whole dataset into 50 clusters.",
+          "page": 4,
+          "section": "OOD test set generation",
+          "inferred": false
+        },
+        {
+          "text": "Single-point targets with the lowest structure density (SparseXsingle). In this method, we begin by converting material structures into the 1024-dimension OFM feature space. Subsequently, we apply the t-distributed stochastic neighbor embedding (t-SNE)64 for dimension reduction converting the OFM feature space to a 2D space (x-value). Following this, we calculate the density for each data point in the 2D space and select 500 samples with the lowest density. The density was calculated using Gaussian Kernel Density function of the t-SNE. We apply k-means clustering on these chosen samples to convert them into 50 clusters. Finally, we extract one sample from each cluster, yielding a test set with 50 target samples.",
+          "page": 4,
+          "section": "OOD test set generation",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 6,
+      "dataset_key": "matbench_perovskites",
+      "usage_role": "computational_validation",
+      "purpose": "Latent space analysis via t-SNE to investigate physical interpretability and generalization bottlenecks.",
+      "used_fields": [
+        "crystal structure",
+        "formation energy"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 18928,
+      "evidence": [
+        {
+          "text": "We selected the perovskites formation energy dataset for training. We also only investigated CGCNN, ALIGNN, DeeperGATGNN, coGN, and coNGN for this experiment - the ﬁrst three models for their comparatively robust OOD prediction performance on average across all ﬁve targets on this dataset and the last two for their SOTA performance in the current MatBench leaderboard37.",
+          "page": 10,
+          "section": "Physical insights",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

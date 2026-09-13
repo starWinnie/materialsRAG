@@ -1,0 +1,27 @@
+[
+  {
+    "task_description": "Discovering novel binary shape memory alloys (SMAs) by predicting compositions that are likely to exhibit the shape memory effect, with a focus on compounds adopting B2, D03, or L12 crystal structures — specifically identifying candidates that are both compositionally plausible and structurally stable for the parent phase, and capable of reversible martensitic transformation.",
+    "task_tags": [
+      "discovering",
+      "screening",
+      "predicting"
+    ],
+    "datasets": [
+      {
+        "db_title": "Materials Project (MP)",
+        "db_description": "A public database containing ~86,913 computed, unlabeled crystal structures (binary, ternary, and quaternary) of inorganic compounds, filtered to include only stable or metastable structures (formation energy < 0 eV) involving 94 chemical elements. In this paper, it is used exclusively for self-supervised pre-training of the SSL-GNN to learn atomic representations and conditional element probabilities (e.g., P(A|B,X,Y)) without labels — enabling unsupervised knowledge extraction from crystallographic symmetry and local atomic environments.",
+        "db_link": "https://materialsproject.org"
+      },
+      {
+        "db_title": "Custom SMA Binary Classification Dataset",
+        "db_description": "A manually curated, labeled dataset of 871 binary alloy compositions: 658 experimentally or theoretically confirmed shape memory alloys (SMAs) and 213 non-SMA alloys, compiled from literature sources (e.g., references 41–50). It includes stoichiometric compositions (primarily 1:1 and 1:3) and binary class labels (SMA / not SMA). This dataset is used to train and evaluate the downstream composition-only SMA classifier, which leverages SSPM atomic representations to predict SMA candidacy.",
+        "db_link": "None"
+      },
+      {
+        "db_title": "ICSD (Inorganic Crystal Structure Database)",
+        "db_description": "A repository of experimentally determined crystal structures. In this paper, ICSD is cited as the source of experimentally validated lattice parameters (e.g., for TiNi, CuZr, RuNb in Fig. 5C) used to benchmark the accuracy of SSPM’s predicted lattice parameters p(X|A,B,Y) for B2, D03, and L12 structures. It supports validation of structural predictions but is not used for model training.",
+        "db_link": "https://icsd.fiz-karlsruhe.de"
+      }
+    ]
+  }
+]

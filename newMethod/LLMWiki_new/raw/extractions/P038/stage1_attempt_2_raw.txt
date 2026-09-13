@@ -1,0 +1,108 @@
+{
+  "paper": {
+    "title": "Rational design of nanoscale stabilized oxide catalysts for OER with OC22",
+    "year": 2024,
+    "doi": "10.1039/d4nr01390e",
+    "research_summary": "The paper uses pre-trained machine learning models from the Open Catalyst 2022 (OC22) framework to interpolate total energy predictions for OER surface intermediates on 4119 oxide materials, then constructs a flexible high-throughput screening framework to identify viable anode catalyst candidates for the oxygen evolution reaction (OER) under bulk and nanoscale Pourbaix stability, material cost, overpotential, and metastability constraints."
+  },
+  "task": {
+    "task_name_raw": "Rational design of nanoscale stabilized oxide catalysts for OER",
+    "task_name_canonical": "rational_design_of_nanoscale_stabilized_oxide_catalysts_for_oer",
+    "objective": "Identify viable candidate anode catalysts for OER under varying reaction conditions for bulk, surface, and nanoscale Pourbaix stability as well as material cost, overpotential, and metastability.",
+    "material_scope": ["oxide materials"],
+    "target_properties": ["overpotential", "Pourbaix stability", "nanoscale stability", "material cost"],
+    "constraints": ["bulk and nanoscale Pourbaix stability", "material cost less than RuO2", "overpotential < 0.75 V", "metastability"],
+    "input_requirements": ["slab structures", "surface intermediates (O*, OH*, OOH*)", "DFT-calculated energies", "pre-trained OC22 ML model"],
+    "output_goal": ["190 candidate materials (122 bulk and 68 nanostable) for OER"],
+    "evidence": [
+      {
+        "text": "In this work, we interpolated a database of the total energy predictions for all slabs and OER surface intermediates for 4119 oxide materials in the original OC22 dataset using pre-trained models from the OC22 framework. This database includes all terminations of all facets up to a maximum Miller index of 1. To demonstrate the full utility of this database, we constructed a flexible screening framework to identify viable candidate anode catalysts for OER under varying reaction conditions for bulk, surface, and nanoscale Pourbaix stability as well as material cost, overpotential, and metastability.",
+        "page": 1,
+        "section": "Introduction",
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_preparation",
+      "stage_name_raw": "Slab generation",
+      "stage_order": 1,
+      "stage_goal": "Construct slab models for all facets up to maximum Miller index of 1 for oxide materials.",
+      "stage_input": ["bulk materials from Materials Project", "atomic and vacuum layer of ca. 12.5 Å thick"],
+      "stage_output": ["slabs with all terminations for each facet (sans slabs exceeding 200 atoms)"],
+      "evidence": [
+        {
+          "text": "2.1 Slab generation We described all facets up to a MMI of 1 containning an atomic and vacuum layer of ca. 12.5 Å thick. The bulk materials used for slab construction in this study were obtained from the Materials Project.30 We also considered all terminations for each facet (sans slabs exceeding 200 atoms) while maintaining equivalent surfaces on both sides of the slab which consequently resulted in non-stoichiometric slabs with respect to the bulk formula.",
+          "page": 2,
+          "section": "Methods",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "DFT and machine learning settings",
+      "stage_order": 2,
+      "stage_goal": "Use pre-trained OC22 S2EF-Total model fine-tuned on OC22 dataset to predict relaxed structure and total energy.",
+      "stage_input": ["OC22 dataset (62331 DFT relaxations)", "OC20 dataset (1281040 DFT relaxations)", "GemNet-OC architecture"],
+      "stage_output": ["ML-predicted relaxed structures and total energies"],
+      "evidence": [
+        {
+          "text": "We used a pre-trained model for the Structure to Energy and Forces (S2EF)-Total task from the OC22 framework to perform all machine learning predictions of the relaxed structure and total energy. The entirety of the Open Catalyst 2020 (OC20) dataset (1281040 DFT relaxations) was used to train an S2EF-Total model which was subsequently fine-tuned with the OC22 dataset (62331 DFT relaxations) to better predict the total energies of oxide surfaces and surface intermediates.",
+          "page": 2,
+          "section": "Methods",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_generation",
+      "stage_name_raw": "Database interpolation",
+      "stage_order": 3,
+      "stage_goal": "Interpolate total DFT energy predictions for all terminations of all facets up to MMI = 1 for 4119 materials and for O*, OH*, and OOH* adsorption sites.",
+      "stage_input": ["pre-trained S2EF-Total model", "slab models", "adsorption site configurations"],
+      "stage_output": ["extrapolated database of total energies for slabs and surface intermediates"],
+      "evidence": [
+        {
+          "text": "Using the previously developed ML models, we systematically extrapolated the total DFT energy of all terminations for all facets up to a MMI = 1 for all 4119 materials considered in this study. We then extrapolated the total energy of all metal adsorption sites on all surfaces for O* and OH* (and OOH* when η < 0.75 V).",
+          "page": 5,
+          "section": "Results and discussion",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_screening",
+      "stage_name_raw": "High-throughput screening",
+      "stage_order": 4,
+      "stage_goal": "Apply progressive criteria to screen candidates based on Pourbaix stability, Wulff shape surface stability, overpotential, energy above hull, and material cost.",
+      "stage_input": ["interpolated database", "Pourbaix decomposition energy (EPBX)", "Wulff shape analysis", "overpotential calculation (η)", "energy above hull (Ehull)", "material cost data"],
+      "stage_output": ["122 bulk and 68 nanostable candidate materials"],
+      "evidence": [
+        {
+          "text": "Fig. 5 summarizes the selection criteria that we employed to screen for candidate electrocatalysts for OER. The first criteria in our high-throughput screening framework was to determine if a material exists in the original training dataset of OC22. [...] In total we have identified 190 candidates (122 bulk – and 68 nanostable) with 145 distinct chemical systems when considering all the different screening frameworks listed in Table 2.",
+          "page": 5,
+          "section": "Results and discussion",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "computational_validation",
+      "stage_name_raw": "DFT and literature validation",
+      "stage_order": 5,
+      "stage_goal": "Validate ML-predicted Gibbs adsorption energies and overpotentials against DFT calculations and literature data.",
+      "stage_input": ["DFT-calculated Gibbs adsorption energies", "literature-reported overpotentials"],
+      "stage_output": ["MAE values for validation", "identified discrepancies and improved predictions with spring constraints"],
+      "evidence": [
+        {
+          "text": "We used DFT to validate 85 values for Gibbs adsorption energy corresponding to eqn (6)–(8) for 33 Pourbaix stable compounds in our database. The MAE of the test set shown in Fig. 7(a) is 0.42 which is larger than the MAE of 0.239 eV obtained from the validation set in the original OC22 assessment.24 [...] Lastly, we compared our predicted values of overpotential to those obtained by Gunasooriya and Nørskov10 for various facets of 11 materials in Fig. 7(b).",
+          "page": 8,
+          "section": "Results and discussion",
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

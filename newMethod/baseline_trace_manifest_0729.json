@@ -1,0 +1,83 @@
+{
+  "description": "LLM Wiki实验记录_0729.docx 与 retrieval_runs 的人工语义对齐。DOCX 未保存 run_id，因此部分映射只能视为最可能轨迹。",
+  "cases": [
+    {
+      "case_id": "32_Perovskite_Bandgap_Database",
+      "trace_file": "run_20260728_162438.json",
+      "mapping_confidence": "high",
+      "note": "问题明确对应混合 ABX3 钙钛矿带隙预测；轨迹选择结果多于 DOCX。"
+    },
+    {
+      "case_id": "33_DenseGNN",
+      "trace_file": "run_20260728_170545.json",
+      "mapping_confidence": "high",
+      "note": "问题明确描述深层 GNN、过平滑、跨材料/分子/催化领域。"
+    },
+    {
+      "case_id": "34_GNoME",
+      "trace_file": "run_20260728_171327.json",
+      "mapping_confidence": "high",
+      "note": "问题明确对应无机晶体凸包稳定性和候选发现。"
+    },
+    {
+      "case_id": "35_CHGNet",
+      "trace_file": "run_20260728_171644.json",
+      "mapping_confidence": "high",
+      "note": "问题明确对应能量、力、应力和磁矩的势能面预测。"
+    },
+    {
+      "case_id": "36_PotNet",
+      "trace_file": "run_20260728_171954.json",
+      "mapping_confidence": "medium",
+      "note": "任务性质与 PotNet 多性质晶体预测一致，但 DOCX 推荐是轨迹结果的子集。"
+    },
+    {
+      "case_id": "37_CrysGNN",
+      "trace_file": "run_20260728_173557.json",
+      "mapping_confidence": "high",
+      "note": "问题明确对应大规模无标签晶体预训练和小样本迁移。"
+    },
+    {
+      "case_id": "38_Matformer",
+      "trace_file": "run_20260728_173927.json",
+      "mapping_confidence": "high",
+      "note": "问题明确对应从原子结构预测多种晶体性质。"
+    },
+    {
+      "case_id": "39_M3GNet_Preprint",
+      "trace_file": "run_20260728_180915.json",
+      "mapping_confidence": "high",
+      "note": "问题明确对应含三体相互作用的通用晶体势函数。"
+    },
+    {
+      "case_id": "40_ALIGNN",
+      "trace_file": "run_20260729_111603.json",
+      "mapping_confidence": "high",
+      "note": "问题明确列出 52 个固态和分子性质。"
+    },
+    {
+      "case_id": "41_Cross_Property_Transfer_Learning",
+      "trace_file": "run_20260729_132951.json",
+      "mapping_confidence": "medium",
+      "note": "轨迹问题与跨性质迁移一致，前三个选择与 DOCX 接近，但轨迹另有候选。"
+    },
+    {
+      "case_id": "42_Matbench",
+      "trace_file": "run_20260729_135429.json",
+      "mapping_confidence": "medium",
+      "note": "使用该任务描述的较新一次轨迹；DOCX 仅记录 Materials Project。"
+    },
+    {
+      "case_id": "43_Formation_Energy_Stability_Critical",
+      "trace_file": "run_20260729_150141.json",
+      "mapping_confidence": "high",
+      "note": "minimum 模式且 selected_dataset_ids 与 DOCX 完全一致。"
+    },
+    {
+      "case_id": "44_Synthesizability_Crystalline_Inorganic",
+      "trace_file": "run_20260729_152129.json",
+      "mapping_confidence": "high",
+      "note": "最新可合成性任务轨迹，但轨迹 selected 为六个，DOCX 仅记录 Materials Project。"
+    }
+  ]
+}

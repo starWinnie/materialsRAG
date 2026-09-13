@@ -1,0 +1,286 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "supercon3d",
+      "canonical_name": "SuperCon3D",
+      "raw_names": ["SuperCon3D"],
+      "dataset_type": "paper_specific",
+      "source_dataset_key": null,
+      "material_scope": ["superconductors"],
+      "available_properties": ["superconducting transition temperature (Tc)"],
+      "available_fields": ["3D crystal structure", "experimental Tc"],
+      "availability": "public",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "Hence, we present a new dataset for data-driven approaches, namely SuperCon3D, containing both 3D crystal structures and experimental superconducting transition temperature (Tc) for the first time.",
+          "page": 1,
+          "section": "Abstract",
+          "inferred": false
+        },
+        {
+          "text": "Constructing a dataset that captures the structure-to-superconductivity relationship is essential for training AI models aimed at designing superconductors. Hence, we introduce SuperCon3D, a new dataset combining crystal structures and the critical temperature Tc from SuperCon and ICSD.",
+          "page": 2,
+          "section": "Introduction",
+          "inferred": false
+        },
+        {
+          "text": "We extracted approximately 33,000 superconductors with their chemical formulas and corresponding critical temperatures from SuperCon. After removing duplicates and non-superconductors, we identified 11,949 superconducting materials. Additionally, over 200,000 ordered and disordered crystal structures were gathered from the ICSD database [3]. We then matched these 11,949 SuperCon entries with 208,425 ICSD entries based on chemical composition, space group and lattice parameter. Moreover, Tc values and structural data for hydrogen-enriched superconductors were collated from various literature sources. This process resulted in 1,578 superconductor data entries, each featuring both Tc and crystal structure.",
+          "page": 7,
+          "section": "5.1.1 SuperCon3D dataset.",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "supercon",
+      "canonical_name": "SuperCon",
+      "raw_names": ["SuperCon", "SuperCon database"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["superconductors"],
+      "available_properties": ["chemical formula", "critical temperature"],
+      "available_fields": ["chemical formula", "Tc"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "The SuperCon database encompasses around 33,000 superconductors, providing only their chemical formulas.",
+          "page": 2,
+          "section": "2.1 Superconducting Dataset",
+          "inferred": false
+        },
+        {
+          "text": "We extracted approximately 33,000 superconductors, including their chemical formulas and critical temperatures, from the SuperCon database2.",
+          "page": 16,
+          "section": "A SuperCon3D Data Details",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "icsd",
+      "canonical_name": "ICSD",
+      "raw_names": ["ICSD", "ICSD database"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["crystals"],
+      "available_properties": [],
+      "available_fields": ["ordered and disordered crystal structures"],
+      "availability": "restricted",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "Constructing a dataset that captures the structure-to-superconductivity relationship is essential for training AI models aimed at designing superconductors. Hence, we introduce SuperCon3D, a new dataset combining crystal structures and the critical temperature Tc from SuperCon and ICSD.",
+          "page": 2,
+          "section": "Introduction",
+          "inferred": false
+        },
+        {
+          "text": "Additionally, over 200,000 ordered and disordered crystal structures were gathered from the ICSD database [3].",
+          "page": 7,
+          "section": "5.1.1 SuperCon3D dataset.",
+          "inferred": false
+        },
+        {
+          "text": "Over 200,000 ordered and disordered crystal structures were collected from the ICSD database.",
+          "page": 16,
+          "section": "A SuperCon3D Data Details",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "materials_project_oqmd_matgen",
+      "canonical_name": "Materials Project, OQMD, Matgen",
+      "raw_names": ["Materials Project", "OQMD", "Matgen"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["crystals"],
+      "available_properties": [],
+      "available_fields": ["3D crystals"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We pre-trained our model on approximately 1.14 million unique 3D crystals sourced from existing databases, including Materials Project, OQMD, ICSD and Matgen.",
+          "page": 7,
+          "section": "4.2.3 Pre-training",
+          "inferred": false
+        },
+        {
+          "text": "For pretraining, we obtain crystal structures from the databases of Materials Project14, Open Quantum Materials Database15, Matgen16, and ICSD17.",
+          "page": 20,
+          "section": "C.2 Generative Models",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "supercon",
+      "usage_role": "source",
+      "purpose": "source of superconductor chemical formulas and critical temperatures for constructing SuperCon3D",
+      "used_fields": ["chemical formula", "Tc"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": ["removing duplicates and non-superconductors"],
+      "sample_count": 11949,
+      "evidence": [
+        {
+          "text": "We extracted approximately 33,000 superconductors with their chemical formulas and corresponding critical temperatures from SuperCon. After removing duplicates and non-superconductors, we identified 11,949 superconducting materials.",
+          "page": 7,
+          "section": "5.1.1 SuperCon3D dataset.",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "icsd",
+      "usage_role": "source",
+      "purpose": "source of ordered and disordered crystal structures for constructing SuperCon3D",
+      "used_fields": ["ordered and disordered crystal structures"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 208425,
+      "evidence": [
+        {
+          "text": "Additionally, over 200,000 ordered and disordered crystal structures were gathered from the ICSD database [3]. We then matched these 11,949 SuperCon entries with 208,425 ICSD entries based on chemical composition, space group and lattice parameter.",
+          "page": 7,
+          "section": "5.1.1 SuperCon3D dataset.",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "supercon3d",
+      "usage_role": "training",
+      "purpose": "the constructed dataset used as input for model training",
+      "used_fields": ["3D crystal structure", "experimental Tc"],
+      "is_derived": false,
+      "construction_method": "matching SuperCon entries with ICSD entries based on chemical composition, space group and lattice parameter; collating Tc and structural data for hydrogen-enriched superconductors from literature",
+      "filter_conditions": [],
+      "sample_count": 1578,
+      "evidence": [
+        {
+          "text": "This process resulted in 1,578 superconductor data entries, each featuring both Tc and crystal structure.",
+          "page": 7,
+          "section": "5.1.1 SuperCon3D dataset.",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "supercon3d",
+      "usage_role": "training",
+      "purpose": "training SODNet for screening known structures",
+      "used_fields": ["3D crystal structure", "experimental Tc"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 1578,
+      "evidence": [
+        {
+          "text": "Based on SuperCon3D, we propose two deep learning methods for designing high Tc superconductors. The first is SODNet, a novel equivariant graph attention model for screening known structures, which differs from existing models in incorporating both ordered and disordered geometric content.",
+          "page": 1,
+          "section": "Abstract",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "supercon3d",
+      "usage_role": "training",
+      "purpose": "training DiffCSP-SC for creating new structures",
+      "used_fields": ["3D crystal structure", "experimental Tc"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 1578,
+      "evidence": [
+        {
+          "text": "The second is a diffusion generative model DiffCSP-SC for creating new structures, which enables high Tc-targeted generation.",
+          "page": 1,
+          "section": "Abstract",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "materials_project_oqmd_matgen",
+      "usage_role": "pretraining",
+      "purpose": "pre-training DiffCSP-SC on large-scale crystal structures to manage vast feature space",
+      "used_fields": ["3D crystals"],
+      "is_derived": false,
+      "construction_method": "deduplication of crystal structures from Materials Project, OQMD, Matgen, and ICSD",
+      "filter_conditions": ["excluding molecular crystals"],
+      "sample_count": 1140000,
+      "evidence": [
+        {
+          "text": "We pre-trained our model on approximately 1.14 million unique 3D crystals sourced from existing databases, including Materials Project, OQMD, ICSD and Matgen.",
+          "page": 7,
+          "section": "4.2.3 Pre-training",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "icsd",
+      "usage_role": "candidate_pool",
+      "purpose": "screening the entire ICSD database to identify potential high-Tc superconductors",
+      "used_fields": ["crystal structures"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Using our model, we screened the ICSD database to identify potential high-Tc superconductors.",
+          "page": 9,
+          "section": "5.2.4 Potential Superconducting Materials.",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 6,
+      "dataset_key": "supercon3d",
+      "usage_role": "computational_validation",
+      "purpose": "providing reference Tc values for DFT verification of generated candidates",
+      "used_fields": ["experimental Tc"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Subsequently, density-functional theory (DFT) were performed on selected candidates to verify their superconducting properties. Notably, Van Hove singularities (VHS) were observed in the electronic structures of Ba2CuCl2O2, Lu, and BaFe2Se2, as further detailed in Appendix E.5.",
+          "page": 10,
+          "section": "5.3.3 Candidate Superconductors.",
+          "inferred": false
+        }
+      ],
+      "confidence": 0.95
+    }
+  ]
+}

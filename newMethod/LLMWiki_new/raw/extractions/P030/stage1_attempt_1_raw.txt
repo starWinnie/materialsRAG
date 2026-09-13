@@ -1,0 +1,138 @@
+{
+  "paper": {
+    "title": "A Recipe for Charge Density Prediction",
+    "year": 2024,
+    "doi": null,
+    "research_summary": "The paper proposes a machine learning method to predict the charge density of atomic systems—core quantum mechanical quantity from which all ground-state physicochemical properties derive—with both high accuracy and computational efficiency. It introduces three key ingredients: (1) representing charge density using atomic and virtual orbitals (spherical fields centered at atoms and bond midpoints), (2) using expressive, domain-informed, and learnable even-tempered Gaussian basis sets, and (3) employing a high-capacity SE(3)-equivariant neural network architecture (eSCN). The method achieves state-of-the-art accuracy on the QM9 charge density benchmark while being >30× faster than prior approaches, enabling flexible accuracy–efficiency trade-offs."
+  },
+  "task": {
+    "task_name_raw": "charge density prediction",
+    "task_name_canonical": "charge_density_prediction",
+    "objective": "To accurately and efficiently predict the 3D real-space electronic charge density ρ(r) of atomic systems (molecules and materials) given their atomic composition and coordinates.",
+    "material_scope": ["small organic molecules", "crystalline materials"],
+    "target_properties": ["charge density"],
+    "constraints": ["SE(3)-equivariance", "computational scalability for large systems and ab initio molecular dynamics", "flexible accuracy–efficiency trade-off"],
+    "input_requirements": ["atomic numbers A = {ai | i = 1, ..., N}", "atomic coordinates R = {ri | i = 1, ..., N}"],
+    "output_goal": ["predicted charge density ˆρ(r) at grid coordinates r ∈ Rc"],
+    "evidence": [
+      {
+        "text": "In density functional theory, the charge density is the core attribute of atomic systems from which all chemical properties can be derived. Machine learning methods are promising as a means of significantly accelerating charge density predictions, yet existing approaches either lack accuracy or scalability. We propose a recipe that can achieve both.",
+        "page": 1,
+        "section": "Abstract",
+        "inferred": false
+      },
+      {
+        "text": "Using the atomic orbital basis set representation of charge density, the prediction model aims to predict the basis set coefficients ci,j,m and the scaling factors si,j for each real and virtual node such that the predicted charge density matches the ground truth density obtained from DFT calculations.",
+        "page": 5,
+        "section": "3.2 Prediction Model",
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "acquisition of DFT-calculated charge density data",
+      "stage_order": 1,
+      "stage_goal": "Obtain ground-truth charge density data computed via density functional theory for training and evaluation.",
+      "stage_input": [],
+      "stage_output": ["QM9 charge density dataset", "MD charge density dataset", "Cubic charge density dataset"],
+      "evidence": [
+        {
+          "text": "The QM9 charge density dataset [18, 19, 7] contains charge density calculations for 133,845 small organic molecules using the Vienna Ab initio Simulation Package (VASP).",
+          "page": 7,
+          "section": "4 Experiments",
+          "inferred": false
+        },
+        {
+          "text": "We also benchmark our method on the MD charge density dataset [43, 44, 12] and the Cubic charge density dataset [45].",
+          "page": 7,
+          "section": "4 Experiments",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_preparation",
+      "stage_name_raw": "construction of atomic and virtual node representations",
+      "stage_order": 2,
+      "stage_goal": "Transform raw atomic configurations into structured inputs including real atoms and SE(3)-equivariant virtual nodes placed at bond midpoints.",
+      "stage_input": ["atomic coordinates R", "atomic types A"],
+      "stage_output": ["extended node set with real and virtual nodes", "bond-midpoint-based virtual coordinates"],
+      "evidence": [
+        {
+          "text": "Due to the critical importance of chemical bonds in defining the overall electronic structure, we insert virtual nodes into the midpoint of all chemical bonds for a given molecule (illustrated in Figure 2 (a)). With this method, the coordinates to insert the virtual nodes are SE(3)-equivariant with regard to the input atom coordinates.",
+          "page": 4,
+          "section": "3.1 Charge Density Representation",
+          "inferred": false
+        },
+        {
+          "text": "For the molecules in the MD dataset, we use bond centers as coordinates for virtual nodes. For the materials in the Cubic dataset, we iteratively insert virtual nodes up to the number of atoms in the unit cell using an algorithm based on Voronoi diagrams [55].",
+          "page": 15,
+          "section": "Appendix",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_training",
+      "stage_name_raw": "end-to-end training of equivariant neural network with fine-tuning for scaling factors",
+      "stage_order": 3,
+      "stage_goal": "Train the eSCN-based model to predict orbital coefficients and exponent scaling factors, first with fixed exponents (pretraining), then with learnable scaling factors (fine-tuning).",
+      "stage_input": ["atomic types A", "coordinates R of real and virtual nodes", "ground-truth charge density ρ(r)"],
+      "stage_output": ["trained SCDP model with learned coefficients ci,j,m and scaling factors si,j"],
+      "evidence": [
+        {
+          "text": "We train the model end-to-end with a mean-absolute error loss L over the charge density: L = Er∈Data [|ρ(r) −ˆρ(r)|].",
+          "page": 6,
+          "section": "3.2 Prediction Model",
+          "inferred": false
+        },
+        {
+          "text": "The scaling factors at the exponents lead to significant training instability when the network is trained from scratch. Therefore, we use a fine-tuning approach, where we first pre-train the model with fixed basis set exponents [...] and then fine-tune the prediction model with a small learning rate with the learning for scaling factors enabled.",
+          "page": 7,
+          "section": "3.2 Prediction Model",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "model_evaluation",
+      "stage_name_raw": "benchmarking against normalized mean absolute error (NMAE) and efficiency metrics",
+      "stage_order": 4,
+      "stage_goal": "Quantitatively assess prediction accuracy (via NMAE) and computational efficiency (mol./min.) on test sets across multiple datasets.",
+      "stage_input": ["trained model", "test set charge densities", "GPU hardware (NVIDIA A100)"],
+      "stage_output": ["NMAE scores", "efficiency (mol. per min.)", "Pareto front trade-off curves"],
+      "evidence": [
+        {
+          "text": "Following previous works [7, 15], we benchmark the prediction accuracy with the normalized mean absolute error, defined as: NMAE(ˆρ) = ∫|ρ(r) −ˆρ(r)| dV / ∫|ρ(r)| dV",
+          "page": 7,
+          "section": "4 Experiments",
+          "inferred": false
+        },
+        {
+          "text": "We benchmark the efficiency of different methods by the number of molecules predicted per minute (Mol. per min.) on a single NVIDIA A100-80GB-PCIe GPU for the QM9 test split.",
+          "page": 7,
+          "section": "4 Experiments",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_screening",
+      "stage_name_raw": "ablation analysis of recipe components",
+      "stage_order": 5,
+      "stage_goal": "Systematically evaluate the contribution of each proposed ingredient (virtual orbitals, basis set expressivity via β, scaling factors, model capacity) to performance.",
+      "stage_input": ["multiple SCDP model variants"],
+      "stage_output": ["quantified accuracy gains per ingredient", "identification of dominant contributors (e.g., virtual orbitals reduce error from 0.434% to 0.237%)"],
+      "evidence": [
+        {
+          "text": "We discuss the effectiveness of all ingredients through an ablation analysis of the performance of different SCDP models. Starting from the most lightweight model with K = 4, L = 3, β = 2.0 and no virtual orbitals, we first observe that increasing the model size to K = 8, L = 6 significantly improves the performance, reducing the NMAE from 0.504% to 0.434%. Next, we increase the basis set size by adjusting β from 2.0 to 1.5, which further reduces the NMAE to 0.381%. The introduction of the virtual orbitals renders a significant gain in accuracy...",
+          "page": 8,
+          "section": "Ablation Analysis",
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

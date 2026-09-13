@@ -1,0 +1,467 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "matbench_dielectric",
+      "canonical_name": "matbench_dielectric",
+      "raw_names": ["matbench_dielectric", "dielectric dataset"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["inorganic crystalline materials"],
+      "available_properties": ["refractive index"],
+      "available_fields": ["crystal structure", "refractive index"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We analyze eight GNN models for material property regression tasks using three datasets sourced from MatBench26 and mentioned in Table 1.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "Table 2 | Details of the three benchmark datasets used in this work\nDataset\nTarget property\nTotal samples\nOriginal source\nMatBench best algorithm (MAE)\nUnit\nmatbench_dielectric\nRefractive index\n4764\nMaterials Project40,70\nMODNet71 (0.2711)\nUnitless",
+          "page": 4,
+          "section": "Dataset",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "matbench_log_gvrh",
+      "canonical_name": "matbench_log_gvrh",
+      "raw_names": ["matbench_log_gvrh", "elasticity dataset"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["inorganic crystalline materials"],
+      "available_properties": ["shear modulus"],
+      "available_fields": ["crystal structure", "shear modulus"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We analyze eight GNN models for material property regression tasks using three datasets sourced from MatBench26 and mentioned in Table 1.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "Table 2 | Details of the three benchmark datasets used in this work\nDataset\nTarget property\nTotal samples\nOriginal source\nMatBench best algorithm (MAE)\nUnit\nmatbench_log_gvrh\nShear modulus\n10987\nMaterials Project40,70\ncoNGN36 (0.0670)\nlog10(GPa)",
+          "page": 4,
+          "section": "Dataset",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "matbench_perovskites",
+      "canonical_name": "matbench_perovskites",
+      "raw_names": ["matbench_perovskites", "perovskites dataset"],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": ["inorganic crystalline materials"],
+      "available_properties": ["formation energy"],
+      "available_fields": ["crystal structure", "formation energy"],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We analyze eight GNN models for material property regression tasks using three datasets sourced from MatBench26 and mentioned in Table 1.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "Table 2 | Details of the three benchmark datasets used in this work\nDataset\nTarget property\nTotal samples\nOriginal source\nMatBench best algorithm (MAE)\nUnit\nmatbench_perovskites\nFormation energy\n18928\nCastelli et al.72\ncoGN36 (0.0269)\neV/unit cell",
+          "page": 4,
+          "section": "Dataset",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "matbench_dielectric",
+      "usage_role": "source",
+      "purpose": "To acquire structure-based materials property regression dataset for benchmarking.",
+      "used_fields": ["crystal structure", "refractive index"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 4764,
+      "evidence": [
+        {
+          "text": "We analyze eight GNN models for material property regression tasks using three datasets sourced from MatBench26 and mentioned in Table 1.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "Table 2 | Details of the three benchmark datasets used in this work\nDataset\nTarget property\nTotal samples\nOriginal source\nMatBench best algorithm (MAE)\nUnit\nmatbench_dielectric\nRefractive index\n4764\nMaterials Project40,70\nMODNet71 (0.2711)\nUnitless",
+          "page": 4,
+          "section": "Dataset",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "matbench_log_gvrh",
+      "usage_role": "source",
+      "purpose": "To acquire structure-based materials property regression dataset for benchmarking.",
+      "used_fields": ["crystal structure", "shear modulus"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 10987,
+      "evidence": [
+        {
+          "text": "We analyze eight GNN models for material property regression tasks using three datasets sourced from MatBench26 and mentioned in Table 1.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "Table 2 | Details of the three benchmark datasets used in this work\nDataset\nTarget property\nTotal samples\nOriginal source\nMatBench best algorithm (MAE)\nUnit\nmatbench_log_gvrh\nShear modulus\n10987\nMaterials Project40,70\ncoNGN36 (0.0670)\nlog10(GPa)",
+          "page": 4,
+          "section": "Dataset",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "matbench_perovskites",
+      "usage_role": "source",
+      "purpose": "To acquire structure-based materials property regression dataset for benchmarking.",
+      "used_fields": ["crystal structure", "formation energy"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 18928,
+      "evidence": [
+        {
+          "text": "We analyze eight GNN models for material property regression tasks using three datasets sourced from MatBench26 and mentioned in Table 1.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "Table 2 | Details of the three benchmark datasets used in this work\nDataset\nTarget property\nTotal samples\nOriginal source\nMatBench best algorithm (MAE)\nUnit\nmatbench_perovskites\nFormation energy\n18928\nCastelli et al.72\ncoGN36 (0.0269)\neV/unit cell",
+          "page": 4,
+          "section": "Dataset",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "matbench_dielectric",
+      "usage_role": "candidate_pool",
+      "purpose": "To generate five OOD test set splits (LOCO, SparseXsingle, SparseYsingle, SparseXcluster, SparseYcluster) by clustering in OFM feature space or property space.",
+      "used_fields": ["crystal structure", "refractive index"],
+      "is_derived": true,
+      "construction_method": "k-means clustering on OFM features or kernel density estimation on t-SNE-reduced OFM features or property values",
+      "filter_conditions": ["lowest structure density", "lowest property density", "leave-one-cluster-out"],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Leave-one-cluster-out (LOCO). Meredig et al.45 proposed this approach... Initially, we apply the k-means algorithm61 based on the orbital-field matrix (OFM) features62 to cluster the whole dataset into 50 clusters.",
+          "page": 4,
+          "section": "OOD test set generation",
+          "inferred": false
+        },
+        {
+          "text": "Single-point targets with the lowest structure density (SparseXsingle). In this method, we begin by converting material structures into the 1024-dimension OFM feature space. Subsequently, we apply the t-distributed stochastic neighbor embedding (t-SNE)64 for dimension reduction...",
+          "page": 4,
+          "section": "OOD test set generation",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "matbench_log_gvrh",
+      "usage_role": "candidate_pool",
+      "purpose": "To generate five OOD test set splits (LOCO, SparseXsingle, SparseYsingle, SparseXcluster, SparseYcluster) by clustering in OFM feature space or property space.",
+      "used_fields": ["crystal structure", "shear modulus"],
+      "is_derived": true,
+      "construction_method": "k-means clustering on OFM features or kernel density estimation on t-SNE-reduced OFM features or property values",
+      "filter_conditions": ["lowest structure density", "lowest property density", "leave-one-cluster-out"],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Leave-one-cluster-out (LOCO). Meredig et al.45 proposed this approach... Initially, we apply the k-means algorithm61 based on the orbital-field matrix (OFM) features62 to cluster the whole dataset into 50 clusters.",
+          "page": 4,
+          "section": "OOD test set generation",
+          "inferred": false
+        },
+        {
+          "text": "Single-point targets with the lowest structure density (SparseXsingle). In this method, we begin by converting material structures into the 1024-dimension OFM feature space. Subsequently, we apply the t-distributed stochastic neighbor embedding (t-SNE)64 for dimension reduction...",
+          "page": 4,
+          "section": "OOD test set generation",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "matbench_perovskites",
+      "usage_role": "candidate_pool",
+      "purpose": "To generate five OOD test set splits (LOCO, SparseXsingle, SparseYsingle, SparseXcluster, SparseYcluster) by clustering in OFM feature space or property space.",
+      "used_fields": ["crystal structure", "formation energy"],
+      "is_derived": true,
+      "construction_method": "k-means clustering on OFM features or kernel density estimation on t-SNE-reduced OFM features or property values",
+      "filter_conditions": ["lowest structure density", "lowest property density", "leave-one-cluster-out"],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Leave-one-cluster-out (LOCO). Meredig et al.45 proposed this approach... Initially, we apply the k-means algorithm61 based on the orbital-field matrix (OFM) features62 to cluster the whole dataset into 50 clusters.",
+          "page": 4,
+          "section": "OOD test set generation",
+          "inferred": false
+        },
+        {
+          "text": "Single-point targets with the lowest structure density (SparseXsingle). In this method, we begin by converting material structures into the 1024-dimension OFM feature space. Subsequently, we apply the t-distributed stochastic neighbor embedding (t-SNE)64 for dimension reduction...",
+          "page": 4,
+          "section": "OOD test set generation",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "matbench_dielectric",
+      "usage_role": "training",
+      "purpose": "To train eight GNN models on training/validation splits of each OOD fold.",
+      "used_fields": ["crystal structure", "refractive index"],
+      "is_derived": true,
+      "construction_method": "For each fold, one cluster is selected as test set, rest as training and validation sets.",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "For each fold, we selected a cluster as the test set, and the rest as training and validation sets, and averaged the results over 50 folds to get the final result.",
+          "page": 3,
+          "section": "OOD test set generation",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "matbench_log_gvrh",
+      "usage_role": "training",
+      "purpose": "To train eight GNN models on training/validation splits of each OOD fold.",
+      "used_fields": ["crystal structure", "shear modulus"],
+      "is_derived": true,
+      "construction_method": "For each fold, one cluster is selected as test set, rest as training and validation sets.",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "For each fold, we selected a cluster as the test set, and the rest as training and validation sets, and averaged the results over 50 folds to get the final result.",
+          "page": 3,
+          "section": "OOD test set generation",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "matbench_perovskites",
+      "usage_role": "training",
+      "purpose": "To train eight GNN models on training/validation splits of each OOD fold.",
+      "used_fields": ["crystal structure", "formation energy"],
+      "is_derived": true,
+      "construction_method": "For each fold, one cluster is selected as test set, rest as training and validation sets.",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "For each fold, we selected a cluster as the test set, and the rest as training and validation sets, and averaged the results over 50 folds to get the final result.",
+          "page": 3,
+          "section": "OOD test set generation",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "matbench_dielectric",
+      "usage_role": "test",
+      "purpose": "To evaluate model performance using mean absolute error (MAE) on OOD test sets.",
+      "used_fields": ["refractive index"],
+      "is_derived": true,
+      "construction_method": "Five OOD test set generation methods applied: LOCO, SparseXsingle, SparseYsingle, SparseXcluster, SparseYcluster.",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We use the mean absolute error (MAE) metric, which is a standard evaluation criterion for regression-based materials property prediction problems.",
+          "page": 12,
+          "section": "Evaluation criterion",
+          "inferred": false
+        },
+        {
+          "text": "The results of the dielectric dataset for five different OOD target generation methods are summarized in Table 3.",
+          "page": 4,
+          "section": "Performance comparison on OOD test sets",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "matbench_log_gvrh",
+      "usage_role": "test",
+      "purpose": "To evaluate model performance using mean absolute error (MAE) on OOD test sets.",
+      "used_fields": ["shear modulus"],
+      "is_derived": true,
+      "construction_method": "Five OOD test set generation methods applied: LOCO, SparseXsingle, SparseYsingle, SparseXcluster, SparseYcluster.",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We use the mean absolute error (MAE) metric, which is a standard evaluation criterion for regression-based materials property prediction problems.",
+          "page": 12,
+          "section": "Evaluation criterion",
+          "inferred": false
+        },
+        {
+          "text": "Table4showsthesummarizedresultsfor ﬁvetypesofOODtestsetson the elasticity dataset.",
+          "page": 5,
+          "section": "MEGNet",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "matbench_perovskites",
+      "usage_role": "test",
+      "purpose": "To evaluate model performance using mean absolute error (MAE) on OOD test sets.",
+      "used_fields": ["formation energy"],
+      "is_derived": true,
+      "construction_method": "Five OOD test set generation methods applied: LOCO, SparseXsingle, SparseYsingle, SparseXcluster, SparseYcluster.",
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "We use the mean absolute error (MAE) metric, which is a standard evaluation criterion for regression-based materials property prediction problems.",
+          "page": 12,
+          "section": "Evaluation criterion",
+          "inferred": false
+        },
+        {
+          "text": "Results on the perovskites dataset are summarized in Table 5.",
+          "page": 6,
+          "section": "MEGNet",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "matbench_dielectric",
+      "usage_role": "benchmark",
+      "purpose": "To compare OOD MAE results against MatBench i.i.d. baselines.",
+      "used_fields": ["refractive index"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Here we aim to check how the evaluated GNNs’ performances degrade when changing their test sets from i.i.d to OOD. The i.i.d. baseline MAEs for all GNN algorithms can be found on the MatBench leaderboard37, while the OOD test set performances... can be found in Tables 3, 4, and 5, respectively.",
+          "page": 9,
+          "section": "Comparison of OOD performance with baseline i.i.d. performance",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "matbench_log_gvrh",
+      "usage_role": "benchmark",
+      "purpose": "To compare OOD MAE results against MatBench i.i.d. baselines.",
+      "used_fields": ["shear modulus"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Here we aim to check how the evaluated GNNs’ performances degrade when changing their test sets from i.i.d to OOD. The i.i.d. baseline MAEs for all GNN algorithms can be found on the MatBench leaderboard37, while the OOD test set performances... can be found in Tables 3, 4, and 5, respectively.",
+          "page": 9,
+          "section": "Comparison of OOD performance with baseline i.i.d. performance",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "matbench_perovskites",
+      "usage_role": "benchmark",
+      "purpose": "To compare OOD MAE results against MatBench i.i.d. baselines.",
+      "used_fields": ["formation energy"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Here we aim to check how the evaluated GNNs’ performances degrade when changing their test sets from i.i.d to OOD. The i.i.d. baseline MAEs for all GNN algorithms can be found on the MatBench leaderboard37, while the OOD test set performances... can be found in Tables 3, 4, and 5, respectively.",
+          "page": 9,
+          "section": "Comparison of OOD performance with baseline i.i.d. performance",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 6,
+      "dataset_key": "matbench_perovskites",
+      "usage_role": "computational_validation",
+      "purpose": "To computationally investigate latent physical spaces via t-SNE using perovskites formation energy dataset.",
+      "used_fields": ["crystal structure", "formation energy"],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 18928,
+      "evidence": [
+        {
+          "text": "We utilized t-distributed stochastic neighbor embedding (t-SNE)64... to investigate specific insights into the materials’ physics... Our objective is to visualize the distribution of latent representations learned through the training of different models.",
+          "page": 10,
+          "section": "Physical insights",
+          "inferred": false
+        },
+        {
+          "text": "t-SNE diagrams for (a) CGCNN, (b) ALIGNN, (c) DeeperGATGNN, (d) coGN, and (e) coNGN were plotted after training with the perovskites dataset and retrieving latent representation of the first layer after the final graph convolution layer.",
+          "page": 10,
+          "section": "Physical insights",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

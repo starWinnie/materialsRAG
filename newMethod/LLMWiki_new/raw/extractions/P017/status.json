@@ -1,0 +1,27 @@
+{
+  "paper_id": "P017",
+  "file_name": "17_Known_Unknowns_OOD.pdf",
+  "status": "completed",
+  "completed_at": "2026-08-06T01:27:28.530892+00:00",
+  "model": "qwen-plus",
+  "stage1_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "stage2_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "counts": {
+    "tasks": 1,
+    "stages": 6,
+    "datasets": 8,
+    "dataset_uses": 20
+  }
+}

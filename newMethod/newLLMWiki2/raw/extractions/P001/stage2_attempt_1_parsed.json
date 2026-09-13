@@ -1,0 +1,456 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "mp",
+      "canonical_name": "Materials Project",
+      "raw_names": [
+        "Materials Project",
+        "MP",
+        "Materials Project (MP) Database"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "crystals"
+      ],
+      "available_properties": [
+        "formation energy",
+        "band gap",
+        "metal/non-metal classification",
+        "bulk modulus",
+        "shear modulus",
+        "Young's modulus"
+      ],
+      "available_fields": [
+        "structure",
+        "formation_energy",
+        "band_gap",
+        "is_metal",
+        "bulk_modulus",
+        "shear_modulus",
+        "youngs_modulus"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "• Materials Project (MP) Database: We use stable structures retrieved from the Materials Project (Jain et al., 2020), comprising 122,959 entries with annotated formation energy, band gap, and metal/non-metal classification labels. Additionally, 9,473 of these entries include mechanical properties such as bulk modulus, shear modulus and Young’s modulus.",
+          "page": 8,
+          "section": "Datasets",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "jarvis_dft",
+      "canonical_name": "JARVIS-DFT",
+      "raw_names": [
+        "JARVIS-DFT",
+        "JARVIS-DFT (dft_3d)",
+        "JARVIS-DFT-3D-2021"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "crystals"
+      ],
+      "available_properties": [
+        "formation energy",
+        "band gap",
+        "bulk modulus",
+        "shear modulus",
+        "total energy",
+        "energy above the hull"
+      ],
+      "available_fields": [
+        "structure",
+        "formation_energy",
+        "band_gap",
+        "bulk_modulus",
+        "shear_modulus",
+        "total_energy",
+        "energy_above_hull"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "• JARVIS-DFT (dft_3d): This dataset contains 75,993 entries, each annotated with formation energy, band gap (calculated using either the OptB88vDW functional, denoted as OPT, or the TBMBJ functional, denoted as MBJ), bulk modulus, shear modulus, total energy (calculated using the OptB88vDW functional), and energy above the hull (Ehull ) (Choudhary et al., 2020). We also evaluate the baselines on the JARVIS-DFT-3D-2021 dataset (55,723 entries), which serves as an important supplementary benchmark.",
+          "page": 8,
+          "section": "Datasets",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "matbench",
+      "canonical_name": "Matbench",
+      "raw_names": [
+        "Matbench",
+        "MB",
+        "Matbench (MB) Suite"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "crystals"
+      ],
+      "available_properties": [
+        "exfoliation energy",
+        "formation energy",
+        "shear modulus",
+        "refractive index"
+      ],
+      "available_fields": [
+        "structure",
+        "exfoliation_energy",
+        "formation_energy",
+        "shear_modulus",
+        "refractive_index"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "• Matbench (MB) Suite: We evaluate the models on several tasks from the Matbench suite (Dunn et al., 2020): matbench_jdft2d (636 entries; exfoliation energy), matbench_mp_e_form (132,752 entries; formation energy), matbench_log_gvrh (10,987 entries; shear modulus), and matbench_dielectric (4,764 entries; refractive index).",
+          "page": 8,
+          "section": "Datasets",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "mp",
+      "usage_role": "benchmark",
+      "purpose": "standard evaluation suite for benchmarking",
+      "used_fields": [
+        "structure",
+        "formation_energy",
+        "band_gap",
+        "is_metal",
+        "bulk_modulus",
+        "shear_modulus",
+        "youngs_modulus"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 122959,
+      "evidence": [
+        {
+          "text": "• Materials Project (MP) Database: We use stable structures retrieved from the Materials Project (Jain et al., 2020), comprising 122,959 entries with annotated formation energy, band gap, and metal/non-metal classification labels. Additionally, 9,473 of these entries include mechanical properties such as bulk modulus, shear modulus and Young’s modulus.",
+          "page": 8,
+          "section": "Datasets",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "jarvis_dft",
+      "usage_role": "benchmark",
+      "purpose": "standard evaluation suite for benchmarking",
+      "used_fields": [
+        "structure",
+        "formation_energy",
+        "band_gap",
+        "bulk_modulus",
+        "shear_modulus",
+        "total_energy",
+        "energy_above_hull"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 75993,
+      "evidence": [
+        {
+          "text": "• JARVIS-DFT (dft_3d): This dataset contains 75,993 entries, each annotated with formation energy, band gap (calculated using either the OptB88vDW functional, denoted as OPT, or the TBMBJ functional, denoted as MBJ), bulk modulus, shear modulus, total energy (calculated using the OptB88vDW functional), and energy above the hull (Ehull ) (Choudhary et al., 2020).",
+          "page": 8,
+          "section": "Datasets",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "matbench",
+      "usage_role": "benchmark",
+      "purpose": "standard evaluation suite for benchmarking",
+      "used_fields": [
+        "structure",
+        "exfoliation_energy",
+        "formation_energy",
+        "shear_modulus",
+        "refractive_index"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 132752,
+      "evidence": [
+        {
+          "text": "• Matbench (MB) Suite: We evaluate the models on several tasks from the Matbench suite (Dunn et al., 2020): matbench_jdft2d (636 entries; exfoliation energy), matbench_mp_e_form (132,752 entries; formation energy), matbench_log_gvrh (10,987 entries; shear modulus), and matbench_dielectric (4,764 entries; refractive index).",
+          "page": 8,
+          "section": "Datasets",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "mp",
+      "usage_role": "test",
+      "purpose": "model evaluation on benchmark dataset",
+      "used_fields": [
+        "structure",
+        "formation_energy",
+        "band_gap",
+        "is_metal",
+        "bulk_modulus",
+        "shear_modulus",
+        "youngs_modulus"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 122959,
+      "evidence": [
+        {
+          "text": "5.1\nRESULTS\nBenchmarks Performance\nAcross the MP, JARVIS-DFT, and Matbench benchmarks, PRDNet\nconsistently delivers superior or competitive performance compared with existing models.",
+          "page": 9,
+          "section": "5.1 RESULTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "jarvis_dft",
+      "usage_role": "test",
+      "purpose": "model evaluation on benchmark dataset",
+      "used_fields": [
+        "structure",
+        "formation_energy",
+        "band_gap",
+        "bulk_modulus",
+        "shear_modulus",
+        "total_energy",
+        "energy_above_hull"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 75993,
+      "evidence": [
+        {
+          "text": "5.1\nRESULTS\nBenchmarks Performance\nAcross the MP, JARVIS-DFT, and Matbench benchmarks, PRDNet\nconsistently delivers superior or competitive performance compared with existing models.",
+          "page": 9,
+          "section": "5.1 RESULTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "matbench",
+      "usage_role": "test",
+      "purpose": "model evaluation on benchmark dataset",
+      "used_fields": [
+        "structure",
+        "exfoliation_energy",
+        "formation_energy",
+        "shear_modulus",
+        "refractive_index"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 132752,
+      "evidence": [
+        {
+          "text": "5.1\nRESULTS\nBenchmarks Performance\nAcross the MP, JARVIS-DFT, and Matbench benchmarks, PRDNet\nconsistently delivers superior or competitive performance compared with existing models.",
+          "page": 9,
+          "section": "5.1 RESULTS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "mp",
+      "usage_role": "screening",
+      "purpose": "ablation study to validate architectural components",
+      "used_fields": [
+        "structure",
+        "formation_energy",
+        "band_gap",
+        "is_metal",
+        "bulk_modulus",
+        "shear_modulus",
+        "youngs_modulus"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 122959,
+      "evidence": [
+        {
+          "text": "Ablation Study\nTo validate the effectiveness of each component in the PRDNet architecture, we\nperform systematic ablation studies that isolate the contributions of individual modules and design\nchoices. We evaluate PRDNet across diverse property prediction tasks using the Materials Project,\nJARVIS-DFT and Matbench databases, ensuring a comprehensive assessment. Table 3 presents the\nablation results on the MP dataset, while Appendix B, Table 5, and Table 6 report the results on\nJARVIS-DFT and Matbench, respectively.",
+          "page": 9,
+          "section": "Ablation Study",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "jarvis_dft",
+      "usage_role": "screening",
+      "purpose": "ablation study to validate architectural components",
+      "used_fields": [
+        "structure",
+        "formation_energy",
+        "band_gap",
+        "bulk_modulus",
+        "shear_modulus",
+        "total_energy",
+        "energy_above_hull"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 75993,
+      "evidence": [
+        {
+          "text": "Ablation Study\nTo validate the effectiveness of each component in the PRDNet architecture, we\nperform systematic ablation studies that isolate the contributions of individual modules and design\nchoices. We evaluate PRDNet across diverse property prediction tasks using the Materials Project,\nJARVIS-DFT and Matbench databases, ensuring a comprehensive assessment. Table 3 presents the\nablation results on the MP dataset, while Appendix B, Table 5, and Table 6 report the results on\nJARVIS-DFT and Matbench, respectively.",
+          "page": 9,
+          "section": "Ablation Study",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "matbench",
+      "usage_role": "screening",
+      "purpose": "ablation study to validate architectural components",
+      "used_fields": [
+        "structure",
+        "exfoliation_energy",
+        "formation_energy",
+        "shear_modulus",
+        "refractive_index"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 132752,
+      "evidence": [
+        {
+          "text": "Ablation Study\nTo validate the effectiveness of each component in the PRDNet architecture, we\nperform systematic ablation studies that isolate the contributions of individual modules and design\nchoices. We evaluate PRDNet across diverse property prediction tasks using the Materials Project,\nJARVIS-DFT and Matbench databases, ensuring a comprehensive assessment. Table 3 presents the\nablation results on the MP dataset, while Appendix B, Table 5, and Table 6 report the results on\nJARVIS-DFT and Matbench, respectively.",
+          "page": 9,
+          "section": "Ablation Study",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 6,
+      "dataset_key": "mp",
+      "usage_role": "computational_validation",
+      "purpose": "comparing pseudo-particle vs. X-ray photon representation sensitivity",
+      "used_fields": [
+        "structure",
+        "formation_energy",
+        "band_gap",
+        "is_metal",
+        "bulk_modulus",
+        "shear_modulus",
+        "youngs_modulus"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 122959,
+      "evidence": [
+        {
+          "text": "Pseudo-Particle vs. X-ray Photon\nFor evidencing the enriched representation of Pseudo-Particle\non crystal sensitivity, we compare two PRDNet variants: (1) PRDNet-Learned: employs learned\npseudo-particle form factors f ∗\ni (Eq. 13); (2) PRDNet-Tabulated: substitutes f ∗\ni with tabulated X-\nray photon form factors. As summarized in Table 7 (Appendix B), the pseudo-particle representation\nconsistently outperforms the X-ray counterpart across all datasets and property prediction tasks.\nSpecifically, it achieves lower MAEs for formation energy, bandgap, and mechanical moduli, while\nalso delivering higher classification accuracy in metal/non-metal discrimination.",
+          "page": 10,
+          "section": "Pseudo-Particle vs. X-ray Photon",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 6,
+      "dataset_key": "jarvis_dft",
+      "usage_role": "computational_validation",
+      "purpose": "comparing pseudo-particle vs. X-ray photon representation sensitivity",
+      "used_fields": [
+        "structure",
+        "formation_energy",
+        "band_gap",
+        "bulk_modulus",
+        "shear_modulus",
+        "total_energy",
+        "energy_above_hull"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 75993,
+      "evidence": [
+        {
+          "text": "Pseudo-Particle vs. X-ray Photon\nFor evidencing the enriched representation of Pseudo-Particle\non crystal sensitivity, we compare two PRDNet variants: (1) PRDNet-Learned: employs learned\npseudo-particle form factors f ∗\ni (Eq. 13); (2) PRDNet-Tabulated: substitutes f ∗\ni with tabulated X-\nray photon form factors. As summarized in Table 7 (Appendix B), the pseudo-particle representation\nconsistently outperforms the X-ray counterpart across all datasets and property prediction tasks.\nSpecifically, it achieves lower MAEs for formation energy, bandgap, and mechanical moduli, while\nalso delivering higher classification accuracy in metal/non-metal discrimination.",
+          "page": 10,
+          "section": "Pseudo-Particle vs. X-ray Photon",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 6,
+      "dataset_key": "matbench",
+      "usage_role": "computational_validation",
+      "purpose": "comparing pseudo-particle vs. X-ray photon representation sensitivity",
+      "used_fields": [
+        "structure",
+        "exfoliation_energy",
+        "formation_energy",
+        "shear_modulus",
+        "refractive_index"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 132752,
+      "evidence": [
+        {
+          "text": "Pseudo-Particle vs. X-ray Photon\nFor evidencing the enriched representation of Pseudo-Particle\non crystal sensitivity, we compare two PRDNet variants: (1) PRDNet-Learned: employs learned\npseudo-particle form factors f ∗\ni (Eq. 13); (2) PRDNet-Tabulated: substitutes f ∗\ni with tabulated X-\nray photon form factors. As summarized in Table 7 (Appendix B), the pseudo-particle representation\nconsistently outperforms the X-ray counterpart across all datasets and property prediction tasks.\nSpecifically, it achieves lower MAEs for formation energy, bandgap, and mechanical moduli, while\nalso delivering higher classification accuracy in metal/non-metal discrimination.",
+          "page": 10,
+          "section": "Pseudo-Particle vs. X-ray Photon",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

@@ -1,0 +1,150 @@
+{
+  "paper": {
+    "title": "An open-access database and analysis tool for perovskite solar cells based on the FAIR data principles",
+    "year": 2022,
+    "doi": "10.1038/s41560-021-00941-3",
+    "research_summary": "This paper describes the creation of an open-access, FAIR-compliant database for metal-halide perovskite solar cell device data, containing over 42,400 devices extracted manually from peer-reviewed literature. It includes development of interactive web-based tools for exploration, analysis, filtering, and visualization; establishment of metadata ontology and data extraction protocols; and demonstration of analytical insights (e.g., efficiency trends, HTL impact on Voc, bandgap-composition relationships). The project aims to transform perovskite research data management by enabling community-wide data sharing, reuse, and AI/ML readiness."
+  },
+  "task": {
+    "task_name_raw": "Creation of an open-access, FAIR-compliant database and analysis tool for perovskite solar cell device data",
+    "task_name_canonical": "create_fair_perovskite_solar_cell_database",
+    "objective": "To collect, standardize, and make accessible all published perovskite solar cell device data in a single, open, FAIR-compliant database with interactive analysis tools.",
+    "material_scope": ["metal-halide perovskites", "perovskite solar cells", "photovoltaic devices"],
+    "target_properties": ["power conversion efficiency (PCE)", "open-circuit voltage (Voc)", "bandgap (Eg)", "stability (T80)", "scalability (cell area)"],
+    "constraints": ["FAIR data principles (findable, accessible, interoperable, reusable)", "consistency in formatting", "completeness of device parameters", "community adoption and sustainability"],
+    "input_requirements": ["peer-reviewed publications on perovskite solar cells", "standardized data extraction protocol (95+ attributes)", "metadata ontology", "interactive visualization framework"],
+    "output_goal": ["open-access database with >42,400 device entries", "freely available interactive web-based analysis tools", "open-source Python codebase", "Excel templates and documentation for future data upload"],
+    "evidence": [
+      {
+        "text": "Here we extract all the meaningful device data from peer-reviewed papers on metal-halide perovskite solar cells published so far and make them available in a database. We collect data from over 42,400 photovoltaic devices with up to 100 parameters per device. We then develop open-source and accessible procedures to analyse the data, providing examples of insights that can be gleaned from the analysis of a large dataset. The database, graphics and analysis tools are made available to the community and will continue to evolve as an open-source initiative.",
+        "page": 1,
+        "section": null,
+        "inferred": false
+      },
+      {
+        "text": "The key goals of the project are to: collect all perovskite solar cell data ever published in one open-access database; develop free interactive web-based tools for simple and interactive exploration, analysis, filtering and visualization of the data; develop procedures and protocols to simplify dissemination and collection of new perovskite data according to the FAIR data principles; release an open-source code base that can be used as a blueprint for similar projects and give a few demonstrations of insights and analysis that can be easily done if all data are consistently formatted and found in one place.",
+        "page": 2,
+        "section": "Data",
+        "inferred": false
+      }
+    ]
+  },
+  "stages": [
+    {
+      "stage_type": "data_acquisition",
+      "stage_name_raw": "Manual extraction of device data from peer-reviewed literature",
+      "stage_order": 1,
+      "stage_goal": "To identify and extract all meaningful photovoltaic device data from published papers on perovskite solar cells.",
+      "stage_input": ["over 15,000 papers from Web of Science with search phrase 'perovskite solar'"],
+      "stage_output": ["raw device data for over 42,400 photovoltaic devices"],
+      "evidence": [
+        {
+          "text": "We have manually gone through every paper found in the Web of Science with the search phrase ‘perovskite solar’ up to the end of February 2020 (that is, over 15,000 papers). In total, we have manually extracted data for over 42,400 devices.",
+          "page": 2,
+          "section": "Data",
+          "inferred": false
+        },
+        {
+          "text": "The search phrase ‘perovskite solar’ in the Web of Science generated over 15,000 entries by the end of February 2020. Not all of those publications relate to metal-halide perovskites and photovoltaic applications, but most do. Similarly, a few relevant papers will be missed in this search. From here, our collective team has manually gone through every paper and extracted data for all the described devices.",
+          "page": 7,
+          "section": "Methods",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "data_preparation",
+      "stage_name_raw": "Consistent formatting and validation of extracted data",
+      "stage_order": 2,
+      "stage_goal": "To standardize all extracted data according to a defined protocol and perform error checking and validation.",
+      "stage_input": ["manually extracted raw device data", "original data extraction protocol (95 attributes)"],
+      "stage_output": ["consistently formatted dataset ready for database ingestion"],
+      "evidence": [
+        {
+          "text": "Once extracted, the data have been consistently formatted according to the instruction in the supporting documentation and is now freely available in the Perovskite Database.",
+          "page": 3,
+          "section": "Data",
+          "inferred": false
+        },
+        {
+          "text": "We have therefore set up a system for reporting dubious data points, and we thereby expect some self-correction over time... To reduce the errors, we went through the extracted data to check for errors, misunderstandings, confusing entries and inconsistent formatting.",
+          "page": 7,
+          "section": "Methods",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_generation",
+      "stage_name_raw": "Development of interactive web-based analysis and visualization tools",
+      "stage_order": 3,
+      "stage_goal": "To build accessible, no-code-required tools for exploring, filtering, analyzing, and visualizing the database.",
+      "stage_input": ["consistently formatted database", "Python programming environment"],
+      "stage_output": ["interactive graphics and web-based analysis tools"],
+      "evidence": [
+        {
+          "text": "Apart from making all historical data accessible and providing means to upload new experimental data, interactive graphical data visualization tools have been implemented that enable simple and interactive exploration, analysis and filtering (Fig. 1).",
+          "page": 2,
+          "section": "Data",
+          "inferred": false
+        },
+        {
+          "text": "To increase the usability of the data, we have developed interactive tools for simple exploration, analysis, filtering and visualization that can be used without programming knowledge. The code base for the project is written in Python and is available at GitHub...",
+          "page": 3,
+          "section": "Data",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "candidate_screening",
+      "stage_name_raw": "Demonstration and validation of analytical insights using the database",
+      "stage_order": 4,
+      "stage_goal": "To validate the utility of the database and tools by performing representative analyses and extracting scientifically meaningful insights.",
+      "stage_input": ["formatted database", "interactive analysis tools"],
+      "stage_output": ["validated insights on efficiency trends, HTL impact, bandgap-composition relationships, scalability, stability"],
+      "evidence": [
+        {
+          "text": "What follows is a small selection of analyses, visualizations and insights made possible by the Perovskite Database and the associated toolbox.",
+          "page": 3,
+          "section": "Data",
+          "inferred": false
+        },
+        {
+          "text": "We demonstrate the capabilities of the database and the associated tools by giving a few examples of insights that can be gleaned from the analysis of this large dataset in terms of, for example, record development, tandem integration, stability and scalability.",
+          "page": 7,
+          "section": "Conclusions",
+          "inferred": false
+        }
+      ]
+    },
+    {
+      "stage_type": "computational_validation",
+      "stage_name_raw": "Implementation of FAIR-compliant infrastructure and open-source release",
+      "stage_order": 5,
+      "stage_goal": "To deploy the database and tools on a sustainable, open platform adhering to FAIR principles and ensure long-term accessibility.",
+      "stage_input": ["formatted database", "interactive tools", "open-source code", "supporting documentation"],
+      "stage_output": ["publicly accessible database at www.perovskitedatabase.com", "GitHub repository", "Excel templates", "project website with resources"],
+      "evidence": [
+        {
+          "text": "The database, graphics and analysis tools are made available to the community and will continue to evolve as an open-source initiative.",
+          "page": 1,
+          "section": null,
+          "inferred": false
+        },
+        {
+          "text": "All the resources are found at the project website (www.perovskitedatabase.com), where they will be updated and maintained for the foreseeable future.",
+          "page": 3,
+          "section": "Data",
+          "inferred": false
+        },
+        {
+          "text": "The code base for the project is written in Python and is available at GitHub (https://github.com/Jesperkemist/perovskitedatabase), and everyone is invited to contribute and expand the scope of the project.",
+          "page": 3,
+          "section": "Data",
+          "inferred": false
+        }
+      ]
+    }
+  ]
+}

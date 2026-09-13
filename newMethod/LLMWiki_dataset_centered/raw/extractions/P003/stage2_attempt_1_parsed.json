@@ -1,0 +1,251 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "mp_1432_semi",
+      "canonical_name": "Materials Project 1432-semiconductor dielectric tensor dataset",
+      "raw_names": [
+        "dataset of 1432 nonmagnetic semiconductors",
+        "dataset of 1432 materials",
+        "1432 frequency-dependent dielectric tensors"
+      ],
+      "dataset_type": "derived_subset",
+      "source_dataset_key": "materials_project",
+      "material_scope": [
+        "bulk semiconductors"
+      ],
+      "available_properties": [
+        "frequency-dependent dielectric tensor"
+      ],
+      "available_fields": [
+        "crystal structure",
+        "atomic species",
+        "relative atomic positions",
+        "dielectric tensor (real and imaginary parts)",
+        "bandgap",
+        "space group",
+        "energy above hull"
+      ],
+      "availability": "public",
+      "recommendable": false,
+      "evidence": [
+        {
+          "text": "We demonstrate the capabilities of TSENN by considering the frequency-dependent dielectric tensors of a dataset of 1432 nonmagnetic semiconductors calculated via first-principles methods using OpenMX.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "With our focus on small bandgap semiconductors in mind, we selected materials from the Materials Project41 with bandgaps ranging from 0.3 to 3 eV... To maintain structural stability, we imposed an energy-above-hull threshold of 0.02 eV/atom. For computational efficiency, we limited our selection to materials with fewer than three elements and fewer than ten atoms per unit cell. Additionally, we excluded magnetic materials as well as materials containing elements with f electrons...",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "The dielectric tensors were computed using the Kubo formula for photon energies ranging from 0 to 30 eV, with an increment of 0.01 eV, resulting in 1432 frequency-dependent dielectric tensors satisfying the symmetry constraints of the crystal systems considered.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "materials_project",
+      "canonical_name": "Materials Project",
+      "raw_names": [
+        "Materials Project"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "inorganic crystalline materials"
+      ],
+      "available_properties": [
+        "crystal structure",
+        "bandgap",
+        "formation energy",
+        "space group",
+        "energy above hull"
+      ],
+      "available_fields": [
+        "crystal structure",
+        "bandgap",
+        "formation energy",
+        "space group",
+        "energy above hull"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "With our focus on small bandgap semiconductors in mind, we selected materials from the Materials Project41 with bandgaps ranging from 0.3 to 3 eV...",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "mp_1432_semi",
+      "usage_role": "source",
+      "purpose": "ab initio calculation of frequency-dependent dielectric tensors via OpenMX and Kubo formula",
+      "used_fields": [
+        "crystal structure",
+        "bandgap",
+        "energy above hull",
+        "space group"
+      ],
+      "is_derived": true,
+      "construction_method": "selection from Materials Project based on bandgap (0.3–3 eV), energy above hull (<0.02 eV/atom), element count (<3), atom count per unit cell (<10), exclusion of magnetic materials and f-element-containing materials; symmetrization of structures; first-principles DFT calculations using OpenMX; dielectric tensors computed via Kubo formula over 0–30 eV at 0.01 eV resolution",
+      "filter_conditions": [
+        "bandgap between 0.3 and 3 eV",
+        "energy above hull < 0.02 eV/atom",
+        "fewer than three elements",
+        "fewer than ten atoms per unit cell",
+        "nonmagnetic",
+        "no f-electron elements"
+      ],
+      "sample_count": 1432,
+      "evidence": [
+        {
+          "text": "We demonstrate the capabilities of TSENN by considering the frequency-dependent dielectric tensors of a dataset of 1432 nonmagnetic semiconductors calculated via first-principles methods using OpenMX.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "With our focus on small bandgap semiconductors in mind, we selected materials from the Materials Project41 with bandgaps ranging from 0.3 to 3 eV... To maintain structural stability, we imposed an energy-above-hull threshold of 0.02 eV/atom. For computational efficiency, we limited our selection to materials with fewer than three elements and fewer than ten atoms per unit cell. Additionally, we excluded magnetic materials as well as materials containing elements with f electrons...",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "For each entry, we first symmetrized the structure by following the procedure of ref. 44 and performed first-principles calculations using OpenMX. The dielectric tensors were computed using the Kubo formula for photon energies ranging from 0 to 30 eV, with an increment of 0.01 eV, resulting in 1432 frequency-dependent dielectric tensors satisfying the symmetry constraints of the crystal systems considered.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "mp_1432_semi",
+      "usage_role": "source",
+      "purpose": "spherical-harmonics decomposition of Cartesian dielectric tensors into ℓ=0 and ℓ=2 channels",
+      "used_fields": [
+        "dielectric tensor (real and imaginary parts)"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 1432,
+      "evidence": [
+        {
+          "text": "To predict the dielectric tensor using an equivariant neural network, we express it in the spherical-harmonics basis, which naturally encodes rotational symmetry. The dielectric tensor is symmetric under the permutation of Cartesian indices, εij = εji, and therefore admits the decomposition εij = Tαβ Y α 1 Y β 1 = ε(0) \u0002 ε(2) = ∑ ‘2f0, 2g ∑ ‘ m = \u0003‘ εm (‘) Y m ‘ , (1) which separates the scalar trace component (ℓ= 0) from the traceless symmetric tensor component (ℓ= 2).",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "Since we are dealing with frequency-dependent tensors, we take the Cartesian tensor at each photon energy, perform this change-of-basis operation, and obtain the frequency-dependent spherical-harmonic coefficients as our target, as shown in Fig. 2.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "mp_1432_semi",
+      "usage_role": "training",
+      "purpose": "training TSENN to predict ℓ=0 and ℓ=2 spherical-harmonics coefficients from crystal graphs",
+      "used_fields": [
+        "crystal structure",
+        "spherical-harmonics coefficients (ℓ=0 and ℓ=2)"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 1432,
+      "evidence": [
+        {
+          "text": "By training TSENN on the aforementioned dataset, we achieve a mean absolute error (MAE) of 0.127 in the predicted imaginary part of the dielectric tensor.",
+          "page": 2,
+          "section": "Results",
+          "inferred": false
+        },
+        {
+          "text": "To train the model, we define a composite loss function L, which separately evaluates the scalar and tensor components of the predicted optical spectra.",
+          "page": 3,
+          "section": "unknown",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "mp_1432_semi",
+      "usage_role": "validation",
+      "purpose": "evaluation of dielectric tensor prediction accuracy using MAE and other metrics on full-tensor and per-component levels",
+      "used_fields": [
+        "predicted dielectric tensors",
+        "ground-truth dielectric tensors"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 1432,
+      "evidence": [
+        {
+          "text": "To evaluate the model’s performance, the most direct measure is the MAE of the dielectric tensor, MAE = 1 6nω ∑ ω ∑ α ≤β |bε αβ(ω) − εαβ(ω)|.",
+          "page": 4,
+          "section": "unknown",
+          "inferred": false
+        },
+        {
+          "text": "Table 1 summarizes error metrics for dielectric tensor predictions across chemically and structurally diverse test systems. The overall tensor MAE is 0.127 (0.097 median), establishing TSENN’s robust baseline accuracy.",
+          "page": 5,
+          "section": "unknown",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 5,
+      "dataset_key": "mp_1432_semi",
+      "usage_role": "computational_validation",
+      "purpose": "Kramers–Kronig reconstruction of real parts from predicted imaginary parts and symmetry validation via masking",
+      "used_fields": [
+        "predicted imaginary dielectric spectra",
+        "ground-truth dielectric tensors (for symmetry validation)"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 1432,
+      "evidence": [
+        {
+          "text": "With the accurately predicted imaginary parts, we used K–K relations to obtain the real parts of the dielectric tensors.",
+          "page": 6,
+          "section": "unknown",
+          "inferred": false
+        },
+        {
+          "text": "To further confirm symmetry preservation, we applied a symmetry-based masking procedure to the predicted tensor at each photon energy.",
+          "page": 8,
+          "section": "unknown",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}

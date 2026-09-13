@@ -1,0 +1,27 @@
+{
+  "paper_id": "P036",
+  "file_name": "36_Accelerating the Discovery of Hybrid Perovskites with Targeted Band Gaps via Interpretable Machine Learning.pdf",
+  "status": "completed",
+  "completed_at": "2026-08-06T01:56:17.246894+00:00",
+  "model": "qwen-plus",
+  "stage1_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "stage2_attempts": [
+    {
+      "attempt": 1,
+      "errors": [],
+      "exception": null
+    }
+  ],
+  "counts": {
+    "tasks": 1,
+    "stages": 9,
+    "datasets": 2,
+    "dataset_uses": 6
+  }
+}

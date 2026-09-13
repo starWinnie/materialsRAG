@@ -1,0 +1,71 @@
+﻿dataset_id,db_title,aliases,links,paper_count,task_count,dataset_use_count
+dataset_d55b16e3041b,Materials Project,Materials Project; Materials Project (2021 snapshot); Materials Project (MEGNet); Materials Project (MP); Materials Project (MP) 2018.6.1; Materials Project (MP) database; Materials Project (MP) v.2022.10.28; Materials Project (MP*) database; Materials Project 2021 (MP21); Materials Project Dataset; Materials Project database; The Materials Project,https://huggingface.co/datasets/caobin/CPPbenchmark; https://materialsproject.org; https://materialsproject.org/; https://next-gen.materialsproject.org; https://next-gen.materialsproject.org/,29,29,30
+dataset_19d1b1004506,JARVIS-DFT,JARVIS-3D; JARVIS-DFT; JARVIS-DFT (2021.8.18); JARVIS-DFT (3D 2021); JARVIS-DFT 3D 2021; JARVIS-DFT dataset,https://figshare.com/collections/JARVIS-DFT/4301672; https://jarvis.nist.gov; https://jarvis.nist.gov/; https://jarvis.nist.gov/jarvisdft/,12,12,12
+dataset_3ee88ee61ae1,Matbench,MatBench; Matbench; Matbench v0.1,https://hackingmaterials.lbl.gov/automatminer/datasets.html; https://matbench.materialsproject.org; https://matbench.materialsproject.org/,5,5,5
+dataset_388341d260b1,TSENN Dielectric Tensor Dataset,TSENN Dielectric Tensor Dataset,https://github.com/qmatyanlab/TSENN,1,1,1
+dataset_c103a7259773,Wang-Botti-Marques (WBM) dataset,Wang-Botti-Marques (WBM) dataset; Wang–Botti–Marques (WBM) dataset,https://doi.org/10.1038/s41524-020-00472-z; https://figshare.com/articles/dataset/22715158,2,2,2
+dataset_f6b0e6dabd69,Open Quantum Materials Database,"OQMD (Open Quantum Materials Database); OQMD-EXP; Open Quantum Materials Database (OQMD); Open Quantum Materials Database (OQMD, 2021 snapshot)",http://oqmd.org; https://oqmd.org; https://oqmd.org/; https://www.oqmd.org,8,8,9
+dataset_3d1fc9ebc1ce,JARVIS Database,JARVIS; JARVIS (Joint Automated Repository for Various Integrated Simulations); JARVIS Database; JARVIS Dataset; JARVIS dataset; JARVIS-Tools datasets; Joint Automated Repository for Various Integrated Simulations (JARVIS),https://jarvis.nist.gov; https://jarvis.nist.gov/; https://pages.nist.gov/jarvis/databases/,9,9,9
+dataset_68145cf04333,C2DB,C2DB (Computational 2D Materials Database); Computational 2D Materials Database (C2DB),https://c2db.fysik.dtu.dk/,2,2,2
+dataset_fb64b91da67e,2DMatPedia,2DMatPedia,,1,1,1
+dataset_12a3418563ef,Perovskite Halides Dataset (literature-curated),Perovskite Halides Dataset (literature-curated),,1,1,1
+dataset_b8405d6f3030,Li-containing Oxides Dataset (MP-derived),Li-containing Oxides Dataset (MP-derived),,1,1,1
+dataset_c106bbbaba02,Transition Metal Oxides Dataset (MP-derived),Transition Metal Oxides Dataset (MP-derived),,1,1,1
+dataset_3398d43c9118,Double Perovskite Oxides Database (Talapatra et al.),Double Perovskite Oxides Database (Talapatra et al.),,1,1,1
+dataset_9a7a3a5a092f,MC3D dataset,MC3D dataset,https://github.com/usnistgov/jarvis/tree/master/jarvis/core,1,1,1
+dataset_1b9ea456752c,HOIP Dataset,HOIP Dataset (Hybrid Organic–Inorganic Perovskite Dataset); Hybrid Organic-Inorganic Perovskite (HOIP) dataset,https://doi.org/10.1038/sdata.2017.152; https://doi.org/10.5061/dryad.gq3rg,2,2,2
+dataset_8030c6211eeb,HiBoFL Local Database (PET-derived),HiBoFL Local Database (PET-derived),,1,1,1
+dataset_da938cf04999,TextEdge,TextEdge,https://drive.google.com/drive/folders/1YCDBzwjwNRIc1FRkB662G3Y5AOWaokUG,1,1,1
+dataset_39bdea8c48d7,"380,743 Unlabeled Crystal Structures (Merchant et al. 2023-derived)","380,743 Unlabeled Crystal Structures (Merchant et al. 2023-derived)",,1,1,1
+dataset_487cfa495675,In-house DFT-relaxed novel structures dataset,In-house DFT-relaxed novel structures dataset,,1,1,1
+dataset_f652501a560b,OpenKIM Interatomic Potential Repository,OpenKIM Interatomic Potential Repository,https://openkim.org,1,1,1
+dataset_c666648c615a,Custom DFT dataset for FCC metals,Custom DFT dataset for FCC metals,,1,1,1
+dataset_44aa2507e9ca,RadonPy Polymer Dataset,RadonPy Polymer Dataset,,1,1,1
+dataset_bad7a184ddcb,AFLOW,AFLOW,https://aflowlib.org,1,1,1
+dataset_c9e7ecfca1a5,MoleculeNet,MoleculeNet,https://moleculenet.org,1,1,1
+dataset_fed40cdb3663,Materials Project (v2023.11.1) Dielectric Dataset,Materials Project (v2023.11.1) Dielectric Dataset,https://next-gen.materialsproject.org/api,1,1,1
+dataset_f5fc3794aeae,matbench_dielectric,Matbench Dielectric Task; matbench_dielectric,https://matbench.materialsproject.org/; https://matbench.materialsvirtuallab.org/,2,2,2
+dataset_9af6a2663ebe,JARVIS-2D,JARVIS-2D,https://jarvis.nist.gov,1,1,1
+dataset_7bc0d43a09a6,Harvard Organic Photovoltaic Dataset (HOPV),Harvard Organic Photovoltaic Dataset (HOPV),https://ndownloader.figshare.com/files/28814184,1,1,1
+dataset_f411da0b16e9,Flla,Flla,https://github.com/hackingmaterials/automatminer,1,1,1
+dataset_4cec85f7e56b,Dielectric Constant (DC) Database,Dielectric Constant (DC) Database,https://github.com/hackingmaterials/automatminer,1,1,1
+dataset_15268f4f647c,Piezoelectric Tensor (PT) Database,Piezoelectric Tensor (PT) Database,https://github.com/hackingmaterials/automatminer,1,1,1
+dataset_0e01c8954e53,Experimental Formation Energy (EFE),Experimental Formation Energy (EFE),https://github.com/hackingmaterials/automatminer,1,1,1
+dataset_9cdd86c92052,Kingsbury Experimental Formation Energy (KEFE),Kingsbury Experimental Formation Energy (KEFE),https://github.com/hackingmaterials/automatminer,1,1,1
+dataset_de06b5abdabd,Kingsbury Experimental Bandgap (KEB),Kingsbury Experimental Bandgap (KEB),https://github.com/hackingmaterials/automatminer,1,1,1
+dataset_b4597821bf19,Materials Project (MP) charge density dataset,Materials Project (MP) charge density dataset,https://api.materialsproject.org,1,1,1
+dataset_f281b31ea1d7,QM9 charge density dataset,QM9 charge density dataset,https://doi.org/10.1038/sdata.2014.22; https://doi.org/10.11583/DTU.16794500.v1,2,2,2
+dataset_0dd86632acbe,NMC (Nickel Manganese Cobalt) battery cathode dataset,NMC (Nickel Manganese Cobalt) battery cathode dataset,https://doi.org/10.11583/DTU.16837721.v1,1,1,1
+dataset_c17327be4ec0,GNoME materials dataset (subset),GNoME materials dataset (subset),https://doi.org/10.1038/s41586-023-06735-9,1,1,1
+dataset_876dcbb1c40c,MatScholar embeddings,MatScholar embeddings,https://doi.org/10.1038/s41586-019-1312-1,1,1,1
+dataset_25d67dd6d824,Mendeleev similarity metrics,Mendeleev similarity metrics,https://doi.org/10.1021/acs.chemmater.0c02922,1,1,1
+dataset_03047ecfd3fa,XRD features (from Pymatgen),XRD features (from Pymatgen),https://pymatgen.org,1,1,1
+dataset_bb3f8a1b6b1a,OFM (Orbital Field Matrix) features,OFM (Orbital Field Matrix) features,https://doi.org/10.1038/s41524-022-00822-2,1,1,1
+dataset_bbb9b2c9c374,Materials Project Phonon Database (DFPT-based),Materials Project Phonon Database (DFPT-based),,1,1,1
+dataset_ec1f8697696a,PhononDB (Kyoto University),PhononDB (Kyoto University),http://phonondb.mtl.kyoto-u.ac.jp/,1,1,1
+dataset_cf6d81744e01,Materials Project (MP) Γ-Phonon Database (VGNN-predicted),Materials Project (MP) Γ-Phonon Database (VGNN-predicted),https://osf.io/k5utb/,1,1,1
+dataset_1156b8b635d2,QM9,QM9,https://doi.org/10.6084/m9.figshare.978910; https://doi.org/10.6084/m9.figshare.978961; https://doi.org/10.6084/m9.figshare.c.978962,3,3,3
+dataset_5a37f415d2cf,Experimental round-robin CO₂ adsorption data for ZSM-5 zeolite,Experimental round-robin CO₂ adsorption data for ZSM-5 zeolite,https://doi.org/10.1007/s10450-018-9952-0,1,1,1
+dataset_4399a5640bb0,matbench_log_gvrh,matbench_log_gvrh,https://matbench.materialsproject.org/,1,1,1
+dataset_c8ab0d98814b,matbench_perovskites,matbench_perovskites,https://matbench.materialsproject.org/,1,1,1
+dataset_ad5cbf31abd4,MD charge density dataset,MD charge density dataset,https://doi.org/10.1038/ncomms1572,1,1,1
+dataset_06c899bfb490,Cubic charge density dataset,Cubic charge density dataset,https://doi.org/10.1038/s41597-022-00059-9,1,1,1
+dataset_a1d68951db7c,SuperCon3D,SuperCon3D,https://github.com/pincher-chen/SODNet,1,1,1
+dataset_0d530002ad88,Inorganic Crystal Structure Database,ICSD (Inorganic Crystal Structure Database); Inorganic Crystal Structure Database (ICSD),https://doi.org/10.18434/M32147; https://icsd.fiz-karlsruhe.de; https://icsd.products.fiz-karlsruhe.de/,4,4,4
+dataset_aed6baa5fc51,Matgen,Matgen,https://matgen.nscc-gz.cn,1,1,1
+dataset_c399a1d98a52,Perovskite Solar Cell (PSC) Database,Perovskite Solar Cell (PSC) Database,https://doi.org/10.1038/s41560-022-01002-7,1,1,1
+dataset_9d88fb60b961,Liu et al. experimental bandgap dataset,Liu et al. experimental bandgap dataset,https://doi.org/10.1016/j.orgel.2022.106426,1,1,1
+dataset_e21be1008a5c,Yang et al. experimental bandgap dataset,Yang et al. experimental bandgap dataset,https://doi.org/10.1021/acsami.3c04027,1,1,1
+dataset_4fb931dfc314,DFT-calculated bandgap dataset (PBE functional),DFT-calculated bandgap dataset (PBE functional),,1,1,1
+dataset_09580035b109,LipopDataset,LipopDataset,https://www.ebi.ac.uk/chembl/,1,1,1
+dataset_80faab50de18,FreeSolvDataset,FreeSolvDataset,https://github.com/deepchem/deepchem/tree/master/deepchem/datasets/freesolv,1,1,1
+dataset_8f0bbb4dba47,ESOLDataset,ESOLDataset,https://github.com/deepchem/deepchem/tree/master/deepchem/datasets/esol,1,1,1
+dataset_bff4dfeb3f50,OC22,OC22,https://opencatalystproject.org/,1,1,1
+dataset_453a17bc6476,Materials Project Trajectory Dataset (MPtrj),Materials Project Trajectory Dataset (MPtrj),https://doi.org/10.6084/m9.figshare.23713842,1,1,1
+dataset_b44f6b179185,CrysGNN Curated Dataset (800K crystal graphs),CrysGNN Curated Dataset (800K crystal graphs),https://github.com/kdmsit/crysgnn,1,1,1
+dataset_2c17b78bf754,MPF.2021.2.8,MPF.2021.2.8,http://doi.org/10.6084/m9.figshare.19470599,1,1,1
+dataset_ad9d170b2068,Zuo et al. DFT dataset,Zuo et al. DFT dataset,,1,1,1
+dataset_09b11245ebfb,MD17 and MD17-CCSD(T),MD17 and MD17-CCSD(T),,1,1,1
+dataset_d7a10bedca1f,Experimental formation energy dataset,Experimental formation energy dataset,https://github.com/wolverton-research-group/qmpy/blob/master/qmpy/data/thermodata/ssub.dat,1,1,1
+dataset_ff3e4d286db4,Experimental band gap dataset,Experimental band gap dataset,https://github.com/hackingmaterials/automatminer,1,1,1
+dataset_83fb3216ae5c,Synthesizability Dataset (author-curated),Synthesizability Dataset (author-curated),,1,1,1

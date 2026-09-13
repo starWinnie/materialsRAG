@@ -1,0 +1,477 @@
+{
+  "datasets": [
+    {
+      "dataset_key": "jarvis",
+      "canonical_name": "JARVIS-DFT 3D 2021",
+      "raw_names": [
+        "JARVIS",
+        "JARVIS-DFT 3D 2021",
+        "dft_3d_2021"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "crystals"
+      ],
+      "available_properties": [
+        "formation_energy_peratom",
+        "optb88vdw_total_energy",
+        "optb88vdw_bandgap",
+        "mbj_bandgap",
+        "ehull"
+      ],
+      "available_fields": [
+        "formation energy",
+        "total energy",
+        "bandgap (OPT)",
+        "bandgap (MBJ)",
+        "E hull"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We use three datasets: JARVIS (55,723 materials), MP (69,239 materials), and OQMD (817,636 materials), using snapshots available through a Python package (jarvis-tools). These datasets provide several material properties, such as formation energy and bandgap, simulated by DFT calculations.",
+          "page": 8,
+          "section": "Datasets.",
+          "inferred": false
+        },
+        {
+          "text": "The JARVIS-DFT 3D 2021 is a collection of 55,723 materials provided by Choudhary et al. (2020) and is accessible as dft_3d_2021 via jarvis-tools (or as dft_3d in older versions). These materials are annotated with various simulated properties using two DFT calculation methods, OptB88vdW (OPT) and TBmBJ (MBJ). Following recent studies (Yan et al., 2022; 2024; Lin et al., 2023; Taniai et al., 2024), we use formation energy (formation_energy_peratom), total energy (optb88vdw_total_energy), bandgap (optb88vdw_bandgap and mbj_bandgap), and energy above hull or E hull (ehull) as regression targets.",
+          "page": 17,
+          "section": "C DATASET SPECIFICATIONS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "mp",
+      "canonical_name": "Materials Project",
+      "raw_names": [
+        "MP",
+        "Materials Project",
+        "megnet"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "crystals"
+      ],
+      "available_properties": [
+        "e_form",
+        "gap_pbe",
+        "bulk_modulus",
+        "shear_modulus"
+      ],
+      "available_fields": [
+        "formation energy",
+        "bandgap",
+        "bulk modulus",
+        "shear modulus"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We use three datasets: JARVIS (55,723 materials), MP (69,239 materials), and OQMD (817,636 materials), using snapshots available through a Python package (jarvis-tools). These datasets provide several material properties, such as formation energy and bandgap, simulated by DFT calculations.",
+          "page": 8,
+          "section": "Datasets.",
+          "inferred": false
+        },
+        {
+          "text": "The Materials Project (MP) database (Jain et al., 2013) is an online public materials database providing various synthetic materials and their DFT-calculated properties. We specifically use its snapshot collected by Chen et al. (2019), which contains 69,239 materials and is accessible as megnet via jarvis-tools. Following recent studies (Yan et al., 2022; 2024; Lin et al., 2023; Taniai et al., 2024), we use formation energy (e_form), bandgap (gap pbe), bulk modulus (bulk modulus), and shear modulus (shear modulus) as regression targets. For bulk and shear modulus, we use the data splits provided by Yan et al. (2022).",
+          "page": 17,
+          "section": "C DATASET SPECIFICATIONS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "dataset_key": "oqmd",
+      "canonical_name": "Open Quantum Materials Database",
+      "raw_names": [
+        "OQMD",
+        "Open Quantum Materials Database",
+        "oqmd_3d_no_cfid"
+      ],
+      "dataset_type": "public_database",
+      "source_dataset_key": null,
+      "material_scope": [
+        "crystals"
+      ],
+      "available_properties": [
+        "_oqmd_delta_e",
+        "_oqmd_band_gap",
+        "_oqmd_stability"
+      ],
+      "available_fields": [
+        "formation energy",
+        "bandgap",
+        "energy above hull"
+      ],
+      "availability": "public",
+      "recommendable": true,
+      "evidence": [
+        {
+          "text": "We use three datasets: JARVIS (55,723 materials), MP (69,239 materials), and OQMD (817,636 materials), using snapshots available through a Python package (jarvis-tools). These datasets provide several material properties, such as formation energy and bandgap, simulated by DFT calculations.",
+          "page": 8,
+          "section": "Datasets.",
+          "inferred": false
+        },
+        {
+          "text": "The Open Quantum Materials Database (OQMD) is another online public materials database by Kirklin et al. (2015). We specifically use its snapshot provided as oqmd_3d_no_cfid in jarvis-tools, which contains 817,636 materials with three DFT-calculated properties: formation energy (_oqmd_delta_e), bandgap (_oqmd_band_gap), and energy above hull (_oqmd_stability). We use these properties as regression targets. We release our data splits along with our code.",
+          "page": 17,
+          "section": "C DATASET SPECIFICATIONS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ],
+  "dataset_uses": [
+    {
+      "stage_order": 1,
+      "dataset_key": "jarvis",
+      "usage_role": "source",
+      "purpose": "Acquire crystal structure and property data from public materials databases.",
+      "used_fields": [
+        "formation energy",
+        "total energy",
+        "bandgap (OPT)",
+        "bandgap (MBJ)",
+        "E hull"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 55723,
+      "evidence": [
+        {
+          "text": "We use three datasets: JARVIS (55,723 materials), MP (69,239 materials), and OQMD (817,636 materials), using snapshots available through a Python package (jarvis-tools). These datasets provide several material properties, such as formation energy and bandgap, simulated by DFT calculations.",
+          "page": 8,
+          "section": "Datasets.",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "mp",
+      "usage_role": "source",
+      "purpose": "Acquire crystal structure and property data from public materials databases.",
+      "used_fields": [
+        "formation energy",
+        "bandgap",
+        "bulk modulus",
+        "shear modulus"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 69239,
+      "evidence": [
+        {
+          "text": "We use three datasets: JARVIS (55,723 materials), MP (69,239 materials), and OQMD (817,636 materials), using snapshots available through a Python package (jarvis-tools). These datasets provide several material properties, such as formation energy and bandgap, simulated by DFT calculations.",
+          "page": 8,
+          "section": "Datasets.",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 1,
+      "dataset_key": "oqmd",
+      "usage_role": "source",
+      "purpose": "Acquire crystal structure and property data from public materials databases.",
+      "used_fields": [
+        "formation energy",
+        "bandgap",
+        "energy above hull"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 817636,
+      "evidence": [
+        {
+          "text": "We use three datasets: JARVIS (55,723 materials), MP (69,239 materials), and OQMD (817,636 materials), using snapshots available through a Python package (jarvis-tools). These datasets provide several material properties, such as formation energy and bandgap, simulated by DFT calculations.",
+          "page": 8,
+          "section": "Datasets.",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "jarvis",
+      "usage_role": "training",
+      "purpose": "Prepare data using standardized train/validation/test splits to ensure fair comparison.",
+      "used_fields": [
+        "formation energy",
+        "total energy",
+        "bandgap (OPT)",
+        "bandgap (MBJ)",
+        "E hull"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Table 1: Property prediction results on the JARVIS dataset. Accuracies are in mean absolute error. The sizes of training, validation, and test splits are listed under each property name. Bold indicates the best results, underline the second best. Full results covering earlier methods are in Appendix E. Form. energy Total energy Bandgap (OPT) Bandgap (MBJ) E hull 44578 / 5572 / 5572 44578 / 5572 / 5572 44578 / 5572 / 5572 14537 / 1817 / 1817 44296 / 5537 / 5537",
+          "page": 9,
+          "section": "Table 1",
+          "inferred": false
+        },
+        {
+          "text": "Table 1: Property prediction results on the JARVIS dataset. Accuracies are in mean absolute error. The sizes of training, validation, and test splits are listed under each property name. Bold indicates the best results, underline the second best. Full results covering earlier methods are in Appendix E. Form. energy Total energy Bandgap (OPT) Bandgap (MBJ) E hull 44578 / 5572 / 5572 44578 / 5572 / 5572 44578 / 5572 / 5572 14537 / 1817 / 1817 44296 / 5537 / 5537",
+          "page": 9,
+          "section": "Table 1",
+          "inferred": false
+        },
+        {
+          "text": "Table 1: Property prediction results on the JARVIS dataset. Accuracies are in mean absolute error. The sizes of training, validation, and test splits are listed under each property name. Bold indicates the best results, underline the second best. Full results covering earlier methods are in Appendix E. Form. energy Total energy Bandgap (OPT) Bandgap (MBJ) E hull 44578 / 5572 / 5572 44578 / 5572 / 5572 44578 / 5572 / 5572 14537 / 1817 / 1817 44296 / 5537 / 5537",
+          "page": 9,
+          "section": "Table 1",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "mp",
+      "usage_role": "training",
+      "purpose": "Prepare data using standardized train/validation/test splits to ensure fair comparison.",
+      "used_fields": [
+        "formation energy",
+        "bandgap",
+        "bulk modulus",
+        "shear modulus"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Table 2: Property prediction results on the MP dataset. Formation energy Bandgap Bulk modulus Shear modulus 60000 / 5000 / 4239 60000 / 5000 / 4239 4664 / 393 / 393 4664 / 392 / 393",
+          "page": 9,
+          "section": "Table 2",
+          "inferred": false
+        },
+        {
+          "text": "Table 2: Property prediction results on the MP dataset. Formation energy Bandgap Bulk modulus Shear modulus 60000 / 5000 / 4239 60000 / 5000 / 4239 4664 / 393 / 393 4664 / 392 / 393",
+          "page": 9,
+          "section": "Table 2",
+          "inferred": false
+        },
+        {
+          "text": "Table 2: Property prediction results on the MP dataset. Formation energy Bandgap Bulk modulus Shear modulus 60000 / 5000 / 4239 60000 / 5000 / 4239 4664 / 393 / 393 4664 / 392 / 393",
+          "page": 9,
+          "section": "Table 2",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 2,
+      "dataset_key": "oqmd",
+      "usage_role": "training",
+      "purpose": "Prepare data using standardized train/validation/test splits to ensure fair comparison.",
+      "used_fields": [
+        "formation energy",
+        "bandgap",
+        "energy above hull"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Table A4: Property prediction results on the OQMD dataset (full). # Blocks Form. energy (eV/atom) Bandgap (eV) E hull (eV/atom) Method 654108 / 81763 / 81763 653388 / 81673 / 81673 654108 / 81763 / 81763",
+          "page": 19,
+          "section": "Table A4",
+          "inferred": false
+        },
+        {
+          "text": "Table A4: Property prediction results on the OQMD dataset (full). # Blocks Form. energy (eV/atom) Bandgap (eV) E hull (eV/atom) Method 654108 / 81763 / 81763 653388 / 81673 / 81673 654108 / 81763 / 81763",
+          "page": 19,
+          "section": "Table A4",
+          "inferred": false
+        },
+        {
+          "text": "Table A4: Property prediction results on the OQMD dataset (full). # Blocks Form. energy (eV/atom) Bandgap (eV) E hull (eV/atom) Method 654108 / 81763 / 81763 653388 / 81673 / 81673 654108 / 81763 / 81763",
+          "page": 19,
+          "section": "Table A4",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "jarvis",
+      "usage_role": "training",
+      "purpose": "Train the CrystalFramer model using Adam optimizer and inverse square root learning rate scheduling.",
+      "used_fields": [
+        "formation energy",
+        "total energy",
+        "bandgap (OPT)",
+        "bandgap (MBJ)",
+        "E hull"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "For the JARVIS dataset, we train our model from scratch by optimizing the mean absolute loss function using Adam (Kingma & Ba, 2015) for a total of 2000 epochs, while enabling the frames from the beginning.",
+          "page": 8,
+          "section": "Training settings.",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "mp",
+      "usage_role": "training",
+      "purpose": "Train the CrystalFramer model using Adam optimizer and inverse square root learning rate scheduling.",
+      "used_fields": [
+        "formation energy",
+        "bandgap",
+        "bulk modulus",
+        "shear modulus"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Following these and later studies (Lin et al., 2023; Yan et al., 2024; Taniai et al., 2024), we use the same data splits and cite their reported scores to reduce computational burden.",
+          "page": 8,
+          "section": "Training settings.",
+          "inferred": false
+        }
+      ],
+      "confidence": 0.9
+    },
+    {
+      "stage_order": 3,
+      "dataset_key": "oqmd",
+      "usage_role": "training",
+      "purpose": "Train the CrystalFramer model using Adam optimizer and inverse square root learning rate scheduling.",
+      "used_fields": [
+        "formation energy",
+        "bandgap",
+        "energy above hull"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "For the OQMD dataset, which was not used by the baseline method, we use similar settings with a larger batch size of 1024 materials and fewer epochs of 200.",
+          "page": 17,
+          "section": "D TRAINING SETTINGS",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "jarvis",
+      "usage_role": "test",
+      "purpose": "Evaluate model performance by computing mean absolute error (MAE) on test sets for multiple crystal properties.",
+      "used_fields": [
+        "formation energy",
+        "total energy",
+        "bandgap (OPT)",
+        "bandgap (MBJ)",
+        "E hull"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Tables 1 and 2 extensively compare the mean absolute errors of the proposed and existing methods for the JARVIS (5 tasks) and MP (4 tasks) datasets.",
+          "page": 8,
+          "section": "5.1 CRYSTAL PROPERTY PREDICTION",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "mp",
+      "usage_role": "test",
+      "purpose": "Evaluate model performance by computing mean absolute error (MAE) on test sets for multiple crystal properties.",
+      "used_fields": [
+        "formation energy",
+        "bandgap",
+        "bulk modulus",
+        "shear modulus"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": null,
+      "evidence": [
+        {
+          "text": "Tables 1 and 2 extensively compare the mean absolute errors of the proposed and existing methods for the JARVIS (5 tasks) and MP (4 tasks) datasets.",
+          "page": 8,
+          "section": "5.1 CRYSTAL PROPERTY PREDICTION",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    },
+    {
+      "stage_order": 4,
+      "dataset_key": "oqmd",
+      "usage_role": "test",
+      "purpose": "Evaluate model performance by computing mean absolute error (MAE) on test sets for multiple crystal properties.",
+      "used_fields": [
+        "formation energy",
+        "bandgap",
+        "energy above hull"
+      ],
+      "is_derived": false,
+      "construction_method": null,
+      "filter_conditions": [],
+      "sample_count": 81763,
+      "evidence": [
+        {
+          "text": "Unlike these studies, we also use the much larger-scale OQMD dataset to assess scalability.",
+          "page": 8,
+          "section": "Datasets.",
+          "inferred": false
+        },
+        {
+          "text": "Table 3: Property prediction results on the OQMD dataset. Form. energy (eV/atom) Bandgap (eV) E hull (eV/atom) Method 654108 / 81763 / 81763 653388 / 81673 / 81673 654108 / 81763 / 81763",
+          "page": 9,
+          "section": "Table 3",
+          "inferred": false
+        }
+      ],
+      "confidence": 1.0
+    }
+  ]
+}
