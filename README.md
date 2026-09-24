@@ -436,5 +436,6 @@ llm_wiki_all/raw/dataset_uses.csv
 普通 RAG：原始文档切片 → 检索 → 回答
 本项目：论文抽取结果 → Schema 化 Wiki 页面 → R&D 阶段标注 → Wiki 检索 / 知识图谱 → 回答
 ```
-#   m a t e r i a l s R A G  
+# materialsRAG
+ 
  
