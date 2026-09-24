@@ -248,8 +248,8 @@ def relative_to_output(path: Path, output_dir: Path) -> str:
         return str(path.resolve())
 
 
-def read_selected_dataset_ids(trace_path: Path) -> list[str]:
-    """从成功生成的 trace 中抽取最终推荐数据集编号。"""
+def read_selected_dataset_ids(trace_path: Path, result_field: str) -> list[str]:
+    """从 trace 中抽取指定选择器实际返回的数据集编号。"""
 
     if not trace_path.is_file():
         return []
@@ -257,9 +257,11 @@ def read_selected_dataset_ids(trace_path: Path) -> list[str]:
         trace = json.loads(trace_path.read_text(encoding="utf-8"))
     except (OSError, json.JSONDecodeError):
         return []
-    values = trace.get("adaptive_selected_dataset_ids")
-    if not isinstance(values, list) or not values:
-        values = trace.get("selected_dataset_ids", [])
+    key = (
+        "adaptive_selected_dataset_ids"
+        if result_field == "adaptive" else "selected_dataset_ids"
+    )
+    values = trace.get(key, [])
     return [str(value) for value in values] if isinstance(values, list) else []
 
 
@@ -267,6 +269,7 @@ def write_summaries(
     output_dir: Path,
     query_file: Path,
     retriever: Path,
+    result_field: str,
     results: list[CaseResult],
 ) -> None:
     """每完成一条 Query 就重写汇总，保证中断后仍保留已有结果。"""
@@ -275,6 +278,7 @@ def write_summaries(
         "updated_at": datetime.now().astimezone().isoformat(),
         "query_file": str(query_file.resolve()),
         "retriever": str(retriever.resolve()),
+        "result_field": result_field,
         "total_recorded": len(results),
         "success_count": sum(item.status in {"success", "skipped_existing"} for item in results),
         "failed_count": sum(item.status == "failed" for item in results),
@@ -358,6 +362,15 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--fail-fast", action="store_true", help="第一条失败后立即停止")
     parser.add_argument("--dry-run", action="store_true", help="只解析并打印 Query，不调用 API")
     parser.add_argument(
+        "--result-field",
+        choices=("selected", "adaptive"),
+        default="selected",
+        help=(
+            "汇总和评测的结果来源；默认selected与--selection-mode实际输出一致，"
+            "adaptive仅用于单独分析旧的自适应诊断选择器"
+        ),
+    )
+    parser.add_argument(
         "retriever_args",
         nargs=argparse.REMAINDER,
         help="传递给检索脚本的额外参数；前面需要使用 --",
@@ -436,7 +449,7 @@ def main() -> int:
         relative_stderr = relative_to_output(stderr_path, output_dir)
 
         if args.resume and trace_path.is_file():
-            selected_ids = read_selected_dataset_ids(trace_path)
+            selected_ids = read_selected_dataset_ids(trace_path, args.result_field)
             if selected_ids:
                 result = CaseResult(
                     case_id=case.case_id,
@@ -452,7 +465,7 @@ def main() -> int:
                     error="",
                 )
                 results.append(result)
-                write_summaries(output_dir, query_file, retriever, results)
+                write_summaries(output_dir, query_file, retriever, args.result_field, results)
                 print(f"[{position}/{len(cases)}] {case.case_id}: 已有 trace，跳过。")
                 continue
 
@@ -508,7 +521,7 @@ def main() -> int:
         elapsed = time.perf_counter() - started
         stdout_path.write_text(stdout_text, encoding="utf-8")
         stderr_path.write_text(stderr_text, encoding="utf-8")
-        selected_ids = read_selected_dataset_ids(trace_path)
+        selected_ids = read_selected_dataset_ids(trace_path, args.result_field)
         result = CaseResult(
             case_id=case.case_id,
             title=case.title,
@@ -523,7 +536,7 @@ def main() -> int:
             error=error,
         )
         results.append(result)
-        write_summaries(output_dir, query_file, retriever, results)
+        write_summaries(output_dir, query_file, retriever, args.result_field, results)
 
         if status == "success":
             print(

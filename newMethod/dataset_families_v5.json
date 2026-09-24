@@ -1,0 +1,5 @@
+{
+  "schema_version": "1.0",
+  "description": "Optional evidence-backed family overrides. source_dataset_id relationships remain the primary family source.",
+  "families": []
+}

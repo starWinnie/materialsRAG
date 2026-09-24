@@ -1,9 +1,10 @@
 1. 32_Perovskite_Bandgap_Database
-  使用的数据集：Perovskite Solar Cell (PSC) Database
+  使用的数据集：
   Materials Project database
 
 2. 33_DenseGNN
-  使用的数据集：JARVIS-DFT
+  使用的数据集：
+  JARVIS-DFT
   Materials Project
   QM9
   LipopDataset
@@ -16,8 +17,6 @@
   使用的数据集：
   Materials Project (2021 snapshot)
   Open Quantum Materials Database (OQMD, 2021 snapshot)
-  Inorganic Crystal Structure Database (ICSD)
-  Wang–Botti–Marques (WBM) dataset
     
 4. 35_CHGNet
   使用的数据集：
@@ -36,14 +35,13 @@
   
 7. 38_Matformer
   使用的数据集：
-  The Materials Project
-  JARVIS (Joint Automated Repository for Various Integrated Simulations)
+  Materials Project
+  JARVIS
   
 8. 39_M3GNet_Preprint
   使用的数据集：
   Materials Project
   ICSD 2019
-  Zuo et al. single-element IAP dataset
   MD17 and MD17-CCSD(T)
   
 9. 40_ALIGNN
@@ -72,3 +70,4 @@
   Inorganic Crystal Structure Database (ICSD)
   Materials Project
   
+

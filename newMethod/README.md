@@ -77,6 +77,36 @@ The default `--selection-mode recommend` preserves the original behavior and
 returns several useful alternatives. `--max-results` is an upper bound in both
 modes; in `minimum` mode the actual result can be smaller.
 
+## V3: evidence-gated Top-1 / minimal portfolio
+
+`retrieve_llm_wiki_node_edge_rerank_v3.py` keeps **retrieval ranking** and
+**final selection** separate. Its `evidence_top1` mode addresses the common
+case where several datasets look semantically similar but only one carries the
+fields and role requested by the user. It uses only the candidate Dataset and
+DatasetUse facts as evidence; it never assumes that every dataset used in a
+similar historical Task provides that Task's target property.
+
+```powershell
+python .\newMethod\retrieve_llm_wiki_node_edge_rerank_v3.py `
+  --selection-mode evidence_top1 `
+  --max-results 3 `
+  --question "为无机晶体势能面模型寻找同时含原子构型、能量、力、应力和磁矩的数据集"
+```
+
+For one explicit need, this returns the highest-ranked candidate that has
+evidence for that need (Top-1). For multiple explicit needs, it returns a
+small portfolio: each later dataset must cover a previously uncovered need.
+Requests such as "use a benchmark for comparison" or "perform experimental
+validation" must be stated in the query before benchmark or validation-only
+datasets become required. The trace field `selection_diagnostics` records the
+required needs, supporting candidates, winners, and uncovered needs.
+
+The draft task-need labels in `../testQuery/task_need_drafts.json` and their
+annotation rules in `../testQuery/task_need_annotation_schema.md` are the
+evaluation counterpart. Do not evaluate this mode solely against all datasets
+used in the source paper: some are inactive unless their activation instruction
+appears in the query.
+
 The dense index is stored in `newMethod/newWikiIndex/`. Every query also writes
 an auditable JSON trace to `newMethod/retrieval_runs/`; use `--trace-output` to
 choose its location. A final recommendation must resolve to at least one

@@ -3,6 +3,10 @@ import json
 import os
 import re
 import sys
+import subprocess
+import hashlib
+from datetime import datetime
+import time
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -158,18 +162,102 @@ def parse_args():
     parser = argparse.ArgumentParser(description="Run the 13 held-out tasks on the raw-name 30-paper Wiki.")
     parser.add_argument("--index-dir", type=Path, default=Path("wiki_index_30_raw_names"))
     parser.add_argument("--wiki-dir", type=Path, default=Path("llm_wiki_30_raw_names"))
-    parser.add_argument("--output", type=Path, default=Path("evaluation_output/raw_names_30/query_results.json"))
+    parser.add_argument("--output", type=Path, default=None)
     parser.add_argument("--seed-top-k", type=int, default=30)
     parser.add_argument("--top-k", type=int, default=10)
     parser.add_argument("--stage-top-k", type=int, default=8)
     parser.add_argument("--bm25-weight", type=float, default=0.35)
     parser.add_argument("--chat-model", default=os.getenv("QWEN_MODEL", DEFAULT_CHAT_MODEL))
+    parser.add_argument("--backend", choices=("legacy", "v3", "v4", "v5"), default="v5")
+    parser.add_argument("--dry-run", action="store_true", help="Print backend, output and all tasks without API calls")
+    parser.add_argument("--v3-index-dir", "--node-index-dir", type=Path, default=Path("evaluation_output/v3_test_index"))
+    parser.add_argument("--v3-rerank-url", "--rerank-url", default=None)
+    parser.add_argument("--resume", action="store_true", help="V3: reuse successful cases from this output")
+    parser.add_argument("--selection-mode", default=None,
+                        choices=("scoped", "topk", "evidence_top1", "minimum", "recommend"))
     return parser.parse_args()
+
+
+def run_v3(args):
+    """Run the exact held-out questions through V3/V4, preserving every trace."""
+    root = Path(__file__).resolve().parent
+    trace_dir = args.output.parent / "traces"
+    trace_dir.mkdir(parents=True, exist_ok=True)
+    code_paths = [root / f"newMethod/retrieve_llm_wiki_node_edge_rerank_{args.backend}.py", root / "newMethod/retrieve_llm_wiki.py"]
+    if args.backend in {"v4", "v5"}:
+        code_paths.append(root / f"newMethod/{args.backend}_scoped_selection.py")
+    if args.backend == "v5":
+        code_paths.extend([root / "newMethod/v5_family_evidence.py", root / "newMethod/dataset_families_v5.json"])
+    fingerprint = hashlib.sha256(b"".join(p.read_bytes() for p in code_paths)).hexdigest()
+    registry = root / "newMethod/newLLMWiki/registry/dataset_registry.jsonl"
+    names = {d["dataset_id"]: d["canonical_name"] for d in
+             (json.loads(line) for line in registry.read_text(encoding="utf-8").splitlines() if line.strip())}
+    previous = {}
+    if args.resume and args.output.exists():
+        previous = {r["number"]: r for r in json.loads(args.output.read_text(encoding="utf-8"))}
+    completed = []
+    for number, (label, question) in enumerate(QUERIES, 1):
+        old = previous.get(number, {})
+        if (old.get("status") == "success" and old.get("question") == question
+                and old.get("backend") == args.backend
+                and old.get("code_fingerprint") == fingerprint
+                and old.get("rerank_url") == args.v3_rerank_url
+                and old.get("selection_mode") == args.selection_mode
+                and Path(old.get("trace_file", "")).is_file()):
+            completed.append(old)
+            print(f"[{number}/{len(QUERIES)}] {label}: reused successful case", flush=True)
+            continue
+        print(f"[{number}/{len(QUERIES)}] {label}", flush=True)
+        trace_path = (trace_dir / f"q{number:03d}.json").resolve()
+        started = time.monotonic()
+        command = [sys.executable, str(root / f"newMethod/retrieve_llm_wiki_node_edge_rerank_{args.backend}.py"),
+                   "--index-dir", str(args.v3_index_dir.resolve()),
+                   "--question", question, "--selection-mode", args.selection_mode,
+                   "--trace-output", str(trace_path)]
+        if args.v3_rerank_url:
+            command.extend(["--rerank-url", args.v3_rerank_url])
+        result = subprocess.run(command, cwd=root, capture_output=True, encoding="utf-8", errors="replace")
+        (trace_dir / f"q{number:03d}.stdout.txt").write_text(result.stdout, encoding="utf-8")
+        (trace_dir / f"q{number:03d}.stderr.txt").write_text(result.stderr, encoding="utf-8")
+        trace = json.loads(trace_path.read_text(encoding="utf-8")) if result.returncode == 0 and trace_path.exists() else {}
+        record = {"number": number, "label": label, "question": question,
+                  "backend": args.backend, "selection_mode": args.selection_mode,
+                  "code_fingerprint": fingerprint,
+                  "rerank_url": args.v3_rerank_url,
+                  "status": "success" if trace else "failed", "return_code": result.returncode,
+                  "elapsed_seconds": round(time.monotonic() - started, 2),
+                  "selected_dataset_ids": trace.get("selected_dataset_ids", []),
+                  "portfolio_dataset_ids": trace.get("portfolio_dataset_ids", trace.get("selected_dataset_ids", [])),
+                  "datasets": [names[i] for i in trace.get("selected_dataset_ids", [])],
+                  "fallback_used": trace.get("selection_diagnostics", {}).get("fallback_used", False),
+                  "fallback_candidates": trace.get("selection_diagnostics", {}).get("fallback_candidates", []),
+                  "selection_diagnostics": trace.get("selection_diagnostics", {}),
+                  "trace_file": str(trace_path)}
+        completed.append(record)
+        save_results(args.output, completed)
+        print(f"  {record['status']}: {record['selected_dataset_ids']}", flush=True)
+        if args.backend in {"v4", "v5"} and record["status"] == "success":
+            print(f"  main portfolio: {record['portfolio_dataset_ids']}", flush=True)
+    print(f"Saved: {args.output}", flush=True)
+    return 0 if all(r["status"] == "success" for r in completed) else 1
 
 
 def main():
     load_dotenv()
     args = parse_args()
+    args.selection_mode = args.selection_mode or ("scoped" if args.backend in {"v4", "v5"} else "evidence_top1")
+    if args.output is None:
+        stamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        args.output = Path("evaluation_output") / f"{args.backend}_{args.selection_mode}_{stamp}" / "query_results.json"
+    if args.backend == "v3" and args.selection_mode == "scoped":
+        raise ValueError("scoped selection requires --backend v4 or v5")
+    print(f"Backend: {args.backend}; selection: {args.selection_mode}; tasks: {len(QUERIES)}; output: {args.output}", flush=True)
+    if args.dry_run:
+        for number, (label, _) in enumerate(QUERIES, 1):
+            print(f"[{number}/{len(QUERIES)}] {label}")
+        return 0
+    if args.backend in {"v3", "v4", "v5"}:
+        return run_v3(args)
     api_key = os.getenv("QWEN_API_KEY")
     if not api_key:
         raise ValueError("Please set QWEN_API_KEY in .env.")
@@ -218,6 +306,7 @@ def main():
         completed.append(
             {
                 "number": number,
+                "backend": "legacy",
                 "label": label,
                 "question": question,
                 "datasets": datasets,
@@ -241,4 +330,4 @@ def main():
 if __name__ == "__main__":
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8", errors="replace")
-    main()
+    sys.exit(main())

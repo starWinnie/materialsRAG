@@ -1,8 +1,0 @@
-{
-  "attempt": 1,
-  "errors": [
-    "dataset_uses[5].usage_role is not allowed",
-    "dataset_uses[6].usage_role is not allowed"
-  ],
-  "exception": null
-}

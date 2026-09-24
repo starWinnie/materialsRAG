@@ -1,8 +1,0 @@
-{
-  "source": "ontology_method\\ontology_wiki_30\\pages",
-  "source_type": "llm_wiki_pages",
-  "source_hash": "6393c3d236af1c7810876f028b6ee05993d204c6ef3f6efce142c806c5828e08",
-  "document_count": 253,
-  "embedding_model": "text-embedding-v4",
-  "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1"
-}

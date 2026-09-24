@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Node-only Retrieval -> Intent-lane RRF -> Task-Dataset Pair Completion -> Pair-local Match -> One-stage Rerank -> Dataset Aggregation.
+V4: V3 retrieval with a larger pair window, complete use provenance, and
+single-use scoped evidence matching followed by bounded portfolio search.
+
+Default selection mode is scoped. Unknown evidence is reported separately;
+the answer is rendered from the support matrix, not unioned registry fields.
+The inherited retrieval architecture below is retained for controlled tests.
 
 V3 changes the candidate granularity after graph expansion:
 
@@ -55,6 +60,7 @@ from dotenv import load_dotenv
 from openai import OpenAI
 
 import retrieve_llm_wiki as base
+from v4_scoped_selection import select_scoped, scoped_answer, reserve_need_pairs, calibrate_bounded_score, add_domain_routes
 
 
 NODE_EDGE_INDEX_VERSION = "node-only-hyperedge-rrf-4.0"
@@ -74,8 +80,8 @@ DEFAULT_SPECIFICITY_FLOOR = 0.10
 
 # V3 pair-level diversity controls. DatasetUse facts are evidence only; the
 # irreversible Top-K cutoff is applied to unique (Task, Dataset) pairs.
-DEFAULT_PAIR_TOP_K = 30
-DEFAULT_MAX_PAIRS_PER_TASK = 3
+DEFAULT_PAIR_TOP_K = 60
+DEFAULT_MAX_PAIRS_PER_TASK = 0
 DEFAULT_MAX_PAIRS_PER_DATASET = 5
 DEFAULT_SUPPORTING_USES_PER_PAIR = 3
 DEFAULT_SUPPORTING_PAIRS_PER_DATASET = 3
@@ -1139,6 +1145,27 @@ def select_node_seeds(
         counts[node_type] += 1
         selected_by_type[node_type].append(result["doc_id"])
 
+    # Use existing channel ranks to reserve two Dataset anchors per explicit
+    # domain, within the same Dataset quota. No fabricated node scores.
+    lanes = sorted({c.get("lane", "") for r in node_results for c in r.get("channels", [])
+                    if c.get("lane", "").startswith("domain_rescue:")})
+    reserved = []
+    for lane in lanes:
+        domain_nodes = [r for r in node_results if r["node_type"] == "Dataset" and
+                        any(c.get("lane") == lane for c in r.get("channels", []))]
+        domain_nodes.sort(key=lambda r: min(c["rank"] for c in r["channels"] if c.get("lane") == lane))
+        for r in domain_nodes[:2]:
+            if r["doc_id"] not in {n["doc_id"] for n in reserved}:
+                reserved.append(r)
+    if reserved:
+        originals = [r for r in seeds if r["node_type"] == "Dataset"]
+        combined = {r["doc_id"]: r for r in reserved}
+        for r in originals:
+            combined.setdefault(r["doc_id"], r)
+        kept = list(combined.values())[:limits["Dataset"]]
+        seeds = [r for r in seeds if r["node_type"] != "Dataset"] + kept
+        selected_by_type["Dataset"] = [r["doc_id"] for r in kept]
+
     return seeds, selected_by_type
 
 
@@ -1547,6 +1574,8 @@ def rank_task_dataset_pairs(
 def derive_rerank_url(chat_base_url: str, explicit_url: str | None) -> str:
     """从聊天端点推导rerank端点；显式QWEN_RERANK_URL优先。"""
 
+    if explicit_url and ("<" in explicit_url or ">" in explicit_url):
+        raise ValueError("QWEN_RERANK_URL包含未替换的占位符，请设置实际地址或通过 --rerank-url 指定标准端点")
     if explicit_url:
         return explicit_url.rstrip("/")
     parsed = urlsplit(chat_base_url)
@@ -1875,10 +1904,11 @@ def aggregate_reranked_pairs_to_datasets(
         }
 
         use_scores: dict[str, float] = {}
-        for pair in kept_pairs:
-            for use in representative_pair_uses(
-                store, pair, supporting_uses_per_pair
-            ):
+        # Preserve every use from reranked pairs for scope checking. A display
+        # limit must not discard the only use proving a required label bundle.
+        for pair in pairs:
+            for use_id in sorted(pair.supporting_use_ids):
+                use = store.use_by_id[use_id]
                 use_id = str(use["dataset_use_id"])
                 use_scores[use_id] = max(
                     use_scores.get(use_id, 0.0),
@@ -2069,7 +2099,7 @@ def recalibrate_dataset_candidates(
             penalty += 0.08
 
         original = candidate.final_score
-        candidate.final_score = max(0.0, min(1.0, original + bonus - penalty))
+        candidate.final_score = calibrate_bounded_score(original, bonus, penalty)
         if bonus or penalty:
             candidate.rerank_reason += (
                 f"; intent_calibration original={original:.6f} "
@@ -2370,6 +2400,11 @@ def select_final_datasets(
     candidate_top_k: int,
 ) -> tuple[list[NodeEdgeDatasetCandidate], dict[str, Any]]:
     """Keep retrieval Top-K separate from the downstream recommendation policy."""
+
+    if selection_mode == "scoped":
+        return select_scoped(store=store, plan=plan, question=question,
+                             ranked=ranked, max_results=max_results,
+                             candidate_top_k=candidate_top_k)
 
     if selection_mode == "topk":
         selected = ranked[:max(0, max_results)]
@@ -2678,6 +2713,8 @@ def run_node_edge_query(
 
     # A. Query understanding and deterministic multi-route query construction.
     plan, rewrite_raw = rewrite_hyperedge_query(client, chat_model, question)
+    if selection_mode == "scoped":
+        add_domain_routes(plan, question)
 
     # B. Node-only retrieval: Task / Stage / Dataset.
     bm25 = base.BM25Index(documents)
@@ -2725,6 +2762,14 @@ def run_node_edge_query(
         max_per_task=max_pairs_per_task,
         max_per_dataset=max_pairs_per_dataset,
     )
+
+    if selection_mode == "scoped":
+        pair_rrf_top, reservation = reserve_need_pairs(
+            store, plan, question, discovered_pairs, pair_rrf_top, pair_top_k,
+        )
+        selected_pair_ids = {p.pair_id for p in pair_rrf_top}
+        pair_rrf_dropped = [p for p in discovered_pairs.values() if p.pair_id not in selected_pair_ids]
+        pair_diversity_diagnostics["v4_need_reservation"] = reservation
 
     # D. One expensive semantic rerank over only pair Top-K.
     if use_rerank:
@@ -2784,7 +2829,7 @@ def run_node_edge_query(
     base.candidate_context = node_edge_candidate_context
     selection_candidates = (
         evidence_selection_candidates
-        if selection_mode == "evidence_top1" else candidates
+        if selection_mode in {"evidence_top1", "scoped"} else candidates
     )
     selected, selection_diagnostics = select_final_datasets(
         store=store,
@@ -2811,7 +2856,16 @@ def run_node_edge_query(
         base.build_evidence_package(store, plan, candidate)
         for candidate in selected
     ]
-    if use_answer_llm:
+    if selection_mode == "scoped":
+        # Render only the actual support matrix; an LLM must not turn unknown
+        # metadata or a unioned parent profile into a complete-support claim.
+        answer = scoped_answer(store, selected, selection_diagnostics)
+        answer_raw = ""
+        validation_errors = []
+        for package in packages:
+            package["v4_scope_warning"] = "Registry fields are discovery metadata, not a joint capability claim."
+            package["v4_scoped_support"] = selection_diagnostics["candidate_evidence"][package["dataset_id"]]
+    elif use_answer_llm:
         answer, answer_raw = base.generate_answer(
             client,
             chat_model,
@@ -2839,7 +2893,7 @@ def run_node_edge_query(
 
     trace = {
         "created_at": base.utc_now(),
-        "pipeline": "node_only_lane_rrf_task_dataset_pair_v3",
+        "pipeline": "node_only_lane_rrf_task_dataset_pair_v4_scoped",
         "question": question,
         "query_plan": asdict(plan),
         "rewrite_raw": rewrite_raw,
@@ -2899,6 +2953,7 @@ def run_node_edge_query(
         "evidence_selection_candidate_ids": [
             candidate.dataset_id for candidate in evidence_selection_candidates
         ],
+        "selection_candidates": [dataset_trace(c) for c in selection_candidates],
         "ranked_candidates": [
             dataset_trace(candidate) for candidate in candidates
         ],
@@ -2913,6 +2968,7 @@ def run_node_edge_query(
         "selected_dataset_ids": [
             candidate.dataset_id for candidate in selected
         ],
+        "portfolio_dataset_ids": selection_diagnostics.get("portfolio_dataset_ids", [c.dataset_id for c in selected]),
         "adaptive_selection_diagnostics": adaptive_selection_diagnostics,
         "adaptive_selected_dataset_ids": [
             candidate.dataset_id for candidate in adaptive_selected
@@ -2930,7 +2986,7 @@ def parse_args() -> argparse.Namespace:
     script_dir = Path(__file__).resolve().parent
     parser = argparse.ArgumentParser(
         description=(
-            "V3: Node-only retrieval -> Task-Dataset pair completion/rerank "
+            "V4: Node-only retrieval -> Task-Dataset pair completion/rerank "
             "-> Dataset aggregation -> optional minimum-set recommendation"
         )
     )
@@ -3040,10 +3096,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--minimum-score", type=float, default=0.25)
     parser.add_argument(
         "--selection-mode",
-        choices=("topk", "evidence_top1", "minimum", "recommend"),
-        default="topk",
+        choices=("scoped", "topk", "evidence_top1", "minimum", "recommend"),
+        default="scoped",
         help=(
-            "topk直接返回检索排名；evidence_top1按用户明确需求选择有证据的主候选；"
+            "scoped使用单条证据的完整需求匹配并输出待核实候选；topk直接返回检索排名；evidence_top1为V3基线；"
             "minimum只作为检索后的最小数据集组合层；recommend保留原基础模块推荐器"
         ),
     )

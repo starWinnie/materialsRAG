@@ -1,0 +1,117 @@
+[
+  {
+    "case_id": "q001",
+    "source_paper_id": "P032",
+    "review_status": "draft",
+    "query_scope": "预测混合 ABX3 钙钛矿的带隙；未要求迁移学习预训练、DFT 对照或基准比较。",
+    "needs": [
+      {
+        "need_id": "N1",
+        "description": "混合 ABX3 钙钛矿的实验带隙监督标签",
+        "required": true,
+        "trigger_text": "Predicting the bandgaps of mixed ABX3 perovskites",
+        "acceptable_roles": ["training", "fine_tuning", "test", "evaluation"],
+        "required_material_scope": ["mixed ABX3 perovskite", "Cs/FA/MA-Pb/Sn-Cl/Br/I"],
+        "required_properties": ["band gap"],
+        "required_fields": ["composition"],
+        "acceptable_dataset_names": [
+          "Perovskite Solar Cell (PSC) Database",
+          "Liu et al. experimental bandgap dataset",
+          "Yang et al. experimental bandgap dataset"
+        ],
+        "evidence_rule": "同一 Dataset profile 或 DatasetUse 必须同时证明钙钛矿材料范围、composition 和实验 band gap 标签。"
+      },
+      {
+        "need_id": "N2",
+        "description": "面向混卤热力学/偏析机理的计算带隙或相稳定性辅助数据",
+        "required": false,
+        "activation_instruction": "使用 DFT 结果辅助建模、比较实验与计算偏差，或显式建模相稳定性/卤素偏析能量",
+        "acceptable_roles": ["training", "pretraining", "validation"],
+        "acceptable_dataset_names": ["DFT-calculated bandgap dataset (PBE functional)"]
+      },
+      {
+        "need_id": "N3",
+        "description": "大规模通用材料预训练数据",
+        "required": false,
+        "activation_instruction": "采用 Materials Project 预训练权重或明确要求迁移学习预训练",
+        "acceptable_roles": ["pretraining", "source"],
+        "acceptable_dataset_names": ["Materials Project database"]
+      }
+    ],
+    "paper_used_datasets": [
+      {"dataset_name": "Perovskite Solar Cell (PSC) Database", "paper_role": "experimental fine-tuning/evaluation", "need_ids": ["N1"], "include_for_current_query": true},
+      {"dataset_name": "Liu et al. experimental bandgap dataset", "paper_role": "experimental training augmentation", "need_ids": ["N1"], "include_for_current_query": true},
+      {"dataset_name": "Yang et al. experimental bandgap dataset", "paper_role": "experimental training augmentation", "need_ids": ["N1"], "include_for_current_query": true},
+      {"dataset_name": "DFT-calculated bandgap dataset (PBE functional)", "paper_role": "transfer-learning auxiliary", "need_ids": ["N2"], "include_for_current_query": false},
+      {"dataset_name": "Materials Project database", "paper_role": "pre-training source", "need_ids": ["N3"], "include_for_current_query": false}
+    ],
+    "annotation_evidence": "outputs/papers/32_Perovskite_Bandgap_Database.json"
+  },
+  {
+    "case_id": "q003",
+    "source_paper_id": "P034",
+    "review_status": "draft",
+    "query_scope": "从晶体结构预测无机晶体的凸包稳定性；未要求实验可合成性验证或与既有工作比较。",
+    "needs": [
+      {
+        "need_id": "N1",
+        "description": "无机晶体结构、总能量/形成能及相稳定性标签",
+        "required": true,
+        "trigger_text": "estimating their decomposition energy relative to the convex hull",
+        "acceptable_roles": ["training", "reference", "candidate_generation"],
+        "required_material_scope": ["inorganic crystals"],
+        "required_properties": ["total energy", "formation energy", "decomposition energy or phase stability"],
+        "required_fields": ["crystal structure"],
+        "acceptable_dataset_names": ["Materials Project (2021 snapshot)", "Open Quantum Materials Database (OQMD, 2021 snapshot)"],
+        "evidence_rule": "同一 Dataset profile 或 DatasetUse 必须支持无机晶体结构与构建凸包所需的能量/稳定性信息；MP 与 OQMD 是可替代或可联合的来源。"
+      },
+      {
+        "need_id": "N2",
+        "description": "实验已实现晶体的可合成性验证",
+        "required": false,
+        "activation_instruction": "验证预测候选是否已有实验实现，或报告实验外部验证",
+        "acceptable_roles": ["validation", "test"],
+        "acceptable_dataset_names": ["Inorganic Crystal Structure Database (ICSD)"]
+      },
+      {
+        "need_id": "N3",
+        "description": "与先前稳定结构结果的对比基线",
+        "required": false,
+        "activation_instruction": "与既有稳定结构库进行比较或复现论文中的 previous-work baseline",
+        "acceptable_roles": ["benchmark", "reference"],
+        "acceptable_dataset_names": ["Wang–Botti–Marques (WBM) dataset"]
+      }
+    ],
+    "paper_used_datasets": [
+      {"dataset_name": "Materials Project (2021 snapshot)", "paper_role": "training/reference", "need_ids": ["N1"], "include_for_current_query": true},
+      {"dataset_name": "Open Quantum Materials Database (OQMD, 2021 snapshot)", "paper_role": "training/reference", "need_ids": ["N1"], "include_for_current_query": true},
+      {"dataset_name": "Inorganic Crystal Structure Database (ICSD)", "paper_role": "experimental validation", "need_ids": ["N2"], "include_for_current_query": false},
+      {"dataset_name": "Wang–Botti–Marques (WBM) dataset", "paper_role": "previous-work comparative reference", "need_ids": ["N3"], "include_for_current_query": false}
+    ],
+    "annotation_evidence": "outputs/papers/34_GNoME.json"
+  },
+  {
+    "case_id": "q004",
+    "source_paper_id": "P035",
+    "review_status": "draft",
+    "query_scope": "从原子结构拟合无机晶体的势能面，且明确要求能量、力、应力和磁矩。",
+    "needs": [
+      {
+        "need_id": "N1",
+        "description": "无机晶体构型的联合势能面标签",
+        "required": true,
+        "trigger_text": "energy, forces, stresses, and magnetic moments",
+        "acceptable_roles": ["training", "validation", "test"],
+        "required_material_scope": ["inorganic crystalline materials"],
+        "required_properties": ["energy", "forces", "stresses", "magnetic moments"],
+        "required_fields": ["atomic structure"],
+        "acceptable_dataset_names": ["Materials Project Trajectory Dataset (MPtrj)"],
+        "evidence_rule": "同一 Dataset profile 或 DatasetUse 必须同时提供原子构型、能量、力、应力和磁矩；只包含其中一部分标签的数据集不能覆盖该 Need。"
+      }
+    ],
+    "paper_used_datasets": [
+      {"dataset_name": "Materials Project Trajectory Dataset (MPtrj)", "paper_role": "joint PES training data", "need_ids": ["N1"], "include_for_current_query": true}
+    ],
+    "annotation_evidence": "outputs/papers/35_CHGNet.json"
+  }
+]
