@@ -37,5 +37,5 @@
 
 ## Dataset evidence
 
-- P028, PDF page 5: "Note that these datasets contain all varieties of data modalities, such as atomic structure, images, spectra, and text. In Fig. 5, we show the fractional distribution of periodic table elements in the entire dataset. We ﬁnd that the most common elements are C, N, O, Cu, which is similar to the natural abundance of these elements."
-- P028, PDF page 5: "In this case, qe-tb (ﬁtting dataset for ThreeBodyTB.jl72) is one of the largest datasets available in the leaderboard."
+- P028, PDF page 5: "Note that these datasets contain all varieties of data modalities, such as atomic structure, images, spectra, and text. In Fig. 5, we show the fractional distribution of periodic table elements in the entire dataset. We find that the most common elements are C, N, O, Cu, which is similar to the natural abundance of these elements."
+- P028, PDF page 5: "In this case, qe-tb (fitting dataset for ThreeBodyTB.jl72) is one of the largest datasets available in the leaderboard."

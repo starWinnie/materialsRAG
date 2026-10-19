@@ -38,4 +38,4 @@
 
 ## Dataset evidence
 
-- P017, PDF page 3, Dataset: "The ESOL dataset provides measurements of aqueous solubility for small molecules, FreeSolv contains experimental and calculated hydration free energies for small neutral molecules in water, Lipophilicity reports octanol/water distribution coefﬁcients, and BACE includes binding afﬁnities of small molecules to human β-secretase 1 (BACE-1)."
+- P017, PDF page 3, Dataset: "The ESOL dataset provides measurements of aqueous solubility for small molecules, FreeSolv contains experimental and calculated hydration free energies for small neutral molecules in water, Lipophilicity reports octanol/water distribution coefficients, and BACE includes binding affinities of small molecules to human β-secretase 1 (BACE-1)."

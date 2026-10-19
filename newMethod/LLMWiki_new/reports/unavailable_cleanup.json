@@ -1,0 +1,899 @@
+{
+  "created_at": "2026-10-12T03:07:40.396097+00:00",
+  "criterion": "availability == not_directly_available",
+  "before": {
+    "papers": 95,
+    "tasks": 95,
+    "stages": 555,
+    "datasets": 300,
+    "dataset_uses": 743
+  },
+  "after": {
+    "papers": 95,
+    "tasks": 95,
+    "stages": 555,
+    "datasets": 167,
+    "dataset_uses": 423
+  },
+  "deleted_datasets": [
+    {
+      "dataset_id": "D_P002_held_out_inversion_symmetric_space_groups_dataset",
+      "name": "held-out inversion-symmetric space groups dataset"
+    },
+    {
+      "dataset_id": "D_P002_synthetic_orbit_distance_dataset",
+      "name": "synthetic orbit distance dataset"
+    },
+    {
+      "dataset_id": "D_P005_double_perovskite_oxides_database",
+      "name": "Double perovskite oxides database"
+    },
+    {
+      "dataset_id": "D_P005_perovskite_halides_dataset_from_literature",
+      "name": "Perovskite halides dataset from literature"
+    },
+    {
+      "dataset_id": "D_P005_perovskite_oxide_candidate_space",
+      "name": "Perovskite oxide candidate space"
+    },
+    {
+      "dataset_id": "D_P006_hybrid_organic_inorganic_perovskite_hoip_dataset",
+      "name": "Hybrid Organic-Inorganic Perovskite (HOIP) dataset"
+    },
+    {
+      "dataset_id": "D_P007_eatgnn_2d_piezoelectric_dataset",
+      "name": "EATGNN 2D piezoelectric dataset"
+    },
+    {
+      "dataset_id": "D_P007_eatgnn_bulk_piezoelectric_dataset",
+      "name": "EATGNN bulk piezoelectric dataset"
+    },
+    {
+      "dataset_id": "D_P008_first_level_dataset",
+      "name": "first-level dataset"
+    },
+    {
+      "dataset_id": "D_P008_local_database",
+      "name": "local database"
+    },
+    {
+      "dataset_id": "D_P008_second_level_dataset",
+      "name": "second-level dataset"
+    },
+    {
+      "dataset_id": "D_P013_materials_project_elastic_data_gap",
+      "name": "Materials Project Elastic Data Gap"
+    },
+    {
+      "dataset_id": "D_P013_novel_structures_dataset",
+      "name": "Novel Structures Dataset"
+    },
+    {
+      "dataset_id": "D_P014_dft_computed_small_scale_predictors_for_seven_fcc_metals",
+      "name": "DFT-computed small-scale predictors for seven FCC metals"
+    },
+    {
+      "dataset_id": "D_P014_openkim_derived_statistical_pool_of_153_interatomic_potentials_after_sf_jamming_exclusion",
+      "name": "OpenKIM-derived statistical pool of 153 interatomic potentials after SF jamming exclusion"
+    },
+    {
+      "dataset_id": "D_P014_openkim_derived_statistical_pool_of_163_interatomic_potentials_after_instability_filtering",
+      "name": "OpenKIM-derived statistical pool of 163 interatomic potentials after instability filtering"
+    },
+    {
+      "dataset_id": "D_P014_openkim_derived_statistical_pool_of_178_interatomic_potentials",
+      "name": "OpenKIM-derived statistical pool of 178 interatomic potentials"
+    },
+    {
+      "dataset_id": "D_P015_radonpy_polymer_dataset",
+      "name": "RadonPy polymer dataset"
+    },
+    {
+      "dataset_id": "D_P019_mp_candidate_set_for_virtual_screening_14_375_non_metal_materials",
+      "name": "MP candidate set for virtual screening (14,375 non-metal materials)"
+    },
+    {
+      "dataset_id": "D_P019_refined_mp_training_set_6648_structures",
+      "name": "Refined MP training set (6648 structures)"
+    },
+    {
+      "dataset_id": "D_P020_curated_crystal_tensor_property_dataset",
+      "name": "curated crystal tensor property dataset"
+    },
+    {
+      "dataset_id": "D_P026_embeddingood_test_set",
+      "name": "EmbeddingOOD test set"
+    },
+    {
+      "dataset_id": "D_P026_materials_project_composition_subset",
+      "name": "Materials Project composition subset"
+    },
+    {
+      "dataset_id": "D_P026_materials_project_structure_subset",
+      "name": "Materials Project structure subset"
+    },
+    {
+      "dataset_id": "D_P026_matscholar_nr",
+      "name": "Matscholar-nr"
+    },
+    {
+      "dataset_id": "D_P026_matscholarood_test_set",
+      "name": "MatscholarOOD test set"
+    },
+    {
+      "dataset_id": "D_P026_mendeleev_nr",
+      "name": "Mendeleev-nr"
+    },
+    {
+      "dataset_id": "D_P026_ofm_nr",
+      "name": "OFM-nr"
+    },
+    {
+      "dataset_id": "D_P026_xrd_nr",
+      "name": "XRD-nr"
+    },
+    {
+      "dataset_id": "D_P033_experimental_abx3_type_perovskite_bandgap_dataset",
+      "name": "Experimental ABX3-type perovskite bandgap dataset"
+    },
+    {
+      "dataset_id": "D_P033_experimental_cbm_and_vbm_dataset_for_abx3_type_perovskites",
+      "name": "Experimental CBM and VBM dataset for ABX3-type perovskites"
+    },
+    {
+      "dataset_id": "D_P033_subdivided_abx3_type_perovskite_datasets",
+      "name": "Subdivided ABX3-type perovskite datasets"
+    },
+    {
+      "dataset_id": "D_P036_hoip_experimental_band_gap_dataset",
+      "name": "HOIP experimental band gap dataset"
+    },
+    {
+      "dataset_id": "D_P037_band_gap_dataset",
+      "name": "band gap dataset"
+    },
+    {
+      "dataset_id": "D_P037_electrical_conductivity_dataset",
+      "name": "electrical conductivity dataset"
+    },
+    {
+      "dataset_id": "D_P037_list_of_55_compositions",
+      "name": "list of 55 compositions"
+    },
+    {
+      "dataset_id": "D_P040_10ni_30la_ceo2_catalyst",
+      "name": "10Ni/30La-CeO2 catalyst"
+    },
+    {
+      "dataset_id": "D_P040_10ni_ceo2_catalyst",
+      "name": "10Ni/CeO2 catalyst"
+    },
+    {
+      "dataset_id": "D_P040_30la_ceo2_nanorods",
+      "name": "30La-CeO2 nanorods"
+    },
+    {
+      "dataset_id": "D_P040_ceo2_nanorods",
+      "name": "CeO2 nanorods"
+    },
+    {
+      "dataset_id": "D_P041_argyrodite_type_test_set",
+      "name": "argyrodite-type test set"
+    },
+    {
+      "dataset_id": "D_P041_lpsc_fine_tuning_dataset",
+      "name": "LPSC fine-tuning dataset"
+    },
+    {
+      "dataset_id": "D_P041_non_argyrodite_type_test_set",
+      "name": "non-argyrodite-type test set"
+    },
+    {
+      "dataset_id": "D_P041_replay_set",
+      "name": "Replay set"
+    },
+    {
+      "dataset_id": "D_P041_smptrj_test_set",
+      "name": "sMPtrj test set"
+    },
+    {
+      "dataset_id": "D_P043_dft_calculated_formation_enthalpy_dataset_for_alnipd_and_alniti_ternary_systems",
+      "name": "DFT-calculated formation enthalpy dataset for Al–Ni–Pd and Al–Ni–Ti ternary systems"
+    },
+    {
+      "dataset_id": "D_P043_experimental_formation_enthalpy_dataset_for_alnipd_and_alniti_ternary_systems",
+      "name": "Experimental formation enthalpy dataset for Al–Ni–Pd and Al–Ni–Ti ternary systems"
+    },
+    {
+      "dataset_id": "D_P101_expanded_reactions_dataset",
+      "name": "Expanded reactions dataset"
+    },
+    {
+      "dataset_id": "D_P101_temporal_split_of_expanded_reactions",
+      "name": "Temporal split of expanded reactions"
+    },
+    {
+      "dataset_id": "D_P102_4_06_million_scientific_literature_articles_corpus",
+      "name": "4.06 Million Scientific Literature Articles Corpus"
+    },
+    {
+      "dataset_id": "D_P104_carolina_materials_database",
+      "name": "Carolina Materials Database"
+    },
+    {
+      "dataset_id": "D_P104_mio_dataset",
+      "name": "MIO dataset"
+    },
+    {
+      "dataset_id": "D_P104_tst_dataset",
+      "name": "TST dataset"
+    },
+    {
+      "dataset_id": "D_P107_matterchat_curated_dataset",
+      "name": "MatterChat Curated Dataset"
+    },
+    {
+      "dataset_id": "D_P108_combined_source_databases",
+      "name": "Combined Source Databases"
+    },
+    {
+      "dataset_id": "D_P108_extrapolated_property_dataframe",
+      "name": "Extrapolated Property DataFrame"
+    },
+    {
+      "dataset_id": "D_P108_generated_natural_language_material_narratives",
+      "name": "Generated Natural Language-Material Narratives"
+    },
+    {
+      "dataset_id": "D_P112_filtered_materials_project_subset_sb_te_sn_se_bi_s_band_gap_1_0_ev_energy_above_hull_0_ev",
+      "name": "filtered Materials Project subset (Sb/Te/Sn/Se/Bi/S, band gap > 1.0 eV, energy above hull > 0 eV)"
+    },
+    {
+      "dataset_id": "D_P112_integrated_dataset_from_previous_study_jia_et_al_2024",
+      "name": "integrated dataset from previous study (Jia et al. 2024)"
+    },
+    {
+      "dataset_id": "D_P116_aimd_for_amorphous_si",
+      "name": "AIMD for amorphous Si"
+    },
+    {
+      "dataset_id": "D_P116_ref_53_work_of_adhesion_data",
+      "name": "Ref. 53 work of adhesion data"
+    },
+    {
+      "dataset_id": "D_P120_mg_mof_74_adsorption_dataset",
+      "name": "Mg-MOF-74 adsorption dataset"
+    },
+    {
+      "dataset_id": "D_P120_mof_5_molecular_dynamics_dataset",
+      "name": "MOF-5 molecular dynamics dataset"
+    },
+    {
+      "dataset_id": "D_P120_orb_diffusion_pretraining_dataset",
+      "name": "Orb diffusion pretraining dataset"
+    },
+    {
+      "dataset_id": "D_P121_4079_candidate_2d_layered_materials",
+      "name": "4079 candidate 2D layered materials"
+    },
+    {
+      "dataset_id": "D_P201_16_2_million_candidate_high_entropy_alloy_compositions",
+      "name": "16.2 million candidate high-entropy alloy compositions"
+    },
+    {
+      "dataset_id": "D_P201_doe_based_dataset_of_119_multiprincipal_element_alloy_compositions",
+      "name": "DoE-based dataset of 119 multiprincipal element alloy compositions"
+    },
+    {
+      "dataset_id": "D_P202_d3s",
+      "name": "D3S"
+    },
+    {
+      "dataset_id": "D_P202_h3s_s1",
+      "name": "H3S-S1"
+    },
+    {
+      "dataset_id": "D_P202_h3s_s2",
+      "name": "H3S-S2"
+    },
+    {
+      "dataset_id": "D_P202_h3s_s3",
+      "name": "H3S-S3"
+    },
+    {
+      "dataset_id": "D_P202_h3s_s4",
+      "name": "H3S-S4"
+    },
+    {
+      "dataset_id": "D_P204_sns0_9se0_1",
+      "name": "SnS0.9Se0.1"
+    },
+    {
+      "dataset_id": "D_P204_sns0_9se0_1_0_03sns2",
+      "name": "SnS0.9Se0.1+0.03SnS2"
+    },
+    {
+      "dataset_id": "D_P204_sns0_9se0_1_xsns2",
+      "name": "SnS0.9Se0.1+xSnS2"
+    },
+    {
+      "dataset_id": "D_P206_al_0_3zr_0_2ce_0_2cu_wt_additively_manufactured_alloy",
+      "name": "Al-0.3Zr-0.2Ce-0.2Cu (wt.%) additively manufactured alloy"
+    },
+    {
+      "dataset_id": "D_P206_scheil_solidification_simulation_for_al_zr_ce_cu_alloy",
+      "name": "Scheil solidification simulation for Al-Zr-Ce-Cu alloy"
+    },
+    {
+      "dataset_id": "D_P207_atom_probe_tomography_datasets_from_nucapt",
+      "name": "Atom-probe tomography datasets from NUCAPT"
+    },
+    {
+      "dataset_id": "D_P207_w319_aluminum_alloy_samples",
+      "name": "W319 aluminum alloy samples"
+    },
+    {
+      "dataset_id": "D_P208_x6crnimovnb11_2_heat_treatment_experimental_dataset",
+      "name": "X6CrNiMoVNb11-2 heat treatment experimental dataset"
+    },
+    {
+      "dataset_id": "D_P210_71_polymer_dielectric_constant_dataset",
+      "name": "71-polymer dielectric constant dataset"
+    },
+    {
+      "dataset_id": "D_P211_alumina_pellets_sintered_across_temperature_range_130c1600c",
+      "name": "Alumina pellets sintered across temperature range (130°C–1600°C)"
+    },
+    {
+      "dataset_id": "D_P212_experimental_dataset_of_partially_sintered_alumina_zirconia_atz_and_mullite_ceramics_with_measured_p",
+      "name": "Experimental dataset of partially sintered alumina, zirconia, ATZ, and mullite ceramics with measured porosity, sound velocities, and elastic moduli"
+    },
+    {
+      "dataset_id": "D_P213_si3n4mnoal2o3_sps_sintered_samples_dataset",
+      "name": "Si3N4–MnO–Al2O3 SPS sintered samples dataset"
+    },
+    {
+      "dataset_id": "D_P214_optimized_pi_sio2_composite_models_for_each_functional_group_10_vol_sio2_9_grafting_rate",
+      "name": "optimized PI/SiO2 composite models for each functional group (10 vol.% SiO2, 9% grafting rate)"
+    },
+    {
+      "dataset_id": "D_P214_pi_chains_with_degree_of_polymerization_15",
+      "name": "PI chains with degree of polymerization 15"
+    },
+    {
+      "dataset_id": "D_P214_sio2_nanoparticles_grafted_with_nh2_ph_phcooh_phnh2_or_phcoch3_functional_groups",
+      "name": "SiO2 nanoparticles grafted with NH2, Ph, PhCOOH, PhNH2, or PhCOCH3 functional groups"
+    },
+    {
+      "dataset_id": "D_P214_spherical_sio2_nanoparticles_8_a_radius_capped_with_h_atoms",
+      "name": "spherical SiO2 nanoparticles (8 Å radius) capped with H atoms"
+    },
+    {
+      "dataset_id": "D_P219_pt_single_atom_decorated_tio2_surfaces",
+      "name": "Pt single-atom decorated TiO2 surfaces"
+    },
+    {
+      "dataset_id": "D_P219_sputtered_anatase_tio2_thin_films_on_fto_substrates",
+      "name": "Sputtered anatase TiO2 thin films on FTO substrates"
+    },
+    {
+      "dataset_id": "D_P222_first_principles_dft_calculations_for_low_and_high_entropy_pbse",
+      "name": "First-principles DFT calculations for low- and high-entropy PbSe"
+    },
+    {
+      "dataset_id": "D_P222_pb1ysnyse1xtexsx_2at_cu_series",
+      "name": "Pb1−ySnySe1−xTexSx-2at%Cu series"
+    },
+    {
+      "dataset_id": "D_P224_in_situ_sem_based_fiber_push_out_and_push_back_experimental_measurements",
+      "name": "In situ SEM-based fiber push-out and push-back experimental measurements"
+    },
+    {
+      "dataset_id": "D_P224_sem_surface_images_of_mr70_im_and_hs40_hm_carbon_fibers",
+      "name": "SEM surface images of MR70 IM and HS40 HM carbon fibers"
+    },
+    {
+      "dataset_id": "D_P225_equilibrated_semicrystalline_mpe_systems",
+      "name": "Equilibrated semicrystalline MPE systems"
+    },
+    {
+      "dataset_id": "D_P225_hydrogen_bond_analysis_data_for_mpe_systems",
+      "name": "Hydrogen bond analysis data for MPE systems"
+    },
+    {
+      "dataset_id": "D_P225_mpe_chain_structures_with_100_ethylene_units_and_functional_group_to_ethylene_unit_ratio_of_0_04",
+      "name": "MPE chain structures with 100 ethylene units and functional-group-to-ethylene-unit ratio of 0.04"
+    },
+    {
+      "dataset_id": "D_P225_representative_mpe_segment_pairs_for_dft_calculations",
+      "name": "Representative MPE segment pairs for DFT calculations"
+    },
+    {
+      "dataset_id": "D_P225_stressstrain_curves_for_semicrystalline_pe_and_mpes",
+      "name": "Stress–strain curves for semicrystalline PE and MPEs"
+    },
+    {
+      "dataset_id": "D_P227_chiralpak_ad_h_column_method_for_enantiomeric_ratio_determination",
+      "name": "Chiralpak AD-H column method for enantiomeric ratio determination"
+    },
+    {
+      "dataset_id": "D_P227_chiralpak_od_h_column_method_for_enantiomeric_ratio_determination",
+      "name": "Chiralpak OD-H column method for enantiomeric ratio determination"
+    },
+    {
+      "dataset_id": "D_P227_synthesized_biaryl_diol_substrates_1a1m",
+      "name": "Synthesized biaryl diol substrates 1a–1m"
+    },
+    {
+      "dataset_id": "D_P227_synthesized_peptide_catalysts_p1p9",
+      "name": "Synthesized peptide catalysts P1–P9"
+    },
+    {
+      "dataset_id": "D_P229_atomistic_simulation_data_for_mg_c_a_dislocations",
+      "name": "atomistic simulation data for Mg ⟨c+a⟩ dislocations"
+    },
+    {
+      "dataset_id": "D_P229_in_situ_tem_images_and_movies",
+      "name": "in situ TEM images and movies"
+    },
+    {
+      "dataset_id": "D_P229_submicrometer_size_mg_single_crystal_pillars",
+      "name": "submicrometer-size Mg single-crystal pillars"
+    },
+    {
+      "dataset_id": "D_P231_inconel_740_740h_creep_rupture_dataset_ornl",
+      "name": "Inconel 740/740H Creep-Rupture Dataset (ORNL)"
+    },
+    {
+      "dataset_id": "D_P231_inconel_740_740h_short_time_creep_rupture_subset_t_f_5_000_h",
+      "name": "Inconel 740/740H Short-Time Creep-Rupture Subset (t_f < 5,000 h)"
+    },
+    {
+      "dataset_id": "D_P232_fgh96_microstructural_characterization_dataset",
+      "name": "FGH96 microstructural characterization dataset"
+    },
+    {
+      "dataset_id": "D_P232_fgh96_pre_strain_creep_experimental_dataset",
+      "name": "FGH96 pre-strain creep experimental dataset"
+    },
+    {
+      "dataset_id": "D_P233_experimental_hcwci_alloys",
+      "name": "Experimental HCWCI Alloys"
+    },
+    {
+      "dataset_id": "D_P234_cr26_high_chromium_cast_iron_experimental_dataset",
+      "name": "Cr26 high-chromium cast iron experimental dataset"
+    },
+    {
+      "dataset_id": "D_P235_sps_processed_zrb220_vol_sic_ceramic_pellets",
+      "name": "SPS-processed ZrB2–20 vol% SiC ceramic pellets"
+    },
+    {
+      "dataset_id": "D_P235_zsw_powder_wc_milled_zrb220_vol_sic",
+      "name": "ZSW powder (WC-milled ZrB2–20 vol% SiC)"
+    },
+    {
+      "dataset_id": "D_P235_zsz_powder_zro2_milled_zrb220_vol_sic",
+      "name": "ZSZ powder (ZrO2-milled ZrB2–20 vol% SiC)"
+    },
+    {
+      "dataset_id": "D_P236_sio2_coated_ysz_aerogels_sio20ysz_sio210ysz_sio230ysz",
+      "name": "SiO2-coated YSZ aerogels (SiO2–0YSZ, SiO2–10YSZ, SiO2–30YSZ)"
+    },
+    {
+      "dataset_id": "D_P236_ysz_aerogels_with_0_10_and_30_mol_yo1_5",
+      "name": "YSZ aerogels with 0, 10, and 30 mol% YO1.5"
+    },
+    {
+      "dataset_id": "D_P237_cocrfemnni_equimolar_elemental_powder_mixture",
+      "name": "CoCrFeMnNi equimolar elemental powder mixture"
+    },
+    {
+      "dataset_id": "D_P237_cr2n_nitride_powder",
+      "name": "Cr2N nitride powder"
+    },
+    {
+      "dataset_id": "D_P238_7050_aluminum_alloy_plate",
+      "name": "7050 aluminum alloy plate"
+    },
+    {
+      "dataset_id": "D_P240_55_vol_alumina_slurry_with_1_2_wt_ce_64",
+      "name": "55 vol% alumina slurry with 1.2 wt% CE-64"
+    },
+    {
+      "dataset_id": "D_P240_dolapix_ce_64_dispersant",
+      "name": "Dolapix CE-64 dispersant"
+    },
+    {
+      "dataset_id": "D_P240_green_bodies_formed_by_pressure_filtration_at_0_4_mpa",
+      "name": "green bodies formed by pressure filtration at 0.4 MPa"
+    },
+    {
+      "dataset_id": "D_P240_green_bodies_formed_without_pressure_filtration",
+      "name": "green bodies formed without pressure filtration"
+    },
+    {
+      "dataset_id": "D_P240_sintered_alumina_ceramics_1300c_pressureless",
+      "name": "sintered alumina ceramics (1300°C, pressureless)"
+    },
+    {
+      "dataset_id": "D_P240_tm_dar_al2o3_powder",
+      "name": "TM-DAR α-Al2O3 powder"
+    },
+    {
+      "dataset_id": "D_P241_double_networks_prepared_from_randomly_cross_linked_single_networks",
+      "name": "Double networks prepared from randomly cross-linked single networks"
+    },
+    {
+      "dataset_id": "D_P241_double_networks_prepared_from_regularly_cross_linked_single_networks",
+      "name": "Double networks prepared from regularly cross-linked single networks"
+    },
+    {
+      "dataset_id": "D_P241_randomly_cross_linked_poly_n_butyl_acrylate_single_networks",
+      "name": "Randomly cross-linked poly(n-butyl acrylate) single networks"
+    },
+    {
+      "dataset_id": "D_P241_regularly_cross_linked_poly_n_butyl_acrylate_single_networks",
+      "name": "Regularly cross-linked poly(n-butyl acrylate) single networks"
+    },
+    {
+      "dataset_id": "D_P242_cf_ep_composite_laminates_prepared_from_electrochemically_treated_fibers",
+      "name": "CF/EP composite laminates prepared from electrochemically treated fibers"
+    },
+    {
+      "dataset_id": "D_P242_electrochemically_treated_t800h_carbon_fiber_samples",
+      "name": "Electrochemically treated T800H carbon fiber samples"
+    },
+    {
+      "dataset_id": "D_experimental_characterization_data_on_milled_wood_lignin_mwl",
+      "name": "Experimental characterization data on milled wood lignin (MWL)"
+    }
+  ],
+  "deleted_use_ids": [
+    "DU_P002_002",
+    "DU_P002_003",
+    "DU_P002_006",
+    "DU_P005_013",
+    "DU_P005_014",
+    "DU_P005_015",
+    "DU_P005_016",
+    "DU_P005_017",
+    "DU_P006_005",
+    "DU_P006_010",
+    "DU_P007_005",
+    "DU_P007_006",
+    "DU_P007_007",
+    "DU_P007_008",
+    "DU_P008_002",
+    "DU_P008_003",
+    "DU_P008_004",
+    "DU_P008_005",
+    "DU_P008_006",
+    "DU_P008_007",
+    "DU_P008_008",
+    "DU_P013_010",
+    "DU_P013_011",
+    "DU_P014_002",
+    "DU_P014_003",
+    "DU_P014_004",
+    "DU_P014_005",
+    "DU_P014_006",
+    "DU_P015_001",
+    "DU_P015_003",
+    "DU_P015_005",
+    "DU_P015_007",
+    "DU_P015_009",
+    "DU_P019_002",
+    "DU_P019_005",
+    "DU_P019_006",
+    "DU_P020_002",
+    "DU_P026_001",
+    "DU_P026_003",
+    "DU_P026_004",
+    "DU_P026_005",
+    "DU_P026_006",
+    "DU_P026_007",
+    "DU_P026_008",
+    "DU_P033_001",
+    "DU_P033_002",
+    "DU_P033_003",
+    "DU_P033_004",
+    "DU_P033_005",
+    "DU_P033_006",
+    "DU_P033_007",
+    "DU_P033_008",
+    "DU_P033_009",
+    "DU_P033_010",
+    "DU_P036_002",
+    "DU_P036_003",
+    "DU_P036_004",
+    "DU_P036_005",
+    "DU_P036_006",
+    "DU_P037_004",
+    "DU_P037_005",
+    "DU_P037_006",
+    "DU_P037_007",
+    "DU_P037_008",
+    "DU_P037_009",
+    "DU_P037_010",
+    "DU_P037_011",
+    "DU_P040_001",
+    "DU_P040_002",
+    "DU_P040_003",
+    "DU_P040_004",
+    "DU_P040_005",
+    "DU_P040_006",
+    "DU_P040_007",
+    "DU_P040_008",
+    "DU_P040_009",
+    "DU_P040_010",
+    "DU_P040_011",
+    "DU_P041_001",
+    "DU_P041_003",
+    "DU_P041_004",
+    "DU_P041_005",
+    "DU_P041_006",
+    "DU_P041_007",
+    "DU_P041_008",
+    "DU_P041_009",
+    "DU_P041_010",
+    "DU_P041_011",
+    "DU_P043_001",
+    "DU_P043_002",
+    "DU_P043_003",
+    "DU_P043_004",
+    "DU_P043_005",
+    "DU_P043_006",
+    "DU_P043_007",
+    "DU_P044_003",
+    "DU_P044_004",
+    "DU_P044_005",
+    "DU_P044_006",
+    "DU_P044_007",
+    "DU_P045_001",
+    "DU_P045_002",
+    "DU_P045_003",
+    "DU_P045_004",
+    "DU_P047_004",
+    "DU_P047_005",
+    "DU_P047_006",
+    "DU_P047_007",
+    "DU_P050_002",
+    "DU_P050_003",
+    "DU_P050_004",
+    "DU_P050_005",
+    "DU_P050_006",
+    "DU_P050_007",
+    "DU_P051_006",
+    "DU_P051_007",
+    "DU_P051_008",
+    "DU_P051_009",
+    "DU_P051_010",
+    "DU_P051_011",
+    "DU_P055_001",
+    "DU_P055_003",
+    "DU_P055_004",
+    "DU_P055_005",
+    "DU_P055_006",
+    "DU_P059_004",
+    "DU_P059_005",
+    "DU_P063_001",
+    "DU_P063_006",
+    "DU_P063_007",
+    "DU_P064_002",
+    "DU_P064_003",
+    "DU_P064_004",
+    "DU_P066_001",
+    "DU_P066_002",
+    "DU_P067_001",
+    "DU_P067_002",
+    "DU_P067_003",
+    "DU_P067_004",
+    "DU_P067_005",
+    "DU_P067_006",
+    "DU_P067_007",
+    "DU_P067_008",
+    "DU_P067_009",
+    "DU_P067_010",
+    "DU_P067_011",
+    "DU_P067_012",
+    "DU_P067_013",
+    "DU_P067_014",
+    "DU_P067_015",
+    "DU_P067_016",
+    "DU_P067_017",
+    "DU_P068_001",
+    "DU_P068_002",
+    "DU_P068_003",
+    "DU_P068_004",
+    "DU_P068_005",
+    "DU_P070_001",
+    "DU_P070_002",
+    "DU_P070_003",
+    "DU_P070_004",
+    "DU_P070_005",
+    "DU_P070_006",
+    "DU_P070_008",
+    "DU_P071_001",
+    "DU_P071_002",
+    "DU_P071_004",
+    "DU_P071_005",
+    "DU_P071_006",
+    "DU_P072_001",
+    "DU_P072_002",
+    "DU_P072_003",
+    "DU_P072_004",
+    "DU_P072_005",
+    "DU_P072_006",
+    "DU_P073_001",
+    "DU_P073_002",
+    "DU_P073_003",
+    "DU_P074_003",
+    "DU_P074_004",
+    "DU_P074_005",
+    "DU_P074_006",
+    "DU_P075_001",
+    "DU_P075_002",
+    "DU_P075_003",
+    "DU_P075_004",
+    "DU_P075_005",
+    "DU_P075_006",
+    "DU_P076_001",
+    "DU_P076_002",
+    "DU_P076_003",
+    "DU_P076_004",
+    "DU_P076_005",
+    "DU_P077_001",
+    "DU_P077_002",
+    "DU_P077_003",
+    "DU_P077_004",
+    "DU_P078_003",
+    "DU_P078_004",
+    "DU_P078_005",
+    "DU_P078_006",
+    "DU_P078_007",
+    "DU_P078_008",
+    "DU_P078_009",
+    "DU_P078_010",
+    "DU_P078_011",
+    "DU_P080_001",
+    "DU_P080_002",
+    "DU_P080_003",
+    "DU_P080_004",
+    "DU_P080_005",
+    "DU_P080_006",
+    "DU_P081_001",
+    "DU_P081_002",
+    "DU_P081_003",
+    "DU_P081_004",
+    "DU_P081_005",
+    "DU_P081_006",
+    "DU_P082_001",
+    "DU_P082_002",
+    "DU_P082_003",
+    "DU_P082_004",
+    "DU_P083_001",
+    "DU_P083_002",
+    "DU_P083_003",
+    "DU_P083_004",
+    "DU_P083_005",
+    "DU_P083_006",
+    "DU_P083_007",
+    "DU_P083_008",
+    "DU_P084_001",
+    "DU_P084_002",
+    "DU_P084_003",
+    "DU_P084_004",
+    "DU_P084_005",
+    "DU_P084_006",
+    "DU_P085_001",
+    "DU_P085_002",
+    "DU_P085_003",
+    "DU_P085_004",
+    "DU_P085_005",
+    "DU_P085_006",
+    "DU_P085_007",
+    "DU_P086_001",
+    "DU_P086_002",
+    "DU_P086_003",
+    "DU_P086_004",
+    "DU_P086_005",
+    "DU_P086_006",
+    "DU_P087_001",
+    "DU_P087_002",
+    "DU_P087_003",
+    "DU_P087_004",
+    "DU_P088_001",
+    "DU_P088_003",
+    "DU_P088_004",
+    "DU_P088_005",
+    "DU_P088_006",
+    "DU_P088_007",
+    "DU_P088_008",
+    "DU_P089_001",
+    "DU_P089_002",
+    "DU_P089_003",
+    "DU_P089_004",
+    "DU_P089_005",
+    "DU_P089_006",
+    "DU_P089_007",
+    "DU_P089_008",
+    "DU_P089_009",
+    "DU_P090_001",
+    "DU_P090_002",
+    "DU_P090_003",
+    "DU_P090_004",
+    "DU_P090_005",
+    "DU_P090_006",
+    "DU_P090_007",
+    "DU_P090_008",
+    "DU_P091_001",
+    "DU_P091_002",
+    "DU_P091_003",
+    "DU_P091_004",
+    "DU_P091_005",
+    "DU_P091_006",
+    "DU_P092_001",
+    "DU_P092_002",
+    "DU_P092_003",
+    "DU_P092_004",
+    "DU_P092_005",
+    "DU_P093_001",
+    "DU_P093_002",
+    "DU_P093_003",
+    "DU_P093_004",
+    "DU_P093_005",
+    "DU_P093_006",
+    "DU_P094_001",
+    "DU_P094_002",
+    "DU_P094_003",
+    "DU_P094_004",
+    "DU_P094_005",
+    "DU_P094_006",
+    "DU_P094_007",
+    "DU_P094_008",
+    "DU_P094_009",
+    "DU_P094_010",
+    "DU_P094_011",
+    "DU_P095_001",
+    "DU_P095_002",
+    "DU_P095_003",
+    "DU_P095_004",
+    "DU_P095_005",
+    "DU_P095_006",
+    "DU_P095_007",
+    "DU_P095_008",
+    "DU_P096_001",
+    "DU_P096_002",
+    "DU_P096_003",
+    "DU_P096_004",
+    "DU_P096_005",
+    "DU_P096_006",
+    "DU_P096_007"
+  ],
+  "updated_caches": [
+    "raw\\extractions\\P002\\normalized.json",
+    "raw\\extractions\\P005\\normalized.json",
+    "raw\\extractions\\P006\\normalized.json",
+    "raw\\extractions\\P007\\normalized.json",
+    "raw\\extractions\\P008\\normalized.json",
+    "raw\\extractions\\P013\\normalized.json",
+    "raw\\extractions\\P014\\normalized.json",
+    "raw\\extractions\\P015\\normalized.json",
+    "raw\\extractions\\P019\\normalized.json",
+    "raw\\extractions\\P020\\normalized.json",
+    "raw\\extractions\\P026\\normalized.json",
+    "raw\\extractions\\P033\\normalized.json",
+    "raw\\extractions\\P036\\normalized.json",
+    "raw\\extractions\\P037\\normalized.json",
+    "raw\\extractions\\P040\\normalized.json",
+    "raw\\extractions\\P041\\normalized.json",
+    "raw\\extractions\\P043\\normalized.json"
+  ],
+  "backup": "C:\\Users\\li\\Desktop\\材料大数据\\知识库构建_模拟PVLDB\\newMethod\\LLMWiki_new_before_unavailable_cleanup_20261012_110724_885000",
+  "retrieval_documents": 817,
+  "retrieval_use_documents": 423,
+  "new_fingerprint": "10e01b10bacc807e608d05cde33b57c1ec235cedb2b86c2581a8d1a1407ad038",
+  "requires_index_rebuild": true,
+  "note": "Historical extraction responses, audit logs, and prior experiments are preserved as archives, not active retrieval records."
+}

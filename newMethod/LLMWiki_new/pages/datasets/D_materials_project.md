@@ -9,42 +9,41 @@
 
 ## Raw names
 
-- Materials Project
+- Materials Project Database
+- Materials Project (MP) Database
 - MP
-- Materials Project41
+- Materials Project
 - Materials Project v.2022.10.28
+- MP3 v.2022.10.28
 - MP v.2022.10.28
 - v.2022.10.28 MP release
-- MP3 v.2022.10.28 database release
-- Materials Project (2023.6.23 version)
-- MP*
-- MP* dataset
-- Materials Project database
+- MP database v.2022.10.28
 - MP database
-- Materials Project (MP)
 - megnet
 - Materials Project 2021
 - MP21
+- MP 2021
 - Materials Project database (MP21)
-- The Materials Project
-- Materials Project v2023.11.1
-- MP v2023.11.1
+- Materials Project (MP)
 - Materials Project (MEGNet)
 - MP dataset
+- materials-project
+- Materials Projects
+- computational database
+- MP-2018.6.1
+- Materials Project[6]
+- MP-crystals-2018.6.1
+- MP-crystals-2018.6.1 data set
 
 ## Observed material scopes
 
 - crystals
 - crystalline solids
 - bulk semiconductors
-- bulk crystals
-- inorganic crystalline materials
 - inorganic crystals
 - inorganic compounds
-- oxides
 - semiconductors
 - crystal structures
-- crystal materials
 - crystalline materials
 - inorganic materials
 - inorganic crystalline solids
@@ -55,7 +54,10 @@
 - perovskites (e.g., SrTiO3)
 - materials of technological interest
 - oxide materials
-- perfect and defect materials
+- ternary inorganic crystal materials
+- 20 space groups (5 crystal systems)
+- thermoelectric materials containing Sb, Te, Sn, Se, Bi, S
+- condensed matter materials
 
 ## Observed research tasks
 
@@ -64,20 +66,23 @@
 - prediction of tensorial spectra
 - ML-guided materials discovery
 - Predicting thermodynamic stability of inorganic compounds
-- Generating universal atomic embeddings (UAEs) for crystal property prediction
 - Accurate piezoelectric tensor prediction
 - identifying semiconductors with ultralow lattice thermal conductivity
-- predicting the properties of crystalline materials
 - Crystal material property prediction
 - materials property prediction
 - Probing out-of-distribution generalization in machine learning for materials
 - Out-of-Distribution Property Prediction
-- Dielectric tensor prediction for inorganic materials
 - Predicting physical properties of materials from their crystal structures
 - electron density prediction
 - dataset redundancy control for material property prediction
 - benchmarking of materials design methods
 - Rational design of nanoscale stabilized oxide catalysts for OER
+- Predicting solid-state material properties
+- generative design of crystal materials with symmetry constraints
+- generation of natural language-material narratives
+- Construct materials maps reflecting the relation between the structural complexity and the experimental thermoelectric properties (zT values)
+- accurate property prediction in both molecules and crystals
+- crystal structure generation
 
 ## Observed research stages
 
@@ -86,9 +91,9 @@
 - candidate_screening
 - model_training
 - label_generation
+- candidate_generation
 - data_preparation
 - computational_validation
-- candidate_generation
 
 ## Observed properties
 
@@ -144,6 +149,26 @@
 - thermodynamic stability
 - bulk crystal structure
 - energy above hull
+- Perdew Burke-Ernzerhof functional (PBE) bandgaps
+- lattice parameters
+- space group
+- structural validity
+- total energy per atom
+- density
+- volume
+- space group symbol
+- crystal system
+- total magnetization
+- oxide type
+- energy per atom
+- number of sites
+- number of elements
+- energy hull
+- structural information (atomic positions, lattice parameters)
+- electronic band structures
+- band gaps
+- metal/nonmetal classification
+- elastic properties
 
 ## Observed fields
 
@@ -212,6 +237,25 @@
 - formula
 - space_group
 - energy_above_hull
+- formation_energy_per_atom
+- CIF
+- element composition
+- space group number
+- total energy per atom
+- energy above hull
+- density
+- volume
+- space group symbol
+- total magnetization
+- oxide type
+- energy_per_atom
+- bandgap (OPT)
+- structure optimization parameters
+- atomic number
+- spatial distance
+- CIF files
+- computed properties
+- experimental data
 
 ## Usage evidence
 
@@ -228,12 +272,6 @@
 - P005 (Predicting thermodynamic stability of inorganic compounds using ensemble machine learning based on electron configuration): label_source in Assigning stability labels based on DFT-derived decomposition energy thresholds — Assign stability labels based on DFT-derived decomposition energy thresholds
 - P005 (Predicting thermodynamic stability of inorganic compounds using ensemble machine learning based on electron configuration): training in Training base-level models (Magpie, Roost, ECCNN) and meta-level model via stacked generalization — Train base-level models (Magpie, Roost, ECCNN) and meta-level model via stacked generalization
 - P005 (Predicting thermodynamic stability of inorganic compounds using ensemble machine learning based on electron configuration): benchmark in Benchmarking predictive performance across multiple metrics and datasets — Benchmark predictive performance across multiple metrics
-- P006 (Transformer-generated atomic embeddings to enhance prediction accuracy of crystal properties with machine learning): source in Collecting crystal structure datasets — Data acquisition for formation energy and PBE bandgap evaluation
-- P006 (Transformer-generated atomic embeddings to enhance prediction accuracy of crystal properties with machine learning): training in Pretraining CrystalTransformer to generate ct-UAEs — Pretraining CrystalTransformer on formation energy and bandgap predictive tasks and multi-task learning with formation energy, bandgap, total energy, and total magnetization / Validation during multi-task pretraining / Testing during multi-task pretraining
-- P006 (Transformer-generated atomic embeddings to enhance prediction accuracy of crystal properties with machine learning): benchmark in Evaluating ct-UAE transfer performance on property prediction — Evaluating ct-UAE transfer performance on property prediction
-- P006 (Transformer-generated atomic embeddings to enhance prediction accuracy of crystal properties with machine learning): computational_validation in Validating symmetry invariance and embedding stability — Validating symmetry invariance and embedding stability via data augmentation
-- P006 (Transformer-generated atomic embeddings to enhance prediction accuracy of crystal properties with machine learning): screening in Clustering and interpreting ct-UAEs via UMAP/K-means — Clustering and interpreting ct-UAEs via UMAP/K-means on oxide compounds
-- P006 (Transformer-generated atomic embeddings to enhance prediction accuracy of crystal properties with machine learning): label_source in Deriving atomic property labels for reverse training (CatBoost) — Deriving atomic property labels for reverse training (CatBoost) using tabulated elemental properties
 - P007 (Accurate piezoelectric tensor prediction with equivariant attention tensor graph neural network): source in Data acquisition from computational databases — To acquire piezoelectric tensor data for bulk crystals
 - P007 (Accurate piezoelectric tensor prediction with equivariant attention tensor graph neural network): candidate_pool in High-throughput screening of candidate materials — To screen candidate bulk piezoelectric materials using trained EATGNN
 - P008 (Hierarchy-boosted funnel learning for identifying semiconductors with ultralow lattice thermal conductivity): source in obtaining material dataset from Materials Project database — Acquire initial theoretical dataset of semiconductors for screening
@@ -266,6 +304,22 @@
 - P026 (MD-HIT: Machine learning for material property prediction with dataset redundancy control): source in download and curate raw materials datasets — Source database for acquiring raw materials data
 - P028 (JARVIS-Leaderboard: a large scale benchmark of materials design methods): source in populate reference dataset — to generate a benchmark dataset with well-defined data splits
 - P038 (Rational design of nanoscale stabilized oxide catalysts for OER with OC22): source in Obtaining bulk materials for slab construction — Obtain bulk oxide materials for slab construction.
+- P046 (Atomistic Line Graph Neural Network for Improved Materials Property Predictions): source in Acquiring JARVIS-DFT and Materials Project datasets — Acquire precomputed DFT-calculated material property data for training and evaluation.
+- P046 (Atomistic Line Graph Neural Network for Improved Materials Property Predictions): label_source in Using DFT-computed property values as labels — Provide ground-truth property values (formation energy, band gap) as regression targets.
+- P046 (Atomistic Line Graph Neural Network for Improved Materials Property Predictions): training in Training ALIGNN models with MSE and NLL loss — Train ALIGNN models using regression and classification objectives. / Validate ALIGNN models during training. / Evaluate final model performance on held-out test set.
+- P046 (Atomistic Line Graph Neural Network for Improved Materials Property Predictions): test in Evaluating model performance using MAE and ROC AUC — Evaluate final model performance on held-out test set.
+- P047 (PHYSICS GUIDED DEEP LEARNING FOR GENERATIVE DESIGN OF CRYSTAL MATERIALS WITH SYMMETRY CONSTRAINTS): source in collecting material data from MP, ICSD and OQMD — source database for curating ternary materials with 20 space groups
+- P051 (1.5 million materials narratives generated by chatbots): source in Dataset Collection — To acquire raw material data with computed properties for narrative generation.
+- P055 (A Materials Map Integrating Experimental and Computational Data via Graph-Based Machine Learning for Enhanced Materials Discovery): candidate_pool in Preprocessing experimental data, training a machine learning model, and applying the trained model to predict experimental data for the compositions registered in the computational data — Provide candidate compositions for prediction of experimental zT using the trained model.
+- P057 (Latent Diffusion Pretraining for Crystal Property Prediction): training in fine-tuning for property prediction — fine-tune pretrained encoder with lightweight property predictor using limited labeled data
+- P057 (Latent Diffusion Pretraining for Crystal Property Prediction): test in downstream property prediction evaluation — evaluate fine-tuned model performance on crystal property prediction tasks using MAE on test sets
+- P061 (Graph Networks as a Universal Machine Learning Framework for Molecules and Crystals): source in data collection from QM9 and Materials Project — Data collection for crystal property prediction
+- P061 (Graph Networks as a Universal Machine Learning Framework for Molecules and Crystals): source in construction of crystal graphs and attribute assignment — Construction of crystal graphs with radius cutoff of 4 Å and atomic, bond, and global state attributes
+- P061 (Graph Networks as a Universal Machine Learning Framework for Molecules and Crystals): training in training of MEGNet models for multiple properties — Training MEGNet models for crystal formation energy
+- P061 (Graph Networks as a Universal Machine Learning Framework for Molecules and Crystals): test in evaluation of model performance against benchmarks — Evaluation of MEGNet model performance against benchmarks for formation energy, band gap, bulk/shear moduli, and metal/nonmetal classification
+- P061 (Graph Networks as a Universal Machine Learning Framework for Molecules and Crystals): label_source in transfer learning of elemental embeddings — Source of elemental embeddings trained on formation energy data for transfer learning to improve band gap and elastic moduli models
+- P023 (A Diffusion-Based Pre-training Framework for Crystal Property Prediction): source in collecting unlabeled crystal structure data — Supply unlabeled crystal graph data for CrysDiff pre-training; 800K is the combined total from Materials Project and OQMD, not an individual-source count.
+- P102 (Foundational Large Language Models for Materials Research): label_source in quantitative assessment of crystal generation — Provide ground truth materials for computing coverage metrics (COV-R and COV-P) to measure similarity between ensembles of generated materials and ground truth materials in the test set.
 
 ## Dataset evidence
 
@@ -277,11 +331,7 @@
 - P004, PDF page 7, Methods: "The MP is a widely used database of inorganic materials properties that have been calculated using high-throughput ab initio methods. At the time of writing, the MP database3 has grown to ~154,000 crystals, covering diverse chemistries and providing relaxed and initial structures as well as the relaxation trajectory for every entry."
 - P005, PDF page 11, Methods: "In this work, we compared the performance of various models in predicting the stability of inorganic compounds on three large DFT-computed datasets, MP, OQMD, and JARVIS."
 - P005, PDF page 11, Methods: "Before using these databases, data preprocessing was required. After excluding noble gas and radioactive elements, the MP database contained 85,014 compounds with information on thermodynamic properties such as formation energy. Compounds with a ΔHd below 0 meV/atom were considered stable and are labeled accordingly."
-- P006, PDF page 2: "To examine the atomic embeddings tensors obtained from different models, we used MP and MP* dataset for formation energy (Ef) and PBE bandgap (Eg), which are key properties for evaluating their chemical stabilities and electronic performances. MP stands for the 2018.6.1 version for MP44 dataset, which contains 69,239 materials with properties."
-- P006, PDF page 2: "MP* denotes the 2023.6.23 version, which contains 134,243 materials."
-- P007, PDF page 3, unknown: "The piezoelectric tensor data of bulk crystals in this work was obtained from the Materials Project21 and a recent high-throughput computational study on piezoelectric tensors24,30."
-- P007, PDF page 7, Data availability: "The two-dimensional materials used in this study were obtained from the C2DB database (https://c2db.fysik.dtu.dk/), while the bulk material data were sourced from the Materials Project and the JARVIS database (https://jarvis.nist.gov/login?next=/jarvisdft/)."
-- P008, PDF page 3: "Initially, we start by acquiring all the materials from the MP database based on its API, resulting in a total of 1,54,718 entries saved in a JSON ﬁle as the Python dictionary object."
+- P008, PDF page 3: "Initially, we start by acquiring all the materials from the MP database based on its API, resulting in a total of 1,54,718 entries saved in a JSON file as the Python dictionary object."
 - P010, PDF page 8, CRYSTAL PROPERTY PREDICTION: "Datasets. We use three datasets: JARVIS (55,723 materials), MP (69,239 materials), and OQMD (817,636 materials), using snapshots available through a Python package (jarvis-tools). These datasets provide several material properties, such as formation energy and bandgap, simulated by DFT calculations."
 - P010, PDF page 17, C DATASET SPECIFICATIONS: "The Materials Project (MP) database (Jain et al., 2013) is an online public materials database providing various synthetic materials and their DFT-calculated properties. We specifically use its snapshot collected by Chen et al. (2019), which contains 69,239 materials and is accessible as megnet via jarvis-tools. Following recent studies (Yan et al., 2022; 2024; Lin et al., 2023; Taniai et al., 2024), we use formation energy (e_form), bandgap (gap pbe), bulk modulus (bulk modulus), and shear modulus (shear modulus) as regression targets. For bulk and shear modulus, we use the data splits provided by Yan et al. (2022)."
 - P011, PDF page 3, Method: "The benchmark for crystal property prediction is well established. There are two standard benchmark datasets, JARVIS and Materials Project (Choudhary et al. 2020; Chen et al. 2019), to evaluate the performance of our model."
@@ -309,3 +359,19 @@
 - P028, PDF page 10, Methods: "For atomic structure datasets, we use DFT datasets such as JARVIS-DFT70,71, Materials Project (MP)65, Tight binding three-body dataset (TB3)72, Quantum-Machine 9 (QM9)139,140."
 - P035, PDF page 1, ABSTRACT: "We then compare against two other DFT databases, the Open Quantum Materials Database (OQMD) and the Materials Project (MP), as well as against experimental formation enthalpies."
 - P038, PDF page 2, Methods: "The bulk materials used for slab construction in this study were obtained from the Materials Project."
+- P103, PDF page 1, unknown: "We train 44 models for predicting several solid-state material properties available in the JARVIS-DFT and materials-project databases."
+- P103, PDF page 3, Results and discussion: "We train several crystalline material properties from JARVIS-density functional theory (DFT) 34-44 and materials project45 datasets."
+- P103, PDF page 8, F. Model performance: "We select the 2018.6.1 version of materials project which consists of 69239 materials with properties such as Perdew Burke-Ernzerhof functional (PBE)47 bandgaps and formation energies."
+- P104, PDF page 3, Results and Discussion: "We collect our material data from MP [4], ICSD [1] and OQMD (v1.4) [5]. In total, 42,072 ternary materials with 20 space groups (5 crystal systems) are curated when we start this project..."
+- P104, PDF page 16, Data Availability statement: "The raw crystal dataset is downloaded from http://www.materialsproject.org."
+- P108, PDF page 1, ABSTRACT: "We have generated a dataset of 1,494,017 natural language-material paragraphs based on combined OQMD, Materials Project, JARVIS, COD and AFLOW2 databases"
+- P108, PDF page 2, Methods: "Moreover, JARVIS also provides an integrated way to access other publicly available databases such as Materials Projects and OQMD."
+- P108, PDF page 2, Methods: "Materials Projects19"
+- P112, PDF page 2, INTRODUCTION: "Initiated in 2011, the Materials Genome Initiative has driven the development of computational databases, such as the Materials Project (MP)13 and AFLOW14, which have been instrumental in systematically collecting and organizing results from first-principles calculations conducted globally."
+- P112, PDF page 5, unknown: "The computational dataset obtained from the Materials Project encompasses diverse materials data."
+- P112, PDF page 14, Machine learning modeling of calculation dataset: "To expand our analysis to computational data, we applied our experimental data-trained model to materials from the Materials Project database:"
+- P114, PDF page 5, 4.1. Datasets for Pretraining and Downstream Tasks: "Further, for the downstream crystal property prediction task, we primarily use two benchmark (property-labeled) crystal datasets: Materials Project (MP-2018.6.1) (Chen et al., 2019) and JARVIS-DFT (Choudhary et al., 2020). Note that these are DFT benchmark datasets, where all properties are derived from DFT-based calculations. ... The Materials Project (MP) is another benchmark dataset containing 69,239 materials. From this dataset, we select four properties for evaluation: formation energy, bandgap (OPT), bulk modulus, and shear modulus."
+- P117, PDF page 1, Introduction: "decades of experimental exploration and theoretical computation have amassed invaluable data, from experimentally determined crystal structures (e.g., ICSD[1], COD[2, 3], CSD[4], and the Pauling File[5]) to properties derived from first-principles calculations (e.g., in databases like Materials Project[6], AFLOW[7], OQMD[8], MatCloud[9], NOMAD[10], Materials Cloud[11], Atomly[12])."
+- P118, PDF page 3: "The crystal data set comprises the DFT-computed energies and band gaps of 69 640 crystals from the Materials Project15 obtained via the Python Materials Genomics (pymatgen)44 interface to the Materials Application Programming Interface (API)45 on June 1, 2018. We will designate this as the MP-crystals-2018.6.1 data set to facilitate future benchmarking and comparisons as data in the Materials Project is constantly being updated."
+- P023, PDF page 6, Experimental Settings: "We collect 800K untagged crystal graph data from two popular materials databases, Materials Project (MP) (Jain et al. 2013) and OQMD (Saal et al. 2013), to pre-train the CrysDiff model."
+- P311, PDF page 11, Methods: "These files were aggregated from three major sources: the Materials Project [55], GNoME-based ab-initio configurations [56], and the American mineralogist crystal structure database (AMCSD) [57]."

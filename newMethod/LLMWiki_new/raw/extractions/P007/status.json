@@ -28,7 +28,8 @@
   "counts": {
     "tasks": 1,
     "stages": 6,
-    "datasets": 7,
-    "dataset_uses": 10
-  }
+    "datasets": 5,
+    "dataset_uses": 6
+  },
+  "curated_at": "2026-10-12T03:07:31.639528+00:00"
 }

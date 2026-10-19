@@ -416,44 +416,6 @@
       ],
       "confidence": 0.95,
       "_identity": "shared:mc3d_dataset"
-    },
-    {
-      "dataset_id": "D_P006_hybrid_organic_inorganic_perovskite_hoip_dataset",
-      "canonical_name": "Hybrid Organic-Inorganic Perovskite (HOIP) dataset",
-      "raw_names": [
-        "Hybrid Organic-Inorganic Perovskite (HOIP) dataset",
-        "HOIP materials",
-        "HOIP crystals",
-        "hybrid perovskite (HOIP) datasets",
-        "HOIP dataset"
-      ],
-      "dataset_type": "derived_subset",
-      "source_dataset_id": "D_materials_project_2018_6_1",
-      "material_scope": [
-        "hybrid organic-inorganic perovskites"
-      ],
-      "available_properties": [
-        "formation energy"
-      ],
-      "available_fields": [
-        "CIF files",
-        "atomic species",
-        "atomic coordinates",
-        "formation energy"
-      ],
-      "availability": "not_directly_available",
-      "recommendable": false,
-      "evidence": [
-        {
-          "text": "After merging two distinct datasets of HOIP materials69,70, we created a more diverse dataset containing 2103 HOIP crystals, which is still small compared to other material databases such as the MP dataset44.",
-          "page": 7,
-          "section": "Application in hybrid organic-inorganic perovskite crystals",
-          "inferred": false,
-          "paper_id": "P006"
-        }
-      ],
-      "confidence": 1.0,
-      "_identity": "P006:derived_subset:hybrid_organic_inorganic_perovskite_hoip_dataset"
     }
   ],
   "dataset_uses": [
@@ -573,34 +535,6 @@
       "confidence": 0.95
     },
     {
-      "dataset_use_id": "DU_P006_005",
-      "paper_id": "P006",
-      "task_id": "T_P006_01",
-      "stage_id": "S_P006_01",
-      "dataset_id": "D_P006_hybrid_organic_inorganic_perovskite_hoip_dataset",
-      "usage_role": "source",
-      "purpose": "Source dataset for acquiring crystal structure and property data for training and evaluation of hybrid perovskites",
-      "used_fields": [
-        "CIF files",
-        "atomic species",
-        "atomic coordinates",
-        "formation energy"
-      ],
-      "is_derived": true,
-      "construction_method": "merging two distinct HOIP datasets",
-      "filter_conditions": [],
-      "sample_count": 2103,
-      "evidence": [
-        {
-          "text": "After merging two distinct datasets of HOIP materials69,70, we created a more diverse dataset containing 2103 HOIP crystals, which is still small compared to other material databases such as the MP dataset44.",
-          "page": 7,
-          "section": "Application in hybrid organic-inorganic perovskite crystals",
-          "inferred": false
-        }
-      ],
-      "confidence": 1.0
-    },
-    {
       "dataset_use_id": "DU_P006_006",
       "paper_id": "P006",
       "task_id": "T_P006_01",
@@ -714,34 +648,6 @@
         }
       ],
       "confidence": 0.95
-    },
-    {
-      "dataset_use_id": "DU_P006_010",
-      "paper_id": "P006",
-      "task_id": "T_P006_01",
-      "stage_id": "S_P006_04",
-      "dataset_id": "D_P006_hybrid_organic_inorganic_perovskite_hoip_dataset",
-      "usage_role": "test",
-      "purpose": "Evaluating ct-UAE transfer performance on back-end models (CGCNN, MEGNET) for formation energy prediction in hybrid perovskites",
-      "used_fields": [
-        "CIF files",
-        "atomic species",
-        "atomic coordinates",
-        "formation energy"
-      ],
-      "is_derived": true,
-      "construction_method": null,
-      "filter_conditions": [],
-      "sample_count": null,
-      "evidence": [
-        {
-          "text": "After applying ct-UAEs to predict formation energy in hybrid perovskites database, we realized an improvement in accuracy, with a 34% boost in MEGNET and 16% in CGCNN, showcasing their potential as atomic ﬁngerprints to address the data scarcity challenges.",
-          "page": 1,
-          "section": null,
-          "inferred": false
-        }
-      ],
-      "confidence": 1.0
     },
     {
       "dataset_use_id": "DU_P006_011",

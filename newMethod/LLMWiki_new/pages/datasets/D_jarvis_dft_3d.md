@@ -19,6 +19,7 @@
 - JARVIS-3D dataset
 - JARVIS-DFT 3D
 - JARVIS-DFT (dft_3d)
+- JARVIS-DFT
 
 ## Observed material scopes
 
@@ -28,6 +29,7 @@
 - inorganic materials
 - computational materials
 - materials of technological interest
+- materials
 
 ## Observed research tasks
 
@@ -35,6 +37,7 @@
 - Predicting physical properties of materials from their crystal structures
 - materials property prediction
 - benchmarking of materials design methods
+- benchmarking materials design methods
 
 ## Observed research stages
 
@@ -71,6 +74,25 @@
 - XRD
 - STEM
 - STM
+- bulk_modulus
+- exfoliation_energy
+- epsx
+- mepsz
+- shear_modulus_gv
+- kpoint_length_unit
+- spillage
+- mepsy
+- mepsx
+- ph_heat_capacity
+- indir_gap
+- slme
+- dfpt_piezo_max_dij
+- n_powerfact
+- max_efg
+- n_Seebeck
+- magmom_oszicar
+- dfpt_piezo_max_dielectric
+- relaxed_energy
 
 ## Observed fields
 
@@ -87,6 +109,9 @@
 - crystal structure files (POSCAR)
 - atomic structure
 - identifier (id)
+- id
+- structure
+- properties
 
 ## Usage evidence
 
@@ -98,6 +123,7 @@
 - P022 (CRYSTALFORMER: INFINITELY CONNECTED ATTENTION FOR PERIODIC STRUCTURE ENCODING): test in evaluating model performance with mean absolute errors — assess the predictive accuracy of the trained Crystalformer model on held-out test sets
 - P024 (Structure-aware graph neural network based deep transfer learning framework for enhanced predictive analytics on diverse materials datasets): candidate_pool in acquisition of diverse materials datasets — acquisition of diverse materials datasets
 - P028 (JARVIS-Leaderboard: a large scale benchmark of materials design methods): source in populate reference dataset — to generate a benchmark dataset with well-defined data splits
+- P049 (Large Scale Benchmark of Materials Design Methods): source in populate reference dataset — to populate the reference dataset used for a specific benchmark
 
 ## Dataset evidence
 
@@ -106,6 +132,9 @@
 - P022, PDF page 7, EXPERIMENTS: "JARVIS-DFT (3D 2021) is a collection of 55,723 materials by Choudhary et al. (2020). Following Yan et al. (2022), we perform regression tasks of formation energy, total energy, bandgap, and energy above hull (E hull). For bandgap, the dataset provides property values obtained by DFT calculation methods using the OptB88vdW functional (OPT) or the Tran-Blaha modified Becke-Johnson potential (MBJ)."
 - P024, PDF page 2, RESULTS: "We use nine datasets of DFT-computed and experimental properties in this work: Materials Project (MP)4, Joint Automated Repository for Various Integrated Simulations (JARVIS) 3D with 46 properties and 2D with 32 properties5, Flla44 with three properties, Dielectric Constant (DC)45 with five properties, Piezoelectric Tensor (PT)46 with two properties, Experimental Formation Energy (EFE)47 with one property, Kingsbury Experimental Formation Energy (KEFE)48 with one property, Kingsbury Experimental Bandgap (KEB)49 with one property, and Harvard Organic Photovoltaic Dataset (HOPV)50 with 24 properties."
 - P028, PDF page 3: "Fig. 1 | Leaderboard snapshot with an example output for AI-based formation energy per atom model on the JARVIS-DFT (dft_3d) dataset."
-- P028, PDF page 4, Results and discussion: "AI benchmarks have pre-deﬁned training/validation/test identiﬁers and target data in a corresponding json.zip ﬁle..."
-- P028, PDF page 6: "In Fig. 6(a) we see the comparison of 12 AI models (each AI model had a well-deﬁned 80:10:10 split for training, validation and testing respectively from the JARVIS-3D database)..."
+- P028, PDF page 4, Results and discussion: "AI benchmarks have pre-defined training/validation/test identifiers and target data in a corresponding json.zip file..."
+- P028, PDF page 6: "In Fig. 6(a) we see the comparison of 12 AI models (each AI model had a well-defined 80:10:10 split for training, validation and testing respectively from the JARVIS-3D database)..."
 - P028, PDF page 9: "a formation-energy-per atom model using AI for JARVIS-DFT 3D dataset with 5572 materials in the test set"
+- P106, PDF page 3, unknown: "The user can populate the reference dataset (with well-defined data splits) used for a specific benchmark (e.g. for 2D exfoliation energies in JARVIS-DFT dataset using an AI method: “AI-SinglePropertyPrediction-exfoliation_energy-dft_3d-test”)."
+- P106, PDF page 7, unknown: "For atomic structure datasets, we use DFT datasets such as JARVIS-DFT35, Materials Project (MP)141, Tight binding three-body dataset (TB3)59, Quantum-Machine 9 (QM9)142,143."
+- P106, PDF page 9, unknown: "We find the JARVIS-DFT-3D dataset to have the largest number of entries."

@@ -10,7 +10,6 @@
 ## Raw names
 
 - 2DMatPedia
-- 2DMatPedia database
 
 ## Observed material scopes
 
@@ -24,21 +23,18 @@
 ## Observed research stages
 
 - data_acquisition
-- model_evaluation
 - candidate_generation
 
 ## Observed properties
 
-- thermodynamic stability
 - bandgap
-- crystal structure
+- thermodynamic stability
 
 ## Observed fields
 
-- composition
-- stability
+- chemical formula
+- stability label
 - bandgap
-- crystal structure
 
 ## Usage evidence
 
@@ -49,4 +45,3 @@
 
 - P005, PDF page 9, unknown: "Then, we tested the trained model on the 2Dmatpedia database, which contains 4743 materials."
 - P005, PDF page 9, unknown: "After verifying the stability using labels from 2dMatpedia, 313 of them were found to meet the stability requirements."
-- P007, PDF page 6, unknown: "In order to discover new potential high-performance piezoelectric materials, we use our model on both 3D and 2D materials in the Materials Project and 2DMatPedia database36, respectively. Our selection criteria are 1) out of the training datasets, 2) inversion asymmetry, 3) Egap > 0.1 eV, and 4) Nuc < 30 atoms."

@@ -557,74 +557,6 @@
       ],
       "confidence": 1.0,
       "_identity": "shared:mp21_fermi_energy_dataset"
-    },
-    {
-      "dataset_id": "D_P013_novel_structures_dataset",
-      "canonical_name": "Novel Structures Dataset",
-      "raw_names": [
-        "Novel Structures Dataset",
-        "new dataset containing 751 novel structures generated and DFT-relaxed in-house",
-        "751 novel structures"
-      ],
-      "dataset_type": "paper_specific",
-      "source_dataset_id": null,
-      "material_scope": [
-        "inorganic materials"
-      ],
-      "available_properties": [
-        "formation energy",
-        "energy above convex hull"
-      ],
-      "available_fields": [
-        "crystal structures"
-      ],
-      "availability": "not_directly_available",
-      "recommendable": false,
-      "evidence": [
-        {
-          "text": "To further investigate the performance of our model, we applied CrysCo to predict Ef and EHull of materials from a new dataset containing 751 novel structures generated and DFT-relaxed in-house.",
-          "page": 6,
-          "section": "Model performance on novel datasets",
-          "inferred": false,
-          "paper_id": "P013"
-        }
-      ],
-      "confidence": 1.0,
-      "_identity": "P013:paper_specific:novel_structures_dataset"
-    },
-    {
-      "dataset_id": "D_P013_materials_project_elastic_data_gap",
-      "canonical_name": "Materials Project Elastic Data Gap",
-      "raw_names": [
-        "Materials Project Elastic Data Gap",
-        "elastic data missing from the MP database",
-        "approximately 113,000 compounds"
-      ],
-      "dataset_type": "paper_specific",
-      "source_dataset_id": null,
-      "material_scope": [
-        "inorganic materials"
-      ],
-      "available_properties": [
-        "bulk modulus",
-        "shear modulus"
-      ],
-      "available_fields": [
-        "material compositions"
-      ],
-      "availability": "not_directly_available",
-      "recommendable": false,
-      "evidence": [
-        {
-          "text": "Next, we focused on using CrysCo to ﬁll-in the elastic data missing from the MP database, which comprise approximately 113,000 compounds.",
-          "page": 8,
-          "section": "Filling-in elastic data missing from the Materials Project database",
-          "inferred": false,
-          "paper_id": "P013"
-        }
-      ],
-      "confidence": 1.0,
-      "_identity": "P013:paper_specific:materials_project_elastic_data_gap"
     }
   ],
   "dataset_uses": [
@@ -856,56 +788,6 @@
           "text": "Table 1 | The eight datasets derived from the MP21 database and used in the present study\nDataset name\nSource\nMaterial property\n# Crystal structures\nFe_energy\nMP21\nFermi energy (eV)\n26,078",
           "page": 4,
           "section": null,
-          "inferred": false
-        }
-      ],
-      "confidence": 1.0
-    },
-    {
-      "dataset_use_id": "DU_P013_010",
-      "paper_id": "P013",
-      "task_id": "T_P013_01",
-      "stage_id": "S_P013_05",
-      "dataset_id": "D_P013_novel_structures_dataset",
-      "usage_role": "screening",
-      "purpose": "screen novel materials for formation energy and energy above convex hull",
-      "used_fields": [
-        "crystal structures"
-      ],
-      "is_derived": false,
-      "construction_method": "generated and DFT-relaxed in-house",
-      "filter_conditions": [],
-      "sample_count": 751,
-      "evidence": [
-        {
-          "text": "To further investigate the performance of our model, we applied CrysCo to predict Ef and EHull of materials from a new dataset containing 751 novel structures generated and DFT-relaxed in-house.",
-          "page": 6,
-          "section": "Model performance on novel datasets",
-          "inferred": false
-        }
-      ],
-      "confidence": 1.0
-    },
-    {
-      "dataset_use_id": "DU_P013_011",
-      "paper_id": "P013",
-      "task_id": "T_P013_01",
-      "stage_id": "S_P013_06",
-      "dataset_id": "D_P013_materials_project_elastic_data_gap",
-      "usage_role": "candidate_pool",
-      "purpose": "generate predictions for elastic moduli of compounds missing from MP",
-      "used_fields": [
-        "material compositions"
-      ],
-      "is_derived": false,
-      "construction_method": "compounds missing elastic data in MP database",
-      "filter_conditions": [],
-      "sample_count": 113000,
-      "evidence": [
-        {
-          "text": "Next, we focused on using CrysCo to ﬁll-in the elastic data missing from the MP database, which comprise approximately 113,000 compounds.",
-          "page": 8,
-          "section": "Filling-in elastic data missing from the Materials Project database",
           "inferred": false
         }
       ],

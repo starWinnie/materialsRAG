@@ -1,0 +1,3 @@
+# Preserve exact bytes used by the embedding index fingerprint on every platform.
+raw/*.jsonl -text
+relations/*.jsonl -text

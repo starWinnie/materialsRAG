@@ -229,41 +229,6 @@
       ],
       "confidence": 1.0,
       "_identity": "shared:jarvis_dft_database"
-    },
-    {
-      "dataset_id": "D_P020_curated_crystal_tensor_property_dataset",
-      "canonical_name": "curated crystal tensor property dataset",
-      "raw_names": [
-        "curated crystal tensor property dataset",
-        "curated dataset"
-      ],
-      "dataset_type": "derived_subset",
-      "source_dataset_id": "D_jarvis_dft_database",
-      "material_scope": [
-        "crystalline materials"
-      ],
-      "available_properties": [
-        "dielectric tensor",
-        "piezoelectric tensor",
-        "elastic tensor"
-      ],
-      "available_fields": [
-        "crystal structure",
-        "tensor property values"
-      ],
-      "availability": "not_directly_available",
-      "recommendable": false,
-      "evidence": [
-        {
-          "text": "In our research, a dataset is curated specifically focusing on crystal tensor properties, including dielectric, piezoelectric, and elastic tensors, sourced from the JARVIS-DFT database (Choudhary et al., 2020). This dataset has been constructed with a keen emphasis on ensuring congruence between the properties and structures, achieved by extracting both the tensor property values and corresponding crystal structures directly from the DFT calculation files.",
-          "page": 7,
-          "section": "5.1. Curated Crystal Tensor Property Dataset",
-          "inferred": false,
-          "paper_id": "P020"
-        }
-      ],
-      "confidence": 1.0,
-      "_identity": "P020:derived_subset:curated_crystal_tensor_property_dataset"
     }
   ],
   "dataset_uses": [
@@ -286,41 +251,6 @@
       "evidence": [
         {
           "text": "In our research, a dataset is curated specifically focusing on crystal tensor properties, including dielectric, piezoelectric, and elastic tensors, sourced from the JARVIS-DFT database (Choudhary et al., 2020).",
-          "page": 7,
-          "section": "5.1. Curated Crystal Tensor Property Dataset",
-          "inferred": false
-        }
-      ],
-      "confidence": 1.0
-    },
-    {
-      "dataset_use_id": "DU_P020_002",
-      "paper_id": "P020",
-      "task_id": "T_P020_01",
-      "stage_id": "S_P020_01",
-      "dataset_id": "D_P020_curated_crystal_tensor_property_dataset",
-      "usage_role": "training",
-      "purpose": "training, validation, and test dataset for crystal tensor property prediction",
-      "used_fields": [
-        "crystal structure",
-        "tensor property values"
-      ],
-      "is_derived": true,
-      "construction_method": "extracting both the tensor property values and corresponding crystal structures directly from the DFT calculation files",
-      "filter_conditions": [
-        "congruence between properties and structures",
-        "consistent DFT core"
-      ],
-      "sample_count": null,
-      "evidence": [
-        {
-          "text": "In our research, a dataset is curated specifically focusing on crystal tensor properties, including dielectric, piezoelectric, and elastic tensors, sourced from the JARVIS-DFT database (Choudhary et al., 2020). This dataset has been constructed with a keen emphasis on ensuring congruence between the properties and structures, achieved by extracting both the tensor property values and corresponding crystal structures directly from the DFT calculation files. This approach guarantees that the symmetry of the properties aligns with that of the structures. Notably, each tensor property within this dataset is computed using a consistent DFT core, ensuring uniformity in the calculation method.",
-          "page": 7,
-          "section": "5.1. Curated Crystal Tensor Property Dataset",
-          "inferred": false
-        },
-        {
-          "text": "Table 1. Dataset statistics. Fnorm denotes Frobenius norm.\nDataset\n# Samples\nFnorm Mean\nFnorm STD\n# Elem.\nUnit\nDielectric\n4713\n14.7\n18.2\n87\nUnitless\nPiezo\n4998\n0.43\n3.09\n87\nC/m2\nElastic\n14220\n327\n249\n87\nGPa",
           "page": 7,
           "section": "5.1. Curated Crystal Tensor Property Dataset",
           "inferred": false

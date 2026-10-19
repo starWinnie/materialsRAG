@@ -1,0 +1,31 @@
+{
+  "before": {
+    "papers": 95,
+    "tasks": 95,
+    "stages": 555,
+    "datasets": 301,
+    "dataset_uses": 742
+  },
+  "after": {
+    "papers": 95,
+    "tasks": 95,
+    "stages": 555,
+    "datasets": 300,
+    "dataset_uses": 743
+  },
+  "old_dataset": "D_materials_project_and_oqmd",
+  "existing_targets": [
+    "D_materials_project",
+    "D_oqmd"
+  ],
+  "old_use": "DU_P023_001",
+  "new_uses": [
+    "DU_P023_001_MP",
+    "DU_P023_001_OQMD"
+  ],
+  "updated_caches": [
+    "raw\\extractions\\P023\\normalized.json"
+  ],
+  "backup": "C:\\Users\\li\\Desktop\\材料大数据\\知识库构建_模拟PVLDB\\newMethod\\LLMWiki_before_mp_oqmd_repair_20261011_183630",
+  "note": "Historical model response files retained unchanged; normalized cache repaired. Rebuild embeddings."
+}

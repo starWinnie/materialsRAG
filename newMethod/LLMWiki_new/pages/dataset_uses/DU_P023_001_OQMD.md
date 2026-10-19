@@ -1,0 +1,53 @@
+# Dataset Use: Open Quantum Materials Database (OQMD) in collecting unlabeled crystal structure data
+
+- DatasetUse ID: `DU_P023_001_OQMD`
+- Paper: `P023`
+
+## Research task
+
+crystal property prediction (`T_P023_01`)
+
+## Research stage
+
+collecting unlabeled crystal structure data (`data_acquisition`, `S_P023_01`)
+
+## Dataset
+
+Open Quantum Materials Database (OQMD) (`D_oqmd`)
+
+## Usage role
+
+source
+
+## Purpose
+
+Supply unlabeled crystal graph data for CrysDiff pre-training; 800K is the combined total from Materials Project and OQMD, not an individual-source count.
+
+## Used fields
+
+- crystal graph data
+
+## Construction method
+
+Not stated.
+
+## Filter conditions
+
+- None stated
+
+## Sample count
+
+Not stated.
+
+## Availability
+
+- Dataset: public
+- Recommendable: true
+
+## Confidence
+
+1.0
+
+## Evidence
+
+- P023, PDF page 6, Experimental Settings: "We collect 800K untagged crystal graph data from two popular materials databases, Materials Project (MP) (Jain et al. 2013) and OQMD (Saal et al. 2013), to pre-train the CrysDiff model."

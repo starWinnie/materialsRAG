@@ -222,7 +222,7 @@
   "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
   "page_numbering": "1-based physical PDF page",
   "descriptive_language": "paper original language",
-  "updated_at": "2026-08-06T04:03:48.047360+00:00",
+  "updated_at": "2026-10-18T06:11:31.989181+00:00",
   "completed_paper_ids": [
     "P001",
     "P002",
@@ -271,12 +271,34 @@
     "P007"
   ],
   "counts": {
-    "papers": 41,
-    "tasks": 41,
-    "stages": 241,
-    "datasets": 142,
-    "dataset_uses": 348,
-    "edges": 1919
+    "papers": 118,
+    "tasks": 118,
+    "stages": 695,
+    "datasets": 232,
+    "dataset_uses": 590
   },
-  "validation_valid": true
+  "validation_valid": true,
+  "incremental_imports": [
+    {
+      "imported_at": "2026-10-09T12:44:55.994619+00:00",
+      "source": "C:\\Users\\li\\Desktop\\材料大数据\\知识库构建_模拟PVLDB\\newMethod\\imports\\LLMWiki_batch1",
+      "batch_tag": "6AF92C8B",
+      "accepted_papers": 22,
+      "skipped_or_review_papers": 0
+    },
+    {
+      "imported_at": "2026-10-11T08:02:04.660537+00:00",
+      "source": "C:\\Users\\li\\Desktop\\材料大数据\\知识库构建_模拟PVLDB\\newMethod\\imports\\LLMWiki_batch2",
+      "batch_tag": "9BE36F16",
+      "accepted_papers": 31,
+      "skipped_or_review_papers": 0
+    },
+    {
+      "imported_at": "2026-10-18T06:11:31.989181+00:00",
+      "source": "C:\\Users\\li\\Desktop\\材料大数据\\知识库构建_模拟PVLDB\\newMethod\\imports\\LLMWiki_batch3",
+      "batch_tag": "D8DA9765",
+      "accepted_papers": 23,
+      "skipped_or_review_papers": 2
+    }
+  ]
 }
